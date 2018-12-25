@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <label class="venue-header"> Add a venue</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" >
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Type name" required="true"
+                       [(ngModel)]="userSearch.name"
+                >
+                <small id="nameHelp" class="form-text text-muted">Enter a name to search.
+                </small>
+            </div>
+            <div class="form-group" >
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" placeholder="City" required="required"
+                       [(ngModel)]="userSearch.city"
+                >
+                <small id="cityHelp" class="form-text text-muted">Enter a city you want to search.
+                </small>
+            </div>
+            <div class="form-group" >
+                <label for="state">State</label>
+                <input type="text" class="form-control" id="state" placeholder="State" required="required"
+                       [(ngModel)]="userSearch.state"
+                >
+                <small id="stateHelp" class="form-text text-muted">Enter a state you want to search.
+                </small>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
+    <div class="row" *ngIf="!isUpdateShow">
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" (click)="add_new_venue($event)">Submit</button>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" (click)="reset_venue($event)">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="isUpdateShow">
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" (click)="update_venue($event)">Update</button>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" (click)="reset_venue($event)">Reset</button>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" (click)="reset_venue($event)" disabled>Previous</button>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" (click)="reset_venue($event)" disabled>Next</button>
+            </div>
+        </div>
+    </div>
+
+    <label class="venue-header" *ngIf="isErrorVisible">{{errorMessage}}</label>
+</div>
+

@@ -7,6 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { HelpComponent } from './help/help.component';
 import { DataEntryComponent } from './data-entry/data-entry.component';
 import { VenuesComponent } from './venues/venues.component';
+import { VenueComponent } from './venue/venue.component';
+import { EditVenueComponent} from './edit-venue/edit-venue.component';
+import { SearchVenueComponent } from './search-venue/search-venue.component';
 
 const routes: Routes = [
   { path: 'event/:id', component: EventComponent },
@@ -15,6 +18,9 @@ const routes: Routes = [
   { path: 'help', component: HelpComponent },
   { path: 'data-entry', component: DataEntryComponent },
   { path: 'venue/:id', component: VenuesComponent },
+  { path: 'venue', component: VenueComponent },
+  { path: 'edit-venue/:venueId', component: EditVenueComponent},
+  { path: 'search-venue', component: SearchVenueComponent },
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: '' }
 ];
