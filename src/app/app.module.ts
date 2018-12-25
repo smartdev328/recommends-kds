@@ -18,6 +18,14 @@ import { HomeComponent } from './home/home.component';
 import { HelpComponent } from './help/help.component';
 import { DataEntryComponent } from './data-entry/data-entry.component';
 import { VenuesComponent } from './venues/venues.component';
+import { VenueComponent } from './venue/venue.component';
+import { NgSelectModule, NgOption } from '@ng-select/ng-select';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { SearchVenueComponent } from './search-venue/search-venue.component';
+import { EditVenueComponent } from './edit-venue/edit-venue.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -29,7 +37,10 @@ import { VenuesComponent } from './venues/venues.component';
     HomeComponent,
     HelpComponent,
     DataEntryComponent,
-    VenuesComponent
+    VenuesComponent,
+    VenueComponent,
+    SearchVenueComponent,
+    EditVenueComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +51,9 @@ import { VenuesComponent } from './venues/venues.component';
     BrowserAnimationsModule,
     MatTabsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule,
+    BsDropdownModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
