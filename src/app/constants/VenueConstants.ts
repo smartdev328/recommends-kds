@@ -71,6 +71,8 @@ export class VenueConstants {
     public TEXT_MAX_LENGTH = 50;
 
     public TEXT_MIN_LENGTH = 0;
+
+    public PERM_CLOSE = [0 , 1];
 }
 
 export class VenueErrorMessage {
@@ -80,7 +82,13 @@ export class VenueErrorMessage {
     public NOT_EMPTY = " should not be an empty value";
     public VALID_EMAIL = " please type valid email address";
     public VALID_ZIP_CODE = " please type valid zip code";
+    public VALIDATE_RATING = " rating should be from 1-5" ;
+    public VALIDATE_PERM_CLOSE = " should be only 0 OR 1" ;
+    public VALIDATE_PRICE = " maximum 10 digit price is allowed" ;
+    public VALIDATE_CONTACT_NO = " please type correct contact no Ex:(123)123-1234";
+    public VALIDATE_ALPHA_NUMERICS = " only alphanumerics are allowed";
     public VALID_URL = " please type valid URL";
     public VALID_PRICE = " please type valid Price";
     public GET_DATA_ERROR = "Error while getting information";
+    public PASS_VENUE_ID_OR_QUERY_SEARCH = "Pass at least venue id or query search";
 }

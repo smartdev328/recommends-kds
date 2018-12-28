@@ -31,7 +31,7 @@ export class SearchVenueComponent implements OnInit {
   public query_search:string;
   constructor(private searchVenueService: SearchVenueService , private router: Router) {
     this.isShowTable = true;
-    this.isErrorVisible = true;
+    this.isErrorVisible = false;
     this.venueData = [];
   }
 
@@ -87,13 +87,38 @@ export class SearchVenueComponent implements OnInit {
     }
   }
   search_venues() {
-      if ( this.venue_id !== undefined ) {
-        this.get_venue_data();
-      } else if (this.query_search!=undefined || this.query_search.length > 0) {
-        this.query_search_on_venue_data();
-      }
+
+        if ( this.venue_id !== undefined ) {
+          this.get_venue_data();
+        } else if (this.query_search !== undefined ) {
+          if ( this.query_search.trim().length > 0) {
+            this.query_search_on_venue_data();
+          } else {
+            this.isErrorVisible  = true;
+            this.errorMessage =  'query search , ' + this.venueErrorMessage.PASS_VENUE_ID_OR_QUERY_SEARCH;;
+          }
+        } else {
+          this.isErrorVisible  = true;
+          this.errorMessage =  'query search , ' + this.venueErrorMessage.PASS_VENUE_ID_OR_QUERY_SEARCH;;
+        }
+
   }
 
+  validate_search_venue_fields( ) {
+    if ( this.query_search === undefined || this.query_search.trim().length === 0 ||
+        this.venue_id === undefined || this.venue_id <= 0) {
+        return 'query search , ' + this.venueErrorMessage.PASS_VENUE_ID_OR_QUERY_SEARCH;
+    } else if ( this.query_search.trim().length > 0 && this.validationRules.validate_text_length(this.query_search) === false ) {
+      return 'query search ' + this.venueErrorMessage.LENGTH_IN_BETWEEN + " " + this.venueConstatnts.TEXT_MIN_LENGTH + ' & ' +
+          this.venueConstatnts.TEXT_MAX_LENGTH;
+    } else {
+      return true;
+    }
+  }
+
+  closeErrorBox() {
+    this.isErrorVisible = false;
+  }
 
 
 }

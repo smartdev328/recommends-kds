@@ -1,11 +1,15 @@
-import {VenueConstatnts, VenueErrorMessage} from '../constatnts/VenueConstatnts';
+import {VenueConstants, VenueErrorMessage} from '../constants/VenueConstants';
 import {UserSearch} from '../venue/venue.model';
 export class ValidationRules {
-    public venueConstatnts = new VenueConstatnts();
+    public venueConstatnts = new VenueConstants();
     public venueErrorMessage = new VenueErrorMessage();
 
     public validate_only_characters(text: any) {
-        return /^[a-zA-Z]+$/.test(text);
+        return /^[a-z A-Z 0-9]+$/.test(text);
+    }
+
+    public validate_only_alphanumeric(text: any) {
+        return /^[a-z A-Z0-9$@'"]+$/.test(text);
     }
 
     public validate_url(URL: any) {
@@ -19,7 +23,8 @@ export class ValidationRules {
     }
 
     public validate_float_value(decimal_value: any) {
-        return /^[-+]?[0-9]+\.[0-9]+$/.test(decimal_value);
+        return parseFloat(decimal_value) >0 && parseFloat(decimal_value) < 6 ;
+        //return /^[1-5]+\.[1-5]+$/.test(decimal_value);
     }
 
     public validate_us_zip_code(zip_code: any) {
@@ -28,6 +33,19 @@ export class ValidationRules {
 
     public validate_text_length(text: any) {
         return text.length > this.venueConstatnts.TEXT_MIN_LENGTH && text.length < this.venueConstatnts.TEXT_MAX_LENGTH;
+    }
+
+    public validate_contact_no(contact: string) {
+        return /^[0-9()+]+$/.test(contact);
+        //return /^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$/.test(contact);
+
+    }
+    public validate_only_zero_and_one(no: string) {
+        return /^[0 1]+$/.test(no);
+
+    }
+    public validate_price(no: string) {
+        return /^\d{0,10}(\.\d{1,4})?$/.test(no);
     }
 
     validate_basic_venue_fields(user_search: UserSearch) {

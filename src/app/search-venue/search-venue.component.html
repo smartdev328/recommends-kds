@@ -51,9 +51,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <label *ngIf="isErrorVisible" class="redColor">{{ errorMessage }}</label>
-    </div>
+
     <div class="row" *ngIf="isShowTable">
         <table class="table">
             <thead>
@@ -75,5 +73,14 @@
             </tr>
             </tbody>
         </table>
+    </div>
+
+    <div class="row error-message" *ngIf="isErrorVisible">
+        <div class="col-md-12">
+            <label>{{errorMessage}}</label>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary errorCloseButton" (click)="closeErrorBox()">Close</button>
+        </div>
     </div>
 </div>

@@ -1,11 +1,12 @@
 export class UserSearch {
+
     name: String;
     city: String;
     state: String;
     url: String;
     image_url: String;
     price: Number;
-    perm_close: Number;
+    perm_close: any;
     category: Number;
     sec_cat: Number;
     misc:  {
@@ -26,4 +27,35 @@ export class UserSearch {
     street: String;
     zip_code: String;
     timings: String;
+
+    constructor( ) {
+        this.name = '';
+        this.city = '';
+        this.state = '';
+        this.url = '';
+        this.image_url = '';
+        this.price = 0;
+        this.perm_close = 0;
+        this.category = 0;
+        this.sec_cat = 0;
+        this.misc = {
+            'rating': 0,
+            'address': '',
+            'adr_address': '',
+            'g_p_id': '',
+            'g_id': '',
+            'geometry': {},
+            'map_url': '',
+            'tips_for_parent': '',
+            'parking': ''
+        };
+
+        this.tags = '';
+        this.email = '';
+        this.description = '';
+        this.contact_number = '';
+        this.street = '';
+        this.zip_code = '';
+        this.timings = '';
+    }
 }
