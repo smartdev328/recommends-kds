@@ -1,9 +1,19 @@
 <div class="container">
+
     <div class="row">
         <div class="col-md-6">
             <label class="venue-header"> Add a venue</label>
         </div>
     </div>
+
+
+    <!--<div class="bs-example" *ngIf="isErrorVisible">-->
+        <!--<div class="alert alert-danger">-->
+            <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
+            <!--<strong>{{errorMessage}}</strong>-->
+        <!--</div>-->
+    <!--</div>-->
+
     <div class="row">
         <div class="col-md-6">
             <div class="form-group" >
@@ -75,6 +85,18 @@
         </div>
     </div>
 
-    <label class="venue-header" *ngIf="isErrorVisible">{{errorMessage}}</label>
+    <label class="venue-header" ></label>
+
+    <div class="row error-message" *ngIf="isErrorVisible">
+        <div class="col-md-12">
+            <label>{{errorMessage}}</label>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary errorCloseButton" (click)="closeErrorBox()">Close</button>
+        </div>
+    </div>
+
+
 </div>
+
 

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {VenueService} from './venue.service';
 import {UserSearch} from './venue.model';
-import {VenueConstatnts, VenueErrorMessage} from '../constatnts/VenueConstatnts';
+import {VenueConstants, VenueErrorMessage} from '../constants/VenueConstants';
 import {ValidationRules} from '../utils/ValidationRules';
 
 import {NgSelectModule, NgOption} from '@ng-select/ng-select';
+
 import {Router} from '@angular/router';
 
 
@@ -16,7 +17,7 @@ import {Router} from '@angular/router';
 export class VenueComponent implements OnInit {
   public userSearch = new UserSearch();
   public isUpdateShow = false;
-  public venueConstatnts = new VenueConstatnts();
+  public venueConstatnts = new VenueConstants();
   public venueErrorMessage = new VenueErrorMessage();
   public validationRules = new ValidationRules();
   public primary_cat = this.venueConstatnts.PRIMARY_CATEGORY;
@@ -24,9 +25,11 @@ export class VenueComponent implements OnInit {
   public errorMessage: String;
   public isErrorVisible: Boolean;
   public jsonMiscData: JSON;
+  public showErrorDialog: boolean;
+
 
   constructor(private  eventService: VenueService , private router: Router) {
-
+      this.showErrorDialog = false;
   }
 
   ngOnInit(): void {
@@ -34,6 +37,7 @@ export class VenueComponent implements OnInit {
   }
 
   add_new_venue(this) {
+
     let new_venuee_result: any;
     let isValidated = this.validationRules.validate_basic_venue_fields(this.userSearch);
     if(isValidated === true) {
@@ -69,6 +73,10 @@ export class VenueComponent implements OnInit {
   reset_venue(this) {
     this.isUpdateShow = false;
     this.userSearch.name = this.userSearch.state = this.userSearch.city = "" ;
+  }
+
+  closeErrorBox() {
+    this.isErrorVisible = false;
   }
 
 

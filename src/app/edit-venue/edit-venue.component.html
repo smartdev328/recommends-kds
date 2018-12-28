@@ -74,7 +74,7 @@
             <div class="form-group">
                 <label for="parking">Parking</label>
                 <input type="text" class="form-control" id="parking" placeholder="Parking" required="required"
-                       [(ngModel)]="userSearch.misc.parking"
+                       [(ngModel)]="parking"
                 >
                 <small id="parkHelp" class="form-text text-muted">Parking
                 </small>
@@ -83,7 +83,7 @@
             <div class="form-group">
                 <label for="tips">Tips For Parent</label>
                 <input type="text" class="form-control" id="tips" placeholder="Tips" required="required"
-                       [(ngModel)]="userSearch.misc.tips_for_parent"
+                       [(ngModel)]="tips_for_parent"
                 >
                 <small id="tipsHelp" class="form-text text-muted">Tips for parent
                 </small>
@@ -91,8 +91,8 @@
 
             <div class="form-group">
                 <label for="tips">Ratings</label>
-                <input type="number" class="form-control" id="ratings" placeholder="Ratings" required="required"
-                       [(ngModel)]="userSearch.misc.rating" min="1" max="5"
+                <input type="text" class="form-control" id="ratings" placeholder="Ratings" required="required"
+                       [(ngModel)]="rating"
                 >
                 <small id="ratingHelp" class="form-text text-muted">Any ratings 1-5
                 </small>
@@ -183,10 +183,11 @@
             </div>
 
             <div class="form-group">
+
                 <label for="timings">Timings</label>
-                <input type="text" class="form-control" id="timings" placeholder="Timing" required="required"
-                       [(ngModel)]="userSearch.timings"
-                >
+                <textarea class="form-control" rows="5" id="timings" placeholder="Timing"  required="required"
+                          [(ngModel)]="userSearch.timings"
+                ></textarea>
                 <small id="timingsHelp" class="form-text text-muted">Timings
                 </small>
             </div>
@@ -218,8 +219,14 @@
         </div>
     </div>
 
-    <div class="row">
-        <label class="venue-header" *ngIf="isErrorVisible" >{{errorMessage}}</label>
+
+    <div class="row error-message" *ngIf="isErrorVisible">
+        <div class="col-md-12">
+            <label>{{errorMessage}}</label>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary errorCloseButton" (click)="closeErrorBox()">Close</button>
+        </div>
     </div>
 
 </div>
