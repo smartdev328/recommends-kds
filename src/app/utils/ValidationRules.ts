@@ -36,7 +36,7 @@ export class ValidationRules {
     }
 
     public validate_contact_no(contact: string) {
-        return /^[0-9()+]+$/.test(contact);
+        return /^[0-9()+-_ ]+$/.test(contact);
         //return /^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$/.test(contact);
 
     }
