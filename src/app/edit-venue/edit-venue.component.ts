@@ -80,8 +80,9 @@ export class EditVenueComponent implements OnInit {
       this.editVenue_service.update_venue(api_input)
           .subscribe( data => {
             if ( data !== undefined && data.status === true) {
-              this.isErrorVisible = true;
-              this.errorMessage = 'Data has updated successfully!!!';
+                this.userSearch.perm_close = this.userSearch.perm_close === true ? '1' : '0' ;
+                this.isErrorVisible = true;
+                this.errorMessage = 'Data has updated successfully!!!';
 
             } else {
               alert(JSON.stringify(data.msg));
