@@ -93,4 +93,6 @@ export class VenueErrorMessage {
     public GET_DATA_ERROR = "Error while getting information";
     public PASS_VENUE_ID_OR_QUERY_SEARCH = "Pass at least venue id or query search";
     public NO_INFO_AVAILABLE = 'No information available for now';
+    public PASS_AT_LEAST_ONE_FIELD = "Please provide name & city or venue id or query to get result";
+
 }

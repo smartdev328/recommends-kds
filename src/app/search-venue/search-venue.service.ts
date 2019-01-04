@@ -20,4 +20,9 @@ export class SearchVenueService {
     const url = this.URLConstatnts.API_URL + 'venues/' + venue_id;
     return this.http.get(url);
   }
+
+  get_venues_by_name_city(name: String , city: String) {
+    const url = this.URLConstatnts.API_URL + 'venues/' + name + '/' + city;
+    return this.http.get(url);
+  }
 }

@@ -65,7 +65,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let each_venue_data of venueData">
-                <th scope="row">1</th>
+                <th scope="row">{{each_venue_data.id}}</th>
                 <td>{{each_venue_data.name}}</td>
                 <td>{{each_venue_data.city}}</td>
                 <td>{{each_venue_data.state}}</td>
