@@ -1,23 +1,156 @@
-<mat-card *ngIf="isLoaded" class="venue-card">
-  <mat-card-header>
-    <mat-card-title class="venue-header">{{ venue.name }}</mat-card-title>
-  </mat-card-header>
-  <img mat-card-image class="desktop-resize" src={{venue.image_url}} alt="Photo of the venue">
-  <mat-card-content>
-    <p class="basic-information">
-      <span><i class="icon material-icons">public</i></span>
-      <span class="text link-text" (click)="website_redirect()">Website</span>
-    </p>
-    <p class="venue-details">
-      <span><i class="icon material-icons">map</i></span>
-      <span class="text link-text" (click)="maps_redirect()">{{venue.name}}</span>
-      <br>
-      <br>
-      <span class="lower-text">{{venue.city}}, {{venue.state}}</span>
-    </p>
-    <p class="venue-details">
-      <span><i class="icon material-icons">local_offer</i></span>
-      <span class="text">{{format_price()}}</span>
-    </p>
-  </mat-card-content>
+<mat-card class="venue-card">
+    <mat-card-header>
+        <mat-card-title class="venue-header">{{ venue.name }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image class="desktop-resize" src={{venue.image_url}} alt="Photo of the venue">
+    <mat-card-content>
+
+        <div class="container"
+             fxLayout
+             fxLayout.xs="column"
+             fxLayoutAlign="center"
+             fxLayoutGap="10px"
+             fxLayoutGap.xs="0">
+            <div class="item item-1" fxFlex="10%">
+                <span><i class="icon material-icons mouse-pointer">bookmark_border</i></span>
+                <span class="text link-text" (click)="website_redirect()"></span>
+            </div>
+
+            <div class="item item-2" fxFlex="10%" hidden>
+                <span><i class="icon material-icons mouse-pointer">share</i></span>
+                <span class="text link-text" (click)="website_redirect()"></span>
+            </div>
+
+            <div class="item item-3" fxFlex="10%" hidden>
+                <span><i class="icon material-icons mouse-pointer">calendar_today</i></span>
+                <span class="text link-text" (click)="calendar_redirects()"></span>
+            </div>
+
+            <div class="item item-3" fxFlex="10%">
+                <span><i class="icon material-icons mouse-pointer">message</i></span>
+                <span class="text link-text" (click)="website_redirect()"></span>
+            </div>
+
+        </div>
+    </mat-card-content>
 </mat-card>
+
+<mat-tab-group class="about-reviews-margin">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            About
+        </ng-template>
+
+        <mat-card>
+            <mat-card-content>
+                <p class="basic-information">
+                    <span><i class="icon material-icons material-icon-black-color">pets</i></span>
+                    <span class="text">{{category}}</span>
+                </p>
+
+                <p class="basic-information" hidden>
+                    <span><i class="icon material-icons material-icon-black-color">child_care</i></span>
+                    <span class="text">Recomendations</span>
+                </p>
+
+                <p class="basic-information">
+                    <span><i class="icon material-icons material-icon-black-color">star</i></span>
+                    <span class="text">{{avg_rating}} / {{google_rating_out_of}} ({{place_reviews.length}} Google Reviews)</span>
+                </p>
+
+                <p class="basic-information">
+                    <span><i class="icon material-icons">infor</i></span>
+                    <span class="text">{{venue.description}}</span>
+                </p>
+                <p class="basic-information">
+                    <span><i class="icon material-icons">motorcycle</i></span>
+                    <span class="text">{{parking}}</span>
+                </p>
+                <p class="basic-information" hidden>
+                    <span><i class="icon material-icons">people</i></span>
+                    <span class="text">Rest Room information</span>
+                </p>
+
+                <p class="basic-information" hidden>
+                    <span><i class="icon material-icons">restaurant_menu</i></span>
+                    <span class="text">Outside food allowed or not</span>
+                </p>
+
+                <p class="basic-information" hidden>
+                    <span><i class="icon material-icons material-icon-red-color">cloud</i></span>
+                    <span class="text">No shade in trails</span>
+                </p>
+
+                <p class="basic-information" hidden>
+                    <span><i class="icon material-icons">cloud</i></span>
+                    <span class="text">Small lake at the end of the trail.Keep extra set of cloths</span>
+                </p>
+
+                <p class="basic-information" hidden>
+                    <span><i class="icon material-icons material-icon-red-color">place</i></span>
+                    <span class="text">8 miles from you</span>
+                </p>
+                <p class="basic-information" hidden>
+                    <span><i class="icon material-icons material-icon-red-color">directions_walk</i></span>
+                    <span class="text">All age of people</span>
+                </p>
+
+                <p class="basic-information" hidden>
+                    <span><i class="icon material-icons material-icon-black-color">pin_drop</i></span>
+                    <span class="text">{{venue.misc.address}}</span>
+                </p>
+
+                <p class="basic-information">
+                    <span><i class="icon material-icons material-icon-black-color">access_time</i></span>
+                    <span class="text">Open today - {{timings_array[0]}}</span>
+                    <span class="text link-text" (click)="showMoreHours(true)" *ngIf="timings_array.length>1">More Hours</span>
+                </p>
+
+                <ul class="list-group opening-hours " *ngIf="isShowMore">
+                    <li class="list-group-item list-group-item-action list-group-item-dark"
+                       (click)="showMoreHours(false)" *ngFor="let current_slot of timings_array; let even = even; let odd = odd">
+                        {{current_slot}}</li>
+                </ul>
+
+
+
+                <p class="basic-information" hidden>
+                    <span><i class="icon material-icons material-icon-black-color">loyalty</i></span>
+                    <span class="text">Free</span>
+                </p>
+
+                <!--<p class="venue-details">-->
+                    <!--<span><i class="icon material-icons">map</i></span>-->
+                    <!--<span class="text" (click)="maps_redirect()">{{venue.name}}</span>-->
+                    <!--<br>-->
+                    <!--<br>-->
+                    <!--<span class="lower-text">{{venue.city}}, {{venue.state}}</span>-->
+                <!--</p>-->
+                <!--<p class="venue-details">-->
+                    <!--<span><i class="icon material-icons">local_offer</i></span>-->
+                    <!--<span class="text">{{format_price()}}</span>-->
+                <!--</p>-->
+            </mat-card-content>
+        </mat-card>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            Review Content
+        </ng-template>
+        <mat-card>
+            <ul class="list-group opening-hours ">
+                <li class="list-group-item list-group-item-action list-group-item-dark"
+                    (click)="showMoreHours(false)" *ngFor="let current_review of place_reviews;">
+                    {{current_review.text}} - {{current_review.author_name}} ({{current_review.rating}}
+                    <span>*</span>)</li>
+            </ul>
+        </mat-card>
+
+    </mat-tab>
+</mat-tab-group>
+<hr>
+<div class="row">
+    <button type="button" class="btn btn-danger more-information-margin">More Info</button>
+</div>
+
+

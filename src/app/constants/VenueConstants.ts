@@ -1,5 +1,6 @@
 
 export class VenueConstants {
+    public GOOGLE_RATING_OUT_OF = 5;
     public PRIMARY_CATEGORY = [
         {'id' : 10000 , 'name' : 'Parks & Playgrounds' },
         {'id' : 20000 , 'name' : 'Library' },
@@ -91,4 +92,5 @@ export class VenueErrorMessage {
     public VALID_PRICE = " please type valid Price";
     public GET_DATA_ERROR = "Error while getting information";
     public PASS_VENUE_ID_OR_QUERY_SEARCH = "Pass at least venue id or query search";
+    public NO_INFO_AVAILABLE = 'No information available for now';
 }
