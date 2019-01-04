@@ -23,6 +23,11 @@ import { NgSelectModule, NgOption } from '@ng-select/ng-select';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { SearchVenueComponent } from './search-venue/search-venue.component';
 import { EditVenueComponent } from './edit-venue/edit-venue.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { TabsModule } from '@material/tabs';
+import {MatIconModule} from '@angular/material/icon';
+
+
 
 
 
@@ -53,7 +58,9 @@ import { EditVenueComponent } from './edit-venue/edit-venue.component';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    BsDropdownModule
+    BsDropdownModule,
+    FlexLayoutModule,
+    MatIconModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

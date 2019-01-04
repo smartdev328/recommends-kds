@@ -125,3 +125,27 @@
         border-radius: 10px;
     }
 }
+
+.mouse-pointer{
+    cursor: pointer;
+}
+
+.about-reviews-margin{
+    margin-left : 29%;
+}
+.material-icon-red-color {
+    color: red;
+}
+
+.material-icon-black-color {
+    color: black;
+}
+.opening-hours {
+    width: 29%;
+    margin-left: 15%;
+
+}
+.more-information-margin {
+    margin-left: 41%;
+}
+

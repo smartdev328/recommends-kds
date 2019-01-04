@@ -18,7 +18,8 @@ export class UserSearch {
                 'geometry': Object,
                 'map_url': String,
                 'tips_for_parent': String,
-                'parking': String
+                'parking': String,
+                'place_full_info': Object
     };
     tags: String;
     email: String;
@@ -47,7 +48,8 @@ export class UserSearch {
             'geometry': {},
             'map_url': '',
             'tips_for_parent': '',
-            'parking': ''
+            'parking': '',
+            'place_full_info' : {}
         };
 
         this.tags = '';
