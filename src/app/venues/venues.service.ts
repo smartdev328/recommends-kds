@@ -12,7 +12,7 @@ export class VenuesService {
   }
 
   get_venue_by_id (venue_id: any) {
-    const url = this.URLConstatnts.API_URL + 'venues/' + venue_id;
+    const url = this.URLConstatnts.API_URL + 'venues/' + venue_id + "/";
     return this.http.get(url);
   }
 }
