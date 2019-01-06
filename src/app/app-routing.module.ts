@@ -10,6 +10,7 @@ import { VenuesComponent } from './venues/venues.component';
 import { VenueComponent } from './venue/venue.component';
 import { EditVenueComponent} from './edit-venue/edit-venue.component';
 import { SearchVenueComponent } from './search-venue/search-venue.component';
+import { ReviewsComponent } from './add-review/reviews.component';
 
 const routes: Routes = [
   { path: 'event/:id', component: EventComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'venue', component: VenueComponent },
   { path: 'edit-venue/:venueId', component: EditVenueComponent},
   { path: 'search-venue', component: SearchVenueComponent },
+  { path: 'add/review', component: ReviewsComponent },
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: '' }
 ];

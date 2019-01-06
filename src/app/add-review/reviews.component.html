@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <h1 class="review-margin">Write a review</h1>
+  </div>
+  <div class="row">
+    <div class="form-group review-margin">
+      <textarea class="form-control" rows="5" id="review" placeholder="Add review or tips to other parents"
+      [(ngModel)]="review"
+      ></textarea>
+      <small id="miscHelp" class="form-text text-muted italic-font-style">We respect your privacy. Your name will not be shown to other
+        users
+      </small>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group review-margin">
+      <button type="button" class="btn btn-danger" (click)="add_review()">Submit</button>
+    </div>
+  </div>
+
+  <div class="row error-message" *ngIf="isErrorVisible">
+    <div class="col-md-12">
+      <label>{{errorMessage}}</label>
+    </div>
+    <div class="col-md-12">
+      <button type="button" class="btn btn-primary errorCloseButton" (click)="closeErrorBox()">Close</button>
+    </div>
+  </div>
+
+</div>

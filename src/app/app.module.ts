@@ -26,6 +26,7 @@ import { EditVenueComponent } from './edit-venue/edit-venue.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TabsModule } from '@material/tabs';
 import {MatIconModule} from '@angular/material/icon';
+import { ReviewsComponent } from './add-review/reviews.component';
 
 
 
@@ -45,7 +46,8 @@ import {MatIconModule} from '@angular/material/icon';
     VenuesComponent,
     VenueComponent,
     SearchVenueComponent,
-    EditVenueComponent
+    EditVenueComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,
