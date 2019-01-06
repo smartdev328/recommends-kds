@@ -1,3 +1,7 @@
+export enum ENTITY_TYPES {
+    EVENT = '1',
+    VENUE = '2'
+}
 
 export class VenueConstants {
     public GOOGLE_RATING_OUT_OF = 5;
