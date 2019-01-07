@@ -76,7 +76,7 @@ export class EditVenueComponent implements OnInit {
     if ( validation_response === true ) {
 
       let api_input = { input : this.userSearch };
-      this.userSearch.perm_close = this.userSearch.perm_close === "1";
+      this.userSearch.perm_close = this.userSearch.perm_close === true;
       this.editVenue_service.update_venue(api_input)
           .subscribe( data => {
             if ( data !== undefined && data.status === true) {
