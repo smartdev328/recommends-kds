@@ -12,7 +12,7 @@ export class SearchVenueService {
   constructor(private  http:  HttpClient) { }
 
   search_venue (query: any) {
-    const url = this.URLConstatnts.API_URL + 'venues?q=' + query;
+    const url = this.URLConstatnts.API_URL + 'venues/?q=' + query;
     return this.http.get(url);
   }
 
@@ -22,7 +22,7 @@ export class SearchVenueService {
   }
 
   get_venues_by_name_city(name: String , city: String) {
-    const url = this.URLConstatnts.API_URL + 'venues/' + name + '/' + city;
+    const url = this.URLConstatnts.API_URL + 'venues/?name=' + name + '&city=' + city;
     return this.http.get(url);
   }
 }
