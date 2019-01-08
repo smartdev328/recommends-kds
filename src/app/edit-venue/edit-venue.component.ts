@@ -54,7 +54,7 @@ export class EditVenueComponent implements OnInit {
           let temp_cat = this.userSearch.category;
           this.userSearch.category = this.get_primary_cat_by_key(temp_cat[0]);
           this.userSearch.perm_close = this.userSearch.perm_closed==true ? "1" : "0";
-          this.userSearch.sec_cat = this.userSearch.sec_cat;
+          this.userSearch.category_sec = this.userSearch.category_sec;
           this.parking = this.userSearch.misc.parking === '' ? '' : this.userSearch.misc.parking;
           this.tips_for_parent = this.userSearch.misc.tips_for_parent === '' ? '' : this.userSearch.misc.tips_for_parent;
           this.rating = this.userSearch.misc.rating;

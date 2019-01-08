@@ -8,7 +8,7 @@ export class UserSearch {
     price: Number;
     perm_close: any;
     category: Number;
-    sec_cat: Number;
+    category_sec: Number;
     misc:  {
                 'rating': Number,
                 'address': String,
@@ -38,7 +38,7 @@ export class UserSearch {
         this.price = 0;
         this.perm_close = 0;
         this.category = 0;
-        this.sec_cat = 0;
+        this.category_sec = 0;
         this.misc = {
             'rating': 0,
             'address': '',
