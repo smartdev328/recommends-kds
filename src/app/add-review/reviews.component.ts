@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReviewsService} from './reviews.service';
-import {VenueConstants, VenueErrorMessage , ENTITY_TYPES } from '../constants/VenueConstants'
+import {VenueConstants, VenueErrorMessage , ENTITY_TYPES_ENUM } from '../constants/VenueConstants'
 @Component({
   selector: 'app-reviews',
   templateUrl: './reviews.component.html',
@@ -24,7 +24,7 @@ export class ReviewsComponent implements OnInit {
       this.isErrorVisible = false;
       let input_data = {
         'input' : {
-            'entity_type' : ENTITY_TYPES.VENUE,
+            'entity_type' : ENTITY_TYPES_ENUM.VENUE,
             // 'entity_id' : '1255',
             // 'parent_id' : '45',
             'review' : this.review,

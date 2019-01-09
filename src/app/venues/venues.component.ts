@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import {UserSearch} from '../venue/venue.model';
 import {VenuesService} from './venues.service';
-import {VenueConstants, VenueErrorMessage} from '../constants/VenueConstants';
+import {ENTITY_TYPES_ENUM, TYPES_ENUM , VenueConstants, VenueErrorMessage} from '../constants/VenueConstants';
+import { MatTabChangeEvent } from '@angular/material';
+import {ReviewsService} from '../add-review/reviews.service';
 
 @Component({
   selector: 'app-venues',
@@ -13,7 +15,7 @@ import {VenueConstants, VenueErrorMessage} from '../constants/VenueConstants';
 })
 export class VenuesComponent implements OnInit {
 
-  public venue_id: string;
+  public venue_id: any;
   public venue: any;
   public isLoaded: boolean = true;
   public parking: String;
@@ -30,8 +32,14 @@ export class VenuesComponent implements OnInit {
   public category: string;
   public avg_rating: number;
   public google_rating_out_of: number;
+  public parent_id: any;
+  public review: string;
+  public  isErrorVisible: Boolean;
+  public errorMessage: String;
+  public url: String;
+  public is_parent_id: Boolean;
   constructor(private route: ActivatedRoute,  private http: HttpClient, private titleService: Title,
-  private venuesService: VenuesService) {
+  private venuesService: VenuesService, private reviewService: ReviewsService , private router: Router) {
       this.venue = new UserSearch();
       this.parking = '';
       this.rating = 0;
@@ -42,16 +50,22 @@ export class VenuesComponent implements OnInit {
       this.place_reviews = [];
       this.category = '';
       this.google_rating_out_of = this.venueConstatnts.GOOGLE_RATING_OUT_OF;
+      this.isErrorVisible = false;
+      this.errorMessage = '';
+      this.url = this.router.url;
+      this.is_parent_id = false;
   }
 
   ngOnInit() {
-    // this.venue_id = this.route.snapshot.params['id'];
-    // this.get_venue_details();
 
-    this.route.params.subscribe(params => {
-      const venue_id = params['id'];
-      this.get_venue_data(venue_id);
-    });
+    if (this.url !== undefined && this.url.length > 0) {
+        this.venue_id = parseInt (this.url.split('/')[2].split('?')[0]) ;
+        this.parent_id = parseInt (this.route.snapshot.queryParamMap.get('parent_id'));
+
+        if ( this.venue_id > 0 && this.venue_id !== undefined) {
+          this.get_venue_data(this.venue_id);
+      }
+    }
   }
 
   get_venue_data(venue_id: number) {
@@ -77,8 +91,25 @@ export class VenuesComponent implements OnInit {
               : this.venue.image;
           this.timings_array = this.create_timing_json(this.venue.timings);
           this.place_full_info = this.venue.misc.place_full_info;
-          this.place_reviews = this.place_full_info.reviews;
+          this.place_reviews = this.place_full_info === undefined ? [] : this.place_full_info.reviews ;
           this.avg_rating = this.calculate_avg_rating(this.place_reviews);
+        }
+      }, error => {
+        alert(this.venueErrorMessage.GET_DATA_ERROR);
+      });
+    }
+  }
+
+  show_reviews(event: MatTabChangeEvent) {
+    let tab = event.tab;
+    let index = event.index;
+
+    if (index === 1 && this.place_reviews.length === 0) {
+      this.venuesService.get_reviews_by_type(TYPES_ENUM.VENUE , true).subscribe(data => {
+        if ( data['status'] ) {
+          this.place_reviews = data['data'];
+        } else {
+          this.place_reviews = [];
         }
       }, error => {
         alert(this.venueErrorMessage.GET_DATA_ERROR);
@@ -151,8 +182,53 @@ export class VenuesComponent implements OnInit {
       google_reviews.forEach(function(each_element) {
         total_ratings += each_element['rating'];
       });
+      return total_ratings / google_reviews.length;
     }
+    return 0;
+  }
 
-    return total_ratings / google_reviews.length;
+  add_review_redirect() {
+    this.is_parent_id = true;
+  }
+
+  add_review() {
+    if (this.validate_review()) {
+      this.isErrorVisible = false;
+      let input_data = {
+        'input' : {
+          'entity_type' : ENTITY_TYPES_ENUM.VENUE,
+          'entity_id' : this.venue_id,
+          'parent_id' : this.parent_id,
+          'review' : this.review,
+          'is_approved' : false
+        }
+      };
+      this.reviewService.add_review(input_data).subscribe(data => {
+        if (data['status'] === true) {
+          this.isErrorVisible = true;
+          this.errorMessage = 'Review , successfully added';
+        } else {
+          this.isErrorVisible = true;
+          this.errorMessage = 'Error while adding a new review';
+        }
+      }, error => {
+        this.isErrorVisible = true;
+        this.errorMessage = 'Something went wrong while adding review';
+      });
+
+    } else {
+      this.isErrorVisible = true;
+      this.errorMessage = 'Please type review';
+    }
+  }
+
+  validate_review() {
+    if (this.review.trim().length === 0) {
+      return false;
+    }
+    return true;
+  }
+  closeErrorBox() {
+    this.isErrorVisible = false;
   }
 }
