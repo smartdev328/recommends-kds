@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'help', component: HelpComponent },
   { path: 'data-entry', component: DataEntryComponent },
   { path: 'venue/:id', component: VenuesComponent },
+  { path: 'venues/:id?parent_id=', component: VenuesComponent, },
   { path: 'venue', component: VenueComponent },
   { path: 'edit-venue/:venueId', component: EditVenueComponent},
   { path: 'search-venue', component: SearchVenueComponent },

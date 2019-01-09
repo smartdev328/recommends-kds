@@ -1,3 +1,5 @@
+
+
 <mat-card class="venue-card">
     <mat-card-header>
         <mat-card-title class="venue-header">{{ venue.name }}</mat-card-title>
@@ -26,16 +28,16 @@
                 <span class="text link-text" (click)="calendar_redirects()"></span>
             </div>
 
-            <div class="item item-3" fxFlex="10%">
+            <div class="item item-3" fxFlex="10%" (click)="add_review_redirect()" title="Add Review">
                 <span><i class="icon material-icons mouse-pointer">message</i></span>
-                <span class="text link-text" (click)="website_redirect()"></span>
+                <span class="text link-text"></span>
             </div>
 
         </div>
     </mat-card-content>
 </mat-card>
 
-<mat-tab-group class="about-reviews-margin">
+<mat-tab-group class="about-reviews-margin" (selectedTabChange)="show_reviews($event)">
     <mat-tab>
         <ng-template mat-tab-label>
             About
@@ -103,15 +105,16 @@
                 <p class="basic-information">
                     <span><i class="icon material-icons material-icon-black-color">access_time</i></span>
                     <span class="text">Open today - {{timings_array[0]}}</span>
-                    <span class="text link-text" (click)="showMoreHours(true)" *ngIf="timings_array.length>1">More Hours</span>
+                    <span class="text link-text" (click)="showMoreHours(true)"
+                          *ngIf="timings_array.length>1">More Hours</span>
                 </p>
 
                 <ul class="list-group opening-hours " *ngIf="isShowMore">
                     <li class="list-group-item list-group-item-action list-group-item-dark"
-                       (click)="showMoreHours(false)" *ngFor="let current_slot of timings_array; let even = even; let odd = odd">
+                        (click)="showMoreHours(false)"
+                        *ngFor="let current_slot of timings_array; let even = even; let odd = odd">
                         {{current_slot}}</li>
                 </ul>
-
 
 
                 <p class="basic-information" hidden>
@@ -120,35 +123,73 @@
                 </p>
 
                 <!--<p class="venue-details">-->
-                    <!--<span><i class="icon material-icons">map</i></span>-->
-                    <!--<span class="text" (click)="maps_redirect()">{{venue.name}}</span>-->
-                    <!--<br>-->
-                    <!--<br>-->
-                    <!--<span class="lower-text">{{venue.city}}, {{venue.state}}</span>-->
+                <!--<span><i class="icon material-icons">map</i></span>-->
+                <!--<span class="text" (click)="maps_redirect()">{{venue.name}}</span>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<span class="lower-text">{{venue.city}}, {{venue.state}}</span>-->
                 <!--</p>-->
                 <!--<p class="venue-details">-->
-                    <!--<span><i class="icon material-icons">local_offer</i></span>-->
-                    <!--<span class="text">{{format_price()}}</span>-->
+                <!--<span><i class="icon material-icons">local_offer</i></span>-->
+                <!--<span class="text">{{format_price()}}</span>-->
                 <!--</p>-->
             </mat-card-content>
         </mat-card>
     </mat-tab>
     <mat-tab>
         <ng-template mat-tab-label>
-            Review Content
+            Reviews
         </ng-template>
         <mat-card>
-            <ul class="list-group opening-hours ">
-                <li class="list-group-item list-group-item-action list-group-item-dark"
-                    (click)="showMoreHours(false)" *ngFor="let current_review of place_reviews;">
-                    {{current_review.text}} - {{current_review.author_name}} ({{current_review.rating}}
-                    <span>*</span>)</li>
-            </ul>
+            <p class="review-width" *ngFor="let current_review of place_reviews;">
+                {{current_review.review}}
+            </p>
         </mat-card>
+    </mat-tab>
+    <mat-tab *ngIf="is_parent_id">
+        <ng-template mat-tab-label>
+            Add Review
+        </ng-template>
+        <mat-card>
+            <div class="row review-width">
+                <div class="container">
+                    <div class="row">
+                        <h1 class="review-margin">Write a review</h1>
+                    </div>
+                    <div class="row">
+                        <div class="form-group review-margin">
+      <textarea class="form-control" rows="5" id="review" placeholder="Add review or tips to other parents"
+                [(ngModel)]="review"
+      ></textarea>
+                            <small id="miscHelp" class="form-text text-muted italic-font-style">We respect your
+                                privacy. Your name will not be shown to other
+                                users
+                            </small>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="form-group review-margin">
+                            <button type="button" class="btn btn-danger" (click)="add_review()">Submit</button>
+                        </div>
+                    </div>
+                    <div class="row error-message" *ngIf="isErrorVisible">
+                        <div class="col-md-12">
+                            <label>{{errorMessage}}</label>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-primary errorCloseButton"
+                                    (click)="closeErrorBox()">Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
     </mat-tab>
 </mat-tab-group>
 <hr>
+
 <div class="row">
     <button type="button" class="btn btn-danger more-information-margin">More Info</button>
 </div>

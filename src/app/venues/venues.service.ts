@@ -6,13 +6,18 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class VenuesService {
-  public URLConstatnts = new UrlConstants();
+  public URLConstants = new UrlConstants();
   constructor(private  http:  HttpClient) {
 
   }
 
   get_venue_by_id (venue_id: any) {
-    const url = this.URLConstatnts.API_URL + 'venues/' + venue_id + "/";
+    const url = this.URLConstants.API_URL + 'venues/' + venue_id + '/';
+    return this.http.get(url);
+  }
+
+  get_reviews_by_type (type , approved = true) {
+    const url = this.URLConstants.API_URL + 'reviews/?type=' + type + '&' + 'approved=' + approved ;
     return this.http.get(url);
   }
 }
