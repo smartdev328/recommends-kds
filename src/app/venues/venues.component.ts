@@ -34,10 +34,13 @@ export class VenuesComponent implements OnInit {
   public google_rating_out_of: number;
   public parent_id: any;
   public review: string;
-  public  isErrorVisible: Boolean;
+  public user_reviews: any;
+  public isErrorVisible: Boolean;
   public errorMessage: String;
   public url: String;
   public is_parent_id: Boolean;
+  public google_place_reviews_count: number;
+  public isShowMoreHours: Boolean
   constructor(private route: ActivatedRoute,  private http: HttpClient, private titleService: Title,
   private venuesService: VenuesService, private reviewService: ReviewsService , private router: Router) {
       this.venue = new UserSearch();
@@ -54,6 +57,8 @@ export class VenuesComponent implements OnInit {
       this.errorMessage = '';
       this.url = this.router.url;
       this.is_parent_id = false;
+      this.user_reviews = [];
+      this.isShowMoreHours = false;
   }
 
   ngOnInit() {
@@ -86,10 +91,12 @@ export class VenuesComponent implements OnInit {
           this.miscData = this.venue.misc;
           this.venue.description = this.venue.description === undefined || this.venue.description.trim().length === 0 ?
               this.venueErrorMessage.NO_INFO_AVAILABLE  : this.venue.description ;
-          this.venue.image_url  = this.venue.image_url === '' || this.venue.image === undefined ?
+          this.venue.image_url  = this.venue.image_url === '' || this.venue.image_url === undefined ?
               '../../assets/venue_default_image.png'
-              : this.venue.image;
-          this.timings_array = this.create_timing_json(this.venue.timings);
+              : this.venue.image_url;
+          this.isShowMoreHours = this.venue.timings.length > 0;
+          this.timings_array = this.venue.timings.length === 0 ? 'No information available':
+              this.create_timing_json(this.venue.timings);
           this.place_full_info = this.venue.misc.place_full_info;
           this.place_reviews = this.place_full_info === undefined ? [] : this.place_full_info.reviews ;
           this.avg_rating = this.calculate_avg_rating(this.place_reviews);
@@ -104,12 +111,12 @@ export class VenuesComponent implements OnInit {
     let tab = event.tab;
     let index = event.index;
 
-    if (index === 1 && this.place_reviews.length === 0) {
+    if (index === 1 && this.user_reviews.length === 0) {
       this.venuesService.get_reviews_by_type(TYPES_ENUM.VENUE , true).subscribe(data => {
         if ( data['status'] ) {
-          this.place_reviews = data['data'];
+          this.user_reviews = data['data'];
         } else {
-          this.place_reviews = [];
+          this.user_reviews = [];
         }
       }, error => {
         alert(this.venueErrorMessage.GET_DATA_ERROR);
@@ -170,6 +177,9 @@ export class VenuesComponent implements OnInit {
   }
 
   create_timing_json(timing_slots: String) {
+    if (timing_slots.trim().length === 0) {
+      return [];
+    }
     return timing_slots.split(',');
   }
   showMoreHours(isShowMore= false) {

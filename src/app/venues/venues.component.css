@@ -2,7 +2,9 @@
     font-size: 15px;
     color: rgb(90, 91, 91);
 }
-
+.full-width {
+    width: 50% !important;
+}
 .mat-card-header {
     display: contents;
 }
@@ -71,8 +73,9 @@
 /* Tablets */
 @media only screen and (min-width : 768px) and (max-width : 1280px) {
     .desktop-resize {
-        width: 30% !important;
+        width: 10% !important;
         margin-left: 35%;
+        height : auto;
     }
 
     .basic-information .text {
