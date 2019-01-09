@@ -4,12 +4,11 @@
     <mat-card-header>
         <mat-card-title class="venue-header">{{ venue.name }}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image class="desktop-resize" src={{venue.image_url}} alt="Photo of the venue">
     <mat-card-content>
-
+        <img mat-card-image class="desktop-resize" [src]=venue.image_url alt="Photo of the venue">
         <div class="container"
              fxLayout
-             fxLayout.xs="column"
+             fxLayout.xs="row"
              fxLayoutAlign="center"
              fxLayoutGap="10px"
              fxLayoutGap.xs="0">
@@ -37,12 +36,9 @@
     </mat-card-content>
 </mat-card>
 
-<mat-tab-group class="about-reviews-margin" (selectedTabChange)="show_reviews($event)">
-    <mat-tab>
-        <ng-template mat-tab-label>
-            About
-        </ng-template>
 
+<mat-tab-group  class="about-reviews-margin" (selectedTabChange)="show_reviews($event)">
+    <mat-tab label="About">
         <mat-card>
             <mat-card-content>
                 <p class="basic-information">
@@ -104,12 +100,14 @@
 
                 <p class="basic-information">
                     <span><i class="icon material-icons material-icon-black-color">access_time</i></span>
-                    <span class="text">Open today - {{timings_array[0]}}</span>
+                    <span class="text" *ngIf="isShowMoreHours">Open today - {{timings_array[0]}}</span>
+                    <span class="text" *ngIf="isShowMoreHours==false">{{timings_array}}</span>
+
                     <span class="text link-text" (click)="showMoreHours(true)"
-                          *ngIf="timings_array.length>1">More Hours</span>
+                          *ngIf="isShowMoreHours">More Hours</span>
                 </p>
 
-                <ul class="list-group opening-hours " *ngIf="isShowMore">
+                <ul class="list-group opening-hours" *ngIf="isShowMore">
                     <li class="list-group-item list-group-item-action list-group-item-dark"
                         (click)="showMoreHours(false)"
                         *ngFor="let current_slot of timings_array; let even = even; let odd = odd">
@@ -136,20 +134,14 @@
             </mat-card-content>
         </mat-card>
     </mat-tab>
-    <mat-tab>
-        <ng-template mat-tab-label>
-            Reviews
-        </ng-template>
+    <mat-tab label="Reviews">
         <mat-card>
-            <p class="review-width" *ngFor="let current_review of place_reviews;">
+            <p class="review-width" *ngFor="let current_review of user_reviews;">
                 {{current_review.review}}
             </p>
         </mat-card>
     </mat-tab>
-    <mat-tab *ngIf="is_parent_id">
-        <ng-template mat-tab-label>
-            Add Review
-        </ng-template>
+    <mat-tab label="Add Review" *ngIf="is_parent_id" style="width: 50%">
         <mat-card>
             <div class="row review-width">
                 <div class="container">
@@ -188,6 +180,8 @@
         </mat-card>
     </mat-tab>
 </mat-tab-group>
+
+
 <hr>
 
 <div class="row">
