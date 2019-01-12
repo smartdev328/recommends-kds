@@ -113,7 +113,6 @@ export class SearchVenueComponent implements OnInit {
         }
     }
     search_venues() {
-
         if (this.name !== undefined && this.city !== undefined && this.name.length > 0 && this.city.length > 0) {
             this.get_venues_by_name_city(this.name, this.city);
         } else if (this.venue_id !== undefined) {
