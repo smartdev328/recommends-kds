@@ -182,5 +182,68 @@
 }
 
 .review-width {
-    width: 56%;
+    width: auto;
 }
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+@media (min-width: 768px) and (max-width: 1024px) {
+    .about-reviews-margin{
+        margin-left : auto;
+    }
+    .opening-hours {
+        width: 33%;
+        margin-left: 15%;
+    }
+    
+  }
+  
+/* 
+##Device = Tablets, Ipads (landscape)
+##Screen = B/w 768px to 1024px
+*/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+    .about-reviews-margin{
+        margin-left : auto;
+    }
+    .opening-hours {
+        width: 33%;
+        margin-left: 15%;
+    }
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+  
+    .about-reviews-margin{
+        margin-left : auto;
+    }
+    .opening-hours {
+        width: auto;
+        margin-left: 15%;
+    }
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+  
+    .about-reviews-margin{
+        margin-left : auto;
+    }
+    .opening-hours {
+        width: auto;
+        margin-left: 15%;
+    }
+    
+}
+
+

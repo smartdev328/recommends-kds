@@ -182,8 +182,9 @@ export class VenuesComponent implements OnInit {
     }
     return timing_slots.split(',');
   }
-  showMoreHours(isShowMore= false) {
-    this.isShowMore = isShowMore;
+  showMoreHours() {
+
+    this.isShowMore = !this.isShowMore;
   }
 
   calculate_avg_rating(google_reviews) {
