@@ -36,7 +36,6 @@
     </mat-card-content>
 </mat-card>
 
-
 <mat-tab-group  class="about-reviews-margin" (selectedTabChange)="show_reviews($event)">
     <mat-tab label="About">
         <mat-card>
@@ -103,13 +102,13 @@
                     <span class="text" *ngIf="isShowMoreHours">Open today - {{timings_array[0]}}</span>
                     <span class="text" *ngIf="isShowMoreHours==false">{{timings_array}}</span>
 
-                    <span class="text link-text" (click)="showMoreHours(true)"
+                    <span class="text link-text" (click)="showMoreHours()"
                           *ngIf="isShowMoreHours">More Hours</span>
                 </p>
 
                 <ul class="list-group opening-hours" *ngIf="isShowMore">
                     <li class="list-group-item list-group-item-action list-group-item-dark"
-                        (click)="showMoreHours(false)"
+                        (click)="showMoreHours()"
                         *ngFor="let current_slot of timings_array; let even = even; let odd = odd">
                         {{current_slot}}</li>
                 </ul>
@@ -120,17 +119,11 @@
                     <span class="text">Free</span>
                 </p>
 
-                <!--<p class="venue-details">-->
-                <!--<span><i class="icon material-icons">map</i></span>-->
-                <!--<span class="text" (click)="maps_redirect()">{{venue.name}}</span>-->
-                <!--<br>-->
-                <!--<br>-->
-                <!--<span class="lower-text">{{venue.city}}, {{venue.state}}</span>-->
-                <!--</p>-->
-                <!--<p class="venue-details">-->
-                <!--<span><i class="icon material-icons">local_offer</i></span>-->
-                <!--<span class="text">{{format_price()}}</span>-->
-                <!--</p>-->
+                <hr>
+                <div class="row center-block">  
+                    <button type="button" class="btn btn-danger">More Info</button>
+                </div>   
+
             </mat-card-content>
         </mat-card>
     </mat-tab>
@@ -180,12 +173,4 @@
         </mat-card>
     </mat-tab>
 </mat-tab-group>
-
-
-<hr>
-
-<div class="row">
-    <button type="button" class="btn btn-danger more-information-margin">More Info</button>
-</div>
-
 
