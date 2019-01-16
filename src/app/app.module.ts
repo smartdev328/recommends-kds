@@ -27,6 +27,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { TabsModule } from '@material/tabs';
 import {MatIconModule} from '@angular/material/icon';
 import { ReviewsComponent } from './add-review/reviews.component';
+import { ApproveReviewComponent } from './approve-reviews/approve-review.component';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 
 
 
@@ -47,12 +49,14 @@ import { ReviewsComponent } from './add-review/reviews.component';
     VenueComponent,
     SearchVenueComponent,
     EditVenueComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    ApproveReviewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxDatatableModule,
     MatCardModule,
     NgMasonryGridModule,
     BrowserAnimationsModule,
