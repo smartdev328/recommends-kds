@@ -15,14 +15,16 @@
                 </small>
             </div>
 
+
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" placeholder="Type description" required="true"
-                       [(ngModel)]="userSearch.description"
-                >
+                <textarea class="form-control" rows="5" id="description" placeholder="Type description" required="true"
+                          [(ngModel)]="userSearch.description"
+                ></textarea>
                 <small id="descriptionHelp" class="form-text text-muted">Type description about venue
                 </small>
             </div>
+
 
             <div class="form-group">
                 <label for="city">City</label>
