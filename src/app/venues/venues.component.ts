@@ -94,9 +94,13 @@ export class VenuesComponent implements OnInit {
           this.venue.image_url  = this.venue.image_url === '' || this.venue.image_url === undefined ?
               '../../assets/venue_default_image.png'
               : this.venue.image_url;
-          this.isShowMoreHours = this.venue.timings.length > 0;
-          this.timings_array = this.venue.timings.length === 0 ? 'No information available':
-              this.create_timing_json(this.venue.timings);
+          if (this.venue.timings === null || this.venue.timings === '' || this.venue.timings === 0) {
+            this.isShowMoreHours = false;
+            this.timings_array = 'No information available';
+          } else {
+            this.isShowMoreHours = true;
+            this.timings_array = this.create_timing_json(this.venue.timings);
+          }
           this.place_full_info = this.venue.misc.place_full_info;
           this.place_reviews = this.place_full_info === undefined ? [] : this.place_full_info.reviews ;
           this.avg_rating = this.calculate_avg_rating(this.place_reviews);
