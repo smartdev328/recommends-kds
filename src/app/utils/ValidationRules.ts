@@ -13,8 +13,7 @@ export class ValidationRules {
     }
 
     public validate_url(URL: any) {
-        return /^(https?|ftp|torrent|image|irc):\/\/(-\.)?([^\s\/?\.#-]+\.?)+(\/[^\s]*)?$/.test(URL);
-
+        return /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/.test(URL)
     }
 
     public validate_email(email: any) {
