@@ -5,7 +5,7 @@ export class ValidationRules {
     public venueErrorMessage = new VenueErrorMessage();
 
     public validate_only_characters(text: any) {
-        return /^[a-z A-Z 0-9]+$/.test(text);
+        return /^[a-z A-Z 0-9 ' "\:/.,!]+$/.test(text);
     }
 
     public validate_only_alphanumeric(text: any) {
