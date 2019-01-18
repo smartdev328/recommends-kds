@@ -15,6 +15,7 @@ import { ApproveReviewComponent } from './approve-reviews/approve-review.compone
 
 const routes: Routes = [
   { path: 'event/:id', component: EventComponent },
+  { path: 'events/:id?parent_id=', component: EventComponent },
   { path: 'events/:query', component: EventGroupComponent },
   { path: 'events', component: EventListingComponent },
   { path: 'help', component: HelpComponent },

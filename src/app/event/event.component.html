@@ -4,37 +4,117 @@
   </mat-card-header>
   <img mat-card-image class="desktop-resize" src={{event.image_url}} alt="Photo of the event">
   <mat-card-content>
-    <!-- <p class="basic-information">
-      <span><i class="icon material-icons">pets</i></span>
-      <span class="text">{{event.name}}</span>
-    </p> -->
-    <p class="basic-information">
-      <span><i class="icon material-icons red-color">accessibility_new</i></span>
-      <span class="text">{{format_age()}}</span>
-    </p>
-    <p class="description">
-      {{event.description}}
-    </p>
-    <p class="event-details">
-      <span><i class="icon material-icons">location_on</i></span>
-      <span class="text link-text" (click)="maps_redirect()">{{event.venue}}</span>
-      <br>
-      <br>
-      <span class="lower-text">{{event.street}}, {{event.city}}, {{event.state}}</span>
-    </p>
-    <p class="event-details">
-      <span><i class="icon material-icons">access_time</i></span>
-      <span class="text">{{event.start_date | date:'longDate'}}</span>
-      <br>
-      <br>
-      <span class="lower-text">{{format_time(event.start_time)}} - {{format_time(event.end_time)}}</span>
-    </p>
-    <p class="event-details">
-      <span><i class="icon material-icons">local_offer</i></span>
-      <span class="text">{{format_price()}}</span>
-    </p>
+
+    <div class="container"
+    fxLayout
+    fxLayout.xs="row"
+    fxLayoutAlign="center"
+    fxLayoutGap="33px"
+    fxLayoutGap.xs="10px">
+   <div class="item item-1" fxFlex="10%" title="Save"  (click)="website_redirect()">
+       <span><i class="icon material-icons mouse-pointer">save</i></span>
+       <span class="text link-text"></span>
+   </div>
+
+
+   <div class="item item-3" fxFlex="10%" title="Add to Calendar"  (click)="calendar_redirects()" hidden>
+       <span><i class="icon material-icons mouse-pointer">calendar_today</i></span>
+       <span class="text link-text"></span>
+   </div>
+
+   <div class="item item-3" fxFlex="10%" (click)="add_review_redirect()" title="Add Review">
+       <span><i class="icon material-icons mouse-pointer">rate_review</i></span>
+       <span class="text link-text"></span>
+   </div>
+
+</div>
+        <mat-tab-group class="tabs about-reviews-margin"  (selectedTabChange)="show_reviews($event)">
+        <mat-tab label="About" >  
+            <mat-card>
+                <mat-card-content>
+          <p class="basic-information">
+            <span><i class="icon material-icons red-color">accessibility_new</i></span>
+            <span class="text">{{format_age()}}</span>
+          </p>
+          <p class="description">
+            {{event.description}}
+          </p>
+          <p class="event-details">
+            <span><i class="icon material-icons">location_on</i></span>
+            <span class="text link-text" (click)="maps_redirect()">{{event.venue}}</span>
+            <br>
+            <br>
+            <span class="lower-text">{{event.street}}, {{event.city}}, {{event.state}}</span>
+          </p>
+          <p class="event-details">
+            <span><i class="icon material-icons">access_time</i></span>
+            <span class="text">{{event.start_date | date:'longDate'}}</span>
+            <br>
+            <br>
+            <span class="lower-text">{{format_time(event.start_time)}} - {{format_time(event.end_time)}}</span>
+          </p>
+          <p class="event-details">
+            <span><i class="icon material-icons">local_offer</i></span>
+            <span class="text">{{format_price()}}</span>
+          </p>
+          <mat-card-actions class="details-button-space">
+              <button mat-button class="details-button" (click)="event_redirect()">MORE DETAILS</button>
+            </mat-card-actions>
+        
+        </mat-card-content>
+        </mat-card>
+        </mat-tab>
+   <mat-tab label="Reviews">
+        <mat-card>
+          <div class="margin-review">
+            <p class="review-width" *ngFor="let current_review of user_reviews;">
+                {{current_review.review}}
+            </p>
+            </div>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label="Add Review" *ngIf="is_parent_id">
+      <mat-card>
+          <div class="container">
+            <div class="addReview">
+              <div class="row">
+                <h1 class="review-margin">Write a review</h1>
+              </div>
+                <div class="form-group review-margin">
+                  <textarea class="form-control" rows="5" id="review" placeholder="Add review or tips to other parents"
+                    [(ngModel)]="review"   required (change)="validate_review()"></textarea>
+                  <small id="miscHelp" class="form-text text-muted italic-font-style">We respect your
+                    privacy. Your name will not be shown to other
+                    users
+                  </small>
+                  <div *ngIf="isErrorVisible"
+                      class="alert alert-danger">
+                      <div>
+                          {{errorMessage }}
+                      </div>
+                    </div>
+                  <div *ngIf="isSuccessVisible"
+                      class="alert alert-success">
+                      <div>
+                          {{errorMessage }}
+                      </div>
+                    </div>
+                </div>
+              <div class="row">
+                <div class="form-group review-margin">
+                  <button type="button" class="btn btn-danger" (click)="add_review()">Submit</button>
+                </div>
+              </div>
+       
+          </div>
+        </div>
+        
+      </mat-card>
+    </mat-tab>
+    
+        <!-- <mat-tab label="Fourth">   </mat-tab> -->
+      </mat-tab-group>
+
   </mat-card-content>
-  <mat-card-actions class="details-button-space">
-    <button mat-button class="details-button" (click)="event_redirect()">MORE DETAILS</button>
-  </mat-card-actions>
-</mat-card>
+
+

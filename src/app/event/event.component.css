@@ -19,7 +19,7 @@
 }
 
 .event-details {
-    border-top: 1px solid;
+    /* border-top: 1px solid; */
     padding-top: 1em;
 }
 
@@ -76,7 +76,7 @@
     }
 
     .basic-information .text {
-        margin-left: 4%
+        margin-left: 3%
     }
     
     .event-details .text {
@@ -103,7 +103,7 @@
         width: 25% !important;
         margin-left: 37.5%;
     }
-
+ 
     .basic-information .text {
         margin-left: 3%
     }
@@ -124,4 +124,25 @@
         margin-top: 2%;
         border-radius: 10px;
     }
+    .about-reviews-margin{
+        margin-left: 30%;
+        margin-right: 30%
+    }
+    .addReview{
+        margin-left : 29%;
+    }
+}
+
+::ng-deep .tabs .mat-tab-list .mat-tab-labels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: auto;
+    grid-auto-rows: auto;
+}
+.description{
+     margin-left: 7%;
+}
+
+.margin-review{
+    margin-left: 33%;
 }
