@@ -1,0 +1,281 @@
+<div class="container">
+  <h2>Add Camp</h2>
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Type name of camp"
+                   name="name"  [(ngModel)]="campModel.name" #name="ngModel"
+                   required minlength="4" maxlength="2048"
+            >
+          </div>
+          <div class="form-group">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                 class="alert alert-danger">
+              <div *ngIf="name.errors.required">
+                Name is required.
+              </div>
+              <div *ngIf="name.errors.minlength">
+                Name must be at least 4 characters long.
+              </div>
+              <div *ngIf="name.errors.maxlength">
+                Name must be max 2048 characters long
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" rows="5" id="description" placeholder="Type description"
+                      [(ngModel)]="campModel.description"
+                      required minlength="5" maxlength="2048" #description="ngModel" name="description"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                 class="alert alert-danger">
+              <div *ngIf="description.errors.required">
+                Description is required.
+              </div>
+              <div *ngIf="description.errors.minlength">
+                Description must be at least 5 characters long.
+              </div>
+              <div *ngIf="description.errors.maxlength">
+                Description must be max 2048 characters long
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <ng-select [items]="categoryList"
+                       bindLabel="name"
+                       bindValue="id"
+                       [(ngModel)]="cat_id"
+                       placeholder="Select primary category"
+                       required  #category="ngModel" name="category"
+
+                       (change)="set_cat_name($event.name)"
+            >
+            </ng-select>
+          </div>
+          <div class="form-group">
+            <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                 class="alert alert-danger">
+              <div *ngIf="description.errors.required">
+                Category is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="name">Types Of Activities</label>
+            <input type="text" class="form-control" id="activity_type" placeholder="Types of  activities"
+                   [(ngModel)]="campModel.activity_types"
+                   name="activity_types"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="name">Cities</label>
+            <input type="text" class="form-control" id="cities" placeholder="Type Cities" required="true"
+                   [(ngModel)]="campModel.cities"
+                   minlength="2"
+                   maxlength="255"
+                   name="cities"
+                   #cities="ngModel"
+            >
+          </div>
+          <div class="form-group">
+            <div *ngIf="cities.invalid && (cities.dirty || cities.touched)"
+                 class="alert alert-danger">
+              <div *ngIf="cities.errors.required">
+                City is required.
+              </div>
+              <div *ngIf="cities.errors.minlength">
+                City must be at least 2 characters long.
+              </div>
+              <div *ngIf="cities.errors.maxlength">
+                City should containt only 255 characters
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">AM Extended Care</label>
+            <input type="text" class="form-control" id="am_extended_care" placeholder="Type AM extended care"
+                   [(ngModel)]="campModel.misc.am_extended_care"
+                   name="am_extended_care"
+                   required
+                   #am_extended_care="ngModel"
+            >
+          </div>
+
+          <div class="form-group">
+            <div *ngIf="am_extended_care.invalid && (am_extended_care.dirty || am_extended_care.touched)"
+                 class="alert alert-danger">
+              <div *ngIf="am_extended_care.errors.required">
+                AM Extended Care is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Timings</label>
+            <input type="text" class="form-control" id="timings" placeholder="Type timings"
+                   [(ngModel)]="campModel.misc.timings"
+                   name="timings"
+                   #timings="ngModel"
+                   required
+            >
+          </div>
+          <div class="form-group">
+            <div *ngIf="timings.invalid && (timings.dirty || timings.touched)"
+                 class="alert alert-danger">
+              <div *ngIf="timings.errors.required">
+                Timings is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Tips</label>
+            <input type="text" class="form-control" id="tips" placeholder="Type tips"
+                   [(ngModel)]="campModel.misc.tips"
+                   name="tips"
+                   #tips="ngModel"
+                   required
+            >
+          </div>
+          <div class="form-group">
+            <div *ngIf="tips.invalid && (tips.dirty || tips.touched)"
+                 class="alert alert-danger">
+              <div *ngIf="tips.errors.required">
+                Tips is required.
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="name">Website URL</label>
+              <input type="text" class="form-control" id="url" placeholder="Type website url" required="true"
+                     [(ngModel)]="campModel.url"
+                     name="url"
+                     #url="ngModel"
+              >
+            </div>
+            <div class="form-group">
+              <div *ngIf="url.invalid && (url.dirty || url.touched)"
+                   class="alert alert-danger">
+                <div *ngIf="url.errors.required">
+                  Website URL  is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="name">Image URL</label>
+              <input type="text" class="form-control" id="image_url" placeholder="Type image url" required="true"
+                     [(ngModel)]="campModel.image_url"
+                     name="image_url"
+                     #image_url="ngModel"
+              >
+            </div>
+            <div class="form-group">
+              <div *ngIf="image_url.invalid && (image_url.dirty || image_url.touched)"
+                   class="alert alert-danger">
+                <div *ngIf="image_url.errors.required">
+                  Image URL  is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="name">Min. Age</label>
+              <input type="number" class="form-control" id="min_age" placeholder="Type minimun age"
+                     [(ngModel)]="campModel.min_age"
+                     name="min_age"
+                     min="1"
+                     max="100"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="name">Max. Age</label>
+              <input type="number" class="form-control" id="max_age" placeholder="Type maximum age"
+                     [(ngModel)]="campModel.max_age"
+                     name="max_age"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="name">Offered During</label>
+              <input type="text" class="form-control" id="offered_during" placeholder="Type offered during"
+                     [(ngModel)]="campModel.offered_during"
+                     name="offered_during"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="name">Venue Id</label>
+              <input type="number" class="form-control" id="venue_id" placeholder="Type venue id"
+                     [(ngModel)]="campModel.venue_id"
+                     name="venue_id"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="name">PM Extended Care</label>
+              <input type="text" class="form-control" id="pm_extended_care" placeholder="Type pm extended care"
+
+                     [(ngModel)]="campModel.misc.pm_extended_care"
+                     name="pm_extended_care"
+                     #pm_extended_care="ngModel"
+                     required
+              >
+            </div>
+            <div class="form-group">
+              <div *ngIf="pm_extended_care.invalid && (pm_extended_care.dirty || pm_extended_care.touched)"
+                   class="alert alert-danger">
+                <div *ngIf="pm_extended_care.errors.required">
+                  PM Extended Care is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="lunch">Lunch</label>
+              <input type="text" class="form-control" id="lunch" placeholder="Type lunch"
+                     [(ngModel)]="campModel.misc.lunch"
+                     name="lunch"
+                     #lunch="ngModel"
+                     required
+              >
+            </div>
+            <div class="form-group">
+              <div *ngIf="lunch.invalid && (lunch.dirty || lunch.touched)"
+                   class="alert alert-danger">
+                <div *ngIf="lunch.errors.required">
+                  Lunch is required.
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+    <div class="form-group">
+      <button class="btn btn-primary" [disabled]="f.form.pristine || f.form.invalid">Submit</button>
+    </div>
+
+      <div  class="row alert alert-danger" *ngIf="showError">
+        <!--<p *ngFor="let current_error of camp_error"> {{current_error}}</p>-->
+        <ul>
+          <li *ngFor="let current_error of camp_error">
+            {{ current_error }}
+          </li>
+        </ul>
+      </div>
+
+  </form>
+</div>
