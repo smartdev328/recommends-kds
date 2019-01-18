@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
+import {UrlConstants} from '../constants/UrlConstants';
+import {ENTITY_TYPES_ENUM, TYPES_ENUM } from '../constants/VenueConstants';
+import {EventErrorMessage } from '../constants/EventConstants';
+import {ReviewsService} from '../add-review/reviews.service';
+import { MatTabChangeEvent } from '@angular/material';
 
 declare let ga: any;
 @Component({
@@ -13,15 +18,33 @@ export class EventComponent implements OnInit {
   event_id: string;
   event: any;
   isLoaded: boolean = false;
-  constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title) { }
+  public is_parent_id: Boolean;
+  public isErrorVisible: Boolean;
+  public isSuccessVisible: Boolean;
+  public errorMessage: String;
+  public review: string;
+  public user_reviews: any;
+  public parent_id: any;
+  public eventErrorMessage = new EventErrorMessage();
+  public URLConstatnts = new UrlConstants();
+
+  constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
+    private reviewService: ReviewsService) { }
 
   ngOnInit() {
     this.event_id = this.route.snapshot.params['id'];
+    this.parent_id = this.route.snapshot.queryParams['parent_id'];
     this.get_event_details();
+    this.isErrorVisible = false;
+    this.isSuccessVisible = false;
+    this.errorMessage = '';
+    this.review = '';
+    this.user_reviews = [];
+    
   }
 
   get_event_details() {
-    let url = "https://kin-api.kinparenting.com/events/" + this.event_id;
+    let url = this.URLConstatnts.API_URL + 'events/' + this.event_id;
     const headers = new HttpHeaders()
         .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
     this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
@@ -82,4 +105,80 @@ export class EventComponent implements OnInit {
     });
     window.location.href= this.event.url;
   }
+
+  add_review_redirect() {
+    this.is_parent_id = true;
+  }
+  add_review() {
+    if (this.validate_review()) {
+      let input_data = {
+        'input' : {
+          'entity_type' : ENTITY_TYPES_ENUM.EVENT,
+          'entity_id' : this.event_id,
+          'parent_id' : this.parent_id,
+          'review' : this.review,
+          'is_approved' : false
+        }
+      };
+      this.reviewService.add_review(input_data).subscribe(data => {
+        if (data['status'] === true) {
+          this.isSuccessVisible = true;
+          this.isErrorVisible = false;
+          setTimeout(()=> {    
+                this.isSuccessVisible = false;
+                this.review = '';
+           }, 3000);
+
+          this.errorMessage = this.eventErrorMessage.REVIEW_ADDED_SUCCESS;
+        } else {
+          this.isErrorVisible = true;
+          this.errorMessage = this.eventErrorMessage.ERROR_ADDING_NEW_REVIEW;
+        }
+      }, error => {
+        this.isErrorVisible = true;
+        this.errorMessage = this.eventErrorMessage.SOMETHING_WENT_WRONG;
+      });
+
+
+    }
+  }
+
+  validate_review() {
+    if (this.review.trim().length === 0) {
+      this.isErrorVisible = true;
+      this.errorMessage = 'Review is required';
+      setTimeout(()=> {    
+        this.isErrorVisible  = false;
+      }, 3000);
+      return false;
+    }
+    this.isErrorVisible = false;
+    return true;
+  }
+
+  show_reviews(event: MatTabChangeEvent) {
+ 
+    let tab = event.tab;
+    let index = event.index;
+  
+    if (index === 1 && this.user_reviews.length === 0) {
+      this.reviewService.get_reviews_by_type(TYPES_ENUM.EVENT , true).subscribe(data => {
+        if ( data['status'] ) {
+          this.user_reviews = data['data'];
+        } else {
+          this.user_reviews = [];
+        }
+      }, error => {
+        alert(this.eventErrorMessage.GET_DATA_ERROR);
+      });
+    }
+  }
+
+  calendar_redirects() {
+    window.open('https://calendar.google.com');
+  }
+  website_redirect() {
+    window.open(this.event.url, '_blank');
+  }
+
 }

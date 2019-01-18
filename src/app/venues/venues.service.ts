@@ -16,8 +16,4 @@ export class VenuesService {
     return this.http.get(url);
   }
 
-  get_reviews_by_type (type , approved = true) {
-    const url = this.URLConstants.API_URL + 'reviews/?type=' + type + '&' + 'approved=' + approved ;
-    return this.http.get(url);
-  }
 }
