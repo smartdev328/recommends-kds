@@ -1,8 +1,15 @@
 import {VenueConstants, VenueErrorMessage} from '../constants/VenueConstants';
+import {CampConstants,CampErrorMessage} from '../constants/CampConstants';
 import {UserSearch} from '../venue/venue.model';
+import {CampModel} from '../add-camp/camp.model';
 export class ValidationRules {
+
+    public CAMP_REQUIRED_FIELDS = ['name' , 'description' , 'url' ,'image_url' ,'cities' ,
+        'am_extended_care' ,'pm_extended_care' , 'lunch' , 'timings' , 'tips' ];
+
     public venueConstatnts = new VenueConstants();
     public venueErrorMessage = new VenueErrorMessage();
+    public campErrorMessage = new CampErrorMessage();
 
     public validate_only_characters(text: any) {
         return /^[a-z A-Z 0-9 ' "\:/.,!]+$/.test(text);
@@ -73,5 +80,38 @@ export class ValidationRules {
             return true;
         }
     }
+
+    camp_required_field_must_not_be_blank(campModel : CampModel){
+        const final_errors = [];
+        for (let field_counter=0 ; field_counter < this.CAMP_REQUIRED_FIELDS.length ; field_counter++) {
+            let each_field =  this.CAMP_REQUIRED_FIELDS[field_counter];
+
+            if (each_field in campModel['misc']) {
+
+                if( campModel['misc'][each_field].trim() == ''){
+                    final_errors.push(each_field + ' : ' + this.campErrorMessage.NOT_BLANK);
+                }
+
+            } else if(campModel[each_field].trim() == '') {
+
+                final_errors.push(each_field + ' : ' + this.campErrorMessage.NOT_BLANK);
+            }
+        }
+        return final_errors;
+    }
+    validate_age(min_age , max_age) {
+
+        let final_errors= [];
+        if (min_age.toString().length>=3){
+            final_errors.push(this.campErrorMessage.MIN_AGE)
+        }
+
+        if (max_age.toString().length>=3){
+            final_errors.push(this.campErrorMessage.MAX_AGE)
+        }
+
+        return final_errors
+    }
+
 
 }

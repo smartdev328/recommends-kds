@@ -29,6 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { ReviewsComponent } from './add-review/reviews.component';
 import { ApproveReviewComponent } from './approve-reviews/approve-review.component';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import { AddCampComponent } from './add-camp/add-camp.component';
 
 
 
@@ -50,7 +51,8 @@ import {NgxDatatableModule} from '@swimlane/ngx-datatable';
     SearchVenueComponent,
     EditVenueComponent,
     ReviewsComponent,
-    ApproveReviewComponent
+    ApproveReviewComponent,
+    AddCampComponent
   ],
   imports: [
     BrowserModule,
