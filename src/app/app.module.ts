@@ -24,12 +24,12 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { SearchVenueComponent } from './search-venue/search-venue.component';
 import { EditVenueComponent } from './edit-venue/edit-venue.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { TabsModule } from '@material/tabs';
 import {MatIconModule} from '@angular/material/icon';
 import { ReviewsComponent } from './add-review/reviews.component';
 import { ApproveReviewComponent } from './approve-reviews/approve-review.component';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import { AddCampComponent } from './add-camp/add-camp.component';
+import { CampsComponent } from './camps/camps.component';
 
 
 
@@ -52,7 +52,8 @@ import { AddCampComponent } from './add-camp/add-camp.component';
     EditVenueComponent,
     ReviewsComponent,
     ApproveReviewComponent,
-    AddCampComponent
+    AddCampComponent,
+    CampsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,4 @@
 
-
 export class CampConstants {
 
     public CAMP_CATEGORY = [
@@ -20,4 +19,9 @@ export class CampErrorMessage {
     public NOT_BLANK = "Field can't be blank";
     public MIN_AGE = "Min. age should not be greater than 99";
     public MAX_AGE = "Max. age should not be greater than 99";
+    public ERROR_ADDING_NEW_REVIEW = "Error while adding a new review";
+    public SOMETHING_WENT_WRONG = " Something went wrong, please try again later";
+    public GET_DATA_ERROR = "Error while getting information";
+    public REVIEW_ADDED_SUCCESS = "Review , successfully added";
+
 }
