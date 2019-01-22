@@ -13,6 +13,7 @@ import { SearchVenueComponent } from './search-venue/search-venue.component';
 import { ReviewsComponent } from './add-review/reviews.component';
 import { ApproveReviewComponent } from './approve-reviews/approve-review.component';
 import { AddCampComponent} from './add-camp/add-camp.component';
+import { CampsComponent } from './camps/camps.component';
 
 const routes: Routes = [
   { path: 'event/:id', component: EventComponent },
@@ -29,6 +30,8 @@ const routes: Routes = [
   { path: 'add/review', component: ReviewsComponent },
   { path: 'approve-reviews', component: ApproveReviewComponent },
   { path: 'add-camp', component: AddCampComponent },
+  { path: 'camps/:id', component: CampsComponent },
+  { path: 'camps/:id?parent_id=', component: CampsComponent },
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: '' }
 ];

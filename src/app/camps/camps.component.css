@@ -1,0 +1,148 @@
+.event-card {
+    font-size: 15px;
+    color: rgb(90, 91, 91);
+}
+
+.mat-card-header {
+    display: contents;
+}
+
+.camps-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+  
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.event-details {
+    /* border-top: 1px solid; */
+    padding-top: 1em;
+}
+
+.icon {
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+
+.link-text {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.details-button-space {
+    text-align: center;
+    border-top: 1px solid;
+}
+
+.red-color {
+    color: rgb(237, 45, 86);
+}
+
+/* Phones */ 
+@media only screen and (max-width : 767px) {
+    .basic-information .text {
+        margin-left: 5%
+    }
+    
+    .event-details .text {
+        margin-left: 5%
+    }
+    
+    .event-details .lower-text {
+        margin-left: calc(5% + 24px)
+    }
+
+    .details-button {
+        color: white;
+        background-color: rgb(237, 45, 86);
+        border: none;
+        padding: 5%;
+        margin-top: 5%;
+        border-radius: 10px;
+    }
+}
+
+/* Tablets */
+@media only screen and (min-width : 768px) and (max-width : 1280px) {
+    .desktop-resize {
+        width: 30% !important;
+        margin-left: 35%;
+    }
+
+    .basic-information .text {
+        margin-left: 3%
+    }
+    
+    .event-details .text {
+        margin-left: 4%
+    }
+    
+    .event-details .lower-text {
+        margin-left: calc(4% + 24px)
+    }
+
+    .details-button {
+        color: white;
+        background-color: rgb(237, 45, 86);
+        border: none;
+        padding: 2%;
+        margin-top: 3%;
+        border-radius: 10px;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width : 1281px) {
+    .desktop-resize {
+        width: 25% !important;
+        margin-left: 37.5%;
+    }
+ 
+    .basic-information .text {
+        margin-left: 3%
+    }
+    
+    .event-details .text {
+        margin-left: 3%
+    }
+    
+    .event-details .lower-text {
+        margin-left: calc(3% + 24px)
+    }
+
+    .details-button {
+        color: white;
+        background-color: rgb(237, 45, 86);
+        border: none;
+        padding: 1.5%;
+        margin-top: 2%;
+        border-radius: 10px;
+    }
+    .about-reviews-margin{
+        margin-left: 30%;
+        margin-right: 30%
+    }
+    .addReview{
+        margin-left : 29%;
+    }
+}
+
+::ng-deep .tabs .mat-tab-list .mat-tab-labels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: auto;
+    grid-auto-rows: auto;
+}
+.description{
+     margin-left: 7%;
+}
+
+.margin-review{
+    margin-left: 33%;
+}

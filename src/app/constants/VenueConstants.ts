@@ -1,11 +1,13 @@
 export enum ENTITY_TYPES_ENUM {
     EVENT = 'ETYPE_EVENT',
-    VENUE = 'ETYPE_VENUE'
+    VENUE = 'ETYPE_VENUE',
+    CAMP  = 'ETYPE_CAMPS'
 }
 
 export enum TYPES_ENUM {
     VENUE = 'venue',
-    EVENT = 'event'
+    EVENT = 'event',
+    CAMP = 'camp'
 }
 
 export class VenueConstants {
