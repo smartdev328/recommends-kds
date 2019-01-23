@@ -32,10 +32,14 @@ export class ApproveReviewComponent implements OnInit {
         {
        'name' : 'Event',
         'id' : 'event'
-    },{
+    }, {
         'name' : 'Venue',
         'id' : 'venue'
-      }
+      },
+      {
+        'name' : 'Camp',
+        'id' : 'camp'
+      },
     ];
 
     this.columns = [
