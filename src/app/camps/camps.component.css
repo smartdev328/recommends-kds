@@ -144,5 +144,9 @@
 }
 
 .margin-review{
+    margin-left: 50%;
+}
+
+.review-margin-left {
     margin-left: 33%;
 }

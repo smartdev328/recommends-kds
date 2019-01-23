@@ -71,13 +71,11 @@ export class CampsComponent implements OnInit {
           this.category ='No information available for now';
           }
           this.camp.lunch = this.camp.misc['lunch'];
-          this.camp.image_url  = this.camp.image_url !== '' || this.camp.image_url === undefined ?
-          '../../assets/venue_default_image.png'
-          : this.camp.image_url;
+          this.camp.image_url  = this.camp.image_url;
           this.camp.timings = this.camp.misc['timings'];
           this.isLoaded = true;
         } else{
-          alert('No information available for now');
+          alert('No camp information available for now');
         }
       })
 

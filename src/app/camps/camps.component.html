@@ -12,7 +12,7 @@
     fxLayoutGap="33px"
     fxLayoutGap.xs="10px">
    <div class="item item-1" fxFlex="10%" title="Save"  (click)="website_redirect()">
-       <span><i class="icon material-icons mouse-pointer">save</i></span>
+       <span><i class="icon material-icons mouse-pointer">bookmark_border</i></span>
        <span class="text link-text"></span>
    </div>
 
@@ -23,7 +23,7 @@
    </div>
 
    <div class="item item-3" fxFlex="10%"  (click)="add_review_redirect()" title="Add Review">
-       <span><i class="icon material-icons mouse-pointer">rate_review</i></span>
+       <span><i class="icon material-icons mouse-pointer">message</i></span>
        <span class="text link-text"></span>
    </div>
 
@@ -94,8 +94,8 @@
       <mat-card>
            <div class="container">
             <div class="addReview">
-              <div class="row">
-                <h1 class="review-margin">Write a review</h1>
+              <div class="row review-margin-left">
+                <h4 class="review-margin">Write a review</h4>
               </div>
                 <div class="form-group review-margin">
                   <textarea class="form-control" rows="5" id="review" placeholder="Add review or tips to other parents"
@@ -117,11 +117,13 @@
                       </div>
                     </div>
                 </div>
-              <div class="row">
+              <div class="row review-margin-left">
+                
                 <div class="form-group review-margin">
                   <button type="button" class="btn btn-danger" (click)="add_review()">Submit</button>
                 </div>
               </div>
+              
        
           </div>
         </div> 
