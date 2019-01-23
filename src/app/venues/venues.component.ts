@@ -39,6 +39,7 @@ export class VenuesComponent implements OnInit {
   public errorMessage: String;
   public url: String;
   public is_parent_id: Boolean;
+  public isSubscribeVisible: Boolean;
   public google_place_reviews_count: number;
   public isShowMoreHours: Boolean
   constructor(private route: ActivatedRoute,  private http: HttpClient, private titleService: Title,
@@ -59,6 +60,7 @@ export class VenuesComponent implements OnInit {
       this.is_parent_id = false;
       this.user_reviews = [];
       this.isShowMoreHours = false;
+      this.isSubscribeVisible = false;
   }
 
   ngOnInit() {
@@ -69,6 +71,9 @@ export class VenuesComponent implements OnInit {
 
         if ( this.venue_id > 0 && this.venue_id !== undefined) {
           this.get_venue_data(this.venue_id);
+      }
+        if ( this.venue_id > 0 && this.venue_id !== undefined && !isNaN( this.parent_id)) {
+          this.is_subscription_venue();
       }
     }
   }
@@ -246,4 +251,42 @@ export class VenuesComponent implements OnInit {
   closeErrorBox() {
     this.isErrorVisible = false;
   }
+  is_subscription_venue() {
+    this.venuesService.verify_subscribe_venue(this.parent_id, this.venue_id).subscribe(data => {
+      if (data['status'] === true) {
+        this.isSubscribeVisible = true;
+      } else {
+        this.isSubscribeVisible = false;
+      }
+    }, error => {
+       alert('Error while getting information');
+    });
+  }
+  add_subscription_venue() {
+    const input_data = {
+      "venue_subs_data" : {
+        "parent_id" :this.parent_id,
+        "venue_id" : this.venue_id,
+      }
+    };
+    this.venuesService.add_subscriptions(input_data).subscribe(data => {
+      if (data['status'] === true) {
+        this.isSubscribeVisible = true;
+      }
+    }, error => {
+        alert('Something went wrong while subscribe venue');
+    });
+  }
+
+  unsubscribe_venue() {
+    this.venuesService.remove_subscriptions(this.parent_id, this.venue_id).subscribe(data => {
+      if (data['status'] === true) {
+        this.isSubscribeVisible = false;
+      }
+    }, error => {
+      this.errorMessage = 'Something went wrong while subscribe venue';
+    });
+
+  }
+
 }

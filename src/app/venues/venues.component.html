@@ -31,6 +31,14 @@
                 <span><i class="icon material-icons mouse-pointer">message</i></span>
                 <span class="text link-text"></span>
             </div>
+            <div class="item item-3" fxFlex="10%" (click)="unsubscribe_venue()" title="Subscribe" *ngIf="isSubscribeVisible">
+                <span><i class="icon material-icons mouse-pointer large icon-green">subscriptions</i></span>
+                <span class="text link-text"></span>
+            </div>
+            <div class="item item-3" fxFlex="10%" (click)="add_subscription_venue()" title="Unsubscribe" *ngIf="isSubscribeVisible != true">
+                <span><i class="icon material-icons mouse-pointer large material-icons icon-grey">subscriptions</i></span>
+                <span class="text link-text"></span>
+            </div>
 
         </div>
     </mat-card-content>
