@@ -263,6 +263,8 @@ export class VenuesComponent implements OnInit {
     });
   }
   add_subscription_venue() {
+
+    if (!isNaN(this.parent_id)){
     const input_data = {
       "venue_subs_data" : {
         "parent_id" :this.parent_id,
@@ -272,13 +274,19 @@ export class VenuesComponent implements OnInit {
     this.venuesService.add_subscriptions(input_data).subscribe(data => {
       if (data['status'] === true) {
         this.isSubscribeVisible = true;
+      } else {
+        alert('Something went wrong while subscribe venue');
       }
     }, error => {
         alert('Something went wrong while subscribe venue');
     });
+  } else {
+        alert('ParentId required for subscribe this venue');
+  }
   }
 
   unsubscribe_venue() {
+
     this.venuesService.remove_subscriptions(this.parent_id, this.venue_id).subscribe(data => {
       if (data['status'] === true) {
         this.isSubscribeVisible = false;
