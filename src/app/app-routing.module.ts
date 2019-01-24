@@ -1,3 +1,4 @@
+import { VenueListingComponent } from './venue-listing/venue-listing.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EventComponent } from './event/event.component';
@@ -24,6 +25,8 @@ const routes: Routes = [
   { path: 'data-entry', component: DataEntryComponent },
   { path: 'venue/:id', component: VenuesComponent },
   { path: 'venues/:id?parent_id=', component: VenuesComponent, },
+  { path: 'venues', component: VenueListingComponent, },
+  { path: 'venues?category', component: VenueListingComponent, },
   { path: 'venue', component: VenueComponent },
   { path: 'edit-venue/:venueId', component: EditVenueComponent},
   { path: 'search-venue', component: SearchVenueComponent },

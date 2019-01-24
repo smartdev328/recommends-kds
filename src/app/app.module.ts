@@ -7,7 +7,6 @@ import { DatePipe } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventComponent } from './event/event.component';
@@ -19,6 +18,7 @@ import { HelpComponent } from './help/help.component';
 import { DataEntryComponent } from './data-entry/data-entry.component';
 import { VenuesComponent } from './venues/venues.component';
 import { VenueComponent } from './venue/venue.component';
+import { VenueListingComponent } from './venue-listing/venue-listing.component';
 import { NgSelectModule, NgOption } from '@ng-select/ng-select';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { SearchVenueComponent } from './search-venue/search-venue.component';
@@ -30,6 +30,7 @@ import { ApproveReviewComponent } from './approve-reviews/approve-review.compone
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import { AddCampComponent } from './add-camp/add-camp.component';
 import { CampsComponent } from './camps/camps.component';
+import { MasonsryVenuesViewComponent } from './masonsry-venues-view/masonsry-venues-view.component';
 
 
 
@@ -48,12 +49,14 @@ import { CampsComponent } from './camps/camps.component';
     DataEntryComponent,
     VenuesComponent,
     VenueComponent,
+    VenueListingComponent,
     SearchVenueComponent,
     EditVenueComponent,
     ReviewsComponent,
     ApproveReviewComponent,
     AddCampComponent,
-    CampsComponent
+    CampsComponent,
+    MasonsryVenuesViewComponent
   ],
   imports: [
     BrowserModule,
