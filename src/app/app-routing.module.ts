@@ -15,6 +15,7 @@ import { ReviewsComponent } from './add-review/reviews.component';
 import { ApproveReviewComponent } from './approve-reviews/approve-review.component';
 import { AddCampComponent} from './add-camp/add-camp.component';
 import { CampsComponent } from './camps/camps.component';
+import { CampListingComponent } from './camp-listing/camp-listing.component';
 
 const routes: Routes = [
   { path: 'event/:id', component: EventComponent },
@@ -35,6 +36,8 @@ const routes: Routes = [
   { path: 'add-camp', component: AddCampComponent },
   { path: 'camps/:id', component: CampsComponent },
   { path: 'camps/:id?parent_id=', component: CampsComponent },
+  { path: 'camps', component: CampListingComponent },
+  { path: 'camps?category=', component: CampListingComponent },
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: '' }
 ];
