@@ -1,0 +1,20 @@
+<img src="assets/loading.gif" *ngIf="!showLayout" class="loading-gif">
+<ng-masonry-grid [ngClass]="{'hide-layout': !showLayout, 'show-layout': showLayout}"
+  [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }"
+  [useAnimation]="true"
+  [useImagesLoaded]="true"
+  [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
+  <ng-masonry-grid-item class="tiles" *ngFor="let venue of venues"> 
+    <mat-card class="event-list-cards" (click)="venue_redirect(venue.id)">
+      <img mat-card-image src={{venue.image_url}} alt="">
+      <mat-card-content>
+        <p class="event-group-title">
+          {{venue.name}}
+        </p>
+        <p class="event-venue">
+            {{venue.state}}   {{venue.city}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </ng-masonry-grid-item>
+</ng-masonry-grid>

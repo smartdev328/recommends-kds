@@ -1,0 +1,14 @@
+<div class="banner">
+  <p class="link-to-kin">
+    <span>
+      To discover and plan for many more family-friendly venues personalized to you, chat with <b class="kin-link" (click)="kin_redirect()">Kin on Messenger</b>
+    </span>
+    <img alt="kin logo" src="assets/kin_logo.jpeg" class="logo">
+  </p>
+</div>
+<div class="event-listing-card">
+
+      <img src="assets/loading.gif" *ngIf="!isExplore" class="loading-gif">
+      <app-masonsry-venues-view *ngIf="isExplore" [venues]=venues_list></app-masonsry-venues-view>
+    
+</div>
