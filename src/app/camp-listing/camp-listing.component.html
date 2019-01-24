@@ -1,0 +1,13 @@
+<div class="banner">
+  <p class="link-to-kin">
+    <span>
+      To discover and plan for many more family-friendly camps personalized to you, chat with <b class="kin-link" (click)="kin_redirect()">Kin on Messenger</b>
+    </span>
+    <img alt="kin logo" src="assets/kin_logo.jpeg" class="logo">
+  </p>
+</div>
+<div class="event-listing-card">
+  
+      <img *ngIf="!isExplore"  src="assets/loading.gif"  class="loading-gif">
+      <app-masonsry-camp-view  [camps]=camp_explore></app-masonsry-camp-view>
+</div>

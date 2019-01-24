@@ -1,0 +1,67 @@
+
+.banner {
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+    background-color: white;
+    text-align: center;
+    width: 100%;
+    left: 0;
+}
+
+.link-to-kin {
+    border-top: 1px solid;
+    padding: 4%;
+    margin: 0 !important;
+    font-size: 17px;
+    color: black;
+}
+
+.kin-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.logo {
+    height: 30px;
+    width: 35px;
+    position: relative;
+    top: 10px;
+}
+
+/* Phones */ 
+@media only screen and (max-width : 767px) {
+    .loading-gif {
+        margin-left: 10%;
+    }
+
+    .event-listing-card {
+        margin: 0% 5% 30% 5% !important;
+    }
+    
+}
+
+/* Tablets */
+@media only screen and (min-width : 768px) and (max-width : 1280px) {
+    .loading-gif {
+        margin-left: 35%;
+    }
+
+    .event-listing-card {
+        margin: 0% 5% 12% 5% !important;
+    }
+    
+}
+
+/* Desktop */
+@media only screen and (min-width : 1281px) {
+    .loading-gif {
+        margin-left: 40%;
+    }
+
+    .event-listing-card {
+        margin: 0% 5% 12% 5% !important;
+    }
+    
+}
