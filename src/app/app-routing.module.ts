@@ -5,6 +5,7 @@ import { EventComponent } from './event/event.component';
 import { EventGroupComponent } from './event-group/event-group.component';
 import { EventListingComponent } from './event-listing/event-listing.component';
 import { HomeComponent } from './home/home.component';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { HelpComponent } from './help/help.component';
 import { DataEntryComponent } from './data-entry/data-entry.component';
 import { VenuesComponent } from './venues/venues.component';
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'camps', component: CampListingComponent },
   { path: 'camps?category=', component: CampListingComponent },
   { path: '', component: HomeComponent },
+  { path: 'coming-soon', component: ComingSoonComponent },
   { path: '**', redirectTo: '' }
 ];
 
