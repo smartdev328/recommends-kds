@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import {UserSearch} from '../venue/venue.model';
 import {VenuesService} from './venues.service';
 import {ENTITY_TYPES_ENUM, TYPES_ENUM , VenueConstants, VenueErrorMessage} from '../constants/VenueConstants';
+import {ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION} from '../constants/AnalyticsConstants';
 import { MatTabChangeEvent } from '@angular/material';
 import {ReviewsService} from '../add-review/reviews.service';
 
@@ -74,6 +75,7 @@ export class VenuesComponent implements OnInit {
       }
         if ( this.venue_id > 0 && this.venue_id !== undefined && !isNaN( this.parent_id)) {
           this.is_subscription_venue();
+          this.add_analytics_data('CLICK');
       }
     }
   }
@@ -133,36 +135,6 @@ export class VenuesComponent implements OnInit {
     }
   }
 
-  get_venue_details() {
-    // let url = "https://kin-api.kinparenting.com/venues/" + this.venue_id;
-    // const headers = new HttpHeaders()
-    //     .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
-    // this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-    //   data = data.replace(/\n/g, "");
-    //   data = JSON.parse(data);
-    //   this.venue = data["venue"];
-    //   this.isLoaded = true;
-    //   ga('send', 'venue', {
-    //     venueCategory: 'Views',
-    //     venueLabel: 'Venue Details',
-    //     venueAction: 'View a specific venue page',
-    //     venueValue: this.venue_id
-    //   });
-    // this.titleService.setTitle(this.venue.name);
-    // })
-    // this.venue = {
-    //   "id": 442,
-    //   "name": "The Little Gym of Morgan Hill",
-    //   "url": "http://www.thelittlegym.com/morganhillca",
-    //   "image_url": "https://www.thelittlegym.com/globalassets/corporate-marquee/marquee-become-an-owner.png",
-    //   "price": "",
-    //   "city": "Morgan Hill",
-    //   "state": "CA",
-    //   "personalized": "false",
-    //   "distance": 0
-    // }
-  }
-
   format_price() {
     if(this.venue.price == "Free" || this.venue.price == "free" || this.venue.price == "") {
       return "Free"
@@ -178,10 +150,12 @@ export class VenuesComponent implements OnInit {
   }
 
   website_redirect() {
+    this.add_analytics_data('SAVE');
     window.open(this.venue.url, '_blank');
   }
 
   calendar_redirects() {
+    this.add_analytics_data('CALENDAR');
     window.open('https://calendar.google.com');
   }
 
@@ -265,6 +239,7 @@ export class VenuesComponent implements OnInit {
   add_subscription_venue() {
 
     if (!isNaN(this.parent_id)){
+      this.add_analytics_data('SUBSCRIBE');
     const input_data = {
       "venue_subs_data" : {
         "parent_id" :this.parent_id,
@@ -287,14 +262,51 @@ export class VenuesComponent implements OnInit {
 
   unsubscribe_venue() {
 
-    this.venuesService.remove_subscriptions(this.parent_id, this.venue_id).subscribe(data => {
-      if (data['status'] === true) {
-        this.isSubscribeVisible = false;
-      }
-    }, error => {
-      this.errorMessage = 'Something went wrong while subscribe venue';
-    });
+    if (!isNaN(this.parent_id)) {
+        this.add_analytics_data('SUBSCRIBE');
+      this.venuesService.remove_subscriptions(this.parent_id, this.venue_id).subscribe(data => {
+        if (data['status'] === true) {
+          this.isSubscribeVisible = false;
+        }
+      }, error => {
+        this.errorMessage = 'Something went wrong while subscribe venue';
+      });
+    } else {
+      alert('ParentId required for subscribe this venue');
+    }
+
 
   }
+// Add Analytics Data
+  add_analytics_data(atype: any) {
+    let action = '';
+     switch (atype) {
+       case 'CLICK':
+       action = ACTION.CLICK;
+         break;
+       case 'SAVE':
+       action = ACTION.SAVE;
+         break;
+       case 'CALENDAR':
+       action = ACTION.CALENDAR;
+         break;
+       case 'SUBSCRIBE':
+       action = ACTION.SUBSCRIBE;
+         break;
+     }
+       const  analytics_input = {
+         'entity_type' : ANALYTICS_ENTITY_TYPES_ENUM.VENUE,
+         'entity_id' : this.venue_id,
+         'interface' : INTERFACE_ENUM.FE,
+         'parent_id' : this.parent_id,
+         'action' : action,
+         'referrer' : '/root/home'
+       };
+     this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
+     }, error => {
+       alert('Something went wrong');
+     });
+ 
+   }
 
 }

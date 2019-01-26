@@ -5,6 +5,8 @@ import { Title } from '@angular/platform-browser';
 import {UrlConstants} from '../constants/UrlConstants';
 import {ReviewsService} from '../add-review/reviews.service';
 import {ENTITY_TYPES_ENUM, TYPES_ENUM } from '../constants/VenueConstants';
+import {ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION} from '../constants/AnalyticsConstants';
+
 import {CampErrorMessage, CampConstants } from '../constants/CampConstants';
 import { MatTabChangeEvent } from '@angular/material';
 declare let ga: any;
@@ -51,8 +53,11 @@ export class CampsComponent implements OnInit {
     this.category = '';
     this.campStatus = false;
     this.campConstants = new CampConstants();
-  }
 
+    if ( this.camp_id > '0' && this.camp_id !== undefined && !isNaN( this.parent_id)) {
+      this.add_analytics_data('CLICK');
+    }
+  }
   get_camp_details() {
     let url = this.URLConstatnts.API_URL + 'camps/' + this.camp_id+"/";
  
@@ -180,7 +185,39 @@ export class CampsComponent implements OnInit {
     return timeString;
   }
 
+  calendar_redirects() {
+    this.add_analytics_data('CALENDAR');
+    window.open('https://calendar.google.com');
+  }
   website_redirect() {
+    this.add_analytics_data('SAVE');
     window.open(this.camp.url, '_blank');
   }
+  add_analytics_data(atype: any) {
+    let action = '';
+     switch (atype) {
+       case 'CLICK':
+       action = ACTION.CLICK;
+         break;
+       case 'SAVE':
+       action = ACTION.SAVE;
+         break;
+       case 'CALENDAR':
+       action = ACTION.CALENDAR;
+         break;
+     }
+       const  analytics_input = {
+         'entity_type' : ANALYTICS_ENTITY_TYPES_ENUM.CAMP,
+         'entity_id' : this.camp_id,
+         'interface' : INTERFACE_ENUM.FE,
+         'parent_id' : this.parent_id,
+         'action' : action,
+         'referrer' : '/root/home'
+       };
+     this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
+     }, error => {
+       alert('Something went wrong');
+     });
+ 
+   }
 }
