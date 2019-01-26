@@ -7,6 +7,8 @@ import {ENTITY_TYPES_ENUM, TYPES_ENUM } from '../constants/VenueConstants';
 import {EventErrorMessage } from '../constants/EventConstants';
 import {ReviewsService} from '../add-review/reviews.service';
 import { MatTabChangeEvent } from '@angular/material';
+import {ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION} from '../constants/AnalyticsConstants';
+
 
 declare let ga: any;
 @Component({
@@ -40,7 +42,11 @@ export class EventComponent implements OnInit {
     this.errorMessage = '';
     this.review = '';
     this.user_reviews = [];
-    
+
+    if (this.event_id > '0' && this.event_id !== undefined && !isNaN( this.parent_id)) {
+
+        this.add_analytics_data('CLICK');
+    }
   }
 
   get_event_details() {
@@ -175,10 +181,41 @@ export class EventComponent implements OnInit {
   }
 
   calendar_redirects() {
+    this.add_analytics_data('CALENDAR');
     window.open('https://calendar.google.com');
   }
   website_redirect() {
+
+    this.add_analytics_data('SAVE');
     window.open(this.event.url, '_blank');
   }
 
+  add_analytics_data(atype: any) {
+    let action = '';
+     switch (atype) {
+       case 'CLICK':
+       action = ACTION.CLICK;
+         break;
+       case 'SAVE':
+       action = ACTION.SAVE;
+         break;
+       case 'CALENDAR':
+       action = ACTION.CALENDAR;
+         break;
+     }
+ 
+       const  analytics_input = {
+         'entity_type' : ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
+         'entity_id' : this.event_id,
+         'interface' : INTERFACE_ENUM.FE,
+         'parent_id' : this.parent_id,
+         'action' : action,
+         'referrer' : '/root/home'
+       };
+     this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
+     }, error => {
+       alert('Something went wrong');
+     });
+ 
+  }
 }

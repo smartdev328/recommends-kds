@@ -18,4 +18,11 @@ export class ReviewsService {
     const url = this.URLConstants.API_URL + 'reviews/?type=' + type + '&' + 'approved=' + approved ;
     return this.http.get(url);
   }
+  add_analytics_actions (analytics_input: any) {
+
+    let url = this.URLConstants.API_URL + 'actions/';
+    return this.http.post(url , analytics_input);
+  }
+
+
 }
