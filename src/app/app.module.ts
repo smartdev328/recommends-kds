@@ -33,6 +33,7 @@ import { CampsComponent } from './camps/camps.component';
 import { CampListingComponent } from './camp-listing/camp-listing.component';
 import { MasonsryCampViewComponent } from './camp-listing/masonsry-camp-view/masonsry-camp-view.component';
 import { MasonsryVenuesViewComponent } from './masonsry-venues-view/masonsry-venues-view.component';
+import { SubscribeVenueComponent } from './subscribe-venue/subscribe-venue.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 
@@ -62,6 +63,7 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
     CampListingComponent,
     MasonsryCampViewComponent,
     MasonsryVenuesViewComponent,
+    SubscribeVenueComponent,
     ComingSoonComponent
   ],
   imports: [
