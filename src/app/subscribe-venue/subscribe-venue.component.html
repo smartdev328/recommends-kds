@@ -1,0 +1,28 @@
+<div class="container">
+
+
+  <div class="row">
+      <ngx-datatable
+              style="width: 100%"
+              class="bootstrap"
+              [rows]="rows"
+              [columns]="columns"
+              [columnMode]="'force'"
+              [headerHeight]="100"
+              [footerHeight]="100"
+              [rowHeight]="'auto'"
+              [limit]="10"
+              [selected]="selected"
+              [selectionType]="'checkbox'"
+              [selectAllRowsOnPage]="false"
+              (select)='onSelect($event)'>
+      </ngx-datatable>
+  </div>
+  <div class="row">
+      <button class="btn btn-primary" style="margin: auto;width: 20em;margin-top: 20px;" (click)="unsubscribe_venue()"> Unsubscribe </button>
+  </div>
+</div>
+
+
+
+

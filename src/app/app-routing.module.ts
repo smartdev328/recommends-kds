@@ -16,6 +16,7 @@ import { ReviewsComponent } from './add-review/reviews.component';
 import { ApproveReviewComponent } from './approve-reviews/approve-review.component';
 import { AddCampComponent} from './add-camp/add-camp.component';
 import { CampsComponent } from './camps/camps.component';
+import { SubscribeVenueComponent } from './subscribe-venue/subscribe-venue.component';
 import { CampListingComponent } from './camp-listing/camp-listing.component';
 
 const routes: Routes = [
@@ -32,6 +33,8 @@ const routes: Routes = [
   { path: 'venue', component: VenueComponent },
   { path: 'edit-venue/:venueId', component: EditVenueComponent},
   { path: 'search-venue', component: SearchVenueComponent },
+  { path: 'manage-venues', component: SubscribeVenueComponent },
+  { path: 'manage-venues?parent_id', component: SubscribeVenueComponent },
   { path: 'add/review', component: ReviewsComponent },
   { path: 'approve-reviews', component: ApproveReviewComponent },
   { path: 'add-camp', component: AddCampComponent },
