@@ -46,7 +46,7 @@ export class VenueListingComponent implements OnInit {
       if (this.category === undefined ) {
         url = this.URLConstatnts.API_URL +  'venues/' ;
      } else {
-        url = this.URLConstatnts.API_URL + 'venues/?category=' + this.category;
+        url = this.URLConstatnts.API_URL + 'venues/?categories=' + this.category;
      }
       const headers = new HttpHeaders()
           .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
