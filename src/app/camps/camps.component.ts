@@ -54,9 +54,7 @@ export class CampsComponent implements OnInit {
     this.campStatus = false;
     this.campConstants = new CampConstants();
 
-    if ( this.camp_id > '0' && this.camp_id !== undefined && !isNaN( this.parent_id)) {
       this.add_analytics_data('CLICK');
-    }
   }
   get_camp_details() {
     let url = this.URLConstatnts.API_URL + 'camps/' + this.camp_id+"/";
@@ -206,14 +204,29 @@ export class CampsComponent implements OnInit {
        action = ACTION.CALENDAR;
          break;
      }
-       const  analytics_input = {
+     let analytics_input = {};
+     if (!isNaN( this.parent_id)) {
+         analytics_input = {
+        'input_data' : [ {
          'entity_type' : ANALYTICS_ENTITY_TYPES_ENUM.CAMP,
          'entity_id' : this.camp_id,
          'interface' : INTERFACE_ENUM.FE,
          'parent_id' : this.parent_id,
          'action' : action,
          'referrer' : '/root/home'
-       };
+        } ]
+      };
+    } else {
+        analytics_input = {
+        'input_data' : [ {
+         'entity_type' : ANALYTICS_ENTITY_TYPES_ENUM.CAMP,
+         'entity_id' : this.camp_id,
+         'interface' : INTERFACE_ENUM.FE,
+         'action' : action,
+         'referrer' : '/root/home'
+        } ]
+      };
+    }
      this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
      }, error => {
        alert('Something went wrong');

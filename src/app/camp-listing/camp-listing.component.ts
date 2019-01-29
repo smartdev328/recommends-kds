@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import {UrlConstants} from '../constants/UrlConstants';
+import {ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION} from '../constants/AnalyticsConstants';
+import {ReviewsService} from '../add-review/reviews.service';
 
 declare let ga: any;
 @Component({
@@ -21,7 +23,7 @@ export class CampListingComponent implements OnInit {
               private http: HttpClient,
               private datePipe: DatePipe,
               private router: Router,
-              private titleService: Title) { 
+              private titleService: Title, private reviewService: ReviewsService) { 
                 this.router.events.subscribe(event => {
                   if (event instanceof NavigationEnd) {
                     ga('set', 'page', event.urlAfterRedirects);
@@ -54,11 +56,34 @@ export class CampListingComponent implements OnInit {
           data = JSON.parse(data);
           this.camp_explore = data['data'];
           this.isExplore = true;
+          this.add_analytics_data();
       });
 
 }
 
+add_analytics_data() {
+  const final_data = {
+    'input_data': []
+  };
+  const input_final_data = [];
+  for (let i = 0; i < this.camp_explore.length; i++) {
+    const final_key_value_pair = {
+      'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.CAMP,
+      'entity_id': undefined,
+      'interface': INTERFACE_ENUM.FE,
+      'action': ACTION.VIEW,
+      'referrer': '/root/home'
+    };
+    final_key_value_pair['entity_id'] = this.camp_explore[i].id;
+    input_final_data.push(final_key_value_pair);
+  }
+  final_data['input_data'] = input_final_data;
+  this.reviewService.add_analytics_actions(final_data).subscribe(data => {
+  }, error => {
+    alert('Something went wrong');
+  });
 
+}
   kin_redirect() {
     ga('send', 'camp', {
       eventCategory: 'Clicks',
