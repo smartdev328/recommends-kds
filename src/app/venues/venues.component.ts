@@ -75,7 +75,6 @@ export class VenuesComponent implements OnInit {
       }
         if ( this.venue_id > 0 && this.venue_id !== undefined && !isNaN( this.parent_id)) {
           this.is_subscription_venue();
-          this.add_analytics_data('CLICK');
       }
     }
   }
@@ -238,8 +237,8 @@ export class VenuesComponent implements OnInit {
   }
   add_subscription_venue() {
 
-    if (!isNaN(this.parent_id)){
-      this.add_analytics_data('SUBSCRIBE');
+    this.add_analytics_data('SUBSCRIBE');
+    if (!isNaN(this.parent_id)) {
     const input_data = {
       "venue_subs_data" : {
         "parent_id" :this.parent_id,
@@ -261,9 +260,9 @@ export class VenuesComponent implements OnInit {
   }
 
   unsubscribe_venue() {
+    this.add_analytics_data('SUBSCRIBE');
 
     if (!isNaN(this.parent_id)) {
-        this.add_analytics_data('SUBSCRIBE');
       this.venuesService.remove_subscriptions(this.parent_id, this.venue_id).subscribe(data => {
         if (data['status'] === true) {
           this.isSubscribeVisible = false;
@@ -294,19 +293,33 @@ export class VenuesComponent implements OnInit {
        action = ACTION.SUBSCRIBE;
          break;
      }
-       const  analytics_input = {
+     let analytics_input = {};
+     if (!isNaN( this.parent_id)) {
+       analytics_input = {
+      'input_data' : [ {
          'entity_type' : ANALYTICS_ENTITY_TYPES_ENUM.VENUE,
          'entity_id' : this.venue_id,
          'interface' : INTERFACE_ENUM.FE,
          'parent_id' : this.parent_id,
          'action' : action,
          'referrer' : '/root/home'
-       };
+        } ]
+      };
+    } else {
+        analytics_input = {
+        'input_data' : [ {
+           'entity_type' : ANALYTICS_ENTITY_TYPES_ENUM.VENUE,
+           'entity_id' : this.venue_id,
+           'interface' : INTERFACE_ENUM.FE,
+           'action' : action,
+           'referrer' : '/root/home'
+          } ]
+        };
+    }
      this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
      }, error => {
        alert('Something went wrong');
      });
- 
    }
 
 }
