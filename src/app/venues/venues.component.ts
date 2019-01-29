@@ -110,6 +110,7 @@ export class VenuesComponent implements OnInit {
           this.place_full_info = this.venue.misc.place_full_info;
           this.place_reviews = this.place_full_info === undefined ? [] : this.place_full_info.reviews ;
           this.avg_rating = this.calculate_avg_rating(this.place_reviews);
+          this.add_analytics_data('CLICK');
         }
       }, error => {
         alert(this.venueErrorMessage.GET_DATA_ERROR);
