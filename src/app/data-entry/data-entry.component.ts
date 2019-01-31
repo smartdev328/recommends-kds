@@ -144,7 +144,8 @@ export class DataEntryComponent implements OnInit {
       'country': new FormControl('USA', []),
       'gender_affinity': new FormControl(0, [
         Validators.required
-      ])
+      ]),
+      'tags': new FormControl('', [])
     });
   }
 }
