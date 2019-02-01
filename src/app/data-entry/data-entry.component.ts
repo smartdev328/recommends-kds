@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {EventConstants } from '../constants/EventConstants';
 
 @Component({
   selector: 'app-data-entry',
@@ -12,6 +13,11 @@ export class DataEntryComponent implements OnInit {
   submitted: boolean = false;
   serverResponse: string;
   showServerResponse: boolean = false;
+  public eventConstatnts = new EventConstants();
+  public primary_cat = this.eventConstatnts.PRIMARY_CATEGORY;
+  public secondary_cat = this.eventConstatnts.SECONDARY_CATEGORY;
+ public  selectedPrimaryCat: number = null;
+ public  selectedSecondaryCat: number = null;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -20,16 +26,18 @@ export class DataEntryComponent implements OnInit {
 
   onSubmit(){
     this.submitted = true;
-    
     if (this.eventForm.invalid) {
         return;
     }
-    
+    this.eventForm.controls['classify_events'].setValue({
+      'classifier' : 'data-entry',
+      'classification1' : this.selectedPrimaryCat,
+      'classification2' : this.selectedSecondaryCat
+    });
     var data = JSON.stringify(this.eventForm.value);
     data = data.replace(/[\u2018\u2019]/g, "'")
                 .replace(/[\u201C\u201D]/g, '"');
-  
-    let url = "https://kin-api.kinparenting.com/events/";
+    let url = "https://kin-api-dev.kinparenting.com/events/";
     const headers = new HttpHeaders()
         .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
         .set('Content-Type',  'application/json');
@@ -87,6 +95,7 @@ export class DataEntryComponent implements OnInit {
   get f() { return this.eventForm.controls; }
 
   createForm() {
+
     this.eventForm = new FormGroup({
       'name': new FormControl('', [
         Validators.required,
@@ -110,6 +119,8 @@ export class DataEntryComponent implements OnInit {
         Validators.required
       ]),
       'street': new FormControl('', []),
+      'selectedPrimaryCat': new FormControl('', []),
+      'selectedSecondaryCat': new FormControl('', []),
       'price': new FormControl(0, []),
       'start_date': new FormControl('', [
         Validators.required,
@@ -145,7 +156,8 @@ export class DataEntryComponent implements OnInit {
       'gender_affinity': new FormControl(0, [
         Validators.required
       ]),
-      'tags': new FormControl('', [])
+      'tags': new FormControl('', []),
+      'classify_events': new FormControl('', [])
     });
   }
 }
