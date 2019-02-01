@@ -29,7 +29,7 @@ export class EventComponent implements OnInit {
   public parent_id: any;
   public eventErrorMessage = new EventErrorMessage();
   public URLConstatnts = new UrlConstants();
-
+  selectedIndex;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
     private reviewService: ReviewsService) { }
 
@@ -43,6 +43,7 @@ export class EventComponent implements OnInit {
     this.review = '';
     this.user_reviews = [];
     this.add_analytics_data('CLICK');
+    this.selectedIndex = 0;
   }
 
   get_event_details() {
@@ -109,9 +110,13 @@ export class EventComponent implements OnInit {
     window.location.href= this.event.url;
   }
 
-  add_review_redirect() {
-    this.is_parent_id = true;
+  add_review_redirect(index: number): void {
+    if (!isNaN( this.parent_id)) {
+       this.is_parent_id = true;
+       this.selectedIndex = index;
+     }
   }
+
   add_review() {
     if (this.validate_review()) {
       let input_data = {
@@ -182,9 +187,7 @@ export class EventComponent implements OnInit {
     window.open('https://calendar.google.com');
   }
   website_redirect() {
-
-    this.add_analytics_data('SAVE');
-    window.open(this.event.url, '_blank');
+      this.add_analytics_data('SAVE');
   }
 
   add_analytics_data(atype: any) {

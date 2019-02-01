@@ -27,7 +27,7 @@
                 <span class="text link-text" (click)="calendar_redirects()"></span>
             </div>
 
-            <div class="item item-3" fxFlex="10%" (click)="add_review_redirect()" title="Add Review">
+            <div class="item item-3" fxFlex="10%" (click)="add_review_redirect(3)" title="Add Review">
                 <span><i class="icon material-icons mouse-pointer">message</i></span>
                 <span class="text link-text"></span>
             </div>
@@ -44,7 +44,7 @@
     </mat-card-content>
 </mat-card>
 
-<mat-tab-group  class="about-reviews-margin" (selectedTabChange)="show_reviews($event)">
+<mat-tab-group  class="about-reviews-margin" (selectedTabChange)="show_reviews($event)" [selectedIndex]="selectedIndex">
     <mat-tab label="About">
         <mat-card>
             <mat-card-content>
@@ -129,7 +129,7 @@
 
                 <hr>
                 <div class="row center-block">  
-                    <button type="button" class="btn btn-danger">More Info</button>
+                    <button type="button" class="btn btn-danger" (click)="venue_redirect()">More Info</button>
                 </div>   
 
             </mat-card-content>
