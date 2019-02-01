@@ -12,23 +12,23 @@
     fxLayoutGap="33px"
     fxLayoutGap.xs="10px">
    <div class="item item-1" fxFlex="10%" title="Save"  (click)="website_redirect()">
-       <span><i class="icon material-icons mouse-pointer">save</i></span>
+       <span><i class="icon material-icons mouse-pointer">bookmark_border</i></span>
        <span class="text link-text"></span>
    </div>
 
 
-   <div class="item item-3" fxFlex="10%" title="Add to Calendar"  (click)="calendar_redirects()" hidden>
+   <div class="item item-3" fxFlex="10%" title="Add to Calendar"  (click)="calendar_redirects()" >
        <span><i class="icon material-icons mouse-pointer">calendar_today</i></span>
        <span class="text link-text"></span>
    </div>
 
-   <div class="item item-3" fxFlex="10%" (click)="add_review_redirect()" title="Add Review">
-       <span><i class="icon material-icons mouse-pointer">rate_review</i></span>
+   <div class="item item-3" fxFlex="10%" (click)="add_review_redirect(2)" title="Add Review">
+       <span><i class="icon material-icons mouse-pointer">message</i></span>
        <span class="text link-text"></span>
    </div>
 
 </div>
-        <mat-tab-group class="tabs about-reviews-margin"  (selectedTabChange)="show_reviews($event)">
+        <mat-tab-group class="tabs about-reviews-margin"  (selectedTabChange)="show_reviews($event)" [selectedIndex]="selectedIndex">
         <mat-tab label="About" >  
             <mat-card>
                 <mat-card-content>

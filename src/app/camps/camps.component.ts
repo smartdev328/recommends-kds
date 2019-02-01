@@ -31,7 +31,7 @@ export class CampsComponent implements OnInit {
   public campErrorMessage = new CampErrorMessage();
   public campConstants: any;
   public URLConstatnts = new UrlConstants();
-
+  selectedIndex;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
     private reviewService: ReviewsService) { }
 
@@ -53,7 +53,7 @@ export class CampsComponent implements OnInit {
     this.category = '';
     this.campStatus = false;
     this.campConstants = new CampConstants();
-
+    this.selectedIndex = 0;
       this.add_analytics_data('CLICK');
   }
   get_camp_details() {
@@ -106,12 +106,13 @@ export class CampsComponent implements OnInit {
       eventAction: 'Click on more details button',
       eventValue: this.camp_id
     });
-    window.location.href= this.camp.url;
+    window.location.href = this.camp.url;
   }
 
-  add_review_redirect() {
-    if(this.parent_id != undefined) {
-     this.is_parent_id = true;
+  add_review_redirect(index: number): void {
+    if (!isNaN( this.parent_id)) {
+       this.is_parent_id = true;
+       this.selectedIndex = index;
      }
   }
 
@@ -188,8 +189,7 @@ export class CampsComponent implements OnInit {
     window.open('https://calendar.google.com');
   }
   website_redirect() {
-    this.add_analytics_data('SAVE');
-    window.open(this.camp.url, '_blank');
+     this.add_analytics_data('SAVE');
   }
   add_analytics_data(atype: any) {
     let action = '';

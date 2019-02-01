@@ -8,7 +8,7 @@ import {ENTITY_TYPES_ENUM, TYPES_ENUM , VenueConstants, VenueErrorMessage} from 
 import {ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION} from '../constants/AnalyticsConstants';
 import { MatTabChangeEvent } from '@angular/material';
 import {ReviewsService} from '../add-review/reviews.service';
-
+declare let ga: any;
 @Component({
   selector: 'app-venues',
   templateUrl: './venues.component.html',
@@ -42,7 +42,8 @@ export class VenuesComponent implements OnInit {
   public is_parent_id: Boolean;
   public isSubscribeVisible: Boolean;
   public google_place_reviews_count: number;
-  public isShowMoreHours: Boolean
+  public isShowMoreHours: Boolean;
+  selectedIndex;
   constructor(private route: ActivatedRoute,  private http: HttpClient, private titleService: Title,
   private venuesService: VenuesService, private reviewService: ReviewsService , private router: Router) {
       this.venue = new UserSearch();
@@ -62,6 +63,7 @@ export class VenuesComponent implements OnInit {
       this.user_reviews = [];
       this.isShowMoreHours = false;
       this.isSubscribeVisible = false;
+      this.selectedIndex = 0;
   }
 
   ngOnInit() {
@@ -69,7 +71,6 @@ export class VenuesComponent implements OnInit {
     if (this.url !== undefined && this.url.length > 0) {
         this.venue_id = parseInt (this.url.split('/')[2].split('?')[0]) ;
         this.parent_id = parseInt (this.route.snapshot.queryParamMap.get('parent_id'));
-
         if ( this.venue_id > 0 && this.venue_id !== undefined) {
           this.get_venue_data(this.venue_id);
       }
@@ -150,8 +151,7 @@ export class VenuesComponent implements OnInit {
   }
 
   website_redirect() {
-    this.add_analytics_data('SAVE');
-    window.open(this.venue.url, '_blank');
+      this.add_analytics_data('SAVE');
   }
 
   calendar_redirects() {
@@ -181,9 +181,13 @@ export class VenuesComponent implements OnInit {
     return 0;
   }
 
-  add_review_redirect() {
-    this.is_parent_id = true;
+  add_review_redirect(index: number): void {
+    if (!isNaN( this.parent_id)) {
+       this.is_parent_id = true;
+       this.selectedIndex = index;
+     }
   }
+
 
   add_review() {
     if (this.validate_review()) {
@@ -255,9 +259,7 @@ export class VenuesComponent implements OnInit {
     }, error => {
         alert('Something went wrong while subscribe venue');
     });
-  } else {
-        alert('ParentId required for subscribe this venue');
-  }
+  } 
   }
 
   unsubscribe_venue() {
@@ -271,9 +273,7 @@ export class VenuesComponent implements OnInit {
       }, error => {
         this.errorMessage = 'Something went wrong while subscribe venue';
       });
-    } else {
-      alert('ParentId required for subscribe this venue');
-    }
+    } 
 
 
   }
@@ -322,5 +322,15 @@ export class VenuesComponent implements OnInit {
        alert('Something went wrong');
      });
    }
+
+   venue_redirect() {
+    ga('send', 'venue', {
+      eventCategory: 'Clicks',
+      eventLabel: 'More Details',
+      eventAction: 'Click on more details button',
+      eventValue: this.venue_id
+    });
+    window.location.href = this.venue.url;
+  }
 
 }
