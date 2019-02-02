@@ -14,4 +14,8 @@ export class AddCampService {
     let url = this.URLConstants.API_URL + 'camps/';
     return this.http.post(url , api_input);
   }
+  update_camp (api_input: any) {
+    let url = this.URLConstants.API_URL + 'camps/';
+    return this.http.put(url , api_input);
+  }
 }

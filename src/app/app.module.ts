@@ -35,6 +35,8 @@ import { MasonsryCampViewComponent } from './camp-listing/masonsry-camp-view/mas
 import { MasonsryVenuesViewComponent } from './masonsry-venues-view/masonsry-venues-view.component';
 import { SubscribeVenueComponent } from './subscribe-venue/subscribe-venue.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+import { EditCampComponent } from './edit-camp/edit-camp.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
 
 
 
@@ -64,7 +66,9 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
     MasonsryCampViewComponent,
     MasonsryVenuesViewComponent,
     SubscribeVenueComponent,
-    ComingSoonComponent
+    ComingSoonComponent,
+    EditCampComponent,
+    EditEventComponent
   ],
   imports: [
     BrowserModule,

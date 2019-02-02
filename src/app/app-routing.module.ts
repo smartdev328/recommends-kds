@@ -18,11 +18,14 @@ import { AddCampComponent} from './add-camp/add-camp.component';
 import { CampsComponent } from './camps/camps.component';
 import { SubscribeVenueComponent } from './subscribe-venue/subscribe-venue.component';
 import { CampListingComponent } from './camp-listing/camp-listing.component';
+import { EditCampComponent } from './edit-camp/edit-camp.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
 
 const routes: Routes = [
   { path: 'event/:id', component: EventComponent },
   { path: 'events/:id?parent_id=', component: EventComponent },
   { path: 'events/:query', component: EventGroupComponent },
+  { path: 'edit-event/:eventId', component: EditEventComponent},
   { path: 'events', component: EventListingComponent },
   { path: 'help', component: HelpComponent },
   { path: 'data-entry', component: DataEntryComponent },
@@ -34,6 +37,7 @@ const routes: Routes = [
   { path: 'edit-venue/:venueId', component: EditVenueComponent},
   { path: 'search-venue', component: SearchVenueComponent },
   { path: 'manage-venues', component: SubscribeVenueComponent },
+  { path: 'edit-camp/:campId', component: EditCampComponent},
   { path: 'manage-venues?parent_id', component: SubscribeVenueComponent },
   { path: 'add/review', component: ReviewsComponent },
   { path: 'approve-reviews', component: ApproveReviewComponent },
@@ -42,6 +46,7 @@ const routes: Routes = [
   { path: 'camps/:id?parent_id=', component: CampsComponent },
   { path: 'camps', component: CampListingComponent },
   { path: 'camps?category=', component: CampListingComponent },
+  { path: 'edit-camp/:campId', component: EditCampComponent},
   { path: '', component: HomeComponent },
   { path: 'coming-soon', component: ComingSoonComponent },
   { path: '**', redirectTo: '' }

@@ -1,0 +1,278 @@
+<div class="container">
+    <h2>Edit Event</h2>
+<form [formGroup]="eventForm" (ngSubmit)="onUpdate()">
+    <div class="form-group">
+      <label>Event Name</label>
+      <br>
+      <input type="text" formControlName="name" class="form-control" 
+              [ngClass]="{ 'box-error': submitted && f.name.errors }" />
+      <div *ngIf="submitted && f.name.errors" class="text-error">
+          <div *ngIf="submitted && f.name.errors.required">Event Name is required</div>
+          <div *ngIf="submitted && f.name.errors.unicode">Detected '\' might have unicode character</div>
+          <div *ngIf="submitted && f.name.errors.delimiters">Please replace "word" with 'word'</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Url</label>
+      <br>
+      <input type="text" formControlName="url" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.url.errors }" />
+      <div *ngIf="submitted && f.url.errors" class="text-error">
+          <div *ngIf="submitted && f.url.errors.required">Url is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Image Url</label>
+      <br>
+      <input type="text" formControlName="image_url" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.image_url.errors }" />
+      <div *ngIf="submitted && f.image_url.errors" class="text-error">
+          <div *ngIf="submitted && f.image_url.errors.required">Image Url is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Zip Code</label>
+      <br>
+      <input type="text" formControlName="zip_code" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.zip_code.errors }" />
+      <div *ngIf="submitted && f.zip_code.errors" class="text-error">
+          <div *ngIf="submitted && f.zip_code.errors.required">Zip Code is required</div>
+          <div *ngIf="submitted && f.zip_code.errors.number">Zip Code has only numbers</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>City</label>
+      <br>
+      <input type="text" formControlName="city" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.city.errors }" />
+      <div *ngIf="submitted && f.city.errors" class="text-error">
+          <div *ngIf="submitted && f.city.errors.required">City is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Venue</label>
+      <br>
+      <input type="text" formControlName="venue" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.venue.errors }" />
+      <div *ngIf="submitted && f.venue.errors" class="text-error">
+          <div *ngIf="submitted && f.venue.errors.required">Venue is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Street</label>
+      <br>
+      <input type="text" formControlName="street" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.street.errors }" />
+      <div *ngIf="submitted && f.street.errors" class="text-error">
+          <div *ngIf="submitted && f.street.errors.required">Street is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Price</label>
+      <br>
+      <input type="number" formControlName="price" class="form-control"/>
+    </div>
+  
+    <div class="form-group">
+      <label>Start Date</label>
+      <br>
+      <input type="text" formControlName="start_date" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.start_date.errors }" 
+              placeholder="YYYY-MM-DD"/>
+      <div *ngIf="submitted && f.start_date.errors" class="text-error">
+          <div *ngIf="submitted && f.start_date.errors.required">Start Date is required</div>
+          <div *ngIf="submitted && f.start_date.errors.date">Invalid date format</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>End Date</label>
+      <br>
+      <input type="text" formControlName="end_date" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.end_date.errors }" 
+              placeholder="YYYY-MM-DD"/>
+      <div *ngIf="submitted && f.end_date.errors" class="text-error">
+          <div *ngIf="submitted && f.end_date.errors.required">End Date is required</div>
+          <div *ngIf="submitted && f.end_date.errors.date">Invalid date format</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Start Time</label>
+      <br>
+      <input type="text" formControlName="start_time" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.start_time.errors }"/>
+      <div *ngIf="submitted && f.start_time.errors" class="text-error">
+          <div *ngIf="submitted && f.start_time.errors.required">Start Time is required</div>
+          <div *ngIf="submitted && f.start_time.errors.time">Invalid time format</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>End Time</label>
+      <br>
+      <input type="text" formControlName="end_time" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.end_time.errors }"/>
+      <div *ngIf="submitted && f.end_time.errors" class="text-error">
+          <div *ngIf="submitted && f.end_time.errors.required">End Time is required</div>
+          <div *ngIf="submitted && f.end_time.errors.time">Invalid time format</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Description</label>
+      <br>
+      <input type="text" formControlName="description" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.description.errors }" />
+      <div *ngIf="submitted && f.description.errors" class="text-error">
+          <div *ngIf="submitted && f.description.errors.required">Description is required</div>
+          <div *ngIf="submitted && f.name.errors.unicode">Detected '\' might have unicode character</div>
+          <div *ngIf="submitted && f.name.errors.delimiters">Please replace "word" with 'word'</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Min Age</label>
+      <br>
+      <input type="number" formControlName="min_age" class="form-control"/>
+    </div>
+  
+    <div class="form-group">
+      <label>Max Age</label>
+      <br>
+      <input type="number" formControlName="max_age" class="form-control"/>
+    </div>
+  
+    <div class="form-group">
+      <label>Misc</label>
+      <br>
+      <input type="text" formControlName="misc" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.misc.errors }" />
+      <div *ngIf="submitted && f.misc.errors" class="text-error">
+          <div *ngIf="submitted && f.misc.errors.required">Misc is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Email</label>
+      <br>
+      <input type="text" formControlName="email" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.email.errors }" />
+      <div *ngIf="submitted && f.email.errors" class="text-error">
+          <div *ngIf="submitted && f.email.errors.required">Email is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Contact Number</label>
+      <br>
+      <input type="text" formControlName="contact_number" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.contact_number.errors }" />
+      <div *ngIf="submitted && f.contact_number.errors" class="text-error">
+          <div *ngIf="submitted && f.contact_number.errors.required">Contact Number is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>State</label>
+      <br>
+      <input type="text" formControlName="state" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.state.errors }" disabled/>
+      <div *ngIf="submitted && f.state.errors" class="text-error">
+          <div *ngIf="submitted && f.state.errors.required">State is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Host</label>
+      <br>
+      <input type="text" formControlName="host" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.host.errors }" />
+      <div *ngIf="submitted && f.host.errors" class="text-error">
+          <div *ngIf="submitted && f.host.errors.required">Host is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Country</label>
+      <br>
+      <input type="text" formControlName="country" class="form-control"
+              [ngClass]="{ 'box-error': submitted && f.country.errors }" disabled/>
+      <div *ngIf="submitted && f.country.errors" class="text-error">
+          <div *ngIf="submitted && f.country.errors.required">Country is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Gender Affinity</label>
+      <br>
+      <input type="number" formControlName="gender_affinity" class="form-control" disabled/>
+    </div>
+    <div class="form-group">
+        <label for="state">Tags</label>
+        <input type="text" class="form-control" id="tags" placeholder="Tags" formControlName="tags" required="required"
+              
+        >
+        <small id="tagHelp" class="form-text text-muted">Enter a tags you want to search.
+        </small>
+    </div>
+  
+    <div class="form-group form-group-select">
+      <div class="form-group mb-3">
+        <label>Primary Category</label>
+        <ng-select [items]="primary_cat" bindLabel="name" bindValue="id" placeholder="Select Primary category"
+          formControlName="selectedPrimaryCat" [(ngModel)]="selectedPrimaryCat">
+        </ng-select>
+      </div>
+      <div class="form-group mb-3">
+        <label>Secondary Category</label>
+        <ng-select [items]="secondary_cat" bindLabel="name" bindValue="id" placeholder="Select Secondary category"
+          formControlName="selectedSecondaryCat" [(ngModel)]="selectedSecondaryCat">
+        </ng-select>
+      </div>
+    
+    </div>
+  
+    <div class="form-group">
+      <div class="row">
+      <div class="col-md-3">
+          <div class="form-group">
+              <button type="button" class="btn btn-primary" (click)="onUpdate()">Update</button>
+          </div>
+      </div>
+
+      <div class="col-md-3">
+          <div class="form-group">
+              <button type="button" class="btn btn-primary" (click)="reset_event()">Reset</button>
+          </div>
+      </div>
+
+      <div class="col-md-3">
+          <div class="form-group">
+              <button type="button" class="btn btn-primary" (click)="previous_event()">Previous</button>
+          </div>
+      </div>
+
+      <div class="col-md-3">
+          <div class="form-group">
+              <button type="button" class="btn btn-primary" (click)="next_event()">Next</button>
+          </div>
+      </div>
+  </div>
+    </div>
+  </form>
+  
+
+  
+  <div *ngIf="showServerResponse">
+    <h3>Server Response:</h3>
+    <p>{{serverResponse}}</p>
+  </div>
+  </div>

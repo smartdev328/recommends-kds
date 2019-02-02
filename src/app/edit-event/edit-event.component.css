@@ -1,0 +1,17 @@
+.text-error {
+    color: red;
+}
+
+.box-error {
+    border-color: red;
+}
+
+.form-group {
+    float: left;
+    width: 50%;
+    margin-bottom: 2%;
+}
+
+.form-control {
+    width: 99%;
+}

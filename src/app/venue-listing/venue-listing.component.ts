@@ -44,7 +44,7 @@ export class VenueListingComponent implements OnInit {
     } else {
       let url = '';
       if (this.category === undefined ) {
-        url = this.URLConstatnts.API_URL +  'venues/' ;
+        url = 'https://kin-api-dev.kinparenting.com/venues/' ;
      } else {
         url = this.URLConstatnts.API_URL + 'venues/?categories=' + this.category;
      }
