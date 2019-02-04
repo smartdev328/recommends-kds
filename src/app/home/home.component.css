@@ -21,10 +21,7 @@
         color: #414141;
         letter-spacing: 0.1em;
     }
-    .home-privacy {
-        position: absolute;
-        bottom: 5%;   
-    }
+
 }
 
 /* Tablets */
@@ -53,10 +50,7 @@
         color: #414141;
         letter-spacing: 0.1em;
     }
-    .home-privacy {
-        position: absolute;
-        bottom: 5%;   
-    }
+    
 }
 
 /* Desktop */
@@ -85,8 +79,8 @@
         color: #414141;
         letter-spacing: 0.1em;
     }
-    .home-privacy {
-        position: absolute;
-        bottom: 5%;   
+    .addmore{
+        float: right;
     }
+    
 }
