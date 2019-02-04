@@ -9,14 +9,14 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./edit-event.component.css']
 })
 export class EditEventComponent implements OnInit {
-  event_id: string;
+  event_id: any;
   event: any;
   eventForm: FormGroup;
   result: any;
   submitted = false;
   serverResponse: string;
   showServerResponse = false;
-  edit_page_event_id:any;
+  edit_page_event_id: any;
   classificationId : number;
   public eventConstatnts = new EventConstants();
   public primary_cat = this.eventConstatnts.PRIMARY_CATEGORY;

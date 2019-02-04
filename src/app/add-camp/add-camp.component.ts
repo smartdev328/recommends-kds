@@ -42,17 +42,9 @@ export class AddCampComponent implements OnInit {
   }
 
   addCamp(){
+    
     this.campModel.category = this.cat_name;
     let final_error = [];
-    let validation_response = this.validationRules.camp_required_field_must_not_be_blank(this.campModel);
-    let age_error = this.validationRules.validate_age(this.campModel.min_age , this.campModel.max_age);
-    final_error = final_error.concat(validation_response,age_error);
-
-    if (final_error.length>0) {
-      this.camp_error = [];
-      this.showError = true;
-      this.camp_error = final_error;
-    }else{
       const api_input = {
         "camps_data" : this.campModel
       };
@@ -62,6 +54,7 @@ export class AddCampComponent implements OnInit {
           alert(data['msg'])
         }else{
           this.showError = true;
+          
           this.camp_error.push(data['msg'])
         }
       },error => {
@@ -73,7 +66,7 @@ export class AddCampComponent implements OnInit {
           this.camp_error.push(error_key+" :" + error_msg);
         }
       });
-    }
+    
   }
 
   set_cat_name(cat_obj){

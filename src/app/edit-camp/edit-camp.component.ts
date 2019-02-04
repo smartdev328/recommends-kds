@@ -54,8 +54,8 @@ get_camp_details() {
         data = data.replace(/\n/g, '');
         data = JSON.parse(data);
         if (data['status']) {
-
           this.campModel = data['data']['0'];
+          this.campModel.category = this.campModel.category;
 
       } else {
         alert('No camp information available for now');
@@ -63,6 +63,7 @@ get_camp_details() {
     });
 
 }
+
 reset_camp(this) {
   const resetCampModel = new CampModel();
 
@@ -92,18 +93,8 @@ set_cat_name(cat_obj){
   this.cat_name = cat_obj;
 }
 update_camp() {
-
-  this.campModel.category = this.cat_name;
+   
   let final_error = [];
-  const validation_response = this.validationRules.camp_required_field_must_not_be_blank(this.campModel);
-  const age_error = this.validationRules.validate_age(this.campModel.min_age , this.campModel.max_age);
-  final_error = final_error.concat(validation_response, age_error);
-
-  if (final_error.length > 0) {
-    this.camp_error = [];
-    this.showError = true;
-    this.camp_error = final_error;
-  } else {
     const api_input = {
       'camps_data' : this.campModel
     };
@@ -124,6 +115,6 @@ update_camp() {
         this.camp_error.push(error_key + ' :' + error_msg);
       }
     });
-  }
+  
 }
 }
