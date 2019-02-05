@@ -93,7 +93,9 @@ set_cat_name(cat_obj){
   this.cat_name = cat_obj;
 }
 update_camp() {
-   
+  this.campModel.category = this.cat_name;
+  this.campModel.max_age = this.campModel.max_age ? this.campModel.max_age : 0;
+  this.campModel.min_age = this.campModel.min_age ? this.campModel.min_age : 0;
   let final_error = [];
     const api_input = {
       'camps_data' : this.campModel

@@ -42,7 +42,6 @@ export class EventComponent implements OnInit {
     this.errorMessage = '';
     this.review = '';
     this.user_reviews = [];
-    this.add_analytics_data('CLICK');
     this.selectedIndex = 0;
   }
 
@@ -55,6 +54,7 @@ export class EventComponent implements OnInit {
       data = data.replace(/\n/g, "");
       data = JSON.parse(data);
       this.event = data["event"];
+      this.add_analytics_data('CLICK');
       this.isLoaded = true;
       ga('send', 'event', {
         eventCategory: 'Views',
