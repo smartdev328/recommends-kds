@@ -65,14 +65,14 @@ export class HomeComponent implements OnInit {
       let data = JSON.stringify(this.registerForm.value);
       data = data.replace(/[\u2018\u2019]/g, '\'')
         .replace(/[\u201C\u201D]/g, '"');
-      const url = 'https://kin-api.kinparenting.com/users/';
+      const url = 'https://kin-api-dev.kinparenting.com/users/';
       const headers = new HttpHeaders()
         .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
         .set('Content-Type', 'application/json');
       this.http.post(url, data, { headers: headers, responseType: 'text' }).subscribe(response => {
         data = response.replace(/\n/g, '');
         data = JSON.parse(data);
-        const url = 'https://kin-api.kinparenting.com/kids/';
+        const url = 'https://kin-api-dev.kinparenting.com/kids/';
         for (let i = 0; i < this.newChild.length; i++) {
           this.newChild.value[i].parent_id = data['account'].parent_id;
           this.newChild.value[i].gender = 'M';
@@ -85,11 +85,12 @@ export class HomeComponent implements OnInit {
 
           });
         }
-        this.isSuccessVisible = true;
-        setTimeout(() => {
-          window.location.reload();
-          this.isSuccessVisible = false;
-        }, 3000);
+        alert(' You have successfully signed up with Kin');
+        // this.isSuccessVisible = true;
+        // setTimeout(() => {
+        // //  window.location.reload();
+        //   this.isSuccessVisible = false;
+        // }, 5000);
 
       });
     }

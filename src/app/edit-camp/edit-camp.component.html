@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Edit Camp</h2>
-    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
   
         <div class="row">
           <div class="col-md-6">
@@ -41,7 +41,6 @@
                          [(ngModel)]="campModel.category"
                          placeholder="Select primary category"
                         name="category"
-  
                          (change)="set_cat_name($event.name)"
               >
               </ng-select>

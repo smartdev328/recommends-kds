@@ -29,22 +29,32 @@ export class DataEntryComponent implements OnInit {
     if (this.eventForm.invalid) {
         return;
     }
-    this.eventForm.controls['classify_events'].setValue({
+    this.eventForm.controls['classifications'].setValue({
       'classifier' : 'data-entry',
-      'classification1' : this.selectedPrimaryCat,
-      'classification2' : this.selectedSecondaryCat
+      'classification1' : this.eventForm.controls['selectedPrimaryCat'].value ? this.eventForm.controls['selectedPrimaryCat'].value : 0 ,
+      'classification2' : this.eventForm.controls['selectedSecondaryCat'].value ? this.eventForm.controls['selectedSecondaryCat'].value : 0
     });
     var data = JSON.stringify(this.eventForm.value);
     data = data.replace(/[\u2018\u2019]/g, "'")
                 .replace(/[\u201C\u201D]/g, '"');
     let url = "https://kin-api-dev.kinparenting.com/events/";
+    
     const headers = new HttpHeaders()
         .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
         .set('Content-Type',  'application/json');
     this.http.post(url, data, { headers: headers, responseType: 'text'}).subscribe(response => {
         this.serverResponse = response;
+        alert('Data inserted successfully');
         this.showServerResponse = true;
-    })
+    }, error => {
+      if (error.status == 409) {
+        alert ('Url Or Image url already exist');
+      } else {
+        alert ('Something went wrong');
+      }
+    });
+    
+  
   }
 
   onReset() {
@@ -150,14 +160,13 @@ export class DataEntryComponent implements OnInit {
       'contact_number': new FormControl('', [
         this.checkIsNumber
       ]),
-      'state': new FormControl('CA', []),
+      'state': new FormControl({value:  'CA', disabled: true}, []),
       'host': new FormControl('', []),
-      'country': new FormControl('USA', []),
-      'gender_affinity': new FormControl(0, [
-        Validators.required
+      'country': new FormControl({value:  'USA', disabled: true}, []),
+      'gender_affinity': new FormControl({value:  '0', disabled: true}, [
       ]),
       'tags': new FormControl('', []),
-      'classify_events': new FormControl('', [])
+      'classifications': new FormControl('', [])
     });
   }
 }
