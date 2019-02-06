@@ -49,12 +49,12 @@ export class DataEntryComponent implements OnInit {
     }, error => {
       if (error.status == 409) {
         alert ('Url Or Image url already exist');
+      } else if (error.status == 400) {
+        alert ('Please enter valid Url or Image Url');
       } else {
         alert ('Something went wrong');
       }
     });
-    
-  
   }
 
   onReset() {

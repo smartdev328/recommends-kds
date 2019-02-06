@@ -127,8 +127,16 @@
         margin-top: 2%;
         border-radius: 10px;
     }
+    .addReview{
+        margin-left : 29%;
+        width : 50%
+    }
+   
 }
 
+.margin-review{
+    margin-left: 50%;
+}
 .mouse-pointer{
     cursor: pointer;
 }
@@ -151,7 +159,9 @@
 .more-information-margin {
     margin-left: 41%;
 }
-
+.margin-review{
+    margin-left: 50%;
+}
 .review-margin {
     margin: auto;
 }

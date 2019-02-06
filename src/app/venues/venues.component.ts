@@ -43,6 +43,9 @@ export class VenuesComponent implements OnInit {
   public isSubscribeVisible: Boolean;
   public google_place_reviews_count: number;
   public isShowMoreHours: Boolean;
+  city : String;
+  state : String;
+  public isSuccessVisible: Boolean;
   selectedIndex;
   constructor(private route: ActivatedRoute,  private http: HttpClient, private titleService: Title,
   private venuesService: VenuesService, private reviewService: ReviewsService , private router: Router) {
@@ -64,6 +67,10 @@ export class VenuesComponent implements OnInit {
       this.isShowMoreHours = false;
       this.isSubscribeVisible = false;
       this.selectedIndex = 0;
+      this.city = '';
+      this.state = '';
+      this.isSuccessVisible = false;
+      this.review = '';
   }
 
   ngOnInit() {
@@ -90,6 +97,8 @@ export class VenuesComponent implements OnInit {
               this.venueErrorMessage.NO_INFO_AVAILABLE;
           this.venue.perm_close = this.venue.perm_closed === true ? '1' : '0';
           this.venue.sec_cat = this.venue.sec_cat;
+          this.city = this.venue.city;
+          this.state = this.venue.state;
           this.parking = this.venue.misc.parking === undefined || this.venue.misc.parking.trim().length === 0 ?
               this.venueErrorMessage.NO_INFO_AVAILABLE : this.venue.misc.parking;
           this.tips_for_parent = this.venue.misc.tips_for_parent === '' ? '' : this.venue.misc.tips_for_parent;
@@ -151,7 +160,9 @@ export class VenuesComponent implements OnInit {
   }
 
   website_redirect() {
+    if (!isNaN( this.parent_id)) {
       this.add_analytics_data('SAVE');
+   }
   }
 
   calendar_redirects() {
@@ -203,8 +214,13 @@ export class VenuesComponent implements OnInit {
       };
       this.reviewService.add_review(input_data).subscribe(data => {
         if (data['status'] === true) {
-          this.isErrorVisible = true;
-          this.errorMessage = 'Review , successfully added';
+          this.isErrorVisible = false;
+          this.isSuccessVisible = true;
+          setTimeout(()=> {    
+            this.isSuccessVisible = false;
+            this.review = '';
+       }, 3000);
+          this.errorMessage = 'Review added successfully';
         } else {
           this.isErrorVisible = true;
           this.errorMessage = 'Error while adding a new review';
@@ -222,8 +238,14 @@ export class VenuesComponent implements OnInit {
 
   validate_review() {
     if (this.review.trim().length === 0) {
+      this.isErrorVisible = true;
+      this.errorMessage = 'Review is required';
+      setTimeout(()=> {    
+        this.isErrorVisible  = false;
+      }, 3000);
       return false;
     }
+    this.isErrorVisible = false;
     return true;
   }
   closeErrorBox() {
@@ -242,7 +264,6 @@ export class VenuesComponent implements OnInit {
   }
   add_subscription_venue() {
 
-    this.add_analytics_data('SUBSCRIBE');
     if (!isNaN(this.parent_id)) {
     const input_data = {
       "venue_subs_data" : {
@@ -259,12 +280,12 @@ export class VenuesComponent implements OnInit {
     }, error => {
         alert('Something went wrong while subscribe venue');
     });
+    this.add_analytics_data('SUBSCRIBE');
   } 
   }
 
   unsubscribe_venue() {
-    this.add_analytics_data('SUBSCRIBE');
-
+    
     if (!isNaN(this.parent_id)) {
       this.venuesService.remove_subscriptions(this.parent_id, this.venue_id).subscribe(data => {
         if (data['status'] === true) {
@@ -273,6 +294,7 @@ export class VenuesComponent implements OnInit {
       }, error => {
         this.errorMessage = 'Something went wrong while subscribe venue';
       });
+      this.add_analytics_data('SUBSCRIBE');
     } 
 
 

@@ -22,6 +22,7 @@ export class EditCampComponent implements OnInit {
   public campConstants: any;
   public cat_id: number;
   public cat_name: string;
+  public tempcat_name: string;
   public showError: Boolean;
   public camp_error: any;
   public validationRules: any;
@@ -56,7 +57,7 @@ get_camp_details() {
         if (data['status']) {
           this.campModel = data['data']['0'];
           this.campModel.category = this.campModel.category;
-
+          this.cat_name =  this.get_cat_by_key(this.campModel.category);
       } else {
         alert('No camp information available for now');
       }
@@ -92,7 +93,17 @@ next_camp() {
 set_cat_name(cat_obj){
   this.cat_name = cat_obj;
 }
+get_cat_by_key(cat_string: string) {
+  const primary_cat_length = this.categoryList.length;
+  for (let count = 0; count < primary_cat_length; count++) {
+      if (this.categoryList[count]['id'] === cat_string) {
+          return this.categoryList[count]['name'];
+      }
+  }
+}
+
 update_camp() {
+  this.tempcat_name =  this.campModel.category ;
   this.campModel.category = this.cat_name;
   this.campModel.max_age = this.campModel.max_age ? this.campModel.max_age : 0;
   this.campModel.min_age = this.campModel.min_age ? this.campModel.min_age : 0;
@@ -102,6 +113,7 @@ update_camp() {
     };
     this.addCampService.update_camp(api_input).subscribe(data => {
       if (data['status'] === true) {
+        this.campModel.category = this.tempcat_name;
         this.showError = false;
         alert(data['msg']);
       } else {

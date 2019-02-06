@@ -54,7 +54,7 @@ export class EventListingComponent implements OnInit {
           data = data.replace(/\n/g, "");
           data = JSON.parse(data);
           this.events_explore = data["events"];
-          this.add_analytics_data();
+        //  this.add_analytics_data();
           this.isExplore = true;
       })
     }

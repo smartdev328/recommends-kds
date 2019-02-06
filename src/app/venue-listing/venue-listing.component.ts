@@ -54,7 +54,7 @@ export class VenueListingComponent implements OnInit {
           data = data.replace(/\n/g, '');
           data = JSON.parse(data);
           this.venues_list = data['venues'];
-          this.add_analytics_data();
+         // this.add_analytics_data();
           this.isExplore = true;
       });
     }
