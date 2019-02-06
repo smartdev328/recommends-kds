@@ -150,3 +150,7 @@
 .review-margin-left {
     margin-left: 33%;
 }
+
+.mouse-pointer{
+    cursor: pointer;
+}

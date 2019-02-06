@@ -187,7 +187,9 @@ export class EventComponent implements OnInit {
     window.open('https://calendar.google.com');
   }
   website_redirect() {
+    if (!isNaN( this.parent_id)) {
       this.add_analytics_data('SAVE');
+   }
   }
 
   add_analytics_data(atype: any) {

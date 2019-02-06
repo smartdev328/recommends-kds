@@ -59,7 +59,15 @@ export class EditEventComponent implements OnInit {
        alert("Data updated successfully");
         this.serverResponse = response;
         this.showServerResponse = true;
-    })
+      }, error => {
+        if (error.status == 409) {
+          alert ('Url Or Image url already exist');
+        } else if (error.status == 400) {
+          alert ('Please enter valid Url or Image Url');
+        } else {
+          alert ('Something went wrong');
+        }
+      });
   }
 
   checkUnicode(control: AbstractControl): { [key: string]: boolean } | null {

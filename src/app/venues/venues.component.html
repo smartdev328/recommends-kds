@@ -12,7 +12,7 @@
              fxLayoutAlign="center"
              fxLayoutGap="10px"
              fxLayoutGap.xs="0">
-            <div class="item item-1" fxFlex="10%"  (click)="website_redirect()">
+            <div class="item item-1" fxFlex="10%" title="Save" (click)="website_redirect()">
                 <span><i class="icon material-icons mouse-pointer">bookmark_border</i></span>
                 <span class="text link-text"></span>
             </div>
@@ -51,6 +51,10 @@
                 <p class="basic-information">
                     <span><i class="icon material-icons material-icon-black-color">pets</i></span>
                     <span class="text">{{category}}</span>
+                </p>
+                <p class="basic-information">
+                    <span><i class="icon material-icons material-icon-black-color">location_on</i></span>
+                    <span class="text">{{city}}, {{state}}</span>
                 </p>
 
                 <p class="basic-information" hidden>
@@ -144,40 +148,41 @@
     </mat-tab>
     <mat-tab label="Add Review" *ngIf="is_parent_id" style="width: 50%">
         <mat-card>
-            <div class="row review-width">
                 <div class="container">
-                    <div class="row">
-                        <h1 class="review-margin">Write a review</h1>
-                    </div>
-                    <div class="row">
-                        <div class="form-group review-margin">
-      <textarea class="form-control" rows="5" id="review" placeholder="Add review or tips to other parents"
-                [(ngModel)]="review"
-      ></textarea>
-                            <small id="miscHelp" class="form-text text-muted italic-font-style">We respect your
+                        <div class="addReview">
+                          <div class="row review-margin-left">
+                            <h4 class="review-margin">Write a review</h4>
+                          </div>
+                            <div class="form-group review-margin">
+                              <textarea class="form-control" rows="5" id="review" placeholder="Add review or tips to other parents"
+                                [(ngModel)]="review"   required (change)="validate_review()"></textarea>
+                              <small id="miscHelp" class="form-text text-muted italic-font-style">We respect your
                                 privacy. Your name will not be shown to other
                                 users
-                            </small>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group review-margin">
-                            <button type="button" class="btn btn-danger" (click)="add_review()">Submit</button>
-                        </div>
-                    </div>
-                    <div class="row error-message" *ngIf="isErrorVisible">
-                        <div class="col-md-12">
-                            <label>{{errorMessage}}</label>
-                        </div>
-                        <div class="col-md-12">
-                            <button type="button" class="btn btn-primary errorCloseButton"
-                                    (click)="closeErrorBox()">Close
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                              </small>
+                              <div *ngIf="isErrorVisible"
+                                  class="alert alert-danger">
+                                  <div>
+                                      {{errorMessage }}
+                                  </div>
+                                </div>
+                              <div *ngIf="isSuccessVisible"
+                                  class="alert alert-success">
+                                  <div>
+                                      {{errorMessage }}
+                                  </div>
+                                </div>
+                            </div>
+                          <div class="row review-margin-left">
+                            
+                            <div class="form-group review-margin">
+                              <button type="button" class="btn btn-danger" (click)="add_review()">Submit</button>
+                            </div>
+                          </div>
+                          
+                   
+                      </div>
+                    </div> 
         </mat-card>
     </mat-tab>
 </mat-tab-group>

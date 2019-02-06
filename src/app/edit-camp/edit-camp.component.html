@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Edit Camp</h2>
-    <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+    <form name="form" (ngSubmit)="f.form.valid && update_camp()" #f="ngForm" novalidate>
   
         <div class="row">
           <div class="col-md-6">
@@ -188,7 +188,7 @@
       <div class="row">
           <div class="col-md-3">
               <div class="form-group">
-                  <button type="button" class="btn btn-primary" (click)="update_camp()">Update</button>
+                  <button type="button" class="btn btn-primary" [disabled]="f.form.pristine || f.form.invalid" (click)="update_camp()">Update</button>
               </div>
           </div>
   

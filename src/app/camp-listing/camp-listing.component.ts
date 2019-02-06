@@ -56,7 +56,7 @@ export class CampListingComponent implements OnInit {
           data = JSON.parse(data);
           this.camp_explore = data['data'];
           this.isExplore = true;
-          this.add_analytics_data();
+          //this.add_analytics_data();
       });
 
 }
