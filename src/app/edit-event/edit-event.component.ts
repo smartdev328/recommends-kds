@@ -70,6 +70,14 @@ export class EditEventComponent implements OnInit {
       });
   }
 
+  ValidateUrl(control: AbstractControl) {
+ 
+    var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
+    if(!regex.test(control.value)){
+        return { validUrl: true };
+    }
+    return null;
+  }
   checkUnicode(control: AbstractControl): { [key: string]: boolean } | null {
     if (control.value.indexOf('\\') !== -1 ) {
         return { 'unicode': true };
@@ -123,11 +131,11 @@ export class EditEventComponent implements OnInit {
         Validators.required
       ]),
       'url': new FormControl('', [
-        Validators.required,
+        Validators.required, this.ValidateUrl
         
       ]),
       'image_url': new FormControl('', [
-        Validators.required
+        Validators.required, this.ValidateUrl
       ]),
       'zip_code': new FormControl('', [
         Validators.required,
@@ -169,10 +177,10 @@ export class EditEventComponent implements OnInit {
       'contact_number': new FormControl('', [
         this.checkIsNumber
       ]),
-      'state': new FormControl({value:  'CA', disabled: true}, []),
+      'state': new FormControl({ disabled: false}, []),
       'host': new FormControl('', []),
-      'country': new FormControl({value:  'USA', disabled: true}, []),
-      'gender_affinity': new FormControl({value:  '0', disabled: true}, [
+      'country': new FormControl({ disabled: false}, []),
+      'gender_affinity': new FormControl({value:  '0', disabled: false}, [
       ]),
       'tags': new FormControl('', []),
       'event_id': new FormControl('', []),

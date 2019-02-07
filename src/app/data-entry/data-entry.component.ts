@@ -44,16 +44,14 @@ export class DataEntryComponent implements OnInit {
         .set('Content-Type',  'application/json');
     this.http.post(url, data, { headers: headers, responseType: 'text'}).subscribe(response => {
         this.serverResponse = response;
-        alert('Data inserted successfully');
+        let str1 = new String( "Found duplicate entry against  URL , start_time and start_date" );
+       let compaire = str1.localeCompare( this.serverResponse); 
+       if(compaire === 1){
+        this.serverResponse = 'Event Added successfully';
+       }
         this.showServerResponse = true;
     }, error => {
-      if (error.status == 409) {
-        alert ('Url Or Image url already exist');
-      } else if (error.status == 400) {
-        alert ('Please enter valid Url or Image Url');
-      } else {
         alert ('Something went wrong');
-      }
     });
   }
 
@@ -75,6 +73,15 @@ export class DataEntryComponent implements OnInit {
                 .replace(/[\u201C\u201D]/g, '"');
     if (word.indexOf('"') !== -1 ) {
         return { 'delimiters': true };
+    }
+    return null;
+  }
+
+ ValidateUrl(control: AbstractControl) {
+ 
+    var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
+    if(!regex.test(control.value)){
+        return { validUrl: true };
     }
     return null;
   }
@@ -113,10 +120,10 @@ export class DataEntryComponent implements OnInit {
         this.checkDelimiters
       ]),
       'url': new FormControl('', [
-        Validators.required
+        Validators.required, this.ValidateUrl
       ]),
       'image_url': new FormControl('', [
-        Validators.required
+        Validators.required, this.ValidateUrl
       ]),
       'zip_code': new FormControl('', [
         Validators.required,
@@ -160,10 +167,10 @@ export class DataEntryComponent implements OnInit {
       'contact_number': new FormControl('', [
         this.checkIsNumber
       ]),
-      'state': new FormControl({value:  'CA', disabled: true}, []),
+      'state': new FormControl({value:  'CA', disabled: false}, []),
       'host': new FormControl('', []),
-      'country': new FormControl({value:  'USA', disabled: true}, []),
-      'gender_affinity': new FormControl({value:  '0', disabled: true}, [
+      'country': new FormControl({value:  'USA', disabled: false}, []),
+      'gender_affinity': new FormControl({value:  '0', disabled: false}, [
       ]),
       'tags': new FormControl('', []),
       'classifications': new FormControl('', [])

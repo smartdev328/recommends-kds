@@ -36,6 +36,7 @@ export class EditCampComponent implements OnInit {
       this.showError = false;
       this.cat_name = '';
       this.camp_error = [];
+      this.campModel.misc.am_extended_care = '';
     }
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -56,6 +57,9 @@ get_camp_details() {
         data = JSON.parse(data);
         if (data['status']) {
           this.campModel = data['data']['0'];
+        if (this.campModel.misc === null) {
+            this.campModel.misc = {'lunch': '', 'tips': '', 'am_extended_care': '', 'timings': '', 'pm_extended_care': ''};
+        }
           this.campModel.category = this.campModel.category;
           this.cat_name =  this.get_cat_by_key(this.campModel.category);
       } else {
@@ -90,7 +94,7 @@ next_camp() {
   }
 }
 
-set_cat_name(cat_obj){
+set_cat_name(cat_obj) {
   this.cat_name = cat_obj;
 }
 get_cat_by_key(cat_string: string) {
@@ -107,7 +111,7 @@ update_camp() {
   this.campModel.category = this.cat_name;
   this.campModel.max_age = this.campModel.max_age ? this.campModel.max_age : 0;
   this.campModel.min_age = this.campModel.min_age ? this.campModel.min_age : 0;
-  let final_error = [];
+  const final_error = [];
     const api_input = {
       'camps_data' : this.campModel
     };
@@ -129,6 +133,6 @@ update_camp() {
         this.camp_error.push(error_key + ' :' + error_msg);
       }
     });
-  
+
 }
 }

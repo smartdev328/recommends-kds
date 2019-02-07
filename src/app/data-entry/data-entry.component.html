@@ -12,13 +12,15 @@
   </div>
 
   <div class="form-group">
-    <label>Url</label>
+    <label>Url </label>
     <br>
     <input type="text" formControlName="url" class="form-control"
             [ngClass]="{ 'box-error': submitted && f.url.errors }" />
     <div *ngIf="submitted && f.url.errors" class="text-error">
         <div *ngIf="submitted && f.url.errors.required">Url is required</div>
+        <div *ngIf="f.url.errors.validUrl">Please enter valid Url</div>
     </div>
+    
   </div>
 
   <div class="form-group">
@@ -28,6 +30,7 @@
             [ngClass]="{ 'box-error': submitted && f.image_url.errors }" />
     <div *ngIf="submitted && f.image_url.errors" class="text-error">
         <div *ngIf="submitted && f.image_url.errors.required">Image Url is required</div>
+        <div *ngIf="f.image_url.errors.validUrl">Please enter valid Image Url</div>
     </div>
   </div>
 
@@ -240,10 +243,10 @@
   </div>
   
 </form>
-<!-- 
+
 <div class="form-group">
 <div *ngIf="showServerResponse">
   <h3>Server Response:</h3>
   <p>{{serverResponse}}</p>
 </div>
-</div> -->
+</div>

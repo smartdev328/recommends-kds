@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Name *</label>
             <input type="text" class="form-control" id="name" placeholder="Type name of camp"
                    name="name"  [(ngModel)]="campModel.name" #name="ngModel"
                    required minlength="4" maxlength="2048"
@@ -34,18 +34,26 @@
           </div>
 
           <div class="form-group">
-            <label>Category</label>
+            <label>Category *</label>
             <ng-select [items]="categoryList"
                        bindLabel="name"
                        bindValue="id"
                        [(ngModel)]="cat_id"
                        placeholder="Select primary category"
-                         #category="ngModel" name="category"
-
+                         #category="ngModel" name="category" required="true"
                        (change)="set_cat_name($event.name)"
             >
             </ng-select>
           </div>
+          <div class="form-group">
+              <div *ngIf="category.invalid && ( category.touched)"
+                   class="alert alert-danger">
+                <div *ngIf="category.errors.required">
+                  Category is required
+                </div>
+         
+              </div>
+            </div>
   
           <div class="form-group">
             <label for="name">Types Of Activities</label>
@@ -59,10 +67,7 @@
             <label for="name">Cities</label>
             <input type="text" class="form-control" id="cities" placeholder="Type Cities" 
                    [(ngModel)]="campModel.cities"
-                   minlength="2"
-                   maxlength="255"
                    name="cities"
-                   #cities="ngModel"
             >
           </div>
 
@@ -97,9 +102,9 @@
 
           <div class="col-md-6">
             <div class="form-group">
-              <label for="name">Website URL</label>
+              <label for="name">Website URL *</label>
               <input type="text" class="form-control" id="url" placeholder="Type website url" required="true"
-                     [(ngModel)]="campModel.url"
+                     [(ngModel)]="campModel.url" pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
                      name="url"
                      #url="ngModel"
               >
@@ -110,15 +115,18 @@
                 <div *ngIf="url.errors.required">
                   Please enter Website URL
                 </div>
+                <div *ngIf="url.errors.pattern">
+                  Please enter valid Website URL
+                </div>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="name">Image URL</label>
+              <label for="name">Image URL *</label>
               <input type="text" class="form-control" id="image_url" placeholder="Type image url" required="true"
                      [(ngModel)]="campModel.image_url"
-                     name="image_url"
-                     #image_url="ngModel"
+                     name="image_url" 
+                     #image_url="ngModel" pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
               >
             </div>
             <div class="form-group">
@@ -126,6 +134,9 @@
                    class="alert alert-danger">
                 <div *ngIf="image_url.errors.required">
                   Please enter Image URL
+                </div>
+                <div *ngIf="image_url.errors.pattern">
+                  Please enter valid Image URL
                 </div>
               </div>
             </div>

@@ -42,7 +42,6 @@ export class AddCampComponent implements OnInit {
   }
 
   addCamp(){
-    
     this.campModel.category = this.cat_name;
     this.campModel.max_age = this.campModel.max_age ? this.campModel.max_age : 0;
     this.campModel.min_age = this.campModel.min_age ? this.campModel.min_age : 0;
@@ -59,7 +58,7 @@ export class AddCampComponent implements OnInit {
           
           this.camp_error.push(data['msg'])
         }
-      },error => {
+      }, error => {
         this.camp_error = [];
         this.showError = true;
         const server_error  = error.error.error;
