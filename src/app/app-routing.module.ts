@@ -20,6 +20,7 @@ import { SubscribeVenueComponent } from './subscribe-venue/subscribe-venue.compo
 import { CampListingComponent } from './camp-listing/camp-listing.component';
 import { EditCampComponent } from './edit-camp/edit-camp.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
   { path: 'event/:id', component: EventComponent },
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'edit-camp/:campId', component: EditCampComponent},
   { path: '', component: HomeComponent },
   { path: 'coming-soon', component: ComingSoonComponent },
+  { path: 'sign-up', component: SignUpComponent },
   { path: '**', redirectTo: '' }
 ];
 
