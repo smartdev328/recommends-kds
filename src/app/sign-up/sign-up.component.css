@@ -1,0 +1,18 @@
+
+.p-like-anchor {
+    cursor: pointer;
+}
+.p-like-anchor:hover {
+    color: blue;
+    text-decoration: none;
+    font-weight: normal
+
+}
+
+.main-dev {
+    max-width:600px;
+    padding:40px 20px;
+    background:#ebeff2;
+    margin:auto;
+
+}

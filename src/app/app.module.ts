@@ -37,6 +37,8 @@ import { SubscribeVenueComponent } from './subscribe-venue/subscribe-venue.compo
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { EditCampComponent } from './edit-camp/edit-camp.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
 
@@ -68,7 +70,8 @@ import { EditEventComponent } from './edit-event/edit-event.component';
     SubscribeVenueComponent,
     ComingSoonComponent,
     EditCampComponent,
-    EditEventComponent
+    EditEventComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +87,8 @@ import { EditEventComponent } from './edit-event/edit-event.component';
     NgSelectModule,
     BsDropdownModule,
     FlexLayoutModule,
-    MatIconModule
+    MatIconModule,
+      AngularFontAwesomeModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
