@@ -4,25 +4,25 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {EventConstants } from '../constants/EventConstants';
 
 @Component({
-  selector: 'app-data-entry',
-  templateUrl: './data-entry.component.html',
-  styleUrls: ['./data-entry.component.css']
+    selector: 'app-data-entry',
+    templateUrl: './data-entry.component.html',
+    styleUrls: ['./data-entry.component.css']
 })
 export class DataEntryComponent implements OnInit {
-  eventForm: FormGroup;
-  submitted: boolean = false;
-  serverResponse: string;
-  showServerResponse: boolean = false;
-  public eventConstatnts = new EventConstants();
-  public primary_cat = this.eventConstatnts.PRIMARY_CATEGORY;
-  public secondary_cat = this.eventConstatnts.SECONDARY_CATEGORY;
- public  selectedPrimaryCat: number = null;
- public  selectedSecondaryCat: number = null;
-  constructor(private http: HttpClient) { }
+    eventForm: FormGroup;
+    submitted: boolean = false;
+    serverResponse: string;
+    showServerResponse: boolean = false;
+    public eventConstatnts = new EventConstants();
+    public primary_cat = this.eventConstatnts.PRIMARY_CATEGORY;
+    public secondary_cat = this.eventConstatnts.SECONDARY_CATEGORY;
+    public  selectedPrimaryCat: number = null;
+    public  selectedSecondaryCat: number = null;
+    constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-    this.createForm();
-  }
+    ngOnInit() {
+        this.createForm();
+    }
 
   onSubmit(){
     this.submitted = true;
@@ -34,6 +34,8 @@ export class DataEntryComponent implements OnInit {
       'classification1' : this.eventForm.controls['selectedPrimaryCat'].value ? this.eventForm.controls['selectedPrimaryCat'].value : 0 ,
       'classification2' : this.eventForm.controls['selectedSecondaryCat'].value ? this.eventForm.controls['selectedSecondaryCat'].value : 0
     });
+      this.eventForm.value['venue_id'] = this.eventForm.value['venue_id'].trim() ==0 ? '' :
+          this.eventForm.value['venue_id'];
     var data = JSON.stringify(this.eventForm.value);
     data = data.replace(/[\u2018\u2019]/g, "'")
                 .replace(/[\u201C\u201D]/g, '"');
@@ -45,7 +47,7 @@ export class DataEntryComponent implements OnInit {
     this.http.post(url, data, { headers: headers, responseType: 'text'}).subscribe(response => {
         this.serverResponse = response;
         let str1 = new String( "Found duplicate entry against  URL , start_time and start_date" );
-       let compaire = str1.localeCompare( this.serverResponse); 
+       let compaire = str1.localeCompare( this.serverResponse);
        if(compaire === 1){
         this.serverResponse = 'Event Added successfully';
        }
@@ -55,18 +57,18 @@ export class DataEntryComponent implements OnInit {
     });
   }
 
-  onReset() {
-    this.createForm();
-    this.submitted = false;
-    this.showServerResponse = false;
-  }
-
-  checkUnicode(control: AbstractControl): { [key: string]: boolean } | null {
-    if (control.value.indexOf("\\") !== -1 ) {
-        return { 'unicode': true };
+    onReset() {
+        this.createForm();
+        this.submitted = false;
+        this.showServerResponse = false;
     }
-    return null;
-  }
+
+    checkUnicode(control: AbstractControl): { [key: string]: boolean } | null {
+        if (control.value.indexOf("\\") !== -1 ) {
+            return { 'unicode': true };
+        }
+        return null;
+    }
 
   checkDelimiters(control: AbstractControl): { [key: string]: boolean } | null {
     var word = control.value.replace(/[\u2018\u2019]/g, "'")
@@ -78,7 +80,7 @@ export class DataEntryComponent implements OnInit {
   }
 
  ValidateUrl(control: AbstractControl) {
- 
+
     var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
     if(!regex.test(control.value)){
         return { validUrl: true };
@@ -86,32 +88,32 @@ export class DataEntryComponent implements OnInit {
     return null;
   }
 
-  checkIsNumber(control: AbstractControl): { [key: string]: boolean } | null {
-    if (isNaN(control.value)) {
-        return { 'number': true };
+    checkIsNumber(control: AbstractControl): { [key: string]: boolean } | null {
+        if (isNaN(control.value)) {
+            return { 'number': true };
+        }
+        return null;
     }
-    return null;
-  }
 
-  checkDate(control: AbstractControl): { [key: string]: boolean } | null {
-    var date = control.value.split('-');
-    if (date.length !== 3 || date[0].length !==4 || date[1].length !==2 || date[2].length !==2) {
-        return { 'date': true };
+    checkDate(control: AbstractControl): { [key: string]: boolean } | null {
+        var date = control.value.split('-');
+        if (date.length !== 3 || date[0].length !==4 || date[1].length !==2 || date[2].length !==2) {
+            return { 'date': true };
+        }
+        return null;
     }
-    return null;
-  }
 
-  checkTime(control: AbstractControl): { [key: string]: boolean } | null {
-    var time = control.value.split(':');
-    if (time.length !==3 || time[0].length !==2 || time[1].length !==2 || time[2].length !==2) {
-        return { 'time': true };
+    checkTime(control: AbstractControl): { [key: string]: boolean } | null {
+        var time = control.value.split(':');
+        if (time.length !==3 || time[0].length !==2 || time[1].length !==2 || time[2].length !==2) {
+            return { 'time': true };
+        }
+        return null;
     }
-    return null;
-  }
 
-  get f() { return this.eventForm.controls; }
+    get f() { return this.eventForm.controls; }
 
-  createForm() {
+    createForm() {
 
     this.eventForm = new FormGroup({
       'name': new FormControl('', [
@@ -173,7 +175,9 @@ export class DataEntryComponent implements OnInit {
       'gender_affinity': new FormControl({value:  '0', disabled: false}, [
       ]),
       'tags': new FormControl('', []),
-      'classifications': new FormControl('', [])
+      'classifications': new FormControl('', []),
+        'venue_id': new FormControl('', [])
+
     });
   }
 }
