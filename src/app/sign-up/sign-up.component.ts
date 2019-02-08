@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormArray , EmailValidator} from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
@@ -27,7 +27,7 @@ export class SignUpComponent implements OnInit {
         this.registerForm = this.formBuilder.group({
             first_name: ['', Validators.required],
             last_name: ['', ],
-            email: ['', Validators.required],
+            email: ['', Validators.required , EmailValidator],
             zip_code: ['', [Validators.required, Validators.minLength(2)]],
             src: [''],
             src_id: [''],
