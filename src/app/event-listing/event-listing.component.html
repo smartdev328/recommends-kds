@@ -10,19 +10,23 @@
   <mat-tab-group mat-stretch-tabs disableRipple (selectedTabChange)="onTabClick($event)">
     <mat-tab label="Explore">
       <img src="assets/loading.gif" *ngIf="!isExplore" class="loading-gif">
-      <app-masonsry-view *ngIf="isExplore" [events]=events_explore></app-masonsry-view>
+      <app-masonsry-view *ngIf="isExplore" [events]=events_explore [start]=start [end]=end></app-masonsry-view>
     </mat-tab>
     <mat-tab label="Today" (click)="get_today_events()">
       <img src="assets/loading.gif" *ngIf="!isToday" class="loading-gif">
-      <app-masonsry-view *ngIf="isToday" [events]=events_today></app-masonsry-view>
+      <app-masonsry-view *ngIf="isToday" [events]=events_today [start]=start [end]=end></app-masonsry-view>
     </mat-tab>
     <mat-tab label="Tomorrow" (click)="get_tomorrow_events()">
       <img src="assets/loading.gif" *ngIf="!isTomorrow" class="loading-gif">
-      <app-masonsry-view *ngIf="isTomorrow" [events]=events_tomorrow></app-masonsry-view>
+      <app-masonsry-view *ngIf="isTomorrow" [events]=events_tomorrow [start]=start [end]=end></app-masonsry-view>
     </mat-tab>
     <mat-tab label="Weekend" (click)="get_weekend_events()">
       <img src="assets/loading.gif" *ngIf="!isWeekend" class="loading-gif">
-      <app-masonsry-view *ngIf="isWeekend" [events]=events_weekend></app-masonsry-view>
+      <app-masonsry-view *ngIf="isWeekend" [events]=events_weekend [start]=start [end]=end></app-masonsry-view>
     </mat-tab>
   </mat-tab-group>
+  <mat-card-actions class="details-button-space mouse-pointer" *ngIf="showMore">
+      <button mat-button class="details-button mouse-pointer" (click)="loadMore()">Show More</button>
+  </mat-card-actions>
+
 </div>

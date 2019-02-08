@@ -22,6 +22,13 @@ export class EventListingComponent implements OnInit {
   isExplore: boolean = false;
   isTomorrow: boolean = false;
   isWeekend: boolean = false;
+  isTodaylen:  = 0;
+  isExplorelen:  = 0;
+  isTomorrowlen:  = 0;
+  isWeekendlen:  = 0;
+  start = 0; 
+  end = 21;
+  showMore : Boolean = false;
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
@@ -41,9 +48,40 @@ export class EventListingComponent implements OnInit {
     this.get_explore_event_details();
   }
 
+  loadMore(){
+    if(this.isExplorelen > this.end && this.isExplore === true){
+        this.end = this.end + 21;
+    } 
+     if(this.isExplorelen < this.end && this.isExplore === true) {
+      this.showMore = false;
+    } 
+     if(this.isTodaylen > this.end && this.isToday === true){
+        this.end = this.end + 21;
+    } 
+     if(this.isTodaylen < this.end && this.isToday === true) {
+      this.showMore = false;
+    } 
+    if(this.isTomorrowlen > this.end && this.isTomorrow === true){
+        this.end = this.end + 21;
+    } 
+
+     if(this.isTomorrowlen < this.end && this.isTomorrow === true) {
+      this.showMore = false;
+    } 
+     if(this.isWeekendlen > this.end && this.isWeekend === true){
+        this.end = this.end + 21;
+     }
+     if(this.isWeekendlen < this.end && this.isWeekend === true) {
+      this.showMore = false;
+    } 
+  }
   get_explore_event_details() {
+    this.showMore = false;
     if(this.events_explore) {
       this.isExplore = true;
+      if(this.isExplorelen > this.end ){
+        this.showMore = true;
+      } 
     }
     else {
       var d = Date.now();
@@ -54,15 +92,26 @@ export class EventListingComponent implements OnInit {
           data = data.replace(/\n/g, "");
           data = JSON.parse(data);
           this.events_explore = data["events"];
+          this.showMore = false;
+          this.isExplorelen = this.events_explore.length;
+          if(this.isExplorelen > this.end ){
+            this.showMore = true;
+          } 
         //  this.add_analytics_data();
           this.isExplore = true;
       })
     }
+   
+
   }
 
   get_today_events() {
+  
     if(this.events_today) {
       this.isToday = true;
+      if(this.isTodaylen > this.end ){
+        this.showMore = true;
+      } 
     }
     else {
       let url = "https://kin-api.kinparenting.com/events?event_range_str=today"; 
@@ -72,6 +121,10 @@ export class EventListingComponent implements OnInit {
           data = data.replace(/\n/g, "");
           data = JSON.parse(data);
           this.events_today = data["events"];
+          this.isTodaylen   = this.events_today.length;
+          if(this.events_today.length > this.end ){
+            this.showMore = true;
+          } 
           this.isToday = true;
       })
     }
@@ -80,6 +133,9 @@ export class EventListingComponent implements OnInit {
   get_tomorrow_events() {
     if(this.events_tomorrow) {
       this.isTomorrow = true;
+      if(this.isTomorrowlen > this.end ){
+        this.showMore = true;
+      } 
     }
     else {
       let url = "https://kin-api.kinparenting.com/events?event_range_str=tomorrow"; 
@@ -89,6 +145,10 @@ export class EventListingComponent implements OnInit {
           data = data.replace(/\n/g, "");
           data = JSON.parse(data);
           this.events_tomorrow = data["events"];
+          this.isTomorrowlen = this.events_tomorrow.length;
+          if(this.events_tomorrow.length > this.end ){
+            this.showMore = true;
+          } 
           this.isTomorrow = true;
       })
     }
@@ -97,6 +157,9 @@ export class EventListingComponent implements OnInit {
   get_weekend_events() {
     if(this.events_weekend) {
       this.isWeekend = true;
+      if(this.isWeekendlen > this.end ){
+        this.showMore = true;
+      } 
     }
     else {
       let url = "https://kin-api.kinparenting.com/events?event_range_str=weekend"; 
@@ -106,12 +169,18 @@ export class EventListingComponent implements OnInit {
           data = data.replace(/\n/g, "");
           data = JSON.parse(data);
           this.events_weekend = data["events"];
+          this.isWeekendlen = this.events_weekend.length;
+          if(this.events_weekend.length > this.end ){
+            this.showMore = true;
+          } 
           this.isWeekend = true;
       })
     }
   }
 
   onTabClick(event) {
+    this.showMore = false;
+    this.end = 21;
     this.isExplore = false;
     this.isToday = false;
     this.isTomorrow = false;

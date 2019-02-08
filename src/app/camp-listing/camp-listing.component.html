@@ -9,5 +9,9 @@
 <div class="event-listing-card">
   
       <img *ngIf="!isExplore"  src="assets/loading.gif"  class="loading-gif">
-      <app-masonsry-camp-view  [camps]=camp_explore></app-masonsry-camp-view>
+      <app-masonsry-camp-view  [camps]=camp_explore [start]=start [end]=end></app-masonsry-camp-view>
+      <mat-card-actions class="details-button-space mouse-pointer" *ngIf="showMore">
+        <button mat-button class="details-button mouse-pointer" (click)="loadMore()">Show More</button>
+    </mat-card-actions>
+     
 </div>

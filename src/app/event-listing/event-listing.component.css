@@ -70,3 +70,18 @@
     }
     
 }
+
+.details-button {
+    color: white;
+    background-color: rgb(237, 45, 86);
+    border: none;
+    padding: 1%;
+    margin-top: 6%;
+    /* //border-radius: 10%; */
+    margin-left: 49%;
+    margin-right: 7%;
+}
+
+.mouse-pointer{
+    cursor: pointer;
+}
