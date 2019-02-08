@@ -10,6 +10,8 @@ export class MasonsryCampViewComponent implements OnInit {
 
   showLayout: boolean = false;
   @Input() camps;
+  @Input() start;
+  @Input() end;
 
   constructor(private router: Router) { }
 

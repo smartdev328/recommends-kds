@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 export class MasonsryViewComponent implements OnInit {
   showLayout: boolean = false;
   @Input() events;
-
+  @Input() start;
+  @Input() end;
   constructor(private router: Router) { }
 
   ngOnInit() {

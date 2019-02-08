@@ -18,7 +18,9 @@ export class VenueListingComponent implements OnInit {
   isExplore: Boolean = false;
   public category: string;
   public URLConstatnts = new UrlConstants();
-
+  showMore: boolean = false; 
+  start = 0; 
+  end = 20;
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
               private datePipe: DatePipe,
@@ -44,7 +46,9 @@ export class VenueListingComponent implements OnInit {
     } else {
       let url = '';
       if (this.category === undefined ) {
-        url = 'https://kin-api-dev.kinparenting.com/venues/' ;
+      //  url = 'https://kin-api-dev.kinparenting.com/venues/' ;
+       url = this.URLConstatnts.API_URL + 'venues/';
+
      } else {
         url = this.URLConstatnts.API_URL + 'venues/?categories=' + this.category;
      }
@@ -54,12 +58,24 @@ export class VenueListingComponent implements OnInit {
           data = data.replace(/\n/g, '');
           data = JSON.parse(data);
           this.venues_list = data['venues'];
+          if(this.venues_list.length > this.end ){
+            this.showMore = true;
+          } 
          // this.add_analytics_data();
           this.isExplore = true;
       });
     }
   }
+  loadMore(){
 
+    if(this.venues_list.length > this.end ){
+        this.end = this.end + 20;
+    } 
+     if(this.venues_list.length < this.end) {
+      this.showMore = false;
+    } 
+
+  }
 
   add_analytics_data() {
     const final_data = {

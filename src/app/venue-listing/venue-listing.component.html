@@ -9,6 +9,10 @@
 <div class="event-listing-card">
 
       <img src="assets/loading.gif" *ngIf="!isExplore" class="loading-gif">
-      <app-masonsry-venues-view *ngIf="isExplore" [venues]=venues_list></app-masonsry-venues-view>
-    
+      <app-masonsry-venues-view *ngIf="isExplore" [venues]=venues_list  [start]=start [end]=end></app-masonsry-venues-view>
+
+      <mat-card-actions class="details-button-space mouse-pointer" *ngIf="showMore">
+        <button mat-button class="details-button mouse-pointer" (click)="loadMore()">Show More</button>
+    </mat-card-actions>
+     
 </div>

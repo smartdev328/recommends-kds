@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 export class MasonsryVenuesViewComponent implements OnInit {
   showLayout: Boolean = false;
   @Input() venues;
+  @Input() start;
+  @Input() end;
 
   constructor(private router: Router) { }
 

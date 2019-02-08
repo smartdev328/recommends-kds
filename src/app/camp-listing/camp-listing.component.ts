@@ -18,7 +18,10 @@ export class CampListingComponent implements OnInit {
   isExplore: Boolean;
   public category: string;
   public URLConstatnts = new UrlConstants();
-
+  showMore: Boolean = false; 
+  start = 0; 
+  end = 20;
+  
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
               private datePipe: DatePipe,
@@ -39,7 +42,16 @@ export class CampListingComponent implements OnInit {
     this.get_camps_details();
 
   }
+  loadMore(){
 
+    if(this.camp_explore.length > this.end ){
+        this.end = this.end + 20;
+    } 
+     if(this.camp_explore.length < this.end) {
+      this.showMore = false;
+    } 
+
+  }
   get_camps_details() {
 
     this.isExplore = false;
@@ -55,6 +67,9 @@ export class CampListingComponent implements OnInit {
           data = data.replace(/\n/g, '');
           data = JSON.parse(data);
           this.camp_explore = data['data'];
+          if(this.camp_explore.length > this.end ){
+            this.showMore = true;
+          } 
           this.isExplore = true;
           //this.add_analytics_data();
       });
