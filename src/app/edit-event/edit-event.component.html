@@ -52,6 +52,13 @@
     </div>
 
     <div class="form-group">
+      <label>Venue Id</label>
+      <br>
+      <input type="text" formControlName="venue_id" class="form-control"
+             [ngClass]="{ 'box-error': submitted && f.venue_id.errors }"/>
+    </div>
+
+    <div class="form-group">
       <label>Venue</label>
       <br>
       <input type="text" formControlName="venue" class="form-control" [ngClass]="{ 'box-error': submitted && f.venue.errors }" />
@@ -79,7 +86,7 @@
       <label>Start Date</label>
       <br>
       <input type="text" formControlName="start_date" class="form-control" [ngClass]="{ 'box-error': submitted && f.start_date.errors }"
-        placeholder="YYYY-MM-DD" />
+             placeholder="YYYY-MM-DD" />
       <div *ngIf="submitted && f.start_date.errors" class="text-error">
         <div *ngIf="submitted && f.start_date.errors.required">Start Date is required</div>
         <div *ngIf="submitted && f.start_date.errors.date">Invalid date format</div>
@@ -90,7 +97,7 @@
       <label>End Date</label>
       <br>
       <input type="text" formControlName="end_date" class="form-control" [ngClass]="{ 'box-error': submitted && f.end_date.errors }"
-        placeholder="YYYY-MM-DD" />
+             placeholder="YYYY-MM-DD" />
       <div *ngIf="submitted && f.end_date.errors" class="text-error">
         <div *ngIf="submitted && f.end_date.errors.required">End Date is required</div>
         <div *ngIf="submitted && f.end_date.errors.date">Invalid date format</div>
@@ -170,9 +177,9 @@
     <div class="form-group">
       <label>State</label>
       <br>
-      <input type="text" formControlName="state" class="form-control" 
-       />
- 
+      <input type="text" formControlName="state" class="form-control"
+      />
+
     </div>
 
     <div class="form-group">
@@ -188,8 +195,8 @@
       <label>Country</label>
       <br>
       <input type="text" formControlName="country" class="form-control"
-         />
-     
+      />
+
     </div>
 
     <div class="form-group">
@@ -208,20 +215,23 @@
       <div class="form-group mb-3">
         <label>Primary Category</label>
         <ng-select [items]="primary_cat" bindLabel="name" bindValue="id" placeholder="Select Primary category"
-          formControlName="selectedPrimaryCat"  >
+                   formControlName="selectedPrimaryCat"  >
         </ng-select>
-     
+
       </div>
       <div class="form-group mb-3">
         <label>Secondary Category</label>
         <ng-select  [items]="secondary_cat" bindLabel="name" bindValue="id" placeholder="Select Secondary category"
-          formControlName="selectedSecondaryCat" name="selectedSecondaryCat" >
+                    formControlName="selectedSecondaryCat" name="selectedSecondaryCat" >
         </ng-select>
       </div>
-      
+
 
     </div>
-
+    <div class="form-group"></div>
+    <div class="form-group"></div>
+    <div class="form-group"></div>
+    <div class="form-group"></div>
     <div class="form-group">
       <div class="row">
         <div class="col">
