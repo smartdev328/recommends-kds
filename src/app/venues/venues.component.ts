@@ -41,6 +41,7 @@ export class VenuesComponent implements OnInit {
   public url: String;
   public is_parent_id: Boolean;
   public isSubscribeVisible: Boolean;
+  public isSaveVisible: Boolean;
   public google_place_reviews_count: number;
   public isShowMoreHours: Boolean;
   city : String;
@@ -66,6 +67,7 @@ export class VenuesComponent implements OnInit {
       this.user_reviews = [];
       this.isShowMoreHours = false;
       this.isSubscribeVisible = false;
+      this.isSaveVisible = false;
       this.selectedIndex = 0;
       this.city = '';
       this.state = '';
@@ -83,6 +85,7 @@ export class VenuesComponent implements OnInit {
       }
         if ( this.venue_id > 0 && this.venue_id !== undefined && !isNaN( this.parent_id)) {
           this.is_subscription_venue();
+          this.is_save_action();
       }
     }
   }
@@ -162,6 +165,7 @@ export class VenuesComponent implements OnInit {
   website_redirect() {
     if (!isNaN( this.parent_id)) {
       this.add_analytics_data('SAVE');
+      this.isSaveVisible = true;
    }
   }
 
@@ -262,6 +266,18 @@ export class VenuesComponent implements OnInit {
        alert('Error while getting information');
     });
   }
+
+  is_save_action() {
+    this.reviewService.verify_save_action(this.parent_id, ANALYTICS_ENTITY_TYPES_ENUM.VENUE, this.venue_id).subscribe(data => {
+      if (data['status'] === true) {
+        this.isSaveVisible = true;
+      } else {
+        this.isSaveVisible = false;
+      }
+    }, error => {
+    });
+  }
+
   add_subscription_venue() {
 
     if (!isNaN(this.parent_id)) {

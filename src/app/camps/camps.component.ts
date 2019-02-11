@@ -30,6 +30,7 @@ export class CampsComponent implements OnInit {
   public campStatus: Boolean;
   public campErrorMessage = new CampErrorMessage();
   public campConstants: any;
+  public isSaveVisible: Boolean;
   public URLConstatnts = new UrlConstants();
   selectedIndex;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
@@ -41,6 +42,9 @@ export class CampsComponent implements OnInit {
     this.camp_id = this.route.snapshot.params['id'];
     this.parent_id = this.route.snapshot.queryParams['parent_id'];
     this.get_camp_details();
+    if (!isNaN( this.parent_id)) {
+      this.is_save_action();
+   }
     this.isErrorVisible = false;
     this.isSuccessVisible = false;
     this.errorMessage = '';
@@ -54,6 +58,7 @@ export class CampsComponent implements OnInit {
     this.campStatus = false;
     this.campConstants = new CampConstants();
     this.selectedIndex = 0;
+    this.isSaveVisible = false;
       this.add_analytics_data('CLICK');
   }
   get_camp_details() {
@@ -191,6 +196,7 @@ export class CampsComponent implements OnInit {
   website_redirect() {
     if (!isNaN( this.parent_id)) {
       this.add_analytics_data('SAVE');
+      this.isSaveVisible = true;
    }
   }
   add_analytics_data(atype: any) {
@@ -235,4 +241,15 @@ export class CampsComponent implements OnInit {
      });
  
    }
+
+   is_save_action() {
+    this.reviewService.verify_save_action(this.parent_id, ANALYTICS_ENTITY_TYPES_ENUM.CAMP, this.camp_id).subscribe(data => {
+      if (data['status'] === true) {
+        this.isSaveVisible = true;
+      } else {
+        this.isSaveVisible = false;
+      }
+    }, error => {
+    });
+  }
 }

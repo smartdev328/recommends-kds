@@ -23,6 +23,7 @@ export class EventComponent implements OnInit {
   public is_parent_id: Boolean;
   public isErrorVisible: Boolean;
   public isSuccessVisible: Boolean;
+  public isSaveVisible: Boolean;
   public errorMessage: String;
   public review: string;
   public user_reviews: any;
@@ -37,8 +38,12 @@ export class EventComponent implements OnInit {
     this.event_id = this.route.snapshot.params['id'];
     this.parent_id = this.route.snapshot.queryParams['parent_id'];
     this.get_event_details();
+    if (!isNaN( this.parent_id)) {
+      this.is_save_action();
+    }
     this.isErrorVisible = false;
     this.isSuccessVisible = false;
+    this.isSaveVisible = false;
     this.errorMessage = '';
     this.review = '';
     this.user_reviews = [];
@@ -189,6 +194,7 @@ export class EventComponent implements OnInit {
   website_redirect() {
     if (!isNaN( this.parent_id)) {
       this.add_analytics_data('SAVE');
+      this.isSaveVisible = true;
    }
   }
 
@@ -234,5 +240,15 @@ export class EventComponent implements OnInit {
        alert('Something went wrong');
      });
  
+  }
+  is_save_action() {
+    this.reviewService.verify_save_action(this.parent_id, ANALYTICS_ENTITY_TYPES_ENUM.EVENT, this.event_id).subscribe(data => {
+      if (data['status'] === true) {
+        this.isSaveVisible = true;
+      } else {
+        this.isSaveVisible = false;
+      }
+    }, error => {
+    });
   }
 }
