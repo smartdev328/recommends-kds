@@ -11,10 +11,14 @@
     fxLayoutAlign="center"
     fxLayoutGap="33px"
     fxLayoutGap.xs="10px">
-   <div class="item item-1" fxFlex="10%" title="Save"  (click)="website_redirect()">
-       <span><i class="icon material-icons mouse-pointer">bookmark_border</i></span>
-       <span class="text link-text"></span>
-   </div>
+    <div class="item item-1" fxFlex="10%" title="Save" (click)="website_redirect()" *ngIf="isSaveVisible != true">
+      <span><i class="icon material-icons mouse-pointer">bookmark_border</i></span>
+      <span class="text link-text"></span>
+  </div>
+  <div class="item item-1" fxFlex="10%" title="Saved"  *ngIf="isSaveVisible">
+      <span><i class="icon material-icons md-dark md-inactive">bookmark_border</i></span>
+      <span class="text link-text"></span>
+  </div>
 
 
    <div class="item item-3" fxFlex="10%" title="Add to Calendar"  (click)="calendar_redirects()" >

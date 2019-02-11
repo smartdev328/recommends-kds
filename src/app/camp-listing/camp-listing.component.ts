@@ -18,15 +18,15 @@ export class CampListingComponent implements OnInit {
   isExplore: Boolean;
   public category: string;
   public URLConstatnts = new UrlConstants();
-  showMore: Boolean = false; 
-  start = 0; 
-  end = 20;
-  
+  showMore: Boolean = false;
+  start: any = 0;
+  end: any = 20;
+
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
               private datePipe: DatePipe,
               private router: Router,
-              private titleService: Title, private reviewService: ReviewsService) { 
+              private titleService: Title, private reviewService: ReviewsService) {
                 this.router.events.subscribe(event => {
                   if (event instanceof NavigationEnd) {
                     ga('set', 'page', event.urlAfterRedirects);
@@ -42,14 +42,14 @@ export class CampListingComponent implements OnInit {
     this.get_camps_details();
 
   }
-  loadMore(){
+  loadMore() {
 
-    if(this.camp_explore.length > this.end ){
+    if (this.camp_explore.length > this.end ) {
         this.end = this.end + 20;
-    } 
-     if(this.camp_explore.length < this.end) {
+    }
+     if (this.camp_explore.length < this.end) {
       this.showMore = false;
-    } 
+    }
 
   }
   get_camps_details() {
@@ -67,11 +67,11 @@ export class CampListingComponent implements OnInit {
           data = data.replace(/\n/g, '');
           data = JSON.parse(data);
           this.camp_explore = data['data'];
-          if(this.camp_explore.length > this.end ){
+          if (this.camp_explore.length > this.end ) {
             this.showMore = true;
-          } 
+          }
           this.isExplore = true;
-          //this.add_analytics_data();
+          // this.add_analytics_data();
       });
 
 }
@@ -105,6 +105,6 @@ add_analytics_data() {
       eventLabel: 'Kin Redirect',
       eventAction: 'Click on kin redirect button'
     });
-    window.location.href='http://m.me/kinparenting';
+    window.location.href = 'http://m.me/kinparenting';
   }
 }

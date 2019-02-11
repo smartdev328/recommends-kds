@@ -264,3 +264,4 @@ i.icon-green {
 i.icon-grey {
     color: grey;
 }
+.material-icons.md-dark.md-inactive { color: rgba(8, 241, 19, 0.897); }
