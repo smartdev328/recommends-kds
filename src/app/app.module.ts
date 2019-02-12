@@ -39,10 +39,12 @@ import { EditCampComponent } from './edit-camp/edit-camp.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-
-
-
-
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { PrivacyComponent } from './privacy/privacy.component';
+import { HeaderComponent } from './layout/header.component';
+import { FooterComponent } from './layout/footer.component';
+import { TermsComponent } from './terms/terms.component';
 
 
 @NgModule({
@@ -72,6 +74,13 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     EditCampComponent,
     EditEventComponent,
     SignUpComponent,
+    HeaderComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    PrivacyComponent,
+    HeaderComponent,
+    FooterComponent,
+    TermsComponent
   ],
   imports: [
     BrowserModule,
