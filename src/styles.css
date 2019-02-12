@@ -11,13 +11,207 @@
     src: url('assets/fonts/montserrat/Montserrat-Regular.ttf'); /* IE9 Compat Modes */
 }
 
-.Rectangle-220 {
+.main-image {
     width: 418px;
     height: 358px;
 }
 
 .hr-Rectangle-200 {
     width: 1181px;
-    height: 5px;
+    height: 3px;
     background-color: #ef6c57;
 }
+
+.main-text-margin-top {
+    margin: 14%;
+}
+
+.Montserrat {
+    width: 357px;
+    height: 49px;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.23;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5d5d5a;
+}
+.Montserrat .BubblegumSans {
+    height: 153px;
+    font-family: BubblegumSans;
+    font-size: 132px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.16;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ef6c57;
+    margin-left: 46%;
+
+}
+
+.BubblegumSans {
+    height: 153px;
+    font-family: BubblegumSans;
+    font-size: 132px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.16;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ef6c57;
+}
+.us {
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0px;
+    right: 10%;
+    color: #5d5d5a;
+    top: 67%;
+}
+
+.policy {
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0px;
+    right: 42%;
+    color: #5d5d5a;
+    top: 57%;
+}
+
+.Carousel-heading {
+    height: 24px;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-align: left;
+    color: #5d5d5a;
+  }
+
+  .hr-top-margin {
+    top: 150%;
+    position: absolute;
+  }
+
+  .home-page-small-text {
+    width: 574px;
+    height: 75px;
+    font-family: Montserrat;
+    /* font-size: 21px; */
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.19;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5d5d5a;
+    position: absolute;
+    top: 79%;
+  }
+
+  .Dont-miss-out {
+    width: 156px;
+    height: 34px;
+    font-family: Poppins;
+    font-size: 21px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.62;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ef6c57;
+  }
+
+  .Dont-miss-out .Sign-up-for-our-Newsletter {
+    width: 296px;
+    height: 50px;
+    font-family: Montserrat;
+    font-size: 21px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.19;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ef6c57;
+    position: absolute;
+    right: 22%;
+  }
+
+  .text-align-center {
+    text-align: center;
+  }
+
+  .home-signup-btn {
+    width: 130px;
+    height: 40px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    background-color: #ef6c57;
+  }
+
+  .sign-up-text {
+    width: 100px;
+    height: 30px;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .signup-btn{
+    width: 120px;
+    height: 46px;
+    border-radius: 37px;
+    cursor: pointer;
+  }
+  .sign-up-position {
+    margin-left: 38%;
+    margin-top: 30px;
+  }
+
+  .home-events-camps-place-size {
+    border-style: ridge;
+    border-color: #ff0404;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border-width: 1px;
+    margin: 35px;
+    
+  }
+  .home-event-camps-places-size {
+      width : 100%
+  }
+
+  .home-event-camps-places-text {
+    /* width: 141px; */
+    height: 49px;
+    font-family: Montserrat;
+    font-size: 38px;
+    font-weight: 550;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.23;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ef6c57;
+    margin: auto;
+  }
+  
