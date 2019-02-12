@@ -45,6 +45,7 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { HeaderComponent } from './layout/header.component';
 import { FooterComponent } from './layout/footer.component';
 import { TermsComponent } from './terms/terms.component';
+import { PersonalizedComponent } from './personalized/personalized.component';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { TermsComponent } from './terms/terms.component';
     PrivacyComponent,
     HeaderComponent,
     FooterComponent,
-    TermsComponent
+    TermsComponent,
+    PersonalizedComponent
   ],
   imports: [
     BrowserModule,

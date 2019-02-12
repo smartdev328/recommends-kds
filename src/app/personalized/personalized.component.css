@@ -1,0 +1,102 @@
+.personalized-page {
+    width: 1280px;
+    height: 1850px;
+    background-color: #ffffff;
+  }
+
+
+  .Personalized-recommendations {
+    font-family: BubblegumSans;
+    font-size: 70px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ef6c57;
+    margin: auto;
+  }
+
+  .Here-are-some-suggestions-just-for-you {
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.23;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5d5d5a;
+    margin: auto;
+  }
+
+  .Events-at-your-favorite-venues {
+    width: 333px;
+    height: 25px;
+    font-family: Montserrat;
+    font-size: 21px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.19;
+    letter-spacing: normal;
+    text-align: left;
+    color: #5d5d5a;
+  }
+  .professional-magic-show {
+    width: 393px;
+    height: 286px;
+  }
+
+  .Camp-1-Lorem-Ipsum-is-simply-dummy-text {
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    color: #5d5d5a;
+  }
+  .Path-112 {
+    width: 260px;
+    height: 289.9px;
+    background-color: #ffffff;
+  }
+  
+
+  .column {
+    float: left;
+    width: 30.33%;
+    padding: 10px;
+    height: 300px; 
+    margin: 1%;/* Should be removed. Only for demonstration */
+   
+  }
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+
+  .See-more {
+    width: 99px;
+    height: 24px;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5d5d5a;
+    margin: auto;
+    text-decoration: underline;
+  }
+
+    .container {max-width: 1317px; } 

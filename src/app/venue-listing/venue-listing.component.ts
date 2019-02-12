@@ -48,7 +48,7 @@ export class VenueListingComponent implements OnInit {
       if (this.category === undefined ) {
       //  url = 'https://kin-api-dev.kinparenting.com/venues/' ;
       //live
-        url = "http://ec2-54-193-55-70.us-west-1.compute.amazonaws.com/venues/?limit=500"; 
+        url = "http://ec2-54-193-55-70.us-west-1.compute.amazonaws.com/venues/?limit=25"; 
 
      } else {
         url = 'http://ec2-54-193-55-70.us-west-1.compute.amazonaws.com/venues/?categories=' + this.category;

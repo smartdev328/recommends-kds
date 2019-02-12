@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="personalized-page">
+      <div class="row">
+        <p class="Personalized-recommendations"> Personalized recommendations </p>
+        <p class="Here-are-some-suggestions-just-for-you"> Here are some suggestions just for you! </p>
+  
+  
+      </div>
+      <br>
+      <br>
+      <br>
+   <div *ngIf="isFav">
+      <div class="Events-at-your-favorite-venues">Events at your favorite venues </div>
+      <br>
+      <div class="row" >
+          <div class="column" *ngFor="let event of favorite">
+              <img class="professional-magic-show" src={{event.image_url}}
+                alt="Photo of the event">
+              <p class="Camp-1-Lorem-Ipsum-is-simply-dummy-text">  {{event.name}} </p>
+            </div>
+           
+      </div>
+  
+      <br>
+      <br>
+      <br>
+      <div class="See-more" >
+        <a class="See-more" [routerLink]="['/','events']">See more</a>
+       
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+    <div *ngIf="isPopular">
+      <div class="Events-at-your-favorite-venues"  >Popular Events</div>
+      <br>
+      <div class="row"  >
+          <div class="column" *ngFor="let event of popular">
+              <img class="professional-magic-show" src={{event.image_url}}
+                alt="Photo of the event">
+              <p class="Camp-1-Lorem-Ipsum-is-simply-dummy-text">  {{event.name}} </p>
+            </div>
+           
+      </div>
+         <br>
+            <br>
+            <br>
+      <div class="See-more" >
+        <a class="See-more" [routerLink]="['/','events']">See more</a>
+      </div>
+      <br>
+      <br>
+      <br>
+    </div>
+      <div class="Events-at-your-favorite-venues" *ngIf="isWeekend"> Weekend Events </div>
+      <br>
+      <div class="row" *ngIf="isWeekend">
+        <div class="column" *ngFor="let event of events_weekend">
+          <img class="professional-magic-show" src={{event.image_url}}
+            alt="Photo of the event">
+          <p class="Camp-1-Lorem-Ipsum-is-simply-dummy-text">  {{event.name}} </p>
+        </div>
+  
+      </div>
+  
+      <br>
+      <br>
+      <div class="See-more" *ngIf="isWeekend">
+        <a class="See-more" [routerLink]="['/','events']">See more</a>
+      </div>
+  
+    </div>
+  </div>
