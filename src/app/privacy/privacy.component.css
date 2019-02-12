@@ -1,0 +1,46 @@
+.Privacy {
+    width: 513px;
+    height: 360px;
+    font-family: BubblegumSans; /*KristenITC*/
+    font-size: 132px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ef6c57;
+}
+
+.policy {
+    width: 130px;
+    height: 66px;
+    font-family: Poppins;
+    font-size: 40px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.65;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5d5d5a;
+}
+
+.Privacy-policy {
+    width: 145px;
+    height: 24px;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-align: left;
+    color: #5d5d5a;
+}
+
+.Rectangle-231 {
+    width: 418px;
+    height: 358px;
+}

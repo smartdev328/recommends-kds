@@ -1,3 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "../node_modules/font-awesome/css/font-awesome.css";
+
+@font-face {
+    font-family: 'BubblegumSans';
+    src: url('assets/fonts/bubblegum-sans/BubblegumSans-Regular.otf'); /* IE9 Compat Modes */
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/montserrat/Montserrat-Regular.ttf'); /* IE9 Compat Modes */
+}
+
+.Rectangle-220 {
+    width: 418px;
+    height: 358px;
+}
+
+.hr-Rectangle-200 {
+    width: 1181px;
+    height: 5px;
+    background-color: #ef6c57;
+}

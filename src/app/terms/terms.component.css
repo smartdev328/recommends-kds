@@ -1,0 +1,44 @@
+.Terms {
+    font-family: BubblegumSans;
+    font-size: 132px;
+    text-align: left;
+    color: #ef6c57;
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+}
+
+.Terms .of-use {
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0px;
+    right: -20px;
+    color: #5d5d5a;
+}
+
+.Rectangle-234 {
+    width: 418px;
+    height: 358px;
+}
+
+.Terms-of-use {
+    width: 133px;
+    height: 24px;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-align: left;
+    color: #5d5d5a;
+}
+
+.Rectangle-233 {
+    width: 1181px;
+    height: 5px;
+    background-color: #ef6c57;
+}
