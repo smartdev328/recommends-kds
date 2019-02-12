@@ -1,10 +1,20 @@
-<nav class="navbar navbar-light">
+<nav class="navbar">
+
+  <a class="Home" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/']">Home
+  </a>
+
   <div class="container">
-    <a class="navbar-brand"[routerLink]="['/']">Home</a>
-    <a class="navbar-brand" [routerLink]="['/','events']">Events</a>
-    <a class="navbar-brand" [routerLink]="['/','camps']">Camps</a>
-    <a class="navbar-brand" [routerLink]="['/','venues']">Places</a>
-    <a class="navbar-brand btn Path-38 Sign-up" [routerLink]="['/','sign-up']">Signup</a>
+    &nbsp;
+    &nbsp;
+    <a class="Path-7 Events " [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','events']">Events</a>
+    <a class="Path-7 Camps" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','camps']">Camps</a>
+    <a class="Path-7 Places" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','venues']">Places</a>
 
   </div>
+  <button class="Path-38 Sign-up" [routerLink]="['/','sign-up']">Sign up !</button>
 </nav>
+<br>
+<br>
+<br>
+<br>
+<br>

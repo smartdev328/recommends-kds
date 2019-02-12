@@ -25,6 +25,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import {PrivacyComponent} from './privacy/privacy.component';
 import {TermsComponent} from './terms/terms.component';
+import { PersonalizedComponent } from './personalized/personalized.component';
 
 const routes: Routes = [
   { path: 'event/:id', component: EventComponent },
@@ -57,6 +58,9 @@ const routes: Routes = [
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'privacy', component: PrivacyComponent },
+  { path: 'terms', component: TermsComponent },
+  { path: 'my-kin', component: PersonalizedComponent },
+  { path: 'my-kin?parent_id=', component: PersonalizedComponent },
   { path: 'terms', component: TermsComponent },
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: '' },
