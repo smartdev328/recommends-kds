@@ -17,7 +17,6 @@
 }
 
 .hr-Rectangle-200 {
-    width: 1181px;
     height: 3px;
     background-color: #ef6c57;
 }
@@ -55,7 +54,7 @@
 }
 
 .BubblegumSans {
-    height: 153px;
+    /* height: 153px; */
     font-family: BubblegumSans;
     font-size: 132px;
     font-weight: normal;
@@ -107,8 +106,7 @@
   }
 
   .home-page-small-text {
-    width: 574px;
-    height: 75px;
+  
     font-family: Montserrat;
     /* font-size: 21px; */
     font-weight: normal;
@@ -215,3 +213,26 @@
     margin: auto;
   }
   
+  .outer-div{
+    border: 1px solid #ef6c57;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  }
+  .main-section{
+    padding: 0px 4%;
+  }
+  .label-sec{
+    padding:10px 0px;
+    border-bottom: 4px solid #ef6c57;
+    margin:20px 0px;
+
+  }
+  .main-label{
+    color: #5d5d5a;
+    font-size: 21px;
+    font-weight: bold;
+  }
+  video{
+    width: 100%;
+    height:87%
+  }

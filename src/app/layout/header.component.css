@@ -1,37 +1,8 @@
-.Path-38 {
-    width: 146.9px;
-    height: 62.3px;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    background-color: #5d5d5a;
-  }
-
-.Sign-up {
-    width: 99px;
-    height: 29px;
-    font-family: Montserrat;
-    font-size: 24px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.21;
-    letter-spacing: normal;
-    /* text-align: left; */
-    color: #eff1f4;
-    border-radius: 28px;
-  }
-
-.Path-38 {
-    width: 146.9px;
-    height: 62.3px;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    background-color: #5d5d5a;
-}
 
 
-  .Home {
-    width: 63px;
-    height: 24px;
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+.Home-header {
+   
+    /* text-shadow: 0 3px 6px rgba(0, 0, 0, 0.16); */
     font-family: Montserrat;
     font-size: 20px;
     font-weight: bold;
@@ -41,51 +12,12 @@
     letter-spacing: normal;
     text-align: left;
     color: #5d5d5a;
+    
+  }
+  .cursor {
+    cursor: pointer;
   }
 
-  .Events {
-    width: 70px;
-    height: 24px;
-    font-family: Montserrat;
-    font-size: 20px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.2;
-    letter-spacing: normal;
-    text-align: center;
-    color: #5d5d5a;
-  }
-
-  
-
-.Camps {
-  width: 72px;
-  height: 24px;
-  font-family: Montserrat;
-  font-size: 20px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.2;
-  letter-spacing: normal;
-  text-align: center;
-  color: #5d5d5a;
-}
-
-.Places {
-    width: 68px;
-    height: 24px;
-    font-family: Montserrat;
-    font-size: 20px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.2;
-    letter-spacing: normal;
-    text-align: center;
-    color: #5d5d5a;
-  }
 
 
   .Rectangle-215 {
@@ -94,8 +26,38 @@
    
 }
   .active {
-    border-bottom: 5px solid #ef6c57;
-    padding-bottom: 30px;
+    border-bottom: 3px solid #ef6c57; 
    
+ }
+
+.navbar-nav-spaces > li{
+  /* padding-left:30px; */
+  padding-right: 18%;
+  display: inline;
 }
 
+.Sign-up {
+  font-family: Montserrat;
+  font-size: 24px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.21;
+  letter-spacing: normal;
+  border-radius: 28px;
+  color: white;
+ 
+}
+.path-38{
+  box-shadow: 0 3px 6px 0 rgba(0,0,0,.16);
+  background-color: #5d5d5a;
+  float: right;
+ 
+}
+
+.navbar{
+  padding: 15px 4%;
+}
+.nav-sec{
+  padding:0px;
+}

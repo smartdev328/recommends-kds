@@ -15,11 +15,11 @@ import {ReviewsService} from '../add-review/reviews.service';
 export class PersonalizedComponent implements OnInit {
   events_explore: any;
   popular: any;
-  favorite  : any;
+  favorite: any;
   events_weekend: any;
-  isPopular : Boolean = false;
-  isFav :Boolean = false;
-  isWeekend : Boolean = false;
+  isPopular: Boolean = false;
+  isFav: Boolean = false;
+  isWeekend: Boolean = false;
   public category: string;
   public URLConstatnts = new UrlConstants();
   parent_id: Number;
@@ -33,7 +33,7 @@ export class PersonalizedComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle('MY KIN');
     this.parent_id = this.route.snapshot.queryParams['parent_id'];
-  
+
 
     this.get_event_details();
 
@@ -49,7 +49,7 @@ export class PersonalizedComponent implements OnInit {
           data = data.replace(/\n/g, '');
           data = JSON.parse(data);
           this.favorite = data['events'];
-          if(this.favorite.length > 0) {
+          if (this.favorite.length > 0) {
           this.isFav = true;
           }
       });
@@ -58,7 +58,7 @@ export class PersonalizedComponent implements OnInit {
           data = data.replace(/\n/g, '');
           data = JSON.parse(data);
           this.popular = data['events'];
-          if(this.popular.length > 0) {
+          if (this.popular.length > 0) {
           this.isPopular = true;
           }
       });
@@ -68,7 +68,7 @@ export class PersonalizedComponent implements OnInit {
           data = data.replace(/\n/g, '');
           data = JSON.parse(data);
           this.events_weekend = data['events'];
-          if(this.events_weekend.length > 0) {
+          if (this.events_weekend.length > 0) {
           this.isWeekend = true;
           }
 

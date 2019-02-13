@@ -1,20 +1,45 @@
-<nav class="navbar">
-
-  <a class="Home" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/']">Home
-  </a>
-
-  <div class="container">
-    &nbsp;
-    &nbsp;
-    <a class="Path-7 Events " [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','events']">Events</a>
-    <a class="Path-7 Camps" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','camps']">Camps</a>
-    <a class="Path-7 Places" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','venues']">Places</a>
-
+<div class="container-fluid">
+<nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center header-home-margin">
+  <div class="container-fluid nav-sec">
+    <div class="col-md-3 col-3">
+        <a class="navbar-brand d-flex w-50 Home-header">
+            <label class="cursor" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/']">Home</label>
+          </a>
+    </div>
+    <div class="col-md-6 col-6">
+        <div class="navbar-collapse w-100">
+            <ul class="navbar-nav w-100 justify-content-center navbar-nav-spaces">
+                <li class="nav-item">
+                    <a class="nav-link Home-header" [routerLinkActive]="['active']" 
+                    [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','events']">Events</a>
+                </li>
+              
+                <li class="nav-item ">
+                  
+                    <a class="nav-link Home-header" [routerLinkActive]="['active']"
+                     [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','camps']">Camps</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link Home-header " [routerLinkActive]="['active']"
+                     [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','venues']">Places</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-3 col-3">
+        <ul class="nav navbar-nav ml-auto w-100 justify-content-center">
+         
+            <li class="nav-item sign">
+              <button class="btn path-38 Sign-up" [routerLink]="['/','sign-up']">Sign up !</button>
+            </li>
+        </ul>
+    </div>
   </div>
-  <button class="Path-38 Sign-up" [routerLink]="['/','sign-up']">Sign up !</button>
+   
+    <!-- <a  class="navbar-brand d-flex w-50 Home-header" >Home </a> -->
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+        <span class="navbar-toggler-icon"></span>
+    </button> -->
+    
 </nav>
-<br>
-<br>
-<br>
-<br>
-<br>
+</div>
