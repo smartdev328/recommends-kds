@@ -46,12 +46,9 @@ export class VenueListingComponent implements OnInit {
     } else {
       let url = '';
       if (this.category === undefined ) {
-      //  url = 'https://kin-api-dev.kinparenting.com/venues/' ;
-      //live
-        url = "http://ec2-54-193-55-70.us-west-1.compute.amazonaws.com/venues/?limit=25"; 
-
+      	url = 'https://kin-api-dev.kinparenting.com/venues/?limit=100' ;
      } else {
-        url = 'http://ec2-54-193-55-70.us-west-1.compute.amazonaws.com/venues/?categories=' + this.category;
+        url = 'https://kin-api-dev.kinparenting.com/venues/?categories=' + this.category;
      }
       const headers = new HttpHeaders()
           .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
