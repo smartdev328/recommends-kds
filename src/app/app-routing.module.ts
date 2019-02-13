@@ -1,3 +1,4 @@
+import { HeaderComponent } from './layout/header.component';
 import { VenueListingComponent } from './venue-listing/venue-listing.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -62,6 +63,7 @@ const routes: Routes = [
   { path: 'my-kin', component: PersonalizedComponent },
   { path: 'my-kin?parent_id=', component: PersonalizedComponent },
   { path: 'terms', component: TermsComponent },
+  { path: 'header', component: HeaderComponent },
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: '' },
 ];

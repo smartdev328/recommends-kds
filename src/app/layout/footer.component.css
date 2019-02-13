@@ -1,253 +1,27 @@
-.footer {
-    position: fixed;
-    height: 100px;
-    bottom: 0;
-    width: 100%;
-}
-.full {
-    width: 100%;	
-}
-.gap {
-	height: 30px;
-	width: 100%;
-	clear: both;
-	display: block;
-}
-.footer {
-	height: auto;
-	padding-bottom: 30px;
-	position: relative;
-	width: 100%;
-	/* border-bottom: 1px solid #ef6c57; */
-	border-top: 1px solid #ef6c57;
-}
-.footer p {
-	margin: 0;
-}
-.footer img {
-	max-width: 100%;
-}
-.footer h3 {
-	border-bottom: 1px solid #eff1f4;
-	/* color: #5d5d5a; */
-	font-size: 18px;
-	font-weight: 600;
-	line-height: 27px;
-	padding: 40px 0 10px;
-	color: #5f6772;
-	text-align: center;	
 
-	font-family: Montserrat;
-  font-size: 20px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.2;
-  letter-spacing: normal;
-  text-align: center;
-  color: #5d5d5a;
-	
-}
-.footer ul {
-	font-size: 13px;
-	list-style-type: none;
-	margin-left: 0;
-	padding-left: 0;
-	margin-top: 15px;
-	text-align: center;
-	padding-left: 236px;
-}
-/* .footer ul li a {
-	padding: 0 0 5px 0;
-	display: block;
-}
-.footer a {
-	color: #78828D
-} */
-.supportLi h4 {
-	font-size: 20px;
-	font-weight: lighter;
-	line-height: normal;
-	margin-bottom: 0 !important;
-	padding-bottom: 0;
-}
-.newsletter-box input#appendedInputButton {
-	background: #FFFFFF;
-	display: inline-block;
-	float: left;
-	height: 30px;
-	clear: both;
-	width: 100%;
-}
-
-
-.social li {
-	/*background: none repeat scroll 0 0 #B5B5B5;*/
-	/*border: 2px solid #B5B5B5;*/
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	-o-border-radius: 50%;
-	-ms-border-radius: 50%;
-	border-radius: 50%;
-	float: left;
-	height: 36px;
-	line-height: 36px;
-	margin: 0 8px 0 0;
-	padding: 0;
-	text-align: center;
-	width: 36px;
-	transition: all 0.5s ease 0s;
-	-moz-transition: all 0.5s ease 0s;
-	-webkit-transition: all 0.5s ease 0s;
-	-ms-transition: all 0.5s ease 0s;
-	-o-transition: all 0.5s ease 0s;
-	
-}
-.social li:hover {
-	transform: scale(1.15) rotate(360deg);
-	-webkit-transform: scale(1.1) rotate(360deg);
-	-moz-transform: scale(1.1) rotate(360deg);
-	-ms-transform: scale(1.1) rotate(360deg);
-	-o-transform: scale(1.1) rotate(360deg);
-	text-align: center;
-}
-
-.social li a i {
-	font-size: 16px;
-	margin: 0 0 0 5px;
-	color: #EDEFF1 !important;
-}
-.footer-bottom {
-	background: #E3E3E3;
-	border-top: 1px solid #ef6c57;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-.footer-bottom p.pull-left {
-	padding-top: 6px;
-}
-
-.facebook-icon {
-    width: 41px;
-    height: 38px;
-    border-radius: 9px;
-    color: #ef6c57;
-  }
-  .instagram-icon {
-    width: 41px;
-    height: 38px;
-    border-radius: 9px;
-    color: #ef6c57;
-  }
-
-  .pinterest-icon {
-    width: 41px;
-    height: 38px;
-    border-radius: 9px;
-    color: #ef6c57;
-  }
-
-  .twitter-icon {
-    width: 41px;
-    height: 38px;
-    border-radius: 9px;
-    color: #ef6c57;
-
-
-  }
-
-.border-bottpm{
-	border-bottom: 1px solid #ef6c57;
-}
-.Path-40 {
-	width: 100%;
-	height: 204.7px;
-	/* box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.16); */
-	background-color: #ffffff;
-  }
-
-  .Rectangle-185 {
-	width: 1263.4px;
-	height: 5px;
-	background-color: #eff1f4;
-  }
-
-  .About-Us {
-	width: 110px;
-	height: 24px;
-	font-family: Montserrat;
-	font-size: 20px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: 1.2;
-	letter-spacing: normal;
-	text-align: center;
+	.footer-new{
+		border-top:1px solid #ef6c57;
+		border-bottom:1px solid #ef6c57;
+		text-align: center;
+	}
+	.company{
+		color: #5d5d5a;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	ul.links{
+		padding: 0;
+    list-style: none;
+	}
+	ul.links li a{ 
 	color: #5d5d5a;
-	padding-right: 174px;
-	text-decoration: underline;
-  }
-
-  .Contact-Us {
-	width: 110px;
-	height: 24px;
-	font-family: Montserrat;
-	font-size: 20px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: 1.2;
-	letter-spacing: normal;
-	text-align: center;
-	color: #5d5d5a;
-	padding-right: 218px;
-	text-decoration: underline;
-  }
-
-  .Help {
-	width: 47px;
-	height: 24px;
-	font-family: Montserrat;
-	font-size: 20px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: 1.2;
-	letter-spacing: normal;
-	text-align: center;
-	color: #5d5d5a;
-	padding-right: 218px;
-	text-decoration: underline;
-  }
-
-  .Privacy-Policy {
-	width: 141px;
-	height: 24px;
-	font-family: Montserrat;
-	font-size: 20px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: 1.2;
-	letter-spacing: normal;
-	text-align: center;
-	color: #5f6772;
-	padding-right: 218px;
-	text-decoration: underline;
-  }
-
-  .Terms-of-use {
-	width: 126px;
-	height: 24px;
-	font-family: Montserrat;
-	font-size: 20px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: 1.2;
-	letter-spacing: normal;
-	text-align: center;
-	color: #5f6772;
-	padding-right: 218px;
-	text-decoration: underline;
-  }
+	font-size: 20px
+}
+.social span{
+	width:50px;
+	display:inline-block;
+	margin-right: 5px;
+}
+.social span img{
+	width:100%;
+}
