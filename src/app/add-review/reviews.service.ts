@@ -14,8 +14,8 @@ export class ReviewsService {
     let url = this.URLConstants.API_URL + 'reviews/';
     return this.http.post(url , api_input);
   }
-  get_reviews_by_type (type , approved = true) {
-    const url = this.URLConstants.API_URL + 'reviews/?type=' + type + '&' + 'approved=' + approved ;
+  get_reviews_by_type (type , approved = true, entity_id) {
+    const url = this.URLConstants.API_URL + 'reviews/?type=' + type + '&' + 'approved=' + approved + '&entity_id=' + entity_id;
     return this.http.get(url);
   }
   add_analytics_actions (analytics_input: any) {
