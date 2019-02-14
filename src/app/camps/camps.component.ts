@@ -93,14 +93,14 @@ export class CampsComponent implements OnInit {
     let tab = event.tab;
     let index = event.index;
     if (index === 1 && this.user_reviews.length === 0) {
-      this.reviewService.get_reviews_by_type(TYPES_ENUM.CAMP , true).subscribe(data => {
+      this.reviewService.get_reviews_by_type(TYPES_ENUM.CAMP , true, this.camp_id).subscribe(data => {
         if ( data['status'] ) {
           this.user_reviews = data['data'];
         } else {
           this.user_reviews = [];
         }
       }, error => {
-        alert(this.campErrorMessage.GET_DATA_ERROR);
+       // alert(this.campErrorMessage.GET_DATA_ERROR);
       });
     }
   }
