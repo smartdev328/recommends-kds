@@ -73,7 +73,17 @@
     bottom: 0px;
     right: 10%;
     color: #5d5d5a;
-    top: 67%;
+    top: 72%;
+}
+.contactus {
+  font-family: Montserrat;
+  font-size: 40px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0px;
+  right: 5%;
+  color: #5d5d5a;
+  top: 74%;
 }
 
 .policy {
@@ -84,9 +94,19 @@
     bottom: 0px;
     right: 42%;
     color: #5d5d5a;
-    top: 57%;
+    top: 63%;
 }
 
+.terms_of_use {
+  font-family: Montserrat;
+  font-size: 40px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0px;
+  right: 31%;
+  color: #5d5d5a;
+  top: 59%;
+}
 .Carousel-heading {
     height: 24px;
     font-family: Montserrat;
@@ -121,9 +141,9 @@
   }
 
   .Dont-miss-out {
-    width: 156px;
-    height: 34px;
-    font-family: Poppins;
+    /* width: 156px;
+    height: 34px; */
+    font-family: Montserrat;
     font-size: 21px;
     font-weight: normal;
     font-style: normal;
@@ -132,11 +152,12 @@
     letter-spacing: normal;
     text-align: center;
     color: #ef6c57;
+        margin-right: 35%;
   }
 
-  .Dont-miss-out .Sign-up-for-our-Newsletter {
-    width: 296px;
-    height: 50px;
+  .Sign-up-for-our-Newsletter {
+    /* width: 296px;
+    height: 50px; */
     font-family: Montserrat;
     font-size: 21px;
     font-weight: bold;
@@ -147,7 +168,7 @@
     text-align: center;
     color: #ef6c57;
     position: absolute;
-    right: 22%;
+    right: 46%;
   }
 
   .text-align-center {
@@ -182,8 +203,8 @@
     cursor: pointer;
   }
   .sign-up-position {
-    margin-left: 38%;
-    margin-top: 30px;
+    margin-left: 20%;
+    margin-top: 35px;
   }
 
   .home-events-camps-place-size {
@@ -235,4 +256,9 @@
   video{
     width: 100%;
     height:87%
+  }
+  .Rectangle-172{
+  opacity: 0.3;
+  border-radius: 20px;
+  background-color: #d1d1d5;
   }
