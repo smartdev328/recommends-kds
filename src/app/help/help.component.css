@@ -93,3 +93,19 @@
     height: 5px;
     background-color: #ef6c57;
 }
+
+.heading{
+    color: #ef6c57;
+   
+}
+p {
+    font-family: Montserrat;
+    font-size: 21px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.19;
+    letter-spacing: normal;
+    text-align: left;
+    /* color: #5d5d5a; */
+}

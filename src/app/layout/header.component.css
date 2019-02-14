@@ -30,10 +30,10 @@
    
  }
 
-.navbar-nav-spaces > li{
+.navbar-nav > li{
   /* padding-left:30px; */
-  padding-right: 18%;
-  display: inline;
+  padding-right: 18% !important;
+  
 }
 
 .Sign-up {
@@ -46,6 +46,7 @@
   letter-spacing: normal;
   border-radius: 28px;
   color: white;
+  
  
 }
 .path-38{
@@ -61,3 +62,9 @@
 .nav-sec{
   padding:0px;
 }
+
+.nav-right{
+  padding-left:97%;
+
+}
+
