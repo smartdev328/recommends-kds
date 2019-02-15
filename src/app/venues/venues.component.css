@@ -265,3 +265,10 @@ i.icon-grey {
     color: grey;
 }
 .material-icons.md-dark.md-inactive { color: rgba(8, 241, 19, 0.897); }
+.wrap{
+    display: block;
+    margin-top: -2%;
+    padding-left: 4%;
+    width: 50%;
+    word-wrap: break-word;
+}

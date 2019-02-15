@@ -1,6 +1,6 @@
 
 
-<mat-card class="venue-card">
+<mat-card class="venue-card" *ngIf="venue">
     <mat-card-header>
         <mat-card-title class="venue-header">{{ venue.name }}</mat-card-title>
     </mat-card-header>
@@ -48,15 +48,15 @@
     </mat-card-content>
 </mat-card>
 
-<mat-tab-group  class="about-reviews-margin" (selectedTabChange)="show_reviews($event)" [selectedIndex]="selectedIndex">
+<mat-tab-group  class="about-reviews-margin" (selectedTabChange)="show_reviews($event)" [selectedIndex]="selectedIndex"  *ngIf="venue">
     <mat-tab label="About">
         <mat-card>
             <mat-card-content>
-                <p class="basic-information">
+                <p class="basic-information" *ngIf="category" >
                     <span><i class="icon material-icons material-icon-black-color">pets</i></span>
                     <span class="text">{{category}}</span>
                 </p>
-                <p class="basic-information">
+                <p class="basic-information" *ngIf="city" >
                     <span><i class="icon material-icons material-icon-black-color">location_on</i></span>
                     <span class="text">{{city}}, {{state}}</span>
                 </p>
@@ -66,16 +66,16 @@
                     <span class="text">Recomendations</span>
                 </p>
 
-                <p class="basic-information">
+                <p class="basic-information" *ngIf="rating">
                     <span><i class="icon material-icons material-icon-black-color">star</i></span>
-                    <span class="text">{{avg_rating}} / {{google_rating_out_of}} ({{place_reviews.length}} Google Reviews)</span>
+                    <span class="text">{{rating}} / {{google_rating_out_of}}</span>
                 </p>
 
-                <p class="basic-information">
+                <p class="basic-information "  *ngIf="venue.description">
                     <span><i class="icon material-icons">infor</i></span>
-                    <span class="text">{{venue.description}}</span>
+                    <span class="text wrap" class="wrap" >{{venue.description}}</span>
                 </p>
-                <p class="basic-information">
+                <p class="basic-information" *ngIf="parking">
                     <span><i class="icon material-icons">motorcycle</i></span>
                     <span class="text">{{parking}}</span>
                 </p>
@@ -113,7 +113,7 @@
                     <span class="text">{{venue.misc.address}}</span>
                 </p>
 
-                <p class="basic-information">
+                <p class="basic-information" *ngIf="timings_array">
                     <span><i class="icon material-icons material-icon-black-color">access_time</i></span>
                     <span class="text" *ngIf="isShowMoreHours">Open today - {{timings_array[0]}}</span>
                     <span class="text" *ngIf="isShowMoreHours==false">{{timings_array}}</span>
