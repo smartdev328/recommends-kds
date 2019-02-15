@@ -22,6 +22,7 @@ export class VenuesComponent implements OnInit {
   public parking: String;
   public tips_for_parent: String;
   public rating: Number;
+  public place_reviews_length: Number;
   public jsonMiscData: String;
   public miscData: any;
   public venueConstatnts = new VenueConstants();
@@ -97,33 +98,42 @@ export class VenuesComponent implements OnInit {
           this.venue = data['venue'];
           let temp_cat = this.venue.category;
           this.category = this.venue.category !== undefined && this.venue.category.length > 0 ? this.venue.category.join() :
-              this.venueErrorMessage.NO_INFO_AVAILABLE;
+              0;
           this.venue.perm_close = this.venue.perm_closed === true ? '1' : '0';
           this.venue.sec_cat = this.venue.sec_cat;
           this.city = this.venue.city;
           this.state = this.venue.state;
           this.parking = this.venue.misc.parking === undefined || this.venue.misc.parking.trim().length === 0 ?
-              this.venueErrorMessage.NO_INFO_AVAILABLE : this.venue.misc.parking;
+             0 : this.venue.misc.parking;
           this.tips_for_parent = this.venue.misc.tips_for_parent === '' ? '' : this.venue.misc.tips_for_parent;
-          this.rating = this.venue.misc.rating;
+          this.rating = this.venue.rating  === '' ? 0 : this.venue.rating;
           this.jsonMiscData = JSON.stringify(this.venue.misc);
           this.miscData = this.venue.misc;
           this.venue.description = this.venue.description === undefined || this.venue.description.trim().length === 0 ?
-              this.venueErrorMessage.NO_INFO_AVAILABLE  : this.venue.description ;
+              0  : this.venue.description ;
           this.venue.image_url  = this.venue.image_url === '' || this.venue.image_url === undefined ?
               '../../assets/venue_default_image.png'
               : this.venue.image_url;
           if (this.venue.timings === null || this.venue.timings === '' || this.venue.timings === 0) {
             this.isShowMoreHours = false;
-            this.timings_array = 'No information available';
+            this.timings_array = 0;
           } else {
             this.isShowMoreHours = true;
             this.timings_array = this.create_timing_json(this.venue.timings);
           }
           this.place_full_info = this.venue.misc.place_full_info;
           this.place_reviews = this.place_full_info === undefined ? [] : this.place_full_info.reviews ;
-          this.avg_rating = this.calculate_avg_rating(this.place_reviews);
+          if (this.place_reviews !== undefined) {
+            this.place_reviews_length = this.place_reviews.lenght;
+            this.avg_rating = this.calculate_avg_rating(this.place_reviews);
+          } else {
+            this.avg_rating = 0;
+            this.place_reviews_length = 0;
+          }
           this.add_analytics_data('CLICK');
+        } else {
+          this.venue = 0;
+          alert(this.venueErrorMessage.NO_INFO_AVAILABLE);
         }
       }, error => {
         alert(this.venueErrorMessage.GET_DATA_ERROR);
