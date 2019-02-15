@@ -127,7 +127,7 @@ export class CampsComponent implements OnInit {
         'input' : {
           'entity_type' : ENTITY_TYPES_ENUM.CAMP,
           'entity_id' : this.camp_id,
-          'parent_id' : 1,
+          'parent_id' : this.parent_id,
           'review' : this.review,
           'is_approved' : false
         }
