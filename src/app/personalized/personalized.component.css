@@ -100,3 +100,25 @@
   }
 
     .container {max-width: 1317px; } 
+
+
+  .hr-border {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border: 0;
+      border-top: 2px solid #c0c0c0
+  }
+  .font_black_weight {
+      color: black;
+      font-weight: 900
+  }
+  .text-center {
+      text-align: center;
+  }
+
+  .see-more {
+      cursor: pointer;
+      color: #908989;
+      font-size: x-large;
+      font-family: initial;
+  }
