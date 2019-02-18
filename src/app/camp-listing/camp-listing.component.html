@@ -1,4 +1,28 @@
-<div class="banner">
+<app-layout-header></app-layout-header>
+
+<div class="container-fluid">
+  <div class="main-section">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="banner-heading">
+          <div><h1 class="main-heading">Camps</h1></div>
+            <div class="info">
+              Your personal parenting assistant.<br>
+              Discover products and experiences your kids will love!
+            </div>
+      </div>
+    </div>
+    <div class="col-md-5 d-none d-lg-block">
+      <div class="box-gradient">
+        <div class="main-box">
+            <img src="../../assets/isometric_pics/camps.png" width="400px" class="icon3a" />
+        </div>
+      </div>
+    </div>
+</div>
+        <br/>
+
+<!-- <div class="banner">
   <p class="link-to-kin">
     <span>
       To discover and plan for many more family-friendly camps personalized to you, chat with <b class="kin-link" (click)="kin_redirect()">Kin on Messenger</b>
@@ -6,6 +30,7 @@
     <img alt="kin logo" src="assets/kin_logo.jpeg" class="logo">
   </p>
 </div>
+-->
 <div class="event-listing-card">
   
       <img *ngIf="!isExplore"  src="assets/loading.gif"  class="loading-gif">
@@ -15,3 +40,5 @@
     </mat-card-actions>
      
 </div>
+<br><br>
+<app-layout-footer></app-layout-footer>
