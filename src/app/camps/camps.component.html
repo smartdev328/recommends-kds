@@ -1,142 +1,168 @@
-<mat-card class="event-card" *ngIf="campStatus">
-  <mat-card-header>
-    <mat-card-title class="camps-header">{{ camp.name }}</mat-card-title>
-  </mat-card-header>
-  <img mat-card-image class="desktop-resize"  [src]=camp.image_url alt="Photo of the camps">
-  <mat-card-content>
 
-    <div class="container"
-    fxLayout
-    fxLayout.xs="row"
-    fxLayoutAlign="center"
-    fxLayoutGap="33px"
-    fxLayoutGap.xs="10px">
-   <div class="item item-1" fxFlex="10%" title="Save"  (click)="website_redirect()" *ngIf="isSaveVisible != true">
-       <span><i class="icon material-icons mouse-pointer">bookmark_border</i></span>
-       <span class="text link-text"></span>
-   </div>
-   <div class="item item-1" fxFlex="10%" title="Saved"  *ngIf="isSaveVisible">
-    <span><i class="icon material-icons md-dark md-inactive">bookmark_border</i></span>
-    <span class="text link-text"></span>
-</div>
-
-
-   <div class="item item-3" fxFlex="10%" title="Add to Calendar" (click)="calendar_redirects()" hidden>
-       <span><i class="icon material-icons mouse-pointer">calendar_today</i></span>
-       <span class="text link-text"></span>
-   </div>
-
-   <div class="item item-3" fxFlex="10%"  (click)="add_review_redirect(2)" title="Add Review">
-       <span><i class="icon material-icons mouse-pointer">message</i></span>
-       <span class="text link-text"></span>
-   </div>
-
-</div>
-<mat-tab-group class="tabs about-reviews-margin"  (selectedTabChange)="show_reviews($event)"  [selectedIndex]="selectedIndex">
-        <mat-tab label="About" >  
-            <mat-card>
-                <mat-card-content>
-                    <p class="basic-information">
-                        <span><i class="icon material-icons red-color">accessibility_new</i></span>
-                        <span class="text">{{format_age()}}</span>
-                      </p>
-                      <p class="description">
-                        {{camp.description}}
-                      </p>
-                    <p class="event-details">
-                        <span><i class="icon material-icons" title="Category">pets</i></span>
-
-                        <span class="lower-text">{{category}}</span>
-                    </p>
-                    <p class="event-details" title="Types Of Activities">
-                        <span><i class="icon material-icons">local_activity</i></span>
-                        <span class="lower-text">{{camp.activity_types}}</span>
-               
-                       
-                    </p>
-                    <p class="event-details" title="Lunch">
-                        <span><i class="icon material-icons">fastfood</i></span>
-                        <span class="lower-text"><b>Lunch :</b>{{camp.lunch}}</span>
-                      
-                    </p>
-                    <p class="event-details" title="Offfer During">
-                        <span><i class="icon material-icons">local_offer</i></span>
-                       
-                        <span class="lower-text">{{camp.offered_during}}</span>
-                      </p>
-                    <p class="event-details" title="Cities">
-                        <span><i class="icon material-icons">location_on</i></span>
-                       
-                        <span class="lower-text">{{camp.cities}}</span>
-                      </p>
-           
-          
-                    <p class="event-details" title="Time">
-                        <span><i class="icon material-icons">access_time</i></span>
-                        <span class="lower-text">{{camp.timings}}</span>
-               
-                      
-                       
-                    </p>
-          
-                    <mat-card-actions class="details-button-space">
-                        <button mat-button class="details-button" (click)="event_redirect()">MORE DETAILS</button>
-                      </mat-card-actions>
-                    </mat-card-content>
-        </mat-card>
-        </mat-tab>
-   <mat-tab label="Reviews">
-        <mat-card>
-          <div class="margin-review">
-              <p class="review-width" *ngFor="let current_review of user_reviews;">
-                  {{current_review.review}}
-              </p>
-            </div>
-        </mat-card>
-    </mat-tab>
-    <mat-tab label="Add Review" *ngIf="is_parent_id">
-      <mat-card>
-           <div class="container">
-            <div class="addReview">
-              <div class="row review-margin-left">
-                <h4 class="review-margin">Write a review</h4>
+<app-layout-header></app-layout-header>
+<div  class="container-fluid">
+  <div  class="main-section">
+      <mat-card class="event-card" *ngIf="campStatus">
+          <div class="row">
+              <div class="col-md-12">
+                  <mat-card-header>
+                      <mat-card-title class="camps-header">{{ camp.name }}</mat-card-title>
+                    </mat-card-header>
               </div>
-                <div class="form-group review-margin">
-                  <textarea class="form-control" rows="5" id="review" placeholder="Add review or tips to other parents"
-                    [(ngModel)]="review"   required (change)="validate_review()"></textarea>
-                  <small id="miscHelp" class="form-text text-muted italic-font-style">We respect your
-                    privacy. Your name will not be shown to other
-                    users
-                  </small>
-                  <div *ngIf="isErrorVisible"
-                      class="alert alert-danger">
-                      <div>
-                          {{errorMessage }}
-                      </div>
-                    </div>
-                  <div *ngIf="isSuccessVisible"
-                      class="alert alert-success">
-                      <div>
-                          {{errorMessage }}
-                      </div>
-                    </div>
-                </div>
-              <div class="row review-margin-left">
-                
-                <div class="form-group review-margin">
-                  <button type="button" class="btn btn-danger" (click)="add_review()">Submit</button>
-                </div>
-              </div>
-              
-       
           </div>
-        </div> 
+          <br>
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4"> <img mat-card-image class="header-image"  [src]=camp.image_url alt="Photo of the camps"></div>
+            <div class="col-md-4"></div>
+          </div>
+          <hr class="hr-Rectangle-200">
+          <mat-card-content>
+                  <div class="row">
+                
+                   <div class="col">
+                      <div class="item item-1 margin-center_width cursor"  title="Save"  (click)="website_redirect()" *ngIf="isSaveVisible != true">
+                          <img src="../../assets/icons/noun_bookmark_1.png"/>
+                      </div>
+                        <div class="margin-center_width" title="Saved"  *ngIf="isSaveVisible">
+                            <img   class="margin-center" src="../../assets/icons/noun_bookmark_2.png"/>
+                            
+                        </div>
+                   </div>
+                 
+                   <div class="col">
+                      <div class="item item-3 cursor"  (click)="add_review_redirect(2)" title="Add Review"> 
+                          <img src="../../assets/icons/noun_review_1.png"/>
+                      </div>
+                   </div>
+                   
+                  </div>
+               
+            <div class="container">
+              
+           <div class="item item-3" fxFlex="10%" title="Add to Calendar" (click)="calendar_redirects()" hidden>
+               <span><i class="icon material-icons mouse-pointer">calendar_today</i></span>
+               <span class="text link-text"></span>
+           </div>
         
-      </mat-card>
-    </mat-tab>
-    
-        <!-- <mat-tab label="Fourth">   </mat-tab> -->
-      </mat-tab-group>
-
-  </mat-card-content>
-  </mat-card>
+           <!-- <div class="item item-3" fxFlex="10%"  (click)="add_review_redirect(2)" title="Add Review">
+              <img src="../../assets/icons/noun_review_1.png"/>
+           </div>
+         -->
+        </div>
+        <mat-tab-group class="tabs about-reviews-margin"  (selectedTabChange)="show_reviews($event)"  [selectedIndex]="selectedIndex">
+                <mat-tab label="About" >  
+                    <mat-card>
+                        <mat-card-content>
+                            <p class="basic-information">
+                                <span><i class="icon material-icons red-color">accessibility_new</i></span>
+                                <span class="text">{{format_age()}}</span>
+                              </p>
+                              <p class="description">
+                                {{camp.description}}
+                              </p>
+                            <p class="event-details">
+                                <span><i class="icon material-icons" title="Category">pets</i></span>
+        
+                                <span class="lower-text">{{category}}</span>
+                            </p>
+                            <p class="event-details" title="Types Of Activities">
+                                <span><i class="icon material-icons">local_activity</i></span>
+                                <span class="lower-text">{{camp.activity_types}}</span>
+                       
+                               
+                            </p>
+                            <p class="event-details" title="Lunch">
+                                <span><i class="icon material-icons">fastfood</i></span>
+                                <span class="lower-text"><b>Lunch :</b>{{camp.lunch}}</span>
+                              
+                            </p>
+                            <p class="event-details" title="Offfer During">
+                                <span><i class="icon material-icons">local_offer</i></span>
+                               
+                                <span class="lower-text">{{camp.offered_during}}</span>
+                              </p>
+                            <p class="event-details" title="Cities">
+                                <span><i class="icon material-icons">location_on</i></span>
+                               
+                                <span class="lower-text">{{camp.cities}}</span>
+                              </p>
+                   
+                  
+                            <p class="event-details" title="Time">
+                                <span><i class="icon material-icons">access_time</i></span>
+                                <span class="lower-text">{{camp.timings}}</span>
+                       
+                              
+                               
+                            </p>
+                  
+                            <mat-card-actions class="details-button-space">
+                                <button mat-button class="details-button" (click)="event_redirect()">MORE DETAILS</button>
+                              </mat-card-actions>
+                            </mat-card-content>
+                </mat-card>
+                </mat-tab>
+           <mat-tab label="Reviews">
+                <mat-card>
+                  <div class="margin-review">
+                    <div class="row">
+                      <div class="col-md-2"></div>
+                      <div class="col-md-8">
+                          <div class="review-width" *ngFor="let current_review of user_reviews;">
+                              {{current_review.review}}
+                          </div>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+                    </div>
+                </mat-card>
+            </mat-tab>
+            <mat-tab label="Add Review" *ngIf="is_parent_id">
+              <mat-card>
+                    <div class="addReview">
+                        <div class="form-group review-margin">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8">
+                                    <h4 class="review-heading" align="center">Write a review</h4>
+                                    <textarea class="form-control" rows="5" id="review" placeholder="Add review or tips to other parents"
+                                    [(ngModel)]="review"   required (change)="validate_review()"></textarea>
+                                  <small id="miscHelp" class="form-text text-muted italic-font-style">We respect your
+                                    privacy. Your name will not be shown to other
+                                    users
+                                  </small>
+                                  <div *ngIf="isErrorVisible"
+                                      class="alert alert-danger">
+                                      <div>
+                                          {{errorMessage }}
+                                      </div>
+                                    </div>
+                                  <div *ngIf="isSuccessVisible"
+                                      class="alert alert-success">
+                                      <div>
+                                          {{errorMessage }}
+                                      </div>
+                                    </div>
+                                    <div class="form-group review-margin btn-sec">
+                                        <button type="button" class="btn btn-danger" (click)="add_review()">Submit</button>
+                                      </div>
+                                </div>
+                              </div>
+                        </div>
+                  </div>
+               
+                
+              </mat-card>
+            </mat-tab>
+            
+                <!-- <mat-tab label="Fourth">   </mat-tab> -->
+              </mat-tab-group>
+        
+          </mat-card-content>
+        </mat-card>
+        <hr class="hr-Rectangle-200">
+  </div>
+</div>
+  <br> <br>
+<app-layout-footer></app-layout-footer>
