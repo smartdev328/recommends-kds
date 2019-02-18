@@ -1,4 +1,26 @@
-<div class="banner">
+<app-layout-header></app-layout-header>
+  
+<div class="container-fluid">
+  <div class="main-section">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="banner-heading">
+          <div><h1 class="main-heading">Places</h1></div>
+            <div class="info">
+              Family-friendly places your kids will love!<br>
+            </div>
+      </div>
+    </div>
+    <div class="col-md-5 d-none d-lg-block">
+      <div class="box-gradient">
+        <div class="main-box">
+            <img src="../../assets/isometric_pics/places.png" width="400px" class="icon3a" />
+        </div>
+      </div>
+    </div>
+</div>
+<br/>
+<!-- <div class="banner">
   <p class="link-to-kin">
     <span>
       To discover and plan for many more family-friendly venues personalized to you, chat with <b class="kin-link" (click)="kin_redirect()">Kin on Messenger</b>
@@ -6,6 +28,7 @@
     <img alt="kin logo" src="assets/kin_logo.jpeg" class="logo">
   </p>
 </div>
+-->
 <div class="event-listing-card">
 
       <img src="assets/loading.gif" *ngIf="!isExplore" class="loading-gif">
@@ -16,3 +39,5 @@
     </mat-card-actions>
      
 </div>
+<br><br>
+<app-layout-footer></app-layout-footer>

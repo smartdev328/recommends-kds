@@ -24,14 +24,14 @@
   }
 }
 .active{
-  border-bottom: 5px solid #ef6c57;
+  border-bottom: 3px solid #ef6c57;
 }
 .sign-up{
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.16);
   background-color: #5d5d5a;
   border-radius: 30px;
   color: #eff1f4;
   font-size: 24px;
   font-weight: 100;
-  padding: 10px 30px;
+  padding: 10px 10px;
 }

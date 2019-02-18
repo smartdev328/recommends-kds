@@ -1,4 +1,27 @@
-<div class="banner">
+<app-layout-header></app-layout-header>
+    
+<div class="container-fluid">
+  <div class="main-section">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="banner-heading">
+          <div><h1 class="main-heading">Events</h1></div>
+            <div class="info"> 
+              Family-friendly events around you!<br>
+            </div>
+      </div>
+    </div>
+    <div class="col-md-5 d-none d-lg-block">
+      <div class="box-gradient">
+        <div class="main-box">
+            <img src="../../assets/isometric_pics/events.png" width="400px" class="icon3a" />
+        </div>
+      </div>
+    </div>
+</div>
+<br/>
+
+<!-- <div class="banner">
   <p class="link-to-kin">
     <span>
       To discover and plan for many more family-friendly events personalized to you, chat with <b class="kin-link" (click)="kin_redirect()">Kin on Messenger</b>
@@ -6,6 +29,7 @@
     <img alt="kin logo" src="assets/kin_logo.jpeg" class="logo">
   </p>
 </div>
+-->
 <div class="event-listing-card">
   <mat-tab-group mat-stretch-tabs disableRipple (selectedTabChange)="onTabClick($event)">
     <mat-tab label="Explore">
@@ -28,5 +52,6 @@
   <mat-card-actions class="details-button-space mouse-pointer" *ngIf="showMore">
       <button mat-button class="details-button mouse-pointer" (click)="loadMore()">Show More</button>
   </mat-card-actions>
-
 </div>
+<br><br>
+<app-layout-footer></app-layout-footer>
