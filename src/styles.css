@@ -332,9 +332,47 @@
   .banner-heading .main-heading{
     font-size: 110px;
   }
+  .sign-up {box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.16);
+    background-color: #5d5d5a;
+    border-radius: 30px;
+    color: #eff1f4;
+    font-size: 24px;
+    font-weight: 100;
+    padding: 0px 6px !important;
+  }
 }
 
 .icon3a {
   width: 622px;
   height: 391px;
 }
+
+.mat-tab-label .mat-tab-label-content{
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-align: center;
+  color: #5d5d5a;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+  height: 5px;
+  background-color: rgb(239, 108, 87);
+}
+.mat-card-title {
+font-family: Montserrat;
+font-size: 32px;
+font-weight: bold;
+font-style: normal;
+font-stretch: normal;
+line-height: 1.22;
+letter-spacing: normal;
+text-align: center;
+color: #5d5d5a;
+}
+
+

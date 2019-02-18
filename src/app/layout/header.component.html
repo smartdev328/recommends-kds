@@ -6,20 +6,21 @@
     <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
         <ul class="navbar-nav mx-auto text-center">
             <li class="nav-item">
-                <a class="nav-link Home-header" [routerLinkActive]="['active']" 
+                <a class="nav-link navbar-brand mr-0 Home-header" [routerLinkActive]="['active']" 
                     [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','events']">Events</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link Home-header" [routerLinkActive]="['active']"
+                <a class="nav-link navbar-brand mr-0 Home-header" [routerLinkActive]="['active']"
                 [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','camps']">Camps</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link Home-header " [routerLinkActive]="['active']"
+                <a class="nav-link navbar-brand mr-0 Home-header " [routerLinkActive]="['active']"
                 [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','venues']">Places</a>
             </li>
         </ul>
         <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap">
-            <li class="nav-item"><a class="nav-link nav-button" href=""> <button class="btn path-38 sign-up" [routerLink]="['/','sign-up']">Sign up !</button></a> </li>
+            <li class="nav-item"><a class="nav-link nav-button" href=""  
+                 [routerLink]="['/','sign-up']"> <button class="btn path-38 sign-up">Sign up !</button></a> </li>
         </ul>
     </div>
 </nav>
