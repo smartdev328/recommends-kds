@@ -269,7 +269,7 @@
   .banner-heading{
     text-align: center;
     font-family: Montserrat;
-    padding-top: 50px;
+    padding-top: 20px;
   }
 .banner-heading .main-heading{
   color: #ef6c57;
@@ -277,17 +277,20 @@
   font-family: BubblegumSans;
 }
 .banner-heading .info{
-  color: #5d5d5a;
+  //color: #5d5d5a;
+  color: #FFFFFF;
   font-size: 21px;
   font-weight: 400;
   padding: 15px 0px 30px 0px;
 }
 .dont-miss{
-  color: #ef6c57;
+  //color: #ef6c57;
+  color: #FFFFFF;
   font-size: 21px;
 }
 .newsletter{
-  color: #ef6c57;
+  //color: #ef6c57;
+  color: #FFFFFF;
   font-weight: 700;
   font-size: 21px;
 }
@@ -302,7 +305,7 @@
   border-radius: 30px;
 }
 .main-box img{
-  width: 80%;
+  width: 100%;
 }
 .carousel{
   margin-bottom: 15px;
@@ -319,8 +322,9 @@
 .box-gradient .main-box{
   width:100%;
   height:100%;
-  background-image: radial-gradient(red, yellow, green);
-} */
+  padding-left: 20px;
+  background: radial-gradient(ellipse, #6DD5FA 30%, #FFFFFF, #FFFFFF); 
+}*/ 
 
 @media (max-width:600px){
   .banner-heading{
@@ -343,20 +347,25 @@
 }
 
 .icon3a {
-  width: 622px;
-  height: 391px;
+  width: 722px;
+  height: 351px;
+}
+
+.bkgtry {
+	background-color: #067bc2;
 }
 
 .mat-tab-label .mat-tab-label-content{
   font-family: Montserrat;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.2;
   letter-spacing: normal;
   text-align: center;
-  color: #5d5d5a;
+  //color: #5d5d5c;
+  color: #343a40;
 }
 
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{

@@ -1,5 +1,5 @@
-
 <app-layout-header></app-layout-header>
+
 <div  class="container-fluid">
   <div  class="main-section">
       <mat-card class="event-card" *ngIf="campStatus">
@@ -19,23 +19,21 @@
           <hr class="hr-Rectangle-200">
           <mat-card-content>
                   <div class="row">
-                
-                   <div class="col">
-                      <div class="item item-1 margin-center_width cursor"  title="Save"  (click)="website_redirect()" *ngIf="isSaveVisible != true">
-                          <img src="../../assets/icons/noun_bookmark_1.png"/>
-                      </div>
-                        <div class="margin-center_width" title="Saved"  *ngIf="isSaveVisible">
-                            <img   class="margin-center" src="../../assets/icons/noun_bookmark_2.png"/>
-                            
-                        </div>
-                   </div>
-                 
-                   <div class="col">
-                      <div class="item item-3 cursor"  (click)="add_review_redirect(2)" title="Add Review"> 
-                          <img src="../../assets/icons/noun_review_1.png"/>
-                      </div>
-                   </div>
-                   
+            		<div class="col-1 col-md-3"></div>
+                   	<div class="col-5 col-md-3">
+                      		<div class="cursor"  title="Save"  (click)="website_redirect()" *ngIf="isSaveVisible != true">
+                          		<img src="../../assets/icons/noun_bookmark_1.png" class="img-fluid actionIcon"/>
+                      		</div>
+                        	<div class="margin-center_width" title="Saved"  *ngIf="isSaveVisible">
+                            		<img class="actionIcon" src="../../assets/icons/noun_bookmark_2.png"/>
+                        	</div>
+                   	</div>
+                   	<div class="col-5 col-md-3">
+                      		<div class="item item-3 cursor"  (click)="add_review_redirect(2)" title="Add Review"> 
+                          		<img src="../../assets/icons/noun_review_1.png" class="img-fluid actionIcon"/>
+                      		</div>
+                   	</div>
+            		<div class="col-1 col-md-3"></div>
                   </div>
                
             <div class="container">
