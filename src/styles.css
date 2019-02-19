@@ -277,19 +277,16 @@
   font-family: BubblegumSans;
 }
 .banner-heading .info{
-  //color: #5d5d5a;
   color: #FFFFFF;
   font-size: 21px;
   font-weight: 400;
   padding: 15px 0px 30px 0px;
 }
 .dont-miss{
-  //color: #ef6c57;
   color: #FFFFFF;
   font-size: 21px;
 }
 .newsletter{
-  //color: #ef6c57;
   color: #FFFFFF;
   font-weight: 700;
   font-size: 21px;
@@ -364,7 +361,6 @@
   line-height: 1.2;
   letter-spacing: normal;
   text-align: center;
-  //color: #5d5d5c;
   color: #343a40;
 }
 
