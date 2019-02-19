@@ -341,6 +341,9 @@
     font-weight: 100;
     padding: 0px 6px !important;
   }
+  .header-image{
+    width:100% !important;
+  }
 }
 
 .icon3a {
@@ -354,7 +357,7 @@
 
 .mat-tab-label .mat-tab-label-content{
   font-family: Montserrat;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
@@ -369,15 +372,24 @@
   background-color: rgb(239, 108, 87);
 }
 .mat-card-title {
-font-family: Montserrat;
-font-size: 32px;
-font-weight: bold;
-font-style: normal;
-font-stretch: normal;
-line-height: 1.22;
-letter-spacing: normal;
-text-align: center;
-color: #5d5d5a;
+  font-family: Montserrat;
+  font-size: 32px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.22;
+  letter-spacing: normal;
+  text-align: center;
+  color: #5d5d5a;
+  padding-right: 2%;
 }
 
 
+.margin-center_width{
+  margin: auto;
+  max-width: 1%;
+}
+
+.cursor{
+  cursor: pointer;
+}

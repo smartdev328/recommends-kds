@@ -41,6 +41,7 @@ export class VenuesComponent implements OnInit {
   public errorMessage: String;
   public url: String;
   public is_parent_id: Boolean;
+  public is_review_click: Boolean;
   public isSubscribeVisible: Boolean;
   public isSaveVisible: Boolean;
   public google_place_reviews_count: number;
@@ -65,6 +66,7 @@ export class VenuesComponent implements OnInit {
       this.errorMessage = '';
       this.url = this.router.url;
       this.is_parent_id = false;
+      this.is_review_click = false;
       this.user_reviews = [];
       this.isShowMoreHours = false;
       this.isSubscribeVisible = false;
@@ -85,6 +87,7 @@ export class VenuesComponent implements OnInit {
           this.get_venue_data(this.venue_id);
       }
         if ( this.venue_id > 0 && this.venue_id !== undefined && !isNaN( this.parent_id)) {
+          this.is_parent_id = true;
           this.is_subscription_venue();
           this.is_save_action();
       }
@@ -209,6 +212,7 @@ export class VenuesComponent implements OnInit {
   add_review_redirect(index: number): void {
     if (!isNaN( this.parent_id)) {
        this.is_parent_id = true;
+       this.is_review_click = true;
        this.selectedIndex = index;
      }
   }

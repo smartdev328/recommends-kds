@@ -20,6 +20,7 @@ export class CampsComponent implements OnInit {
   camp: any;
   isLoaded: boolean = false;
   public is_parent_id: Boolean;
+  public is_review_click:Boolean;
   public isErrorVisible: Boolean;
   public isSuccessVisible: Boolean;
   public errorMessage: String;
@@ -44,7 +45,9 @@ export class CampsComponent implements OnInit {
     this.get_camp_details();
     if (!isNaN( this.parent_id)) {
       this.is_save_action();
+      this.is_parent_id = true;
    }
+   this.is_review_click = false;
     this.isErrorVisible = false;
     this.isSuccessVisible = false;
     this.errorMessage = '';
@@ -117,6 +120,7 @@ export class CampsComponent implements OnInit {
   add_review_redirect(index: number): void {
     if (!isNaN( this.parent_id)) {
        this.is_parent_id = true;
+       this.is_review_click = true;
        this.selectedIndex = index;
      }
   }

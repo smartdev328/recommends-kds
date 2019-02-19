@@ -12,11 +12,6 @@
     font-weight: bold;
     font-size: 18px;
 }
-  
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-}
 
 .event-details {
     /* border-top: 1px solid; */
@@ -30,9 +25,8 @@
 }
 
 .actionIcon {
-  width: 40px;
-  height: 40px;
-}
+    height: 54px;
+  }
 
 .link-text {
     color: blue;
@@ -65,11 +59,33 @@
 
     .details-button {
         color: white;
-        background-color: rgb(237, 45, 86);
+        background-color:#ef6c57;
         border: none;
         padding: 5%;
         margin-top: 5%;
         border-radius: 10px;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
+  
+    .mat-card-image {
+        width: calc(100% + 32px);
+        margin: 0 0px 0px 0px;
+        border: 1px solid  #495057;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        margin-bottom: 15px;
+        min-height: 249px;
+        max-height: auto;
+        float: left;
+        margin: 3px;
+        padding: 3px;
+        max-width: 100%;
+        height: auto;
     }
 }
 
@@ -94,11 +110,17 @@
 
     .details-button {
         color: white;
-        background-color: rgb(237, 45, 86);
+        background-color:#ef6c57;
         border: none;
         padding: 2%;
         margin-top: 3%;
         border-radius: 10px;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
     }
 }
 
@@ -127,7 +149,12 @@
         border: none;
         padding: 1.5%;
         margin-top: 2%;
+        font-family: Montserrat;
         border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
     }
     .about-reviews-margin{
         
@@ -135,6 +162,21 @@
     .addReview{
         margin-left : 29%;
     }
+
+    .header-image{
+        width:80% !important;
+        border: 1px solid  #495057;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        margin-bottom: 15px;
+        min-height: 249px;
+        max-height: auto;
+        float: left;
+        margin: 3px;
+        padding: 3px;
+        max-width: 100%;
+        height: auto;
+      }
 }
 
 ::ng-deep .tabs .mat-tab-list .mat-tab-labels {
@@ -145,6 +187,10 @@
 }
 .description{
      margin-left: 7%;
+     display: block;
+    padding-left: 4%;
+    width: 50%;
+    word-wrap: break-word;
 }
 
 .review-margin-left {
@@ -153,8 +199,15 @@
 
 .details-button {
     color: white;
-    background-color: rgb(237, 45, 86);
+    background-color:#ef6c57;
     border: none;
+    font-family: Montserrat;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    
 }
 
 .mouse-pointer{
@@ -164,7 +217,7 @@
 
 .mat-card-title {
     font-family: Montserrat;
-    font-size: 32px;
+    font-size: 22px;
     font-weight: bold;
     font-style: normal;
     font-stretch: normal;
@@ -172,20 +225,14 @@
     letter-spacing: normal;
     text-align: center;
     color: #5d5d5a;
-    }
+    padding-right: 8%;
+}
 
 
     .mat-card:not([class*=mat-elevation-z]){
         box-shadow: none;
     }
-    @media only screen and (min-width: 1281px){
-        .about-reviews-margin{
 
-        }
-    }
-    .header-image{
-        width:100%;
-    }
     .review-width{
         padding:10px;
         border:1px solid #7a7a7a;
@@ -202,13 +249,6 @@
         text-align: center;
         color: #5d5d5a;
         font-size: 21px;
-    }
-
-    .margin-center_width{
-        margin: auto;
-        max-width: 1%;
-    }
-
-    .cursor{
-        cursor: pointer;
+        font-family: Montserrat;
+         color: #5d5d5a;
     }

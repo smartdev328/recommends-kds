@@ -1,27 +1,20 @@
-.venue-card {
+.event-card {
     font-size: 15px;
     color: rgb(90, 91, 91);
 }
-.full-width {
-    width: 50% !important;
-}
+
 .mat-card-header {
     display: contents;
 }
 
-.venue-header {
+.camps-header {
     text-align: center;
     font-weight: bold;
     font-size: 18px;
 }
-  
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-}
 
-.venue-details {
-    border-top: 1px solid;
+.event-details {
+    /* border-top: 1px solid; */
     padding-top: 1em;
 }
 
@@ -29,6 +22,10 @@
     position: relative;
     top: 5px;
     left: 5px;
+}
+
+.actionIcon {
+  height: 54px;
 }
 
 .link-text {
@@ -52,51 +49,85 @@
         margin-left: 5%
     }
     
-    .venue-details .text {
+    .event-details .text {
         margin-left: 5%
     }
     
-    .venue-details .lower-text {
+    .event-details .lower-text {
         margin-left: calc(5% + 24px)
     }
 
     .details-button {
         color: white;
-        background-color: rgb(237, 45, 86);
+        background-color:#ef6c57;
         border: none;
         padding: 5%;
         margin-top: 5%;
         border-radius: 10px;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
+    .mat-card-image {
+        width: calc(100% + 32px);
+        margin: 0 0px 0px 0px;
+        border: 1px solid  #495057;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        margin-bottom: 15px;
+        min-height: 249px;
+        max-height: auto;
+        float: left;
+        margin: 3px;
+        padding: 3px;
+        max-width: 100%;
+        height: auto;
     }
 }
 
 /* Tablets */
 @media only screen and (min-width : 768px) and (max-width : 1280px) {
     .desktop-resize {
-        width: 10% !important;
+        width: 30% !important;
         margin-left: 35%;
-        height : auto;
     }
 
     .basic-information .text {
+        margin-left: 3%
+    }
+    
+    .event-details .text {
         margin-left: 4%
     }
     
-    .venue-details .text {
-        margin-left: 4%
-    }
-    
-    .venue-details .lower-text {
+    .event-details .lower-text {
         margin-left: calc(4% + 24px)
     }
 
     .details-button {
         color: white;
-        background-color: rgb(237, 45, 86);
+        background-color:#ef6c57;
         border: none;
         padding: 2%;
         margin-top: 3%;
         border-radius: 10px;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
+    .mat-card-image {
+        width: calc(100% + 32px);
+        margin: 0 0px 0px 0px;
+        border: 1px solid  #495057;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        margin-bottom: 15px;
     }
 }
 
@@ -106,16 +137,16 @@
         width: 25% !important;
         margin-left: 37.5%;
     }
-
+ 
     .basic-information .text {
         margin-left: 3%
     }
     
-    .venue-details .text {
+    .event-details .text {
         margin-left: 3%
     }
     
-    .venue-details .lower-text {
+    .event-details .lower-text {
         margin-left: calc(3% + 24px)
     }
 
@@ -125,150 +156,111 @@
         border: none;
         padding: 1.5%;
         margin-top: 2%;
+        font-family: Montserrat;
         border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
     }
+    
+    .header-image{
+        width:80% !important;
+        border: 1px solid  #495057;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        margin-bottom: 15px;
+        min-height: 249px;
+        max-height: auto;
+        float: left;
+        margin: 3px;
+        padding: 3px;
+        max-width: 100%;
+        height: auto;
+      }
     .addReview{
         margin-left : 29%;
-        width : 50%
     }
-   
+
+    .change-pos{
+        position: absolute;
+        left: -68%;
+    }
 }
 
-.margin-review{
-    margin-left: 50%;
+::ng-deep .tabs .mat-tab-list .mat-tab-labels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: auto;
+    grid-auto-rows: auto;
 }
+.description{
+     margin-left: 7%;
+}
+
+.review-margin-left {
+    margin-left: 33%;
+}
+
+.details-button {
+    color: white;
+    background-color:#ef6c57;
+    border: none;
+    font-family: Montserrat;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    
+}
+
 .mouse-pointer{
     cursor: pointer;
 }
-
-.about-reviews-margin{
-    margin-left : 29%;
-}
-.material-icon-red-color {
-    color: red;
-}
-
-.material-icon-black-color {
-    color: black;
-}
-.opening-hours {
-    width: 29%;
-    margin-left: 15%;
-
-}
-.more-information-margin {
-    margin-left: 41%;
-}
-.margin-review{
-    margin-left: 50%;
-}
-.review-margin {
-    margin: auto;
-}
-.review-privacy {
-    font-style: italic;
-    font-size: small;
-}
-.italic-font-style {
-    font-style: italic
-}
-.error-message {
-    position: absolute;
-    color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1;
-    width: 43%;
-    height: 34%;
-    bottom: 164px;
-    right: 52%;
-    border-radius: 25px;
-
-
-}
-.errorCloseButton{
-    position: absolute;
-    right: 10px;
-    top: 5px;
-}
-
-.review-width {
-    width: auto;
-}
-
-/* 
-  ##Device = Tablets, Ipads (portrait)
-  ##Screen = B/w 768px to 1024px
-*/
-@media (min-width: 768px) and (max-width: 1024px) {
-    .about-reviews-margin{
-        margin-left : auto;
-    }
-    .opening-hours {
-        width: 33%;
-        margin-left: 15%;
-    }
-    
-  }
-  
-/* 
-##Device = Tablets, Ipads (landscape)
-##Screen = B/w 768px to 1024px
-*/
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-    .about-reviews-margin{
-        margin-left : auto;
-    }
-    .opening-hours {
-        width: 33%;
-        margin-left: 15%;
-    }
-}
-
-/* 
-  ##Device = Most of the Smartphones Mobiles (Portrait)
-  ##Screen = B/w 320px to 479px
-*/
-@media (min-width: 320px) and (max-width: 480px) {
-  
-    .about-reviews-margin{
-        margin-left : auto;
-    }
-    .opening-hours {
-        width: auto;
-        margin-left: 15%;
-    }
-}
-
-/* 
-  ##Device = Low Resolution Tablets, Mobiles (Landscape)
-  ##Screen = B/w 481px to 767px
-*/
-@media (min-width: 481px) and (max-width: 767px) {
-  
-    .about-reviews-margin{
-        margin-left : auto;
-    }
-    .opening-hours {
-        width: auto;
-        margin-left: 15%;
-    }
-    
-}
-
-
-i.icon-green {
-    color: green;
-}
-
-i.icon-grey {
-    color: grey;
-}
 .material-icons.md-dark.md-inactive { color: rgba(8, 241, 19, 0.897); }
-.wrap{
-    display: block;
-    margin-top: -2%;
-    padding-left: 4%;
-    width: 50%;
-    word-wrap: break-word;
+
+.mat-card-title {
+    font-family: Montserrat;
+    font-size: 22px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5d5d5a;
+    padding-right: 8%;
 }
+
+
+    .mat-card:not([class*=mat-elevation-z]){
+        box-shadow: none;
+    }
+
+    .review-width{
+        padding:10px;
+        border:1px solid #7a7a7a;
+        font-size: 16px;
+        color: #5d5d5a;
+        margin-bottom: 10px;
+        font-weight: 400;
+    }
+    .btn-sec{
+        text-align: center;
+        margin-top:10px;
+    }
+    h4.review-heading{
+        text-align: center;
+        color: #5d5d5a;
+        font-size: 21px;
+        font-family: Montserrat;
+         color: #5d5d5a;
+    }
+    .wrap{
+        display: block;
+        margin-top: -2%;
+        padding-left: 4%;
+        width: 50%;
+        word-wrap: break-word;
+    }

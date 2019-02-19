@@ -1,166 +1,172 @@
 <app-layout-header></app-layout-header>
 
-<div  class="container-fluid">
-  <div  class="main-section">
-      <mat-card class="event-card" *ngIf="campStatus">
-          <div class="row">
-              <div class="col-md-12">
-                  <mat-card-header>
-                      <mat-card-title class="camps-header">{{ camp.name }}</mat-card-title>
-                    </mat-card-header>
-              </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4"> <img mat-card-image class="header-image"  [src]=camp.image_url alt="Photo of the camps"></div>
-            <div class="col-md-4"></div>
-          </div>
-          <hr class="hr-Rectangle-200">
-          <mat-card-content>
-                  <div class="row">
-            		<div class="col-1 col-md-3"></div>
-                   	<div class="col-5 col-md-3">
-                      		<div class="cursor"  title="Save"  (click)="website_redirect()" *ngIf="isSaveVisible != true">
-                          		<img src="../../assets/icons/noun_bookmark_1.png" class="img-fluid actionIcon"/>
-                      		</div>
-                        	<div class="margin-center_width" title="Saved"  *ngIf="isSaveVisible">
-                            		<img class="actionIcon" src="../../assets/icons/noun_bookmark_2.png"/>
-                        	</div>
-                   	</div>
-                   	<div class="col-5 col-md-3">
-                      		<div class="item item-3 cursor"  (click)="add_review_redirect(2)" title="Add Review"> 
-                          		<img src="../../assets/icons/noun_review_1.png" class="img-fluid actionIcon"/>
-                      		</div>
-                   	</div>
-            		<div class="col-1 col-md-3"></div>
-                  </div>
-               
-            <div class="container">
-              
-           <div class="item item-3" fxFlex="10%" title="Add to Calendar" (click)="calendar_redirects()" hidden>
-               <span><i class="icon material-icons mouse-pointer">calendar_today</i></span>
-               <span class="text link-text"></span>
-           </div>
-        
-           <!-- <div class="item item-3" fxFlex="10%"  (click)="add_review_redirect(2)" title="Add Review">
-              <img src="../../assets/icons/noun_review_1.png"/>
-           </div>
-         -->
+<div class="container-fluid">
+  <div class="main-section">
+    <mat-card class="event-card" *ngIf="campStatus">
+      <div class="row">
+        <div class="col-md-12">
+          <mat-card-header>
+            <mat-card-title class="camps-header">{{ camp.name }}</mat-card-title>
+          </mat-card-header>
         </div>
-        <mat-tab-group class="tabs about-reviews-margin"  (selectedTabChange)="show_reviews($event)"  [selectedIndex]="selectedIndex">
-                <mat-tab label="About" >  
-                    <mat-card>
-                        <mat-card-content>
-                            <p class="basic-information">
-                                <span><i class="icon material-icons red-color">accessibility_new</i></span>
-                                <span class="text">{{format_age()}}</span>
-                              </p>
-                              <p class="description">
-                                {{camp.description}}
-                              </p>
-                            <p class="event-details">
-                                <span><i class="icon material-icons" title="Category">pets</i></span>
-        
-                                <span class="lower-text">{{category}}</span>
-                            </p>
-                            <p class="event-details" title="Types Of Activities">
-                                <span><i class="icon material-icons">local_activity</i></span>
-                                <span class="lower-text">{{camp.activity_types}}</span>
-                       
-                               
-                            </p>
-                            <p class="event-details" title="Lunch">
-                                <span><i class="icon material-icons">fastfood</i></span>
-                                <span class="lower-text"><b>Lunch :</b>{{camp.lunch}}</span>
-                              
-                            </p>
-                            <p class="event-details" title="Offfer During">
-                                <span><i class="icon material-icons">local_offer</i></span>
-                               
-                                <span class="lower-text">{{camp.offered_during}}</span>
-                              </p>
-                            <p class="event-details" title="Cities">
-                                <span><i class="icon material-icons">location_on</i></span>
-                               
-                                <span class="lower-text">{{camp.cities}}</span>
-                              </p>
-                   
-                  
-                            <p class="event-details" title="Time">
-                                <span><i class="icon material-icons">access_time</i></span>
-                                <span class="lower-text">{{camp.timings}}</span>
-                       
-                              
-                               
-                            </p>
-                  
-                            <mat-card-actions class="details-button-space">
-                                <button mat-button class="details-button" (click)="event_redirect()">MORE DETAILS</button>
-                              </mat-card-actions>
-                            </mat-card-content>
-                </mat-card>
-                </mat-tab>
-           <mat-tab label="Reviews">
-                <mat-card>
-                  <div class="margin-review">
-                    <div class="row">
-                      <div class="col-md-2"></div>
-                      <div class="col-md-8">
-                          <div class="review-width" *ngFor="let current_review of user_reviews;">
-                              {{current_review.review}}
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"> <img mat-card-image class="header-image" [src]=camp.image_url alt="Photo of the camps">
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+      <hr class="hr-Rectangle-200">
+
+      <mat-card-content>
+          <div class="row justify-content-center">
+                  <div class="col-7">
+                      <div class="row">
+                          <div class="col">
+                              <div class="text-right mb-2">
+                              <div class="" title="Save" *ngIf="is_parent_id === false">
+                                  <img src="../../assets/icons/noun_bookmark_1.png" class="actionIcon" />
+                              </div>
+                              <div class=" cursor" title="Save" (click)="website_redirect()" *ngIf="is_parent_id && isSaveVisible != true">
+                                  <img class="actionIcon" src="../../assets/icons/noun_bookmark_2.png" />
+                              </div>
+                              <div class="" title="Saved" *ngIf="isSaveVisible">
+                                  <img class="actionIcon" src="../../assets/icons/noun_bookmark_3.png" />
+                              </div>
+
+                              </div>
+                          </div>
+                          <div class="col">
+                              <div class="d-flex text-center mb-2">
+                                      <div class="cursor" (click)="add_review_redirect(2)" *ngIf="is_parent_id === false" title="Add Review">
+                                          <img src="../../assets/icons/noun_review_1.png" class="actionIcon" />
+                                      </div>
+                                      <div class="cursor" *ngIf="is_parent_id" (click)="add_review_redirect(2)" title="Add Review">
+                                          <img src="../../assets/icons/noun_review_2.png" class="actionIcon" />
+                                      </div>
+                              </div>
+                          </div>    
+                          <div class="col">
                           </div>
                       </div>
-                      <div class="col-md-2"></div>
-                    </div>
-                    </div>
-                </mat-card>
-            </mat-tab>
-            <mat-tab label="Add Review" *ngIf="is_parent_id">
-              <mat-card>
-                    <div class="addReview">
-                        <div class="form-group review-margin">
-                            <div class="row">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-8">
-                                    <h4 class="review-heading" align="center">Write a review</h4>
-                                    <textarea class="form-control" rows="5" id="review" placeholder="Add review or tips to other parents"
-                                    [(ngModel)]="review"   required (change)="validate_review()"></textarea>
-                                  <small id="miscHelp" class="form-text text-muted italic-font-style">We respect your
-                                    privacy. Your name will not be shown to other
-                                    users
-                                  </small>
-                                  <div *ngIf="isErrorVisible"
-                                      class="alert alert-danger">
-                                      <div>
-                                          {{errorMessage }}
-                                      </div>
-                                    </div>
-                                  <div *ngIf="isSuccessVisible"
-                                      class="alert alert-success">
-                                      <div>
-                                          {{errorMessage }}
-                                      </div>
-                                    </div>
-                                    <div class="form-group review-margin btn-sec">
-                                        <button type="button" class="btn btn-danger" (click)="add_review()">Submit</button>
-                                      </div>
-                                </div>
-                              </div>
-                        </div>
                   </div>
-               
-                
-              </mat-card>
-            </mat-tab>
-            
-                <!-- <mat-tab label="Fourth">   </mat-tab> -->
-              </mat-tab-group>
-        
-          </mat-card-content>
-        </mat-card>
-        <hr class="hr-Rectangle-200">
+              </div>
+     
+
+  </mat-card-content>
+      <mat-card-content>
+
+        <mat-tab-group class="tabs about-reviews-margin" (selectedTabChange)="show_reviews($event)"
+          [selectedIndex]="selectedIndex">
+          <mat-tab label="About">
+            <mat-card>
+              <mat-card-content>
+                <p class="basic-information">
+                  <span><i class="icon material-icons red-color">accessibility_new</i></span>
+                  <span class="text">{{format_age()}}</span>
+                </p>
+                <p class="description">
+                  {{camp.description}}
+                </p>
+                <p class="event-details">
+                  <span><i class="icon material-icons" title="Category">pets</i></span>
+
+                  <span class="lower-text">{{category}}</span>
+                </p>
+                <p class="event-details" title="Types Of Activities">
+                  <span><i class="icon material-icons">local_activity</i></span>
+                  <span class="lower-text">{{camp.activity_types}}</span>
+
+
+                </p>
+                <p class="event-details" title="Lunch">
+                  <span><i class="icon material-icons">fastfood</i></span>
+                  <span class="lower-text"><b>Lunch :</b>{{camp.lunch}}</span>
+
+                </p>
+                <p class="event-details" title="Offfer During">
+                  <span><i class="icon material-icons">local_offer</i></span>
+
+                  <span class="lower-text">{{camp.offered_during}}</span>
+                </p>
+                <p class="event-details" title="Cities">
+                  <span><i class="icon material-icons">location_on</i></span>
+
+                  <span class="lower-text">{{camp.cities}}</span>
+                </p>
+
+                <p class="event-details" title="Time">
+                  <span><i class="icon material-icons">access_time</i></span>
+                  <span class="lower-text">{{camp.timings}}</span>
+
+                </p>
+
+                <mat-card-actions class="details-button-space">
+                  <button mat-button class="details-button" (click)="event_redirect()">MORE DETAILS</button>
+                </mat-card-actions>
+              </mat-card-content>
+            </mat-card>
+          </mat-tab>
+          <mat-tab label="Reviews">
+            <mat-card>
+              <div class="margin-review">
+                <div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-8">
+                    <div class="review-width" *ngFor="let current_review of user_reviews;">
+                      {{current_review.review}}
+                    </div>
+                  </div>
+                  <div class="col-md-2"></div>
+                </div>
+              </div>
+            </mat-card>
+          </mat-tab>
+          <mat-tab label="Add Review" *ngIf="is_review_click">
+            <mat-card>
+
+              <div class="form-group review-margin">
+                <div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-8">
+                    <h4 class="review-heading" align="center">Write a review</h4>
+                    <textarea class="form-control" rows="5" id="review"
+                      placeholder="Add review or tips to other parents" [(ngModel)]="review" required
+                      (change)="validate_review()"></textarea>
+                    <small id="miscHelp" class="form-text text-muted italic-font-style">We respect your
+                      privacy. Your name will not be shown to other
+                      users
+                    </small>
+                    <div *ngIf="isErrorVisible" class="alert alert-danger">
+                      <div>
+                        {{errorMessage }}
+                      </div>
+                    </div>
+                    <div *ngIf="isSuccessVisible" class="alert alert-success">
+                      <div>
+                        {{errorMessage }}
+                      </div>
+                    </div>
+                    <div class="form-group review-margin btn-sec">
+                      <button type="button" class="btn btn-sign-up" (click)="add_review()">Submit</button>
+                    </div>
+                  </div>
+                  <div class="col-md-2"></div>
+                </div>
+              </div>
+
+
+            </mat-card>
+          </mat-tab>
+
+          <!-- <mat-tab label="Fourth">   </mat-tab> -->
+        </mat-tab-group>
+
+      </mat-card-content>
+    </mat-card>
+    <hr class="hr-Rectangle-200">
   </div>
 </div>
-  <br> <br>
+<br> <br>
 <app-layout-footer></app-layout-footer>
