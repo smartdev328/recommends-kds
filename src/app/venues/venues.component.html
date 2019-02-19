@@ -1,195 +1,224 @@
 <app-layout-header></app-layout-header>
 
-<mat-card class="venue-card" *ngIf="venue">
-    <mat-card-header>
-        <mat-card-title class="venue-header">{{ venue.name }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <img mat-card-image class="desktop-resize" [src]=venue.image_url alt="Photo of the venue">
-        <div class="container"
-             fxLayout
-             fxLayout.xs="row"
-             fxLayoutAlign="center"
-             fxLayoutGap="10px"
-             fxLayoutGap.xs="0">
-            <div class="item item-1" fxFlex="10%" title="Save" (click)="website_redirect()" *ngIf="isSaveVisible != true">
-                <span><i class="icon material-icons mouse-pointer">bookmark_border</i></span>
-                <span class="text link-text"></span>
-            </div>
-            <div class="item item-1" fxFlex="10%" title="Saved"  *ngIf="isSaveVisible">
-                <span><i class="icon material-icons md-dark md-inactive">bookmark_border</i></span>
-                <span class="text link-text"></span>
-            </div>
+<div class="container-fluid">
+    <div class="main-section">
 
-            <div class="item item-2" fxFlex="10%" hidden>
-                <span><i class="icon material-icons mouse-pointer">share</i></span>
-                <span class="text link-text" (click)="website_redirect()"></span>
+        <mat-card class="venue-card" *ngIf="venue">
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-card-header>
+                        <mat-card-title class="camps-header">{{ venue.name }}</mat-card-title>
+                    </mat-card-header>
+                </div>
             </div>
+            <br>
+            <div class="row">
+                
+                <div class="col-md-4"></div>
+                <div class="col-md-4"> <img mat-card-image class="header-image" [src]=venue.image_url
+                        alt="Photo of the venue"></div>
+                <div class="col-md-4"></div>
+            </div>
+            <hr class="hr-Rectangle-200">
 
-            <div class="item item-3" fxFlex="10%" hidden>
-                <span><i class="icon material-icons mouse-pointer">calendar_today</i></span>
-                <span class="text link-text" (click)="calendar_redirects()"></span>
-            </div>
-
-            <div class="item item-3" fxFlex="10%" (click)="add_review_redirect(3)" title="Add Review">
-                <span><i class="icon material-icons mouse-pointer">message</i></span>
-                <span class="text link-text"></span>
-            </div>
-            <div class="item item-3" fxFlex="10%" (click)="unsubscribe_venue()" title="UnSubscribe" *ngIf="isSubscribeVisible">
-                <span><i class="icon material-icons mouse-pointer large icon-green">subscriptions</i></span>
-                <span class="text link-text"></span>
-            </div>
-            <div class="item item-3" fxFlex="10%" (click)="add_subscription_venue()" title="Subscribe" *ngIf="isSubscribeVisible != true">
-                <span><i class="icon material-icons mouse-pointer large material-icons icon-grey">subscriptions</i></span>
-                <span class="text link-text"></span>
-            </div>
-
-        </div>
-    </mat-card-content>
-</mat-card>
-
-<mat-tab-group  class="about-reviews-margin" (selectedTabChange)="show_reviews($event)" [selectedIndex]="selectedIndex"  *ngIf="venue">
-    <mat-tab label="About">
-        <mat-card>
             <mat-card-content>
-                <p class="basic-information" *ngIf="category" >
-                    <span><i class="icon material-icons material-icon-black-color">pets</i></span>
-                    <span class="text">{{category}}</span>
-                </p>
-                <p class="basic-information" *ngIf="city" >
-                    <span><i class="icon material-icons material-icon-black-color">location_on</i></span>
-                    <span class="text">{{city}}, {{state}}</span>
-                </p>
+                    <div class="row justify-content-center">
+                            <div class="col-7">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="text-right mb-2">
+                                        <div class="" title="Save" *ngIf="is_parent_id === false">
+                                            <img src="../../assets/icons/noun_bookmark_1.png" class="actionIcon" />
+                                        </div>
+                                        <div class=" cursor" title="Save" (click)="website_redirect()" *ngIf="is_parent_id && isSaveVisible != true">
+                                            <img class="actionIcon" src="../../assets/icons/noun_bookmark_2.png" />
+                                        </div>
+                                        <div class="" title="Saved" *ngIf="isSaveVisible">
+                                            <img class="actionIcon" src="../../assets/icons/noun_bookmark_3.png" />
+                                        </div>
 
-                <p class="basic-information" hidden>
-                    <span><i class="icon material-icons material-icon-black-color">child_care</i></span>
-                    <span class="text">Recomendations</span>
-                </p>
-
-                <p class="basic-information" *ngIf="rating">
-                    <span><i class="icon material-icons material-icon-black-color">star</i></span>
-                    <span class="text">{{rating}} / {{google_rating_out_of}}</span>
-                </p>
-
-                <p class="basic-information "  *ngIf="venue.description">
-                    <span><i class="icon material-icons">infor</i></span>
-                    <span class="text wrap" class="wrap" >{{venue.description}}</span>
-                </p>
-                <p class="basic-information" *ngIf="parking">
-                    <span><i class="icon material-icons">motorcycle</i></span>
-                    <span class="text">{{parking}}</span>
-                </p>
-                <p class="basic-information" hidden>
-                    <span><i class="icon material-icons">people</i></span>
-                    <span class="text">Rest Room information</span>
-                </p>
-
-                <p class="basic-information" hidden>
-                    <span><i class="icon material-icons">restaurant_menu</i></span>
-                    <span class="text">Outside food allowed or not</span>
-                </p>
-
-                <p class="basic-information" hidden>
-                    <span><i class="icon material-icons material-icon-red-color">cloud</i></span>
-                    <span class="text">No shade in trails</span>
-                </p>
-
-                <p class="basic-information" hidden>
-                    <span><i class="icon material-icons">cloud</i></span>
-                    <span class="text">Small lake at the end of the trail.Keep extra set of cloths</span>
-                </p>
-
-                <p class="basic-information" hidden>
-                    <span><i class="icon material-icons material-icon-red-color">place</i></span>
-                    <span class="text">8 miles from you</span>
-                </p>
-                <p class="basic-information" hidden>
-                    <span><i class="icon material-icons material-icon-red-color">directions_walk</i></span>
-                    <span class="text">All age of people</span>
-                </p>
-
-                <p class="basic-information" hidden>
-                    <span><i class="icon material-icons material-icon-black-color">pin_drop</i></span>
-                    <span class="text">{{venue.misc.address}}</span>
-                </p>
-
-                <p class="basic-information" *ngIf="timings_array">
-                    <span><i class="icon material-icons material-icon-black-color">access_time</i></span>
-                    <span class="text" *ngIf="isShowMoreHours">Open today - {{timings_array[0]}}</span>
-                    <span class="text" *ngIf="isShowMoreHours==false">{{timings_array}}</span>
-
-                    <span class="text link-text" (click)="showMoreHours()"
-                          *ngIf="isShowMoreHours">More Hours</span>
-                </p>
-
-                <ul class="list-group opening-hours" *ngIf="isShowMore">
-                    <li class="list-group-item list-group-item-action list-group-item-dark"
-                        (click)="showMoreHours()"
-                        *ngFor="let current_slot of timings_array; let even = even; let odd = odd">
-                        {{current_slot}}</li>
-                </ul>
-
-
-                <p class="basic-information" hidden>
-                    <span><i class="icon material-icons material-icon-black-color">loyalty</i></span>
-                    <span class="text">Free</span>
-                </p>
-
-                <hr>
-                <div class="row center-block">  
-                    <button type="button" class="btn btn-danger" (click)="venue_redirect()">More Info</button>
-                </div>   
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="d-flex text-center mb-2">
+                                                <div class="cursor" (click)="add_review_redirect(2)" *ngIf="is_parent_id === false" title="Add Review">
+                                                    <img src="../../assets/icons/noun_review_1.png" class="actionIcon" />
+                                                </div>
+                                                <div class="cursor" *ngIf="is_parent_id" (click)="add_review_redirect(2)" title="Add Review">
+                                                    <img src="../../assets/icons/noun_review_2.png" class="actionIcon" />
+                                                </div>
+                                        </div>
+                                    </div>    
+                                    <div class="col">
+                                        <div class="text-left mb-4 change-pos">
+                                                <div class="cursor" title="Subscribe" *ngIf="is_parent_id === false">
+                                                        <img src="../../assets/icons/noun_subscribe_Star_1.png" class="actionIcon" />
+                                                </div>
+                                                <div class="item item-3 cursor" (click)="unsubscribe_venue()" title="UnSubscribe"  *ngIf="is_parent_id && isSubscribeVisible">
+                                                    
+                                                    <img src="../../assets/icons/noun_subscribe_Star_3.png" class="actionIcon" />
+                                                </div>
+                                                <div class="item item-3 cursor" (click)="add_subscription_venue()" title="Subscribe" *ngIf="is_parent_id && isSubscribeVisible != true">
+                                                    <img src="../../assets/icons/noun_subscribe_Star_2.png" class="actionIcon" />
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+               
 
             </mat-card-content>
         </mat-card>
-    </mat-tab>
-    <mat-tab label="Reviews">
-        <mat-card>
-            <p class="review-width" *ngFor="let current_review of user_reviews;">
-                {{current_review.review}}
-            </p>
-        </mat-card>
-    </mat-tab>
-    <mat-tab label="Add Review" *ngIf="is_parent_id" style="width: 50%">
-        <mat-card>
-                <div class="container">
-                        <div class="addReview">
-                          <div class="row review-margin-left">
-                            <h4 class="review-margin">Write a review</h4>
-                          </div>
-                            <div class="form-group review-margin">
-                              <textarea class="form-control" rows="5" id="review" placeholder="Add review or tips to other parents"
-                                [(ngModel)]="review"   required (change)="validate_review()"></textarea>
-                              <small id="miscHelp" class="form-text text-muted italic-font-style">We respect your
-                                privacy. Your name will not be shown to other
-                                users
-                              </small>
-                              <div *ngIf="isErrorVisible"
-                                  class="alert alert-danger">
-                                  <div>
-                                      {{errorMessage }}
-                                  </div>
-                                </div>
-                              <div *ngIf="isSuccessVisible"
-                                  class="alert alert-success">
-                                  <div>
-                                      {{errorMessage }}
-                                  </div>
-                                </div>
-                            </div>
-                          <div class="row review-margin-left">
-                            
-                            <div class="form-group review-margin">
-                              <button type="button" class="btn btn-danger" (click)="add_review()">Submit</button>
-                            </div>
-                          </div>
-                          
-                   
-                      </div>
-                    </div> 
-        </mat-card>
-    </mat-tab>
-</mat-tab-group>
+
+        <mat-tab-group class="tabs about-reviews-margin" (selectedTabChange)="show_reviews($event)"
+            [selectedIndex]="selectedIndex" *ngIf="venue">
+            <mat-tab label="About">
+                <mat-card>
+                    <mat-card-content>
+                        <p class="basic-information" *ngIf="category">
+                            <span><i class="icon material-icons material-icon-black-color">pets</i></span>
+                            <span class="text">{{category}}</span>
+                        </p>
+                        <p class="basic-information" *ngIf="city">
+                            <span><i class="icon material-icons material-icon-black-color">location_on</i></span>
+                            <span class="text">{{city}}, {{state}}</span>
+                        </p>
+
+                        <p class="basic-information" hidden>
+                            <span><i class="icon material-icons material-icon-black-color">child_care</i></span>
+                            <span class="text">Recomendations</span>
+                        </p>
+
+                        <p class="basic-information" *ngIf="rating">
+                            <span><i class="icon material-icons material-icon-black-color">star</i></span>
+                            <span class="text">{{rating}} / {{google_rating_out_of}}</span>
+                        </p>
+
+                        <p class="basic-information " *ngIf="venue.description">
+                            <span><i class="icon material-icons">infor</i></span>
+                            <span class="text wrap" class="wrap">{{venue.description}}</span>
+                        </p>
+                        <p class="basic-information" *ngIf="parking">
+                            <span><i class="icon material-icons">motorcycle</i></span>
+                            <span class="text">{{parking}}</span>
+                        </p>
+                        <p class="basic-information" hidden>
+                            <span><i class="icon material-icons">people</i></span>
+                            <span class="text">Rest Room information</span>
+                        </p>
+
+                        <p class="basic-information" hidden>
+                            <span><i class="icon material-icons">restaurant_menu</i></span>
+                            <span class="text">Outside food allowed or not</span>
+                        </p>
+
+                        <p class="basic-information" hidden>
+                            <span><i class="icon material-icons material-icon-red-color">cloud</i></span>
+                            <span class="text">No shade in trails</span>
+                        </p>
+
+                        <p class="basic-information" hidden>
+                            <span><i class="icon material-icons">cloud</i></span>
+                            <span class="text">Small lake at the end of the trail.Keep extra set of cloths</span>
+                        </p>
+
+                        <p class="basic-information" hidden>
+                            <span><i class="icon material-icons material-icon-red-color">place</i></span>
+                            <span class="text">8 miles from you</span>
+                        </p>
+                        <p class="basic-information" hidden>
+                            <span><i class="icon material-icons material-icon-red-color">directions_walk</i></span>
+                            <span class="text">All age of people</span>
+                        </p>
+
+                        <p class="basic-information" hidden>
+                            <span><i class="icon material-icons material-icon-black-color">pin_drop</i></span>
+                            <span class="text">{{venue.misc.address}}</span>
+                        </p>
+
+                        <p class="basic-information" *ngIf="timings_array">
+                            <span><i class="icon material-icons material-icon-black-color">access_time</i></span>
+                            <span class="text" *ngIf="isShowMoreHours">Open today - {{timings_array[0]}}</span>
+                            <span class="text" *ngIf="isShowMoreHours==false">{{timings_array}}</span>
+
+                            <span class="text link-text" (click)="showMoreHours()" *ngIf="isShowMoreHours">More
+                                Hours</span>
+                        </p>
+
+                        <ul class="list-group opening-hours" *ngIf="isShowMore">
+                            <li class="list-group-item list-group-item-action list-group-item-dark"
+                                (click)="showMoreHours()"
+                                *ngFor="let current_slot of timings_array; let even = even; let odd = odd">
+                                {{current_slot}}</li>
+                        </ul>
 
 
+                        <p class="basic-information" hidden>
+                            <span><i class="icon material-icons material-icon-black-color">loyalty</i></span>
+                            <span class="text">Free</span>
+                        </p>
+
+                        <mat-card-actions class="details-button-space">
+                            <button mat-button class="details-button" (click)="venue_redirect()">MORE DETAILS</button>
+                        </mat-card-actions>
+
+
+                    </mat-card-content>
+                </mat-card>
+            </mat-tab>
+            <mat-tab label="Reviews">
+                <mat-card>
+                    <div class="margin-review">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="review-width" *ngFor="let current_review of user_reviews;">
+                                    {{current_review.review}}
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                    </div>
+                </mat-card>
+            </mat-tab>
+            <mat-tab label="Add Review" *ngIf="is_review_click" style="width: 50%">
+                <mat-card>
+                        <div class="form-group review-margin">
+                                <div class="row">
+                                  <div class="col-md-2"></div>
+                                  <div class="col-md-8">
+                                    <h4 class="review-heading" align="center">Write a review</h4>
+                                    <textarea class="form-control" rows="5" id="review"
+                                      placeholder="Add review or tips to other parents" [(ngModel)]="review" required
+                                      (change)="validate_review()"></textarea>
+                                    <small id="miscHelp" class="form-text text-muted italic-font-style">We respect your
+                                      privacy. Your name will not be shown to other
+                                      users
+                                    </small>
+                                    <div *ngIf="isErrorVisible" class="alert alert-danger">
+                                      <div>
+                                        {{errorMessage }}
+                                      </div>
+                                    </div>
+                                    <div *ngIf="isSuccessVisible" class="alert alert-success">
+                                      <div>
+                                        {{errorMessage }}
+                                      </div>
+                                    </div>
+                                    <div class="form-group review-margin btn-sec">
+                                      <button type="button" class="btn btn-sign-up" (click)="add_review()">Submit</button>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2"></div>
+                                </div>
+                        </div>
+                </mat-card>
+            </mat-tab>
+        </mat-tab-group>
+
+    </div>
+</div>
+
+<br> <br>
 <app-layout-footer></app-layout-footer>
