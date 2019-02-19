@@ -29,6 +29,11 @@
     left: 5px;
 }
 
+.actionIcon {
+  width: 25px;
+  height: 25px;
+}
+
 .link-text {
     color: blue;
     text-decoration: underline;
