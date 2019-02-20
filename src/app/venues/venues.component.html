@@ -30,7 +30,7 @@
                                         <div class="" title="Save" *ngIf="is_parent_id === false">
                                             <img src="../../assets/icons/noun_bookmark_1.png" class="actionIcon" />
                                         </div>
-                                        <div class=" cursor" title="Save" (click)="website_redirect()" *ngIf="is_parent_id && isSaveVisible != true">
+                                        <div class=" cursor" title="Save" (click)="save_venue()" *ngIf="is_parent_id && isSaveVisible != true">
                                             <img class="actionIcon" src="../../assets/icons/noun_bookmark_2.png" />
                                         </div>
                                         <div class="" title="Saved" *ngIf="isSaveVisible">

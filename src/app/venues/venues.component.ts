@@ -82,11 +82,11 @@ export class VenuesComponent implements OnInit {
 
     if (this.url !== undefined && this.url.length > 0) {
         this.venue_id = parseInt (this.url.split('/')[2].split('?')[0]) ;
-        this.parent_id = parseInt (this.route.snapshot.queryParamMap.get('parent_id'));
+        this.parent_id = this.route.snapshot.queryParamMap.get('parent_id');
         if ( this.venue_id > 0 && this.venue_id !== undefined) {
           this.get_venue_data(this.venue_id);
       }
-        if ( this.venue_id > 0 && this.venue_id !== undefined && !isNaN( this.parent_id)) {
+        if ( this.venue_id > 0 && this.venue_id !== undefined && this.parent_id !== undefined) {
           this.is_parent_id = true;
           this.is_subscription_venue();
           this.is_save_action();
@@ -175,8 +175,8 @@ export class VenuesComponent implements OnInit {
     window.open('https://www.google.com/maps?q=' + search_query, '_blank');
   }
 
-  website_redirect() {
-    if (!isNaN( this.parent_id)) {
+  save_venue() {
+    if (this.parent_id !== undefined) {
       this.add_analytics_data('SAVE');
       this.isSaveVisible = true;
    }
@@ -210,7 +210,7 @@ export class VenuesComponent implements OnInit {
   }
 
   add_review_redirect(index: number): void {
-    if (!isNaN( this.parent_id)) {
+    if (this.parent_id != undefined) {
        this.is_parent_id = true;
        this.is_review_click = true;
        this.selectedIndex = index;
@@ -294,7 +294,7 @@ export class VenuesComponent implements OnInit {
 
   add_subscription_venue() {
 
-    if (!isNaN(this.parent_id)) {
+    if (this.parent_id !== undefined) {
     const input_data = {
       "venue_subs_data" : {
         "parent_id" :this.parent_id,
@@ -316,7 +316,7 @@ export class VenuesComponent implements OnInit {
 
   unsubscribe_venue() {
     
-    if (!isNaN(this.parent_id)) {
+    if (this.parent_id !== undefined) {
       this.venuesService.remove_subscriptions(this.parent_id, this.venue_id).subscribe(data => {
         if (data['status'] === true) {
           this.isSubscribeVisible = false;
@@ -324,7 +324,7 @@ export class VenuesComponent implements OnInit {
       }, error => {
         this.errorMessage = 'Something went wrong while subscribe venue';
       });
-      this.add_analytics_data('SUBSCRIBE');
+      //this.add_analytics_data('SUBSCRIBE');
     } 
 
 
@@ -347,7 +347,7 @@ export class VenuesComponent implements OnInit {
          break;
      }
      let analytics_input = {};
-     if (!isNaN( this.parent_id)) {
+     if (this.parent_id != undefined) {
        analytics_input = {
       'input_data' : [ {
          'entity_type' : ANALYTICS_ENTITY_TYPES_ENUM.VENUE,
