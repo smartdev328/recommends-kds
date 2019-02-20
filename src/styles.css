@@ -22,9 +22,12 @@
 }
 
 .main-text-margin-top {
-    margin: 14%;
+    margin: 4%;
 }
 
+.contact-text-margin-top {
+    margin: 14%;
+}
 .Montserrat {
     width: 357px;
     height: 49px;
@@ -74,6 +77,17 @@
     right: 10%;
     color: #5d5d5a;
     top: 72%;
+}
+
+.us-contact {
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0px;
+    right: 19%;
+    color: #5d5d5a;
+    top: 27%;
 }
 .contactus {
   font-family: Montserrat;
@@ -222,7 +236,7 @@
   .home-event-camps-places-text {
     /* width: 141px; */
     height: 49px;
-    font-family: Montserrat;
+    font-family: BubblegumSans;
     font-size: 38px;
     font-weight: 550;
     font-style: normal;
@@ -270,6 +284,11 @@
     text-align: center;
     font-family: Montserrat;
     padding-top: 20px;
+  }
+  .about-banner-heading{
+    text-align: center;
+    font-family: Montserrat;
+    padding-top: 2px;
   }
 .banner-heading .main-heading{
   color: #ef6c57;

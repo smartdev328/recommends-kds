@@ -54,14 +54,12 @@ export class PersonalizedComponent implements OnInit {
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
             data = data.replace(/\n/g, '');
             data = JSON.parse(data);
-            this.favorite = data['events'];
-
+            this.favorite = data['data'];
             if (this.favorite.length > 0) {
                 this.isFav = true;
             }
         });
-        url = this.URLConstatnts.API_URL + 'events/?tags=popular&parent_id=' + this.parent_id+ 
-        "&limit=3";
+        url = this.URLConstatnts.API_URL + 'events/?tags=popular&limit=3';
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
             data = data.replace(/\n/g, '');
             data = JSON.parse(data);
@@ -74,8 +72,8 @@ export class PersonalizedComponent implements OnInit {
         });
 
         let order_by = 'date_dist_asc'
-        url = 'https://kin-api.kinparenting.com/events?parent_id='+
-        this.parent_id+"order_by="+order_by+"&limit=3";
+        url = this.URLConstatnts.API_URL + 'events/?parent_id=' +
+        this.parent_id+"&order_by="+order_by+"&limit=3";
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
             data = data.replace(/\n/g, '');
             data = JSON.parse(data);
@@ -88,7 +86,7 @@ export class PersonalizedComponent implements OnInit {
         });
 
 
-        url = 'https://kin-api.kinparenting.com/events?event_range_str=weekend&limit=3';
+        url = this.URLConstatnts.API_URL + 'events/?event_range_str=weekend&limit=3';
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
             data = data.replace(/\n/g, '');
             data = JSON.parse(data);
