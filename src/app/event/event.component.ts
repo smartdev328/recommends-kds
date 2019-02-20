@@ -38,7 +38,7 @@ export class EventComponent implements OnInit {
     this.event_id = this.route.snapshot.params['id'];
     this.parent_id = this.route.snapshot.queryParams['parent_id'];
     this.get_event_details();
-    if (!isNaN( this.parent_id)) {
+    if (this.parent_id !== undefined) {
       this.is_save_action();
     }
     this.isErrorVisible = false;
@@ -116,7 +116,7 @@ export class EventComponent implements OnInit {
   }
 
   add_review_redirect(index: number): void {
-    if (!isNaN( this.parent_id)) {
+    if (this.parent_id !== undefined) {
        this.is_parent_id = true;
        this.selectedIndex = index;
      }
@@ -191,8 +191,9 @@ export class EventComponent implements OnInit {
     this.add_analytics_data('CALENDAR');
     window.open('https://calendar.google.com');
   }
-  website_redirect() {
-    if (!isNaN( this.parent_id)) {
+  
+  save_event() {
+    if (this.parent_id !== undefined) {
       this.add_analytics_data('SAVE');
       this.isSaveVisible = true;
    }
@@ -212,7 +213,7 @@ export class EventComponent implements OnInit {
          break;
      }
      let analytics_input = {};
-     if (!isNaN( this.parent_id)) {
+     if (this.parent_id !== undefined) {
          analytics_input = {
         'input_data' : [ {
          'entity_type' : ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
