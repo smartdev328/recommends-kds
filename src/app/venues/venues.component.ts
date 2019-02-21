@@ -79,19 +79,18 @@ export class VenuesComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    if (this.url !== undefined && this.url.length > 0) {
-        this.venue_id = parseInt (this.url.split('/')[2].split('?')[0]) ;
-        this.parent_id = this.route.snapshot.queryParamMap.get('parent_id');
-        if ( this.venue_id > 0 && this.venue_id !== undefined) {
-          this.get_venue_data(this.venue_id);
-      }
-        if ( this.venue_id > 0 && this.venue_id !== undefined && this.parent_id !== undefined) {
-          this.is_parent_id = true;
-          this.is_subscription_venue();
-          this.is_save_action();
-      }
-    }
+    	this.is_parent_id = false;
+    	this.parent_id = '';
+	this.venue_id = this.route.snapshot.params['id'];
+        this.parent_id = this.route.snapshot.queryParamMap['parent_id'];
+        if (this.venue_id > 0 && this.venue_id !== undefined) {
+        	this.get_venue_data(this.venue_id);
+      	}
+       	if (this.parent_id !== undefined) {
+          	this.is_parent_id = true;
+          	this.is_subscription_venue();
+          	this.is_save_action();
+      	}
   }
 
   get_venue_data(venue_id: number) {

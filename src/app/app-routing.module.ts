@@ -29,18 +29,18 @@ import {TermsComponent} from './terms/terms.component';
 import { PersonalizedComponent } from './personalized/personalized.component';
 
 const routes: Routes = [
-  { path: 'event/:id', component: EventComponent },
+  { path: 'events/:id', component: EventComponent },
   { path: 'events/:id?parent_id=', component: EventComponent },
   { path: 'events/:query', component: EventGroupComponent },
   { path: 'edit-event/:eventId', component: EditEventComponent},
   { path: 'events', component: EventListingComponent },
   { path: 'help', component: HelpComponent },
   { path: 'data-entry', component: DataEntryComponent },
-  { path: 'venue/:id', component: VenuesComponent },
+  { path: 'venues/:id', component: VenuesComponent },
   { path: 'venues/:id?parent_id=', component: VenuesComponent, },
   { path: 'venues', component: VenueListingComponent, },
   { path: 'venues?category', component: VenueListingComponent, },
-  { path: 'venue', component: VenueComponent },
+  { path: 'add-venue', component: VenueComponent },
   { path: 'edit-venue/:venueId', component: EditVenueComponent},
   { path: 'search-venue', component: SearchVenueComponent },
   { path: 'manage-venues', component: SubscribeVenueComponent },
