@@ -1,90 +1,137 @@
 <div class="container">
-  <div class="personalized-page">
-    <div class="row">
+  <!-- <div class="personalized-page"> -->
+    <div class="row heading-bottom">
       <p class="Personalized-recommendations"> Personalized recommendations </p>
       <p class="Here-are-some-suggestions-just-for-you"> Here are some suggestions just for you! </p>
 
 
     </div>
-    <br>
-    <br>
-    <br>
+
     <div *ngIf="isFav">
-      <div class="Events-at-your-favorite-venues">Events at your favorite venues </div>
-      <br>
-      <div class="row">
-        <div class="column" *ngFor="let event of favorite">
-          <img class="professional-magic-show" src={{event.image_url}} alt="Photo of the event">
-          <p class="Camp-1-Lorem-Ipsum-is-simply-dummy-text"> {{event.name}} </p>
-        </div>
-
+      
+      <div class="container block-container" *ngIf="isFav">
+          <div class="Events-at-your-favorite-venues">Events at your favorite venues </div>
+       
+          <div class="row">
+              <div class="col-md-4" *ngFor="let event of favorite">
+                <div class="column-border">photo_not_avail
+                    <img class="professional-magic-show" src={{event.image_url}} alt="Photo of the event">
+                    <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text">{{event.dates}} &nbsp;&nbsp;,
+                        {{event.start_time}} &nbsp; - &nbsp; 
+                        {{event.end_time}}</p>
+                    <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text"> {{event.name}} </p>
+                </div>  
+              </div>
+          </div>
       </div>
 
-      <br>
-      <br>
-      <br>
-      <div class="See-more">
+      <!-- <div class="row">
+        <div class="col-md-4" *ngFor="let event of favorite">
+          <img class="professional-magic-show" src={{event.image_url}} alt="Photo of the event">
+          <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text">{{event.dates}} &nbsp;&nbsp;,
+              {{event.start_time}} &nbsp; - &nbsp; 
+              {{event.end_time}}</p>
+          <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text"> {{event.name}} </p>
+  
+        </div>
+
+      </div> -->
+      
+
+      <div class="See-more" *ngIf="isFav">
         <a class="See-more" [routerLink]="['/','events']">See more</a>
 
       </div>
-      <br>
-      <br>
-      <br>
-      <br>
+
     </div>
-    <div *ngIf="isPopular">
-      <div class="Events-at-your-favorite-venues">Popular Events</div>
-      <br>
-      <div class="row">
-        <div class="column" *ngFor="let event of popular">
+    <div *ngIf="isWeekend">
+      
+      <!-- <div class="row">
+        <div class="col-md-4" *ngFor="let event of popular">
           <img class="professional-magic-show" src={{event.image_url}} alt="Photo of the event">
-          <p class="Camp-1-Lorem-Ipsum-is-simply-dummy-text"> {{event.name}} </p>
+          <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text">{{event.dates}} &nbsp;&nbsp;,
+              {{event.start_time}} &nbsp; - &nbsp; 
+              {{event.end_time}}</p>
+          <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text"> {{event.name}} </p>
+  
         </div>
 
+      </div> -->
+      <div class="container block-container" *ngIf="isPopular">
+          <div class="Events-at-your-favorite-venues">Popular Events</div>
+       
+          <div class="row">
+              <div class="col-md-4" *ngFor="let event of popular">
+                <div class="column-border">
+                    <img class="professional-magic-show" src={{event.image_url}} alt="Photo of the event">
+                    <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text">{{event.dates}} &nbsp;&nbsp;,
+                        {{event.start_time}} &nbsp; - &nbsp; 
+                        {{event.end_time}}</p>
+                    <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text"> {{event.name}} </p>
+                </div>  
+              </div>
+          </div>
       </div>
-      <br>
-      <br>
-      <br>
-      <div class="See-more">
+
+      <div class="See-more" *ngIf="isPopular">
         <a class="See-more" [routerLink]="['/','events']">See more</a>
       </div>
-      <br>
-      <br>
-      <br>
-    </div>
-    <div class="Events-at-your-favorite-venues" *ngIf="isWeekend"> Weekend Events </div>
-    <br>
-    <div class="row" *ngIf="isWeekend">
-      <div class="column" *ngFor="let event of events_weekend">
-        <img class="professional-magic-show" src={{event.image_url}} alt="Photo of the event">
-        <p class="Camp-1-Lorem-Ipsum-is-simply-dummy-text"> {{event.name}} </p>
-      </div>
 
     </div>
-
-    <br>
-    <br>
-    <div class="See-more" *ngIf="isWeekend">
-      <a class="See-more" [routerLink]="['/','events']">See more</a>
+    
+    <div class="container block-container" *ngIf="isWeekend">
+        <div class="Events-at-your-favorite-venues" *ngIf="isWeekend"> Weekend Events </div>
+        <div class="row">
+            <div class="col-md-4" *ngFor="let event of events_weekend">
+              <div class="column-border">
+                  <img class="professional-magic-show" src={{event.image_url}} alt="Photo of the event">
+                  <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text">{{event.dates}} &nbsp;&nbsp;,
+                      {{event.start_time}} &nbsp; - &nbsp; 
+                      {{event.end_time}}</p>
+                  <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text"> {{event.name}} </p>
+              </div>  
+            </div>
+        </div>
     </div>
-    <div class="Events-at-your-favorite-venues" *ngIf="isWeekend"> Events closest to you </div>
-    <br>
-    <div class="row" *ngIf="isWeekend">
-      <div class="column" *ngFor="let event of closest_event">
-        <img class="professional-magic-show" src={{event.image_url}} alt="Photo of the event">
-        <p class="Camp-1-Lorem-Ipsum-is-simply-dummy-text"> {{event.name}} </p>
-      </div>
 
-    </div>
-
-    <br>
-    <br>
     <div class="See-more" *ngIf="isWeekend">
       <a class="See-more" [routerLink]="['/','events']">See more</a>
     </div>
 
+    
+    <!-- <div class="row" *ngIf="is_closest">
+      <div class="col-md-4" *ngFor="let event of closest_event">
+        <img class="professional-magic-show" src={{event.image_url}} alt="Photo of the event">
+        <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text">{{event.dates}} &nbsp;&nbsp;,
+            {{event.start_time}} &nbsp; - &nbsp; 
+            {{event.end_time}}</p>
+        <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text"> {{event.name}} </p>
 
-  </div>
+      </div>
+
+    </div> -->
+
+    <div class="container block-container" *ngIf="is_closest">
+        <div class="Events-at-your-favorite-venues" *ngIf="is_closest"> Events closest to you </div>
+
+        <div class="row">
+            <div class="col-md-4" *ngFor="let event of closest_event">
+              <div class="column-border">
+                  <img class="professional-magic-show" src={{event.image_url}} alt="Photo of the event">
+                  <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text">{{event.dates}} &nbsp;&nbsp;,
+                      {{event.start_time}} &nbsp; - &nbsp; 
+                      {{event.end_time}}</p>
+                  <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text"> {{event.name}} </p>
+              </div>  
+            </div>
+        </div>
+    </div>
+    <div class="See-more" *ngIf="is_closest">
+      <a class="See-more" [routerLink]="['/','events']">See more</a>
+    </div>
+
+
+  <!-- </div> -->
 </div>
 
 <!-- <div class="container">

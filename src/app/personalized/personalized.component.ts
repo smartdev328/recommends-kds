@@ -21,6 +21,7 @@ export class PersonalizedComponent implements OnInit {
     isPopular: Boolean = false;
     isFav: Boolean = false;
     isWeekend: Boolean = false;
+    public is_closest:Boolean;
     public category: string;
     public URLConstatnts = new UrlConstants();
     parent_id: Number;
@@ -34,6 +35,7 @@ export class PersonalizedComponent implements OnInit {
         this.favorite = [];
         this.events_weekend = []
         this.closest_event = []
+        this.is_closest = false;
     }
 
     ngOnInit() {
@@ -77,10 +79,10 @@ export class PersonalizedComponent implements OnInit {
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
             data = data.replace(/\n/g, '');
             data = JSON.parse(data);
-            this.events_weekend = data['events'];
+            this.closest_event = data['events'];
 
             if (this.closest_event.length > 0) {
-                this.isWeekend = true;
+                this.is_closest = true;
             }
 
         });
@@ -91,6 +93,9 @@ export class PersonalizedComponent implements OnInit {
             data = data.replace(/\n/g, '');
             data = JSON.parse(data);
             this.events_weekend = data['events'];
+            // this.popular = this.events_weekend;
+            // this.favorite = this.events_weekend;
+            // this.closest_event = this.events_weekend;
 
             if (this.events_weekend.length > 0) {
                 this.isWeekend = true;

@@ -28,6 +28,11 @@
 .contact-text-margin-top {
     margin: 14%;
 }
+
+.heading-bottom {
+  margin-bottom: 3em;
+}
+
 .Montserrat {
     width: 357px;
     height: 49px;
@@ -411,4 +416,41 @@
 
 .cursor{
   cursor: pointer;
+}
+
+.Camp-1-Lorem-Ipsum-is-simply-dummy-text {
+
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  color: #5d5d5a;
+  margin-top: 1rem !important;
+}
+
+.column-border {
+  /* border-style: groove; */
+  margin: auto;
+  width: 20vw;
+  height: 300px;
+  padding: 0.8em;
+  border-radius: 10px;
+  border: 1px solid #5d5d5a;
+}
+
+/* centered columns styles */
+
+.col-centered {
+  display:inline-block;
+  float:none;
+  /* reset the text-align */
+  text-align:left;
+  /* inline-block space fix */
+  margin-right:-4px;
+  text-align: center;
+  background-color: #ccc;
+  border: 1px solid #ddd;
 }
