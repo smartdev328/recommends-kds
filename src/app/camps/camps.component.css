@@ -186,11 +186,9 @@
     grid-auto-rows: auto;
 }
 .description{
-     margin-left: 7%;
-     display: block;
-    padding-left: 4%;
-    width: 50%;
+    display: block;
     word-wrap: break-word;
+    margin-left: 3.3em;
 }
 
 .review-margin-left {

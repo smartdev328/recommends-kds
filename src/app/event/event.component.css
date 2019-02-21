@@ -7,15 +7,10 @@
     display: contents;
 }
 
-.event-header {
+.camps-header {
     text-align: center;
     font-weight: bold;
     font-size: 18px;
-}
-  
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
 }
 
 .event-details {
@@ -27,6 +22,10 @@
     position: relative;
     top: 5px;
     left: 5px;
+}
+
+.actionIcon {
+  height: 54px;
 }
 
 .link-text {
@@ -60,11 +59,32 @@
 
     .details-button {
         color: white;
-        background-color: rgb(237, 45, 86);
+        background-color:#ef6c57;
         border: none;
         padding: 5%;
         margin-top: 5%;
         border-radius: 10px;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
+    .mat-card-image {
+        width: calc(100% + 32px);
+        margin: 0 0px 0px 0px;
+        border: 1px solid  #495057;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        margin-bottom: 15px;
+        min-height: 249px;
+        max-height: auto;
+        float: left;
+        margin: 3px;
+        padding: 3px;
+        max-width: 100%;
+        height: auto;
     }
 }
 
@@ -89,11 +109,25 @@
 
     .details-button {
         color: white;
-        background-color: rgb(237, 45, 86);
+        background-color:#ef6c57;
         border: none;
         padding: 2%;
         margin-top: 3%;
         border-radius: 10px;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
+    .mat-card-image {
+        width: calc(100% + 32px);
+        margin: 0 0px 0px 0px;
+        border: 1px solid  #495057;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        margin-bottom: 15px;
     }
 }
 
@@ -122,14 +156,35 @@
         border: none;
         padding: 1.5%;
         margin-top: 2%;
+        font-family: Montserrat;
         border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
     }
-    .about-reviews-margin{
-        margin-left: 30%;
-        margin-right: 30%
-    }
+    
+    .header-image{
+        width:80% !important;
+        border: 1px solid  #495057;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        margin-bottom: 15px;
+        min-height: 249px;
+        max-height: auto;
+        float: left;
+        margin: 3px;
+        padding: 3px;
+        max-width: 100%;
+        height: auto;
+      }
     .addReview{
         margin-left : 29%;
+    }
+
+    .change-pos{
+        position: absolute;
+        left: -68%;
     }
 }
 
@@ -140,13 +195,72 @@
     grid-auto-rows: auto;
 }
 .description{
-     margin-left: 7%;
+   display: block;
+    word-wrap: break-word;
+    margin-left: 3.3em;
 }
 
-.margin-review{
+.review-margin-left {
     margin-left: 33%;
 }
+
+.details-button {
+    color: white;
+    background-color:#ef6c57;
+    border: none;
+    font-family: Montserrat;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    
+}
+
 .mouse-pointer{
     cursor: pointer;
 }
 .material-icons.md-dark.md-inactive { color: rgba(8, 241, 19, 0.897); }
+
+.mat-card-title {
+    font-family: Montserrat;
+    font-size: 22px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5d5d5a;
+    padding-right: 8%;
+}
+
+
+    .mat-card:not([class*=mat-elevation-z]){
+        box-shadow: none;
+    }
+
+    .review-width{
+        padding:10px;
+        border:1px solid #7a7a7a;
+        font-size: 16px;
+        color: #5d5d5a;
+        margin-bottom: 10px;
+        font-weight: 400;
+    }
+    .btn-sec{
+        text-align: center;
+        margin-top:10px;
+    }
+    h4.review-heading{
+        text-align: center;
+        color: #5d5d5a;
+        font-size: 21px;
+        font-family: Montserrat;
+         color: #5d5d5a;
+    }
+    .wrap{
+        /* display: block; */
+        display: table-cell;
+        word-wrap: break-word;
+    }

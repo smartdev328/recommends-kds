@@ -21,10 +21,10 @@
 
       <mat-card-content>
           <div class="row justify-content-center">
-                  <div class="col-7">
+                
                       <div class="row">
                           <div class="col">
-                              <div class="text-right mb-2">
+                              <div class="mb-2">
                               <div class="" title="Save" *ngIf="is_parent_id === false">
                                   <img src="../../assets/icons/noun_bookmark_1.png" class="actionIcon" />
                               </div>
@@ -47,10 +47,9 @@
                                       </div>
                               </div>
                           </div>    
-                          <div class="col">
-                          </div>
+                     
                       </div>
-                  </div>
+                 
               </div>
      
 
@@ -69,34 +68,34 @@
                 <p class="description">
                   {{camp.description}}
                 </p>
-                <p class="event-details">
+                <p class="event-details" *ngIf="category">
                   <span><i class="icon material-icons" title="Category">pets</i></span>
 
                   <span class="lower-text">{{category}}</span>
                 </p>
-                <p class="event-details" title="Types Of Activities">
+                <p class="event-details" title="Types Of Activities" *ngIf="camp.activity_types">
                   <span><i class="icon material-icons">local_activity</i></span>
                   <span class="lower-text">{{camp.activity_types}}</span>
 
 
                 </p>
-                <p class="event-details" title="Lunch">
+                <p class="event-details" title="Lunch" *ngIf="camp.lunch">
                   <span><i class="icon material-icons">fastfood</i></span>
                   <span class="lower-text"><b>Lunch :</b>{{camp.lunch}}</span>
 
                 </p>
-                <p class="event-details" title="Offfer During">
+                <p class="event-details" title="Offfer During" *ngIf="camp.offered_during">
                   <span><i class="icon material-icons">local_offer</i></span>
 
                   <span class="lower-text">{{camp.offered_during}}</span>
                 </p>
-                <p class="event-details" title="Cities">
+                <p class="event-details" title="Cities" *ngIf="camp.cities">
                   <span><i class="icon material-icons">location_on</i></span>
 
                   <span class="lower-text">{{camp.cities}}</span>
                 </p>
 
-                <p class="event-details" title="Time">
+                <p class="event-details" title="Time" *ngIf="camp.timings">
                   <span><i class="icon material-icons">access_time</i></span>
                   <span class="lower-text">{{camp.timings}}</span>
 

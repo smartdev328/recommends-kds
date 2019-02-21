@@ -35,15 +35,18 @@ export class EventComponent implements OnInit {
     private reviewService: ReviewsService) { }
 
   ngOnInit() {
+    this.isSaveVisible = false;
     this.event_id = this.route.snapshot.params['id'];
     this.parent_id = this.route.snapshot.queryParams['parent_id'];
+    this.is_parent_id = false;
     this.get_event_details();
     if (this.parent_id !== undefined) {
       this.is_save_action();
+      this.is_parent_id = true;
     }
     this.isErrorVisible = false;
     this.isSuccessVisible = false;
-    this.isSaveVisible = false;
+  
     this.errorMessage = '';
     this.review = '';
     this.user_reviews = [];
