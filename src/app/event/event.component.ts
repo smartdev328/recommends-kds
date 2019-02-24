@@ -28,6 +28,7 @@ export class EventComponent implements OnInit {
   public review: string;
   public user_reviews: any;
   public parent_id: any;
+  public is_review_click: Boolean;
   public eventErrorMessage = new EventErrorMessage();
   public URLConstatnts = new UrlConstants();
   selectedIndex;
@@ -46,7 +47,7 @@ export class EventComponent implements OnInit {
     }
     this.isErrorVisible = false;
     this.isSuccessVisible = false;
-  
+    this.is_review_click = false;
     this.errorMessage = '';
     this.review = '';
     this.user_reviews = [];
@@ -122,6 +123,7 @@ export class EventComponent implements OnInit {
     if (this.parent_id !== undefined) {
        this.is_parent_id = true;
        this.selectedIndex = index;
+       this.is_review_click = true;
      }
   }
 
