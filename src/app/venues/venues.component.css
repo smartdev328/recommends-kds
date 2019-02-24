@@ -34,7 +34,7 @@
     cursor: pointer;
 }
 
-.details-button-space {
+.detail-buttons-space {
     text-align: center;
     border-top: 1px solid;
 }
@@ -57,19 +57,13 @@
         margin-left: calc(5% + 24px)
     }
 
-    .details-button {
+    .detail-buttons {
         color: white;
         background-color:#ef6c57;
         border: none;
         padding: 5%;
         margin-top: 5%;
         border-radius: 10px;
-        font-family: Montserrat;
-        border-radius: 10px;
-        border: none;
-        font-size: 14px;
-        font-weight: bold;
-        font-style: normal;
     }
     .mat-card-image {
         width: calc(100% + 32px);
@@ -107,19 +101,14 @@
         margin-left: calc(4% + 24px)
     }
 
-    .details-button {
+    .detail-buttons {
         color: white;
         background-color:#ef6c57;
         border: none;
         padding: 2%;
         margin-top: 3%;
         border-radius: 10px;
-        font-family: Montserrat;
-        border-radius: 10px;
-        border: none;
-        font-size: 14px;
-        font-weight: bold;
-        font-style: normal;
+      
     }
     .mat-card-image {
         width: calc(100% + 32px);
@@ -150,7 +139,7 @@
         margin-left: calc(3% + 24px)
     }
 
-    .details-button {
+    .detail-buttons {
         color: white;
         background-color: rgb(237, 45, 86);
         border: none;
@@ -202,7 +191,7 @@
     margin-left: 33%;
 }
 
-.details-button {
+.detail-buttons {
     color: white;
     background-color:#ef6c57;
     border: none;

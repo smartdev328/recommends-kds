@@ -106,14 +106,14 @@
 }
 
 .policy {
-    font-family: Montserrat;
-    font-size: 40px;
-    font-weight: bold;
-    position: absolute;
-    bottom: 0px;
-    right: 42%;
-    color: #5d5d5a;
-    top: 63%;
+  font-family: Montserrat;
+  font-size: 40px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0px;
+  right: 50%;
+  color: #5d5d5a;
+  top: 44%;
 }
 
 .terms_of_use {
@@ -122,9 +122,9 @@
   font-weight: bold;
   position: absolute;
   bottom: 0px;
-  right: 31%;
+  right: 40%;
   color: #5d5d5a;
-  top: 59%;
+  top: 44%;
 }
 .Carousel-heading {
     height: 24px;
@@ -367,6 +367,26 @@
   }
   .header-image{
     width:100% !important;
+  }
+
+  .policy {
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0px;
+    right: 36%;
+    color: #5d5d5a;
+    top: 90%;
+  }
+  .About {
+    font-size: 100px !important;
+  }  
+  .Contact{
+    font-size: 95px !important;
+  }
+  .BubblegumSans{
+    font-size: 95px !important;;
   }
 }
 

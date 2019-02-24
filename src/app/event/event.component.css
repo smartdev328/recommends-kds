@@ -34,7 +34,7 @@
     cursor: pointer;
 }
 
-.details-button-space {
+.details-buttons-space {
     text-align: center;
     border-top: 1px solid;
 }
@@ -57,19 +57,14 @@
         margin-left: calc(5% + 24px)
     }
 
-    .details-button {
+    .details-buttons {
         color: white;
         background-color:#ef6c57;
         border: none;
         padding: 5%;
         margin-top: 5%;
         border-radius: 10px;
-        font-family: Montserrat;
-        border-radius: 10px;
-        border: none;
-        font-size: 14px;
-        font-weight: bold;
-        font-style: normal;
+
     }
     .mat-card-image {
         width: calc(100% + 32px);
@@ -107,19 +102,14 @@
         margin-left: calc(4% + 24px)
     }
 
-    .details-button {
+    .details-buttons {
         color: white;
         background-color:#ef6c57;
         border: none;
         padding: 2%;
         margin-top: 3%;
         border-radius: 10px;
-        font-family: Montserrat;
-        border-radius: 10px;
-        border: none;
-        font-size: 14px;
-        font-weight: bold;
-        font-style: normal;
+
     }
     .mat-card-image {
         width: calc(100% + 32px);
@@ -148,20 +138,6 @@
     
     .event-details .lower-text {
         margin-left: calc(3% + 24px)
-    }
-
-    .details-button {
-        color: white;
-        background-color: rgb(237, 45, 86);
-        border: none;
-        padding: 1.5%;
-        margin-top: 2%;
-        font-family: Montserrat;
-        border-radius: 10px;
-        border: none;
-        font-size: 14px;
-        font-weight: bold;
-        font-style: normal;
     }
     
     .header-image{
@@ -204,10 +180,13 @@
     margin-left: 33%;
 }
 
-.details-button {
+.details-buttons {
+
     color: white;
-    background-color:#ef6c57;
+    background-color: #ef6c57;
     border: none;
+    padding: 1.5%;
+    margin-top: 2%;
     font-family: Montserrat;
     border-radius: 10px;
     border: none;

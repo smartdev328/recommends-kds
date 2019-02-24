@@ -34,7 +34,7 @@
         </div>
         <div class="col">
           <div class="d-flex text-center mb-2">
-            <div class="cursor" (click)="add_review_redirect(2)" *ngIf="is_parent_id === false" title="Add Review">
+            <div class="cursor"  *ngIf="is_parent_id === false" title="Add Review">
               <img src="../../assets/icons/noun_review_1.png" class="actionIcon" />
             </div>
             <div class="cursor" *ngIf="is_parent_id" (click)="add_review_redirect(2)" title="Add Review">
@@ -88,8 +88,8 @@
               <span><i class="icon material-icons">local_offer</i></span>
               <span class="text">{{format_price()}}</span>
             </p>
-            <mat-card-actions class="details-button-space">
-              <button mat-button class="details-button" (click)="event_redirect()">MORE DETAILS</button>
+            <mat-card-actions class="details-buttons-space">
+              <button mat-button class="details-buttons" (click)="event_redirect()">MORE DETAILS</button>
             </mat-card-actions>
 
           </mat-card-content>
@@ -110,7 +110,7 @@
           </div>
         </mat-card>
       </mat-tab>
-      <mat-tab label="Add Review" *ngIf="is_parent_id">
+      <mat-tab label="Add Review" *ngIf="is_review_click">
         <mat-card>
           <div class="form-group review-margin">
             <div class="row">
