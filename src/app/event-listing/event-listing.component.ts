@@ -84,7 +84,7 @@ export class EventListingComponent implements OnInit {
       }
     } else {
       const d = Date.now();
-      const url = 'https://kin-api.kinparenting.com/events?event_date_start=' + this.datePipe.transform(d, 'yyyy-MM-dd') + '&event_date_range=30&limit=113';
+      const url = 'https://kin-api-dev.kinparenting.com/events/?event_date_start=' + this.datePipe.transform(d, 'yyyy-MM-dd') + '&event_date_range=30&limit=113';
       const headers = new HttpHeaders()
           .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
@@ -112,7 +112,7 @@ export class EventListingComponent implements OnInit {
         this.showMore = true;
       }
     } else {
-      const url = 'https://kin-api.kinparenting.com/events?event_range_str=today';
+      const url = 'https://kin-api-dev.kinparenting.com/events/?event_range_str=today';
       const headers = new HttpHeaders()
           .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
@@ -135,7 +135,7 @@ export class EventListingComponent implements OnInit {
         this.showMore = true;
       }
     } else {
-      const url = 'https://kin-api.kinparenting.com/events?event_range_str=tomorrow';
+      const url = 'https://kin-api-dev.kinparenting.com/events/?event_range_str=tomorrow';
       const headers = new HttpHeaders()
           .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
@@ -158,7 +158,7 @@ export class EventListingComponent implements OnInit {
         this.showMore = true;
       }
     } else {
-      const url = 'https://kin-api.kinparenting.com/events?event_range_str=weekend';
+      const url = 'https://kin-api-dev.kinparenting.com/events/?event_range_str=weekend';
       const headers = new HttpHeaders()
           .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
