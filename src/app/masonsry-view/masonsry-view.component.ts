@@ -20,6 +20,6 @@ export class MasonsryViewComponent implements OnInit {
   }
 
   event_redirect(id) {
-    this.router.navigate(['/event', id]);
+    this.router.navigate(['/events', id]);
   }
 }

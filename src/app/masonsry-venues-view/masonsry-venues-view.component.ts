@@ -20,6 +20,6 @@ export class MasonsryVenuesViewComponent implements OnInit {
   }
 
   venue_redirect(id) {
-    this.router.navigate(['/venue', id]);
+    this.router.navigate(['/venues', id]);
   }
 }
