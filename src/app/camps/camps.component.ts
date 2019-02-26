@@ -43,11 +43,7 @@ export class CampsComponent implements OnInit {
     this.camp_id = this.route.snapshot.params['id'];
     this.parent_id = this.route.snapshot.queryParams['parent_id'];
     this.get_camp_details();
-    if (this.parent_id !== undefined) {
-      this.is_save_action();
-      this.is_parent_id = true;
-   }
-   this.is_review_click = false;
+    this.is_review_click = false;
     this.isErrorVisible = false;
     this.isSuccessVisible = false;
     this.errorMessage = '';
@@ -241,8 +237,12 @@ export class CampsComponent implements OnInit {
       };
     }
      this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
+      if (this.parent_id !== undefined && atype === 'CLICK') {
+        this.is_save_action();
+        this.is_parent_id = true;
+     }
      }, error => {
-       alert('Something went wrong');
+        this.is_parent_id = false;
      });
  
    }

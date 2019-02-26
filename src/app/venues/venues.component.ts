@@ -87,11 +87,6 @@ export class VenuesComponent implements OnInit {
     if (this.venue_id > 0 && this.venue_id !== undefined) {
       this.get_venue_data(this.venue_id);
     }
-    if (this.parent_id !== undefined) {
-      this.is_parent_id = true;
-      this.is_subscription_venue();
-      this.is_save_action();
-    }
   }
 
   get_venue_data(venue_id: number) {
@@ -370,8 +365,13 @@ export class VenuesComponent implements OnInit {
         };
     }
      this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
+      if (this.parent_id !== undefined && atype === 'CLICK') {
+          this.is_parent_id = true;
+          this.is_subscription_venue();
+          this.is_save_action();
+      }
      }, error => {
-       alert('Something went wrong');
+       this.is_parent_id = false;
      });
    }
 

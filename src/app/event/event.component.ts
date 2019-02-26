@@ -41,10 +41,6 @@ export class EventComponent implements OnInit {
     this.parent_id = this.route.snapshot.queryParams['parent_id'];
     this.is_parent_id = false;
     this.get_event_details();
-    if (this.parent_id !== undefined) {
-      this.is_save_action();
-      this.is_parent_id = true;
-    }
     this.isErrorVisible = false;
     this.isSuccessVisible = false;
     this.is_review_click = false;
@@ -242,8 +238,12 @@ export class EventComponent implements OnInit {
       };
     }
      this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
+      if (this.parent_id !== undefined && atype === 'CLICK') {
+         this.is_save_action();
+         this.is_parent_id = true;
+      }
      }, error => {
-       alert('Something went wrong');
+       this.is_parent_id = false;
      });
  
   }

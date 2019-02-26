@@ -95,7 +95,7 @@
 
                         <p class="basic-information " *ngIf="venue.description">
                             <span><i class="icon material-icons">infor</i></span>
-                            <span class="text wrap" class="wrap">{{venue.description}}</span>
+                            <span class="wrap">{{venue.description}}</span>
                         </p>
                         <p class="basic-information" *ngIf="parking">
                             <span><i class="icon material-icons">motorcycle</i></span>
@@ -133,6 +133,10 @@
                         <p class="basic-information" hidden>
                             <span><i class="icon material-icons material-icon-black-color">pin_drop</i></span>
                             <span class="text">{{venue.misc.address}}</span>
+                        </p>
+                        <p class="basic-information"  *ngIf="tips_for_parent">
+                            <span><i class="icon material-icons material-icon-black-color" title="Tips">note</i></span>
+                            <span class="wrap">{{tips_for_parent}}</span>
                         </p>
 
                         <p class="basic-information" *ngIf="timings_array">
