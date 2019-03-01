@@ -82,6 +82,12 @@
         max-width: 100%;
         height: auto;
     }
+    .description{
+        display: block;
+        word-wrap: break-word;
+        margin-left: 3em;
+        margin-top: -2em;
+      }
 }
 
 /* Tablets */
@@ -112,6 +118,13 @@
         border-radius: 10px;
     
     }
+
+    .description{
+        display: block;
+        word-wrap: break-word;
+        margin-left: 3em;
+        margin-top: -2em;
+      }
 }
 
 /* Desktop */
@@ -165,6 +178,14 @@
         max-width: 100%;
         height: auto;
       }
+
+      .description{
+        display: block;
+        word-wrap: break-word;
+        margin-left: 6em;
+        margin-top: -2em;
+      }
+     
 }
 
 ::ng-deep .tabs .mat-tab-list .mat-tab-labels {
@@ -173,11 +194,7 @@
     grid-gap: auto;
     grid-auto-rows: auto;
 }
-.description{
-    display: block;
-    word-wrap: break-word;
-    margin-left: 3.3em;
-}
+
 
 .review-margin-left {
     margin-left: 33%;

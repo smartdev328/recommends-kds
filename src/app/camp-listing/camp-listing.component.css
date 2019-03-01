@@ -1,4 +1,3 @@
-
 .banner {
     position: fixed;
     bottom: 0;
@@ -30,7 +29,8 @@
     top: 10px;
 }
 
-/* Phones */ 
+
+/* Phones */
 @media only screen and (max-width : 767px) {
     .loading-gif {
         margin-left: 10%;
@@ -39,7 +39,7 @@
     .event-listing-card {
         margin: 0% 5% 30% 5% !important;
     }
-    
+
 }
 
 /* Tablets */
@@ -51,7 +51,7 @@
     .event-listing-card {
         margin: 0% 5% 12% 5% !important;
     }
-    
+
 }
 
 /* Desktop */
@@ -61,22 +61,11 @@
     }
 
     .event-listing-card {
-        margin: 0% 5% 12% 5% !important;
+        margin: 0% 0% 12% 8% !important;
     }
-    
+
 }
 
-.details-button {
-    color: white;
-    background-color: rgb(237, 45, 86);
-    border: none;
-    padding: 1%;
-    margin-top: 6%;
-    /* //border-radius: 10%; */
-    margin-left: 49%;
-    margin-right: 7%;
-}
-
-.mouse-pointer{
+.mouse-pointer {
     cursor: pointer;
 }

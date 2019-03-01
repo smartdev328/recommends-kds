@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { DatePipe } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -46,6 +47,8 @@ import { HeaderComponent } from './layout/header.component';
 import { FooterComponent } from './layout/footer.component';
 import { TermsComponent } from './terms/terms.component';
 import { PersonalizedComponent } from './personalized/personalized.component';
+import { MasonsryVenuesPersonaliseViewComponent } from './masonsry-personalise-view/masonsry-personalise-view.component';
+
 
 
 @NgModule({
@@ -70,6 +73,7 @@ import { PersonalizedComponent } from './personalized/personalized.component';
     CampListingComponent,
     MasonsryCampViewComponent,
     MasonsryVenuesViewComponent,
+    MasonsryVenuesPersonaliseViewComponent,
     SubscribeVenueComponent,
     ComingSoonComponent,
     EditCampComponent,
@@ -99,8 +103,11 @@ import { PersonalizedComponent } from './personalized/personalized.component';
     BsDropdownModule,
     FlexLayoutModule,
     MatIconModule,
-      AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
+  exports: [MatDatepickerModule],
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,9 @@
 .event-list-cards {
-    margin: 5%;
+    margin: 8%;
     cursor: pointer;
+    border: solid 1px #5d5d5a;
+    background-color: #ffffff;
+    padding: 1.8em;
 }
 
 .event-group-title {
@@ -30,12 +33,12 @@
 }
 
 .flex-display {
-  display: flex; 
-  flex-direction: column; 
-  flex-wrap: wrap;
-  height: 100vw;
-  max-height: 800px;
-  font-size: 0; 
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100vw;
+    max-height: 800px;
+    font-size: 0;
 }
 
 .show-layout {
@@ -46,7 +49,7 @@
     opacity: 0;
 }
 
-/* Phones */ 
+/* Phones */
 @media only screen and (max-width : 767px) {
     .tiles {
         width: 49%;

@@ -2,43 +2,85 @@
 
 <div class="container-fluid">
   <div class="main-section">
-  <div class="row">
-    <div class="col-md-7">
-      <div class="banner-heading">
-          <div><h1 class="main-heading">Camps</h1></div>
-            <div class="info">
-              Your personal parenting assistant.<br>
-              Discover products and experiences your kids will love!
-            </div>
+    <div class="row">
+      <div class="col-md-7">
+        <div class="banner-heading">
+          <div>
+            <h1 class="main-heading">Camps</h1>
+          </div>
+          <div class="info">
+            Your personal parenting assistant.<br>
+            Discover products and experiences your kids will love!
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="col-md-5 d-none d-lg-block">
-      <div class="box-gradient">
-        <div class="main-box">
+      <div class="col-md-5 d-none d-lg-block">
+        <div class="box-gradient">
+          <div class="main-box">
             <img src="../../assets/isometric_pics/camps.png" width="400px" class="icon3a" />
+          </div>
         </div>
       </div>
     </div>
-</div>
-        <br/>
+    <br />
 
-<!-- <div class="banner">
-  <p class="link-to-kin">
-    <span>
-      To discover and plan for many more family-friendly camps personalized to you, chat with <b class="kin-link" (click)="kin_redirect()">Kin on Messenger</b>
-    </span>
-    <img alt="kin logo" src="assets/kin_logo.jpeg" class="logo">
-  </p>
-</div>
--->
-<div class="event-listing-card">
-  
-      <img *ngIf="!isExplore"  src="assets/loading.gif"  class="loading-gif">
-      <app-masonsry-camp-view  [camps]=camp_explore [start]=start [end]=end></app-masonsry-camp-view>
-      <mat-card-actions class="details-button-space mouse-pointer" *ngIf="showMore">
-        <button mat-button class="details-button mouse-pointer" (click)="loadMore()">Show More</button>
-    </mat-card-actions>
-     
-</div>
-<br><br>
-<app-layout-footer></app-layout-footer>
+    <div class="filter-box">
+      <div class="row filter-box-content">
+
+        <div class="col-md-5 col-sm-6 col-xs-2 mb-2">
+          <div class="dropdown">
+            <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              {{category_label}}
+              <span class="hairline-down">
+                <svg height="100%" style="fill: #fff;" version="1.1" viewBox="0 0 101 126" width="20" xml:space="preserve"
+                  xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <clipPath id="_clip1">
+                    <rect height="125" width="100" x="0.868" y="0.33" />
+                  </clipPath>
+                  <g clip-path="url(#_clip1)">
+                    <path d="M100.868,42.368c0,-16.313 -13.225,-29.538 -29.538,-29.538c-12.908,0 -28.016,0 -40.925,0c-16.313,
+                                 0 -29.537,13.225 -29.537,29.538c0,12.909 0,28.016 0,40.925c0,16.313 13.224,29.537 
+                                 29.537,29.537c12.909,0 28.017,0 40.925,0c16.313,0 29.538,-13.224 29.538,-29.537c0,
+                                 -12.909 0,-28.016 0,-40.925Z"
+                      style="fill:#ef6c57;" />
+                    <path d="M78.168,52.93l-5.5,-5.8l-21.8,20.4l-21.8,-20.4l-5.5,5.8l27.3,25.6l27.3,-25.6Z" style="fill-opacity:1;fill-rule:nonzero;" />
+                  </g>
+                </svg>
+              </span>
+            </button>
+            <div class="dropdown-menu add-scroll" aria-labelledby="dropdownMenuButton">
+              <label class="dropdown-item cursor" (click)="onCategoryChange(each_cat)" *ngFor="let each_cat
+                          of categoryList">{{each_cat.name}}</label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-1 mb-2">
+          <div class="input-group">
+            <input type="text" class="form-control keyword-text" placeholder="Keyword" [(ngModel)]="keyword">
+
+          </div>
+
+
+        </div>
+        <div class="col-md-3 col-sm-2 col-xs-1 mb-2 cursor" (click)="filter_camp_data()">
+          <svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-icons">
+            <path d="M 5 3 C 3.895 3 3 3.895 3 5 L 3 19 C 3 20.105 3.895 21 5 21 L 19 21 C 20.105 21 21 20.105 21 19 L 21 5 C 21 3.895 20.105 3 19 3 L 5 3 z M 11 6 C 13.761 6 16 8.239 16 11 C 16 12.019 15.691969 12.963906 15.167969 13.753906 L 17.707031 16.292969 C 18.098031 16.682969 18.098031 17.317031 17.707031 17.707031 C 17.316031 18.098031 16.682969 18.098031 16.292969 17.707031 L 13.753906 15.167969 C 12.963906 15.691969 12.019 16 11 16 C 8.239 16 6 13.761 6 11 C 6 8.239 8.239 6 11 6 z M 11 8 A 3 3 0 0 0 8 11 A 3 3 0 0 0 11 14 A 3 3 0 0 0 14 11 A 3 3 0 0 0 11 8 z"
+              style="fill:#ef6c57;"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  <div class="container event-listing-card">
+    <app-masonsry-camp-view *ngIf="oldCat_1" [camps]=camp_explore [start]=start [end]=end></app-masonsry-camp-view>
+    <app-masonsry-camp-view *ngIf="oldCat_2" [camps]=camp_explore [start]=start [end]=end></app-masonsry-camp-view>
+    <div class="row details-button-space mouse-pointer" *ngIf="showMore">
+      <span mat-button class="details-button mouse-pointer" (click)="loadMore()">More...</span>
+    </div>
+  </div>
+  <br><br>
+  <app-layout-footer></app-layout-footer>

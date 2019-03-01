@@ -95,6 +95,25 @@ export class VenueConstants {
     public TEXT_MIN_LENGTH = 0;
 
     public PERM_CLOSE = [0 , 1];
+
+    public LOCATIONS = [
+        {'name' : 'San Jose' , 'id' :  1},
+        {'name' : 'Sant Clara' , 'id' :  2},
+        {'name' : 'Sunnyvale' , 'id' :  3},
+        {'name' : 'Mountain View' , 'id' :  4},
+        {'name' : 'Palo Alto' , 'id' :  5},
+        {'name' : 'Menlo Park' , 'id' :  6},
+        {'name' : 'Cupertino' , 'id' :  7},
+        {'name' : 'Saratoga' , 'id' :  8},
+        {'name' : 'Campbell' , 'id' :  9},
+        {'name' : 'Milpitas' , 'id' :  10},
+        {'name' : 'Los Altos' , 'id' :  11},
+        {'name' : 'Los Gatos' , 'id' :  12},
+        {'name' : 'Berkeley' , 'id' : 13},
+        {'name' : 'San Francisco' , 'id' : 14},
+        {'name' : 'Oakland' , 'id' : 15},
+        {'name' : 'Santa Cruz' , 'id' : 16},
+    ];
 }
 
 export class VenueErrorMessage {

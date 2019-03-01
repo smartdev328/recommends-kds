@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import {UrlConstants} from '../constants/UrlConstants';
 import {ENTITY_TYPES_ENUM, TYPES_ENUM } from '../constants/VenueConstants';
-import {EventErrorMessage } from '../constants/EventConstants';
+import {EventErrorMessage,EventConstants } from '../constants/EventConstants';
 import {ReviewsService} from '../add-review/reviews.service';
 import { MatTabChangeEvent } from '@angular/material';
 import {ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION} from '../constants/AnalyticsConstants';
@@ -30,7 +30,9 @@ export class EventComponent implements OnInit {
   public parent_id: any;
   public is_review_click: Boolean;
   public eventErrorMessage = new EventErrorMessage();
+  public eventConstatnts = new EventConstants();
   public URLConstatnts = new UrlConstants();
+  public eventCatString:String;
   selectedIndex;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
     private reviewService: ReviewsService) { }
@@ -48,6 +50,7 @@ export class EventComponent implements OnInit {
     this.review = '';
     this.user_reviews = [];
     this.selectedIndex = 0;
+    this.eventCatString = '';
   }
 
   get_event_details() {
@@ -61,6 +64,13 @@ export class EventComponent implements OnInit {
       this.event = data["event"];
       this.add_analytics_data('CLICK');
       this.isLoaded = true;
+      let categories_array = JSON.parse(this.event.event_categories);
+      // this.eventCatString = categories_array.join('');
+      if (this.event['classifications'] !=undefined){
+        let primary_cat_id = parseInt(this.event['classifications']['0'].classification1);
+        this.eventCatString = this.eventConstatnts.get_cat_name_by_id(primary_cat_id);
+      }
+
       ga('send', 'event', {
         eventCategory: 'Views',
         eventLabel: 'Event Details',

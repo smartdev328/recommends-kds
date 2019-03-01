@@ -6,6 +6,9 @@ import { Title } from '@angular/platform-browser';
 import {UrlConstants} from '../constants/UrlConstants';
 import {ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION} from '../constants/AnalyticsConstants';
 import {ReviewsService} from '../add-review/reviews.service';
+import { EventConstants } from '../constants/EventConstants';
+import { VenueConstants } from '../constants/VenueConstants';
+import { VenueListingService } from './venue-listing.service';
 
 declare let ga: any;
 @Component({
@@ -18,20 +21,47 @@ export class VenueListingComponent implements OnInit {
   isExplore: Boolean = false;
   public category: string;
   public URLConstatnts = new UrlConstants();
+  public locations:any;
   showMore: boolean = false; 
   start = 0; 
   end = 20;
+  oldFilterData = true;
+  newFilterData = false;
+  public eventConstatnts = new EventConstants();
+  public venueConstants = new VenueConstants();
+  public categoryList = this.venueConstants.PRIMARY_CATEGORY;
+  
+  /*
+    Filter Variables
+  */
+  public selected_cat : string;
+  public selected_loc : String;
+  public keyword : String;
+  public cat_label : String;
+  public loc_label : String;
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
               private datePipe: DatePipe,
               private router: Router,
-              private titleService: Title, private reviewService: ReviewsService) { 
+              private titleService: Title,
+              private reviewService: ReviewsService,
+              private venueListingService :  VenueListingService
+               ) { 
+                /*
+                  Filter Variables
+                */
+               this.selected_cat = '';
+               this.selected_loc = '';
+               this.keyword = '' ;
+               this.cat_label = 'Category';
+               this.loc_label = 'Location';
                 this.router.events.subscribe(event => {
                   if (event instanceof NavigationEnd) {
                     ga('set', 'page', event.urlAfterRedirects);
                     ga('send', 'pageview');
                   }
                 });
+                this.locations = this.venueConstants.LOCATIONS;
               }
 
   ngOnInit() {
@@ -50,9 +80,11 @@ export class VenueListingComponent implements OnInit {
      } else {
         url = 'https://kin-api-dev.kinparenting.com/venues/?categories=' + this.category;
      }
+      this.isExplore = true;
       const headers = new HttpHeaders()
           .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
-      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+      this.http.get(url, { headers: headers, responseType: 'text' }).
+      subscribe(data => {
           data = data.replace(/\n/g, '');
           data = JSON.parse(data);
           this.venues_list = data['venues'];
@@ -60,7 +92,7 @@ export class VenueListingComponent implements OnInit {
             this.showMore = true;
           } 
          // this.add_analytics_data();
-          this.isExplore = true;
+          this.isExplore = false;
       });
     }
   }
@@ -105,5 +137,49 @@ export class VenueListingComponent implements OnInit {
       eventAction: 'Click on kin redirect button'
     });
     window.location.href='http://m.me/kinparenting';
+  }
+
+  onLocationChange(loc_obj : object){
+    this.selected_loc = loc_obj['name'];
+    this.loc_label = this.selected_loc;
+  }
+  onCategoryChange(cat_obj : object){
+    this.selected_cat = cat_obj['name'];
+    this.cat_label = this.selected_cat;
+  }
+  filter_venue_data() {
+
+    if (this.selected_cat === '' && this.keyword === '' && this.selected_loc === '') {
+      alert('Please select filter criteria');
+    } else {
+      const input = {
+        'categories': this.selected_cat === undefined ? '' : this.selected_cat,
+        'q': this.keyword === undefined ? '' : this.keyword.trim(),
+        'location': this.selected_loc === undefined ? '' : this.selected_loc
+      };
+      this.showMore = false;
+      this.isExplore = true;
+      this.venueListingService.get_venue_details(input).subscribe(data => {
+        if (data['venues'] !== undefined && data['venues'].length > 0) {
+          if (data['venues'].length > 21) {
+            this.showMore = true;
+          }
+          if (this.oldFilterData) {
+            this.newFilterData = true;
+            this.oldFilterData = false;
+          } else {
+            this.newFilterData = false;
+            this.oldFilterData = true;
+          }
+          this.venues_list = data['venues'];
+        } else {
+          alert('No data found');
+          this.venues_list = [];
+          this.showMore = false;
+        }
+        this.isExplore = false;
+      
+      });
+    }
   }
 }
