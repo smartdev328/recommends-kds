@@ -1,0 +1,177 @@
+.event-list-cards {
+    margin: 5%;
+    cursor: pointer;
+    /* width: 230px; */
+    border: solid 1px #5d5d5a;
+    background-color: #ffffff;
+}
+
+.mat-images {
+    width: 300px;
+    height: 200px;
+}
+
+.event-group-title {
+    text-align: center;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    font-weight: bold;
+    /* display:block;
+    width:50%;
+    word-wrap:break-word; */
+}
+
+.event-date {
+    text-align: center;
+    color: rgb(255, 77, 77);
+    font-size: 12px;
+    margin-bottom: 0em;
+    /* display:block;
+    width:50%;
+    word-wrap:break-word; */
+}
+
+.event-venue {
+    text-align: center;
+    margin-top: 0em;
+    font-size: 12px;
+    /* display:block;
+    width:50%;
+    word-wrap:break-word; */
+}
+
+.event-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.flex-display {
+  display: flex; 
+  flex-direction: column; 
+  flex-wrap: wrap;
+  height: 100vw;
+  max-height: 800px;
+  font-size: 0; 
+}
+
+.show-layout {
+    opacity: 1;
+}
+
+.hide-layout {
+    opacity: 0;
+}
+
+.Events-at-your-favorite-venues {
+    /* width: 333px;
+    height: 25px; */
+    font-family: Montserrat;
+    font-size: 21px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.19;
+    letter-spacing: normal;
+    text-align: left;
+    color: #5d5d5a;
+    margin-top: 5em;
+    margin-bottom: 2em;
+  }
+
+ .section-grid-item {
+    width: calc(20%);
+ }
+
+ .tiles-image {
+    width: 232px;
+    height: 120px;
+    margin: auto!important;
+ }
+
+ .See-more {
+    /* width: 99px;
+    height: 24px; */
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5d5d5a;
+    margin: auto;
+    margin-top: 2em;
+    text-decoration: underline;
+  }
+
+  /* ng-masonry-grid{
+    position: relative;
+    height: 281.875px;
+    perspective-origin: 50% 455.5px;
+    left:12%;
+}  */
+
+.center-block {
+    margin:0 auto; width:850px;
+}
+
+
+
+
+/* Phones */ 
+@media only screen and (max-width : 767px) {
+    .tiles {
+        width: 48%;
+    }
+
+    .loading-gif {
+        margin-left: 10%;
+    }
+
+    .event-list-cards {
+        padding: 4%!important;
+    }
+
+    .tiles-image {
+        width: 100%;
+        padding: 1px;
+        /* height: 110px; */
+    }
+
+    .center{
+        position: relative;
+        left: 0% !important;
+    }
+
+    .center-block {
+        width:100%; margin: 0 auto;
+    }
+}
+
+/* Tablets */
+@media only screen and (min-width : 768px) and (max-width : 1280px) {
+
+    .loading-gif {
+        margin-left: 35%;
+    }
+
+}
+
+/* Desktop */
+@media only screen and (min-width : 1281px) {
+    .tiles {
+        width: 32%;
+    }
+
+    .loading-gif {
+        margin-left: 40%;
+    }
+
+    .center{
+        position: relative;
+        left: 10% ;
+    }
+}
+

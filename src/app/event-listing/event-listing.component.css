@@ -66,22 +66,16 @@
     }
 
     .event-listing-card {
-        margin: 0% 5% 12% 5% !important;
+        margin: 0% 7% 12% 7.5% !important;
     }
     
 }
 
-.details-button {
-    color: white;
-    background-color: rgb(237, 45, 86);
-    border: none;
-    padding: 1%;
-    margin-top: 6%;
-    /* //border-radius: 10%; */
-    margin-left: 49%;
-    margin-right: 7%;
-}
-
 .mouse-pointer{
     cursor: pointer;
+}
+
+.mat-datepicker-toggle-default-icon {
+  color: #ef6c57!important;
+  width: 60px;
 }

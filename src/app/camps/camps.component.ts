@@ -78,6 +78,9 @@ export class CampsComponent implements OnInit {
           this.category ='No information available for now';
           }
           this.camp.lunch = this.camp.misc['lunch'];
+          this.camp.tips = this.camp.misc['tips'];
+          this.camp.am_extended_care = this.camp.misc['am_extended_care'];
+          this.camp.pm_extended_care = this.camp.misc['pm_extended_care'];
           this.camp.image_url  = this.camp.image_url;
           this.camp.timings = this.camp.misc['timings'];
           this.isLoaded = true;

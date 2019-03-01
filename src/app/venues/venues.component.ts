@@ -15,7 +15,7 @@ declare let ga: any;
   styleUrls: ['./venues.component.css']
 })
 export class VenuesComponent implements OnInit {
-
+  public dayOfWeek : any;
   public venue_id: any;
   public venue: any;
   public isLoaded: boolean = true;
@@ -46,9 +46,13 @@ export class VenuesComponent implements OnInit {
   public isSaveVisible: Boolean;
   public google_place_reviews_count: number;
   public isShowMoreHours: Boolean;
+  public price:any;
+
   city : String;
   state : String;
+  public street : String;
   public isSuccessVisible: Boolean;
+  public contact_number : String;
   selectedIndex;
   constructor(private route: ActivatedRoute,  private http: HttpClient, private titleService: Title,
   private venuesService: VenuesService, private reviewService: ReviewsService , private router: Router) {
@@ -74,8 +78,15 @@ export class VenuesComponent implements OnInit {
       this.selectedIndex = 0;
       this.city = '';
       this.state = '';
+      this.street = '';
       this.isSuccessVisible = false;
       this.review = '';
+      var currentDate = new Date();
+      this.dayOfWeek = currentDate.getDay(); 
+      this.dayOfWeek = this.dayOfWeek-1 //To get array value
+      this.price=0;
+      this.contact_number = '';
+      
   }
 
   ngOnInit() {
@@ -101,6 +112,9 @@ export class VenuesComponent implements OnInit {
           this.venue.sec_cat = this.venue.sec_cat;
           this.city = this.venue.city;
           this.state = this.venue.state;
+          this.price = this.venue.price;
+          this.street = this.venue.street;
+          this.contact_number = this.venue.contact_number;
           this.parking = this.venue.misc.parking === undefined || this.venue.misc.parking.trim().length === 0 ?
              0 : this.venue.misc.parking;
           this.tips_for_parent = this.venue.misc.tips_for_parent === '' ? '' : this.venue.misc.tips_for_parent;
@@ -108,7 +122,7 @@ export class VenuesComponent implements OnInit {
           this.jsonMiscData = JSON.stringify(this.venue.misc);
           this.miscData = this.venue.misc;
           this.venue.description = this.venue.description === undefined || this.venue.description.trim().length === 0 ?
-              0  : this.venue.description ;
+              0  : this.venue.description.trim() ;
           this.venue.image_url  = this.venue.image_url === '' || this.venue.image_url === undefined ?
               '../../assets/venue_default_image.png'
               : this.venue.image_url;

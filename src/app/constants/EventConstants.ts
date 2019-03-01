@@ -31,6 +31,21 @@ public PRIMARY_CATEGORY = [
 
     ];
 
+public LOCATIONS = [ 
+    {'name' : 'San Jose' , 'id' :  ''},
+    {'name' : 'Sant Clara' , 'id' :  ''},
+    {'name' : 'Sunnyvale' , 'id' :  ''},
+    {'name' : 'Mountain View' , 'id' :  ''},
+    {'name' : 'Palo Alto' , 'id' :  ''},
+    {'name' : 'Menlo Park' , 'id' :  ''},
+    {'name' : 'Cupertino' , 'id' :  ''},
+    {'name' : 'Saratoga' , 'id' :  ''},
+    {'name' : 'Campbell' , 'id' :  ''},
+    {'name' : 'Milpitas' , 'id' :  ''},
+    {'name' : 'Los Altos' , 'id' :  ''},
+    {'name' : 'Los Gatos' , 'id' :  ''}
+];
+
 public SECONDARY_CATEGORY = [
     {'name' : 'Active play' , 'id' : 1},
     {'name' : 'Animals & Wildlife' , 'id' : 2},
@@ -56,4 +71,19 @@ public SECONDARY_CATEGORY = [
 
     ];
 
+get_cat_name_by_id(id){
+        let cat_name='';
+        if (id){
+          for (let cat_arr_count=0;cat_arr_count<this.PRIMARY_CATEGORY.length ; cat_arr_count++){
+            let current_cat = this.PRIMARY_CATEGORY[cat_arr_count];
+            let current_cat_id = current_cat.id;
+            let name = current_cat.name;
+            if (current_cat_id==parseInt(id)){
+              cat_name=name;
+              break;
+            }
+          }
+        }
+        return cat_name;
+      }
 }

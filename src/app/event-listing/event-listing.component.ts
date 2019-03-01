@@ -5,6 +5,9 @@ import { DatePipe } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import {ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION} from '../constants/AnalyticsConstants';
 import {ReviewsService} from '../add-review/reviews.service';
+import {EventConstants } from '../constants/EventConstants';
+import {EventListingService } from './event-listing.service';
+
 
 declare let ga: any;
 @Component({
@@ -14,10 +17,8 @@ declare let ga: any;
   encapsulation: ViewEncapsulation.None
 })
 export class EventListingComponent implements OnInit {
-  events_explore;
-  events_today;
-  events_tomorrow;
-  events_weekend;
+
+  public all_data;
   isToday = false;
   isExplore = false;
   isTomorrow = false;
@@ -26,173 +27,164 @@ export class EventListingComponent implements OnInit {
   isExplorelen: Number = 0;
   isTomorrowlen: Number = 0;
   isWeekendlen:  Number = 0;
+  oldFilterData = true;
+  newFilterData = false;
   start = 0;
   end = 21;
   showMore: Boolean = false;
+  showLayout: boolean = false;
+  dateFilter: any = [{
+    id: 1,
+    desc: 'today'
+  },
+  {
+    id: 1,
+    desc: 'tomorrow'
+  },
+  {
+    id: 1,
+    desc: 'weekend'
+  },
+  {
+    id: 1,
+    desc: 'next week'
+  }]
+  
+    /*
+    Filter Variables
+  */
+  public selected_cat: String;
+  public select_cat_id: any;
+  public selected_loc: String;
+  public selected_date: String;
+  public keyword: String;
+  public cat_label: String;
+  public loc_label: String;
+  public date_label: String;
 
+
+  public eventConstatnts = new EventConstants();
+  public categoryList = this.eventConstatnts.PRIMARY_CATEGORY;
+  public locations = this.eventConstatnts.LOCATIONS;
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
               private datePipe: DatePipe,
               private router: Router,
-              private titleService: Title, private reviewService: ReviewsService) {
+              private titleService: Title,
+              private reviewService: ReviewsService,
+              private eventListingService : EventListingService
+              ) {
                 this.router.events.subscribe(event => {
                   if (event instanceof NavigationEnd) {
                     ga('set', 'page', event.urlAfterRedirects);
                     ga('send', 'pageview');
                   }
                 });
+
+                this.selected_cat = '';
+                this.selected_loc = '';
+                this.keyword = '' ;
+                this.cat_label = 'Category';
+                this.loc_label = 'Location';
+                this.date_label = 'Date'
+                this.select_cat_id = '';
               }
 
   ngOnInit() {
     this.titleService.setTitle('Events');
-    this.get_explore_event_details();
+    let query_param_cat_id = this.route.snapshot.queryParams['category'];
+    this.selected_cat = this.eventConstatnts.get_cat_name_by_id(query_param_cat_id);
+    this.keyword = this.route.snapshot.queryParams['q'];
+    this.selected_loc = this.route.snapshot.queryParams['location'];
+    this.selected_date = this.route.snapshot.queryParams['date'];
+      this.get_explore_event_details();
+  }
+  onLocationChange(loc_obj : object){
+    this.selected_loc = loc_obj['name'];
+    this.loc_label = this.selected_loc;
+  }
+  onCategoryChange(cat_obj : object){
+    this.selected_cat = cat_obj['name'];
+    this.select_cat_id = cat_obj['id'];
+    this.cat_label = this.selected_cat;
+  }
+  onDateChange(date_obj : object){
+    this.selected_date = date_obj['desc'];
+    this.date_label = this.selected_date;
   }
 
   loadMore() {
-    if (this.isExplorelen > this.end && this.isExplore === true) {
+    if (this.isExplorelen > this.end) {
         this.end = this.end + 21;
     }
-     if (this.isExplorelen < this.end && this.isExplore === true) {
+     if (this.isExplorelen < this.end) {
       this.showMore = false;
-    }
-     if (this.isTodaylen > this.end && this.isToday === true) {
-        this.end = this.end + 21;
-    }
-     if (this.isTodaylen < this.end && this.isToday === true) {
-      this.showMore = false;
-    }
-    if (this.isTomorrowlen > this.end && this.isTomorrow === true) {
-        this.end = this.end + 21;
     }
 
-     if (this.isTomorrowlen < this.end && this.isTomorrow === true) {
-      this.showMore = false;
-    }
-     if (this.isWeekendlen > this.end && this.isWeekend === true) {
-        this.end = this.end + 21;
-     }
-     if (this.isWeekendlen < this.end && this.isWeekend === true) {
-      this.showMore = false;
-    }
   }
   get_explore_event_details() {
     this.showMore = false;
-    if (this.events_explore) {
       this.isExplore = true;
-      if (this.isExplorelen > this.end ) {
-        this.showMore = true;
-      }
-    } else {
       const d = Date.now();
-      const url = 'https://kin-api-dev.kinparenting.com/events/?event_date_start=' + this.datePipe.transform(d, 'yyyy-MM-dd') + '&event_date_range=30&limit=113';
+      const url = 'https://kin-api-dev.kinparenting.com/events/?event_date_start='
+       + this.datePipe.transform(d, 'yyyy-MM-dd') + '&event_date_range=30&limit=113';
       const headers = new HttpHeaders()
           .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
           data = data.replace(/\n/g, '');
           data = JSON.parse(data);
-          this.events_explore = data['events'];
+          this.all_data = data['events'];
           this.showMore = false;
-          this.isExplorelen = this.events_explore.length;
+          this.isExplorelen = this.all_data.length;
           if (this.isExplorelen > this.end ) {
             this.showMore = true;
           }
-        //  this.add_analytics_data();
-          this.isExplore = true;
+          this.isExplore = false;
       });
-    }
-
 
   }
 
-  get_today_events() {
-
-    if (this.events_today) {
-      this.isToday = true;
-      if (this.isTodaylen > this.end ) {
-        this.showMore = true;
-      }
+  filter_event_data() {
+  
+    if (this.selected_cat === '' && this.keyword === undefined && this.selected_loc === undefined 
+    && this.selected_date === undefined){
+        alert('Please select filter criteria');
     } else {
-      const url = 'https://kin-api-dev.kinparenting.com/events/?event_range_str=today';
-      const headers = new HttpHeaders()
-          .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
-      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-          data = data.replace(/\n/g, '');
-          data = JSON.parse(data);
-          this.events_today = data['events'];
-          this.isTodaylen   = this.events_today.length;
-          if (this.events_today.length > this.end ) {
-            this.showMore = true;
-          }
-          this.isToday = true;
-      });
-    }
-  }
-
-  get_tomorrow_events() {
-    if (this.events_tomorrow) {
-      this.isTomorrow = true;
-      if (this.isTomorrowlen > this.end ) {
-        this.showMore = true;
-      }
-    } else {
-      const url = 'https://kin-api-dev.kinparenting.com/events/?event_range_str=tomorrow';
-      const headers = new HttpHeaders()
-          .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
-      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-          data = data.replace(/\n/g, '');
-          data = JSON.parse(data);
-          this.events_tomorrow = data['events'];
-          this.isTomorrowlen = this.events_tomorrow.length;
-          if (this.events_tomorrow.length > this.end ) {
-            this.showMore = true;
-          }
-          this.isTomorrow = true;
-      });
-    }
-  }
-
-  get_weekend_events() {
-    if (this.events_weekend) {
-      this.isWeekend = true;
-      if (this.isWeekendlen > this.end ) {
-        this.showMore = true;
-      }
-    } else {
-      const url = 'https://kin-api-dev.kinparenting.com/events/?event_range_str=weekend';
-      const headers = new HttpHeaders()
-          .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
-      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-          data = data.replace(/\n/g, '');
-          data = JSON.parse(data);
-          this.events_weekend = data['events'];
-          this.isWeekendlen = this.events_weekend.length;
-          if (this.events_weekend.length > this.end ) {
-            this.showMore = true;
-          }
-          this.isWeekend = true;
-      });
-    }
-  }
-
-  onTabClick(event) {
-    this.showMore = false;
+    const input = {
+      'category' : this.select_cat_id === undefined ? '' :  this.select_cat_id,
+      'q' : this.keyword === undefined ? '' :  this.keyword.trim(),
+      'city' : this.selected_loc === undefined ? '' :  this.selected_loc,
+      'event_range_str' : this.selected_date === undefined ? '' : this.selected_date
+    };
+    this.isExplore = true;
     this.end = 21;
-    this.isExplore = false;
-    this.isToday = false;
-    this.isTomorrow = false;
-    this.isWeekend = false;
-    if (event.index === 0) {
-      this.get_explore_event_details();
-    }
-    if (event.index === 1) {
-      this.get_today_events();
-    }
-    if (event.index === 2) {
-      this.get_tomorrow_events();
-    }
-    if (event.index === 3) {
-      this.get_weekend_events();
-    }
+    this.eventListingService.get_event_details(input).subscribe(data=>{
+      if (data['events'] !== undefined && data['events'].length > 0) {
+        this.all_data = [];
+        this.all_data = data['events'];
+        this.showMore = data['events'].length > this.end;
+        if (this.oldFilterData) {
+          this.newFilterData = true;
+          this.oldFilterData = false;
+        } else {
+          this.newFilterData = false;
+          this.oldFilterData = true;
+        }
+        this.isExplorelen = this.all_data.length;
+        this.isExplore = false;
+
+      } else {
+        alert('No data found');
+        this.all_data = [];
+        this.showMore = false;
+        this.isExplore = false;
+      }
+    }, error => {
+      this.all_data = [];
+      this.showMore = false;
+      this.isExplore = false;
+    });
+  }
   }
 
   add_analytics_data() {
@@ -200,7 +192,7 @@ export class EventListingComponent implements OnInit {
       'input_data': []
     };
     const input_final_data = [];
-    for (let i = 0; i <  this.events_explore.length; i++) {
+    for (let i = 0; i <  this.all_data.length; i++) {
       const final_key_value_pair = {
         'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
         'entity_id': undefined,
@@ -208,7 +200,7 @@ export class EventListingComponent implements OnInit {
         'action': ACTION.VIEW,
         'referrer': '/root/home'
       };
-      final_key_value_pair['entity_id'] =  this.events_explore[i].id;
+      final_key_value_pair['entity_id'] =  this.all_data[i].id;
       input_final_data.push(final_key_value_pair);
     }
     final_data['input_data'] = input_final_data;
@@ -225,5 +217,21 @@ export class EventListingComponent implements OnInit {
       eventAction: 'Click on kin redirect button'
     });
     window.location.href = 'http://m.me/kinparenting';
+  }
+
+  get_cat_name_by_id(id){
+    let cat_name='';
+    if (id){
+      for (let cat_arr_count=0;cat_arr_count<this.categoryList.length ; cat_arr_count++){
+        let current_cat = this.categoryList[cat_arr_count];
+        let current_cat_id = current_cat.id;
+        let name = current_cat.name;
+        if (current_cat_id==parseInt(id)){
+          cat_name=name;
+          break;
+        }
+      }
+    }
+    return cat_name;
   }
 }

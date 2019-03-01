@@ -1,15 +1,21 @@
-<div class="container">
-  <!-- <div class="personalized-page"> -->
-    <div class="row heading-bottom">
-      <p class="Personalized-recommendations"> Personalized recommendations </p>
-      <p class="Here-are-some-suggestions-just-for-you"> Here are some suggestions just for you! </p>
+<div class="container-fluid">
+    <div class="main-section">
+        <!-- <div class="personalized-page"> -->
+        <div class="row heading-bottom">
+            <p class="Personalized-recommendations"> Personalized recommendations </p>
+            <p class="Here-are-some-suggestions-just-for-you"> Here are some suggestions just for you! </p>
 
 
-    </div>
+        </div>
 
-    <div *ngIf="isFav">
-      
-      <div class="container block-container" *ngIf="isFav">
+        <!-- <div *ngIf="isFav"> -->
+
+        <!-- <div class="container block-container" *ngIf="<div class="container" *ngIf="isPopular">
+            <app-masonsry-view  [events]=popular [start]=start [end]=end></app-masonsry-view>          
+            <div class="See-more" *ngIf="isPopular">
+                <a class="See-more" [routerLink]="['/','events']">See more</a>
+            </div>
+        </div>">
           <div class="Events-at-your-favorite-venues">Events at your favorite venues </div>
        
           <div class="row">
@@ -23,9 +29,17 @@
                 </div>  
               </div>
           </div>
-      </div>
+      </div> -->
+        <!-- <div class="container" *ngIf="isFav">
+            <div class="Events-at-your-favorite-venues">Events at your favorite venues </div>
+            <app-masonsry-personalise-view  [events]=favorite [start]=start [end]=end></app-masonsry-personalise-view>          
+            <div class="See-more" *ngIf="isFav">
+                    <a class="See-more" [routerLink]="['/','events']">See more</a>
+            
+                  </div>
+        </div> -->
 
-      <!-- <div class="row">
+        <!-- <div class="row">
         <div class="col-md-4" *ngFor="let event of favorite">
           <img class="professional-magic-show" src={{event.image_url}} alt="Photo of the event">
           <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text">{{event.dates}} &nbsp;&nbsp;,
@@ -36,17 +50,14 @@
         </div>
 
       </div> -->
-      
 
-      <div class="See-more" *ngIf="isFav">
-        <a class="See-more" [routerLink]="['/','events']">See more</a>
 
-      </div>
 
-    </div>
-    <div *ngIf="isWeekend">
-      
-      <!-- <div class="row">
+
+        <!-- </div> -->
+        <!-- <div *ngIf="isWeekend"> -->
+
+        <!-- <div class="row">
         <div class="col-md-4" *ngFor="let event of popular">
           <img class="professional-magic-show" src={{event.image_url}} alt="Photo of the event">
           <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text">{{event.dates}} &nbsp;&nbsp;,
@@ -57,7 +68,7 @@
         </div>
 
       </div> -->
-      <div class="container block-container" *ngIf="isPopular">
+        <!-- <div class="container block-container" *ngIf="isPopular">
           <div class="Events-at-your-favorite-venues">Popular Events</div>
        
           <div class="row">
@@ -71,18 +82,23 @@
                 </div>  
               </div>
           </div>
-      </div>
+      </div> -->
+        <!-- <div class="container" *ngIf="isPopular">
+            <div class="Events-at-your-favorite-venues">Popular Events</div>
+            <app-masonsry-personalise-view  [events]=popular [start]=start [end]=end></app-masonsry-personalise-view>          
+            <div class="See-more" *ngIf="isPopular">
+                <a class="See-more" [routerLink]="['/','events']">See more</a>
+            </div>
+        </div> -->
 
-      <div class="See-more" *ngIf="isPopular">
-        <a class="See-more" [routerLink]="['/','events']">See more</a>
-      </div>
 
-    </div>
-    
-    <div class="container block-container" *ngIf="isWeekend">
+
+        <!-- </div> -->
+
+        <!-- <div class="container block-container" *ngIf="isWeekend">
         <div class="Events-at-your-favorite-venues" *ngIf="isWeekend"> Weekend Events </div>
         <div class="row">
-            <div class="col-md-4" *ngFor="let event of events_weekend">
+            <div class="col-md-4 col-sm-2 col-xs-2" *ngFor="let event of events_weekend">
               <div class="column-border">
                   <img class="professional-magic-show" src={{event.image_url}} alt="Photo of the event">
                   <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text">{{event.dates}} &nbsp;&nbsp;,
@@ -92,14 +108,18 @@
               </div>  
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div class="See-more" *ngIf="isWeekend">
-      <a class="See-more" [routerLink]="['/','events']">See more</a>
-    </div>
+        <!-- <div class="container">
+            <div class="Events-at-your-favorite-venues"> Weekend Events </div>
+        <app-masonsry-personalise-view  [events]=events_weekend [start]=start [end]=end></app-masonsry-personalise-view>          
+        <div class="See-more">
+            <a class="See-more" [routerLink]="['/','events']">See more</a>
+        </div>
+    </div> -->
 
-    
-    <!-- <div class="row" *ngIf="is_closest">
+
+        <!-- <div class="row" *ngIf="is_closest">
       <div class="col-md-4" *ngFor="let event of closest_event">
         <img class="professional-magic-show" src={{event.image_url}} alt="Photo of the event">
         <p class="text-align-center Camp-1-Lorem-Ipsum-is-simply-dummy-text">{{event.dates}} &nbsp;&nbsp;,
@@ -111,7 +131,7 @@
 
     </div> -->
 
-    <div class="container block-container" *ngIf="is_closest">
+        <!-- <div class="container block-container" *ngIf="is_closest">
         <div class="Events-at-your-favorite-venues" *ngIf="is_closest"> Events closest to you </div>
 
         <div class="row">
@@ -128,10 +148,20 @@
     </div>
     <div class="See-more" *ngIf="is_closest">
       <a class="See-more" [routerLink]="['/','events']">See more</a>
+    </div> -->
+        <!-- <div class="container" >
+            <div class="Events-at-your-favorite-venues" > Events closest to you </div>
+            <app-masonsry-personalise-view  [events]=closest_event [start]=start [end]=end></app-masonsry-personalise-view>          
+            <div class="See-more" >
+                <a class="See-more" [routerLink]="['/','events']">See more</a>
+            </div>
+        </div> -->
+
+
+        <!-- </div> -->
+        <app-masonsry-personalise-view  [events]=all_events [start]=start [end]=end></app-masonsry-personalise-view>
+
     </div>
-
-
-  <!-- </div> -->
 </div>
 
 <!-- <div class="container">

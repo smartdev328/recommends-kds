@@ -80,6 +80,12 @@
         max-width: 100%;
         height: auto;
     }
+    .wrap{
+        display: block;
+        word-wrap: break-word;
+        margin-left: 3em;
+        margin-top: -2em;
+    }
 }
 
 /* Tablets */
@@ -117,6 +123,13 @@
         border-radius: 5px;
         box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
         margin-bottom: 15px;
+    }
+
+    .wrap{
+        display: block;
+        word-wrap: break-word;
+        margin-left: 3em;
+        margin-top: -2em;
     }
 }
 
@@ -174,6 +187,13 @@
     .change-pos{
         position: absolute;
         left: -68%;
+    }
+
+    .wrap{
+        display: block;
+        word-wrap: break-word;
+        margin-left: 4.5em;
+        margin-top: -2em;
     }
 }
 
@@ -245,10 +265,4 @@
         font-size: 21px;
         font-family: Montserrat;
          color: #5d5d5a;
-    }
-    .wrap{
-        display: block;
-        word-wrap: break-word;
-        margin-left: 3em;
-        margin-top: -2em;
     }

@@ -6,7 +6,7 @@
 
   .Personalized-recommendations {
     font-family: BubblegumSans;
-    font-size: 70px;
+    font-size: 68px;
     text-shadow: -1px 0 black, 0 -1px black, -1px 0 black, 0 -1px black;
     font-weight: normal;
     font-style: normal;
@@ -131,15 +131,99 @@
     width: 80vw;
   }
 
+
+  .event-list-cards {
+    margin: 5%;
+    cursor: pointer;
+}
+
+.event-group-title {
+    text-align: center;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    font-weight: bold;
+}
+
+.event-date {
+    text-align: center;
+    color: rgb(255, 77, 77);
+    font-size: 12px;
+    margin-bottom: 0em;
+}
+
+.event-venue {
+    text-align: center;
+    margin-top: 0em;
+    font-size: 12px;
+}
+
+.event-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.flex-display {
+  display: flex; 
+  flex-direction: column; 
+  flex-wrap: wrap;
+  height: 100vw;
+  max-height: 800px;
+  font-size: 0; 
+}
+
+.show-layout {
+    opacity: 1;
+}
+
+.hide-layout {
+    opacity: 0;
+}
+
+/* Phones */ 
+@media only screen and (max-width : 767px) {
+    .tiles {
+        width: 49%;
+    }
+
+    .loading-gif {
+        margin-left: 10%;
+    }
+}
+
+/* Tablets */
+@media only screen and (min-width : 768px) and (max-width : 1280px) {
+    .tiles {
+        width: 32%;
+    }
+
+    .loading-gif {
+        margin-left: 35%;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width : 1281px) {
+    .tiles {
+        width: 24%;
+    }
+
+    .loading-gif {
+        margin-left: 40%;
+    }
+}
+
   @media only screen and (min-device-width : 320px) and (max-device-width : 767px) {
 
     .Personalized-recommendations {
-      font-size: 4rem;
+      font-size: 3rem;
+      word-break: break-word;
     }
 
     .column-border {
-      width: 85vw;
+      width: 35vw;
       height: auto;
-      margin-bottom: 12px;
+      /* margin-bottom: 12px; */
+      margin: 0;
     }
   }
