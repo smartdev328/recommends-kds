@@ -200,7 +200,8 @@ export class EventComponent implements OnInit {
 
   calendar_redirects() {
     this.add_analytics_data('CALENDAR');
-    window.open('https://calendar.google.com');
+    let calendar_url = this.URLConstatnts.API_URL + 'cal_redirect/?event_id=' + this.event_id;
+    window.open(calendar_url);
   }
   
   save_event() {
