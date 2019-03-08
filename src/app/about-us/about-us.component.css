@@ -41,6 +41,11 @@
     color: #5d5d5a;
 }
 
+.Story-description {
+    font-family: Montserrat;
+    text-align: justify;
+}
+
 .Rectangle-200 {
     width: 1181px;
     height: 5px;
