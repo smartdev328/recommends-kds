@@ -96,11 +96,12 @@
 
 .heading{
     color: #ef6c57;
+    font-size: 20px;
    
 }
-p {
+p, li {
     font-family: Montserrat;
-    font-size: 21px;
+    font-size: 16px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
