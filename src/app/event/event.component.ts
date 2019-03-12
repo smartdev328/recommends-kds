@@ -122,7 +122,7 @@ export class EventComponent implements OnInit {
       eventAction: 'Click on more details button',
       eventValue: this.event_id
     });
-    window.location.href= this.event.url;
+    window.open(this.event.url);
   }
 
   add_review_redirect(index: number): void {

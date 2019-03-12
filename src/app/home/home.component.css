@@ -21,6 +21,12 @@
         color: #414141;
         letter-spacing: 0.1em;
     }
+    .carousel-header {
+        font-size: 14px;
+    }
+    .carousel-p {
+        font-size: 9px;
+    }
 
 }
 
@@ -50,7 +56,12 @@
         color: #414141;
         letter-spacing: 0.1em;
     }
-    
+     .carousel-header {
+        font-size: 16px;
+    }
+    .carousel-p {
+        font-size: 11px;
+    }
 }
 
 /* Desktop */
@@ -82,5 +93,7 @@
     .addmore{
         float: right;
     }
-    
+    a {
+        text-decoration: none;
+    }
 }

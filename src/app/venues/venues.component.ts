@@ -396,7 +396,7 @@ export class VenuesComponent implements OnInit {
       eventAction: 'Click on more details button',
       eventValue: this.venue_id
     });
-    window.location.href = this.venue.url;
+    window.open(this.venue.url);
   }
 
 }

@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-12">
       <mat-card-header>
-        <mat-card-title class="camps-header">{{ event.name }}</mat-card-title>
+        <mat-card-title class="event-header">{{ event.name }}</mat-card-title>
       </mat-card-header>
     </div>
   </div>
@@ -91,7 +91,7 @@
               <span  class="description">{{format_price()}}</span>
             </p>
             <mat-card-actions class="details-buttons-space">
-              <button mat-button class="details-buttons" (click)="event_redirect()">MORE DETAILS</button>
+              <button mat-button class="details-buttons mouse-pointer" (click)="event_redirect()">MORE DETAILS</button>
             </mat-card-actions>
 
           </mat-card-content>
@@ -151,4 +151,3 @@
   </mat-card-content>
   <hr class="hr-Rectangle-200">
   <br> <br>
-  <app-layout-footer></app-layout-footer>

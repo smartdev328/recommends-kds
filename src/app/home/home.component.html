@@ -39,26 +39,32 @@
   <div class="row">
     <div class="col-sm-4 col-md-4">
        <div class="outer-div">
-        <img src="../../assets/isometric_pics/events.png" class="img-fluid" />
-        <div class="row" >
-          <label class="home-event-camps-places-text">Events</label>
-	</div>
+           <a [routerLink]="['/','events']">
+            <img src="../../assets/isometric_pics/events.png" class="img-fluid" />
+            <div class="row" >
+              <label class="home-event-camps-places-text">Events</label>
+           </div>
+           </a>
       </div>
     </div>
     <div class="col-sm-4 col-md-4">
         <div class="outer-div">
-        <img src="../../assets/isometric_pics/camps.png" class="img-fluid" />
-        <div class="row" >
-            <label class="home-event-camps-places-text">Camps</label>
-        </div>
+            <a [routerLink]="['/','camps']">
+            <img src="../../assets/isometric_pics/camps.png" class="img-fluid" />
+            <div class="row" >
+                <label class="home-event-camps-places-text">Camps</label>
+            </div>
+            </a>
     	</div>
     </div>
     <div class="col-sm-4 col-md-4">
         <div class="outer-div">
-        <img src="../../assets/isometric_pics/places.png" class="img-fluid" />
-        <div class="row" >
-            <label class="home-event-camps-places-text">Places</label>
-        </div>
+            <a [routerLink]="['/','venues']">
+            <img src="../../assets/isometric_pics/places.png" class="img-fluid" />
+            <div class="row" >
+                <label class="home-event-camps-places-text">Places</label>
+            </div>
+            </a>
         </div>
     </div>  
   </div>
@@ -89,8 +95,8 @@
                       <div class="mask rgba-black-light"></div>
                     </div>
                     <div class="carousel-caption">
-                      <h3 class="h3-responsive">Light mask</h3>
-                      <p>First text</p>
+                      <h3 class="h3-responsive carousel-header">Get recommendations</h3>
+                      <p class="carousel-p">Events, places, camps and more tailored for your family</p>
                     </div>
                   </div>
                   <div class="carousel-item">
@@ -100,8 +106,8 @@
                       <div class="mask rgba-black-strong"></div>
                     </div>
                     <div class="carousel-caption">
-                      <h3 class="h3-responsive">Strong mask</h3>
-                      <p>Secondary text</p>
+                      <h3 class="h3-responsive carousel-header">Get the details</h3>
+                      <p class="carousel-p">Is there easy parking? is food allowed? do I need to buy tickets now? Get all the scoop for parents in just one place</p>
                     </div>
                   </div>
                   <div class="carousel-item">
@@ -111,8 +117,8 @@
                       <div class="mask rgba-black-slight"></div>
                     </div>
                     <div class="carousel-caption">
-                      <h3 class="h3-responsive">Slight mask</h3>
-                      <p>Third text</p>
+                      <h3 class="h3-responsive carousel-header">Get things done</h3>
+                      <p class="carousel-p">Share with friends, add to calendar, save, subscribe to events at your favorite places…whatever it takes to make it happen whether it is a family outing or a playdate</p>
                     </div>
                   </div>
                 </div>
