@@ -113,7 +113,7 @@ export class CampsComponent implements OnInit {
       eventAction: 'Click on more details button',
       eventValue: this.camp_id
     });
-    window.location.href = this.camp.url;
+    window.open(this.camp.url);
   }
 
   add_review_redirect(index: number): void {

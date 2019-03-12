@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <mat-card-header>
-                        <mat-card-title class="camps-header">{{ venue.name }}</mat-card-title>
+                        <mat-card-title class="venue-header">{{ venue.name }}</mat-card-title>
                     </mat-card-header>
                 </div>
             </div>
@@ -178,7 +178,7 @@
                         </p>
 
                         <mat-card-actions class="detail-buttons-space">
-                            <button mat-button class="detail-buttons" (click)="venue_redirect()">MORE DETAILS</button>
+                            <button mat-button class="detail-buttons mouse-pointer" (click)="venue_redirect()">MORE DETAILS</button>
                         </mat-card-actions>
 
 
@@ -234,9 +234,7 @@
                 </mat-card>
             </mat-tab>
         </mat-tab-group>
-
+         <hr class="hr-Rectangle-200">
     </div>
 </div>
-
 <br> <br>
-<app-layout-footer></app-layout-footer>
