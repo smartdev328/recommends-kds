@@ -23,5 +23,5 @@ export class CampErrorMessage {
     public SOMETHING_WENT_WRONG = " Something went wrong, please try again later";
     public GET_DATA_ERROR = "Error while getting information";
     public REVIEW_ADDED_SUCCESS = "Review , successfully added";
-
+    public NO_CAMPS_FOUND = "No camps found.";
 }

@@ -2,7 +2,8 @@ export class EventErrorMessage {
     public ERROR_ADDING_NEW_REVIEW = "Error while adding a new review";
     public SOMETHING_WENT_WRONG = " Something went wrong,please try again later";
     public GET_DATA_ERROR = "Error while getting information";
-    public REVIEW_ADDED_SUCCESS = "Review , successfully added";
+    public REVIEW_ADDED_SUCCESS = "Thank you!";
+    public NO_EVENTS_FOUND = "No events found.";
 }
 export class EventConstants {
 
@@ -33,7 +34,7 @@ public PRIMARY_CATEGORY = [
 
 public LOCATIONS = [ 
     {'name' : 'San Jose' , 'id' :  ''},
-    {'name' : 'Sant Clara' , 'id' :  ''},
+    {'name' : 'Santa Clara' , 'id' :  ''},
     {'name' : 'Sunnyvale' , 'id' :  ''},
     {'name' : 'Mountain View' , 'id' :  ''},
     {'name' : 'Palo Alto' , 'id' :  ''},
@@ -44,6 +45,7 @@ public LOCATIONS = [
     {'name' : 'Milpitas' , 'id' :  ''},
     {'name' : 'Los Altos' , 'id' :  ''},
     {'name' : 'Los Gatos' , 'id' :  ''}
+    {'name' : 'San Francisco' , 'id' :  ''}
 ];
 
 public SECONDARY_CATEGORY = [

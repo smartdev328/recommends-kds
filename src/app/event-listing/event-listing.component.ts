@@ -5,7 +5,8 @@ import { DatePipe } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import {ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION} from '../constants/AnalyticsConstants';
 import {ReviewsService} from '../add-review/reviews.service';
-import {EventConstants } from '../constants/EventConstants';
+import {EventConstants, EventErrorMessage } from '../constants/EventConstants';
+import {ErrorMessage } from '../constants/CommonConstants';
 import {EventListingService } from './event-listing.service';
 
 
@@ -61,9 +62,14 @@ export class EventListingComponent implements OnInit {
   public cat_label: String;
   public loc_label: String;
   public date_label: String;
-
+  public isErrorVisible: Boolean;
+  public isFilterErrorVisible: Boolean;
+  public errorMessage: String;
+  public filterErrorMessage: String;
 
   public eventConstatnts = new EventConstants();
+  public eventErrorMessage = new EventErrorMessage();
+  public commonErrorMessage = new ErrorMessage();
   public categoryList = this.eventConstatnts.PRIMARY_CATEGORY;
   public locations = this.eventConstatnts.LOCATIONS;
   constructor(private route: ActivatedRoute,
@@ -92,6 +98,9 @@ export class EventListingComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('Events');
+    this.isErrorVisible = false;
+    this.isFilterErrorVisible = false;
+    this.errorMessage = '';
     let query_param_cat_id = this.route.snapshot.queryParams['category'];
     this.selected_cat = this.eventConstatnts.get_cat_name_by_id(query_param_cat_id);
     this.keyword = this.route.snapshot.queryParams['q'];
@@ -144,12 +153,32 @@ export class EventListingComponent implements OnInit {
 
   }
 
+  clear_filter_data() {
+        this.selected_cat = '';
+        this.selected_loc = '';
+        this.selected_date = '';
+        this.loc_label = 'None';
+        this.cat_label = 'None';
+        this.date_label = 'None';
+        this.keyword = '';
+        this.isFilterErrorVisible = false;
+        this.isErrorVisible = false;
+        this.errorMessage = '';
+        this.filterErrorMessage = '';
+  }
+
+
   filter_event_data() {
-  
-    if (this.selected_cat === '' && this.keyword === undefined && this.selected_loc === undefined 
-    && this.selected_date === undefined){
-        alert('Please select filter criteria');
+    if ((this.selected_cat === undefined || this.selected_cat === '') && (this.keyword === undefined || this.keyword === '') 
+	&& (this.selected_loc === undefined || this.selected_loc === '') 
+    	&& (this.selected_date === undefined || this.selected_date === '')){
+	this.isFilterErrorVisible = true;
+	this.isErrorVisible = false;
+	this.errorMessage = '';
+        this.filterErrorMessage = this.commonErrorMessage.SELECT_FILTER_CRITERIA;
     } else {
+	this.isFilterErrorVisible = false;
+	this.filterErrorMessage = '';
     const input = {
       'category' : this.select_cat_id === undefined ? '' :  this.select_cat_id,
       'q' : this.keyword === undefined ? '' :  this.keyword.trim(),
@@ -160,6 +189,8 @@ export class EventListingComponent implements OnInit {
     this.end = 21;
     this.eventListingService.get_event_details(input).subscribe(data=>{
       if (data['events'] !== undefined && data['events'].length > 0) {
+	this.isErrorVisible = false;
+  	this.errorMessage = '';
         this.all_data = [];
         this.all_data = data['events'];
         this.showMore = data['events'].length > this.end;
@@ -174,7 +205,8 @@ export class EventListingComponent implements OnInit {
         this.isExplore = false;
 
       } else {
-        alert('No data found');
+        this.isErrorVisible = true;
+     	this.errorMessage = this.eventErrorMessage.NO_EVENTS_FOUND;
         this.all_data = [];
         this.showMore = false;
         this.isExplore = false;
