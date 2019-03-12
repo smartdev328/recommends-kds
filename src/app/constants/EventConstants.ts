@@ -44,7 +44,7 @@ public LOCATIONS = [
     {'name' : 'Campbell' , 'id' :  ''},
     {'name' : 'Milpitas' , 'id' :  ''},
     {'name' : 'Los Altos' , 'id' :  ''},
-    {'name' : 'Los Gatos' , 'id' :  ''}
+    {'name' : 'Los Gatos' , 'id' :  ''},
     {'name' : 'San Francisco' , 'id' :  ''}
 ];
 

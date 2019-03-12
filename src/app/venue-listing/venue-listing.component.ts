@@ -72,7 +72,7 @@ export class VenueListingComponent implements OnInit {
               }
 
   ngOnInit() {
-    this.errorVisible = false;
+    this.isErrorVisible = false;
     this.errorMessage = '';
     this.isFilterErrorVisible = false;
     this.filterErrorMessage = '';
