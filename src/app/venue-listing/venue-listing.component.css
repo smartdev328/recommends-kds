@@ -69,3 +69,10 @@
 .mouse-pointer{
     cursor: pointer;
 }
+
+.close-x {
+  stroke: black;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-width: 2;
+}

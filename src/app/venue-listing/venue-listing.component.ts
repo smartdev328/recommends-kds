@@ -7,7 +7,8 @@ import {UrlConstants} from '../constants/UrlConstants';
 import {ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION} from '../constants/AnalyticsConstants';
 import {ReviewsService} from '../add-review/reviews.service';
 import { EventConstants } from '../constants/EventConstants';
-import { VenueConstants } from '../constants/VenueConstants';
+import { VenueConstants, VenueErrorMessage } from '../constants/VenueConstants';
+import { ErrorMessage } from '../constants/CommonConstants';
 import { VenueListingService } from './venue-listing.service';
 
 declare let ga: any;
@@ -27,8 +28,14 @@ export class VenueListingComponent implements OnInit {
   end = 20;
   oldFilterData = true;
   newFilterData = false;
+  public isErrorVisible: Boolean;
+  public isFilterErrorVisible: Boolean;
+  public errorMessage: String;
+  public filterErrorMessage: String;
   public eventConstatnts = new EventConstants();
   public venueConstants = new VenueConstants();
+  public commonErrorMessage = new ErrorMessage();
+  public venueErrorMessage = new VenueErrorMessage();
   public categoryList = this.venueConstants.PRIMARY_CATEGORY;
   
   /*
@@ -65,6 +72,10 @@ export class VenueListingComponent implements OnInit {
               }
 
   ngOnInit() {
+    this.errorVisible = false;
+    this.errorMessage = '';
+    this.isFilterErrorVisible = false;
+    this.filterErrorMessage = '';
     this.titleService.setTitle('Venues');
     this.category = this.route.snapshot.queryParams['category'];
     this.get_venue_details();
@@ -147,11 +158,28 @@ export class VenueListingComponent implements OnInit {
     this.selected_cat = cat_obj['name'];
     this.cat_label = this.selected_cat;
   }
-  filter_venue_data() {
 
+  clear_filter_data() {
+	this.selected_cat = '';
+	this.selected_loc = '';
+	this.loc_label = 'None';
+	this.cat_label = 'None';
+	this.keyword = '';
+	this.isFilterErrorVisible = false;
+	this.isErrorVisible = false;
+	this.errorMessage = '';
+        this.filterErrorMessage = '';
+  }
+
+  filter_venue_data() {
     if (this.selected_cat === '' && this.keyword === '' && this.selected_loc === '') {
-      alert('Please select filter criteria');
+	this.isFilterErrorVisible = true;
+	this.isErrorVisible = false;
+	this.errorMessage = '';
+        this.filterErrorMessage = this.commonErrorMessage.SELECT_FILTER_CRITERIA;
     } else {
+	this.isFilterErrorVisible = false;
+	this.filterErrorMessage = '';
       const input = {
         'categories': this.selected_cat === undefined ? '' : this.selected_cat,
         'q': this.keyword === undefined ? '' : this.keyword.trim(),
@@ -161,6 +189,8 @@ export class VenueListingComponent implements OnInit {
       this.isExplore = true;
       this.venueListingService.get_venue_details(input).subscribe(data => {
         if (data['venues'] !== undefined && data['venues'].length > 0) {
+	  this.isErrorVisible = false;
+          this.errorMessage = '';
           if (data['venues'].length > 21) {
             this.showMore = true;
           }
@@ -173,7 +203,8 @@ export class VenueListingComponent implements OnInit {
           }
           this.venues_list = data['venues'];
         } else {
-          alert('No data found');
+	  this.isErrorVisible = true;
+          this.errorMessage = this.venueErrorMessage.NO_VENUES_FOUND;
           this.venues_list = [];
           this.showMore = false;
         }

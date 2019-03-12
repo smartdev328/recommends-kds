@@ -6,8 +6,9 @@ import { Title } from '@angular/platform-browser';
 import { UrlConstants } from '../constants/UrlConstants';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../constants/AnalyticsConstants';
 import { ReviewsService } from '../add-review/reviews.service';
-import { CampConstants } from '../constants/CampConstants';
+import { CampConstants, CampErrorMessage } from '../constants/CampConstants';
 import { EventConstants } from '../constants/EventConstants';
+import { ErrorMessage } from '../constants/CommonConstants';
 import {CampListingService} from './camp-listing.service'
 import { unescapeIdentifier } from '@angular/compiler';
 declare let ga: any;
@@ -23,10 +24,16 @@ export class CampListingComponent implements OnInit {
   public campConstatnt = new CampConstants();
   public categoryList = this.campConstatnt.CAMP_CATEGORY;
   public oldCat : String;
+  public isErrorVisible: Boolean;
+  public isFilterErrorVisible: Boolean;
+  public errorMessage: String;
+  public filterErrorMessage: String;
   camp_explore;
   isExplore: Boolean;
   public category: String;
   public URLConstatnts = new UrlConstants();
+  public campErrorMessage = new CampErrorMessage();
+  public commonErrorMessage = new ErrorMessage();
   showMore: Boolean = false;
   start: any = 0;
   end: any = 20;
@@ -50,8 +57,7 @@ export class CampListingComponent implements OnInit {
     this.isExplore = false;
     this.selected_cat = '';
     this.keyword = '';
-    this.category_label = 'Category'
-
+    this.category_label = 'Category';
   }
 
   ngOnInit() {
@@ -63,6 +69,10 @@ export class CampListingComponent implements OnInit {
         this.get_camps_details();
       });
     this.titleService.setTitle('Camps');
+    this.errorVisible = false;
+    this.errorMessage = '';
+    this.isFilterErrorVisible = false;
+    this.filterErrorMessage = '';
 
   }
   loadMore() {
@@ -138,20 +148,35 @@ export class CampListingComponent implements OnInit {
     this.category_label = this.selected_cat;
   }
 
-  filter_camp_data(){
-    if ((this.selected_cat ==='' && this.keyword === undefined)){
-        alert('Please select filter criteria')
-    } else {
+  clear_filter_data() {
+        this.selected_cat = '';
+        this.category_label = 'None';
+        this.keyword = '';
+        this.isFilterErrorVisible = false;
+        this.isErrorVisible = false;
+        this.errorMessage = '';
+        this.filterErrorMessage = '';
+  }
 
+
+  filter_camp_data(){
+    if (this.selected_cat === '' && (this.keyword === undefined || this.keyword === '')){
+	this.isFilterErrorVisible = true;
+	this.isErrorVisible = false;
+	this.errorMessage = '';
+        this.filterErrorMessage = this.commonErrorMessage.SELECT_FILTER_CRITERIA;
+    } else {
+	this.isFilterErrorVisible = false;
+	this.filterErrorMessage = '';
       let url = '';
         this.category = this.selected_cat;
         if(this.category !== '' && this.keyword !== undefined) {
-          url = this.URLConstatnts.API_URL + 'camps/?q=' + this.keyword.trim() + '&category=' + this.category.trim();
+          url = this.URLConstatnts.API_URL + 'camps/?limit=80&q=' + this.keyword.trim() + '&category=' + this.category.trim();
         }
         else if(this.category === undefined || this.category === '' ){
-         url = this.URLConstatnts.API_URL + 'camps/?q=' + this.keyword.trim();
+         url = this.URLConstatnts.API_URL + 'camps/?limit=80&q=' + this.keyword.trim();
         } else {
-          url = this.URLConstatnts.API_URL + 'camps/?category=' + this.category.trim();
+          url = this.URLConstatnts.API_URL + 'camps/?limit=80&category=' + this.category.trim();
         }
       this.camp_explore = [];
       this.showMore = false;
@@ -163,6 +188,8 @@ export class CampListingComponent implements OnInit {
         data = JSON.parse(data);
         this.camp_explore = data['data'];
         if (data['data'] != undefined && data['data'].length>0) {
+	  this.isErrorVisible = false;
+          this.errorMessage = '';
           if(this.oldCat_1){
             this.oldCat_2 = true;
             this.oldCat_1 = false;
@@ -172,7 +199,8 @@ export class CampListingComponent implements OnInit {
           }
          
         } else {
-          alert('No data found');
+	  this.isErrorVisible = true;
+          this.errorMessage = this.campErrorMessage.NO_CAMPS_FOUND;
           this.camp_explore = [];
         }
         this.isExplore = false;
@@ -180,7 +208,8 @@ export class CampListingComponent implements OnInit {
           this.showMore = true;
         }
       }, error => {
-        alert('Something went wrong');
+	this.isErrorVisible = true;
+        this.errorMessage = this.ErrorMessage.SOMETHING_WENT_WRONG;
       });
     }
   }

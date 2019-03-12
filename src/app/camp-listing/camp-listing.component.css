@@ -37,7 +37,7 @@
     }
 
     .event-listing-card {
-        margin: 0% 5% 30% 5% !important;
+        margin: 5% 5% 30% 0% !important;
     }
 
 }
@@ -49,7 +49,7 @@
     }
 
     .event-listing-card {
-        margin: 0% 5% 12% 5% !important;
+        margin: 5% 5% 12% 5% !important;
     }
 
 }
@@ -61,7 +61,7 @@
     }
 
     .event-listing-card {
-        margin: 0% 0% 12% 8% !important;
+        margin: 0% 20% 22% 10% !important;
     }
 
 }

@@ -117,6 +117,7 @@ export class VenueConstants {
 }
 
 export class VenueErrorMessage {
+    public NO_VENUES_FOUND = "No venues found.";
     public ONLY_CHARACTERS_ALLOWED = " Only charatcters are allowed";
     public LENGTH_IN_BETWEEN = " length should be in between";
     public SOMETHING_WENT_WRONG = " Something went wrong,please try again later";
