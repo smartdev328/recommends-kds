@@ -69,7 +69,7 @@ export class CampListingComponent implements OnInit {
         this.get_camps_details();
       });
     this.titleService.setTitle('Camps');
-    this.errorVisible = false;
+    this.isErrorVisible = false;
     this.errorMessage = '';
     this.isFilterErrorVisible = false;
     this.filterErrorMessage = '';
@@ -209,7 +209,7 @@ export class CampListingComponent implements OnInit {
         }
       }, error => {
 	this.isErrorVisible = true;
-        this.errorMessage = this.ErrorMessage.SOMETHING_WENT_WRONG;
+        this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
       });
     }
   }
