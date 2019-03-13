@@ -8,12 +8,12 @@
 	.company{
 		color: #5d5d5a;
 		font-size: 20px;
-		font-weight: bold;
-		font-family: BubblegumSans;
+		font-weight: normal;
+		font-family: Montserrat;
 		margin-top:2%;
 		border-bottom: 5px solid #eff1f4;
 		padding: 15px;
-		text-transform: uppercase;
+		text-transform: camelcase;
 		
 	}
 	ul.links{
@@ -22,9 +22,9 @@
 	}
 	ul.links li a{ 
 	color: #5d5d5a;
-	font-size: 18px;
-	font-family: BubblegumSans;
-	text-transform: uppercase;
+	font-size: 13px;
+	font-family: Montserrat;
+	text-transform: camelcase;
 }
 .social span{
 	width:50px;
