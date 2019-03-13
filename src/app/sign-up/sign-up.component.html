@@ -6,6 +6,8 @@
             <div class="col-12">
                 <div class="label-sec">
                     <label class="signUpHeading main-label">Sign up for our newsletter</label>
+		    <br>
+		    <label class="weekly-planner">Weekly planner personalized for your family</label>
                 </div>
             </div>
         </div>
@@ -60,7 +62,7 @@
                                     <div class="col">
                                         <div class="form-group">
             
-                                            <input type="text" formControlName="zip_code" placeholder="ZipCode *" minlength="5"
+                                            <input type="text" formControlName="zip_code" placeholder="Zipcode *" minlength="5"
                                                 maxlength="6" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }" />
                                             <div *ngIf="submitted && f.zip_code.errors" class="invalid-feedback">
@@ -104,21 +106,21 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <input type="text" formControlName="nick_name" class="form-control"
-                                                                placeholder="Kids NickName" />
+                                                                placeholder="Kid's nickname" />
                 
                                                         </div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <input type="number" required formControlName="age" class="form-control"
-                                                                min="1" max="15" placeholder="Kids Age" />
+                                                                min="1" max="15" placeholder="Kid's age" />
                                                         </div>
                 
                                                     </div>
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <input type="text" formControlName="interests" class="form-control"
-                                                                placeholder="Kids Interests" />
+                                                                placeholder="Kid's interests" />
                 
                                                         </div>
                                                     </div>

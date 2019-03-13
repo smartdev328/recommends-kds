@@ -34,7 +34,7 @@ input{
     border-radius: 20px;
     background-color: #d1d1d5;
     font-family: Montserrat;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
@@ -46,12 +46,18 @@ input{
 }
 .more-info {
     font-family: Montserrat;
-    font-size: 20px;
-    font-weight: bold;
-    font-style: normal;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: italic;
     text-align: center;
     color: #5d5d5a;
     margin-bottom: 45px;
+}
+
+.weekly-planner {
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: italic;
 }
 
 .center-form{
@@ -77,8 +83,8 @@ input{
     width: 100px;
     height: 24px;
     font-family: Montserrat;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: normal;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.2;

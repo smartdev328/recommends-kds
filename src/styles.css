@@ -266,8 +266,12 @@
     margin-bottom: 15px;
   }
   .main-section{
-    padding: 0px 4%;
+    padding: 0px 7%;
   }
+  .main-section-listing{
+    padding: 0px 2%;
+  }
+
   .label-sec{
     padding:10px 2%;
     border-bottom: 4px solid #ef6c57;
@@ -294,7 +298,7 @@
   .banner-heading{
     text-align: center;
     font-family: Montserrat;
-    padding-top: 20px;
+    padding-top: 40px;
   }
   .about-banner-heading{
     text-align: center;
@@ -303,14 +307,21 @@
   }
 .banner-heading .main-heading{
   color: #ef6c57;
-  font-size: 132px;
+  font-size: 112px;
   font-family: BubblegumSans;
 }
 .banner-heading .info{
   color: #5d5d5a;
-  font-size: 21px;
+  font-size: 45px;
   font-weight: 400;
-  padding: 15px 0px 30px 0px;
+  padding: 0px 0px 30px 0px;
+}
+
+.banner-heading .listing-info{
+  color: #5d5d5a;
+  font-size: 25px;
+  font-weight: 400;
+  padding: 0px 0px 30px 0px;
 }
 .dont-miss{
   color: #FFFFFF;
@@ -332,7 +343,8 @@
   border-radius: 30px;
 }
 .main-box img{
-  width: 100%;
+  width: 500px;
+  height: 400px;
 }
 .carousel{
   margin-bottom: 15px;
