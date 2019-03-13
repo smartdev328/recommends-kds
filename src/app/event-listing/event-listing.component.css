@@ -45,6 +45,20 @@
         margin: 0% 5% 30% 5% !important;
     }
     
+    .detail-buttons {
+        color: white;
+        background-color: #ef6c57;
+        border: none;
+        padding: 25px;
+        margin-top: 2%;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
+    
 }
 
 /* Tablets */
@@ -55,6 +69,20 @@
 
     .event-listing-card {
         margin: 0% 5% 12% 5% !important;
+    }
+    
+    .detail-buttons {
+        color: white;
+        background-color: #ef6c57;
+        border: none;
+        padding: 25px;
+        margin-top: 2%;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
     }
     
 }
@@ -69,6 +97,24 @@
         margin: 0% 7% 12% 8% !important;
     }
     
+    .detail-buttons {
+        color: white;
+        background-color: #ef6c57;
+        border: none;
+        padding: 20px;
+        margin-top: 2%;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
+    
+}
+
+.detail-buttons-space {
+    text-align: center;
 }
 
 .mouse-pointer{

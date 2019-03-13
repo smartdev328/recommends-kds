@@ -39,6 +39,20 @@
     .event-listing-card {
         margin: 5% 5% 30% 0% !important;
     }
+    
+    .detail-buttons {
+        color: white;
+        background-color: #ef6c57;
+        border: none;
+        padding: 25px;
+        margin-top: 2%;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
 
 }
 
@@ -50,6 +64,20 @@
 
     .event-listing-card {
         margin: 5% 5% 12% 5% !important;
+    }
+    
+    .detail-buttons {
+        color: white;
+        background-color: #ef6c57;
+        border: none;
+        padding: 25px;
+        margin-top: 2%;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
     }
 
 }
@@ -63,7 +91,25 @@
     .event-listing-card {
         margin: 0% 20% 22% 10% !important;
     }
+    
+    .detail-buttons {
+        color: white;
+        background-color: #ef6c57;
+        border: none;
+        padding: 20px;
+        margin-top: 2%;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
 
+}
+
+.detail-buttons-space {
+    text-align: center;
 }
 
 .mouse-pointer {

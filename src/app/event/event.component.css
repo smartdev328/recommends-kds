@@ -57,15 +57,20 @@
         margin-left: calc(5% + 24px)
     }
 
-    .details-buttons {
+     .detail-buttons {
         color: white;
-        background-color:#ef6c57;
+        background-color: #ef6c57;
         border: none;
-        padding: 5%;
-        margin-top: 5%;
+        padding: 25px;
+        margin-top: 2%;
+        font-family: Montserrat;
         border-radius: 10px;
-
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
     }
+    
     .mat-card-image {
         width: calc(100% + 32px);
         margin: 0 0px 0px 0px;
@@ -108,15 +113,20 @@
         margin-left: calc(4% + 24px)
     }
 
-    .details-buttons {
+    .detail-buttons {
         color: white;
-        background-color:#ef6c57;
+        background-color: #ef6c57;
         border: none;
-        padding: 2%;
-        margin-top: 3%;
+        padding: 25px;
+        margin-top: 2%;
+        font-family: Montserrat;
         border-radius: 10px;
-
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
     }
+    
     .mat-card-image {
         width: calc(100% + 32px);
         margin: 0 0px 0px 0px;
@@ -150,6 +160,20 @@
     
     .event-details .lower-text {
         margin-left: calc(3% + 24px)
+    }
+    
+    .detail-buttons {
+        color: white;
+        background-color: #ef6c57;
+        border: none;
+        padding: 20px;
+        margin-top: 2%;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
     }
     
     .header-image{
@@ -194,22 +218,6 @@
 
 .review-margin-left {
     margin-left: 33%;
-}
-
-.details-buttons {
-
-    color: white;
-    background-color: #ef6c57;
-    border: none;
-    padding: 1.5%;
-    margin-top: 2%;
-    font-family: Montserrat;
-    border-radius: 10px;
-    border: none;
-    font-size: 14px;
-    font-weight: bold;
-    font-style: normal;
-    
 }
 
 .mouse-pointer{

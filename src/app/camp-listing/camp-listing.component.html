@@ -80,7 +80,9 @@
     <app-masonsry-camp-view *ngIf="oldCat_1" [camps]=camp_explore [start]=start [end]=end></app-masonsry-camp-view>
     <app-masonsry-camp-view *ngIf="oldCat_2" [camps]=camp_explore [start]=start [end]=end></app-masonsry-camp-view>
     <!-- <app-masonsry-camp-view *ngIf="isErrorVisible" [isErrorVisible]=isErrorVisible [errorMessage]=errorMessage></app-masonsry-camp-view> -->
-    <div class="row details-button-space mouse-pointer" *ngIf="showMore">
-      <span mat-button class="details-button mouse-pointer" (click)="loadMore()">More...</span>
-    </div>
+      
+    <mat-card-actions class="detail-buttons-space">
+        <button mat-button class="detail-buttons mouse-pointer" (click)="loadMore()">MORE...</button>
+    </mat-card-actions>
+      
   </div>
