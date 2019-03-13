@@ -140,8 +140,9 @@
       <app-masonsry-view *ngIf="newFilterData"  [events]=all_data [start]=start [end]=end></app-masonsry-view>
       <app-masonsry-view *ngIf="oldFilterData" [events]=all_data [start]=start [end]=end></app-masonsry-view>
 
-  <div class="row details-button-space mouse-pointer" *ngIf="showMore">
-      <span mat-button class="details-button mouse-pointer" (click)="loadMore()">More...</span>
-  </div>
+    <mat-card-actions class="detail-buttons-space">
+        <button mat-button class="detail-buttons mouse-pointer" (click)="loadMore()">MORE...</button>
+    </mat-card-actions>
+    
 </div>
 <br><br>

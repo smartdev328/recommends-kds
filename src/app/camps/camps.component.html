@@ -110,12 +110,12 @@
               </p>
                 <p class="event-details" title="Time" *ngIf="camp.timings">
                   <span><i title="Timings" class="icon material-icons">access_time</i></span>
-                  <span class="lower-text">{{camp.timings}}</span>
+                  <span class="description">{{camp.timings}}</span>
 
                 </p>
 
                 <mat-card-actions class="details-buttons-space">
-                  <button mat-button class="details-buttons mouse-pointer" (click)="event_redirect()">MORE DETAILS</button>
+                  <button mat-button class="detail-buttons mouse-pointer" (click)="event_redirect()">MORE DETAILS</button>
                 </mat-card-actions>
               </mat-card-content>
             </mat-card>

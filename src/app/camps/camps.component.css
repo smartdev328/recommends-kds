@@ -57,14 +57,18 @@
         margin-left: calc(5% + 24px)
     }
 
-    .details-buttons {
+     .detail-buttons {
         color: white;
-        background-color:#ef6c57;
+        background-color: #ef6c57;
         border: none;
-        padding: 5%;
-        margin-top: 5%;
+        padding: 25px;
+        margin-top: 2%;
+        font-family: Montserrat;
         border-radius: 10px;
-  
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
     }
   
     .mat-card-image {
@@ -109,14 +113,18 @@
         margin-left: calc(4% + 24px)
     }
 
-    .details-buttons {
+     .detail-buttons {
         color: white;
-        background-color:#ef6c57;
+        background-color: #ef6c57;
         border: none;
-        padding: 2%;
-        margin-top: 3%;
+        padding: 25px;
+        margin-top: 2%;
+        font-family: Montserrat;
         border-radius: 10px;
-    
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
     }
 
     .description{
@@ -142,15 +150,15 @@
         margin-left: 3%
     }
     
-    .event-details .lower-text {
+    .event-details {
         margin-left: calc(3% + 24px)
     }
 
-    .details-buttons {
+     .detail-buttons {
         color: white;
-        background-color: rgb(237, 45, 86);
+        background-color: #ef6c57;
         border: none;
-        padding: 1.5%;
+        padding: 20px;
         margin-top: 2%;
         font-family: Montserrat;
         border-radius: 10px;
@@ -202,18 +210,6 @@
     margin-left: 33%;
 }
 
-.details-buttons {
-    color: white;
-    background-color:#ef6c57;
-    border: none;
-    font-family: Montserrat;
-    border-radius: 10px;
-    border: none;
-    font-size: 14px;
-    font-weight: bold;
-    font-style: normal;
-    
-}
 
 .mouse-pointer{
     cursor: pointer;

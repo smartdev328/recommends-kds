@@ -115,13 +115,13 @@
 </div>
 -->
 <div class="event-listing-card">
-      <div *ngIf="isErrorVisible"><div class="error-message-text alert-danger">{{errorMessage}}</div></div>
-      <app-masonsry-venues-view *ngIf="newFilterData"  [venues]=venues_list [start]=start [end]=end></app-masonsry-venues-view>
-      <app-masonsry-venues-view  *ngIf="oldFilterData" [venues]=venues_list [start]=start [end]=end></app-masonsry-venues-view>
-
-      <div class="row details-button-space mouse-pointer" *ngIf="showMore">
-          <span mat-button class="details-button mouse-pointer" (click)="loadMore()">More...</span>
-      </div>
+    <div *ngIf="isErrorVisible"><div class="error-message-text alert-danger">{{errorMessage}}</div></div>
+    <app-masonsry-venues-view *ngIf="newFilterData"  [venues]=venues_list [start]=start [end]=end></app-masonsry-venues-view>
+    <app-masonsry-venues-view  *ngIf="oldFilterData" [venues]=venues_list [start]=start [end]=end></app-masonsry-venues-view>
+    
+    <mat-card-actions class="detail-buttons-space">
+        <button mat-button class="detail-buttons mouse-pointer" (click)="loadMore()">MORE...</button>
+    </mat-card-actions>
      
 </div>
 <br><br>
