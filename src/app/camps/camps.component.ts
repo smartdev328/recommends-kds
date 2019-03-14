@@ -42,6 +42,8 @@ export class CampsComponent implements OnInit {
     this.parent_id = '';
     this.camp_id = this.route.snapshot.params['id'];
     this.parent_id = this.route.snapshot.queryParams['parent_id'];
+    this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
+    this.is_save_action();
     this.get_camp_details();
     this.is_review_click = false;
     this.isErrorVisible = false;
@@ -245,7 +247,6 @@ export class CampsComponent implements OnInit {
         this.is_parent_id = true;
      }
      }, error => {
-        this.is_parent_id = false;
      });
  
    }

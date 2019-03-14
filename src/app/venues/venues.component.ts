@@ -94,7 +94,8 @@ export class VenuesComponent implements OnInit {
     this.parent_id = '';
     this.venue_id = this.route.snapshot.params['id'];
     this.parent_id = this.route.snapshot.queryParams['parent_id'];
-
+    this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
+    this.is_save_action();
     if (this.venue_id > 0 && this.venue_id !== undefined) {
       this.get_venue_data(this.venue_id);
     }
@@ -385,7 +386,6 @@ export class VenuesComponent implements OnInit {
           this.is_save_action();
       }
      }, error => {
-       this.is_parent_id = false;
      });
    }
 

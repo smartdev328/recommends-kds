@@ -41,7 +41,8 @@ export class EventComponent implements OnInit {
     this.isSaveVisible = false;
     this.event_id = this.route.snapshot.params['id'];
     this.parent_id = this.route.snapshot.queryParams['parent_id'];
-    this.is_parent_id = false;
+    this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
+    this.is_save_action();
     this.get_event_details();
     this.isErrorVisible = false;
     this.isSuccessVisible = false;
@@ -254,7 +255,6 @@ export class EventComponent implements OnInit {
          this.is_parent_id = true;
       }
      }, error => {
-       this.is_parent_id = false;
      });
  
   }
