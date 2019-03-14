@@ -260,9 +260,8 @@
   }
   
   .outer-div{
-    border: 1px solid #ef6c57;
+    border: 1px solid #ffffff;
     border-radius: 5px;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     margin-bottom: 15px;
   }
   .main-section{
@@ -307,6 +306,21 @@
   }
 .banner-heading .main-heading{
   color: #ef6c57;
+  font-size: 112px;
+  font-family: BubblegumSans;
+}
+.banner-heading .main-heading-events{
+  color: #459bca;
+  font-size: 112px;
+  font-family: BubblegumSans;
+}
+.banner-heading .main-heading-places{
+  color: #f9db55;
+  font-size: 112px;
+  font-family: BubblegumSans;
+}
+.banner-heading .main-heading-camps{
+  color: #e065b5;
   font-size: 112px;
   font-family: BubblegumSans;
 }
@@ -411,6 +425,11 @@
 .icon3a {
   width: 722px;
   height: 351px;
+}
+
+.logo-icon {
+  width: 90px;
+  height: 40px;
 }
 
 .bkgtry {
