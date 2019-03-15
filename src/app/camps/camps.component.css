@@ -18,10 +18,16 @@
     padding-top: 1em;
 }
 
+.about-font {
+    font-family: Montserrat;
+}
+
 .icon {
     position: relative;
     top: 5px;
     left: 5px;
+    height: 35px;
+    width: auto;
 }
 
 .actionIcon {
