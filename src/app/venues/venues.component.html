@@ -27,13 +27,13 @@
                                     <div class="col">
                                         <div class="mb-2">
                                         <div class="" title="Save" *ngIf="is_parent_id === false">
-                                            <img src="../../assets/icons/noun_bookmark_1.png" class="actionIcon" />
+                                            <img src="../../assets/icons/save_grey.png" class="actionIcon" />
                                         </div>
                                         <div class=" cursor" title="Save" (click)="save_venue()" *ngIf="is_parent_id && isSaveVisible != true">
-                                            <img class="actionIcon" src="../../assets/icons/noun_bookmark_2.png" />
+                                            <img class="actionIcon" src="../../assets/icons/save_blue.png" />
                                         </div>
                                         <div class="" title="Saved" *ngIf="isSaveVisible">
-                                            <img class="actionIcon" src="../../assets/icons/noun_bookmark_3.png" />
+                                            <img class="actionIcon" src="../../assets/icons/save_orange.png" />
                                         </div>
 
                                         </div>
@@ -41,24 +41,23 @@
                                     <div class="col">
                                         <div class="d-flex text-center mb-2">
                                                 <div class="cursor" (click)="add_review_redirect(2)" *ngIf="is_parent_id === false" title="Add Review">
-                                                    <img src="../../assets/icons/noun_review_1.png" class="actionIcon" />
+                                                    <img src="../../assets/icons/review_grey.png" class="actionIcon" />
                                                 </div>
                                                 <div class="cursor" *ngIf="is_parent_id" (click)="add_review_redirect(2)" title="Add Review">
-                                                    <img src="../../assets/icons/noun_review_2.png" class="actionIcon" />
+                                                    <img src="../../assets/icons/review_orange.png" class="actionIcon" />
                                                 </div>
                                         </div>
                                     </div>    
                                     <div class="col">
                                         <div class="mb-2">
                                                 <div class="cursor" title="Subscribe" *ngIf="is_parent_id === false">
-                                                        <img src="../../assets/icons/noun_subscribe_Star_1.png" class="actionIcon" />
+                                                        <img src="../../assets/icons/subscribe_grey.png" class="actionIcon" />
                                                 </div>
-                                                <div class="item item-3 cursor" (click)="unsubscribe_venue()" title="UnSubscribe"  *ngIf="is_parent_id && isSubscribeVisible">
-                                                    
-                                                    <img src="../../assets/icons/noun_subscribe_Star_3.png" class="actionIcon" />
+                                                <div class="item item-3 cursor" (click)="unsubscribe_venue()" title="UnSubscribe"  *ngIf="is_parent_id && isSubscribeVisible"> 
+                                                    <img src="../../assets/icons/subscribe_orange.png" class="actionIcon" />
                                                 </div>
                                                 <div class="item item-3 cursor" (click)="add_subscription_venue()" title="Subscribe" *ngIf="is_parent_id && isSubscribeVisible != true">
-                                                    <img src="../../assets/icons/noun_subscribe_Star_2.png" class="actionIcon" />
+                                                    <img src="../../assets/icons/subscribe_blue.png" class="actionIcon" />
                                                 </div>
                                         </div>
                                     </div>
@@ -176,7 +175,7 @@
                         </p>
 
                         <mat-card-actions class="detail-buttons-space">
-                            <button mat-button class="detail-buttons mouse-pointer" (click)="venue_redirect()">MORE DETAILS</button>
+                            <button mat-button class="detail-buttons mouse-pointer" (click)="venue_redirect()">LOCATION WEBSITE</button>
                         </mat-card-actions>
 
 
