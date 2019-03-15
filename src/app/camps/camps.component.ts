@@ -32,6 +32,7 @@ export class CampsComponent implements OnInit {
   public campErrorMessage = new CampErrorMessage();
   public campConstants: any;
   public isSaveVisible: Boolean;
+  public no_reviews: Boolean;
   public URLConstatnts = new UrlConstants();
   selectedIndex;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
@@ -52,6 +53,7 @@ export class CampsComponent implements OnInit {
     this.review = '';
     this.camp  = [];
     this.user_reviews = [];
+    this.no_reviews = true;
     this.category = '';
     this.camp.name = '';
     this.camp.image_url = '';
@@ -100,8 +102,10 @@ export class CampsComponent implements OnInit {
       this.reviewService.get_reviews_by_type(TYPES_ENUM.CAMP , true, this.camp_id).subscribe(data => {
         if ( data['status'] ) {
           this.user_reviews = data['data'];
+          this.no_reviews = false;
         } else {
           this.user_reviews = [];
+          this.no_reviews = true;
         }
       }, error => {
        // alert(this.campErrorMessage.GET_DATA_ERROR);

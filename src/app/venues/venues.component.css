@@ -243,26 +243,32 @@
 }
 
 
-    .mat-card:not([class*=mat-elevation-z]){
-        box-shadow: none;
-    }
+.mat-card:not([class*=mat-elevation-z]){
+    box-shadow: none;
+}
 
-    .review-width{
-        padding:10px;
-        border:1px solid #7a7a7a;
-        font-size: 16px;
-        color: #5d5d5a;
-        margin-bottom: 10px;
-        font-weight: 400;
-    }
-    .btn-sec{
-        text-align: center;
-        margin-top:10px;
-    }
-    h4.review-heading{
-        text-align: center;
-        color: #5d5d5a;
-        font-size: 21px;
-        font-family: Montserrat;
-         color: #5d5d5a;
-    }
+.review-width{
+    padding:10px;
+    border:1px solid #7a7a7a;
+    font-size: 16px;
+    color: #5d5d5a;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.review-font {
+    font-family: Montserrat;
+}
+
+.btn-sec{
+    text-align: center;
+    margin-top:10px;
+}
+
+h4.review-heading{
+    text-align: center;
+    color: #5d5d5a;
+    font-size: 21px;
+    font-family: Montserrat;
+     color: #5d5d5a;
+}
