@@ -60,59 +60,56 @@
           [selectedIndex]="selectedIndex">
           <mat-tab label="About">
             <mat-card>
-              <mat-card-content>
+              <mat-card-content class="about-font">
                 <p class="event-details">
-                  <span><i title="Age" class="icon material-icons red-color">accessibility_new</i></span>
+                  <span><img src="../../assets/icons/noun_age_1.png" alt="Age" title="Age" class="icon"></span>
                   <span class="description">{{format_age()}}</span>
                 </p>
                 <p class="event-details" *ngIf="camp.description" title="Description">
-                  <span><i title="Description" class="icon material-icons">infor</i></span>
+                  <span><img src="../../assets/icons/noun_Information_1.png" alt="Information" title="Information" class="icon"></span>
                   <span class="description">{{camp.description}}</span>
               </p>
            
                 <p class="event-details" *ngIf="category">
-                  <span><i title="Location" class="icon material-icons" title="Category">pets</i></span>
+                  <span><img src="../../assets/icons/noun_categories_1.png" alt="Category" title="Category" class="icon"></span>
 
                   <span class="description">{{category}}</span>
                 </p>
                 <p class="event-details" title="Types Of Activities" *ngIf="camp.activity_types">
-                  <span><i title="Activity" class="icon material-icons">local_activity</i></span>
+                  <span><img src="../../assets/icons/noun_camp_activity_type_1.png" alt="Camp Activity Type" title="Camp Activity Type" class="icon"></span>
                   <span class="description">{{camp.activity_types}}</span>
 
 
                 </p>
                 <p class="event-details" title="Lunch" *ngIf="camp.lunch">
-                  <span><i title="Lunch" class="icon material-icons">fastfood</i></span>
+                  <span><img src="../../assets/icons/noun_lunch_1.png" alt="Lunch" title="Lunch" class="icon"></span>
                   <span class="description"><b>Lunch :</b>{{camp.lunch}}</span>
 
                 </p>
                 <p class="event-details" title="Offfer During" *ngIf="camp.offered_during">
-                  <span><i title="Offered During" class="icon material-icons">local_offer</i></span>
+                  <span><img src="../../assets/icons/noun_season_camp_offered_during_1.png" alt="Season Offered" title="Season Offered" class="icon"></span>
 
                   <span class="description">{{camp.offered_during}}</span>
                 </p>
                 <p class="event-details" title="Cities" *ngIf="camp.cities">
-                  <span><i  title="Cities" class="icon material-icons">location_on</i></span>
+                  <span><img src="../../assets/icons/noun_address_1.png" alt="Cities Offered" title="Cities Offered" class="icon"></span>
 
                   <span class="description">{{camp.cities}}</span>
                 </p>
                 <p class="event-details"  *ngIf="camp.am_extended_care">
-                  <span><i  title="Extended Care" class="icon material-icons material-icon-black-color" title="AM Extended Care">av_timer</i></span>
-                  <span class="description">{{camp.am_extended_care}}</span>
+                  <span><img src="../../assets/icons/noun_camp_am_pm_care_1.png" alt="Extended Care" title="Extended Care" class="icon"></span>
+                  <span class="description"><b>AM Extended Care: </b>{{camp.am_extended_care}}</span>
+                    <br><br>
+                  <span class="description"><b>PM Extended Care: </b>{{camp.pm_extended_care}}</span>
               </p>
-                <p class="event-details"  *ngIf="camp.pm_extended_care">
-                  <span><i  title="Extended Care" class="icon material-icons material-icon-black-color" title="PM Extended Care">timelapse</i></span>
-                  <span class="description">{{camp.pm_extended_care}}</span>
-              </p>
-                <p class="event-details"  *ngIf="camp.tips">
-                  <span><i title="Tips" class="icon material-icons material-icon-black-color" title="Tips">note</i></span>
+              <p class="event-details"  *ngIf="camp.tips">
+                  <span><img src="../../assets/icons/noun_tips_1.png" alt="Tips" title="Tips" class="icon"></span>
                   <span  class="description">{{camp.tips}}</span>
               </p>
-                <p class="event-details" title="Time" *ngIf="camp.timings">
-                  <span><i title="Timings" class="icon material-icons">access_time</i></span>
+              <p class="event-details" title="Time" *ngIf="camp.timings">
+                  <span><img src="../../assets/icons/noun_Date%20and%20Time_1.png" alt="Hours" title="Hours" class="icon"></span>
                   <span class="description">{{camp.timings}}</span>
-
-                </p>
+              </p>
 
                 <mat-card-actions class="details-buttons-space">
                   <button mat-button class="detail-buttons mouse-pointer" (click)="event_redirect()">MORE DETAILS</button>

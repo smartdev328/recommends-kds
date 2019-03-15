@@ -73,51 +73,52 @@
             [selectedIndex]="selectedIndex" *ngIf="venue">
             <mat-tab label="About">
                 <mat-card>
-                    <mat-card-content>
+                    <mat-card-content class="about-font">
                         <p class="basic-information" *ngIf="category">
-                            <span><i title="Category" class="icon material-icons material-icon-black-color">pets</i></span>
+                            <span><img src="../../assets/icons/noun_categories_1.png" alt="Category" title="Category" class="icon"></span>
                             <span class="wrap">{{category}}</span>
                         </p>
                         <p class="basic-information" *ngIf="city">
-                            <span><i title="Address" class="icon material-icons material-icon-black-color">location_on</i></span>
+                            <span><img src="../../assets/icons/noun_address_1.png" alt="Location" title="Location" class="icon"></span>
                             <span class="wrap">{{street}}, {{city}}, {{state}}</span>
                         </p>
 
                         <p class="basic-information" hidden>
-                            <span><i title="Recomendations" class="icon material-icons material-icon-black-color">child_care</i></span>
+                            <span><img src="../../assets/icons/noun_ratings_1.png" alt="Rating" title="Rating" class="icon"></span>
                             <span class="wrap">Recomendations</span>
                         </p>
 
                         <p class="basic-information" *ngIf="rating">
-                            <span><i title="Rating" class="icon material-icons material-icon-black-color">star</i></span>
+                            <span><img src="../../assets/icons/noun_ratings_1.png" alt="Rating" title="Rating" class="icon"></span>
                             <span class="wrap">{{rating}} / {{google_rating_out_of}}</span>
                         </p>
 
                         <p class="basic-information " *ngIf="venue.description">
-                            <span><i title="Description" class="icon material-icons">infor</i></span>
+                            <span><img src="../../assets/icons/noun_Information_1.png" alt="Description" title="Description" class="icon"></span>
                             <span class="wrap">{{venue.description}}</span>
                         </p>
+                        <!-- Missing updated parking icon -->
                         <p class="basic-information" *ngIf="parking">
                             <span><i title="Parking Information" class="icon material-icons">motorcycle</i></span>
                             <span class="wrap">{{parking}}</span>
                         </p>
                         <p class="basic-information" hidden>
-                            <span><i title="Room Information" class="icon material-icons">people</i></span>
+                            <span><img src="../../assets/icons/noun_Information_1.png" alt="Information" title="Information" class="icon"></span>
                             <span class="wrap">Rest Room information</span>
                         </p>
 
                         <p class="basic-information" hidden>
-                            <span><i title="Information" class="icon material-icons">restaurant_menu</i></span>
+                            <span><img src="../../assets/icons/noun_Information_1.png" alt="Information" title="Information" class="icon"></span>
                             <span class="wrap">Outside food allowed or not</span>
                         </p>
 
                         <p class="basic-information" hidden>
-                            <span><i title="Information" class="icon material-icons material-icon-red-color">cloud</i></span>
+                            <span><img src="../../assets/icons/noun_Information_1.png" alt="Information" title="Information" class="icon"></span>
                             <span class="wrap">No shade in trails</span>
                         </p>
 
                         <p class="basic-information" hidden>
-                            <span><i title="Information" class="icon material-icons">cloud</i></span>
+                            <span><img src="../../assets/icons/noun_Information_1.png" alt="Information" title="Information" class="icon"></span>
                             <span class="wrap">Small lake at the end of the trail.Keep extra set of cloths</span>
                         </p>
 
@@ -126,35 +127,32 @@
                             <span class="wrap">8 miles from you</span>
                         </p>
                         <p class="basic-information" hidden>
-                            <span><i title="Age group" class="icon material-icons material-icon-red-color">directions_walk</i></span>
-                            <span class="wrap">All age of people</span>
+                            <span><img src="../../assets/icons/noun_age_1.png" alt="Age" title="Age" class="icon"></span>
+                            <span class="wrap">Good for all ages</span>
                         </p>
 
                         <p class="basic-information" hidden>
-                            <span><i title="Address" class="icon material-icons material-icon-black-color">pin_drop</i></span>
+                            <span><img src="../../assets/icons/noun_address_1.png" alt="Location" title="Location" class="icon"></span>
                             <span class="wrap">{{venue.misc.address}}</span>
                         </p>
                         <p class="basic-information"  *ngIf="tips_for_parent">
-                            <span><i class="icon material-icons material-icon-black-color" 
-                                title="Tips">note</i></span>
+                            <span><img src="../../assets/icons/noun_tips_1.png" alt="Tips" title="Tips" class="icon"></span>
                             <span class="wrap">{{tips_for_parent}}</span>
                         </p>
                         
                         <p class="basic-information"  *ngIf="price">
-                                <span><i class="icon material-icons material-icon-black-color"
-                                     title="Price">attach_money</i></span>
-                                <span class="wrap">{{price}}</span>
+                                <span><img src="../../assets/icons/noun_price_1.png" alt="Price" title="Price" class="icon"></span>
+                                <span class="wrap">${{price}}</span>
                         </p>
 
                         <p class="basic-information"  *ngIf="contact_number">
-                                <span><i class="icon material-icons material-icon-black-color"
-                                     title="Phone number">phone</i></span>
+                                <span><img src="../../assets/icons/noun_Phone_1.png" alt="Contact Number" title="Contact Number" class="icon"></span>
                                 <span class="wrap">{{contact_number}}</span>
                         </p>
     
                         
                         <p class="basic-information" *ngIf="timings_array">
-                            <span><i title="Timings" class="icon material-icons material-icon-black-color">access_time</i></span>
+                            <span><img src="../../assets/icons/noun_Date%20and%20Time_1.png" alt="Hours" title="Hours" class="icon"></span>
                             <span class="text" *ngIf="isShowMoreHours">Open Today - {{timings_array[dayOfWeek]}}</span>
                             <span class="text" *ngIf="isShowMoreHours==false">{{timings_array}}</span>
 
@@ -173,7 +171,7 @@
 
 
                         <p class="basic-information" hidden>
-                            <span><i  title="Free" class="icon material-icons material-icon-black-color">loyalty</i></span>
+                            <span><img src="../../assets/icons/noun_price_1.png" alt="Price" title="Price" class="icon"></span>
                             <span class="wrap">Free</span>
                         </p>
 

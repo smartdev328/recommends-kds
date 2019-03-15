@@ -58,36 +58,36 @@
       [selectedIndex]="selectedIndex">
       <mat-tab label="About">
         <mat-card>
-          <mat-card-content>
+          <mat-card-content class="about-font">
             <p class="basic-information">
-              <span><i title="Age" class="icon material-icons red-color">accessibility_new</i></span>
+              <span><img src="../../assets/icons/noun_age_1.png" alt="Age" title="Age" class="icon"></span>
               <span class="description">{{format_age()}}</span>
             </p>
             <p class="basic-information " *ngIf="event.description" title="Description">
-              <span><i title="Description" class="icon material-icons">infor</i></span>
+              <span><img src="../../assets/icons/noun_Information_1.png" alt="Description" title="Description" class="icon"></span>
               <span class="description">{{event.description}}</span>
            </p>
             <p class="event-details">
-              <span><i title="Location" class="icon material-icons">location_on</i></span>
+              <span><img src="../../assets/icons/noun_address_1.png" alt="Location" title="Location" class="icon"></span>
               <span class="description" (click)="maps_redirect()">{{event.venue}}</span>
               <br>
               <br>
               <span class="description">{{event.street}}, {{event.city}}, {{event.state}}</span>
             </p>
             <p class="basic-information" *ngIf="eventCatString">
-                <span><i title="Category" class="icon material-icons">category</i></span>
+                <span><img src="../../assets/icons/noun_categories_1.png" alt="Category" title="Category" class="icon"></span>
                 <span class="description">{{eventCatString}}</span>
-              </p>
+            </p>
 
             <p class="event-details">
-              <span><i title="Time" class="icon material-icons">access_time</i></span>
+              <span><img src="../../assets/icons/noun_Date%20and%20Time_1.png" alt="Date and Time" title="Date and Time" class="icon"></span>
               <span class="description">{{event.start_date | date:'longDate'}}</span>
               <br>
               <br>
               <span title="Time" class="description">{{format_time(event.start_time)}} - {{format_time(event.end_time)}}</span>
             </p>
             <p class="event-details">
-              <span><i title="Price" class="icon material-icons">local_offer</i></span>
+              <span><img src="../../assets/icons/noun_price_1.png" alt="Price" title="Price" class="icon"></span>
               <span  class="description">{{format_price()}}</span>
             </p>
             <mat-card-actions class="details-buttons-space">
