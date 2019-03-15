@@ -29,6 +29,7 @@ export class EventComponent implements OnInit {
   public user_reviews: any;
   public parent_id: any;
   public is_review_click: Boolean;
+  public no_reviews: Boolean;
   public eventErrorMessage = new EventErrorMessage();
   public eventConstatnts = new EventConstants();
   public URLConstatnts = new UrlConstants();
@@ -50,6 +51,7 @@ export class EventComponent implements OnInit {
     this.errorMessage = '';
     this.review = '';
     this.user_reviews = [];
+    this.no_reviews = true;
     this.selectedIndex = 0;
     this.eventCatString = '';
   }
@@ -190,8 +192,10 @@ export class EventComponent implements OnInit {
       this.reviewService.get_reviews_by_type(TYPES_ENUM.EVENT , true, this.event_id).subscribe(data => {
         if ( data['status'] ) {
           this.user_reviews = data['data'];
+          this.no_reviews = false;
         } else {
           this.user_reviews = [];
+          this.no_reviews = true;
         }
       }, error => {
        // alert(this.eventErrorMessage.GET_DATA_ERROR);

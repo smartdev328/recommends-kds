@@ -129,6 +129,9 @@
                     <div class="review-width" *ngFor="let current_review of user_reviews;">
                       {{current_review.review}}
                     </div>
+                    <div class="review-font" *ngIf="no_reviews">
+                        No reviews yet!
+                    </div>
                   </div>
                   <div class="col-md-2"></div>
                 </div>
