@@ -26,13 +26,13 @@
                           <div class="col">
                               <div class="mb-2">
                               <div class="" title="Save" *ngIf="is_parent_id === false">
-                                  <img src="../../assets/icons/noun_bookmark_1.png" class="actionIcon" />
+                                  <img src="../../assets/icons/save_grey.png" class="actionIcon" />
                               </div>
                               <div class=" cursor" title="Save" (click)="save_camp()" *ngIf="is_parent_id && isSaveVisible != true">
-                                  <img class="actionIcon" src="../../assets/icons/noun_bookmark_2.png" />
+                                  <img class="actionIcon" src="../../assets/icons/save_blue.png" />
                               </div>
                               <div class="" title="Saved" *ngIf="isSaveVisible">
-                                  <img class="actionIcon" src="../../assets/icons/noun_bookmark_3.png" />
+                                  <img class="actionIcon" src="../../assets/icons/save_orange.png" />
                               </div>
 
                               </div>
@@ -40,10 +40,10 @@
                           <div class="col">
                               <div class="d-flex text-center mb-2">
                                       <div class="cursor" (click)="add_review_redirect(2)" *ngIf="is_parent_id === false" title="Add Review">
-                                          <img src="../../assets/icons/noun_review_1.png" class="actionIcon" />
+                                          <img src="../../assets/icons/review_grey.png" class="actionIcon" />
                                       </div>
                                       <div class="cursor" *ngIf="is_parent_id" (click)="add_review_redirect(2)" title="Add Review">
-                                          <img src="../../assets/icons/noun_review_2.png" class="actionIcon" />
+                                          <img src="../../assets/icons/review_blue.png" class="actionIcon" />
                                       </div>
                               </div>
                           </div>    
@@ -112,7 +112,7 @@
               </p>
 
                 <mat-card-actions class="details-buttons-space">
-                  <button mat-button class="detail-buttons mouse-pointer" (click)="event_redirect()">MORE DETAILS</button>
+                  <button mat-button class="detail-buttons mouse-pointer" (click)="event_redirect()">CAMP WEBSITE</button>
                 </mat-card-actions>
               </mat-card-content>
             </mat-card>
