@@ -149,7 +149,10 @@
                         <button class="btn sign_up"  >Sign up</button>
                     </div>
                     <div class="alert alert-success" *ngIf="isSuccessVisible">
-                        <strong>Success! You have successfully signed up with Kin</strong>
+                        <strong>Thanks for signing up. Your weekly planner will be in your inbox soon.</strong>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="isUserCreationError">
+                        <strong>You are already signed up!</strong>
                     </div>
 
                 </form>

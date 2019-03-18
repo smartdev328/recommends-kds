@@ -14,6 +14,7 @@ export class SignUpComponent implements OnInit {
     childForm: FormGroup;
     submitted = false;
     public isSuccessVisible: Boolean;
+    public isUserCreationError: Boolean;
     public show_kid_form: Boolean;
 
 
@@ -33,6 +34,7 @@ export class SignUpComponent implements OnInit {
             src_id: [''],
         });
         this.isSuccessVisible = false;
+        this.isUserCreationError = false;
         this.show_kid_form = false;
         /* Initiate the form structure */
         this.childForm = this.fb.group({
@@ -88,31 +90,34 @@ export class SignUpComponent implements OnInit {
             this.http.post(url, data, {headers: headers, responseType: 'text'}).subscribe(response => {
                 data = response.replace(/\n/g, '');
                 data = JSON.parse(data);
-                const url = 'https://kin-api-dev.kinparenting.com/kids/';
-                for (let i = 0; i < this.newChild.length; i++) {
-                    if (this.newChild.value[i].nick_name.trim().length
-                        && this.newChild.value[i].interests.trim().length) {
+		if(data['error'] !== undefined) {
+			this.isUserCreationError = true;
+			setTimeout(() => {
+                  		//window.location.replace('/');
+                  		this.isUserCreationError = false;
+                	}, 5000);
+		} else { 
+                	const url = 'https://kin-api-dev.kinparenting.com/kids/';
+                	for (let i = 0; i < this.newChild.length; i++) {
+                    		if (this.newChild.value[i].nick_name.trim().length
+                        		&& this.newChild.value[i].interests.trim().length) {
 
-                        this.newChild.value[i].parent_id = data['account'].parent_id;
-                        //this.newChild.value[i].gender = 'M';
-                        const headers = new HttpHeaders()
-                            .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
-                            .set('Content-Type', 'application/json');
-                        this.http.post(url, this.newChild.value[i], {headers: headers, responseType: 'text'}).
-                        subscribe(response => {
-                            data = response.replace(/\n/g, '');
-                            data = JSON.parse(data);
-
-                        });
-                    }
-                }
-                this.isSuccessVisible = true;
-                setTimeout(() => {
-                //  window.location.reload();
-                  this.isSuccessVisible = false;
-                }, 5000);
-
-            });
+                        		this.newChild.value[i].parent_id = data['account'].parent_id;
+                        		const headers = new HttpHeaders().set('Content-Type', 'application/json');
+                        		this.http.post(url, this.newChild.value[i], {headers: headers, responseType: 'text'}).
+                        			subscribe(response => {
+                            				data = response.replace(/\n/g, '');
+                            				data = JSON.parse(data);
+                        			});
+                    		}
+                	}
+                	this.isSuccessVisible = true;
+                	setTimeout(() => {
+                  		//window.location.replace('/');
+                  		this.isSuccessVisible = false;
+                	}, 5000);
+            	}
+	    });
         }
     }
 }
