@@ -62,6 +62,8 @@
     .carousel-p {
         font-size: 11px;
     }
+    
+
 }
 
 /* Desktop */
@@ -90,9 +92,18 @@
         color: #414141;
         letter-spacing: 0.1em;
     }
-    .addmore{
+    .addmore {
         float: right;
     }
+    
+    
+    video {
+        height: 80%;
+        width: auto;
+        display: block;
+        margin: auto;
+    }
+    
     a {
         text-decoration: none;
     }
