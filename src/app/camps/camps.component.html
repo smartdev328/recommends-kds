@@ -100,7 +100,7 @@
                   <span><img src="../../assets/icons/noun_camp_am_pm_care_1.png" alt="Extended Care" title="Extended Care" class="icon"></span>
                   <span class="description"><b>AM Extended Care: </b>{{camp.am_extended_care}}</span>
                     <br><br>
-                  <span class="description"><b>PM Extended Care: </b>{{camp.pm_extended_care}}</span>
+                  <span class="description" *ngIf="camp.pm_extended_care"><b>PM Extended Care: </b>{{camp.pm_extended_care}}</span>
               </p>
               <p class="event-details"  *ngIf="camp.tips">
                   <span><img src="../../assets/icons/noun_tips_1.png" alt="Tips" title="Tips" class="icon"></span>

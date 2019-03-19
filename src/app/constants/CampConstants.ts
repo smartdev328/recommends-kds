@@ -5,13 +5,12 @@ export class CampConstants {
         {"name" : "Adventure" , "id" :  13000},
         {"name" : "Arts" , "id" :  16000},
         {"name" : "Chess" , "id" :  17000},
-        {"name" : "Lego" , "id" :  18000}
+        {"name" : "Lego" , "id" :  18000},
         {"name" : "Science" , "id" :  10000},
         {"name" : "Sports" , "id" :  12000},
         {"name" : "STEAM" , "id" :  11000},
         {"name" : "Technology" , "id" :  15000},
         {"name" : "Theatre" , "id" :  14000},
-        
     ];
 
 }
