@@ -12,25 +12,24 @@ public PRIMARY_CATEGORY = [
     {'name' : 'Animals & Wildlife' , 'id' : 2},
     {'name' : 'Arts & Crafts' , 'id' : 3},
     {'name' : 'Books & Storytimes' , 'id' : 4},
-    {'name' : 'Cars, Planes, Trains and more...' , 'id' : 5},
-    {'name' : 'Community' , 'id' : 6},
-    {'name' : 'Festivals & Fairs' , 'id' : 7},
-    {'name' : 'Food & Cooking' , 'id' : 8},
-    {'name' : 'Hiking & Camping' , 'id' : 9},
-    {'name' : 'Language & Cultural' , 'id' : 10},
-    {'name' : 'Meet a character' , 'id' : 11},
-    {'name' : 'Movies & Video games' , 'id' : 12},
-    {'name' : 'Museums & Exhibitions' , 'id' : 13},
-    {'name' : 'Music & Concerts' , 'id' : 14},
-    {'name' : 'Puzzles, Blocks & Pretend' , 'id' : 15},
-    {'name' : 'Science & Technology' , 'id' : 16},
-    {'name' : 'Seasonal & Special Events' , 'id' : 17},
-    {'name' : 'Sports & Games' , 'id' : 18},
-    {'name' : 'Theater & Shows' , 'id' : 19},
-    {'name' : 'Volunteering' , 'id' : 20},
-    {'name' : 'Other' , 'id' : 21}
-
-    ];
+    {'name' : 'Cars, Planes, Trains and more...' , 'id' : 6},
+    {'name' : 'Community' , 'id' : 8},
+    {'name' : 'Festivals & Fairs' , 'id' : 9},
+    {'name' : 'Food & Cooking' , 'id' : 10},
+    {'name' : 'Hiking & Camping' , 'id' : 11},
+    {'name' : 'Language & Cultural' , 'id' : 12},
+    {'name' : 'Meet a character' , 'id' : 13},
+    {'name' : 'Movies & Video games' , 'id' : 14},
+    {'name' : 'Museums & Exhibitions' , 'id' : 15},
+    {'name' : 'Music & Concerts' , 'id' : 16},
+    {'name' : 'Puzzles, Blocks & Pretend' , 'id' : 5},
+    {'name' : 'Science & Technology' , 'id' : 17},
+    {'name' : 'Seasonal & Special Events' , 'id' : 18},
+    {'name' : 'Sports & Games' , 'id' : 19},
+    {'name' : 'Theater & Shows' , 'id' : 20},
+    {'name' : 'Volunteering' , 'id' : 7},
+    {'name' : 'Others' , 'id' : 21}
+];
 
 public LOCATIONS = [ 
     {'name' : 'Campbell' , 'id' :  ''},
@@ -41,7 +40,7 @@ public LOCATIONS = [
     {'name' : 'Milpitas' , 'id' :  ''},
     {'name' : 'Mountain View' , 'id' :  ''},
     {'name' : 'Palo Alto' , 'id' :  ''},
-    {'name' : 'San Francisco' , 'id' :  ''}
+    {'name' : 'San Francisco' , 'id' :  ''},
     {'name' : 'San Jose' , 'id' :  ''},
     {'name' : 'Santa Clara' , 'id' :  ''},
     {'name' : 'Saratoga' , 'id' :  ''},
@@ -53,25 +52,24 @@ public SECONDARY_CATEGORY = [
     {'name' : 'Animals & Wildlife' , 'id' : 2},
     {'name' : 'Arts & Crafts' , 'id' : 3},
     {'name' : 'Books & Storytimes' , 'id' : 4},
-    {'name' : 'Cars, Planes, Trains and more...' , 'id' : 5},
-    {'name' : 'Community' , 'id' : 6},
-    {'name' : 'Festivals & Fairs' , 'id' : 7},
-    {'name' : 'Food & Cooking' , 'id' : 8},
-    {'name' : 'Hiking & Camping' , 'id' : 9},
-    {'name' : 'Language & Cultural' , 'id' : 10},
-    {'name' : 'Meet a character' , 'id' : 11},
-    {'name' : 'Movies & Video games' , 'id' : 12},
-    {'name' : 'Museums & Exhibitions' , 'id' : 13},
-    {'name' : 'Music & Concerts' , 'id' : 14},
-    {'name' : 'Puzzles, Blocks & Pretend' , 'id' : 15},
-    {'name' : 'Science & Technology' , 'id' : 16},
-    {'name' : 'Seasonal & Special Events' , 'id' : 17},
-    {'name' : 'Sports & Games' , 'id' : 18},
-    {'name' : 'Theater & Shows' , 'id' : 19},
-    {'name' : 'Volunteering' , 'id' : 20},
-    {'name' : 'Other' , 'id' : 21}
-
-    ];
+    {'name' : 'Cars, Planes, Trains and more...' , 'id' : 6},
+    {'name' : 'Community' , 'id' : 8},
+    {'name' : 'Festivals & Fairs' , 'id' : 9},
+    {'name' : 'Food & Cooking' , 'id' : 10},
+    {'name' : 'Hiking & Camping' , 'id' : 11},
+    {'name' : 'Language & Cultural' , 'id' : 12},
+    {'name' : 'Meet a character' , 'id' : 13},
+    {'name' : 'Movies & Video games' , 'id' : 14},
+    {'name' : 'Museums & Exhibitions' , 'id' : 15},
+    {'name' : 'Music & Concerts' , 'id' : 16},
+    {'name' : 'Puzzles, Blocks & Pretend' , 'id' : 5},
+    {'name' : 'Science & Technology' , 'id' : 17},
+    {'name' : 'Seasonal & Special Events' , 'id' : 18},
+    {'name' : 'Sports & Games' , 'id' : 19},
+    {'name' : 'Theater & Shows' , 'id' : 20},
+    {'name' : 'Volunteering' , 'id' : 7},
+    {'name' : 'Others' , 'id' : 21}
+];
 
 get_cat_name_by_id(id){
         let cat_name='';

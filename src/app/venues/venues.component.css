@@ -31,12 +31,6 @@
   height: 30px;
 }
 
-.link-text {
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
 .detail-buttons-space {
     text-align: center;
     border-top: 1px solid;

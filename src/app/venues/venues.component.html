@@ -155,8 +155,7 @@
                             <span class="text" *ngIf="isShowMoreHours">Open Today - {{timings_array[dayOfWeek]}}</span>
                             <span class="text" *ngIf="isShowMoreHours==false">{{timings_array}}</span>
 
-                            <span class="text link-text" (click)="showMoreHours()" *ngIf="isShowMoreHours">More
-                                Hours</span>
+                            <span class="text" (click)="showMoreHours()" *ngIf="isShowMoreHours"><img src="../../assets/icons/expand_more.svg" alt="Expand More Button" class="mouse-pointer"></span>
                         </p>
 
                         
