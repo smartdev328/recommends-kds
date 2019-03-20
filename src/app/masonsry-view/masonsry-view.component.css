@@ -1,8 +1,6 @@
 .event-list-cards {
     margin: 5%;
     cursor: pointer;
-    margin: 5%;
-    cursor: pointer;
     border: solid 1px #5d5d5a;
     background-color: #ffffff;
     padding: 1.8em;
@@ -54,10 +52,6 @@
 
 /* Phones */ 
 @media only screen and (max-width : 767px) {
-    .tiles {
-        width: 49%;
-    }
-
     .loading-gif {
         margin-left: 10%;
     }
