@@ -3,6 +3,7 @@
     color: rgb(90, 91, 91);
 }
 
+
 .mat-card-header {
     display: contents;
 }
@@ -29,6 +30,29 @@
 
 .actionIcon {
   height: 30px;
+}
+
+.material-icons {
+    color: #ef6c57;
+    position: relative;
+    top: 7px;
+}
+
+ul {
+    list-style-type: none;
+    display: block;
+}
+
+li {
+    display: block;
+    padding: 10px;
+    margin-left: 5%;
+    width: 300px;
+}
+
+li+li {
+    border-top: 1px solid;
+    border-color: #ef6c57;
 }
 
 .detail-buttons-space {

@@ -1,9 +1,10 @@
 .event-list-cards {
-    margin: 8%;
+    margin: 5%;
     cursor: pointer;
     border: solid 1px #5d5d5a;
     background-color: #ffffff;
-    padding: 1.8em;font-family: Montserrat;
+    padding: 1.8em;
+    font-family: Montserrat;
 }
 
 .event-group-title {
@@ -51,10 +52,6 @@
 
 /* Phones */
 @media only screen and (max-width : 767px) {
-    .tiles {
-        width: 49%;
-    }
-
     .loading-gif {
         margin-left: 10%;
     }

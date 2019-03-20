@@ -26,13 +26,13 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="mb-2">
-                                        <div class="" title="Save" *ngIf="is_parent_id === false">
+                                        <div class="cursor" title="Save" *ngIf="is_parent_id === false">
                                             <img src="../../assets/icons/save_grey.png" class="actionIcon" />
                                         </div>
-                                        <div class=" cursor" title="Save" (click)="save_venue()" *ngIf="is_parent_id && isSaveVisible != true">
+                                        <div class="cursor" title="Save" (click)="save_venue()" *ngIf="is_parent_id && isSaveVisible != true">
                                             <img class="actionIcon" src="../../assets/icons/save_blue.png" />
                                         </div>
-                                        <div class="" title="Saved" *ngIf="isSaveVisible">
+                                        <div class="cursor" title="Saved" *ngIf="isSaveVisible">
                                             <img class="actionIcon" src="../../assets/icons/save_orange.png" />
                                         </div>
 
@@ -152,20 +152,21 @@
                         
                         <p class="basic-information" *ngIf="timings_array">
                             <span><img src="../../assets/icons/noun_Date%20and%20Time_1.png" alt="Hours" title="Hours" class="icon"></span>
-                            <span class="text" *ngIf="isShowMoreHours">Open Today - {{timings_array[dayOfWeek]}}</span>
+                            <span class="text" (click)="showMoreHours()" *ngIf="isShowMoreHours">Hours Today - {{timings_array[dayOfWeek]}}</span>
+                            <span class="text" (click)="showMoreHours()" *ngIf="isShowMoreHours"><i class="material-icons mouse-pointer">keyboard_arrow_down</i></span>
                             <span class="text" *ngIf="isShowMoreHours==false">{{timings_array}}</span>
-
-                            <span class="text" (click)="showMoreHours()" *ngIf="isShowMoreHours"><img src="../../assets/icons/expand_more.svg" alt="Expand More Button" class="mouse-pointer"></span>
                         </p>
 
                         
 
                         <ul class="list-group opening-hours" *ngIf="isShowMore">
-                            <li class="list-group-item list-group-item-action list-group-item-dark"
+                            <li
                                 (click)="showMoreHours()"
                                 *ngFor="let current_slot of timings_array; let even = even; let odd = odd">
                                 {{current_slot}}</li>
                         </ul>
+                        
+                        <br>
 
 
                         <p class="basic-information" hidden>
