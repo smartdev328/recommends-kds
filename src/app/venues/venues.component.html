@@ -153,13 +153,13 @@
                         <p class="basic-information" *ngIf="timings_array">
                             <span><img src="../../assets/icons/noun_Date%20and%20Time_1.png" alt="Hours" title="Hours" class="icon"></span>
                             <span class="text" (click)="showMoreHours()" *ngIf="isShowMoreHours">Hours Today - {{timings_array[dayOfWeek]}}</span>
-                            <span class="text" (click)="showMoreHours()" *ngIf="isShowMoreHours"><i class="material-icons mouse-pointer">keyboard_arrow_down</i></span>
+                            <span class="text" (click)="showMoreHours()" *ngIf="isShowMoreHours"><i class="material-icons mouse-pointer expand_more">expand_more</i></span>
                             <span class="text" *ngIf="isShowMoreHours==false">{{timings_array}}</span>
                         </p>
 
                         
 
-                        <ul class="list-group opening-hours" *ngIf="isShowMore">
+                        <ul class="list-group" *ngIf="isShowMore">
                             <li
                                 (click)="showMoreHours()"
                                 *ngFor="let current_slot of timings_array; let even = even; let odd = odd">
@@ -183,15 +183,20 @@
                 </mat-card>
             </mat-tab>
             <mat-tab label="Reviews">
-                <mat-card>
+                <mat-card class="reviews-font">
                     <div class="margin-review">
                         <div class="row">
                             <div class="col-md-2"></div>
                             <div class="col-md-8">
                                 <div class="review-width" *ngFor="let current_review of user_reviews;">
-                                    {{current_review.review}}
+                                    <table>
+                                        <tr>
+                                            <td><img src="../../assets/icons/noun_Speech%20Bubble_822548.png" alt="Speech Bubble" class="comment-icon"></td>
+                                            <td>{{current_review.review}}</td>
+                                        </tr>
+                                    </table>
                                 </div>
-                                <div class="review-font" *ngIf="no_reviews">
+                                <div *ngIf="no_reviews">
                                     No reviews yet!
                                 </div>
                             </div>

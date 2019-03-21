@@ -1,3 +1,26 @@
+.meet-kin-descrp {
+    display: block;
+    margin: auto;
+}
+
+h3 {
+    font-family: Montserrat;
+    font-size: 20px;
+}
+
+p {
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+video {
+        height: 90%;
+        width: auto;
+        display: block;
+        margin: 4% auto auto auto;
+    }
+
 @media only screen and (max-width : 767px) {
     .home-page {
         margin: 7%;
@@ -21,11 +44,12 @@
         color: #414141;
         letter-spacing: 0.1em;
     }
-    .carousel-header {
-        font-size: 14px;
-    }
-    .carousel-p {
-        font-size: 9px;
+    
+    .meet-kin-descrp {
+        display: block;
+        margin: auto;
+        padding-bottom: 15%;
+        padding-top: 10%;
     }
 
 }
@@ -56,11 +80,11 @@
         color: #414141;
         letter-spacing: 0.1em;
     }
-     .carousel-header {
-        font-size: 16px;
-    }
-    .carousel-p {
-        font-size: 11px;
+    
+    .meet-kin-descrp {
+        display: block;
+        margin: auto;
+        padding-left: 8%;
     }
     
 
@@ -96,13 +120,12 @@
         float: right;
     }
     
-    
-    video {
-        height: 80%;
-        width: auto;
+    .meet-kin-descrp {
         display: block;
         margin: auto;
+        padding-left: 8%;
     }
+
     
     a {
         text-decoration: none;

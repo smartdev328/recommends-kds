@@ -54,7 +54,7 @@
   </mat-card-content>
   <mat-card-content>
 
-    <mat-tab-group class="tabs about-reviews-margin" (selectedTabChange)="show_reviews($event)"
+    <mat-tab-group class="tabs" (selectedTabChange)="show_reviews($event)"
       [selectedIndex]="selectedIndex">
       <mat-tab label="About">
         <mat-card>
@@ -98,15 +98,20 @@
         </mat-card>
       </mat-tab>
       <mat-tab label="Reviews">
-        <mat-card>
+        <mat-card class="reviews-font">
           <div class="margin-review">
             <div class="row">
               <div class="col-md-2"></div>
               <div class="col-md-8">
                 <div class="review-width" *ngFor="let current_review of user_reviews;">
-                  {{current_review.review}}
+                    <table>
+                        <tr>
+                            <td><img src="../../assets/icons/noun_Speech%20Bubble_822548.png" alt="Speech Bubble" class="comment-icon"></td>
+                            <td>{{current_review.review}}</td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="review-font" *ngIf="no_reviews">
+                <div *ngIf="no_reviews">
                     No reviews yet!  
                 </div>
               </div>
