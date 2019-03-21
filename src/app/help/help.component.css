@@ -94,7 +94,8 @@
     background-color: #ef6c57;
 }
 
-.heading{
+h3 {
+    font-family: Montserrat;
     color: #ef6c57;
     font-size: 20px;
    
@@ -102,7 +103,7 @@
 p, li {
     font-family: Montserrat;
     font-size: 16px;
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.19;

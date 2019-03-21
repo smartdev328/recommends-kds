@@ -42,7 +42,9 @@
 }
 
 .Story-description {
+    font-size: 16px;
     font-family: Montserrat;
+    font-weight: 300;
     text-align: justify;
 }
 
