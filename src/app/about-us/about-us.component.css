@@ -41,7 +41,13 @@
     color: #5d5d5a;
 }
 
-.Story-description {
+h3 {
+    font-family: Montserrat;
+    color: #ef6c57;
+    font-size: 20px;
+}
+
+p {
     font-size: 16px;
     font-family: Montserrat;
     font-weight: 300;

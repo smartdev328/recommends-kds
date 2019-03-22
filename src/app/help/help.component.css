@@ -100,7 +100,7 @@ h3 {
     font-size: 20px;
    
 }
-p, li {
+p, li, tr {
     font-family: Montserrat;
     font-size: 16px;
     font-weight: 300;
@@ -108,6 +108,20 @@ p, li {
     font-stretch: normal;
     line-height: 1.19;
     letter-spacing: normal;
-    text-align: left;
+    text-align: justify;
     /* color: #5d5d5a; */
+}
+
+td {
+    padding-bottom: 20px;
+    vertical-align: top;
+}
+
+.command-text {
+    padding-top: 9px;
+}
+
+.list-icon {
+    height: 36px;
+    width: auto;
 }
