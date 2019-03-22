@@ -37,7 +37,7 @@ export class VenuesComponent implements OnInit {
   public parent_id: any;
   public review: string;
   public user_reviews: any;
-  public no_reviews: Boolean;
+  public reviews_present: Boolean;
   public isErrorVisible: Boolean;
   public errorMessage: String;
   public url: String;
@@ -73,7 +73,7 @@ export class VenuesComponent implements OnInit {
       this.is_parent_id = false;
       this.is_review_click = false;
       this.user_reviews = [];
-      this.no_reviews = true;
+      this.reviews_present = false;
       this.isShowMoreHours = false;
       this.isSubscribeVisible = false;
       this.isSaveVisible = false;
@@ -162,10 +162,10 @@ export class VenuesComponent implements OnInit {
     if (index === 1 && this.user_reviews.length === 0) {
       this.reviewService.get_reviews_by_type(TYPES_ENUM.VENUE , true, this.venue_id).subscribe(data => {
         if ( data['status'] ) {
-          this.no_reviews = true;
+          this.reviews_present = true;
           this.user_reviews = data['data'];
         } else {
-          this.no_reviews = false;
+          this.reviews_present = false;
           this.user_reviews = [];
         }
       }, error => {
