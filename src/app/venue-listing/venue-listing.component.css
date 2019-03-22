@@ -30,6 +30,12 @@
     top: 10px;
 }
 
+.clear-search {
+    font-size: 14px;
+    font-weight: 300;
+    color: #459bca;
+}
+
 /* Phones */ 
 @media only screen and (max-width : 767px) {
     .loading-gif {

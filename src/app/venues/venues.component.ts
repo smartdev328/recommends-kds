@@ -162,11 +162,11 @@ export class VenuesComponent implements OnInit {
     if (index === 1 && this.user_reviews.length === 0) {
       this.reviewService.get_reviews_by_type(TYPES_ENUM.VENUE , true, this.venue_id).subscribe(data => {
         if ( data['status'] ) {
-          this.user_reviews = data['data'];
-          this.no_reviews = false;
-        } else {
-          this.user_reviews = [];
           this.no_reviews = true;
+          this.user_reviews = data['data'];
+        } else {
+          this.no_reviews = false;
+          this.user_reviews = [];
         }
       }, error => {
        // alert(this.venueErrorMessage.GET_DATA_ERROR);

@@ -129,9 +129,7 @@
             <svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-icons cursor" (click)="filter_event_data()">
               <path d="M 5 3 C 3.895 3 3 3.895 3 5 L 3 19 C 3 20.105 3.895 21 5 21 L 19 21 C 20.105 21 21 20.105 21 19 L 21 5 C 21 3.895 20.105 3 19 3 L 5 3 z M 11 6 C 13.761 6 16 8.239 16 11 C 16 12.019 15.691969 12.963906 15.167969 13.753906 L 17.707031 16.292969 C 18.098031 16.682969 18.098031 17.317031 17.707031 17.707031 C 17.316031 18.098031 16.682969 18.098031 16.292969 17.707031 L 13.753906 15.167969 C 12.963906 15.691969 12.019 16 11 16 C 8.239 16 6 13.761 6 11 C 6 8.239 8.239 6 11 6 z M 11 8 A 3 3 0 0 0 8 11 A 3 3 0 0 0 11 14 A 3 3 0 0 0 14 11 A 3 3 0 0 0 11 8 z" style="fill:#ef6c57;"></path>
           </svg>
-	<svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-icons cursor" (click) = "clear_filter_data()">
-        <path fill="#ef6c57" id="svg_1" d="m12,3c-4.97026,0 -9,4.25363 -9,9.5s4.02974,9.5 9,9.5s9,-4.25363 9,-9.5s-4.02974,-9.5 -9,-9.5zm3.11326,14.20488l-3.10726,-3.24742l-3.08774,3.29253l-1.37476,-1.45113l3.078,-3.29097l-3.1215,-3.26088l1.37476,-1.45113l3.11624,3.24742l3.0795,-3.29333l1.38674,1.46378l-3.075,3.27828l3.11776,3.249l-1.38674,1.46378l-0.00001,0.00001l0.00001,0l-0.00001,0.00002z"/>
-        </svg>
+        <button type="button" class="col-lg-4 btn btn-link cursor clear-search" (click) = "clear_filter_data()">Clear Search</button>
         </div>
         </div>
       <div *ngIf="isFilterErrorVisible"><div class="error-message-text alert-danger">{{filterErrorMessage}}</div></div>

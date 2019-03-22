@@ -182,22 +182,20 @@
                     </mat-card-content>
                 </mat-card>
             </mat-tab>
+            <div *ngIf="no_reviews">
             <mat-tab label="Reviews">
                 <mat-card class="reviews-font">
                     <div class="margin-review">
                         <div class="row">
                             <div class="col-md-2"></div>
                             <div class="col-md-8">
-                                <div class="review-width" *ngFor="let current_review of user_reviews;">
+                                <div *ngFor="let current_review of user_reviews;">
                                     <table>
                                         <tr>
-                                            <td><img src="../../assets/icons/noun_Speech%20Bubble_822548.png" alt="Speech Bubble" class="comment-icon"></td>
-                                            <td>{{current_review.review}}</td>
+                                            <td><img src="../../assets/icons/noun_Speech%20Bubble_822548.png" alt="Speech Bubble" class="review-icon"></td>
+                                            <td class="review-text">{{current_review.review}}</td>
                                         </tr>
                                     </table>
-                                </div>
-                                <div *ngIf="no_reviews">
-                                    No reviews yet!
                                 </div>
                             </div>
                             <div class="col-md-2"></div>
@@ -205,6 +203,7 @@
                     </div>
                 </mat-card>
             </mat-tab>
+            </div>
             <mat-tab label="Add Review" *ngIf="is_review_click" style="width: 50%">
                 <mat-card>
                         <div class="form-group review-margin">
