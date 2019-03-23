@@ -1,5 +1,4 @@
 .meet-kin-descrp {
-    display: block;
     margin: auto;
 }
 
@@ -15,10 +14,10 @@ p {
 }
 
 video {
-        height: 90%;
-        width: auto;
+        height: auto;
+        width: 275px;
         display: block;
-        margin: 4% auto auto auto;
+        margin: 4% auto 4% auto;
     }
 
 @media only screen and (max-width : 767px) {

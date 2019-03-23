@@ -135,6 +135,7 @@
       <div *ngIf="isFilterErrorVisible"><div class="error-message-text alert-danger">{{filterErrorMessage}}</div></div>
 </div>
 
+
 <div class="event-listing-card">
       <div *ngIf="isErrorVisible"><div class="error-message-text alert-danger">{{errorMessage}}</div></div>
       <app-masonsry-view *ngIf="newFilterData"  [events]=all_data [start]=start [end]=end></app-masonsry-view>
@@ -143,6 +144,7 @@
     <mat-card-actions class="detail-buttons-space">
         <button mat-button class="detail-buttons mouse-pointer" (click)="loadMore()">MORE...</button>
     </mat-card-actions>
-    
+
 </div>
+
 <br><br>
