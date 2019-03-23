@@ -13,6 +13,11 @@
   font-size: 18px;
 }
 
+.logo-icon {
+    height: auto;
+    width: auto;
+}
+
 @media (min-width: 768px){
   .navbar-expand-md .navbar-nav .nav-link {
     padding: 0px 60px;

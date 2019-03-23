@@ -204,8 +204,9 @@ export class VenuesComponent implements OnInit {
     if (timing_slots.trim().length === 0) {
       return [];
     }
-    return timing_slots.split(',');
+    return timing_slots.split(',')
   }
+  
   showMoreHours() {
 
     this.isShowMore = !this.isShowMore;
