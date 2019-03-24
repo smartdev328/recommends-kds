@@ -34,21 +34,26 @@ export class DataEntryComponent implements OnInit {
       'classification1' : this.eventForm.controls['selectedPrimaryCat'].value ? this.eventForm.controls['selectedPrimaryCat'].value : 0 ,
       'classification2' : this.eventForm.controls['selectedSecondaryCat'].value ? this.eventForm.controls['selectedSecondaryCat'].value : 0
     });
-      this.eventForm.value['venue_id'] = this.eventForm.value['venue_id'].trim() ==0 ? '' :
+    this.eventForm.value['venue_id'] = this.eventForm.value['venue_id'].trim() ==0 ? '' :
           this.eventForm.value['venue_id'];
+    if (this.eventForm.value['venue_id'] === '' && this.eventForm.value['zip_code'] === '') {
+	alert('Zipcode is required'); 
+        return;	
+    }
+    if (this.eventForm.value['venue_id'] === '' && this.eventForm.value['venue'] === '') {
+	alert('Venue name is required'); 
+        return;	
+    }
     var data = JSON.stringify(this.eventForm.value);
     data = data.replace(/[\u2018\u2019]/g, "'")
                 .replace(/[\u201C\u201D]/g, '"');
     let url = "https://kin-api-dev.kinparenting.com/events/";
 
     const headers = new HttpHeaders()
-        .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
         .set('Content-Type',  'application/json');
     this.http.post(url, data, { headers: headers, responseType: 'text'}).subscribe(response => {
         this.serverResponse = response;
-        let str1 = new String( "Found duplicate entry against  URL , start_time and start_date" );
-       let compaire = str1.localeCompare( this.serverResponse);
-       if(compaire === 1){
+       if(this.serverResponse.indexOf("Error") < 0){
         this.serverResponse = 'Event Added successfully';
        }
         this.showServerResponse = true;
@@ -128,15 +133,10 @@ export class DataEntryComponent implements OnInit {
         Validators.required, this.ValidateUrl
       ]),
       'zip_code': new FormControl('', [
-        Validators.required,
-        this.checkIsNumber
+        this.checkIsNumber,
       ]),
-      'city': new FormControl('', [
-        Validators.required
-      ]),
-      'venue': new FormControl('', [
-        Validators.required
-      ]),
+      'city': new FormControl('', []),
+      'venue': new FormControl('', []),
       'street': new FormControl('', []),
       'selectedPrimaryCat': new FormControl('', []),
       'selectedSecondaryCat': new FormControl('', []),
