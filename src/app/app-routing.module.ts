@@ -33,6 +33,7 @@ const routes: Routes = [
   { path: 'events/:id?parent_id=', component: EventComponent },
   { path: 'events/:query', component: EventGroupComponent },
   { path: 'edit-event/:eventId', component: EditEventComponent},
+  { path: 'events?q=', component: EventListingComponent },
   { path: 'events', component: EventListingComponent },
   { path: 'help', component: HelpComponent },
   { path: 'data-entry', component: DataEntryComponent },
