@@ -66,6 +66,7 @@ export class EventListingComponent implements OnInit {
   public isFilterErrorVisible: Boolean;
   public errorMessage: String;
   public filterErrorMessage: String;
+  public search_query: String;
 
   public eventConstatnts = new EventConstants();
   public eventErrorMessage = new EventErrorMessage();
@@ -106,7 +107,7 @@ export class EventListingComponent implements OnInit {
     this.keyword = this.route.snapshot.queryParams['q'];
     this.selected_loc = this.route.snapshot.queryParams['location'];
     this.selected_date = this.route.snapshot.queryParams['date'];
-      this.get_explore_event_details();
+    this.get_explore_event_details();
   }
   onLocationChange(loc_obj : object){
     this.selected_loc = loc_obj['name'];
@@ -137,11 +138,13 @@ export class EventListingComponent implements OnInit {
       const d = Date.now();
       const url = 'https://kin-api-dev.kinparenting.com/events/?event_date_start='
        + this.datePipe.transform(d, 'yyyy-MM-dd') + '&event_date_range=30&limit=113';
-      const headers = new HttpHeaders()
-          .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
-      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-          data = data.replace(/\n/g, '');
-          data = JSON.parse(data);
+      const input = {
+       'category' : this.select_cat_id === undefined ? '' :  this.select_cat_id,
+       'q' : this.keyword === undefined ? '' :  this.keyword.trim(),
+       'city' : this.selected_loc === undefined ? '' :  this.selected_loc,
+       'event_range_str' : this.selected_date === undefined ? '' : this.selected_date
+      };
+      this.eventListingService.get_event_details(input).subscribe(data => {
           this.all_data = data['events'];
           this.showMore = false;
           this.isExplorelen = this.all_data.length;
