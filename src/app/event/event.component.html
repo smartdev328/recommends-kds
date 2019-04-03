@@ -45,7 +45,7 @@
         <div class="col">
           <div class="mb-2">
             <div class="item item-3 cursor" (click)="calendar_redirects()" title="Add to Calendar" >
-              <img src="../../assets/icons/noun_Calendar_2.png" class="actionIcon" />
+              <img src="../../assets/icons/calendar_grey.png" class="actionIcon" />
             </div>
           </div>
         </div>
@@ -59,14 +59,18 @@
       <mat-tab label="About">
         <mat-card>
           <mat-card-content class="about-font">
+            <p class="basic-information " *ngIf="event.description" title="Description">
+              <span><img src="../../assets/icons/noun_Information_1.png" alt="Description" title="Description" class="icon"></span>
+              <span class="description">{{event.description}}</span>
+            </p>
             <p class="basic-information">
               <span><img src="../../assets/icons/noun_age_1.png" alt="Age" title="Age" class="icon"></span>
               <span class="description">{{format_age()}}</span>
             </p>
-            <p class="basic-information " *ngIf="event.description" title="Description">
-              <span><img src="../../assets/icons/noun_Information_1.png" alt="Description" title="Description" class="icon"></span>
-              <span class="description">{{event.description}}</span>
-           </p>
+            <p class="basic-information" *ngIf="eventCatString">
+                <span><img src="../../assets/icons/noun_categories_1.png" alt="Category" title="Category" class="icon"></span>
+                <span class="description">{{eventCatString}}</span>
+            </p>
             <p class="event-details">
               <span><img src="../../assets/icons/noun_address_1.png" alt="Location" title="Location" class="icon"></span>
               <span class="description" (click)="maps_redirect()">{{event.venue}}</span>
@@ -74,11 +78,6 @@
               <br>
               <span class="description">{{event.street}}, {{event.city}}, {{event.state}}</span>
             </p>
-            <p class="basic-information" *ngIf="eventCatString">
-                <span><img src="../../assets/icons/noun_categories_1.png" alt="Category" title="Category" class="icon"></span>
-                <span class="description">{{eventCatString}}</span>
-            </p>
-
             <p class="event-details">
               <span><img src="../../assets/icons/noun_Date%20and%20Time_1.png" alt="Date and Time" title="Date and Time" class="icon"></span>
               <span class="description">{{event.start_date | date:'longDate'}}</span>
