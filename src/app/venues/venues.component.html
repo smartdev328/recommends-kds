@@ -73,6 +73,14 @@
             <mat-tab label="About">
                 <mat-card>
                     <mat-card-content class="about-font">
+                        <p class="basic-information " *ngIf="venue.description">
+                            <span><img src="../../assets/icons/noun_Information_1.png" alt="Description" title="Description" class="icon"></span>
+                            <span class="wrap">{{venue.description}}</span>
+                        </p>
+                        <p class="basic-information" hidden>
+                            <span><img src="../../assets/icons/noun_ratings_1.png" alt="Rating" title="Rating" class="icon"></span>
+                            <span class="wrap">Recomendations</span>
+                        </p>
                         <p class="basic-information" *ngIf="category">
                             <span><img src="../../assets/icons/noun_categories_1.png" alt="Category" title="Category" class="icon"></span>
                             <span class="wrap">{{category}}</span>
@@ -81,25 +89,30 @@
                             <span><img src="../../assets/icons/noun_address_1.png" alt="Location" title="Location" class="icon"></span>
                             <span class="wrap">{{street}}, {{city}}, {{state}}</span>
                         </p>
-
-                        <p class="basic-information" hidden>
-                            <span><img src="../../assets/icons/noun_ratings_1.png" alt="Rating" title="Rating" class="icon"></span>
-                            <span class="wrap">Recomendations</span>
+                        <p class="basic-information" *ngIf="timings_array">
+                            <span><img src="../../assets/icons/noun_Date%20and%20Time_1.png" alt="Hours" title="Hours" class="icon"></span>
+                            <span class="text" (click)="showMoreHours()" *ngIf="isShowMoreHours">Hours Today - {{timings_array[dayOfWeek]}}</span>
+                            <span class="text" (click)="showMoreHours()" *ngIf="isShowMoreHours"><i class="material-icons mouse-pointer expand_more">expand_more</i></span>
+                            <span class="text" *ngIf="isShowMoreHours==false">{{timings_array}}</span>
                         </p>
-
-                        <p class="basic-information" *ngIf="rating">
-                            <span><img src="../../assets/icons/noun_ratings_1.png" alt="Rating" title="Rating" class="icon"></span>
-                            <span class="wrap">{{rating}} / {{google_rating_out_of}}</span>
-                        </p>
-
-                        <p class="basic-information " *ngIf="venue.description">
-                            <span><img src="../../assets/icons/noun_Information_1.png" alt="Description" title="Description" class="icon"></span>
-                            <span class="wrap">{{venue.description}}</span>
+                        <ul class="list-group" *ngIf="isShowMore">
+                            <li
+                                (click)="showMoreHours()"
+                                *ngFor="let current_slot of timings_array; let even = even; let odd = odd">
+                                {{current_slot}}</li>
+                        </ul>
+                        <p class="basic-information"  *ngIf="contact_number">
+                                <span><img src="../../assets/icons/noun_Phone_1.png" alt="Contact Number" title="Contact Number" class="icon"></span>
+                                <span class="wrap">{{contact_number}}</span>
                         </p>
                         <!-- Missing updated parking icon -->
                         <p class="basic-information" *ngIf="parking">
                             <span><i title="Parking Information" class="icon material-icons">motorcycle</i></span>
                             <span class="wrap">{{parking}}</span>
+                        </p>
+                        <p class="basic-information" *ngIf="rating">
+                            <span><img src="../../assets/icons/noun_ratings_1.png" alt="Rating" title="Rating" class="icon"></span>
+                            <span class="wrap">{{rating}} / {{google_rating_out_of}}</span>
                         </p>
                         <p class="basic-information" hidden>
                             <span><img src="../../assets/icons/noun_Information_1.png" alt="Information" title="Information" class="icon"></span>
@@ -143,28 +156,6 @@
                                 <span><img src="../../assets/icons/noun_price_1.png" alt="Price" title="Price" class="icon"></span>
                                 <span class="wrap">${{price}}</span>
                         </p>
-
-                        <p class="basic-information"  *ngIf="contact_number">
-                                <span><img src="../../assets/icons/noun_Phone_1.png" alt="Contact Number" title="Contact Number" class="icon"></span>
-                                <span class="wrap">{{contact_number}}</span>
-                        </p>
-    
-                        
-                        <p class="basic-information" *ngIf="timings_array">
-                            <span><img src="../../assets/icons/noun_Date%20and%20Time_1.png" alt="Hours" title="Hours" class="icon"></span>
-                            <span class="text" (click)="showMoreHours()" *ngIf="isShowMoreHours">Hours Today - {{timings_array[dayOfWeek]}}</span>
-                            <span class="text" (click)="showMoreHours()" *ngIf="isShowMoreHours"><i class="material-icons mouse-pointer expand_more">expand_more</i></span>
-                            <span class="text" *ngIf="isShowMoreHours==false">{{timings_array}}</span>
-                        </p>
-
-                        
-
-                        <ul class="list-group" *ngIf="isShowMore">
-                            <li
-                                (click)="showMoreHours()"
-                                *ngFor="let current_slot of timings_array; let even = even; let odd = odd">
-                                {{current_slot}}</li>
-                        </ul>
                         
                         <br>
 
