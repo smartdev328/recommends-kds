@@ -5,21 +5,23 @@
   [useImagesLoaded]="true"
   [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
   <ng-masonry-grid-item class="tiles" *ngFor="let event of events | slice:start:end; let i=index">
-  <mat-card class="event-list-cards" (click)="event_redirect(event.id)">
-      <img mat-card-image src={{event.image_url}} alt="">
-      <mat-card-content>
-        <p class="event-date">
-          <span class="text">{{event.dates}}</span>,
+  <a style="text-decoration: none;" [routerLink]="['/events', event.id]" target="_blank">
+      <mat-card class="event-list-cards">
+          <img mat-card-image src={{event.image_url}} alt="">
+          <mat-card-content>
+            <p class="event-date">
+              <span class="text">{{event.dates}}</span>,
 
-          <span class="lower-text">{{event.start_time}} - {{event.end_time}}</span>
-        </p>
-        <p class="event-group-title">
-          {{event.name}}
-        </p>
-        <p class="event-venue">
-          {{event.venue}}
-        </p>
-      </mat-card-content>
-  </mat-card>
+              <span class="lower-text">{{event.start_time}} - {{event.end_time}}</span>
+            </p>
+            <p class="event-group-title">
+              {{event.name}}
+            </p>
+            <p class="event-venue">
+              {{event.venue}}
+            </p>
+          </mat-card-content>
+      </mat-card>
+  </a>
   </ng-masonry-grid-item>
 </ng-masonry-grid>
