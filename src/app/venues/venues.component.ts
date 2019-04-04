@@ -400,7 +400,7 @@ export class VenuesComponent implements OnInit {
       eventAction: 'Click on more details button',
       eventValue: this.venue_id
     });
-    window.open(this.venue.url);
+    window.open(this.venue.url, '_blank');
   }
 
 }

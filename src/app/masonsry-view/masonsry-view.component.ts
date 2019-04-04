@@ -18,8 +18,4 @@ export class MasonsryViewComponent implements OnInit {
       this.showLayout = true;
     }, 2000);
   }
-
-  event_redirect(id) {
-    this.router.navigate(['/events', id]);
-  }
 }
