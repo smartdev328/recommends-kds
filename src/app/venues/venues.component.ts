@@ -291,7 +291,6 @@ export class VenuesComponent implements OnInit {
         this.isSubscribeVisible = false;
       }
     }, error => {
-       alert('Error while getting information');
     });
   }
 
@@ -361,7 +360,7 @@ export class VenuesComponent implements OnInit {
          break;
      }
      let analytics_input = {};
-     if (this.parent_id != undefined) {
+     if (this.parent_id !== undefined) {
        analytics_input = {
       'input_data' : [ {
          'entity_type' : ANALYTICS_ENTITY_TYPES_ENUM.VENUE,
