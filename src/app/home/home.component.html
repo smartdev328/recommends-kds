@@ -2,30 +2,26 @@
 
 <div class="container-fluid">
   <div class="main-section">
-  <div class="row" style="background:transparent url('../../assets/web_images/kin_home.jpg') no-repeat center center /cover">
+  <!-- <div class="row" style="background:transparent url('../../assets/web_images/kin_home.jpg') no-repeat center center /contain"> -->
+  <div class="row homeImage">
     <div class="col-md-12">
       <div class="banner-heading">
+            <div><button class="btn btn-sign-up" [routerLink]="['/','sign-up']">Sign up</button></div>
+            <br>
           <!-- <div><h1 class="main-heading">Kin</h1></div> -->
             <div class="info">
               Discover and plan family-friendly experiences!
             </div>
-		<br><br><br><br>
-		<br><br><br>
-            <div><button class="btn btn-sign-up" [routerLink]="['/','sign-up']">Sign up</button></div>
       </div>
     </div>
   </div>
-	<br/>
   <div class="row">
-  <div class="col-md-12"></div>
-  <div class="col-md-12"></div>
-  <div class="col-md-12"></div>
-  </div>
-  <div class="row">
-    <div class="col-sm-4 col-md-4">
+    <div class="col-sm-3 col-md-4">
        <div class="outer-div">
            <a [routerLink]="['/','events']">
+		<figure>
             <img src="../../assets/web_images/kinfin3.png" class="img-fluid" />
+		</figure>
             <!-- <div class="row" >
               <label class="home-event-camps-places-text">Events</label>
            </div>
