@@ -12,10 +12,12 @@ export class MasonsryVenuesPersonaliseViewComponent implements OnInit {
   weekend_events: boolean = false;
   closest_events: boolean = false;
   favorite_events: boolean = false;
+  public nearby_events_query_params: Object = {};
 
   @Input() events;
   @Input() start;
   @Input() end;
+  @Input() parent_id;
   _masonry: Masonry;
 masonryItems: any[];
   constructor(private router: Router) { 
@@ -23,6 +25,7 @@ masonryItems: any[];
   }
 
   ngOnInit() {
+    this.nearby_events_query_params = {distance: '20', username: this.parent_id, order_by: 'date_dist_asc'};
     setTimeout(() => {
       this.showLayout = true;
     }, 2000);

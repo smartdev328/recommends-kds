@@ -101,7 +101,7 @@
     text-align: center;
     color: #5d5d5a;
     margin: auto;
-    margin-top: 2em;
+    margin-bottom: 4em;
     text-decoration: underline;
   }
 
@@ -121,10 +121,6 @@
 
 /* Phones */ 
 @media only screen and (max-width : 767px) {
-    .tiles {
-        width: 48%;
-    }
-
     .loading-gif {
         margin-left: 10%;
     }

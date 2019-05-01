@@ -6,7 +6,7 @@
 
   .Personalized-recommendations {
     font-family: BubblegumSans;
-    font-size: 68px;
+    font-size: 58px;
     text-shadow: -1px 0 black, 0 -1px black, -1px 0 black, 0 -1px black;
     font-weight: normal;
     font-style: normal;
@@ -98,7 +98,7 @@
     text-align: center;
     color: #5d5d5a;
     margin: auto;
-    margin-top: 2em;
+    margin-bottom: 6em;
     text-decoration: underline;
   }
 
