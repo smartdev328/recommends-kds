@@ -1,18 +1,13 @@
 <img src="assets/loading.gif" *ngIf="!showLayout" class="loading-gif">
 <div class="container">
   <div class="row">
+    <!-- 
     <div class="col-md-12" *ngIf="favorite_events">
       <div class="center-block">
         <div class="Events-at-your-favorite-venues">Events at your favourite venues </div>
         <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
           [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
-          <!-- Masonry Grid Item -->
           <ng-masonry-grid-item class="tiles" id="{{'masonry-item-'+i}}" *ngFor="let event of events.favourite[0]; let i = index;">
-            <!-- Grid Content  -->
-            <!-- <div class="col-md-4">
-                           <img src={{event.image_url}} alt="" width="400" height="400">
-                         </div> -->
-
             <mat-card class="event-list-cards" (click)="event_redirect(event.id)">
               <img src={{event.image_url}} alt="" class="tiles-image img-fluid" mat-card-image>
               <mat-card-content>
@@ -36,6 +31,7 @@
         </div>
       </div>
     </div>
+    -->
 
     <div class="col-md-12" *ngIf="popular_events">
       <div class="center-block">
@@ -68,11 +64,13 @@
           </ng-masonry-grid-item>
         </ng-masonry-grid>
         <div class="See-more">
-          <a class="See-more" [routerLink]="['/','events']">See more</a>
+          <a class="See-more" [routerLink]="['/','events']" [queryParams]="{q: 'popular'}" target="_blank">See more</a>
         </div>
       </div>
     </div>
+    </div>
 
+    <div class="row">
     <div class="col-md-12" *ngIf="weekend_events">
       <div class="center-block">
         <div class="Events-at-your-favorite-venues">Weekend Events</div>
@@ -104,11 +102,13 @@
           </ng-masonry-grid-item>
         </ng-masonry-grid>
         <div class="See-more">
-          <a class="See-more" [routerLink]="['/','events']">See more</a>
+          <a class="See-more" [routerLink]="['/','events']" [queryParams]="{date: 'weekend'}" target="_blank">See more</a>
         </div>
       </div>
     </div>
+    </div>
 
+    <div class="row">
     <div class="col-md-12" *ngIf="closest_events">
       <div class="center-block">
         <div class="Events-at-your-favorite-venues">Events closest to you</div>
@@ -140,7 +140,7 @@
           </ng-masonry-grid-item>
         </ng-masonry-grid>
         <div class="See-more">
-          <a class="See-more" [routerLink]="['/','events']">See more</a>
+          <a class="See-more" [routerLink]="['/','events']" [queryParams]="{distance: '20'}" target="_blank">See more</a>
         </div>
       </div>
     </div>

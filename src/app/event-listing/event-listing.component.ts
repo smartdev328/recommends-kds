@@ -58,6 +58,7 @@ export class EventListingComponent implements OnInit {
   public select_cat_id: any;
   public selected_loc: String;
   public selected_date: String;
+  public distance: String;
   public keyword: String;
   public cat_label: String;
   public loc_label: String;
@@ -107,6 +108,7 @@ export class EventListingComponent implements OnInit {
     this.keyword = this.route.snapshot.queryParams['q'];
     this.selected_loc = this.route.snapshot.queryParams['location'];
     this.selected_date = this.route.snapshot.queryParams['date'];
+    this.distance = this.route.snapshot.queryParams['distance'];
     this.get_explore_event_details();
   }
   onLocationChange(loc_obj : object){
@@ -142,7 +144,8 @@ export class EventListingComponent implements OnInit {
        'category' : this.select_cat_id === undefined ? '' :  this.select_cat_id,
        'q' : this.keyword === undefined ? '' :  this.keyword.trim(),
        'city' : this.selected_loc === undefined ? '' :  this.selected_loc,
-       'event_range_str' : this.selected_date === undefined ? '' : this.selected_date
+       'event_range_str' : this.selected_date === undefined ? '' : this.selected_date,
+       'distance' : this.distance === undefined ? '' : this.distance
       };
       this.eventListingService.get_event_details(input).subscribe(data => {
           this.all_data = data['events'];
@@ -186,7 +189,8 @@ export class EventListingComponent implements OnInit {
       'category' : this.select_cat_id === undefined ? '' :  this.select_cat_id,
       'q' : this.keyword === undefined ? '' :  this.keyword.trim(),
       'city' : this.selected_loc === undefined ? '' :  this.selected_loc,
-      'event_range_str' : this.selected_date === undefined ? '' : this.selected_date
+      'event_range_str' : this.selected_date === undefined ? '' : this.selected_date,
+      'distance' : this.distance === undefined ? '' : this.distance
     };
     this.isExplore = true;
     this.end = 21;
