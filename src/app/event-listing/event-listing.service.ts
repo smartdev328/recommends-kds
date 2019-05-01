@@ -16,7 +16,9 @@ export class EventListingService {
     '&q=' + encodeURIComponent(api_input.q) +
     '&city=' + encodeURIComponent(api_input.city) +
     '&event_range_str=' + encodeURIComponent(api_input.event_range_str) +
-    '&distance=' + encodeURIComponent(api_input.distance);
+    '&distance=' + encodeURIComponent(api_input.distance) +
+    '&username=' + encodeURIComponent(api_input.username) +
+    '&order_by=date_dist_asc';
 
     return this.http.get(url);
   }

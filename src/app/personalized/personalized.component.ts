@@ -59,19 +59,19 @@ export class PersonalizedComponent implements OnInit {
     get_event_details() {
         let self = this;
         let url = '';
-        url = this.URLConstatnts.API_URL + 'subscribed-events/?parent_id=' + this.parent_id;
+        //url = this.URLConstatnts.API_URL + 'subscribed-events/?parent_id=' + this.parent_id;
         const headers = new HttpHeaders()
             .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
-        this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-            data = data.replace(/\n/g, '');
-            data = JSON.parse(data);
-            this.favorite = data['data'];
-            this.favorite = this.favorite.slice(0, 3);
-            this.all_events.favourite.push(this.favorite);
+        //this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+        //    data = data.replace(/\n/g, '');
+        //    data = JSON.parse(data);
+        //    this.favorite = data['data'];
+        //    this.favorite = this.favorite.slice(0, 3);
+        //    this.all_events.favourite.push(this.favorite);
             // if (this.favorite.length > 0) {
             //     this.isFav = true;
             // }
-        });
+        //});
         url = this.URLConstatnts.API_URL + 'events/?tags=popular&limit=3';
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
             data = data.replace(/\n/g, '');
@@ -87,8 +87,8 @@ export class PersonalizedComponent implements OnInit {
         });
 
         let order_by = 'date_dist_asc'
-        url = this.URLConstatnts.API_URL + 'events/?parent_id=' +
-            this.parent_id + "&order_by=" + order_by + "&limit=3";
+        url = this.URLConstatnts.API_URL + 'events/?username=' +
+            this.parent_id + "&order_by=" + order_by + "&distance=20&limit=3";
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
             data = data.replace(/\n/g, '');
             data = JSON.parse(data);
