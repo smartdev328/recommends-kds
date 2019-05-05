@@ -2,6 +2,15 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "../node_modules/font-awesome/css/font-awesome.css";
 
+.homeImage{
+  background-image: url("assets/web_images/kin_home.jpg");
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+ }
+
+
 @font-face {
     font-family: 'BubblegumSans';
     src: url('assets/fonts/bubblegum-sans/BubblegumSans-Regular.otf'); /* IE9 Compat Modes */
@@ -655,6 +664,32 @@
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 668px) {
+  .banner-heading .info{
+  color: #5d5d5a;
+  font-size: 25px;
+  font-weight: 400;
+  padding: 0px 0px 30px 0px;
+  }
+
+  .btn.btn-sign-up{
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ef6c57;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 2px 5px;
+  margin-top: 5px;
+  border-radius: 10px;
+ } 
+
+ .homeImage{
+  background-image: url("assets/web_images/kin_home.jpg");
+  background-repeat:no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 250px;
+ }
+ 
   .filter-dropdown {
     width: 100%;
     float: none;
@@ -673,5 +708,4 @@
     width: auto;
   }
 }
-
 
