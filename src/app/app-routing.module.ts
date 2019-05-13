@@ -22,6 +22,7 @@ import { SubscribeVenueComponent } from './subscribe-venue/subscribe-venue.compo
 import { CampListingComponent } from './camp-listing/camp-listing.component';
 import { EditCampComponent } from './edit-camp/edit-camp.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
+import { EditHikingTrailComponent } from './edit-hiking/edit-hiking.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -57,6 +58,7 @@ const routes: Routes = [
   { path: 'camps', component: CampListingComponent },
   { path: 'camps?category=', component: CampListingComponent },
   { path: 'edit-camp/:campId', component: EditCampComponent},
+  { path: 'edit-hiking/:hikingTrailId', component: EditHikingTrailComponent},
   { path: 'coming-soon', component: ComingSoonComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'about-us', component: AboutUsComponent },
