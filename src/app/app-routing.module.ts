@@ -16,6 +16,7 @@ import { SearchVenueComponent } from './search-venue/search-venue.component';
 import { ReviewsComponent } from './add-review/reviews.component';
 import { ApproveReviewComponent } from './approve-reviews/approve-review.component';
 import { AddCampComponent} from './add-camp/add-camp.component';
+import { AddHikingTrailComponent} from './add-hiking/add-hiking.component';
 import { CampsComponent } from './camps/camps.component';
 import { SubscribeVenueComponent } from './subscribe-venue/subscribe-venue.component';
 import { CampListingComponent } from './camp-listing/camp-listing.component';
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path: 'add/review', component: ReviewsComponent },
   { path: 'approve-reviews', component: ApproveReviewComponent },
   { path: 'add-camp', component: AddCampComponent },
+  { path: 'add-hiking', component: AddHikingTrailComponent },
   { path: 'camps/:id', component: CampsComponent },
   { path: 'camps/:id?parent_id=', component: CampsComponent },
   { path: 'camps', component: CampListingComponent },
