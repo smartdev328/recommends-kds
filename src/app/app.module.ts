@@ -30,6 +30,7 @@ import { ReviewsComponent } from './add-review/reviews.component';
 import { ApproveReviewComponent } from './approve-reviews/approve-review.component';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import { AddCampComponent } from './add-camp/add-camp.component';
+import { AddHikingTrailComponent } from './add-hiking/add-hiking.component';
 import { CampsComponent } from './camps/camps.component';
 import { CampListingComponent } from './camp-listing/camp-listing.component';
 import { MasonsryCampViewComponent } from './camp-listing/masonsry-camp-view/masonsry-camp-view.component';
@@ -69,6 +70,7 @@ import { MasonsryVenuesPersonaliseViewComponent } from './masonsry-personalise-v
     ReviewsComponent,
     ApproveReviewComponent,
     AddCampComponent,
+    AddHikingTrailComponent,
     CampsComponent,
     CampListingComponent,
     MasonsryCampViewComponent,
