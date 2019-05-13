@@ -49,6 +49,7 @@ import { FooterComponent } from './layout/footer.component';
 import { TermsComponent } from './terms/terms.component';
 import { PersonalizedComponent } from './personalized/personalized.component';
 import { MasonsryVenuesPersonaliseViewComponent } from './masonsry-personalise-view/masonsry-personalise-view.component';
+import { EditHikingTrailComponent } from './edit-hiking/edit-hiking.component';
 
 
 
@@ -80,6 +81,7 @@ import { MasonsryVenuesPersonaliseViewComponent } from './masonsry-personalise-v
     ComingSoonComponent,
     EditCampComponent,
     EditEventComponent,
+    EditHikingTrailComponent,
     SignUpComponent,
     HeaderComponent,
     AboutUsComponent,

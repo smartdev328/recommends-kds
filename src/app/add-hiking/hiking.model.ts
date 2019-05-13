@@ -9,7 +9,7 @@ export class HikingTrailModel {
 		'second': '',
 		'third': '',
 		'default': ''
-	};
+		};
 	this.street = '';
 	this.city = '';
 	this.state = "CA";
