@@ -5,7 +5,7 @@ export class HikingTrailModel {
         this.description = '';
         this.url = '';
         this.image_urls = {
-		'first': '',
+		'first': 'https://image.shutterstock.com/z/stock-photo-happy-little-boy-and-girl-travel-in-norway-719982943.jpg',
 		'second': '',
 		'third': '',
 		'default': ''

@@ -20,6 +20,7 @@ import { AddHikingTrailComponent} from './add-hiking/add-hiking.component';
 import { CampsComponent } from './camps/camps.component';
 import { SubscribeVenueComponent } from './subscribe-venue/subscribe-venue.component';
 import { CampListingComponent } from './camp-listing/camp-listing.component';
+import { HikingTrailsListingComponent } from './hiking-listing/hiking-listing.component';
 import { EditCampComponent } from './edit-camp/edit-camp.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
 import { EditHikingTrailComponent } from './edit-hiking/edit-hiking.component';
@@ -57,6 +58,8 @@ const routes: Routes = [
   { path: 'camps/:id?parent_id=', component: CampsComponent },
   { path: 'camps', component: CampListingComponent },
   { path: 'camps?category=', component: CampListingComponent },
+  { path: 'hiking-trails', component: HikingTrailsListingComponent },
+  { path: 'hiking-trails?q=', component: HikingTrailsListingComponent },
   { path: 'edit-camp/:campId', component: EditCampComponent},
   { path: 'edit-hiking/:hikingTrailId', component: EditHikingTrailComponent},
   { path: 'coming-soon', component: ComingSoonComponent },

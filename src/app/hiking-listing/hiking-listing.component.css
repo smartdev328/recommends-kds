@@ -1,0 +1,146 @@
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+    border-bottom: 1px solid rgb(255, 77, 77);
+    color: rgb(255, 77, 77);
+}
+
+.hikingImage{
+    background-image: url("https://image.shutterstock.com/z/stock-photo-happy-little-boy-and-girl-travel-in-norway-719982943.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+}
+
+.banner {
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+    background-color: white;
+    text-align: center;
+    width: 100%;
+    left: 0;
+}
+
+.link-to-kin {
+    border-top: 1px solid;
+    padding: 4%;
+    margin: 0 !important;
+    font-size: 17px;
+    color: black;
+}
+
+.kin-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.logo {
+    height: 30px;
+    width: 35px;
+    position: relative;
+    top: 10px;
+}
+
+.clear-search {
+    font-size: 11px;
+    font-weight: 300;
+    color: #459bca;
+}
+
+/* Phones */ 
+@media only screen and (max-width : 767px) {
+    .loading-gif {
+        margin-left: 10%;
+    }
+
+    .event-listing-card {
+        margin: 0% 5% 30% 5% !important;
+    }
+    
+    .detail-buttons {
+        color: white;
+        background-color: #ef6c57;
+        border: none;
+        padding: 25px;
+        margin-top: 2%;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
+    
+}
+
+/* Tablets */
+@media only screen and (min-width : 768px) and (max-width : 1280px) {
+    .loading-gif {
+        margin-left: 35%;
+    }
+
+    .event-listing-card {
+        margin: 0% 5% 12% 5% !important;
+    }
+    
+    .detail-buttons {
+        color: white;
+        background-color: #ef6c57;
+        border: none;
+        padding: 25px;
+        margin-top: 2%;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
+    
+}
+
+/* Desktop */
+@media only screen and (min-width : 1281px) {
+    .loading-gif {
+        margin-left: 40%;
+    }
+
+    .event-listing-card {
+        margin: 0% 7% 12% 8% !important;
+    }
+    
+    .detail-buttons {
+        color: white;
+        background-color: #ef6c57;
+        border: none;
+        padding: 20px;
+        margin-top: 2%;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
+    
+}
+
+.detail-buttons-space {
+    text-align: center;
+}
+
+.mouse-pointer{
+    cursor: pointer;
+}
+
+.mat-datepicker-toggle-default-icon {
+  color: #ef6c57!important;
+  width: 60px;
+}
+
+.dropdown-menu {
+    width: 300px !important;
+    height: 200px !important;
+}
