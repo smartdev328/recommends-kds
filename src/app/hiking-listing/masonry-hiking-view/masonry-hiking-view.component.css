@@ -1,0 +1,80 @@
+.event-list-cards {
+    margin: 5%;
+    cursor: pointer;
+    border: solid 1px #5d5d5a;
+    background-color: #ffffff;
+    padding: 1.8em;
+    font-family: Montserrat;
+}
+
+.event-group-title {
+    text-align: center;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    font-weight: bold;
+}
+
+.event-date {
+    text-align: center;
+    color: rgb(255, 77, 77);
+    font-size: 12px;
+    margin-bottom: 0em;
+}
+
+.event-venue {
+    text-align: center;
+    margin-top: 0em;
+    font-size: 12px;
+}
+
+.event-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.flex-display {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100vw;
+    max-height: 800px;
+    font-size: 0;
+}
+
+.show-layout {
+    opacity: 1;
+}
+
+.hide-layout {
+    opacity: 0;
+}
+
+/* Phones */
+@media only screen and (max-width : 767px) {
+    .loading-gif {
+        margin-left: 10%;
+    }
+}
+
+/* Tablets */
+@media only screen and (min-width : 768px) and (max-width : 1280px) {
+    .tiles {
+        width: 32%;
+    }
+
+    .loading-gif {
+        margin-left: 35%;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width : 1281px) {
+    .tiles {
+        width: 24%;
+    }
+
+    .loading-gif {
+        margin-left: 40%;
+    }
+}
