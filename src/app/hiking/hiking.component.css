@@ -1,0 +1,305 @@
+.event-card {
+    font-size: 15px;
+    color: rgb(90, 91, 91);
+}
+
+
+.mat-card-header {
+    display: contents;
+}
+
+.trail-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.event-details {
+    /* border-top: 1px solid; */
+    padding-top: 1em;
+}
+
+.about-font {
+    font-family: Montserrat;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.reviews-font {
+    font-family: Montserrat;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.icon {
+    height: 35px;
+    width: auto;
+}
+
+.actionIcon {
+  height: 30px;
+}
+
+.expand_more {
+    color: #ef6c57;
+    position: relative;
+    top: 7px;
+}
+
+ul {
+    list-style-type: none;
+    display: block;
+}
+
+li {
+    display: block;
+    padding: 10px;
+    margin-left: 5%;
+    width: 300px;
+}
+
+li+li {
+    border-top: 1px solid;
+    border-color: #ef6c57;
+}
+
+.review-icon {
+    height: 60px;
+    width: auto;
+}
+
+.review-text {
+    padding-top: 16px;
+}
+
+td {
+    padding-bottom: 20px;
+    vertical-align: top;
+}
+
+.detail-buttons-space {
+    text-align: center;
+    border-top: 1px solid;
+}
+
+.red-color {
+    color: rgb(237, 45, 86);
+}
+
+/* Phones */ 
+@media only screen and (max-width : 767px) {
+    .basic-information .text {
+        margin-left: 5%
+    }
+    
+    .event-details .text {
+        margin-left: 5%
+    }
+    
+    .event-details .lower-text {
+        margin-left: calc(5% + 24px)
+    }
+
+    .detail-buttons {
+        color: white;
+        background-color: #ef6c57;
+        border: none;
+        padding: 25px;
+        margin-top: 2%;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
+    
+    .mat-card-image {
+        width: calc(100% + 32px);
+        margin: 0 0px 0px 0px;
+        border: 1px solid  #495057;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        margin-bottom: 15px;
+        min-height: 249px;
+        max-height: auto;
+        float: left;
+        margin: 3px;
+        padding: 3px;
+        max-width: 100%;
+        height: auto;
+    }
+    .wrap{
+        display: block;
+        word-wrap: break-word;
+        margin-left: 3em;
+        margin-top: -2em;
+    }
+}
+
+/* Tablets */
+@media only screen and (min-width : 768px) and (max-width : 1280px) {
+    .desktop-resize {
+        width: 30% !important;
+        margin-left: 35%;
+    }
+
+    .basic-information .text {
+        margin-left: 3%
+    }
+    
+    .event-details .text {
+        margin-left: 4%
+    }
+    
+    .event-details .lower-text {
+        margin-left: calc(4% + 24px)
+    }
+
+   .detail-buttons {
+        color: white;
+        background-color: #ef6c57;
+        border: none;
+        padding: 25px;
+        margin-top: 2%;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
+    
+    .mat-card-image {
+        width: calc(100% + 32px);
+        margin: 0 0px 0px 0px;
+        border: 1px solid  #495057;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        margin-bottom: 15px;
+    }
+
+    .wrap{
+        display: block;
+        word-wrap: break-word;
+        margin-left: 3em;
+        margin-top: -2em;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width : 1281px) {
+    .desktop-resize {
+        width: 25% !important;
+        margin-left: 37.5%;
+    }
+ 
+    .basic-information .text {
+        margin-left: 3%
+    }
+    
+    .event-details .text {
+        margin-left: 3%
+    }
+    
+    .event-details .lower-text {
+        margin-left: calc(3% + 24px)
+    }
+
+    .detail-buttons {
+        color: white;
+        background-color: #ef6c57;
+        border: none;
+        padding: 20px;
+        margin-top: 2%;
+        font-family: Montserrat;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+    }
+    
+    .header-image{
+        width:80% !important;
+        border: 1px solid  #495057;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        margin-bottom: 15px;
+        min-height: 249px;
+        max-height: auto;
+        margin: 3px;
+        padding: 3px;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    .addReview{
+        margin-left : 29%;
+    }
+
+    .change-pos{
+        position: absolute;
+        left: -68%;
+    }
+
+    .wrap{
+        display: block;
+        word-wrap: break-word;
+        margin-left: 4.5em;
+        margin-top: -2em;
+    }
+}
+
+::ng-deep .tabs .mat-tab-list .mat-tab-labels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: auto;
+    grid-auto-rows: auto;
+}
+.description{
+     margin-left: 7%;
+}
+
+.review-margin-left {
+    margin-left: 33%;
+}
+
+.mouse-pointer{
+    cursor: pointer;
+}
+.material-icons.md-dark.md-inactive { color: rgba(8, 241, 19, 0.897); }
+
+.mat-card-title {
+    font-family: Montserrat;
+    font-size: 22px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5d5d5a;
+    padding-right: 0;
+}
+
+
+.mat-card:not([class*=mat-elevation-z]){
+    box-shadow: none;
+}
+
+
+.btn-sec{
+    text-align: center;
+    margin-top:10px;
+}
+
+h4.review-heading{
+    text-align: center;
+    color: #5d5d5a;
+    font-size: 21px;
+    font-family: Montserrat;
+     color: #5d5d5a;
+}

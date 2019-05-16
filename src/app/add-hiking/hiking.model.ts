@@ -5,7 +5,7 @@ export class HikingTrailModel {
         this.description = '';
         this.url = '';
         this.image_urls = {
-		'first': 'https://image.shutterstock.com/z/stock-photo-happy-little-boy-and-girl-travel-in-norway-719982943.jpg',
+		'first': '',
 		'second': '',
 		'third': '',
 		'default': ''
@@ -23,53 +23,53 @@ export class HikingTrailModel {
 	};
 	this.stroller_friendly = {
 		'yes' : false,
-		'more_info': ''
+		'more_info': 'NA'
 	};
 	this.bathrooms = {
 		'available': false,
-		'more_info': ''
+		'more_info': 'NA'
 	};
 	this.parking = {
 		'available': false,
-		'more_info': ''
+		'more_info': 'NA'
 	};
 	this.entrance_fee = {
 		'yes': false,
 		'min': 0.0,
 		'max': 0.0,
-		'more_info': ''
+		'more_info': 'NA'
 	};
 	this.difficulty = {
 		'level': '',
-		'more_info': ''
+		'more_info': 'NA'
 	};
 	this.carrier = {
 		'needed': false,
-		'more_info': ''
+		'more_info': 'NA'
 	};
 	this.ada_accessible = {
 		'yes': false,
-		'more_info': ''
+		'more_info': 'NA'
 	};
 	this.picnicing = {
 		'yes': false,
-		'more_info': ''
+		'more_info': 'NA'
 	};
 	this.in_park_food = {
 		'available': false,
-		'more_info': ''
+		'more_info': 'NA'
 	};
 	this.emergency_support = {
 		'available': false,
-		'more_info': ''
+		'more_info': 'NA'
 	};
 	this.pet_friendly = {
 		'yes': false,
-		'more_info': ''
+		'more_info': 'NA'
 	};
 	this.nearby_camps = {
 		'yes': false,
-		'more_info': ''
+		'more_info': 'NA'
 	};
 	this.trail_surface = '';
 	this.shade = '';
@@ -80,7 +80,7 @@ export class HikingTrailModel {
 	this.elevation = '';
 	this.best_season = '';
 	this.trail_image_url = '';
-        this.venue_id = this.venue_id <= 0 ? null : this.venue_id;
+	this.venue_id = this.venue_id <= 0 ? null : this.venue_id;
     }
 
     id: number;

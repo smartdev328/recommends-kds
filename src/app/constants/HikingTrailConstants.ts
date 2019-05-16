@@ -3,6 +3,7 @@ export class HikingTrailErrorMessage {
     public SOMETHING_WENT_WRONG = " Something went wrong, please try again later";
     public GET_DATA_ERROR = "Error while getting information";
     public NO_HIKING_TRAILS_FOUND = "No hiking trails found.";
+    public NO_INFO_AVAILABLE = 'No information available for now';
 }
 
 export class HikingTrailConstants {

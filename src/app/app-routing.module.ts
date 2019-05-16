@@ -21,6 +21,7 @@ import { CampsComponent } from './camps/camps.component';
 import { SubscribeVenueComponent } from './subscribe-venue/subscribe-venue.component';
 import { CampListingComponent } from './camp-listing/camp-listing.component';
 import { HikingTrailsListingComponent } from './hiking-listing/hiking-listing.component';
+import { HikingTrailComponent } from './hiking/hiking.component';
 import { EditCampComponent } from './edit-camp/edit-camp.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
 import { EditHikingTrailComponent } from './edit-hiking/edit-hiking.component';
@@ -62,6 +63,8 @@ const routes: Routes = [
   { path: 'hiking-trails?q=', component: HikingTrailsListingComponent },
   { path: 'edit-camp/:campId', component: EditCampComponent},
   { path: 'edit-hiking/:hikingTrailId', component: EditHikingTrailComponent},
+  { path: 'hiking-trails/:id', component: HikingTrailComponent },
+  { path: 'hiking-trails/:id?parent_id=', component: HikingTrailComponent, },
   { path: 'coming-soon', component: ComingSoonComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'about-us', component: AboutUsComponent },
