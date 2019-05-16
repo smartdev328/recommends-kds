@@ -34,6 +34,7 @@ import { AddHikingTrailComponent } from './add-hiking/add-hiking.component';
 import { CampsComponent } from './camps/camps.component';
 import { CampListingComponent } from './camp-listing/camp-listing.component';
 import { HikingTrailsListingComponent } from './hiking-listing/hiking-listing.component';
+import { HikingTrailComponent } from './hiking/hiking.component';
 import { MasonsryCampViewComponent } from './camp-listing/masonsry-camp-view/masonsry-camp-view.component';
 import { MasonsryHikingTrailViewComponent } from './hiking-listing/masonry-hiking-view/masonry-hiking-view.component';
 import { MasonsryVenuesViewComponent } from './masonsry-venues-view/masonsry-venues-view.component';
@@ -77,6 +78,7 @@ import { EditHikingTrailComponent } from './edit-hiking/edit-hiking.component';
     CampsComponent,
     CampListingComponent,
     HikingTrailsListingComponent,
+    HikingTrailComponent,
     MasonsryCampViewComponent,
     MasonsryHikingTrailViewComponent,
     MasonsryVenuesViewComponent,
