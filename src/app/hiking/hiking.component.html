@@ -57,8 +57,7 @@
             </mat-card-content>
         </mat-card>
 
-        <mat-tab-group class="tabs about-reviews-margin" (selectedTabChange)="show_reviews($event)"
-            [selectedIndex]="selectedIndex" *ngIf="trail">
+        <mat-tab-group class="tabs about-reviews-margin" [selectedIndex]="selectedIndex" *ngIf="trail">
             <mat-tab label="About">
                 <mat-card>
                     <mat-card-content class="about-font" *ngIf="trail">

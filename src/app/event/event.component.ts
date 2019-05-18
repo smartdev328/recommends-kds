@@ -51,6 +51,7 @@ export class EventComponent implements OnInit {
     this.errorMessage = '';
     this.review = '';
     this.user_reviews = [];
+    this.show_reviews();
     this.reviews_present = false;
     this.selectedIndex = 0;
     this.eventCatString = '';
@@ -183,12 +184,8 @@ export class EventComponent implements OnInit {
     return true;
   }
 
-  show_reviews(event: MatTabChangeEvent) {
- 
-    let tab = event.tab;
-    let index = event.index;
-  
-    if (index === 1 && this.user_reviews.length === 0) {
+  show_reviews() {
+    if (this.user_reviews.length === 0) {
       this.reviewService.get_reviews_by_type(TYPES_ENUM.EVENT , true, this.event_id).subscribe(data => {
         if ( data['status'] ) {
           this.user_reviews = data['data'];

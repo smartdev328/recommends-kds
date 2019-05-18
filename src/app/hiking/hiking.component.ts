@@ -92,7 +92,8 @@ export class HikingTrailComponent implements OnInit {
     this.trail_id = this.route.snapshot.params['id'];
     this.parent_id = this.route.snapshot.queryParams['parent_id'];
     this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
-    //this.is_save_action();
+    this.is_save_action();
+    this.get_reviews();
     if (this.trail_id > 0 && this.trail_id !== undefined) {
       console.log(this.trail_id);
       this.get_trail_data(this.trail_id);
@@ -129,12 +130,30 @@ export class HikingTrailComponent implements OnInit {
     }
   }
 
+  get_reviews() {
+    if (this.user_reviews.length === 0) {
+      this.reviewService.get_reviews_by_type('hiking_trail', true, this.trail_id).subscribe(data => {
+        console.log(data);
+        if ( data['status'] ) {
+          this.reviews_present = true;
+          this.user_reviews = data['data'];
+        } else {
+          this.reviews_present = false;
+          this.user_reviews = [];
+        }
+      }, error => {
+       // alert(this.trailErrorMessage.GET_DATA_ERROR);
+      });
+    }
+  }
+
   show_reviews(event: MatTabChangeEvent) {
     let tab = event.tab;
     let index = event.index;
-
+    console.log('HERE');
     if (index === 1 && this.user_reviews.length === 0) {
-      this.reviewService.get_reviews_by_type(ANALYTICS_ENTITY_TYPES_ENUM.VENUE, true, this.trail_id).subscribe(data => {
+      this.reviewService.get_reviews_by_type('hiking_trail', true, this.trail_id).subscribe(data => {
+        console.log(data);
         if ( data['status'] ) {
           this.reviews_present = true;
           this.user_reviews = data['data'];

@@ -15,7 +15,7 @@ import {ValidationRules} from '../utils/ValidationRules';
 export class EditHikingTrailComponent implements OnInit {
   public edit_page_hiking_trail_id: any;
   public hiking_trail_id: any;
-  public URLConstatnts = new UrlConstants();
+  public URLConstants = new UrlConstants();
   public hikingTrailModel: any;
   public categoryList: any;
   public hikingTrailConstants: any;
@@ -41,21 +41,21 @@ export class EditHikingTrailComponent implements OnInit {
 }
 
 get_hiking_trail_details() {
-  const url = this.URLConstatnts.API_URL + 'hiking-trails/' + this.hiking_trail_id + '/';
-  //const url = 'http://127.0.0.1:5050/hiking-trails/' + this.hiking_trail_id + '/';
-
+  const url = this.URLConstants.API_URL + 'hiking-trails/' + this.hiking_trail_id + '/';
+  
   const headers = new HttpHeaders()
                 .set('Content-Type', 'application/json');
       
-  this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-    data = data.replace(/\n/g, '');
-    data = JSON.parse(data);
-    if (data['status']) {
-      this.hikingTrailModel = data['data']['0'];
-    } else {
-      alert('Hiking trail data not available');
-    }
-  });
+  this.http.get(url, { headers: headers }).subscribe(data => {
+        if ( data['trails'] !== undefined) {
+          this.hikingTrailModel = data['trails'][0];
+        } else {
+          alert('No data available');
+        }
+      }, error => {
+        console.log(error);
+        alert('Error getting data.');
+      });
 
 }
 
@@ -91,7 +91,7 @@ update_hiking_trail() {
     this.addHikingTrailService.update_hiking_trail(api_input).subscribe(data => {
       if (data['status'] === true) {
         this.showError = false;
-        alert(data['msg']);
+        alert('Trails was updated successfully.');
       } else {
         this.showError = true;
         this.hiking_trail_error.push(data['msg']);

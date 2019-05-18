@@ -97,6 +97,7 @@ export class VenuesComponent implements OnInit {
     this.parent_id = this.route.snapshot.queryParams['parent_id'];
     this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
     this.is_save_action();
+    this.show_reviews();
     if (this.venue_id > 0 && this.venue_id !== undefined) {
       this.get_venue_data(this.venue_id);
     }
@@ -155,11 +156,8 @@ export class VenuesComponent implements OnInit {
     }
   }
 
-  show_reviews(event: MatTabChangeEvent) {
-    let tab = event.tab;
-    let index = event.index;
-
-    if (index === 1 && this.user_reviews.length === 0) {
+  show_reviews() {
+    if (this.user_reviews.length === 0) {
       this.reviewService.get_reviews_by_type(TYPES_ENUM.VENUE , true, this.venue_id).subscribe(data => {
         if ( data['status'] ) {
           this.reviews_present = true;
