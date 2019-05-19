@@ -78,33 +78,35 @@ export class VenueListingComponent implements OnInit {
     this.filterErrorMessage = '';
     this.titleService.setTitle('Venues');
     this.category = this.route.snapshot.queryParams['category'];
+    this.keyword = this.route.snapshot.queryParams['q'];
     this.get_venue_details();
   }
 
   get_venue_details() {
-    if(this.venues_list) {
+    if (this.venues_list) {
       this.isExplore = true;
     } else {
       let url = '';
-      if (this.category === undefined ) {
-      	url = 'https://kin-api-dev.kinparenting.com/venues/?limit=100' ;
-     } else {
+      if (this.keyword !== '') {
+        url = 'https://kin-api-dev.kinparenting.com/venues/?q=' + this.keyword.trim();
+      } else if (this.category === undefined) {
+        url = 'https://kin-api-dev.kinparenting.com/venues/?limit=100';
+      } else {
         url = 'https://kin-api-dev.kinparenting.com/venues/?categories=' + this.category;
-     }
+      }
       this.isExplore = true;
-      const headers = new HttpHeaders()
-          .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
+      const headers = new HttpHeaders();
       this.http.get(url, { headers: headers, responseType: 'text' }).
-      subscribe(data => {
+        subscribe(data => {
           data = data.replace(/\n/g, '');
           data = JSON.parse(data);
           this.venues_list = data['venues'];
-          if(this.venues_list.length > this.end ){
+          if (this.venues_list.length > this.end) {
             this.showMore = true;
-          } 
-         // this.add_analytics_data();
+          }
+          // this.add_analytics_data();
           this.isExplore = false;
-      });
+        });
     }
   }
   loadMore(){
