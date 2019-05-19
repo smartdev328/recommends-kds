@@ -87,12 +87,17 @@ export class CampListingComponent implements OnInit {
   }
   get_camps_details() {
     let url = '';
+    if (this.keyword !== '') {
+      url = this.URLConstatnts.API_URL + 'camps/?limit=50&q=' + this.keyword.trim();
+    } else if(this.category !== '') {
+      url = this.URLConstatnts.API_URL + 'camps/?limit=80&category=' + this.category.trim();
+    } else {
       url = this.URLConstatnts.API_URL + 'camps/?limit=50';
+    }
     this.camp_explore = '';
     this.isExplore = true;
     this.showMore = false;
-    const headers = new HttpHeaders()
-      .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
+    const headers = new HttpHeaders();
     this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
       data = data.replace(/\n/g, '');
       data = JSON.parse(data);
