@@ -25,6 +25,7 @@ export class VenueConstants {
         {'name' : 'Store' , 'id' : 32100},
         {'name' : 'Theater' , 'id' : 32200},
         {'name' : 'Zoo' , 'id' : 32400},    
+        {'name' : 'National & State Park', 'id': 40100},
     ];
 
     public SECONDARY_CATEGORY = [
@@ -39,7 +40,8 @@ export class VenueConstants {
         {'name' : 'Sports & Games' , 'id' : 32000},
         {'name' : 'Store' , 'id' : 32100},
         {'name' : 'Theater' , 'id' : 32200},
-        {'name' : 'Zoo' , 'id' : 32400},     
+        {'name' : 'Zoo' , 'id' : 32400},
+        {'name' : 'National & State Park', 'id': 40100},     
     ];
 
     public TEXT_MAX_LENGTH = 50;
