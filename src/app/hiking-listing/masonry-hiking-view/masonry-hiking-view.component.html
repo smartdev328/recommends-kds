@@ -8,7 +8,7 @@
     <ng-masonry-grid-item class="tiles" *ngFor="let trail of trails | slice:start:end; let i=index">
     <a style="text-decoration: none;" [routerLink]="['/hiking-trails', trail.id]" target="_blank">    
       <mat-card class="event-list-cards">
-        <img mat-card-image src={{trail.image_urls.first_image}} alt="">
+        <img mat-card-image src={{trail.image_urls.first}} alt="">
         <mat-card-content>
           <p class="event-group-title">
             {{trail.name}}
