@@ -87,9 +87,9 @@ export class VenueListingComponent implements OnInit {
       this.isExplore = true;
     } else {
       let url = '';
-      if (this.keyword !== '') {
+      if (this.keyword !== '' && this.keyword !== undefined) {
         url = 'https://kin-api-dev.kinparenting.com/venues/?q=' + this.keyword.trim();
-      } else if (this.category === undefined) {
+      } else if (this.category === undefined || this.category === '') {
         url = 'https://kin-api-dev.kinparenting.com/venues/?limit=100';
       } else {
         url = 'https://kin-api-dev.kinparenting.com/venues/?categories=' + this.category;
