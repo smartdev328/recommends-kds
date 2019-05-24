@@ -87,9 +87,9 @@ export class CampListingComponent implements OnInit {
   }
   get_camps_details() {
     let url = '';
-    if (this.keyword !== '') {
+    if (this.keyword !== '' && this.keyword !== undefined) {
       url = this.URLConstatnts.API_URL + 'camps/?limit=50&q=' + this.keyword.trim();
-    } else if(this.category !== '') {
+    } else if(this.category !== '' && this.category !== undefined) {
       url = this.URLConstatnts.API_URL + 'camps/?limit=80&category=' + this.category.trim();
     } else {
       url = this.URLConstatnts.API_URL + 'camps/?limit=50';
@@ -164,25 +164,26 @@ export class CampListingComponent implements OnInit {
   }
 
 
-  filter_camp_data(){
-    if (this.selected_cat === '' && (this.keyword === undefined || this.keyword === '')){
-	this.isFilterErrorVisible = true;
-	this.isErrorVisible = false;
-	this.errorMessage = '';
-        this.filterErrorMessage = this.commonErrorMessage.SELECT_FILTER_CRITERIA;
+  filter_camp_data() {
+    if ((this.selected_cat === '' && this.category === undefined)
+      && (this.keyword === undefined && this.keyword === '')) {
+      this.isFilterErrorVisible = true;
+      this.isErrorVisible = false;
+      this.errorMessage = '';
+      this.filterErrorMessage = this.commonErrorMessage.SELECT_FILTER_CRITERIA;
     } else {
-	this.isFilterErrorVisible = false;
-	this.filterErrorMessage = '';
+      this.isFilterErrorVisible = false;
+      this.filterErrorMessage = '';
       let url = '';
-        this.category = this.selected_cat;
-        if(this.category !== '' && this.keyword !== undefined) {
-          url = this.URLConstatnts.API_URL + 'camps/?limit=80&q=' + this.keyword.trim() + '&category=' + this.category.trim();
-        }
-        else if(this.category === undefined || this.category === '' ){
-         url = this.URLConstatnts.API_URL + 'camps/?limit=80&q=' + this.keyword.trim();
-        } else {
-          url = this.URLConstatnts.API_URL + 'camps/?limit=80&category=' + this.category.trim();
-        }
+      this.category = this.selected_cat;
+      if (this.category !== '' && this.category !== undefined && this.keyword !== undefined && this.keyword !== '') {
+        url = this.URLConstatnts.API_URL + 'camps/?limit=80&q=' + this.keyword.trim() + '&category=' + this.category.trim();
+      }
+      else if ((this.category === undefined || this.category === '') && this.keyword !== undefined && this.keyword !== '') {
+        url = this.URLConstatnts.API_URL + 'camps/?limit=80&q=' + this.keyword.trim();
+      } else if (this.category !== '' && this.category !== undefined){
+        url = this.URLConstatnts.API_URL + 'camps/?limit=80&category=' + this.category.trim();
+      }
       this.camp_explore = [];
       this.showMore = false;
       this.isExplore = true;
@@ -192,19 +193,19 @@ export class CampListingComponent implements OnInit {
         data = data.replace(/\n/g, '');
         data = JSON.parse(data);
         this.camp_explore = data['data'];
-        if (data['data'] != undefined && data['data'].length>0) {
-	  this.isErrorVisible = false;
+        if (data['data'] != undefined && data['data'].length > 0) {
+          this.isErrorVisible = false;
           this.errorMessage = '';
-          if(this.oldCat_1){
+          if (this.oldCat_1) {
             this.oldCat_2 = true;
             this.oldCat_1 = false;
-          }else{
+          } else {
             this.oldCat_2 = false;
             this.oldCat_1 = true;
           }
-         
+
         } else {
-	  this.isErrorVisible = true;
+          this.isErrorVisible = true;
           this.errorMessage = this.campErrorMessage.NO_CAMPS_FOUND;
           this.camp_explore = [];
         }
@@ -213,7 +214,7 @@ export class CampListingComponent implements OnInit {
           this.showMore = true;
         }
       }, error => {
-	this.isErrorVisible = true;
+        this.isErrorVisible = true;
         this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
       });
     }
