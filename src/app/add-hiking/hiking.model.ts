@@ -163,5 +163,5 @@ export class HikingTrailModel {
     type: string;
     shade: string;
 	trail_image_url: string;
-	best_season: string
+	best_season: string;
 }
