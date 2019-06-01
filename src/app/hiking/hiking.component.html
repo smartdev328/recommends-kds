@@ -66,6 +66,10 @@
                                     title="Description" class="icon"></span>
                             <span class="wrap">{{trail.description}}</span>
                         </p>
+                        <p class="basic-information" *ngIf="trail.park_name">
+                            <span><img src="../../assets/icons/noun_categories_1.png" alt="ParkName" title="Park_Name" class="icon"></span>
+                            <span class="wrap">{{trail.park_name}}</span>
+                        </p>
                         <p class="basic-information" *ngIf="trail.city">
                             <span><img src="../../assets/icons/hiking/address.png" alt="Address" title="Address"
                                     class="icon"></span>

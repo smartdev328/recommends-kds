@@ -206,10 +206,10 @@ export class HikingTrailComponent implements OnInit {
   format_ratings() {
     this.ratings = '';
     if (this.trail.ratings.google > 0) {
-      this.ratings = this.trail.ratings.google + '/5 (Google)       ';
+      this.ratings = this.trail.ratings.google + '/5 (Google)      ';
     }
     if (this.trail.ratings.yelp > 0) {
-      this.ratings = this.ratings + this.trail.ratings.yelp + '/5 (Yelp)';
+      this.ratings = ',' + this.ratings + this.trail.ratings.yelp + '/5 (Yelp)';
     }
   }
 
@@ -258,8 +258,8 @@ export class HikingTrailComponent implements OnInit {
   }
 
   format_difficulty() {
-    if (this.trail.difficulty.more_info.length > 0) {
-      return this.trail.difficulty.level + ' (trail.difficulty.more_info)';
+    if (this.trail.difficulty.more_info !== 'NA' && this.trail.difficulty.more_info.length > 0) {
+      return this.trail.difficulty.level + " - " + this.trail.difficulty.more_info;
     } else {
       return this.trail.difficulty.level;
     }

@@ -13,6 +13,9 @@
           <p class="event-group-title">
             {{trail.name}}
           </p>
+          <p class="event-venue" *ngIf="trail.park_name">
+            {{trail.park_name}}
+          </p>
           <p class="event-venue">
             {{trail.city}}, {{trail.state}}
           </p>
