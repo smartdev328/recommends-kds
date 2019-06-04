@@ -183,18 +183,27 @@ export class HikingTrailsListingComponent implements OnInit {
       }
       this.hiking_explore = [];
       this.showMore = false;
-      this.isExplore = true;
+      this.end = 21;
       const headers = new HttpHeaders();
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
         data = data.replace(/\n/g, '');
         data = JSON.parse(data);
         this.hiking_explore = data['trails'];
-        if (data['trails'] != undefined && data['trails'].length > 0) {
+        if (data['trails'] !== undefined && data['trails'].length > 0) {
           this.isErrorVisible = false;
           this.errorMessage = '';
+          this.showMore = data['trails'].length > this.end;
+          if (this.oldFilterData) {
+            this.newFilterData = true;
+            this.oldFilterData = false;
+          } else {
+            this.newFilterData = false;
+            this.oldFilterData = true;
+          }
         } else {
           this.isErrorVisible = true;
           this.errorMessage = this.hikingErrorMessage.NO_HIKING_TRAILS_FOUND;
+          this.showMore = false;
           this.hiking_explore = [];
         }
         this.isExplore = false;
@@ -202,6 +211,7 @@ export class HikingTrailsListingComponent implements OnInit {
           this.showMore = true;
         }
       }, error => {
+        this.showMore = false;
         this.isErrorVisible = true;
         this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
       });

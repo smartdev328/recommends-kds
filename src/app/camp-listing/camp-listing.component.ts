@@ -187,8 +187,7 @@ export class CampListingComponent implements OnInit {
       this.camp_explore = [];
       this.showMore = false;
       this.isExplore = true;
-      const headers = new HttpHeaders()
-        .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
+      const headers = new HttpHeaders();
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
         data = data.replace(/\n/g, '');
         data = JSON.parse(data);
