@@ -100,7 +100,7 @@ export class HikingTrailsListingComponent implements OnInit {
 
 
   get_hiking_trail_details() {
-    let url = this.uRLConstants.API_URL + 'hiking-trails/?limit=60';
+    let url = this.uRLConstants.API_URL + 'hiking-trails/?limit=43';
     this.hiking_explore = '';
     this.isExplore = true;
     this.showMore = false;
@@ -175,11 +175,11 @@ export class HikingTrailsListingComponent implements OnInit {
       this.filterErrorMessage = '';
       let url = '';
       if (this.keyword !== undefined) {
-        url = this.uRLConstants.API_URL + 'hiking-trails/?limit=80&q=' + this.keyword.trim();
+        url = this.uRLConstants.API_URL + 'hiking-trails/?limit=43&q=' + this.keyword.trim();
       } else if(this.selected_loc != undefined) {
-         url = this.uRLConstants.API_URL + 'hiking-trails/?limit=80&city=' + this.selected_loc.trim() + ',CA';
+         url = this.uRLConstants.API_URL + 'hiking-trails/?limit=43&city=' + this.selected_loc.trim() + ',CA';
       } else {
-        url = this.uRLConstants.API_URL + 'hiking-trails/?limit=80';
+        url = this.uRLConstants.API_URL + 'hiking-trails/?limit=43';
       }
       this.hiking_explore = [];
       this.showMore = false;
