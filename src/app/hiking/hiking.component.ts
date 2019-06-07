@@ -209,7 +209,7 @@ export class HikingTrailComponent implements OnInit {
       this.ratings = this.trail.ratings.google + '/5 (Google)      ';
     }
     if (this.trail.ratings.yelp > 0) {
-      this.ratings = ',' + this.ratings + this.trail.ratings.yelp + '/5 (Yelp)';
+      this.ratings = this.ratings + this.trail.ratings.yelp + '/5 (Yelp)';
     }
   }
 
