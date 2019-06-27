@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { HikingTrailModel } from '../add-hiking/hiking.model';
 import {HikingTrailService} from './hiking.service';
 import {HikingTrailConstants, HikingTrailErrorMessage} from '../constants/HikingTrailConstants';
@@ -53,7 +54,7 @@ export class HikingTrailComponent implements OnInit {
   public nearby_camps: String;
   selectedIndex;
 
-  constructor(private route: ActivatedRoute,  private http: HttpClient, private titleService: Title,
+  constructor(private route: ActivatedRoute,  private http: HttpClient, private titleService: Title, private metaService: Meta,
   private hikingTrailService: HikingTrailService, private reviewService: ReviewsService , private router: Router) {
       this.trail = new HikingTrailModel();
       this.isShowMore = false;
@@ -118,6 +119,19 @@ export class HikingTrailComponent implements OnInit {
           this.format_pet_friendly();
           this.format_nearby_camps();
           this.format_in_park_food();
+          this.titleService.setTitle(this.trail.name);
+          this.metaService.addTag({ name: 'description', content: this.trail.description });
+          this.metaService.addTag({
+            name: 'keywords',
+            content: 'Family friendly hikes in SF bay area, hiking with kids, stroller friendly hikes'
+          });
+
+          // OG meta properties
+          this.metaService.addTag({ property: 'og:title', content: this.trail.name });
+          this.metaService.addTag({ property: 'og:description', content: this.trail.description });
+          this.metaService.addTag({ property: 'og:image', content: this.trail.image_urls.first });
+          this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/hiking-trails/' + this.trail_id });
+          this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
           //this.add_analytics_data('CLICK');
         } else {
           this.trail = 0;

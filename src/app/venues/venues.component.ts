@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import {UserSearch} from '../venue/venue.model';
 import {VenuesService} from './venues.service';
 import {ENTITY_TYPES_ENUM, TYPES_ENUM , VenueConstants, VenueErrorMessage} from '../constants/VenueConstants';
@@ -56,7 +57,8 @@ export class VenuesComponent implements OnInit {
   public contact_number : String;
   selectedIndex;
   constructor(private route: ActivatedRoute,  private http: HttpClient, private titleService: Title,
-  private venuesService: VenuesService, private reviewService: ReviewsService , private router: Router) {
+  private metaService: Meta, private venuesService: VenuesService, private reviewService: ReviewsService , 
+  private router: Router) {
       this.venue = new UserSearch();
       this.parking = '';
       this.rating = 0;
@@ -145,6 +147,19 @@ export class VenuesComponent implements OnInit {
             this.avg_rating = 0;
             this.place_reviews_length = 0;
           }
+          this.titleService.setTitle(this.venue.name);
+          this.metaService.addTag({ name: 'description', content: this.venue.description });
+          this.metaService.addTag({
+            name: 'keywords',
+            content: 'Family friendly places in SF bay area, kid friendly places, activities'
+          });
+
+          // OG meta properties
+          this.metaService.addTag({ property: 'og:title', content: this.venue.name });
+          this.metaService.addTag({ property: 'og:description', content: this.venue.description });
+          this.metaService.addTag({ property: 'og:image', content: this.venue.image_url });
+          this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/venues/' + this.venue_id });
+          this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
           this.add_analytics_data('CLICK');
         } else {
           this.venue = 0;

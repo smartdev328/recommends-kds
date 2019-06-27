@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import {UrlConstants} from '../constants/UrlConstants';
 import {ENTITY_TYPES_ENUM, TYPES_ENUM } from '../constants/VenueConstants';
 import {EventErrorMessage,EventConstants } from '../constants/EventConstants';
@@ -36,7 +37,7 @@ export class EventComponent implements OnInit {
   public eventCatString:String;
   selectedIndex;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
-    private reviewService: ReviewsService) { }
+    private reviewService: ReviewsService, private metaService: Meta) { }
 
   ngOnInit() {
     this.isSaveVisible = false;
@@ -60,8 +61,7 @@ export class EventComponent implements OnInit {
   get_event_details() {
     // let url = 'https://kin-api.kinparenting.com/events/' + this.event_id;
     let url = this.URLConstatnts.API_URL + 'events/' + this.event_id + '/';
-    const headers = new HttpHeaders()
-        .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
+    const headers = new HttpHeaders();
     this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
       data = data.replace(/\n/g, "");
       data = JSON.parse(data);
@@ -82,6 +82,17 @@ export class EventComponent implements OnInit {
         eventValue: this.event_id
       });
       this.titleService.setTitle(this.event.name);
+      this.metaService.addTag({name: 'description', content: this.event.description});
+      this.metaService.addTag({name: 'keywords', 
+      content: 'Family friendly events,' + this.event.tags});
+
+      // OG meta properties
+      this.metaService.addTag({property: 'og:title', content: this.event.name});
+      this.metaService.addTag({property: 'og:description', content: this.event.description});
+      this.metaService.addTag({property: 'og:image', content: this.event.image_url});
+      this.metaService.addTag({property: 'og:url', content: 'https://kinparenting.com/events/' + this.event_id});
+      this.metaService.addTag({property: 'og:site_name', content: 'Kin Parenting'});
+      
     })
   }
 
