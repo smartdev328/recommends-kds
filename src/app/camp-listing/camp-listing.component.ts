@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { UrlConstants } from '../constants/UrlConstants';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../constants/AnalyticsConstants';
 import { ReviewsService } from '../add-review/reviews.service';
@@ -45,7 +45,9 @@ export class CampListingComponent implements OnInit {
     private http: HttpClient,
     private datePipe: DatePipe,
     private router: Router,
-    private titleService: Title, private reviewService: ReviewsService,
+    private titleService: Title, 
+    private metaService: Meta,
+    private reviewService: ReviewsService,
     private campListingService : CampListingService
     ) {
     this.router.events.subscribe(event => {
@@ -68,11 +70,25 @@ export class CampListingComponent implements OnInit {
         this.keyword = params['q'];
         this.get_camps_details();
       });
-    this.titleService.setTitle('Camps');
+    
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.isFilterErrorVisible = false;
     this.filterErrorMessage = '';
+
+    this.titleService.setTitle('Summer camps around SF bay area');
+    this.metaService.addTag({name: 'description', content: 'Summer camps around SF bay area'});
+    this.metaService.addTag({
+      name: 'keywords',
+      content: 'camps in SF bay area, summer camps, adventure camps, STEAM camps, winter break camps, coding camps,'
+        + 'technology camps, theatre camps, sports camps, speing break camps'
+    });
+
+    // OG meta properties
+    this.metaService.addTag({property: 'og:title', content: 'Summer camps around SF bay area'});
+    this.metaService.addTag({property: 'og:image', content: 'https://kinparenting.com/assets/kin_logo.jpeg'});
+    this.metaService.addTag({property: 'og:url', content: 'https://kinparenting.com/camps-near-me'});
+    this.metaService.addTag({property: 'og:site_name', content: 'Kin Parenting'});
 
   }
   loadMore() {

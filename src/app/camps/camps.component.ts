@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import {UrlConstants} from '../constants/UrlConstants';
 import {ReviewsService} from '../add-review/reviews.service';
 import {ENTITY_TYPES_ENUM, TYPES_ENUM } from '../constants/VenueConstants';
@@ -36,7 +37,7 @@ export class CampsComponent implements OnInit {
   public URLConstatnts = new UrlConstants();
   selectedIndex;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
-    private reviewService: ReviewsService) { }
+    private metaService: Meta, private reviewService: ReviewsService) { }
 
   ngOnInit() {
     this.is_parent_id = false;
@@ -62,13 +63,12 @@ export class CampsComponent implements OnInit {
     this.campConstants = new CampConstants();
     this.selectedIndex = 0;
     this.isSaveVisible = false;
-      this.add_analytics_data('CLICK');
+    this.add_analytics_data('CLICK');
   }
   get_camp_details() {
     let url = this.URLConstatnts.API_URL + 'camps/' + this.camp_id+"/";
  
-    const headers = new HttpHeaders()
-        .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
+    const headers = new HttpHeaders();
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
           data = data.replace(/\n/g, "");
           data = JSON.parse(data);
@@ -88,6 +88,15 @@ export class CampsComponent implements OnInit {
           this.camp.image_url  = this.camp.image_url;
           this.camp.timings = this.camp.misc['timings'];
           this.isLoaded = true;
+            this.titleService.setTitle(this.camp.name);
+            this.metaService.addTag({ name: 'description', content: this.camp.description });
+
+            // OG meta properties
+            this.metaService.addTag({ property: 'og:title', content: this.camp.name });
+            this.metaService.addTag({ property: 'og:description', content: this.camp.description });
+            this.metaService.addTag({ property: 'og:image', content: this.camp.image_url });
+            this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/camps/' + this.camp_id });
+            this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
         } else{
           alert('No camp information available for now');
         }

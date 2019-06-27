@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import {ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION} from '../constants/AnalyticsConstants';
 import {ReviewsService} from '../add-review/reviews.service';
 import {HikingTrailConstants, HikingTrailErrorMessage } from '../constants/HikingTrailConstants';
@@ -55,6 +55,7 @@ export class HikingTrailsListingComponent implements OnInit {
               private datePipe: DatePipe,
               private router: Router,
               private titleService: Title,
+              private metaService: Meta,
               private reviewService: ReviewsService,
               private hikingListingService : HikingTrailsListingService
               ) {
@@ -72,7 +73,6 @@ export class HikingTrailsListingComponent implements OnInit {
               }
 
   ngOnInit() {
-    this.titleService.setTitle('Hiking Trails');
     this.isErrorVisible = false;
     this.isFilterErrorVisible = false;
     this.errorMessage = '';
@@ -81,6 +81,17 @@ export class HikingTrailsListingComponent implements OnInit {
     this.distance = this.route.snapshot.queryParams['distance'];
     this.username = this.route.snapshot.queryParams['username'];
     this.get_hiking_trail_details();
+
+    this.titleService.setTitle('Family friendly hikes around SF bay area');
+    this.metaService.addTag({name: 'description', content: 'Family friendly hikes around SF bay area'});
+    this.metaService.addTag({name: 'keywords', content: 'Family friendly hikes, kids hikes, SF bay area kids hikes,'
+      + 'stroller friendly hikes'});
+
+    // OG meta properties
+    this.metaService.addTag({property: 'og:title', content: 'Family friendly hikes around SF bay area'});
+    this.metaService.addTag({property: 'og:image', content: 'https://kinparenting.com/assets/kin_logo.jpeg'});
+    this.metaService.addTag({property: 'og:url', content: 'https://kinparenting.com/family-friendly-hikes-near-me'});
+    this.metaService.addTag({property: 'og:site_name', content: 'Kin Parenting'});
   }
 
 
