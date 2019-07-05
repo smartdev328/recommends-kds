@@ -271,6 +271,7 @@ export class EventComponent implements OnInit {
  
   }
   is_save_action() {
+    if (this.parent_id !== undefined) {
     this.reviewService.verify_save_action(this.parent_id, ANALYTICS_ENTITY_TYPES_ENUM.EVENT, this.event_id).subscribe(data => {
       if (data['status'] === true) {
         this.isSaveVisible = true;
@@ -279,5 +280,6 @@ export class EventComponent implements OnInit {
       }
     }, error => {
     });
+  }
   }
 }
