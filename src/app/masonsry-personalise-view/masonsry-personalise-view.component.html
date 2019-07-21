@@ -46,8 +46,8 @@
                         </div> -->
 
             <mat-card class="event-list-cards" (click)="event_redirect(event.id)">
-              <img src={{event.image_url}} alt="" class="tiles-image img-fluid" mat-card-image>
-              <mat-card-content>
+              <div class="img-wrp"><img src={{event.image_url}} alt="" class="tiles-image img-fluid" mat-card-image></div>
+              <mat-card-content class="">
                 <p class="event-date">
                   <span class="text">{{event.dates}} &nbsp;&nbsp;</span>
 

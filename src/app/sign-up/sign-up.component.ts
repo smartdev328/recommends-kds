@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {FormBuilder, FormGroup, Validators, FormArray , EmailValidator} from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
     selector: 'app-sign-up',
@@ -9,7 +10,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
     styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-
+    modalRef: BsModalRef;
     registerForm: FormGroup;
     childForm: FormGroup;
     submitted = false;
@@ -28,7 +29,7 @@ export class SignUpComponent implements OnInit {
         this.registerForm = this.formBuilder.group({
             first_name: ['', Validators.required],
             last_name: ['', ],
-            email: ['', Validators.required , EmailValidator],
+            email: ['', Validators.required],
             zip_code: ['', [Validators.required, Validators.minLength(2)]],
             src: [''],
             src_id: [''],
@@ -90,6 +91,7 @@ export class SignUpComponent implements OnInit {
             this.http.post(url, data, {headers: headers, responseType: 'text'}).subscribe(response => {
                 data = response.replace(/\n/g, '');
                 data = JSON.parse(data);
+                
 		if(data['error'] !== undefined) {
 			this.isUserCreationError = true;
 			setTimeout(() => {
@@ -119,5 +121,8 @@ export class SignUpComponent implements OnInit {
             	}
 	    });
         }
+    }
+    closePopup(){
+        this.modalRef.hide();
     }
 }

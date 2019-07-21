@@ -1,13 +1,14 @@
 <nav class="navbar navbar-light navbar-expand-md">
-    <a href="/" class="navbar-brand mr-0" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/']">
-    <!-- <img src="../../assets/web_images/new_kin_logo_final15perc.png" class="logo-icon" /> -->
-    <img src="../../assets/web_images/beta_kin_3.png" class="logo-icon" />
-    </a> 
+    <a href="/" class="navbar-brand mr-0 header-logo" [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/']">
+        <!-- <img src="../../assets/web_images/new_kin_logo_final15perc.png" class="logo-icon" /> -->
+        <img src="../../assets/web_images/beta_kin_3.png" class="logo-icon" />
+    </a>
     <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
-        <ul class="navbar-nav mx-auto text-center">
+        <ul class="navbar-nav m-auto text-center">
             <li class="nav-item">
                 <a class="nav-link navbar-brand mr-0 Home-header" [routerLinkActive]="['active']" 
                     [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','family-friendly-events-near-me']">Events</a>
@@ -26,15 +27,16 @@
             </li>
         </ul>
         <ul class="navbar-nav flex-row justify-content-center flex-nowrap">
-            <li class="nav-item mr-3"><a class="nav-link nav-button" href="https://www.messenger.com/t/kinparenting" target="_blank">
-		<button class="btn path-38 sign_up">Chat with Kin</button>
-		</a> 
+            <li class="nav-item mr-2"><a class="nav-link nav-button" href="https://www.messenger.com/t/kinparenting" target="_blank">
+                <button class="btn path-38 sign_up">CHAT WITH KIN</button>
+                </a>
            </li>
-            <li class="nav-item"><a class="nav-link nav-button" href=""  
-                 [routerLink]="['/','sign-up']"> 
-		<button class="btn path-38 sign_up">Sign Up!</button>
-		</a> 
-	</li>
+            <li class="nav-item">
+                <!-- <a class="nav-link nav-button"  [routerLink]="['/','sign-up']">  -->
+                    <a class="nav-link nav-button" (click)="openModal()">
+                <button class="btn path-38 sign_up">SUBSCRIBE</button>
+                </a>
+	        </li>
         </ul>
     </div>
 </nav>

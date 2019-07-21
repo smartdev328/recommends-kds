@@ -1,4 +1,37 @@
 
+
+
+
+.sign-up-form {
+    max-width: 850px;
+    min-height: 853px;
+    border-radius: 7px;
+    box-shadow: 0px 12px 39px rgba(0,0,0,0.5);
+    background-color: #4a4949;
+    margin: auto;
+    padding: 55px 70px;
+    font-family: 'Montserrat', sans-serif !important;
+}
+.sign-up-form h1 {
+    font-size: 48px;
+    color: #f4f6f7;
+    line-height: 35px;
+    margin: 61px 0 12px;
+    font-weight: 300; 
+}
+.top-form .form-group {
+    margin: 30px 0 0;
+}
+.sign-up-form .weekly-planner {
+    font-size: 24px;
+    color: #f4f6f7; 
+    font-weight: 300;
+    margin-bottom: 5px; 
+}
+.top-form {
+    max-width: 600px;
+    margin: auto;
+}
 .p-like-anchor {
     cursor: pointer;
 }
@@ -16,94 +49,123 @@
     margin:auto;
 
 }
-.signUpHeading{
-    font-family: Montserrat;
-  font-size: 20px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.65;
-  letter-spacing: normal;
-  text-align: left;
-  color: #ef6c57;
-}
 
-input{
-   
-    opacity: 0.3;
-    border-radius: 20px;
-    background-color: #d1d1d5;
+.form-control {
+    border-radius: 0;
+    background-color: transparent;
     font-family: Montserrat;
-  font-size: 15px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.2;
-  letter-spacing: normal;
-  text-align: center;
-  color: #5d5d5a;
-   
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: normal;
+    border: 0;
+    color: #f4f6f7;
+    border-bottom: 1px solid #ffd700;
+    width: 100%;
+}
+.form-control::placeholder {
+    color: #f4f6f7;
+}
+.form-control:focus {
+    box-shadow: none;
 }
 .more-info {
-    font-family: Montserrat;
-    font-size: 15px;
-    font-weight: normal;
+    font-size: 24px;
+    color: #f4f6f7;
+    font-family: "Montserrat";
+    font-weight: 300;
     font-style: italic;
     text-align: center;
-    color: #5d5d5a;
-    margin-bottom: 45px;
+    margin: 65px 0 18px;
 }
 
-.weekly-planner {
-    font-family: Montserrat;
-    font-size: 14px;
-    font-style: italic;
-}
 
 .center-form{
     margin-left: 23%;
 }
 
 .sign_up{
-    font-family: Montserrat;
+    width: 275px;
+    height: 57px;
+    border-radius: 7px;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+    background-color: #ffd700;
     font-size: 24px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.21;
-    letter-spacing: normal;
-    text-align: left;
-    color: #eff1f4;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    background-color: #ef6c57;
-  
+    color: #4a4949;
+    font-family: "Montserrat";
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 .Add-child {
-    width: 100px;
-    height: 24px;
-    font-family: Montserrat;
-    font-size: 12px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.2;
-    letter-spacing: normal;
-    text-align: left;
-    color: #5d5d5a;
-    cursor: pointer;
-  }
-  .slid-down{
+    font-size: 20px;
+    color: #f4f6f7 !important;
+    font-family: "Montserrat";
+    font-weight: 300;
+    text-align: center;
+    margin: 14px 0 0;
+    display: inline-block;
+}
+.top-form .form-group {
     position: relative;
-  }
-  .slid-down .border-red{
-      border: 3px solid #ef6c57;
-      background: #ef6c57;
-  }
-  .slid-down .drop-down{
-    width: 49px;
-    margin: 0px auto;
-    position: relative;
-    top: -30px;
-    cursor: pointer;
+} 
+.top-form .form-group span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #ffd700;
+    font-size: 22px;
+}
+.container-fluid {
+    padding: 0;
+}
+
+.main-section {
+    padding: 0px;
+}
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+    .sign-up-form {
+        padding: 10px;
+    }
+    .main-section {
+        padding: 0px 3%;
+    }
+    .form-control {
+        font-size: 19px;
+    }
+}
+@media only screen and (max-width : 1024px) {
+    .sign-up-form {
+        padding: 10px 20px;
+    }
+}
+@media only screen and (max-width : 767px) {
+    .main-section {
+        padding: 0px 12px ;
+    }
+    .sign-up-form h1 {
+        font-size: 20px;
+        margin: 45px 0 9px;
+    }
+    .sign-up-form .weekly-planner, .form-control, .more-info, .sign_up, .Add-child {
+        font-size: 10px;
+    }
+    .top-form .form-group {
+        margin: 0px 0 0;
+    }
+    .more-info {
+        margin: 38px 0 0px;
+    }
+    .sign_up {
+        width: 159px;
+        height: 33px;
+    }
+    .childForm br {
+        display: none;
+    }
+    .sign-up-form {
+        min-height: auto;
+        padding-bottom: 40px;
+    }
 }

@@ -118,7 +118,7 @@
 /* Desktop */
 @media only screen and (min-width : 1281px) {
     .tiles {
-        width: 24%;
+        width: 32%;
     }
 
     .event-group-content {

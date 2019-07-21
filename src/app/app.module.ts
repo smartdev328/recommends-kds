@@ -49,10 +49,12 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { HeaderComponent } from './layout/header.component';
 import { FooterComponent } from './layout/footer.component';
+import { HomeHeaderComponent } from './layout/home-header.component';
 import { TermsComponent } from './terms/terms.component';
 import { PersonalizedComponent } from './personalized/personalized.component';
 import { MasonsryVenuesPersonaliseViewComponent } from './masonsry-personalise-view/masonsry-personalise-view.component';
 import { EditHikingTrailComponent } from './edit-hiking/edit-hiking.component';
+import { ModalModule } from 'ngx-bootstrap';
 
 
 
@@ -95,6 +97,7 @@ import { EditHikingTrailComponent } from './edit-hiking/edit-hiking.component';
     PrivacyComponent,
     HeaderComponent,
     FooterComponent,
+    HomeHeaderComponent,
     TermsComponent,
     PersonalizedComponent
   ],
@@ -115,7 +118,8 @@ import { EditHikingTrailComponent } from './edit-hiking/edit-hiking.component';
     MatIconModule,
     AngularFontAwesomeModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ModalModule.forRoot()
   ],
   exports: [MatDatepickerModule],
   providers: [DatePipe],

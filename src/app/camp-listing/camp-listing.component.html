@@ -1,51 +1,27 @@
 <app-layout-header></app-layout-header>
-
-<div class="container-fluid">
-  <div class="main-section-listing">
-    <div class="row">
-    <div class="col-md-1"></div>
-     <div class="col-md-5 col-sm-6 col-xs-2 mb-2">
-      <div class="banner-heading">
-          <div><h1 class="main-heading-camps">Camps</h1></div>
-            <div class="listing-info">
-              For all those school breaks!<br>
-            </div>
-      </div>
-    </div>
-    <div class="col-md-4 d-none d-lg-block">
-      <div class="box-gradient">
-        <div class="main-box">
-            <img src="../../assets/web_images/kin_camps_rainbow.jpg" class="img-fluid" /> 
-        </div>
-      </div>
-    </div>
-    <div class="col-md-2"></div>
-
-    </div>
-    <br />
-
+<div class="banner-section events-banner">
+  <div class="banner-mobile">
+    <img src="../../assets/web_images/home_camps.jpg" />
+    <h1 class="text-center heading-mobile"><span>Camps</span> For all those school breaks</h1>
+  </div>
+  <div class="banner-wrapper">
+    <h1 class="text-center heading-desktop"><span>Camps</span> For all those school breaks</h1>
     <div class="filter-box">
       <div class="row filter-box-content">
-        <div class="col-md-5 col-sm-6 col-xs-2 mb-2">
+        <div class="col-lg-7 col-md-8 col-sm-4 col-xs-1 mb-2">
+          <div class="input-group">
+            <input type="text" class="form-control keyword-text" placeholder="Keyword" [(ngModel)]="keyword">
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-2 col-sm-6 col-xs-2 mb-2">
           <div class="dropdown">
             <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               {{category_label}}
               <span class="hairline-down">
-                <svg height="100%" style="fill: #fff;" version="1.1" viewBox="0 0 101 126" width="20" xml:space="preserve"
-                  xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <clipPath id="_clip1">
-                    <rect height="125" width="100" x="0.868" y="0.33" />
-                  </clipPath>
-                  <g clip-path="url(#_clip1)">
-                    <path d="M100.868,42.368c0,-16.313 -13.225,-29.538 -29.538,-29.538c-12.908,0 -28.016,0 -40.925,0c-16.313,
-                                 0 -29.537,13.225 -29.537,29.538c0,12.909 0,28.016 0,40.925c0,16.313 13.224,29.537 
-                                 29.537,29.537c12.909,0 28.017,0 40.925,0c16.313,0 29.538,-13.224 29.538,-29.537c0,
-                                 -12.909 0,-28.016 0,-40.925Z"
-                      style="fill:#ef6c57;" />
-                    <path d="M78.168,52.93l-5.5,-5.8l-21.8,20.4l-21.8,-20.4l-5.5,5.8l27.3,25.6l27.3,-25.6Z" style="fill-opacity:1;fill-rule:nonzero;" />
-                  </g>
-                </svg>
+                <span class="hairline-down">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg>
+                </span>
               </span>
             </button>
             <div class="dropdown-menu add-scroll" aria-labelledby="dropdownMenuButton">
@@ -54,33 +30,28 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-1 mb-2">
-          <div class="input-group">
-            <input type="text" class="form-control keyword-text" placeholder="Keyword" [(ngModel)]="keyword">
-
-          </div>
-
-
-        </div>
-        <div class="col-md-3 col-sm-2 col-xs-1 mb-2 cursor" (click)="filter_camp_data()">
+        <div class="col-xs-1 search-button cursor">
           <svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-icons cursor" (click)="filter_camp_data()">
             <path d="M 5 3 C 3.895 3 3 3.895 3 5 L 3 19 C 3 20.105 3.895 21 5 21 L 19 21 C 20.105 21 21 20.105 21 19 L 21 5 C 21 3.895 20.105 3 19 3 L 5 3 z M 11 6 C 13.761 6 16 8.239 16 11 C 16 12.019 15.691969 12.963906 15.167969 13.753906 L 17.707031 16.292969 C 18.098031 16.682969 18.098031 17.317031 17.707031 17.707031 C 17.316031 18.098031 16.682969 18.098031 16.292969 17.707031 L 13.753906 15.167969 C 12.963906 15.691969 12.019 16 11 16 C 8.239 16 6 13.761 6 11 C 6 8.239 8.239 6 11 6 z M 11 8 A 3 3 0 0 0 8 11 A 3 3 0 0 0 11 14 A 3 3 0 0 0 14 11 A 3 3 0 0 0 11 8 z"
-              style="fill:#ef6c57;"></path>
+              style="fill: #FFD700;"></path>
           </svg>
-	  <button type="button" class="btn btn-link cursor clear-search" (click) = "clear_filter_data()">Clear Search</button>
         </div>
+        <button type="button" class="btn btn-link cursor clear-search" (click) = "clear_filter_data()">Clear Search</button>
       </div>
       <div *ngIf="isFilterErrorVisible"><div class="error-message-text alert-danger">{{filterErrorMessage}}</div></div>
     </div>
   </div>
-  <div class="container event-listing-card">
+</div>
+<div class="container-fluid">
+  <div class="main-section-listing">
+   <div class="event-listing-card">
     <div *ngIf="isErrorVisible"><div class="error-message-text alert-danger">{{errorMessage}}</div></div>
     <app-masonsry-camp-view *ngIf="oldCat_1" [camps]=camp_explore [start]=start [end]=end></app-masonsry-camp-view>
     <app-masonsry-camp-view *ngIf="oldCat_2" [camps]=camp_explore [start]=start [end]=end></app-masonsry-camp-view>
     <!-- <app-masonsry-camp-view *ngIf="isErrorVisible" [isErrorVisible]=isErrorVisible [errorMessage]=errorMessage></app-masonsry-camp-view> -->
       
     <mat-card-actions class="detail-buttons-space">
-        <button mat-button class="detail-buttons mouse-pointer" (click)="loadMore()">MORE...</button>
+        <button mat-button class="detail-buttons mouse-pointer" (click)="loadMore()">MORE CAMPS</button>
     </mat-card-actions>
       
   </div>

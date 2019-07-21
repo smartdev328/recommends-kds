@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,ViewChild, OnInit,ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
@@ -36,6 +36,10 @@ export class CampsComponent implements OnInit {
   public reviews_present: Boolean;
   public URLConstatnts = new UrlConstants();
   selectedIndex;
+
+  @ViewChild('reviewsInput')
+  reviewsInput: ElementRef;
+  class: any = false;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
     private metaService: Meta, private reviewService: ReviewsService) { }
 
@@ -63,7 +67,8 @@ export class CampsComponent implements OnInit {
     this.campConstants = new CampConstants();
     this.selectedIndex = 0;
     this.isSaveVisible = false;
-    this.add_analytics_data('CLICK');
+    this.get_reviews();
+      this.add_analytics_data('CLICK');
   }
   get_camp_details() {
     let url = this.URLConstatnts.API_URL + 'camps/' + this.camp_id+"/";
@@ -121,7 +126,8 @@ export class CampsComponent implements OnInit {
       });
     }
   }
-  event_redirect() {
+
+  camp_redirect() {
     ga('send', 'camp', {
       eventCategory: 'Clicks',
       eventLabel: 'More Details',
@@ -136,6 +142,7 @@ export class CampsComponent implements OnInit {
        this.is_parent_id = true;
        this.is_review_click = true;
        this.selectedIndex = index;
+       this.reviewsInput.nativeElement.scrollIntoView({behavior: 'smooth'});
      }
   }
 
@@ -173,7 +180,22 @@ export class CampsComponent implements OnInit {
 
     }
   }
-
+  get_reviews() {
+    if (this.user_reviews.length === 0) {
+      this.reviewService.get_reviews_by_type('hiking_trail', true, this.camp_id).subscribe(data => {
+        console.log(data);
+        if ( data['status'] ) {
+          this.reviews_present = true;
+          this.user_reviews = data['data'];
+        } else {
+          this.reviews_present = false;
+          this.user_reviews = [];
+        }
+      }, error => {
+       // alert(this.trailErrorMessage.GET_DATA_ERROR);
+      });
+    }
+  }
   validate_review() {
     if (this.review.trim().length === 0) {
       this.isErrorVisible = true;
@@ -274,4 +296,14 @@ export class CampsComponent implements OnInit {
     }, error => {
     });
   }
+  addReviewSection(event){
+    console.log(event);
+    if(event == false){
+      this.class = true;
+    }else{
+      this.class = false;
+    }
+    
+  }
+
 }

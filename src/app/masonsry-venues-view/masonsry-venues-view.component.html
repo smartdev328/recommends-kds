@@ -6,9 +6,11 @@
   [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
   <ng-masonry-grid-item class="tiles" *ngFor="let venue of venues | slice:start:end; let i=index">
     <a style="text-decoration: none;" [routerLink]="['/venues', venue.id]" target="_blank">
-        <mat-card class="event-list-cards">
+        <mat-card class="event-list-cards ">
+          <div class="img-wrp">
           <img mat-card-image src={{venue.image_url}} alt="Image not available">
-          <mat-card-content>
+        </div>
+          <mat-card-content class="">
             <p class="event-group-title">
               {{venue.name}}
             </p>

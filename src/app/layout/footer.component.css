@@ -1,17 +1,15 @@
 
 .footer-new{
-    border-top:1px solid #ef6c57;
-    border-bottom:1px solid #ef6c57;
     text-align: center;
-    padding-bottom: 20px;
+    padding-bottom: 25px;
+    padding-top: 20px;
+    background-image: linear-gradient(#E5E7E9, #F8F9F9 15%, #FFFFFF);
 }
 .company{
-    color: #5d5d5a;
     font-size: 20px;
     font-weight: normal;
     font-family: Montserrat;
     margin-top:2%;
-    border-bottom: 5px solid #eff1f4;
     padding: 15px;
     text-transform: camelcase;
 
@@ -21,8 +19,8 @@ ul.links{
     list-style: none;
 }
 ul.links li a{ 
-    color: #5d5d5a;
-    font-size: 13px;
+    color: #000000;
+    font-size: 14px;
     font-family: Montserrat;
     font-weight: 300;
     text-transform: camelcase;
