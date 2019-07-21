@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,ViewChild, OnInit,ElementRef } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
@@ -56,6 +56,9 @@ export class VenuesComponent implements OnInit {
   public isSuccessVisible: Boolean;
   public contact_number : String;
   selectedIndex;
+  class: any = false;
+  @ViewChild('reviewsInput')
+  reviewsInput: ElementRef;
   constructor(private route: ActivatedRoute,  private http: HttpClient, private titleService: Title,
   private metaService: Meta, private venuesService: VenuesService, private reviewService: ReviewsService , 
   private router: Router) {
@@ -102,7 +105,9 @@ export class VenuesComponent implements OnInit {
     this.show_reviews();
     if (this.venue_id > 0 && this.venue_id !== undefined) {
       this.get_venue_data(this.venue_id);
+      
     }
+    
   }
 
   get_venue_data(venue_id: number) {
@@ -237,10 +242,12 @@ export class VenuesComponent implements OnInit {
   }
 
   add_review_redirect(index: number): void {
+    console.log('click');
     if (this.parent_id != undefined) {
        this.is_parent_id = true;
        this.is_review_click = true;
        this.selectedIndex = index;
+       this.reviewsInput.nativeElement.scrollIntoView({behavior: 'smooth'});
      }
   }
 
@@ -413,6 +420,15 @@ export class VenuesComponent implements OnInit {
       eventValue: this.venue_id
     });
     window.open(this.venue.url, '_blank');
+  }
+  addReviewSection(event){
+    console.log(event);
+    if(event == false){
+      this.class = true;
+    }else{
+      this.class = false;
+    }
+    
   }
 
 }

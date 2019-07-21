@@ -3,7 +3,7 @@
 @import "../node_modules/font-awesome/css/font-awesome.css";
 
 .homeImage{
-  background-image: url("assets/web_images/kin_home.jpg");
+  background-image: url("https://image.shutterstock.com/z/stock-photo-happy-family-enjoying-life-together-at-meadow-outdoor-236160184.jpg");
   background-repeat:no-repeat;
   background-size: cover;
   background-position: center;
@@ -257,14 +257,14 @@
     /* width: 141px; */
     height: 49px;
     font-family: BubblegumSans;
-    font-size: 38px;
+    font-size: 58px;
     font-weight: 550;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.23;
     letter-spacing: normal;
     text-align: left;
-    color: #ef6c57;
+    color: #ffffff;
     margin: auto;
   }
   
@@ -334,7 +334,7 @@
   font-family: BubblegumSans;
 }
 .banner-heading .info{
-  color: #5d5d5a;
+  color: #ffffff;
   font-size: 55px;
   font-weight: 400;
   padding: 0px 0px 30px 0px;
@@ -612,7 +612,7 @@
 
 .filter-box {
   width: 1014px;
-  padding: 12px;
+  padding: 16px;
   border-radius: 4px;
   border: 1px solid #707070;
   margin: auto;
@@ -665,7 +665,7 @@
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 668px) {
   .banner-heading .info{
-  color: #5d5d5a;
+  color: #ffffff;
   font-size: 25px;
   font-weight: 400;
   padding: 0px 0px 30px 0px;
@@ -683,7 +683,7 @@
  } 
 
  .homeImage{
-  background-image: url("assets/web_images/kin_home.jpg");
+  background-image: url("https://image.shutterstock.com/z/stock-photo-happy-family-enjoying-life-together-at-meadow-outdoor-236160184.jpg");
   background-repeat:no-repeat;
   background-size: contain;
   background-position: center;

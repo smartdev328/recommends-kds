@@ -1,231 +1,142 @@
 <app-layout-header></app-layout-header>
 
-<div class="container-fluid">
-    <div class="main-section">
+<mat-card *ngIf="isLoaded" class="event-card landing-page">
+        <div class="row top-banner">
+          <div class="col-md-4 col-sm-12 xs-12  mat-image-wrp"> 
+              <img mat-card-image class="header-image" [src]=venue.image_url alt="Photo of the venue">
+          </div>
+          <div class="col-md-8 col-sm-12 xs-12">
+            <div class="contact-section">
+              <h3>{{ venue.name }}</h3>
+              <p>{{venue.description}}</p>
+              <div class="cards-footer">
+                <span ><span *ngIf="price">${{price}}</span></span>  
+                <ul>
+                    <!-- <li (click)="calendar_redirects()" title="Add to Calendar"><button><img src="../../assets/icons/calendar_gray.png" class="dfkg" /> add to calender</button></li> -->
+                    
+                    <!-- <li><button><img src="../../assets/icons/share.png" class="dfkg" /> share</button></li> -->
+                    <li  title="Subscribe" *ngIf="is_parent_id === false">
+                        <button>
+                          <img src="../../assets/icons/subscribe_grey.png" class="dfkg" /> Subscribe
+                        </button>
+                      </li>
+                      <li  (click)="unsubscribe_venue()" title="UnSubscribe"  *ngIf="is_parent_id && isSubscribeVisible">
+                        <button>
+                          <img class="dfkg" src="../../assets/icons/subscribe_orange.png" /> UnSubscribe
+                        </button>
+                      </li>
+                      <li   (click)="add_subscription_venue()" title="Subscribe" *ngIf="is_parent_id && isSubscribeVisible != true">
+                        <button>
+                          <img class="dfkg" src="../../assets/icons/subscribe_blue.png" /> Subscribe
+                        </button>
+                      </li>
 
-        <mat-card class="venue-card" *ngIf="venue">
-            <div class="row">
-                <div class="col-md-12">
-                    <mat-card-header>
-                        <mat-card-title class="venue-header">{{ venue.name }}</mat-card-title>
-                    </mat-card-header>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                
-                <div class="col-md-4"></div>
-                <div class="col-md-4"> <img mat-card-image class="header-image" [src]=venue.image_url
-                        alt="Photo of the venue"></div>
-                <div class="col-md-4"></div>
-            </div>
-            <hr class="hr-Rectangle-200">
-
-            <mat-card-content>
-                    <div class="row justify-content-center">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-2">
-                                        <div class="cursor" title="Save" *ngIf="is_parent_id === false">
-                                            <img src="../../assets/icons/save_grey.png" class="actionIcon" />
-                                        </div>
-                                        <div class="cursor" title="Save" (click)="save_venue()" *ngIf="is_parent_id && isSaveVisible != true">
-                                            <img class="actionIcon" src="../../assets/icons/save_blue.png" />
-                                        </div>
-                                        <div class="cursor" title="Saved" *ngIf="isSaveVisible">
-                                            <img class="actionIcon" src="../../assets/icons/save_orange.png" />
-                                        </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="d-flex text-center mb-2">
-                                                <div class="cursor" (click)="add_review_redirect(2)" *ngIf="is_parent_id === false" title="Add Review">
-                                                    <img src="../../assets/icons/review_grey.png" class="actionIcon" />
-                                                </div>
-                                                <div class="cursor" *ngIf="is_parent_id" (click)="add_review_redirect(2)" title="Add Review">
-                                                    <img src="../../assets/icons/review_blue.png" class="actionIcon" />
-                                                </div>
-                                        </div>
-                                    </div>    
-                                    <div class="col">
-                                        <div class="mb-2">
-                                                <div class="cursor" title="Subscribe" *ngIf="is_parent_id === false">
-                                                        <img src="../../assets/icons/subscribe_grey.png" class="actionIcon" />
-                                                </div>
-                                                <div class="item item-3 cursor" (click)="unsubscribe_venue()" title="UnSubscribe"  *ngIf="is_parent_id && isSubscribeVisible"> 
-                                                    <img src="../../assets/icons/subscribe_orange.png" class="actionIcon" />
-                                                </div>
-                                                <div class="item item-3 cursor" (click)="add_subscription_venue()" title="Subscribe" *ngIf="is_parent_id && isSubscribeVisible != true">
-                                                    <img src="../../assets/icons/subscribe_blue.png" class="actionIcon" />
-                                                </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-               
-
-            </mat-card-content>
-        </mat-card>
-
-        <mat-tab-group class="tabs about-reviews-margin" [selectedIndex]="selectedIndex" *ngIf="venue">
-            <mat-tab label="About">
-                <mat-card>
-                    <mat-card-content class="about-font">
-                        <p class="basic-information " *ngIf="venue.description">
-                            <span><img src="../../assets/icons/noun_Information_1.png" alt="Description" title="Description" class="icon"></span>
-                            <span class="wrap">{{venue.description}}</span>
-                        </p>
-                        <p class="basic-information" hidden>
-                            <span><img src="../../assets/icons/noun_ratings_1.png" alt="Rating" title="Rating" class="icon"></span>
-                            <span class="wrap">Recomendations</span>
-                        </p>
-                        <p class="basic-information" *ngIf="category">
-                            <span><img src="../../assets/icons/noun_categories_1.png" alt="Category" title="Category" class="icon"></span>
-                            <span class="wrap">{{category}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="city">
-                            <span><img src="../../assets/icons/noun_address_1.png" alt="Location" title="Location" class="icon"></span>
-                            <span class="wrap">{{street}}, {{city}}, {{state}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="timings_array">
-                            <span><img src="../../assets/icons/noun_Date%20and%20Time_1.png" alt="Hours" title="Hours" class="icon"></span>
-                            <span class="text" (click)="showMoreHours()" *ngIf="isShowMoreHours">Hours Today - {{timings_array[dayOfWeek]}}</span>
-                            <span class="text" (click)="showMoreHours()" *ngIf="isShowMoreHours"><i class="material-icons mouse-pointer expand_more">expand_more</i></span>
-                            <span class="text" *ngIf="isShowMoreHours==false">{{timings_array}}</span>
-                        </p>
-                        <ul class="list-group" *ngIf="isShowMore">
-                            <li
-                                (click)="showMoreHours()"
-                                *ngFor="let current_slot of timings_array; let even = even; let odd = odd">
-                                {{current_slot}}</li>
+                    <li  title="Save" *ngIf="is_parent_id === false">
+                      <button>
+                        <img src="../../assets/icons/heart_gray.png" class="dfkg" /> save
+                      </button>
+                    </li>
+                    <li  title="Save" (click)="save_venue()" *ngIf="is_parent_id && isSaveVisible != true">
+                      <button>
+                        <img class="dfkg" src="../../assets/icons/save_blue.png" /> save
+                      </button>
+                    </li>
+                    <li   title="Saved" *ngIf="isSaveVisible">
+                      <button>
+                        <img class="dfkg" src="../../assets/icons/save_orange.png" /> save
+                      </button>
+                    </li>
+                    <li (click)="add_review_redirect(2)" *ngIf="is_parent_id === false" title="Add Review">
+                    <button class="btn path-38">
+                        <img src="../../assets/icons/noun_review_1.png" class="dfkg" /> add a review
+                      </button>
+                    </li>
+                    <li *ngIf="is_parent_id" (click)="add_review_redirect(2)" title="Add Review">
+                      <button class="btn path-38">
+                          <img src="../../assets/icons/review_blue.png" class="dfkg" /> add a review
+                      </button>
+                    </li>
+                    <!-- <li class="dropdown-menu-icon">
+                    <i class="fas fa-ellipsis-v"></i>
+                    <div class="menu-list">
+                        <ul>
+                          <li><a href=""><i class="fas fa-comment"></i> write a review</a></li>
+                          <li><a href=""><i class="fas fa-pen"></i> edit information</a></li>
                         </ul>
-                        <p class="basic-information"  *ngIf="contact_number">
-                                <span><img src="../../assets/icons/noun_Phone_1.png" alt="Contact Number" title="Contact Number" class="icon"></span>
-                                <span class="wrap">{{contact_number}}</span>
-                        </p>
-                        <!-- Missing updated parking icon -->
-                        <p class="basic-information" *ngIf="parking">
-                            <span><i title="Parking Information" class="icon material-icons">motorcycle</i></span>
-                            <span class="wrap">{{parking}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="rating">
-                            <span><img src="../../assets/icons/noun_ratings_1.png" alt="Rating" title="Rating" class="icon"></span>
-                            <span class="wrap">{{rating}} / {{google_rating_out_of}}</span>
-                        </p>
-                        <p class="basic-information" hidden>
-                            <span><img src="../../assets/icons/noun_Information_1.png" alt="Information" title="Information" class="icon"></span>
-                            <span class="wrap">Rest Room information</span>
-                        </p>
-
-                        <p class="basic-information" hidden>
-                            <span><img src="../../assets/icons/noun_Information_1.png" alt="Information" title="Information" class="icon"></span>
-                            <span class="wrap">Outside food allowed or not</span>
-                        </p>
-
-                        <p class="basic-information" hidden>
-                            <span><img src="../../assets/icons/noun_Information_1.png" alt="Information" title="Information" class="icon"></span>
-                            <span class="wrap">No shade in trails</span>
-                        </p>
-
-                        <p class="basic-information" hidden>
-                            <span><img src="../../assets/icons/noun_Information_1.png" alt="Information" title="Information" class="icon"></span>
-                            <span class="wrap">Small lake at the end of the trail.Keep extra set of cloths</span>
-                        </p>
-
-                        <p class="basic-information" hidden>
-                            <span><i title="Distance" class="icon material-icons material-icon-red-color">place</i></span>
-                            <span class="wrap">8 miles from you</span>
-                        </p>
-                        <p class="basic-information" hidden>
-                            <span><img src="../../assets/icons/noun_age_1.png" alt="Age" title="Age" class="icon"></span>
-                            <span class="wrap">Good for all ages</span>
-                        </p>
-
-                        <p class="basic-information" hidden>
-                            <span><img src="../../assets/icons/noun_address_1.png" alt="Location" title="Location" class="icon"></span>
-                            <span class="wrap">{{venue.misc.address}}</span>
-                        </p>
-                        <p class="basic-information"  *ngIf="tips_for_parent">
-                            <span><img src="../../assets/icons/noun_tips_1.png" alt="Tips" title="Tips" class="icon"></span>
-                            <span class="wrap">{{tips_for_parent}}</span>
-                        </p>
-                        
-                        <p class="basic-information"  *ngIf="price">
-                                <span><img src="../../assets/icons/noun_price_1.png" alt="Price" title="Price" class="icon"></span>
-                                <span class="wrap">${{price}}</span>
-                        </p>
-                        
-                        <br>
-
-                        <p class="basic-information" hidden>
-                            <span><img src="../../assets/icons/noun_price_1.png" alt="Price" title="Price" class="icon"></span>
-                            <span class="wrap">Free</span>
-                        </p>
-
-                        <mat-card-actions class="detail-buttons-space">
-                            <button mat-button class="detail-buttons mouse-pointer" (click)="venue_redirect()">LOCATION WEBSITE</button>
-                        </mat-card-actions>
-
-
-                    </mat-card-content>
-                </mat-card>
-            </mat-tab>
-            <mat-tab label="Reviews" *ngIf="reviews_present">
-                <mat-card class="reviews-font">
-                    <div class="margin-review">
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-8">
-                                <div *ngFor="let current_review of user_reviews;">
-                                    <table>
-                                        <tr>
-                                            <td><img src="../../assets/icons/noun_Speech%20Bubble_822548.png" alt="Speech Bubble" class="review-icon"></td>
-                                            <td class="review-text">{{current_review.review}}</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
                     </div>
-                </mat-card>
-            </mat-tab>
-            <mat-tab label="Add Review" *ngIf="is_review_click" style="width: 50%">
-                <mat-card>
-                        <div class="form-group review-margin">
-                                <div class="row">
-                                  <div class="col-md-2"></div>
-                                  <div class="col-md-8">
-                                    <h4 class="review-heading" align="center">Write a review</h4>
-                                    <textarea class="form-control" rows="5" id="review"
-                                      placeholder="Add review or tips to other parents" [(ngModel)]="review" required
-                                      (change)="validate_review()"></textarea>
-                                    <small id="miscHelp" class="form-text text-muted italic-font-style">We respect your
-                                      privacy. Your name will not be shown to other
-                                      users
-                                    </small>
-                                    <div *ngIf="isErrorVisible" class="alert alert-danger">
-                                      <div>
-                                        {{errorMessage }}
-                                      </div>
-                                    </div>
-                                    <div *ngIf="isSuccessVisible" class="alert alert-success">
-                                      <div>
-                                        {{errorMessage }}
-                                      </div>
-                                    </div>
-                                    <div class="form-group review-margin btn-sec">
-                                      <button type="button" class="btn btn-sign-up" (click)="add_review()">Submit</button>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-2"></div>
-                                </div>
-                        </div>
-                </mat-card>
-            </mat-tab>
-        </mat-tab-group>
-         <hr class="hr-Rectangle-200">
-    </div>
-</div>
-<br> <br>
+                  </li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row center-section ">
+          <div class="col-md-4"> 
+            <div class="left-section">
+              <h5 *ngIf="timings_array[dayOfWeek]">Date & Time</h5>
+              <p class="expand_more" *ngIf="timings_array[dayOfWeek]">Hours Today - {{timings_array[dayOfWeek]}}<span (click)="showMoreHours()" *ngIf="isShowMoreHours"><svg height="12" style="fill: #ef6c57" viewBox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"></path></svg></span>
+              
+              </p>
+              <ul class="list-group" *ngIf="isShowMore" >
+                <li
+                  (click)="showMoreHours()"
+                  *ngFor="let current_slot of timings_array; let even = even; let odd = odd">
+                  {{current_slot}}</li>
+              </ul>
+              <br>
+              <h5>Location</h5>
+              <p>{{street}}, {{city}}, {{state}}</p>
+              <button style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="venue_redirect()">Place website</button>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="contact-section">
+                <h6  *ngIf="category"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" /> Category</h6>
+              <p  *ngIf="category">{{category}}</p>
+              <h6 *ngIf="rating"><img src="../../assets/icons/rating.png" class="dfkg" /> Rating</h6>
+              <p *ngIf="rating">{{rating}} / {{google_rating_out_of}}</p>
+              <h6 *ngIf="parking"><img src="../../assets/icons/parking.png" class="dfkg" /> Parking</h6>
+              <p *ngIf="parking">{{parking}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="row reviews">
+            <div class="col-md-12"> 
+              <h2 #reviewsInput>Reviews</h2>
+              <div id="reviews-input-secyion" class="reviews-input-secyion"  *ngIf="is_review_click">
+                <textarea rows="3" placeholder="Some phrase to prompt user to write a review"id="review"
+                placeholder="Add review or tips to other parents" [(ngModel)]="review" required
+                (change)="validate_review()"></textarea>
+                <div *ngIf="isErrorVisible" class="alert alert-danger">
+                  <div>
+                    {{errorMessage }}
+                  </div>
+                </div>
+                <div *ngIf="isSuccessVisible" class="alert alert-success">
+                  <div>
+                    {{errorMessage }}
+                  </div>
+                </div>
+                <button class="post-btn" (click)="add_review()">post</button>
+              </div>
+              <p>Be the first to write a review!</p>
+              <div class="post-reviews">
+               <ul>
+                <li *ngFor="let current_review of user_reviews;">
+                  <span><img src="../../assets/icons/profile.png" /></span>
+                  <p>{{current_review.review}}</p>
+                </li>
+                  <!-- <li>
+                      <span><img src="../../assets/web_images/events_desktop-sketch.png" /></span>
+                      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    </li>
+                    <li>
+                        <span><img src="../../assets/icons/profile.png" /></span>
+                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                      </li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        

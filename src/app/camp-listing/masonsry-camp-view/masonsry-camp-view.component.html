@@ -1,28 +1,27 @@
 <img src="assets/loading.gif" *ngIf="!showLayout" class="loading-gif">
-<div class="container">
-  <ng-masonry-grid [ngClass]="{'hide-layout': !showLayout, 'show-layout': showLayout}"
-  [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }"
-  [useAnimation]="true"
-  [useImagesLoaded]="true"
-  [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
-    <ng-masonry-grid-item class="tiles" *ngFor="let camp of camps | slice:start:end; let i=index">
-    <a style="text-decoration: none;" [routerLink]="['/camps', camp.id]" target="_blank">    
-      <mat-card class="event-list-cards">
-        <img mat-card-image src={{camp.image_url}} alt="Image not available">
-        <mat-card-content>
-          <p class="event-group-title">
-            {{camp.name}}
-          </p>
-          <p class="event-venue">
-            {{camp.cities}}
-          </p>
-            <br>
-          <p class="event-venue">
-            {{camp.misc['timings']}}
-          </p>
-        </mat-card-content>
-      </mat-card>
-    </a>
-    </ng-masonry-grid-item>
-  </ng-masonry-grid>
-</div>
+<ng-masonry-grid [ngClass]="{'hide-layout': !showLayout, 'show-layout': showLayout}"
+[masonryOptions]="{ transitionDuration: '1s', gutter: 5 }"
+[useAnimation]="true"
+[useImagesLoaded]="true"
+[scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
+<ng-masonry-grid-item class="tiles" *ngFor="let camp of camps | slice:start:end; let i=index">
+<a style="text-decoration: none;" [routerLink]="['/camps', camp.id]" target="_blank">    
+  <mat-card class="event-list-cards">
+    <div class="img-wrp">
+      <img mat-card-image src={{camp.image_url}} alt="Image not available">
+    </div>
+    <mat-card-content class="">
+      <p class="event-group-title">
+        {{camp.name}}
+      </p>
+      <p class="event-venue">
+        {{camp.cities}}
+      </p>
+      <p class="event-venue">
+        {{camp.misc['timings']}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</a>
+</ng-masonry-grid-item>
+</ng-masonry-grid>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,ViewChild, OnInit,ElementRef } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
@@ -53,6 +53,9 @@ export class HikingTrailComponent implements OnInit {
   public pet_friendly: String;
   public nearby_camps: String;
   selectedIndex;
+  class: any = false;
+  @ViewChild('reviewsInput')
+  reviewsInput: ElementRef;
 
   constructor(private route: ActivatedRoute,  private http: HttpClient, private titleService: Title, private metaService: Meta,
   private hikingTrailService: HikingTrailService, private reviewService: ReviewsService , private router: Router) {
@@ -352,6 +355,7 @@ export class HikingTrailComponent implements OnInit {
        this.is_parent_id = true;
        this.is_review_click = true;
        this.selectedIndex = index;
+       this.reviewsInput.nativeElement.scrollIntoView({behavior: 'smooth'});
      }
   }
 
@@ -473,6 +477,16 @@ export class HikingTrailComponent implements OnInit {
       eventValue: this.trail_id
     });
     window.open(this.trail.url, '_blank');
+  }
+  
+  addReviewSection(event){
+    console.log(event);
+    if(event == false){
+      this.class = true;
+    }else{
+      this.class = false;
+    }
+    
   }
 
 }

@@ -1,256 +1,161 @@
 <app-layout-header></app-layout-header>
 
-<div class="container-fluid">
-    <div class="main-section">
-
-        <mat-card class="trail-card" *ngIf="trail">
-            <div class="row">
-                <div class="col-md-12">
-                    <mat-card-header>
-                        <mat-card-title class="trail-header">{{trail.name}}</mat-card-title>
-                    </mat-card-header>
-                </div>
+<mat-card *ngIf="isLoaded" class="event-card landing-page">
+        <div class="row top-banner">
+          <div class="col-md-4 col-sm-12 xs-12  mat-image-wrp"> <img mat-card-image class="header-image" [src]=trail.image_urls.first
+            alt="Photo of the trail">
+          </div>
+          <div class="col-md-8 col-sm-12 xs-12">
+            <div class="contact-section">
+              <h3>{{trail.name}}</h3>
+              <p>{{trail.description}}</p>
+              <div class="cards-footer">
+                <!-- <span>free</span>   -->
+                <span></span>
+                <ul>
+                    <!-- <li><button><img src="../../assets/icons/calendar_gray.png" class="dfkg" /> add to calender</button></li> -->
+                    <!-- <li><button><img src="../../assets/icons/share.png" class="dfkg" /> share</button></li> -->
+                    <li title="Save" *ngIf="is_parent_id === false">
+                        <button>
+                          <img src="../../assets/icons/heart_gray.png" class="dfkg" /> save
+                        </button>
+                      </li>
+                      <li title="Save" (click)="save_trail()"
+                      *ngIf="is_parent_id && isSaveVisible != true">
+                        <button>
+                          <img class="dfkg" src="../../assets/icons/save_blue.png" /> save
+                        </button>
+                      </li>
+                      <li   title="Saved" *ngIf="isSaveVisible">
+                        <button>
+                          <img class="dfkg" src="../../assets/icons/save_orange.png" /> save
+                        </button>
+                      </li>
+                      <li (click)="add_review_redirect(2)" *ngIf="is_parent_id === false"
+                      title="Add Review">
+                         <button class="btn path-38">
+                            <img src="../../assets/icons/noun_review_1.png" class="dfkg" /> add a review
+                          </button>
+                        </li>
+                        <li *ngIf="is_parent_id" (click)="add_review_redirect(2)"
+                        title="Add Review">
+                          <button class="btn path-38">
+                              <img src="../../assets/icons/review_blue.png" class="dfkg" /> add a review
+                          </button>
+                        </li>
+                    <!-- <li class="dropdown-menu-icon">
+                    <i class="fas fa-ellipsis-v"></i>
+                    <div class="menu-list">
+                        <ul>
+                          <li><a href=""><i class="fas fa-comment"></i> write a review</a></li>
+                          <li><a href=""><i class="fas fa-pen"></i> edit information</a></li>
+                        </ul>
+                    </div>
+                  </li> -->
+                </ul>
+              </div>
             </div>
-            <br>
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4"> <img mat-card-image class="header-image" [src]=trail.image_urls.first
-                        alt="Photo of the trail"></div>
-                <div class="col-md-4"></div>
+          </div>
+        </div>
+        <div class="row center-section ">
+          <div class="col-md-4"> 
+            <div class="left-section">
+              <h5>Date & Time</h5>
+              <p>June 26, 2019</p>
+              <p>5:00PM - 6:00PM</p>
+              <br>
+              <h5>Location</h5>
+              <p>{{format_address()}}</p>
+              <button style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="trail_redirect()">Trail website</button>
             </div>
-            <hr class="hr-Rectangle-200">
-
-            <mat-card-content>
-                <div class="row justify-content-center">
-                    <div class="row">
-                        <div class="col">
-                            <div class="mb-2">
-                                <div class="cursor" title="Save" *ngIf="is_parent_id === false">
-                                    <img src="../../assets/icons/save_grey.png" class="actionIcon" />
-                                </div>
-                                <div class="cursor" title="Save" (click)="save_trail()"
-                                    *ngIf="is_parent_id && isSaveVisible != true">
-                                    <img class="actionIcon" src="../../assets/icons/save_blue.png" />
-                                </div>
-                                <div class="cursor" title="Saved" *ngIf="isSaveVisible">
-                                    <img class="actionIcon" src="../../assets/icons/save_orange.png" />
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="d-flex text-center mb-2">
-                                <div class="cursor" (click)="add_review_redirect(2)" *ngIf="is_parent_id === false"
-                                    title="Add Review">
-                                    <img src="../../assets/icons/review_grey.png" class="actionIcon" />
-                                </div>
-                                <div class="cursor" *ngIf="is_parent_id" (click)="add_review_redirect(2)"
-                                    title="Add Review">
-                                    <img src="../../assets/icons/review_blue.png" class="actionIcon" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          </div>
+          <div class="col-md-8">
+            <div class="contact-section">
+              <h6 *ngIf="trail.park_name"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" /> Category</h6>
+              <p *ngIf="trail.park_name">{{trail.park_name}}</p>
+              <h6 *ngIf="trail.length"><img src="../../assets/icons/hiking/noun_distance_668133.png" class="dfkg" /> Distance</h6>
+              <p *ngIf="trail.length">{{trail.length}} miles</p>
+              <h6 *ngIf="ratings"><img src="../../assets/icons/rating.png" class="dfkg" /> Rating</h6>
+              <p *ngIf="ratings">{{ratings}}</p>
+              <h6 *ngIf="stroller_friendly"><img src="../../assets/icons/hiking/noun_Stroller_161.png" class="dfkg" /> Strollers</h6>
+              <p *ngIf="stroller_friendly">{{stroller_friendly}}</p>
+              <h6 *ngIf="bathrooms"><img src="../../assets/icons/hiking/noun_Bathroom_151635.png" class="dfkg" /> Bathrooms</h6>
+              <p *ngIf="bathrooms">{{bathrooms}}</p>
+              <h6 *ngIf="entrance_fee"><img src="../../assets/icons/hiking/ticket.png" class="dfkg" /> Entrance Fee</h6>
+              <p *ngIf="entrance_fee">{{entrance_fee}}</p>
+              <h6 *ngIf="parking"><img src="../../assets/icons/parking.png" class="dfkg" /> Parking</h6>
+              <p *ngIf="parking">{{parking}}</p>
+              <h6 *ngIf="trail.trail_surface"><img src="../../assets/icons/hiking/noun_Trail_523.png" class="dfkg" /> Trail Surface</h6>
+              <p *ngIf="trail.trail_surface">{{trail.trail_surface}}</p>
+              <h6 *ngIf="format_difficulty()"><img src="../../assets/icons/hiking/noun_Difficulty_1143709.png" class="dfkg" /> Difficulty</h6>
+              <p *ngIf="format_difficulty()">{{format_difficulty()}}</p>
+              <h6 *ngIf="trail.attractions"><img src="../../assets/icons/attractions.png" class="dfkg" /> Attractions</h6>
+              <p *ngIf="trail.attractions">{{trail.attractions}}</p>
+              <h6 *ngIf="trail.tips"><img src="../../assets/icons/noun_tips_1.png" class="dfkg" /> Tips</h6>
+              <p *ngIf="trail.tips">{{trail.tips}}</p>
+              <h6  *ngIf="carrier"><img src="../../assets/icons/hiking/noun_carrier_1996252.png" class="dfkg" /> Carrier</h6>
+              <p *ngIf="carrier">{{carrier}}</p>
+              <h6 *ngIf="ada_accessible"><img src="../../assets/icons/hiking/noun_Accessibility_2392994.png" class="dfkg" /> ADA Accessibility</h6>
+              <p *ngIf="ada_accessible">{{ada_accessible}}</p>
+              <h6 *ngIf="trail.water_feature"><img src="../../assets/icons/hiking/noun_Lake_2437407.png" class="dfkg" /> Water Features</h6>
+              <p *ngIf="trail.water_feature">{{trail.water_feature}}</p>
+              <h6 *ngIf="picnicing"><img src="../../assets/icons/hiking/noun_Picnic_1753913.png" class="dfkg" /> Picnic Tables</h6>
+              <p *ngIf="picnicing">{{picnicing}}</p>
+              <h6 *ngIf="in_park_food"><img src="../../assets/icons/hiking/food.png" class="dfkg" /> In-park Food</h6>
+              <p *ngIf="in_park_food">{{in_park_food}}</p>
+              <h6 *ngIf="emergency_support"><img src="../../assets/icons/hiking/noun_emergency_1784248.png" class="dfkg" /> Emergency Support</h6>
+              <p *ngIf="emergency_support">{{emergency_support}}</p>
+              <h6 *ngIf="trail.shade"><img src="../../assets/icons/hiking/noun_shade_637740.png" class="dfkg" /> Shade</h6>
+              <p *ngIf="trail.shade">{{trail.shade}}</p>
+              <h6 *ngIf="trail.elevation"><img src="../../assets/icons/hiking/noun_elevation_525997.png" class="dfkg" /> Elevation</h6>
+              <p *ngIf="trail.elevation">{{trail.elevation}} ft.</p>
+              <h6 *ngIf="trail.type"><img src="../../assets/icons/hiking/noun_Loop_2500157.png" class="dfkg" /> Trail Type</h6>
+              <p *ngIf="trail.type">{{trail.type}}</p>
+              <h6 *ngIf="trail.best_season"><img src="../../assets/icons/hiking/seasons.png" class="dfkg" /> Best Season to Visit</h6>
+              <p  *ngIf="trail.best_season">{{trail.best_season}}</p>
+              <h6 *ngIf="pet_friendly"><img src="../../assets/icons/hiking/noun_Pet_1859363.png" class="dfkg" /> Pets</h6>
+              <p  *ngIf="pet_friendly">{{pet_friendly}}</p>
+              <h6 *ngIf="nearby_camps"><img src="../../assets/icons/hiking/noun_camp_2498543.png" class="dfkg" /> Camps</h6>
+              <p *ngIf="nearby_camps">{{nearby_camps}}</p>
+              
+            </div>
+          </div>
+        </div>
+        <div class="row reviews">
+          <div class="col-md-12"> 
+            <h2 #reviewsInput >Reviews</h2>
+            <div class="reviews-input-secyion"  *ngIf="is_review_click">
+              <textarea rows="3" placeholder="Some phrase to prompt user to write a review"id="review"
+              placeholder="Add review or tips to other parents" [(ngModel)]="review" required
+              (change)="validate_review()"></textarea>
+              <div *ngIf="isErrorVisible" class="alert alert-danger">
+                <div>
+                  {{errorMessage }}
                 </div>
-
-
-            </mat-card-content>
-        </mat-card>
-
-        <mat-tab-group class="tabs about-reviews-margin" [selectedIndex]="selectedIndex" *ngIf="trail">
-            <mat-tab label="About">
-                <mat-card>
-                    <mat-card-content class="about-font" *ngIf="trail">
-                        <p class="basic-information " *ngIf="trail.description">
-                            <span><img src="../../assets/icons/hiking/description.png" alt="Description"
-                                    title="Description" class="icon"></span>
-                            <span class="wrap">{{trail.description}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.park_name">
-                            <span><img src="../../assets/icons/noun_categories_1.png" alt="ParkName" title="Park_Name" class="icon"></span>
-                            <span class="wrap">{{trail.park_name}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.city">
-                            <span><img src="../../assets/icons/hiking/address.png" alt="Address" title="Address"
-                                    class="icon"></span>
-                            <span class="wrap">{{format_address()}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.length">
-                                <span><img src="../../assets/icons/hiking/noun_distance_668133.png" alt="Length" title="Trail length"
-                                        class="icon"></span>
-                                <span class="wrap">{{trail.length}} miles</span>
-                        </p>
-                        <p class="basic-information" *ngIf="ratings">
-                                <span><img src="../../assets/icons/hiking/ratings.png" alt="Ratings" title="Ratings"
-                                        class="icon"></span>
-                                <span class="wrap">{{ratings}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.stroller_friendly.more_info !== 'NA'">
-                                <span><img src="../../assets/icons/hiking/noun_Stroller_161.png" alt="Stroller Friendly" title="Stroller Friendly"
-                                        class="icon"></span>
-                                <span class="wrap">{{stroller_friendly}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.bathrooms.more_info !== 'NA'">
-                                <span><img src="../../assets/icons/hiking/noun_Bathroom_151635.png" alt="Bathrooms" title="Bathrooms"
-                                        class="icon"></span>
-                                <span class="wrap">{{bathrooms}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.entrance_fee.more_info !== 'NA'">
-                            <span><img src="../../assets/icons/hiking/entrance.png" alt="Entrance Fee" title="Entrance Fee"
-                                    class="icon"></span>
-                            <span class="wrap">{{entrance_fee}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.parking.more_info !== 'NA'">
-                            <span><img src="../../assets/icons/hiking/noun_Parking_1378758.png" alt="Parking" title="Parking"
-                                        class="icon"></span>
-                            <span class="wrap">{{parking}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.trail_surface">
-                                <span><img src="../../assets/icons/hiking/noun_Trail_523.png" alt="Trail Surface" title="Trail Surface"
-                                            class="icon"></span>
-                                <span class="wrap">{{trail.trail_surface}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.difficulty.level">
-                                <span><img src="../../assets/icons/hiking/noun_Difficulty_1143709.png" alt="Difficulty" title="Difficulty"
-                                            class="icon"></span>
-                                <span class="wrap">{{format_difficulty()}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.attractions">
-                                <span><img src="../../assets/icons/hiking/noun_highlights_1026249.png" alt="Attractions" title="Attractions"
-                                            class="icon"></span>
-                                <span class="wrap">{{trail.attractions}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.tips">
-                                <span><img src="../../assets/icons/hiking/tips.png" alt="Tips" title="Tips"
-                                            class="icon"></span>
-                                <span class="wrap">{{trail.tips}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.carrier.more_info !== 'NA'">
-                                <span><img src="../../assets/icons/hiking/noun_carrier_1996252.png" alt="Carrier" title="Carrier"
-                                            class="icon"></span>
-                                <span class="wrap">{{carrier}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.ada_accessible.more_info !== 'NA'">
-                                <span><img src="../../assets/icons/hiking/noun_Accessibility_2392994.png" alt="ADA Accessibility" title="ADA Accessibility"
-                                            class="icon"></span>
-                                <span class="wrap">{{ada_accessible}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.water_feature">
-                                <span><img src="../../assets/icons/hiking/noun_Lake_2437407.png" alt="Water feature" title="Water feature"
-                                            class="icon"></span>
-                                <span class="wrap">{{trail.water_feature}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.picnicing.more_info !== 'NA'">
-                                <span><img src="../../assets/icons/hiking/noun_Picnic_1753913.png" alt="Picnicr" title="Picnic"
-                                            class="icon"></span>
-                                <span class="wrap">{{picnicing}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.in_park_food.more_info !== 'NA'">
-                                <span><img src="../../assets/icons/hiking/food.png" alt="In park food" title="In park food"
-                                            class="icon"></span>
-                                <span class="wrap">{{in_park_food}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.emergency_support.more_info !== 'NA'">
-                                <span><img src="../../assets/icons/hiking/noun_emergency_1784248.png" alt="Emergency support" title="Emergency support"
-                                            class="icon"></span>
-                                <span class="wrap">{{emergency_support}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.shade">
-                                <span><img src="../../assets/icons/hiking/noun_shade_637740.png" alt="Shade" title="Shade"
-                                            class="icon"></span>
-                                <span class="wrap">{{trail.shade}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.elevation">
-                                <span><img src="../../assets/icons/hiking/noun_elevation_525997.png" alt="Elevation" title="Elevation"
-                                            class="icon"></span>
-                                <span class="wrap">{{trail.elevation}} ft.</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.type">
-                                <span><img src="../../assets/icons/hiking/noun_Loop_2500157.png" alt="Type" title="Type"
-                                            class="icon"></span>
-                                <span class="wrap">{{trail.type}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.best_season">
-                                <span><img src="../../assets/icons/hiking/noun_season_2079064.png" alt="Best season to visit" title="Best season to visit"
-                                            class="icon"></span>
-                                <span class="wrap">{{trail.best_season}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.pet_friendly.more_info !== 'NA'">
-                                <span><img src="../../assets/icons/hiking/noun_Pet_1859363.png" alt="Pets" title="Pets"
-                                            class="icon"></span>
-                                <span class="wrap">{{pet_friendly}}</span>
-                        </p>
-                        <p class="basic-information" *ngIf="trail.nearby_camps.more_info !== 'NA'">
-                                <span><img src="../../assets/icons/hiking/noun_camp_2498543.png" alt="Camps" title="Camps"
-                                            class="icon"></span>
-                                <span class="wrap">{{nearby_camps}}</span>
-                        </p>
-
-                        <mat-card-actions class="detail-buttons-space">
-                            <button mat-button class="detail-buttons mouse-pointer" (click)="trail_redirect()">TRAIL
-                                WEBSITE</button>
-                        </mat-card-actions>
-
-
-                    </mat-card-content>
-                </mat-card>
-            </mat-tab>
-            <mat-tab label="Reviews" *ngIf="reviews_present">
-                <mat-card class="reviews-font">
-                    <div class="margin-review">
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-8">
-                                <div *ngFor="let current_review of user_reviews;">
-                                    <table>
-                                        <tr>
-                                            <td><img src="../../assets/icons/noun_Speech%20Bubble_822548.png"
-                                                    alt="Speech Bubble" class="review-icon"></td>
-                                            <td class="review-text">{{current_review.review}}</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-                    </div>
-                </mat-card>
-            </mat-tab>
-            <mat-tab label="Add Review" *ngIf="is_review_click" style="width: 50%">
-                <mat-card>
-                    <div class="form-group review-margin">
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-8">
-                                <h4 class="review-heading" align="center">Write a review</h4>
-                                <textarea class="form-control" rows="5" id="review"
-                                    placeholder="Add review or tips to other parents" [(ngModel)]="review" required
-                                    (change)="validate_review()"></textarea>
-                                <small id="miscHelp" class="form-text text-muted italic-font-style">We respect your
-                                    privacy. Your name will not be shown to other
-                                    users
-                                </small>
-                                <div *ngIf="isErrorVisible" class="alert alert-danger">
-                                    <div>
-                                        {{errorMessage }}
-                                    </div>
-                                </div>
-                                <div *ngIf="isSuccessVisible" class="alert alert-success">
-                                    <div>
-                                        {{errorMessage }}
-                                    </div>
-                                </div>
-                                <div class="form-group review-margin btn-sec">
-                                    <button type="button" class="btn btn-sign-up" (click)="add_review()">Submit</button>
-                                </div>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-                    </div>
-                </mat-card>
-            </mat-tab>
-        </mat-tab-group>
-        <hr class="hr-Rectangle-200">
-    </div>
-</div>
-<br> <br>
+              </div>
+              <div *ngIf="isSuccessVisible" class="alert alert-success">
+                <div>
+                  {{errorMessage }}
+                </div>
+              </div>
+              <button class="post-btn" (click)="add_review()">post</button>
+              </div>
+              <p>Be the first to write a review!</p>
+              <div class="post-reviews">
+               <ul>
+                <li *ngFor="let current_review of user_reviews;">
+                  <span><img src="../../assets/icons/profile.png" /></span>
+                  <p>{{current_review.review}}</p>
+                </li>
+                  <!-- <li>
+                      <span><img src="../../assets/icons/profile.png" /></span>
+                      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    </li>
+                    <li>
+                        <span><img src="../../assets/icons/profile.png" /></span>
+                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                      </li> -->
+                </ul>
+              </div>
+            </div>
+          </div>

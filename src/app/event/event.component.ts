@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,ViewChild, OnInit,ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
@@ -36,6 +36,10 @@ export class EventComponent implements OnInit {
   public URLConstatnts = new UrlConstants();
   public eventCatString:String;
   selectedIndex;
+  class: any = false;
+  @ViewChild('reviewsInput')
+  reviewsInput: ElementRef;
+
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
     private reviewService: ReviewsService, private metaService: Meta) { }
 
@@ -145,6 +149,7 @@ export class EventComponent implements OnInit {
        this.is_parent_id = true;
        this.selectedIndex = index;
        this.is_review_click = true;
+       this.reviewsInput.nativeElement.scrollIntoView({behavior: 'smooth'});
      }
   }
 
@@ -200,6 +205,7 @@ export class EventComponent implements OnInit {
       this.reviewService.get_reviews_by_type(TYPES_ENUM.EVENT , true, this.event_id).subscribe(data => {
         if ( data['status'] ) {
           this.user_reviews = data['data'];
+          console.log(this.user_reviews);
           this.reviews_present = true;
         } else {
           this.user_reviews = [];
@@ -272,14 +278,23 @@ export class EventComponent implements OnInit {
   }
   is_save_action() {
     if (this.parent_id !== undefined) {
-    this.reviewService.verify_save_action(this.parent_id, ANALYTICS_ENTITY_TYPES_ENUM.EVENT, this.event_id).subscribe(data => {
-      if (data['status'] === true) {
-        this.isSaveVisible = true;
-      } else {
-        this.isSaveVisible = false;
-      }
-    }, error => {
-    });
+      this.reviewService.verify_save_action(this.parent_id, ANALYTICS_ENTITY_TYPES_ENUM.EVENT, this.event_id).subscribe(data => {
+       if (data['status'] === true) {
+          this.isSaveVisible = true;
+        } else {
+          this.isSaveVisible = false;
+        }
+      }, error => {
+      });
+    }
   }
+  
+  addReviewSection(event) {
+    if(event == false){
+      this.class = true;
+    } else {
+      this.class = false;
+    }
   }
+ 
 }

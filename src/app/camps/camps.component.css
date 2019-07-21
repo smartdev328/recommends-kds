@@ -1,277 +1,430 @@
+.top-banner, .center-section, .reviews {
+    padding: 35px 45px;
+    background: #4a4949;
+    margin: 0 -16px;
+}
+.top-banner .mat-card-image {
+    margin: 0;
+    width: 100%;
+}
+.contact-section {
+    background: #fff;
+    height: 100%;
+    margin-left: 30px;
+    padding: 40px 30px;
+    color: #4a4949;
+
+}
+.contact-section button {
+    font-size: 18px;
+    color: #4a4949;
+    background: #fff;
+    font-family: "Montserrat";
+    border: 1px solid #979797;
+    padding: 5px 20px;
+    border-radius: 6px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.50);
+    font-weight: 300;
+    cursor: pointer;
+}
+.mat-image-wrp {
+    display: flex;
+    align-items: center;
+}
+.contact-section h4 {
+    font-size: 24px;
+    font-family: 'Paytone One', sans-serif;
+}
+.contact-section h3 {
+    font-size: 32px;
+    font-family: 'Paytone One', sans-serif;
+    margin: 20px 0 20px;
+}
+.contact-section p {
+    font-size: 18px;
+    line-height: 30px;
+    color: #4a4949;
+    font-family: "Montserrat";
+    font-weight: 300;
+}
+.cards-footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 31px 0 0;
+    align-items: center;
+}
+.contact-section ul, .post-reviews ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin: 0;
+    
+}
+.contact-section li {
+    margin-left: 15px;
+    
+}
+.contact-section span {
+    font-size: 32px;
+    text-transform: uppercase;
+    color: #4a4949;
+    font-family: "Montserrat";
+    font-weight: 300;
+}
+.contact-section button {
+    font-size: 18px;
+    color: #4a4949;
+    background: #fff;
+    font-family: "Montserrat";
+    border: 1px solid #979797;
+    padding: 5px 20px;
+    border-radius: 6px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.50);
+    font-weight: 300;
+}
+.contact-section button img {
+    margin: 0 4px 2px 0;
+}
+.contact-section button:focus {
+    outline: 0;
+}
 .event-card {
     font-size: 15px;
     color: rgb(90, 91, 91);
 }
 
+.dropdown-menu-icon  {
+    position: relative;
+    color: #cacfd2;
+    font-size: 29px;
+    line-height: 38px;
+    padding-left: 10px;
+    cursor: pointer;
+    
+}
+.menu-list {
+    position: absolute;
+    right: 0;
+    width: 230px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
+    top: 77px;
+    display: none;
+    z-index: 11;
+}
+.dropdown-menu-icon:hover .menu-list {
+    display: block;
+}
+.contact-section .menu-list ul, .post-reviews ul {
+    flex-direction: column;
+}
+.contact-section .menu-list li {
+    margin: 0;
+    border-bottom: 1px solid #e5e7e9;
+}
+.contact-section .menu-list li:last-child {
+    border-bottom: 0;
+}
+.contact-section .menu-list a {
+    font-size: 18px;
+    color: #4a4949;
+    padding: 0 20px;
+    display: block;
+}
+.contact-section .menu-list a i {
+    color : #d8d8d8;
+    margin-right: 10px;
+}
+.contact-section .menu-list a:hover {
+    opacity: 0.8;
+    text-decoration: none;
+}
 .mat-card-header {
     display: contents;
 }
-
-.camps-header {
-    text-align: center;
-    font-weight: bold;
+.center-section, .reviews {
+    background: #fff;
+}
+.center-section  .left-section {
+    border: 1px solid #e5e7e9;
+    padding: 35px;
+}
+.center-section  .left-section h5 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-family: 'Paytone One', sans-serif;
+}
+.center-section  .left-section p, .center-section  .left-section a {
     font-size: 18px;
-}
-
-.event-details {
-    /* border-top: 1px solid; */
-    padding-top: 1em;
-}
-
-.about-font {
-    font-family: Montserrat;
+    color: #4a4949;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 0 6px;
     font-weight: 300;
-    font-size: 14px;
 }
-
-.reviews-font{
-    font-family: Montserrat;
+.center-section  .left-section p, .center-section  .left-section .detail-buttons {
+    font-size: 18px;
+    color: #4a4949;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 0 6px;
     font-weight: 300;
-    font-size: 14px;
 }
-
-.icon {
-    position: relative;
-    top: 5px;
-    left: 5px;
-    height: 35px;
-    width: auto;
+.detail-buttons  {
+    border: 0;
+    background: transparent;
+    padding: 0 0 0;
 }
-
-.actionIcon {
-    height: 30px;
-  }
-
-.comment-icon {
-    height: 60px;
-    width: auto;
+.detail-buttons:focus  {
+    outline: 0;
 }
-
-
-.link-text {
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
+.dfkg {
+    height: 23px;
 }
-
-.details-buttons-space {
-    text-align: center;
-    border-top: 1px solid;
+.center-section  .left-section a {
+    margin: 14px 0 0;
+    display: inline-block;
 }
-
-.red-color {
-    color: rgb(237, 45, 86);
+.center-section .contact-section {
+    padding: 8px 20px 8px 0 ;
 }
-
-/* Phones */ 
-@media only screen and (max-width : 767px) {
-    .basic-information .text {
-        margin-left: 5%
-    }
-    
-    .event-details .text {
-        margin-left: 5%
-    }
-    
-    .event-details .lower-text {
-        margin-left: calc(5% + 24px)
-    }
-
-     .detail-buttons {
-        color: white;
-        background-color: #ef6c57;
-        border: none;
-        padding: 25px;
-        margin-top: 2%;
-        font-family: Montserrat;
-        border-radius: 10px;
-        border: none;
-        font-size: 14px;
-        font-weight: bold;
-        font-style: normal;
-    }
-  
-    .mat-card-image {
-        width: calc(100% + 32px);
-        margin: 0 0px 0px 0px;
-        border: 1px solid  #495057;
-        border-radius: 5px;
-        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-        margin-bottom: 15px;
-        min-height: 249px;
-        max-height: auto;
-        float: left;
-        margin: 3px;
-        padding: 3px;
-        max-width: 100%;
-        height: auto;
-    }
-    .description{
-        display: block;
-        word-wrap: break-word;
-        margin-left: 3em;
-        margin-top: -2em;
-      }
-}
-
-/* Tablets */
-@media only screen and (min-width : 768px) and (max-width : 1280px) {
-    .desktop-resize {
-        width: 30% !important;
-        margin-left: 35%;
-    }
-
-    .basic-information .text {
-        margin-left: 3%
-    }
-    
-    .event-details .text {
-        margin-left: 4%
-    }
-    
-    .event-details .lower-text {
-        margin-left: calc(4% + 24px)
-    }
-
-     .detail-buttons {
-        color: white;
-        background-color: #ef6c57;
-        border: none;
-        padding: 25px;
-        margin-top: 2%;
-        font-family: Montserrat;
-        border-radius: 10px;
-        border: none;
-        font-size: 14px;
-        font-weight: bold;
-        font-style: normal;
-    }
-
-    .description{
-        display: block;
-        word-wrap: break-word;
-        margin-left: 3em;
-        margin-top: -2em;
-      }
-}
-
-/* Desktop */
-@media only screen and (min-width : 1281px) {
-    .desktop-resize {
-        width: 25% !important;
-        margin-left: 37.5%;
-    }
- 
-    .basic-information .text {
-        margin-left: 3%
-    }
-    
-    .event-details .text {
-        margin-left: 3%
-    }
-    
-    .event-details {
-        margin-left: calc(3% + 24px)
-    }
-
-     .detail-buttons {
-        color: white;
-        background-color: #ef6c57;
-        border: none;
-        padding: 20px;
-        margin-top: 2%;
-        font-family: Montserrat;
-        border-radius: 10px;
-        border: none;
-        font-size: 14px;
-        font-weight: bold;
-        font-style: normal;
-    }
-
-    .addReview{
-        margin-left : 29%;
-    }
-
-    .header-image{
-        width:80% !important;
-        border: 1px solid  #495057;
-        border-radius: 5px;
-        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-        margin-bottom: 15px;
-        min-height: 249px;
-        max-height: auto;
-        margin: 3px;
-        padding: 3px;
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .description{
-        display: block;
-        word-wrap: break-word;
-        margin-left: 6em;
-        margin-top: -2em;
-      }
-     
-}
-
-::ng-deep .tabs .mat-tab-list .mat-tab-labels {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: auto;
-    grid-auto-rows: auto;
-}
-
-
-.review-margin-left {
-    margin-left: 33%;
-}
-
-
-.mouse-pointer{
-    cursor: pointer;
-}
-.material-icons.md-dark.md-inactive { color: rgba(8, 241, 19, 0.897); }
-
-.mat-card-title {
-    font-family: Montserrat;
-    font-size: 22px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.22;
-    letter-spacing: normal;
-    text-align: center;
-    color: #5d5d5a;
-    padding-right: 0;
-}
-
-
-    .mat-card:not([class*=mat-elevation-z]){
-        box-shadow: none;
-    }
-
-.review-width{
-    padding:10px;
-    border:1px solid #7a7a7a;
-    font-size: 16px;
-    color: #5d5d5a;
-    margin-bottom: 10px;
+.center-section .contact-section h6 {
+    font-size: 18px;
+    color: #4a4949;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
+    display: flex;
+    align-items: center;
 }
-
-.btn-sec{
+.center-section .contact-section h6 img {
+    margin-right: 15px;
+}
+.center-section .contact-section p {
+    font-size: 18px;
+    color: #4a4949;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+.landing-page {
+    margin-top: -16px;
+}
+.reviews {
+    padding-top: 0;
+}
+.reviews h2 {
+    font-size: 32px;
+    color: #4a4949;
+    font-family: 'Paytone One', sans-serif;
+    margin: 0px 0 44px;
+}
+.reviews p {
+    font-size: 18px;
+    color: #4a4949;
+    font-family: 'Montserrat', sans-serif;
+    margin: 48px 0 0 10px;
+}
+.reviews-input-secyion {
+    position: relative;
+}
+.reviews-input-secyion textarea {
+    padding: 15px 15px 59px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7e9;
+    width: 100%;
+    resize: none;
+    box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.50);
+    font-family: 'Montserrat', sans-serif;
+}
+.reviews-input-secyion .post-btn {
+    width: 142px;
+    height: 49px;
+    border-radius: 8px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.5);
+    background-color: #ffd700;
+    font-size: 18px;
+    color: #4a4949;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    border: .0;
+    position: absolute;
+    right: 5px;
+    bottom: 12px;
+}
+.post-reviews ul {
+    padding: 0;
+    border-top: 1px solid #e5e7e9;
+}
+.post-reviews {
+    padding: 15px 20px 0;
+}
+.post-reviews span {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+}
+.post-reviews span img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+.reviews .post-reviews p {
+   margin: 10px 0 0;
+ }
+ .reviews .post-reviews li {
+    border-bottom: 1px solid #e5e7e9;
+    padding: 20px 0 26px;
+ }
+ .sign_up{
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 8px;
+    line-height: 1.21;
     text-align: center;
-    margin-top:10px;
+    color: #4A4949;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+    background-color: #ffd700;
+    width: 258px;
+    font-family: "Montserrat";
 }
+@media only screen and (max-width : 1360px) { 
+    .contact-section span {
+        font-size: 25px;
+    }
+    .contact-section button {
+        font-size: 14px;
+    }
+}  
+@media only screen and (max-width : 1250px) {
+    .contact-section h3, .contact-section span, .center-section .left-section h5 {
+        font-size: 22px;
+    }
+    .contact-section p {
+        font-size: 15px;
+        line-height: 24px;
+    }
+    .center-section .left-section p, .center-section .left-section a, .reviews p {
+        font-size: 15px;
+    }
+    .contact-section button {
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+    .contact-section button img {
+        height: 15px;
+    }
+}   
 
-h4.review-heading{
-    text-align: center;
-    color: #5d5d5a;
-    font-size: 21px;
-    font-family: Montserrat;
-    color: #5d5d5a;
+@media only screen and (max-width : 992px) {
+    .contact-section button {
+        font-size: 0px;
+        border: 0;
+        box-shadow: none;
+        padding: 0;
+        vertical-align: middle;
+    }
+    .center-section .col-md-4, .center-section .col-md-8 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .center-section .left-section {
+        padding: 20px;
+    }
+    .contact-section h4, .center-section .left-section h5 {
+        font-size: 16px;
+    }
+    .contact-section h3, .contact-section span, .reviews h2 {
+        font-size: 18px;
+    }
+    .contact-section p,.center-section .left-section p, .center-section .left-section a, .center-section .left-section .detail-buttons {
+        font-size: 14px;
+        line-height: 15px;
+    }
+    .center-section .contact-section h6 , .center-section .contact-section p, .reviews-input-secyion .post-btn, .reviews p {
+        font-size: 14px;
+    }
+    .contact-section h3 {
+        margin: 0 0 15px;
+    }
+    .cards-footer {
+        margin: 0 0 0;
+    }
+    .contact-section ul{
+        align-items: center;
+    }
 }
+@media only screen and (max-width : 768px) {
+    .filter-box {
+        padding: 16px;
+    }
+    .center-section .col-md-4, .center-section .col-md-8 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+   
+    .top-banner {
+        background: transparent;
+    }
+    .top-banner, .center-section, .reviews {
+        padding: 0;
+    }
+    .contact-section {
+        padding: 33px 15px;
+        margin: 0;
+    }
+    .center-section .contact-section {
+        padding: 15px 25px;
+        margin-top: 16px;
+        border-top: 1px solid #e5e7e9 ;
+        border-bottom: 1px solid #e5e7e9;
+        height: auto;
+    }
+    .center-section .left-section {
+        padding: 15px 25px;
+    }
+    .center-section .left-section h5 {
+        margin: 0 0 8px;
+    }
+    .center-section .left-section p {
+        margin: 0;
+    }
+    .center-section .contact-section h6 img {
+        height: 13px;
+        margin-right: 10px;
+    }
+    .reviews h2 {
+        margin: 17px 0 15px;
+    }
+    .reviews-input-secyion .post-btn {
+        width: 95px;
+        height: 36px;
+    }
+    .top-banner .mat-image-wrp {
+        position: relative;
+        z-index: 1111111;
+    }
+    .top-banner .mat-image-wrp:after {
+        content: "";
+        width: 100%;
+        height: 80%;
+        position: absolute;
+        top: -15px;
+        left: 0;
+        right: 0;
+        background: #494949;
+        z-index: -1;
+    }
+    .reviews-input-secyion textarea {
+        font-weight: 300;
+        font-size: 14px;
+    }
+    .post-reviews span {
+        width: 48px;
+        height: 48px;
+    }
+    .reviews .post-reviews p {
+        font-weight: 300;
+    }
+} 
