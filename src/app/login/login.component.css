@@ -1,0 +1,71 @@
+.login-content {
+    padding: 0 50px;
+    font-size: 14px;
+}
+
+.left-side {
+    min-width: 60%;
+    background-image: url('/assets/web_images/About-Us.jpg');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    height: -webkit-fill-available;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.form-control {
+    border-radius: 0 !important;
+    border-bottom: 1px solid #FFD700;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    font-weight: 300;
+    height: auto;
+    width: 100% !important;
+    padding-top: 10px;
+    font-size: 12px !important;
+}
+
+.form-control:focus {
+    box-shadow: none !important;
+}
+
+.btn-action {
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    text-align: center;
+    color: #4A4949;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+    width: 100%;
+}
+
+.btn-accent {
+    background-color: #FFD700;
+}
+
+.btn-primary {
+    background-color: #3c5996;
+    color: #ffffff;
+}
+
+.btn-error {
+    background-color: #d9453d;
+    color: #ffffff;
+}
+
+.separator {
+    margin: 25px 0;
+    color: #4A4949;
+}
+
+a, a:hover {
+    color: #4A4949;
+}

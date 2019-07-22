@@ -31,6 +31,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import {PrivacyComponent} from './privacy/privacy.component';
 import {TermsComponent} from './terms/terms.component';
 import { PersonalizedComponent } from './personalized/personalized.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'events/:id', component: EventComponent },
@@ -76,6 +77,7 @@ const routes: Routes = [
   { path: 'my-kin?parent_id=', component: PersonalizedComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'header', component: HeaderComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: '' },
 ];
