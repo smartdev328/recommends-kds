@@ -56,6 +56,7 @@ import { MasonsryVenuesPersonaliseViewComponent } from './masonsry-personalise-v
 import { EditHikingTrailComponent } from './edit-hiking/edit-hiking.component';
 import { ModalModule } from 'ngx-bootstrap';
 import { LoginComponent } from './login/login.component';
+import { CallbackComponent } from './layout/callback/callback.component';
 
 
 
@@ -101,7 +102,8 @@ import { LoginComponent } from './login/login.component';
     HomeHeaderComponent,
     TermsComponent,
     PersonalizedComponent,
-    LoginComponent
+    LoginComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,

@@ -34,12 +34,12 @@
 
 /* Mobile */
 @media (min-width: 769px){
-  .navbar-expand-md .navbar-nav .nav-link {
+  /* .navbar-expand-md .navbar-nav .nav-link {
     padding: 0px 40px;
-  }
-  .navbar-expand-md .navbar-nav .nav-link.nav-button{
+  } */
+  /* .navbar-expand-md .navbar-nav .nav-link.nav-button{
     padding: 0px;
-  }
+  } */
 }
 
 /* Tablets */
