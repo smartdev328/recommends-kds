@@ -1,14 +1,13 @@
-import { Component,ViewChild, OnInit,ElementRef } from '@angular/core';
+import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
-import {UrlConstants} from '../constants/UrlConstants';
-import {ENTITY_TYPES_ENUM, TYPES_ENUM } from '../constants/VenueConstants';
-import {EventErrorMessage,EventConstants } from '../constants/EventConstants';
-import {ReviewsService} from '../add-review/reviews.service';
-import { MatTabChangeEvent } from '@angular/material';
-import {ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION} from '../constants/AnalyticsConstants';
+import { UrlConstants } from '../constants/UrlConstants';
+import { ENTITY_TYPES_ENUM, TYPES_ENUM } from '../constants/VenueConstants';
+import { EventErrorMessage, EventConstants } from '../constants/EventConstants';
+import { ReviewsService } from '../add-review/reviews.service';
+import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../constants/AnalyticsConstants';
 
 
 declare let ga: any;
@@ -20,7 +19,7 @@ declare let ga: any;
 export class EventComponent implements OnInit {
   event_id: string;
   event: any;
-  isLoaded: boolean = false;
+  isLoaded = false;
   public is_parent_id: Boolean;
   public isErrorVisible: Boolean;
   public isSuccessVisible: Boolean;
@@ -34,7 +33,7 @@ export class EventComponent implements OnInit {
   public eventErrorMessage = new EventErrorMessage();
   public eventConstatnts = new EventConstants();
   public URLConstatnts = new UrlConstants();
-  public eventCatString:String;
+  public eventCatString: String;
   selectedIndex;
   class: any = false;
   @ViewChild('reviewsInput')
@@ -64,7 +63,7 @@ export class EventComponent implements OnInit {
 
   get_event_details() {
     // let url = 'https://kin-api.kinparenting.com/events/' + this.event_id;
-    let url = this.URLConstatnts.API_URL + 'events/' + this.event_id + '/';
+    const url = this.URLConstatnts.API_URL + 'events/' + this.event_id + '/';
     const headers = new HttpHeaders();
     this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
       data = data.replace(/\n/g, "");
@@ -72,10 +71,10 @@ export class EventComponent implements OnInit {
       this.event = data["event"];
       this.add_analytics_data('CLICK');
       this.isLoaded = true;
-      let categories_array = JSON.parse(this.event.event_categories);
+      // let categories_array = JSON.parse(this.event.event_categories);
       // this.eventCatString = categories_array.join('');
-      if (this.event['classifications'] !=undefined){
-        let primary_cat_id = parseInt(this.event['classifications']['0'].classification1);
+      if (this.event['classifications'] != undefined) {
+        const primary_cat_id = parseInt(this.event['classifications']['0'].classification1);
         this.eventCatString = this.eventConstatnts.get_cat_name_by_id(primary_cat_id);
       }
 
@@ -86,52 +85,52 @@ export class EventComponent implements OnInit {
         eventValue: this.event_id
       });
       this.titleService.setTitle(this.event.name);
-      this.metaService.addTag({name: 'description', content: this.event.description});
-      this.metaService.addTag({name: 'keywords', 
-      content: 'Family friendly events,' + this.event.tags});
+      this.metaService.addTag({ name: 'description', content: this.event.description });
+      this.metaService.addTag({
+        name: 'keywords',
+        content: 'Family friendly events,' + this.event.tags
+      });
 
       // OG meta properties
-      this.metaService.addTag({property: 'og:title', content: this.event.name});
-      this.metaService.addTag({property: 'og:description', content: this.event.description});
-      this.metaService.addTag({property: 'og:image', content: this.event.image_url});
-      this.metaService.addTag({property: 'og:url', content: 'https://kinparenting.com/events/' + this.event_id});
-      this.metaService.addTag({property: 'og:site_name', content: 'Kin Parenting'});
-      
-    })
+      this.metaService.addTag({ property: 'og:title', content: this.event.name });
+      this.metaService.addTag({ property: 'og:description', content: this.event.description });
+      this.metaService.addTag({ property: 'og:image', content: this.event.image_url });
+      this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/events/' + this.event_id });
+      this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
+
+    });
   }
 
   format_time(timeString) {
-    var H = +timeString.substr(0, 2);
-    var h = H % 12 || 12;
-    var ampm = (H < 12 || H === 24) ? "AM" : "PM";
+    const H = +timeString.substr(0, 2);
+    const h = H % 12 || 12;
+    const ampm = (H < 12 || H === 24) ? "AM" : "PM";
     timeString = h + timeString.substr(2, 3) + ampm;
     return timeString;
   }
 
   format_price() {
-    if(this.event.price == "Free" || this.event.price == "free" || this.event.price == "") {
-      return "Free"
-    }
-    else {
+    if (this.event.price == "Free" || this.event.price == "free" || this.event.price == "") {
+      return "Free";
+    } else {
       return "From $" + this.event.price;
     }
   }
 
   format_age() {
-    if(this.event.min_age == 0 && this.event.max_age == 99) {
+    if (this.event.min_age == 0 && this.event.max_age == 99) {
       return "Good for all ages";
     }
-    if(this.event.min_age != 0 && this.event.max_age == 99) {
+    if (this.event.min_age != 0 && this.event.max_age == 99) {
       return "Good for " + this.event.min_age + " years and above";
-    }
-    else {
+    } else {
       return "Good for " + this.event.min_age + " to " + this.event.max_age + " years";
-    } 
+    }
   }
 
   maps_redirect() {
-    var search_query = this.event.venue + "," + this.event.street + "," + this.event.city;
-    window.location.href= 'https://www.google.com/maps?q=' + search_query;
+    const search_query = this.event.venue + "," + this.event.street + "," + this.event.city;
+    window.location.href = 'https://www.google.com/maps?q=' + search_query;
   }
 
   event_redirect() {
@@ -146,32 +145,32 @@ export class EventComponent implements OnInit {
 
   add_review_redirect(index: number): void {
     if (this.parent_id !== undefined) {
-       this.is_parent_id = true;
-       this.selectedIndex = index;
-       this.is_review_click = true;
-       this.reviewsInput.nativeElement.scrollIntoView({behavior: 'smooth'});
-     }
+      this.is_parent_id = true;
+      this.selectedIndex = index;
+      this.is_review_click = true;
+      this.reviewsInput.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   add_review() {
     if (this.validate_review()) {
-      let input_data = {
-        'input' : {
-          'entity_type' : ENTITY_TYPES_ENUM.EVENT,
-          'entity_id' : this.event_id,
-          'parent_id' : this.parent_id,
-          'review' : this.review,
-          'is_approved' : false
+      const input_data = {
+        'input': {
+          'entity_type': ENTITY_TYPES_ENUM.EVENT,
+          'entity_id': this.event_id,
+          'parent_id': this.parent_id,
+          'review': this.review,
+          'is_approved': false
         }
       };
       this.reviewService.add_review(input_data).subscribe(data => {
         if (data['status'] === true) {
           this.isSuccessVisible = true;
           this.isErrorVisible = false;
-          setTimeout(()=> {    
-                this.isSuccessVisible = false;
-                this.review = '';
-           }, 3000);
+          setTimeout(() => {
+            this.isSuccessVisible = false;
+            this.review = '';
+          }, 3000);
 
           this.errorMessage = this.eventErrorMessage.REVIEW_ADDED_SUCCESS;
         } else {
@@ -191,8 +190,8 @@ export class EventComponent implements OnInit {
     if (this.review.trim().length === 0) {
       this.isErrorVisible = true;
       this.errorMessage = 'Review is required';
-      setTimeout(()=> {    
-        this.isErrorVisible  = false;
+      setTimeout(() => {
+        this.isErrorVisible = false;
       }, 3000);
       return false;
     }
@@ -202,8 +201,8 @@ export class EventComponent implements OnInit {
 
   show_reviews() {
     if (this.user_reviews.length === 0) {
-      this.reviewService.get_reviews_by_type(TYPES_ENUM.EVENT , true, this.event_id).subscribe(data => {
-        if ( data['status'] ) {
+      this.reviewService.get_reviews_by_type(TYPES_ENUM.EVENT, true, this.event_id).subscribe(data => {
+        if (data['status']) {
           this.user_reviews = data['data'];
           console.log(this.user_reviews);
           this.reviews_present = true;
@@ -212,74 +211,74 @@ export class EventComponent implements OnInit {
           this.reviews_present = false;
         }
       }, error => {
-       // alert(this.eventErrorMessage.GET_DATA_ERROR);
+        // alert(this.eventErrorMessage.GET_DATA_ERROR);
       });
     }
   }
 
   calendar_redirects() {
     this.add_analytics_data('CALENDAR');
-    let calendar_url = this.URLConstatnts.API_URL + 'cal_redirect/?event_id=' + this.event_id;
+    const calendar_url = this.URLConstatnts.API_URL + 'cal_redirect/?event_id=' + this.event_id;
     window.open(calendar_url);
   }
-  
+
   save_event() {
     if (this.parent_id !== undefined) {
       this.add_analytics_data('SAVE');
       this.isSaveVisible = true;
-   }
+    }
   }
 
   add_analytics_data(atype: any) {
     let action = '';
-     switch (atype) {
-       case 'CLICK':
-       action = ACTION.CLICK;
-         break;
-       case 'SAVE':
-       action = ACTION.SAVE;
-         break;
-       case 'CALENDAR':
-       action = ACTION.CALENDAR;
-         break;
-     }
-     let analytics_input = {};
-     if (this.parent_id !== undefined) {
-         analytics_input = {
-        'input_data' : [ {
-         'entity_type' : ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
-         'entity_id' : this.event_id,
-         'interface' : INTERFACE_ENUM.FE,
-         'parent_id' : this.parent_id,
-         'action' : action,
-         'referrer' : '/root/home'
-        } ]
+    switch (atype) {
+      case 'CLICK':
+        action = ACTION.CLICK;
+        break;
+      case 'SAVE':
+        action = ACTION.SAVE;
+        break;
+      case 'CALENDAR':
+        action = ACTION.CALENDAR;
+        break;
+    }
+    let analytics_input = {};
+    if (this.parent_id !== undefined) {
+      analytics_input = {
+        'input_data': [{
+          'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
+          'entity_id': this.event_id,
+          'interface': INTERFACE_ENUM.FE,
+          'parent_id': this.parent_id,
+          'action': action,
+          'referrer': '/root/home'
+        }]
       };
     } else {
 
-        analytics_input = {
-        'input_data' : [ {
-         'entity_type' : ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
-         'entity_id' : this.event_id,
-         'interface' : INTERFACE_ENUM.FE,
-         'action' : action,
-         'referrer' : '/root/home'
-        } ]
+      analytics_input = {
+        'input_data': [{
+          'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
+          'entity_id': this.event_id,
+          'interface': INTERFACE_ENUM.FE,
+          'action': action,
+          'referrer': '/root/home'
+        }]
       };
     }
-     this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
+    this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
       if (this.parent_id !== undefined && atype === 'CLICK') {
-         this.is_save_action();
-         this.is_parent_id = true;
+        this.is_save_action();
+        this.is_parent_id = true;
       }
-     }, error => {
-     });
- 
+    }, error => {
+    });
+
   }
   is_save_action() {
     if (this.parent_id !== undefined) {
       this.reviewService.verify_save_action(this.parent_id, ANALYTICS_ENTITY_TYPES_ENUM.EVENT, this.event_id).subscribe(data => {
-       if (data['status'] === true) {
+        if (data['status'] === true) {
           this.isSaveVisible = true;
         } else {
           this.isSaveVisible = false;
@@ -288,13 +287,13 @@ export class EventComponent implements OnInit {
       });
     }
   }
-  
+
   addReviewSection(event) {
-    if(event == false){
+    if (event == false) {
       this.class = true;
     } else {
       this.class = false;
     }
   }
- 
+
 }

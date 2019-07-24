@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { NgMasonryGridModule } from 'ng-masonry-grid';
@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventComponent } from './event/event.component';
 import { EventGroupComponent } from './event-group/event-group.component';
-import { EventListingComponent } from './event-listing/event-listing.component';
+import { EventListingComponent } from './event/event-listing/event-listing.component';
 import { MasonsryViewComponent } from './masonsry-view/masonsry-view.component';
 import { HomeComponent } from './home/home.component';
 import { HelpComponent } from './help/help.component';
@@ -25,10 +25,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { SearchVenueComponent } from './search-venue/search-venue.component';
 import { EditVenueComponent } from './edit-venue/edit-venue.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { ReviewsComponent } from './add-review/reviews.component';
 import { ApproveReviewComponent } from './approve-reviews/approve-review.component';
-import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AddCampComponent } from './add-camp/add-camp.component';
 import { AddHikingTrailComponent } from './add-hiking/add-hiking.component';
 import { CampsComponent } from './camps/camps.component';
@@ -41,7 +41,7 @@ import { MasonsryVenuesViewComponent } from './masonsry-venues-view/masonsry-ven
 import { SubscribeVenueComponent } from './subscribe-venue/subscribe-venue.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { EditCampComponent } from './edit-camp/edit-camp.component';
-import { EditEventComponent } from './edit-event/edit-event.component';
+import { EditEventComponent } from './event/edit-event/edit-event.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -58,16 +58,17 @@ import { ModalModule } from 'ngx-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { CallbackComponent } from './layout/callback/callback.component';
 import { AuthInterceptor } from './service/auth.interceptor';
+import { EventModule } from './event/event.module';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    EventComponent,
-    EventGroupComponent,
-    EventListingComponent,
-    MasonsryViewComponent,
+    // EventComponent,
+    // EventGroupComponent,
+    // EventListingComponent,
+    // MasonsryViewComponent,
     HomeComponent,
     HelpComponent,
     DataEntryComponent,
@@ -91,10 +92,10 @@ import { AuthInterceptor } from './service/auth.interceptor';
     SubscribeVenueComponent,
     ComingSoonComponent,
     EditCampComponent,
-    EditEventComponent,
+    // EditEventComponent,
     EditHikingTrailComponent,
     SignUpComponent,
-    HeaderComponent,
+    // HeaderComponent,
     AboutUsComponent,
     ContactUsComponent,
     PrivacyComponent,
@@ -107,13 +108,14 @@ import { AuthInterceptor } from './service/auth.interceptor';
     CallbackComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    EventModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     NgxDatatableModule,
     MatCardModule,
     NgMasonryGridModule,
-    BrowserAnimationsModule,
     MatTabsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -127,6 +129,7 @@ import { AuthInterceptor } from './service/auth.interceptor';
     ModalModule.forRoot()
   ],
   exports: [MatDatepickerModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

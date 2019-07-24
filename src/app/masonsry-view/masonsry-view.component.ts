@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./masonsry-view.component.css']
 })
 export class MasonsryViewComponent implements OnInit {
-  showLayout: boolean = false;
+  showLayout = false;
   @Input() events;
   @Input() start;
   @Input() end;

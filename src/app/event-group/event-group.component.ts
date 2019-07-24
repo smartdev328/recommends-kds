@@ -11,13 +11,13 @@ declare let ga: any;
 })
 export class EventGroupComponent implements OnInit {
   event_query: string;
-  events;
-  isLoaded: boolean = false;
+  events: any;
+  isLoaded = false;
 
-  constructor(private route: ActivatedRoute, 
-              private http: HttpClient, 
-              private router: Router,
-              private titleService: Title) { 
+  constructor(private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router,
+    private titleService: Title) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         ga('set', 'page', event.urlAfterRedirects);
@@ -38,7 +38,7 @@ export class EventGroupComponent implements OnInit {
       eventLabel: 'Kin Redirect',
       eventAction: 'Click on kin redirect button'
     });
-    window.location.href='http://m.me/kinparenting';
+    window.location.href = 'http://m.me/kinparenting';
   }
 
   event_redirect(id) {
@@ -46,23 +46,23 @@ export class EventGroupComponent implements OnInit {
   }
 
   format_time(timeString) {
-    var H = +timeString.substr(0, 2);
-    var h = H % 12 || 12;
-    var ampm = (H < 12 || H === 24) ? "AM" : "PM";
+    const H = +timeString.substr(0, 2);
+    const h = H % 12 || 12;
+    const ampm = (H < 12 || H === 24) ? "AM" : "PM";
     timeString = h + timeString.substr(2, 3) + ampm;
     return timeString;
   }
 
   get_event_details() {
-    let url = "https://kin-api.kinparenting.com/events?q=" + this.event_query;
+    const url = "https://kin-api.kinparenting.com/events?q=" + this.event_query;
     const headers = new HttpHeaders()
-        .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
+      .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
     this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-        data = data.replace(/\n/g, "");
-        data = JSON.parse(data);
-        this.events = data["events"];
-        this.isLoaded = true;
-    })
+      data = data.replace(/\n/g, "");
+      data = JSON.parse(data);
+      this.events = data["events"];
+      this.isLoaded = true;
+    });
   }
 
   capital_name(query) {
