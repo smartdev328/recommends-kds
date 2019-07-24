@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Title} from '@angular/platform-browser';
-import {FormBuilder, FormGroup, Validators, FormArray , EmailValidator} from '@angular/forms';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { FormBuilder, FormGroup, Validators, FormArray, EmailValidator } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -19,8 +19,11 @@ export class SignUpComponent implements OnInit {
     public show_kid_form: Boolean;
 
 
-    constructor(private titleService: Title, private formBuilder: FormBuilder, private fb: FormBuilder,
-                private http: HttpClient) {
+    constructor(
+        private titleService: Title,
+        private formBuilder: FormBuilder,
+        private fb: FormBuilder,
+        private http: HttpClient) {
     }
 
 
@@ -28,7 +31,7 @@ export class SignUpComponent implements OnInit {
         this.titleService.setTitle('Kin - The Parenting Assistant');
         this.registerForm = this.formBuilder.group({
             first_name: ['', Validators.required],
-            last_name: ['', ],
+            last_name: [''],
             email: ['', Validators.required],
             zip_code: ['', [Validators.required, Validators.minLength(2)]],
             src: [''],
@@ -39,7 +42,7 @@ export class SignUpComponent implements OnInit {
         this.show_kid_form = false;
         /* Initiate the form structure */
         this.childForm = this.fb.group({
-            child_array: this.fb.array([this.fb.group({age: '', nick_name: '', interests: '', parent_id: '', gender: ''})])
+            child_array: this.fb.array([this.fb.group({ age: '', nick_name: '', interests: '', parent_id: '', gender: '' })])
         });
     }
 
@@ -54,11 +57,11 @@ export class SignUpComponent implements OnInit {
     /////// This is new /////////////////
 
     addNewChild() {
-        this.newChild.push(this.fb.group({age: '', nick_name: '', interests: '', parent_id: '', gender: ''}));
+        this.newChild.push(this.fb.group({ age: '', nick_name: '', interests: '', parent_id: '', gender: '' }));
     }
 
     deleteChild(index) {
-        if(index!=0){
+        if (index != 0) {
             this.newChild.removeAt(index);
         }
     }
@@ -88,41 +91,41 @@ export class SignUpComponent implements OnInit {
             const headers = new HttpHeaders()
                 .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
                 .set('Content-Type', 'application/json');
-            this.http.post(url, data, {headers: headers, responseType: 'text'}).subscribe(response => {
+            this.http.post(url, data, { headers: headers, responseType: 'text' }).subscribe(response => {
                 data = response.replace(/\n/g, '');
                 data = JSON.parse(data);
-                
-		if(data['error'] !== undefined) {
-			this.isUserCreationError = true;
-			setTimeout(() => {
-                  		//window.location.replace('/');
-                  		this.isUserCreationError = false;
-                	}, 5000);
-		} else { 
-                	const url = 'https://kin-api-dev.kinparenting.com/kids/';
-                	for (let i = 0; i < this.newChild.length; i++) {
-                    		if (this.newChild.value[i].nick_name.trim().length
-                        		&& this.newChild.value[i].interests.trim().length) {
 
-                        		this.newChild.value[i].parent_id = data['account'].parent_id;
-                        		const headers = new HttpHeaders().set('Content-Type', 'application/json');
-                        		this.http.post(url, this.newChild.value[i], {headers: headers, responseType: 'text'}).
-                        			subscribe(response => {
-                            				data = response.replace(/\n/g, '');
-                            				data = JSON.parse(data);
-                        			});
-                    		}
-                	}
-                	this.isSuccessVisible = true;
-                	setTimeout(() => {
-                  		//window.location.replace('/');
-                  		this.isSuccessVisible = false;
-                	}, 5000);
-            	}
-	    });
+                if (data['error'] !== undefined) {
+                    this.isUserCreationError = true;
+                    setTimeout(() => {
+                        // window.location.replace('/');
+                        this.isUserCreationError = false;
+                    }, 5000);
+                } else {
+                    const url = 'https://kin-api-dev.kinparenting.com/kids/';
+                    for (let i = 0; i < this.newChild.length; i++) {
+                        if (this.newChild.value[i].nick_name.trim().length
+                            && this.newChild.value[i].interests.trim().length) {
+
+                            this.newChild.value[i].parent_id = data['account'].parent_id;
+                            const headers = new HttpHeaders().set('Content-Type', 'application/json');
+                            this.http.post(url, this.newChild.value[i], { headers: headers, responseType: 'text' }).
+                                subscribe(response => {
+                                    data = response.replace(/\n/g, '');
+                                    data = JSON.parse(data);
+                                });
+                        }
+                    }
+                    this.isSuccessVisible = true;
+                    setTimeout(() => {
+                        // window.location.replace('/');
+                        this.isSuccessVisible = false;
+                    }, 5000);
+                }
+            });
         }
     }
-    closePopup(){
+    closePopup() {
         this.modalRef.hide();
     }
 }

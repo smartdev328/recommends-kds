@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { DatePipe } from '@angular/common';
@@ -57,6 +57,7 @@ import { EditHikingTrailComponent } from './edit-hiking/edit-hiking.component';
 import { ModalModule } from 'ngx-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { CallbackComponent } from './layout/callback/callback.component';
+import { AuthInterceptor } from './service/auth.interceptor';
 
 
 
@@ -126,7 +127,10 @@ import { CallbackComponent } from './layout/callback/callback.component';
     ModalModule.forRoot()
   ],
   exports: [MatDatepickerModule],
-  providers: [DatePipe],
+  providers: [
+    DatePipe,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

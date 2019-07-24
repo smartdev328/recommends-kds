@@ -10,6 +10,7 @@ import { environment } from 'environments/environment';
 export class AuthService {
   isAuthenticated = new BehaviorSubject(false);
   profile = new BehaviorSubject<any>(null);
+  token = new BehaviorSubject<any>(null);
 
   private auth0Client: Auth0Client;
 
@@ -29,6 +30,7 @@ export class AuthService {
       // Whenever isAuthenticated changes, provide the current value of `getUser`
       this.isAuthenticated.subscribe(async isAuthenticated => {
         if (isAuthenticated) {
+          this.token.next(await this.auth0Client.getTokenSilently());
           this.profile.next(await this.auth0Client.getUser());
           return;
         }
