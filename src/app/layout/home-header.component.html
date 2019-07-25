@@ -37,13 +37,13 @@
             </li>
             <li class="nav-item" fxLayout="row" fxLayout.xs="column">
                 <!-- <a class="nav-link nav-button"  [routerLink]="['/','sign-up']">  -->
-                <a class="nav-link nav-button" [class.xs]="py-2" [class.gt-xs]="px-3"  (click)="signIn()" *ngIf="!isAuthenticated">
+                <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'"  (click)="signIn()" *ngIf="!isAuthenticated">
                     <button class="btn path-38 sign_up">SIGN IN</button>
                 </a>
-                <a class="nav-link nav-button" [class.xs]="py-2" [class.gt-xs]="px-3" (click)="openModal()">
+                <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="openModal()">
                     <button class="btn path-38 sign_up">SUBSCRIBE</button>
                 </a>
-                <a class="nav-link nav-button" [class.xs]="py-2" [class.gt-xs]="px-3" (click)="logout()" *ngIf="isAuthenticated">
+                <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="logout()" *ngIf="isAuthenticated">
                     <button class="btn path-38 sign_up">SIGN OUT</button>
                 </a>
             </li>
