@@ -24,19 +24,19 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./event/event.module').then(mod => mod.EventModule)
+    loadChildren: './event/event.module#EventModule'
   },
   {
     path: '',
-    loadChildren: () => import('./camp/camp.module').then(mod => mod.CampModule)
+    loadChildren: './camp/camp.module#CampModule'
   },
   {
     path: '',
-    loadChildren: () => import('./venue/venue.module').then(mod => mod.VenueModule)
+    loadChildren: './venue/venue.module#VenueModule'
   },
   {
     path: '',
-    loadChildren: () => import('./hiking/hiking.module').then(mod => mod.HikingModule)
+    loadChildren: './hiking/hiking.module#HikingModule'
   },
 
   { path: 'data-entry', component: DataEntryComponent },
