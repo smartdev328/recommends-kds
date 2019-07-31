@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ReviewsService } from '../add-review/reviews.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UrlConstants } from '@shared/constants/UrlConstants';
+import { ReviewsService } from '../add-review/reviews.service';
 
 @Component({
     selector: 'app-personalized',

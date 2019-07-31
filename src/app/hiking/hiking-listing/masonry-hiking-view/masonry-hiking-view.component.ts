@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 
 export class MasonsryHikingTrailViewComponent implements OnInit {
 
-  showLayout: boolean = false;
+  showLayout = false;
   @Input() trails: any;
   @Input() start: any;
   @Input() end: any;

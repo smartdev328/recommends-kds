@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
-import { Title, Meta } from '@angular/platform-browser';
-import { UrlConstants } from '../../shared/constants/UrlConstants';
-import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ReviewsService } from '../../component/add-review/reviews.service';
+import { ACTION, ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM } from '../../shared/constants/AnalyticsConstants';
 import { CampConstants, CampErrorMessage } from '../../shared/constants/CampConstants';
-import { EventConstants } from '../../shared/constants/EventConstants';
 import { ErrorMessage } from '../../shared/constants/CommonConstants';
+import { UrlConstants } from '../../shared/constants/UrlConstants';
 import { CampListingService } from './camp-listing.service';
-import { unescapeIdentifier } from '@angular/compiler';
 declare let ga: any;
 @Component({
   selector: 'app-camp-listing',

@@ -1,15 +1,13 @@
-import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Title } from '@angular/platform-browser';
-import { Meta } from '@angular/platform-browser';
+import { ReviewsService } from '../component/add-review/reviews.service';
+import { ACTION, ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM } from '../shared/constants/AnalyticsConstants';
+import { HikingTrailConstants, HikingTrailErrorMessage } from '../shared/constants/HikingTrailConstants';
 import { HikingTrailModel } from './add-hiking/hiking.model';
 import { HikingTrailService } from './hiking.service';
-import { HikingTrailConstants, HikingTrailErrorMessage } from '../shared/constants/HikingTrailConstants';
-import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../shared/constants/AnalyticsConstants';
-import { MatTabChangeEvent } from '@angular/material';
-import { ReviewsService } from '../component/add-review/reviews.service';
-import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
 declare let ga: any;
 
 @Component({
