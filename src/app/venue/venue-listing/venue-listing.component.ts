@@ -3,12 +3,12 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
-import { UrlConstants } from '../../constants/UrlConstants';
-import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../constants/AnalyticsConstants';
-import { ReviewsService } from '../../add-review/reviews.service';
-import { EventConstants } from '../../constants/EventConstants';
-import { VenueConstants, VenueErrorMessage } from '../../constants/VenueConstants';
-import { ErrorMessage } from '../../constants/CommonConstants';
+import { UrlConstants } from '../../shared/constants/UrlConstants';
+import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
+import { ReviewsService } from '../../component/add-review/reviews.service';
+import { EventConstants } from '../../shared/constants/EventConstants';
+import { VenueConstants, VenueErrorMessage } from '../../shared/constants/VenueConstants';
+import { ErrorMessage } from '../../shared/constants/CommonConstants';
 import { VenueListingService } from './venue-listing.service';
 
 declare let ga: any;

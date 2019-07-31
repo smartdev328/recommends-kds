@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {VenueService} from './venue.service';
-import {UserSearch} from './venue.model';
-import {VenueConstants, VenueErrorMessage} from '../constants/VenueConstants';
-import {ValidationRules} from '../utils/ValidationRules';
-
-import {NgSelectModule, NgOption} from '@ng-select/ng-select';
-
-import {Router} from '@angular/router';
-
+import { VenueService } from './venue.service';
+import { UserSearch } from './venue.model';
+import { VenueConstants, VenueErrorMessage } from '../shared/constants/VenueConstants';
+import { ValidationRules } from '../shared/utils/ValidationRules';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-venue',
@@ -21,15 +17,15 @@ export class VenueComponent implements OnInit {
   public venueErrorMessage = new VenueErrorMessage();
   public validationRules = new ValidationRules();
   public primary_cat = this.venueConstatnts.PRIMARY_CATEGORY;
-  public  secondary_cat = this.venueConstatnts.SECONDARY_CATEGORY;
+  public secondary_cat = this.venueConstatnts.SECONDARY_CATEGORY;
   public errorMessage: String;
   public isErrorVisible: Boolean;
   public jsonMiscData: JSON;
   public showErrorDialog: boolean;
 
 
-  constructor(private  eventService: VenueService , private router: Router) {
-      this.showErrorDialog = false;
+  constructor(private eventService: VenueService, private router: Router) {
+    this.showErrorDialog = false;
   }
 
   ngOnInit(): void {
@@ -37,42 +33,41 @@ export class VenueComponent implements OnInit {
   }
 
   add_new_venue(this) {
-
     let new_venuee_result: any;
-    let isValidated = this.validationRules.validate_basic_venue_fields(this.userSearch);
-    if(isValidated === true) {
+    const isValidated = this.validationRules.validate_basic_venue_fields(this.userSearch);
+    if (isValidated === true) {
       this.isErrorVisible = false;
-      let api_input = {input : this.userSearch};
+      const api_input = { input: this.userSearch };
       this.eventService.add_new_venue(api_input)
-          .subscribe( data => {
-            if ( data !== undefined) {
-              if ('error' in data) {
-                this.isUpdateShow = false;
-                new_venuee_result = {};
-                this.isErrorVisible = true;
-                this.errorMessage = data['error'];
-              } else {
-                const venue_id = data.id;
-                this.router.navigate(['/edit-venue/' + venue_id]);
-              }
+        .subscribe(data => {
+          if (data !== undefined) {
+            if ('error' in data) {
+              this.isUpdateShow = false;
+              new_venuee_result = {};
+              this.isErrorVisible = true;
+              this.errorMessage = data['error'];
             } else {
-              alert(data.error);
+              const venue_id = data.id;
+              this.router.navigate(['/edit-venue/' + venue_id]);
             }
+          } else {
+            alert(data.error);
+          }
 
-          }, error => {
-            console.log(error);
-            alert(JSON.stringify(error.error.error) );
-          });
+        }, error => {
+          console.log(error);
+          alert(JSON.stringify(error.error.error));
+        });
     } else {
-          this.isErrorVisible = true;
-          this.errorMessage = isValidated;
+      this.isErrorVisible = true;
+      this.errorMessage = isValidated;
     }
 
   }
 
   reset_venue(this) {
     this.isUpdateShow = false;
-    this.userSearch.name = this.userSearch.state = this.userSearch.city = "" ;
+    this.userSearch.name = this.userSearch.state = this.userSearch.city = "";
   }
 
   closeErrorBox() {

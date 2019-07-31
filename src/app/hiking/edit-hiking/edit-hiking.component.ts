@@ -3,8 +3,8 @@ import { HikingTrailModel } from '../add-hiking/hiking.model';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { UrlConstants } from '../../constants/UrlConstants';
-import { ValidationRules } from '../../utils/ValidationRules';
+import { UrlConstants } from '../../shared/constants/UrlConstants';
+import { ValidationRules } from '../../shared/utils/ValidationRules';
 
 
 @Component({

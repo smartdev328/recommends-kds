@@ -3,8 +3,8 @@ import { UserSearch } from '../venue.model';
 import { EditVenueService } from './edit-venue.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { VenueConstants, VenueErrorMessage } from '../../constants/VenueConstants';
-import { ValidationRules } from '../../utils/ValidationRules';
+import { VenueConstants, VenueErrorMessage } from '../../shared/constants/VenueConstants';
+import { ValidationRules } from '../../shared/utils/ValidationRules';
 
 
 @Component({

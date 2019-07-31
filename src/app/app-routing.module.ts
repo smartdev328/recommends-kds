@@ -1,20 +1,19 @@
-import { HeaderComponent } from './layout/header.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ComingSoonComponent } from './coming-soon/coming-soon.component';
-import { HelpComponent } from './help/help.component';
-import { DataEntryComponent } from './data-entry/data-entry.component';
-import { ReviewsComponent } from './add-review/reviews.component';
-import { ApproveReviewComponent } from './approve-reviews/approve-review.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { AboutUsComponent } from './about-us/about-us.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { PrivacyComponent } from './privacy/privacy.component';
-import { TermsComponent } from './terms/terms.component';
-import { PersonalizedComponent } from './personalized/personalized.component';
-import { LoginComponent } from './login/login.component';
-import { CallbackComponent } from './layout/callback/callback.component';
+import { HomeComponent } from './component/home/home.component';
+import { ComingSoonComponent } from './component/coming-soon/coming-soon.component';
+import { HelpComponent } from './component/help/help.component';
+import { DataEntryComponent } from './component/data-entry/data-entry.component';
+import { ReviewsComponent } from './component/add-review/reviews.component';
+import { ApproveReviewComponent } from './component/approve-reviews/approve-review.component';
+import { SignUpComponent } from './component/sign-up/sign-up.component';
+import { AboutUsComponent } from './component/about-us/about-us.component';
+import { ContactUsComponent } from './component/contact-us/contact-us.component';
+import { PrivacyComponent } from './component/privacy/privacy.component';
+import { TermsComponent } from './component/terms/terms.component';
+import { PersonalizedComponent } from './component/personalized/personalized.component';
+import { LoginComponent } from './component/login/login.component';
+import { CallbackComponent } from './component/callback/callback.component';
 
 const routes: Routes = [
   {
@@ -24,21 +23,20 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: './event/event.module#EventModule'
+    loadChildren: () => import('./event/event.module').then(mod => mod.EventModule)
   },
   {
     path: '',
-    loadChildren: './camp/camp.module#CampModule'
+    loadChildren: () => import('./camp/camp.module').then(mod => mod.CampModule)
   },
   {
     path: '',
-    loadChildren: './venue/venue.module#VenueModule'
+    loadChildren: () => import('./venue/venue.module').then(mod => mod.VenueModule)
   },
   {
     path: '',
-    loadChildren: './hiking/hiking.module#HikingModule'
+    loadChildren: () => import('./hiking/hiking.module').then(mod => mod.HikingModule)
   },
-
   { path: 'data-entry', component: DataEntryComponent },
   { path: 'add/review', component: ReviewsComponent },
   { path: 'approve-reviews', component: ApproveReviewComponent },
@@ -50,9 +48,7 @@ const routes: Routes = [
   { path: 'privacy', component: PrivacyComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'my-kin', component: PersonalizedComponent },
-  { path: 'my-kin?parent_id=', component: PersonalizedComponent },
   { path: 'terms', component: TermsComponent },
-  { path: 'header', component: HeaderComponent },
   { path: 'login', component: LoginComponent },
   { path: 'callback', component: CallbackComponent },
   { path: 'home', component: HomeComponent },

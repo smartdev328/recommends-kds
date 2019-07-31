@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CampModel } from './camp.model';
-import { CampConstants } from '../../constants/CampConstants';
+import { CampConstants } from '../../shared/constants/CampConstants';
 import { AddCampService } from './add-camp.service';
-import { ValidationRules } from '../../utils/ValidationRules';
+import { ValidationRules } from '../../shared/utils/ValidationRules';
 
 
 @Component({

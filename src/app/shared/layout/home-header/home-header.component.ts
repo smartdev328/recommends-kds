@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { SignUpComponent } from '../sign-up/sign-up.component';
-import { AuthService } from 'app/service/auth.service';
+import { SignUpComponent } from '../../../component/sign-up/sign-up.component';
+import { AuthService } from '@shared/service/auth.service';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 
 @Component({

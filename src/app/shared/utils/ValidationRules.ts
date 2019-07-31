@@ -1,7 +1,7 @@
 import { VenueConstants, VenueErrorMessage } from '../constants/VenueConstants';
 import { CampConstants, CampErrorMessage } from '../constants/CampConstants';
-import { UserSearch } from '../venue/venue.model';
-import { CampModel } from '../camp/add-camp/camp.model';
+import { UserSearch } from '../../venue/venue.model';
+import { CampModel } from '../../camp/add-camp/camp.model';
 export class ValidationRules {
 
     public CAMP_REQUIRED_FIELDS = ['name', 'description', 'url', 'image_url', 'cities',

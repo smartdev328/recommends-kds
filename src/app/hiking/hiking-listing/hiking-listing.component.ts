@@ -3,11 +3,11 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
-import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../constants/AnalyticsConstants';
-import { ReviewsService } from '../../add-review/reviews.service';
-import { HikingTrailConstants, HikingTrailErrorMessage } from '../../constants/HikingTrailConstants';
-import { UrlConstants } from '../../constants/UrlConstants';
-import { ErrorMessage } from '../../constants/CommonConstants';
+import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
+import { ReviewsService } from '../../component/add-review/reviews.service';
+import { HikingTrailConstants, HikingTrailErrorMessage } from '../../shared/constants/HikingTrailConstants';
+import { UrlConstants } from '../../shared/constants/UrlConstants';
+import { ErrorMessage } from '../../shared/constants/CommonConstants';
 import { HikingTrailsListingService } from './hiking-listing.service';
 
 

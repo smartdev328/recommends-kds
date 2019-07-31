@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
-import { UrlConstants } from '../constants/UrlConstants';
-import { ENTITY_TYPES_ENUM, TYPES_ENUM } from '../constants/VenueConstants';
-import { EventErrorMessage, EventConstants } from '../constants/EventConstants';
-import { ReviewsService } from '../add-review/reviews.service';
-import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../constants/AnalyticsConstants';
+import { UrlConstants } from '../shared/constants/UrlConstants';
+import { ENTITY_TYPES_ENUM, TYPES_ENUM } from '../shared/constants/VenueConstants';
+import { EventErrorMessage, EventConstants } from '../shared/constants/EventConstants';
+import { ReviewsService } from '../component/add-review/reviews.service';
+import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../shared/constants/AnalyticsConstants';
 
 
 declare let ga: any;

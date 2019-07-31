@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import{SignUpComponent} from '../sign-up/sign-up.component';
+import { SignUpComponent } from 'app/component/sign-up/sign-up.component';
 
 @Component({
   selector: 'app-layout-header',
@@ -10,14 +9,14 @@ import{SignUpComponent} from '../sign-up/sign-up.component';
 })
 export class HeaderComponent implements OnInit {
   modalRef: BsModalRef;
-  constructor(private modalService: BsModalService) {}
+  constructor(private modalService: BsModalService) { }
 
   public navbarCollapsed = true;
   ngOnInit() {
-    
+
   }
   openModal() {
-    const initialState = {class: 'modal-lg',listener: this};
-    this.modalRef = this.modalService.show(SignUpComponent,initialState);
+    const initialState = { class: 'modal-lg', listener: this };
+    this.modalRef = this.modalService.show(SignUpComponent, initialState);
   }
 }

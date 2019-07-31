@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HikingTrailModel } from './hiking.model';
 import { AddHikingTrailService } from './add-hiking.service';
-import { ValidationRules } from '../../utils/ValidationRules';
+import { ValidationRules } from '../../shared/utils/ValidationRules';
 
 
 @Component({

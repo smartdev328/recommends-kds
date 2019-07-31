@@ -3,9 +3,8 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Title } from '@angular/platform-browser';
-import { UrlConstants } from '../constants/UrlConstants';
-import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../constants/AnalyticsConstants';
 import { ReviewsService } from '../add-review/reviews.service';
+import { UrlConstants } from '@shared/constants/UrlConstants';
 
 @Component({
     selector: 'app-personalized',
@@ -28,7 +27,7 @@ export class PersonalizedComponent implements OnInit {
     start = 0;
     end = 21;
     showMore: Boolean = true;
-    showLayout: boolean = true;
+    showLayout = true;
     public all_events: any;
 
     constructor(private route: ActivatedRoute,
@@ -57,27 +56,26 @@ export class PersonalizedComponent implements OnInit {
     }
 
     get_event_details() {
-        let self = this;
         let url = '';
-        //url = this.URLConstatnts.API_URL + 'subscribed-events/?parent_id=' + this.parent_id;
+        // url = this.URLConstatnts.API_URL + 'subscribed-events/?parent_id=' + this.parent_id;
         const headers = new HttpHeaders()
             .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
-        //this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+        // this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
         //    data = data.replace(/\n/g, '');
         //    data = JSON.parse(data);
         //    this.favorite = data['data'];
         //    this.favorite = this.favorite.slice(0, 3);
         //    this.all_events.favourite.push(this.favorite);
-            // if (this.favorite.length > 0) {
-            //     this.isFav = true;
-            // }
-        //});
+        // if (this.favorite.length > 0) {
+        //     this.isFav = true;
+        // }
+        // });
         url = this.URLConstatnts.API_URL + 'events/?tags=popular&limit=3';
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
             data = data.replace(/\n/g, '');
             data = JSON.parse(data);
             this.popular = data['events'];
-            this.popular = this.popular.slice(0, 3)
+            this.popular = this.popular.slice(0, 3);
             this.all_events.popular.push(this.popular);
 
             // if (this.popular.length > 0) {
@@ -86,7 +84,7 @@ export class PersonalizedComponent implements OnInit {
             // }
         });
 
-        let order_by = 'date_dist_asc'
+        const order_by = 'date_dist_asc';
         url = this.URLConstatnts.API_URL + 'events/?username=' +
             this.parent_id + "&order_by=" + order_by + "&distance=20&limit=3";
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {

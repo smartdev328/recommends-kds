@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { EventConstants } from '../../constants/EventConstants';
+import { EventConstants } from '../../shared/constants/EventConstants';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
     selector: 'app-edit-event',

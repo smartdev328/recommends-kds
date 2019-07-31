@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ApproveVenueReviewsService } from '../../approve-reviews/approve-review.service';
-import { UrlConstants } from '../../constants/UrlConstants';
+import { ApproveVenueReviewsService } from '../../component/approve-reviews/approve-review.service';
+import { UrlConstants } from '../../shared/constants/UrlConstants';
 import { VenuesService } from '../venues/venues.service';
 
 

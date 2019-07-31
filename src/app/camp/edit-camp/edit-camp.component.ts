@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { UrlConstants } from 'app/constants/UrlConstants';
+import { UrlConstants } from '@shared/constants/UrlConstants';
 import { AddCampService } from '../add-camp/add-camp.service';
 import { CampModel } from '../add-camp/camp.model';
-import { CampConstants } from 'app/constants/CampConstants';
-import { ValidationRules } from 'app/utils/ValidationRules';
+import { CampConstants } from '@shared/constants/CampConstants';
+import { ValidationRules } from '@shared/utils/ValidationRules';
 
 
 @Component({

@@ -3,10 +3,10 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
-import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../constants/AnalyticsConstants';
-import { ReviewsService } from '../../add-review/reviews.service';
-import { EventConstants, EventErrorMessage } from '../../constants/EventConstants';
-import { ErrorMessage } from '../../constants/CommonConstants';
+import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
+import { ReviewsService } from '../../component/add-review/reviews.service';
+import { EventConstants, EventErrorMessage } from '../../shared/constants/EventConstants';
+import { ErrorMessage } from '../../shared/constants/CommonConstants';
 import { EventListingService } from './event-listing.service';
 
 

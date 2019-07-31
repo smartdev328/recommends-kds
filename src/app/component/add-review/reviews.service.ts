@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {UrlConstants} from '../constants/UrlConstants';
 import {HttpClient} from '@angular/common/http';
+import { UrlConstants } from '@shared/constants/UrlConstants';
 
 
 @Injectable({
@@ -11,7 +11,7 @@ export class ReviewsService {
   constructor(private http:  HttpClient) { }
 
   add_review (api_input: any) {
-    let url = this.URLConstants.API_URL + 'reviews/';
+    const url = this.URLConstants.API_URL + 'reviews/';
     return this.http.post(url , api_input);
   }
   get_reviews_by_type (type , approved = true, entity_id) {
@@ -20,7 +20,7 @@ export class ReviewsService {
   }
   add_analytics_actions (analytics_input: any) {
 
-    let url = this.URLConstants.API_URL + 'actions/';
+    const url = this.URLConstants.API_URL + 'actions/';
     return this.http.post(url , analytics_input);
   }
   verify_save_action (parent_id: any, type: any,  entity_id: any) {

@@ -5,10 +5,10 @@ import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
 import { HikingTrailModel } from './add-hiking/hiking.model';
 import { HikingTrailService } from './hiking.service';
-import { HikingTrailConstants, HikingTrailErrorMessage } from '../constants/HikingTrailConstants';
-import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../constants/AnalyticsConstants';
+import { HikingTrailConstants, HikingTrailErrorMessage } from '../shared/constants/HikingTrailConstants';
+import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../shared/constants/AnalyticsConstants';
 import { MatTabChangeEvent } from '@angular/material';
-import { ReviewsService } from '../add-review/reviews.service';
+import { ReviewsService } from '../component/add-review/reviews.service';
 import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
 declare let ga: any;
 

@@ -7,11 +7,11 @@ import { Masonry } from 'ng-masonry-grid';
   styleUrls: ['./masonsry-personalise-view.component.css']
 })
 export class MasonsryVenuesPersonaliseViewComponent implements OnInit {
-  showLayout: boolean = false;
-  popular_events: boolean = false;
-  weekend_events: boolean = false;
-  closest_events: boolean = false;
-  favorite_events: boolean = false;
+  showLayout = false;
+  popular_events = false;
+  weekend_events = false;
+  closest_events = false;
+  favorite_events = false;
   public nearby_events_query_params: Object = {};
 
   @Input() events;
@@ -19,19 +19,19 @@ export class MasonsryVenuesPersonaliseViewComponent implements OnInit {
   @Input() end;
   @Input() parent_id;
   _masonry: Masonry;
-masonryItems: any[];
-  constructor(private router: Router) { 
-   
+  masonryItems: any[];
+  constructor(private router: Router) {
+
   }
 
   ngOnInit() {
-    this.nearby_events_query_params = {distance: '20', username: this.parent_id, order_by: 'date_dist_asc'};
+    this.nearby_events_query_params = { distance: '20', username: this.parent_id, order_by: 'date_dist_asc' };
     setTimeout(() => {
       this.showLayout = true;
     }, 2000);
 
     setTimeout(() => {
-      this.favorite_events =  this.events['favourite'][0].length > 0 ? true : false;
+      this.favorite_events = this.events['favourite'][0].length > 0 ? true : false;
     }, 3000);
 
     setTimeout(() => {

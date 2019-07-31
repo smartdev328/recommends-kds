@@ -3,12 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
-import { UrlConstants } from '../../constants/UrlConstants';
-import { ReviewsService } from '../../add-review/reviews.service';
-import { ENTITY_TYPES_ENUM, TYPES_ENUM } from '../../constants/VenueConstants';
-import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../constants/AnalyticsConstants';
+import { UrlConstants } from '../../shared/constants/UrlConstants';
+import { ReviewsService } from '../../component/add-review/reviews.service';
+import { ENTITY_TYPES_ENUM, TYPES_ENUM } from '../../shared/constants/VenueConstants';
+import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
 
-import { CampErrorMessage, CampConstants } from '../../constants/CampConstants';
+import { CampErrorMessage, CampConstants } from '../../shared/constants/CampConstants';
 import { MatTabChangeEvent } from '@angular/material';
 declare let ga: any;
 @Component({

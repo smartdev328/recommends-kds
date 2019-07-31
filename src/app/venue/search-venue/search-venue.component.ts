@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserSearch } from '../venue.model';
 import { SearchVenueService } from './search-venue.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { VenueConstants, VenueErrorMessage } from '../../constants/VenueConstants';
-import { ValidationRules } from '../../utils/ValidationRules';
+import { VenueConstants, VenueErrorMessage } from '../../shared/constants/VenueConstants';
+import { ValidationRules } from '../../shared/utils/ValidationRules';
 
 
 

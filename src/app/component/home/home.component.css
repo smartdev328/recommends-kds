@@ -24,7 +24,7 @@ a {
 }
 
 .home-image{
-    background-image: url("../../assets/web_images/home_banner.jpg");
+    background-image: url("assets/web_images/home_banner.jpg");
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -116,7 +116,7 @@ video {
         color: #FFFFFF;
     }
     .eventsImage{
-        background-image: url("../../assets/web_images/home_events.jpg");
+        background-image: url("assets/web_images/home_events.jpg");
         background-repeat:no-repeat;
         background-size: cover;
         background-position: center;
@@ -126,7 +126,7 @@ video {
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
      }
     .placesImage{
-        background-image: url("../../assets/web_images/home_places.jpg");
+        background-image: url("assets/web_images/home_places.jpg");
         background-repeat:no-repeat;
         background-size: cover;
         background-position: center;
@@ -136,7 +136,7 @@ video {
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
      }
     .campsImage{
-        background-image: url("../../assets/web_images/home_camps.jpg");
+        background-image: url("assets/web_images/home_camps.jpg");
         background-repeat:no-repeat;
         background-size: cover;
         background-position: center;
@@ -146,7 +146,7 @@ video {
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
      }
     .hikingImage {
-        background-image: url("../../assets/web_images/home_hiking.jpg");
+        background-image: url("assets/web_images/home_hiking.jpg");
         background-repeat:no-repeat;
         background-size: cover;
         background-position: center;
@@ -221,7 +221,7 @@ video {
         display: block;
     }
     .eventsImage{
-        background-image: url("../../assets/web_images/home_events.jpg");
+        background-image: url("assets/web_images/home_events.jpg");
         background-repeat:no-repeat;
         background-size: cover;
         background-position: center;
@@ -231,7 +231,7 @@ video {
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
      }
     .placesImage{
-        background-image: url("../../assets/web_images/home_places.jpg");
+        background-image: url("assets/web_images/home_places.jpg");
         background-repeat:no-repeat;
         background-size: cover;
         background-position: center;
@@ -241,7 +241,7 @@ video {
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     }
     .campsImage{
-        background-image: url("../../assets/web_images/home_camps.jpg");
+        background-image: url("assets/web_images/home_camps.jpg");
         background-repeat:no-repeat;
         background-size: cover;
         background-position: center;
@@ -251,7 +251,7 @@ video {
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
      }
     .hikingImage {
-        background-image: url("../../assets/web_images/home_hiking.jpg");
+        background-image: url("assets/web_images/home_hiking.jpg");
         background-repeat:no-repeat;
         background-size: cover;
         background-position: center;
@@ -334,7 +334,7 @@ video {
         display: block;
     }
     .eventsImage{
-        background-image: url("../../assets/web_images/home_events.jpg");
+        background-image: url("assets/web_images/home_events.jpg");
         background-repeat:no-repeat;
         background-size: cover;
         background-position: center;
@@ -344,7 +344,7 @@ video {
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
      }
     .placesImage{
-        background-image: url("../../assets/web_images/home_places.jpg");
+        background-image: url("assets/web_images/home_places.jpg");
         background-repeat:no-repeat;
         background-size: cover;
         background-position: center;
@@ -354,7 +354,7 @@ video {
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     }
     .campsImage{
-        background-image: url("../../assets/web_images/home_camps.jpg");
+        background-image: url("assets/web_images/home_camps.jpg");
         background-repeat:no-repeat;
         background-size: cover;
         background-position: center;
@@ -364,7 +364,7 @@ video {
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
      }
     .hikingImage {
-        background-image: url("../../assets/web_images/home_hiking.jpg");
+        background-image: url("assets/web_images/home_hiking.jpg");
         background-repeat:no-repeat;
         background-size: cover;
         background-position: center;

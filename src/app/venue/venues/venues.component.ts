@@ -5,10 +5,10 @@ import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
 import { UserSearch } from '../venue.model';
 import { VenuesService } from './venues.service';
-import { ENTITY_TYPES_ENUM, TYPES_ENUM, VenueConstants, VenueErrorMessage } from '../../constants/VenueConstants';
-import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../constants/AnalyticsConstants';
+import { ENTITY_TYPES_ENUM, TYPES_ENUM, VenueConstants, VenueErrorMessage } from '../../shared/constants/VenueConstants';
+import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
 import { MatTabChangeEvent } from '@angular/material';
-import { ReviewsService } from '../../add-review/reviews.service';
+import { ReviewsService } from '../../component/add-review/reviews.service';
 declare let ga: any;
 @Component({
   selector: 'app-venues',
