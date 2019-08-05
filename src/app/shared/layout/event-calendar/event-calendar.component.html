@@ -1,0 +1,8 @@
+<div class="calendar-container">
+  <div fxLayout="row">
+    <div class="cal-item" *ngFor="let day of daysOfWeek">{{day}}</div>
+  </div>
+  <div class="calender-content" fxLayout="row wrap">
+    <div class="cal-item day-item" *ngFor="let day of daysOfMonth">{{day}}</div>
+  </div>
+</div>

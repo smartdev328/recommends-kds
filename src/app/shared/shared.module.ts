@@ -10,6 +10,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { HomeHeaderComponent } from './layout/home-header/home-header.component';
 import { MasonsryVenuesPersonaliseViewComponent } from './layout/masonsry-personalise-view/masonsry-personalise-view.component';
 import { ModalModule } from 'ngx-bootstrap';
+import { EventCalendarComponent } from './layout/event-calendar/event-calendar.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { ModalModule } from 'ngx-bootstrap';
     HeaderComponent,
     FooterComponent,
     HomeHeaderComponent,
-    MasonsryVenuesPersonaliseViewComponent
+    MasonsryVenuesPersonaliseViewComponent,
+    EventCalendarComponent
   ],
   exports: [
     CommonModule,
@@ -37,6 +39,7 @@ import { ModalModule } from 'ngx-bootstrap';
     FooterComponent,
     HomeHeaderComponent,
     MasonsryVenuesPersonaliseViewComponent,
+    EventCalendarComponent,
     ModalModule
   ]
 })

@@ -1,0 +1,13 @@
+.calender-content {
+    background-image: linear-gradient(to bottom, #ffd700, #ff9c2b);
+}
+
+.cal-item {
+    padding: 5px;
+    text-align: right;
+    width: calc(100%/7);
+}
+
+.day-item {
+    height: 15vh;
+}

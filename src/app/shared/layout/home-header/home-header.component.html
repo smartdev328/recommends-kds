@@ -8,7 +8,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
-        <ul class="navbar-nav m-auto text-center">
+        <ul class="navbar-nav text-center">
             <li class="nav-item">
                 <a class="nav-link navbar-brand mr-0 Home-header" [routerLinkActive]="['active']"
                     [routerLinkActiveOptions]="{exact: true}"
@@ -30,20 +30,22 @@
             </li>
         </ul>
         <ul class="navbar-nav flex-row justify-content-center flex-nowrap">
-            <li class="nav-item mr-2" hidden><a class="nav-link nav-button"
+            <!-- <li class="nav-item mr-2" hidden><a class="nav-link nav-button"
                     href="https://www.messenger.com/t/kinparenting" target="_blank">
                     <button class="btn path-38 sign_up">CHAT WITH KIN</button>
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item" fxLayout="row" fxLayout.xs="column">
                 <!-- <a class="nav-link nav-button"  [routerLink]="['/','sign-up']">  -->
-                <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'"  (click)="signIn()" *ngIf="!isAuthenticated">
+                <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="signIn()"
+                    *ngIf="!isAuthenticated">
                     <button class="btn path-38 sign_up">SIGN IN</button>
                 </a>
                 <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="openModal()">
                     <button class="btn path-38 sign_up">SUBSCRIBE</button>
                 </a>
-                <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="logout()" *ngIf="isAuthenticated">
+                <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="logout()"
+                    *ngIf="isAuthenticated">
                     <button class="btn path-38 sign_up">SIGN OUT</button>
                 </a>
             </li>

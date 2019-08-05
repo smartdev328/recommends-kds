@@ -85,7 +85,7 @@
   </div>
 </div>
 <div class="container-fluid ">
-  <div class="event-listing-card">
+  <!-- <div class="event-listing-card">
     <h3>Upcoming Events</h3>
         <div *ngIf="isErrorVisible"><div class="error-message-text alert-danger">{{errorMessage}}</div></div>
         <app-masonsry-view *ngIf="newFilterData"  [events]=all_data [start]=start [end]=end></app-masonsry-view>
@@ -95,4 +95,5 @@
           <button mat-button class="detail-buttons mouse-pointer" (click)="loadMore()">MORE EVENTS</button>
       </mat-card-actions>
 
-  </div>
+  </div> -->
+  <app-event-calendar></app-event-calendar>
