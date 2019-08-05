@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatCardModule, MatTabsModule, MatIconModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatCardModule, MatTabsModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, MatDividerModule, MatSlideToggleModule, MatChipsModule } from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BsDropdownModule } from 'ngx-bootstrap';
@@ -12,7 +12,11 @@ const MATERIAL_MODULES = [
   MatTabsModule,
   MatIconModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatInputModule,
+  MatDividerModule,
+  MatSlideToggleModule,
+  MatChipsModule
 ];
 
 @NgModule({

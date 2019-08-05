@@ -14,6 +14,7 @@ import { TermsComponent } from './component/terms/terms.component';
 import { PersonalizedComponent } from './component/personalized/personalized.component';
 import { LoginComponent } from './component/login/login.component';
 import { CallbackComponent } from './component/callback/callback.component';
+import { ProfileComponent } from './component/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'callback', component: CallbackComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: '**', redirectTo: '' },
 ];
 

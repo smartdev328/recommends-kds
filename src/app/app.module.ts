@@ -27,6 +27,7 @@ import { EventModule } from './event/event.module';
 import { HikingModule } from './hiking/hiking.module';
 import { AuthInterceptor } from './shared/service/auth.interceptor';
 import { VenueModule } from './venue/venue.module';
+import { ProfileComponent } from './component/profile/profile.component';
 
 
 
@@ -46,7 +47,8 @@ import { VenueModule } from './venue/venue.module';
     TermsComponent,
     PersonalizedComponent,
     LoginComponent,
-    CallbackComponent
+    CallbackComponent,
+    ProfileComponent
   ],
   imports: [
     AppRoutingModule,

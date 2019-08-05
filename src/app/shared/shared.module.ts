@@ -33,6 +33,10 @@ import { ModalModule } from 'ngx-bootstrap';
     ReactiveFormsModule,
     HttpClientModule,
     MasonsryViewComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeHeaderComponent,
+    MasonsryVenuesPersonaliseViewComponent,
     ModalModule
   ]
 })

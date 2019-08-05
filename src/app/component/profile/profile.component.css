@@ -1,0 +1,24 @@
+.profile-container {
+    margin: 0% 5% 12% 5%;
+    width: 45%;
+}
+
+mat-divider {
+    margin: 20px 0;
+}
+
+.interests {
+    position: relative;
+}
+
+.clear {
+    position: absolute;
+    right: 0;
+    top: -25px;
+}
+
+@media only screen and (max-width: 767px) {
+    .profile-container {
+        width: 90%;
+    }
+}

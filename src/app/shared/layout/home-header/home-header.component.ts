@@ -4,6 +4,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { SignUpComponent } from '../../../component/sign-up/sign-up.component';
 import { AuthService } from '@shared/service/auth.service';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout-home-header',
@@ -20,7 +21,8 @@ export class HomeHeaderComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
 
@@ -35,8 +37,9 @@ export class HomeHeaderComponent implements OnInit {
   }
 
   openModal() {
-    const initialState = { class: 'modal-lg', listener: this };
-    this.modalRef = this.modalService.show(SignUpComponent, initialState);
+    // const initialState = { class: 'modal-lg', listener: this };
+    // this.modalRef = this.modalService.show(SignUpComponent, initialState);
+    this.router.navigate(['profile']);
   }
 
   async signIn() {

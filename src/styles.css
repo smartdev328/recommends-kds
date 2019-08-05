@@ -481,7 +481,7 @@
 }
 
 .cursor{
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .Camp-1-Lorem-Ipsum-is-simply-dummy-text {
@@ -661,6 +661,21 @@
 .add-scroll {
   overflow-y: scroll!important;
   height: 200px;
+}
+
+.btn-yellow{
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.21;
+  letter-spacing: normal;
+  text-align: center;
+  color: #4A4949;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+  background-color: #FFD700;
+  width: 155px;
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 668px) {

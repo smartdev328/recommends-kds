@@ -15,8 +15,7 @@ export class CallbackComponent implements OnInit {
     const client = await this.authService.getAuth0Client();
     const result = await client.handleRedirectCallback();
 
-    const targetRoute =
-      result.appState && result.appState.target ? result.appState.target : '';
+    const targetRoute = result.appState && result.appState.target ? result.appState.target : '';
 
     this.authService.isAuthenticated.next(await client.isAuthenticated());
     this.authService.profile.next(await client.getUser());
