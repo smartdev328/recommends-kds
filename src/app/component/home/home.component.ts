@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +16,18 @@ export class HomeComponent implements OnInit {
   childForm: FormGroup;
   submitted = false;
   public isSuccessVisible: Boolean;
-  constructor(private titleService: Title, private metaService: Meta, private formBuilder: FormBuilder,
-    private fb: FormBuilder, private http: HttpClient) { }
+  public isAuthenticated$: Observable<boolean>;
+  public isAuthen: boolean;
+
+  constructor(
+    private titleService: Title,
+    private metaService: Meta,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    this.isAuthenticated$ = this.authService.isAuthenticated.asObservable();
+    this.authService.isAuthenticated.subscribe((isAuth) => this.isAuthen = isAuth);
     this.titleService.setTitle('Kin - discover and plan family friendly activities around SF bay area');
     this.metaService.addTag({
       name: 'description', content: 'Kin is a smart assistant for parents to discover ' +

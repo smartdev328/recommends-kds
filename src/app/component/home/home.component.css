@@ -30,6 +30,15 @@ a {
     background-size: cover;
 }
 
+.home-personalized-image {
+    height: 400px;
+    background-image: linear-gradient(to bottom, #fed705, #f4f6f7)
+}
+
+.personalized-home {
+    background-color: #f4f6f7;
+}
+
 .categories-section {
     background-color: #4A4949;
     padding: 2em;

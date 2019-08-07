@@ -5,6 +5,7 @@ import { SignUpComponent } from '../../../component/sign-up/sign-up.component';
 import { AuthService } from '@shared/service/auth.service';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-layout-home-header',
@@ -28,9 +29,7 @@ export class HomeHeaderComponent implements OnInit {
 
   async ngOnInit() {
     this.auth0Client = await this.authService.getAuth0Client();
-    this.authService.isAuthenticated.subscribe((value) => {
-      this.isAuthenticated = value;
-    });
+    this.authService.isAuthenticated.subscribe((isAuthenticated) => this.isAuthenticated = isAuthenticated);
     this.authService.profile.subscribe(profile => {
       this.profile = profile;
     });

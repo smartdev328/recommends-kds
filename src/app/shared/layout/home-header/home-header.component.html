@@ -35,7 +35,7 @@
                     <button class="btn path-38 sign_up">CHAT WITH KIN</button>
                 </a>
             </li> -->
-            <li class="nav-item" fxLayout="row" fxLayout.xs="column">
+            <li class="nav-item" fxLayout="row" fxLayout.xs="column" *ngIf="isAuthenticated != null">
                 <!-- <a class="nav-link nav-button"  [routerLink]="['/','sign-up']">  -->
                 <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="signIn()"
                     *ngIf="!isAuthenticated">

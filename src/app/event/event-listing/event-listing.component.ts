@@ -8,6 +8,8 @@ import { ReviewsService } from '../../component/add-review/reviews.service';
 import { EventConstants, EventErrorMessage } from '../../shared/constants/EventConstants';
 import { ErrorMessage } from '../../shared/constants/CommonConstants';
 import { EventListingService } from './event-listing.service';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
 
 
 declare let ga: any;
@@ -69,6 +71,8 @@ export class EventListingComponent implements OnInit {
   public filterErrorMessage: String;
   public search_query: String;
   public username: String;
+  public isAuthenticated$: Observable<boolean>;
+  public isCalendarView: boolean;
 
   public eventConstatnts = new EventConstants();
   public eventErrorMessage = new EventErrorMessage();
@@ -76,14 +80,15 @@ export class EventListingComponent implements OnInit {
   public categoryList = this.eventConstatnts.PRIMARY_CATEGORY;
   public locations = this.eventConstatnts.LOCATIONS;
 
-  constructor(private route: ActivatedRoute,
-    private http: HttpClient,
+  constructor(
+    private route: ActivatedRoute,
     private datePipe: DatePipe,
     private router: Router,
     private titleService: Title,
     private metaService: Meta,
     private reviewService: ReviewsService,
-    private eventListingService: EventListingService
+    private eventListingService: EventListingService,
+    private authService: AuthService
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -102,6 +107,7 @@ export class EventListingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAuthenticated$ = this.authService.isAuthenticated.asObservable();
     this.titleService.setTitle('Family friendly events around SF bay area');
     this.metaService.addTag({ name: 'description', content: 'Family friendly events around SF bay area' });
     this.metaService.addTag({ name: 'keywords', content: 'Family friendly events, kids events, SF bay area kids events' });
@@ -112,6 +118,7 @@ export class EventListingComponent implements OnInit {
     this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/family-friendly-events-near-me' });
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
 
+    this.isCalendarView = false;
     this.isErrorVisible = false;
     this.isFilterErrorVisible = false;
     this.errorMessage = '';

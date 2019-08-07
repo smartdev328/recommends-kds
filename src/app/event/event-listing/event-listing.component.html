@@ -1,99 +1,121 @@
 <app-layout-header></app-layout-header>
-<div class="banner-section events-banner">
-  <div class="banner-mobile">
-    <img src="../../assets/web_images/home_events.jpg" />
-    <h1 class="text-center heading-mobile">Family-friendly <span>Events</span> around you</h1>
-  </div>  
+<ng-container *ngIf="isAuthenticated$ | async as isAuthenticated">
+  <div class="banner-section events-banner" *ngIf="!isAuthenticated">
+    <div class="banner-mobile">
+      <img src="../../assets/web_images/home_events.jpg" />
+      <h1 class="text-center heading-mobile">Family-friendly <span>Events</span> around you</h1>
+    </div>
 
-  <div class="banner-wrapper">
-    <h1 class="text-center heading-desktop">Family-friendly <span>Events</span> around you</h1>
-    <div class="filter-box">
-      <div class="row filter-box-content">
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-1">
-          <div class="input-group">
-              <input type="text" class="form-control keyword-text search-style"
-               placeholder="Search" [(ngModel)]="keyword">
+    <div class="banner-wrapper">
+      <h1 class="text-center heading-desktop">Family-friendly <span>Events</span> around you</h1>
+      <div class="filter-box">
+        <div class="row filter-box-content">
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-1">
+            <div class="input-group">
+              <input type="text" class="form-control keyword-text search-style" placeholder="Search"
+                [(ngModel)]="keyword">
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-2 col-sm-6 col-xs-2 mb-2">
+          <div class="col-lg-3 col-md-2 col-sm-6 col-xs-2 mb-2">
             <div class="dropdown">
-              <button class="btn btn-lg btn-default filter-dropdown" type="button" 
-              id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" 
-              aria-expanded="false">
-                  {{cat_label}}
+              <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{cat_label}}
                 <span class="hairline-down">
-                    <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
-                    </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12"
+                    viewBox="0 0 24 24">
+                    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
+                  </svg>
                 </span>
               </button>
-              <div class="dropdown-menu add-scroll" 
-              aria-labelledby="dropdownMenuButton">
-                <label class="dropdown-item cursor"
-                (click)="onCategoryChange(each_cat)" *ngFor="let each_cat
-                of categoryList">{{each_cat.name}}</label>
+              <div class="dropdown-menu add-scroll" aria-labelledby="dropdownMenuButton">
+                <label class="dropdown-item cursor" (click)="onCategoryChange(each_cat)" *ngFor="let each_cat
+                  of categoryList">{{each_cat.name}}</label>
               </div>
             </div>
           </div>
           <div class="col-lg-2 col-md-2 col-sm-6 col-xs-2 mb-2">
             <div class="dropdown">
-              <button class="btn btn-lg btn-default filter-dropdown" type="button" 
-              id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" 
-              aria-expanded="false">
-              {{loc_label}}
+              <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{loc_label}}
                 <span class="hairline-down">
-                    <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
-                    </svg>
-                  </span>
+                  <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12"
+                    viewBox="0 0 24 24">
+                    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
+                  </svg>
+                </span>
               </button>
-              <div class="dropdown-menu add-scroll" 
-              aria-labelledby="dropdownMenuButton">
-                <label class="dropdown-item cursor"
-                (click)="onLocationChange(each_location)" *ngFor="let each_location
-                of locations">{{each_location.name}}</label>
+              <div class="dropdown-menu add-scroll" aria-labelledby="dropdownMenuButton">
+                <label class="dropdown-item cursor" (click)="onLocationChange(each_location)" *ngFor="let each_location
+                  of locations">{{each_location.name}}</label>
               </div>
             </div>
           </div>
           <div class="col-lg-2 col-md-2 col-sm-6 col-xs-2 mb-2">
-            
-                  <div class="dropdown">
-                      <button class="btn btn-lg btn-default filter-dropdown" type="button" 
-                      id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" 
-                      aria-expanded="false">
-                          {{date_label}}
-                        <span class="hairline-down">
-                           <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
-                           </svg>
-                          </span>
-                      </button>
-                      <div class="dropdown-menu add-scroll" 
-                      aria-labelledby="dropdownMenuButton">
-                        <label class="dropdown-item cursor"
-                        (click)="onDateChange(data)" *ngFor="let data
-                        of dateFilter">{{data.desc}}</label>
-                      </div>
-                    </div>
+
+            <div class="dropdown">
+              <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{date_label}}
+                <span class="hairline-down">
+                  <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12"
+                    viewBox="0 0 24 24">
+                    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
+                  </svg>
+                </span>
+              </button>
+              <div class="dropdown-menu add-scroll" aria-labelledby="dropdownMenuButton">
+                <label class="dropdown-item cursor" (click)="onDateChange(data)" *ngFor="let data
+                          of dateFilter">{{data.desc}}</label>
+              </div>
+            </div>
           </div>
           <div class="col-xs-1 search-button">
-              <svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-icons cursor" (click)="filter_event_data()">
-                <path d="M 5 3 C 3.895 3 3 3.895 3 5 L 3 19 C 3 20.105 3.895 21 5 21 L 19 21 C 20.105 21 21 20.105 21 19 L 21 5 C 21 3.895 20.105 3 19 3 L 5 3 z M 11 6 C 13.761 6 16 8.239 16 11 C 16 12.019 15.691969 12.963906 15.167969 13.753906 L 17.707031 16.292969 C 18.098031 16.682969 18.098031 17.317031 17.707031 17.707031 C 17.316031 18.098031 16.682969 18.098031 16.292969 17.707031 L 13.753906 15.167969 C 12.963906 15.691969 12.019 16 11 16 C 8.239 16 6 13.761 6 11 C 6 8.239 8.239 6 11 6 z M 11 8 A 3 3 0 0 0 8 11 A 3 3 0 0 0 11 14 A 3 3 0 0 0 14 11 A 3 3 0 0 0 11 8 z" style="fill: #FFD700;"></path>
+            <svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+              class="svg-icons cursor" (click)="filter_event_data()">
+              <path
+                d="M 5 3 C 3.895 3 3 3.895 3 5 L 3 19 C 3 20.105 3.895 21 5 21 L 19 21 C 20.105 21 21 20.105 21 19 L 21 5 C 21 3.895 20.105 3 19 3 L 5 3 z M 11 6 C 13.761 6 16 8.239 16 11 C 16 12.019 15.691969 12.963906 15.167969 13.753906 L 17.707031 16.292969 C 18.098031 16.682969 18.098031 17.317031 17.707031 17.707031 C 17.316031 18.098031 16.682969 18.098031 16.292969 17.707031 L 13.753906 15.167969 C 12.963906 15.691969 12.019 16 11 16 C 8.239 16 6 13.761 6 11 C 6 8.239 8.239 6 11 6 z M 11 8 A 3 3 0 0 0 8 11 A 3 3 0 0 0 11 14 A 3 3 0 0 0 14 11 A 3 3 0 0 0 11 8 z"
+                style="fill: #FFD700;"></path>
             </svg>
           </div>
-          <button type="button" class="btn btn-link cursor clear-search" (click) = "clear_filter_data()">Clear Search</button>
-          </div>
-        <div *ngIf="isFilterErrorVisible"><div class="error-message-text alert-danger">{{filterErrorMessage}}</div></div>
+          <button type="button" class="btn btn-link cursor clear-search" (click)="clear_filter_data()">Clear
+            Search</button>
+        </div>
+        <div *ngIf="isFilterErrorVisible">
+          <div class="error-message-text alert-danger">{{filterErrorMessage}}</div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<div class="container-fluid ">
-  <!-- <div class="event-listing-card">
-    <h3>Upcoming Events</h3>
-        <div *ngIf="isErrorVisible"><div class="error-message-text alert-danger">{{errorMessage}}</div></div>
-        <app-masonsry-view *ngIf="newFilterData"  [events]=all_data [start]=start [end]=end></app-masonsry-view>
+  <div class="container-fluid ">
+    <div class="event-listing-card">
+      <h3 *ngIf="!isAuthenticated">Upcoming Events</h3>
+      <div *ngIf="isAuthenticated" fxLayout="column">
+        <div>
+          <mat-slide-toggle style="float: right" [(ngModel)]="isCalendarView">Calendar view</mat-slide-toggle>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <h3>Nearby Events</h3>
+          <mat-chip-list>
+            <mat-chip>Papadum</mat-chip>
+            <mat-chip>Naan</mat-chip>
+            <mat-chip>Dal</mat-chip>
+          </mat-chip-list>
+        </div>
+      </div>
+      <div *ngIf="isErrorVisible">
+        <div class="error-message-text alert-danger">{{errorMessage}}</div>
+      </div>
+      <div *ngIf="!isCalendarView">
+        <app-masonsry-view *ngIf="newFilterData" [events]=all_data [start]=start [end]=end></app-masonsry-view>
         <app-masonsry-view *ngIf="oldFilterData" [events]=all_data [start]=start [end]=end></app-masonsry-view>
 
-      <mat-card-actions class="detail-buttons-space">
+        <mat-card-actions class="detail-buttons-space">
           <button mat-button class="detail-buttons mouse-pointer" (click)="loadMore()">MORE EVENTS</button>
-      </mat-card-actions>
-
-  </div> -->
-  <app-event-calendar></app-event-calendar>
+        </mat-card-actions>
+      </div>
+      <app-event-calendar *ngIf="isCalendarView"></app-event-calendar>
+    </div>
+  </div>
+</ng-container>

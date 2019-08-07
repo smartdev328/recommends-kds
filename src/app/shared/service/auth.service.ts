@@ -8,7 +8,7 @@ import { environment } from 'environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  isAuthenticated = new BehaviorSubject(false);
+  isAuthenticated = new BehaviorSubject(null);
   profile = new BehaviorSubject<any>(null);
   token = new BehaviorSubject<any>(null);
 
@@ -16,6 +16,10 @@ export class AuthService {
 
   // Auth0 application configuration
   config = environment.auth0Config;
+
+  constructor() {
+    this.getAuth0Client();
+  }
 
   /**
    * Gets the Auth0Client instance.
