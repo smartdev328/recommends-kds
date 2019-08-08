@@ -18,7 +18,7 @@ export class AuthService {
   config = environment.auth0Config;
 
   constructor() {
-    this.getAuth0Client();
+    // this.getAuth0Client();
   }
 
   /**

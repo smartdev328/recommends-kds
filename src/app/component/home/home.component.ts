@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
   submitted = false;
   public isSuccessVisible: Boolean;
   public isAuthenticated$: Observable<boolean>;
-  public isAuthen: boolean;
 
   constructor(
     private titleService: Title,
@@ -27,7 +26,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.isAuthenticated$ = this.authService.isAuthenticated.asObservable();
-    this.authService.isAuthenticated.subscribe((isAuth) => this.isAuthen = isAuth);
     this.titleService.setTitle('Kin - discover and plan family friendly activities around SF bay area');
     this.metaService.addTag({
       name: 'description', content: 'Kin is a smart assistant for parents to discover ' +

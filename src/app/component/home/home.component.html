@@ -1,19 +1,18 @@
 <app-layout-home-header></app-layout-home-header>
-<ng-container *ngIf="isAuthenticated$ | async as isAuthenticated">
-    <div class="container-fluid" *ngIf="!isAuthenticated">
-        <div class="home-image-div home-image">
-            <div class="col-md-12">
-                <div class="info">
-                    <h1>Your personalized assistant to discover and plan family-friendly experiences</h1>
-                </div>
-                <div class="row">
-                    <div class="col"><button class="btn sign_up"><a href="https://www.messenger.com/t/kinparenting"
-                                target="_blank" class="chat_button_1">CHAT ON MESSENGER</a></button></div>
-                </div>
-                <!-- <div><h1 class="main-heading">Kin</h1></div> -->
+<div class="container-fluid" *ngIf="(isAuthenticated$ | async) == false">
+    <div class="home-image-div home-image">
+        <div class="col-md-12">
+            <div class="info">
+                <h1>Your personalized assistant to discover and plan family-friendly experiences</h1>
             </div>
+            <div class="row">
+                <div class="col"><button class="btn sign_up"><a href="https://www.messenger.com/t/kinparenting"
+                            target="_blank" class="chat_button_1">CHAT ON MESSENGER</a></button></div>
+            </div>
+            <!-- <div><h1 class="main-heading">Kin</h1></div> -->
         </div>
-        <!-- <div class="row homeImage">
+    </div>
+    <!-- <div class="row homeImage">
                   <div class="banner-heading">
                     <br>
                         <div class="info">
@@ -22,75 +21,132 @@
                   </div>
               </div>
               -->
-        <div class="categories-section">
+    <div class="categories-section">
+        <div class="row">
+            <div class="col-sm-6">
+                <!--events-->
+                <a [routerLink]="['/','family-friendly-events-near-me']">
+                    <div class="eventsImage">
+                        <label class="category-label">Events</label>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6">
+                <!--places-->
+                <a [routerLink]="['/','family-friendly-places-near-me']">
+                    <div class="placesImage">
+                        <label class="category-label">Places</label>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <!--camps-->
+                <a [routerLink]="['/','camps-near-me']">
+                    <div class="campsImage">
+                        <label class="category-label">Camps</label>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6">
+                <!--hiking-->
+                <a [routerLink]="['/','family-friendly-hikes-near-me']">
+                    <div class="hikingImage">
+                        <label class="category-label">Hiking</label>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row video-section">
+        <div class="col-md-6">
+            <video controls loop muted>
+                <source src="../../assets/iphone%20frame_3.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="col-md-6 meet-kin-descrp">
+            <h3>Get recommendations</h3>
+            <p>Events, places, camps and more tailored for your family</p>
+            <br>
+            <br>
+            <h3>Get the details</h3>
+            <p>Is there easy parking? Do I need to buy tickets now? Get all the information you care about as a
+                parent
+                in just one place</p>
+            <br>
+            <br>
+            <h3>Get things done</h3>
+            <p>Share with friends, add to calendar, save, subscribe to events at your favorite places... whatever it
+                takes to make it happen whether it is a family outing or a playdate</p>
+            <button class="btn chat_button_2"><a href="https://www.messenger.com/t/kinparenting" target="_blank">CHAT ON
+                    MESSENGER NOW</a></button>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" *ngIf="isAuthenticated$ | async">
+    <div class="home-image-div home-personalized-image">
+        <div class="p-5" fxLayout="row wrap">
+            <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
+                <p class="title">Try the Kin chatbot on Messenger</p>
+                <button fxHide.lt-md="true" class="btn go-to-messenger">
+                    <a href="https://www.messenger.com/t/kinparenting" target="_blank">GO TO MESSENGER </a>
+                </button>
+            </div>
+            <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column">
+                <div class="my-message py-3">
+                    <span>hi</span>
+                </div>
+                <div class="his-message py-3" fxLayout="row" fxLayoutAlign="start end">
+                    <img class="mx-1" src="assets/web_images/new_kin_logo_fin_sm.jpg" width="30">
+                    <div>Hi Ana! What are you looking for today?</div>
+                </div>
+                <div class="my-message py-3">
+                    <span>Events</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <button fxHide.gt-sm="true" class="btn go-to-messenger">
+                        <a href="https://www.messenger.com/t/kinparenting" target="_blank">GO TO MESSENGER </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="category p-3 m-3">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-md-3">
                     <!--events-->
                     <a [routerLink]="['/','family-friendly-events-near-me']">
                         <div class="eventsImage">
-                            <label class="category-label">Events</label>
+                            <label class="category-label-sm">Events</label>
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-md-3">
                     <!--places-->
                     <a [routerLink]="['/','family-friendly-places-near-me']">
                         <div class="placesImage">
-                            <label class="category-label">Places</label>
+                            <label class="category-label-sm">Places</label>
                         </div>
                     </a>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <!--camps-->
+                <div class="col-md-3">
+                    <!--events-->
                     <a [routerLink]="['/','camps-near-me']">
                         <div class="campsImage">
-                            <label class="category-label">Camps</label>
+                            <label class="category-label-sm">Events</label>
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-6">
-                    <!--hiking-->
+                <div class="col-md-3">
+                    <!--places-->
                     <a [routerLink]="['/','family-friendly-hikes-near-me']">
                         <div class="hikingImage">
-                            <label class="category-label">Hiking</label>
+                            <label class="category-label-sm">Places</label>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
-        <div class="row video-section">
-            <div class="col-md-6">
-                <video controls loop muted>
-                    <source src="../../assets/iphone%20frame_3.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="col-md-6 meet-kin-descrp">
-                <h3>Get recommendations</h3>
-                <p>Events, places, camps and more tailored for your family</p>
-                <br>
-                <br>
-                <h3>Get the details</h3>
-                <p>Is there easy parking? Do I need to buy tickets now? Get all the information you care about as a
-                    parent
-                    in just one place</p>
-                <br>
-                <br>
-                <h3>Get things done</h3>
-                <p>Share with friends, add to calendar, save, subscribe to events at your favorite places... whatever it
-                    takes to make it happen whether it is a family outing or a playdate</p>
-                <button class="btn chat_button_2"><a href="https://www.messenger.com/t/kinparenting"
-                        target="_blank">CHAT ON MESSENGER NOW</a></button>
-            </div>
-        </div>
     </div>
-    <div class="container-fluid" *ngIf="isAuthenticated">
-        <div class="home-image-div personalized-home">
-            <div class="home-personalized-image">
-
-            </div>
-        </div>
-    </div>
-</ng-container>
+</div>
 <app-layout-footer></app-layout-footer>
