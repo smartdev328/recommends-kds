@@ -1,6 +1,6 @@
 /* Styles for the active tab label */
 img {
-    width: auto;
+    /* width: auto; */
     max-width: 100%;
 }
 .mat-tab-label.mat-tab-label-active {

@@ -104,10 +104,10 @@ export class EventListingComponent implements OnInit {
     this.loc_label = 'Location';
     this.date_label = 'Date';
     this.select_cat_id = '';
+    this.isAuthenticated$ = this.authService.isAuthenticated.asObservable();
   }
 
   ngOnInit() {
-    this.isAuthenticated$ = this.authService.isAuthenticated.asObservable();
     this.titleService.setTitle('Family friendly events around SF bay area');
     this.metaService.addTag({ name: 'description', content: 'Family friendly events around SF bay area' });
     this.metaService.addTag({ name: 'keywords', content: 'Family friendly events, kids events, SF bay area kids events' });

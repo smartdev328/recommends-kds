@@ -41,13 +41,25 @@
                     *ngIf="!isAuthenticated">
                     <button class="btn path-38 sign_up">SIGN IN</button>
                 </a>
-                <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="openModal()">
+                <div class="dropdown" *ngIf="isAuthenticated">
+                    <div class="cursor" fxLayout="row" data-toggle="dropdown">
+                        <img src="assets/web_images/profile.png" alt="User" width="32">
+                        <mat-icon aria-hidden="false" aria-label="">keyboard_arrow_down</mat-icon>
+                    </div>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li>Reset password</li>
+                        <mat-divider></mat-divider>
+                        <mat-divider></mat-divider>
+                        <li (click)="logout()">Logout</li>
+                    </ul>
+                </div>
+                <!-- <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="openModal()">
                     <button class="btn path-38 sign_up">SUBSCRIBE</button>
-                </a>
-                <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="logout()"
+                </a> -->
+                <!-- <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="logout()"
                     *ngIf="isAuthenticated">
                     <button class="btn path-38 sign_up">SIGN OUT</button>
-                </a>
+                </a> -->
             </li>
         </ul>
     </div>

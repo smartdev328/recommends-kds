@@ -1,6 +1,5 @@
-<app-layout-header></app-layout-header>
-<ng-container *ngIf="isAuthenticated$ | async as isAuthenticated">
-  <div class="banner-section events-banner" *ngIf="!isAuthenticated">
+<ng-container>
+  <div class="banner-section events-banner" *ngIf="(isAuthenticated$ | async) == false">
     <div class="banner-mobile">
       <img src="../../assets/web_images/home_events.jpg" />
       <h1 class="text-center heading-mobile">Family-friendly <span>Events</span> around you</h1>
@@ -90,8 +89,8 @@
   </div>
   <div class="container-fluid ">
     <div class="event-listing-card">
-      <h3 *ngIf="!isAuthenticated">Upcoming Events</h3>
-      <div *ngIf="isAuthenticated" fxLayout="column">
+      <h3 *ngIf="(isAuthenticated$ | async) == false">Upcoming Events</h3>
+      <div *ngIf="isAuthenticated$ | async" fxLayout="column">
         <div>
           <mat-slide-toggle style="float: right" [(ngModel)]="isCalendarView">Calendar view</mat-slide-toggle>
         </div>

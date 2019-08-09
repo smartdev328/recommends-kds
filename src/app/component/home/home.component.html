@@ -1,4 +1,3 @@
-<app-layout-home-header></app-layout-home-header>
 <div class="container-fluid" *ngIf="(isAuthenticated$ | async) == false">
     <div class="home-image-div home-image">
         <div class="col-md-12">
@@ -98,7 +97,7 @@
                     <span>hi</span>
                 </div>
                 <div class="his-message py-3" fxLayout="row" fxLayoutAlign="start end">
-                    <img class="mx-1" src="assets/web_images/new_kin_logo_fin_sm.jpg" width="30">
+                    <img class="mx-1" src="assets/web_images/messenger-profile.png" width="30">
                     <div>Hi Ana! What are you looking for today?</div>
                 </div>
                 <div class="my-message py-3">
@@ -133,7 +132,7 @@
                     <!--events-->
                     <a [routerLink]="['/','camps-near-me']">
                         <div class="campsImage">
-                            <label class="category-label-sm">Events</label>
+                            <label class="category-label-sm">Camps</label>
                         </div>
                     </a>
                 </div>
@@ -141,7 +140,7 @@
                     <!--places-->
                     <a [routerLink]="['/','family-friendly-hikes-near-me']">
                         <div class="hikingImage">
-                            <label class="category-label-sm">Places</label>
+                            <label class="category-label-sm">Hiking</label>
                         </div>
                     </a>
                 </div>
