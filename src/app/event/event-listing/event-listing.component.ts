@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
@@ -16,8 +15,7 @@ declare let ga: any;
 @Component({
   selector: 'app-event-listing',
   templateUrl: './event-listing.component.html',
-  styleUrls: ['./event-listing.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./event-listing.component.css']
 })
 export class EventListingComponent implements OnInit {
 

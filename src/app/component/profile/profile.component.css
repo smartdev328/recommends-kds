@@ -17,6 +17,10 @@ mat-divider {
     top: -25px;
 }
 
+mat-form-field {
+    font-family: Montserrat;
+}
+
 @media only screen and (max-width: 767px) {
     .profile-container {
         width: 90%;
