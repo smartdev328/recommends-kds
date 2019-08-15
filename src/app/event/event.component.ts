@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
-import { UrlConstants } from '../shared/constants/UrlConstants';
 import { ENTITY_TYPES_ENUM, TYPES_ENUM } from '../shared/constants/VenueConstants';
 import { EventErrorMessage, EventConstants } from '../shared/constants/EventConstants';
 import { ReviewsService } from '../component/add-review/reviews.service';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../shared/constants/AnalyticsConstants';
+import { API_URL } from '@shared/constants/UrlConstants';
 
 
 declare let ga: any;
@@ -32,7 +32,6 @@ export class EventComponent implements OnInit {
   public reviews_present: Boolean;
   public eventErrorMessage = new EventErrorMessage();
   public eventConstatnts = new EventConstants();
-  public URLConstatnts = new UrlConstants();
   public eventCatString: String;
   selectedIndex;
   class: any = false;
@@ -63,7 +62,7 @@ export class EventComponent implements OnInit {
 
   get_event_details() {
     // let url = 'https://kin-api.kinparenting.com/events/' + this.event_id;
-    const url = this.URLConstatnts.API_URL + 'events/' + this.event_id + '/';
+    const url = API_URL + 'events/' + this.event_id + '/';
     const headers = new HttpHeaders();
     this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
       data = data.replace(/\n/g, "");
@@ -218,7 +217,7 @@ export class EventComponent implements OnInit {
 
   calendar_redirects() {
     this.add_analytics_data('CALENDAR');
-    const calendar_url = this.URLConstatnts.API_URL + 'cal_redirect/?event_id=' + this.event_id;
+    const calendar_url = API_URL + 'cal_redirect/?event_id=' + this.event_id;
     window.open(calendar_url);
   }
 

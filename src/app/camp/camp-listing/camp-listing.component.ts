@@ -7,8 +7,8 @@ import { ReviewsService } from '../../component/add-review/reviews.service';
 import { ACTION, ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM } from '../../shared/constants/AnalyticsConstants';
 import { CampConstants, CampErrorMessage } from '../../shared/constants/CampConstants';
 import { ErrorMessage } from '../../shared/constants/CommonConstants';
-import { UrlConstants } from '../../shared/constants/UrlConstants';
 import { CampListingService } from './camp-listing.service';
+import { API_URL } from '@shared/constants/UrlConstants';
 declare let ga: any;
 @Component({
   selector: 'app-camp-listing',
@@ -29,7 +29,6 @@ export class CampListingComponent implements OnInit {
   camp_explore;
   isExplore: Boolean;
   public category: String;
-  public URLConstatnts = new UrlConstants();
   public campErrorMessage = new CampErrorMessage();
   public commonErrorMessage = new ErrorMessage();
   showMore: Boolean = false;
@@ -102,11 +101,11 @@ export class CampListingComponent implements OnInit {
   get_camps_details() {
     let url = '';
     if (this.keyword !== '' && this.keyword !== undefined) {
-      url = this.URLConstatnts.API_URL + 'camps/?limit=50&q=' + this.keyword.trim();
+      url = API_URL + 'camps/?limit=50&q=' + this.keyword.trim();
     } else if (this.category !== '' && this.category !== undefined) {
-      url = this.URLConstatnts.API_URL + 'camps/?limit=80&category=' + this.category.trim();
+      url = API_URL + 'camps/?limit=80&category=' + this.category.trim();
     } else {
-      url = this.URLConstatnts.API_URL + 'camps/?limit=50';
+      url = API_URL + 'camps/?limit=50';
     }
     this.camp_explore = '';
     this.isExplore = true;
@@ -191,11 +190,11 @@ export class CampListingComponent implements OnInit {
       let url = '';
       this.category = this.selected_cat;
       if (this.category !== '' && this.category !== undefined && this.keyword !== undefined && this.keyword !== '') {
-        url = this.URLConstatnts.API_URL + 'camps/?limit=80&q=' + this.keyword.trim() + '&category=' + this.category.trim();
+        url = API_URL + 'camps/?limit=80&q=' + this.keyword.trim() + '&category=' + this.category.trim();
       } else if ((this.category === undefined || this.category === '') && this.keyword !== undefined && this.keyword !== '') {
-        url = this.URLConstatnts.API_URL + 'camps/?limit=80&q=' + this.keyword.trim();
+        url = API_URL + 'camps/?limit=80&q=' + this.keyword.trim();
       } else if (this.category !== '' && this.category !== undefined) {
-        url = this.URLConstatnts.API_URL + 'camps/?limit=80&category=' + this.category.trim();
+        url = API_URL + 'camps/?limit=80&category=' + this.category.trim();
       }
       this.camp_explore = [];
       this.showMore = false;

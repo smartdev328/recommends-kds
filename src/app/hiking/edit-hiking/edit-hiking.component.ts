@@ -3,8 +3,8 @@ import { HikingTrailModel } from '../add-hiking/hiking.model';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { UrlConstants } from '../../shared/constants/UrlConstants';
 import { ValidationRules } from '../../shared/utils/ValidationRules';
+import { API_URL } from '@shared/constants/UrlConstants';
 
 
 @Component({
@@ -15,7 +15,6 @@ import { ValidationRules } from '../../shared/utils/ValidationRules';
 export class EditHikingTrailComponent implements OnInit {
   public edit_page_hiking_trail_id: any;
   public hiking_trail_id: any;
-  public URLConstants = new UrlConstants();
   public hikingTrailModel: any;
   public categoryList: any;
   public hikingTrailConstants: any;
@@ -41,7 +40,7 @@ export class EditHikingTrailComponent implements OnInit {
   }
 
   get_hiking_trail_details() {
-    const url = this.URLConstants.API_URL + 'hiking-trails/' + this.hiking_trail_id + '/';
+    const url = API_URL + 'hiking-trails/' + this.hiking_trail_id + '/';
 
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');

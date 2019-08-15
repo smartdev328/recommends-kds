@@ -2,10 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CampConstants } from '@shared/constants/CampConstants';
-import { UrlConstants } from '@shared/constants/UrlConstants';
 import { ValidationRules } from '@shared/utils/ValidationRules';
 import { AddCampService } from '../add-camp/add-camp.service';
 import { CampModel } from '../add-camp/camp.model';
+import { API_URL } from '@shared/constants/UrlConstants';
 
 @Component({
   selector: 'app-edit-camp',
@@ -15,7 +15,6 @@ import { CampModel } from '../add-camp/camp.model';
 export class EditCampComponent implements OnInit {
   public edit_page_camp_id: any;
   public camp_id: any;
-  public URLConstatnts = new UrlConstants();
   public campModel: any;
   public categoryList: any;
   public campConstants: any;
@@ -47,7 +46,7 @@ export class EditCampComponent implements OnInit {
   }
 
   get_camp_details() {
-    const url = this.URLConstatnts.API_URL + 'camps/' + this.camp_id + '/';
+    const url = API_URL + 'camps/' + this.camp_id + '/';
 
     const headers = new HttpHeaders()
       .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');

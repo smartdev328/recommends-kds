@@ -3,13 +3,13 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
-import { UrlConstants } from '../../shared/constants/UrlConstants';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
 import { ReviewsService } from '../../component/add-review/reviews.service';
 import { EventConstants } from '../../shared/constants/EventConstants';
 import { VenueConstants, VenueErrorMessage } from '../../shared/constants/VenueConstants';
 import { ErrorMessage } from '../../shared/constants/CommonConstants';
 import { VenueListingService } from './venue-listing.service';
+import { API_URL } from '@shared/constants/UrlConstants';
 
 declare let ga: any;
 @Component({
@@ -21,7 +21,6 @@ export class VenueListingComponent implements OnInit {
   venues_list;
   isExplore = false;
   public category: string;
-  public URLConstatnts = new UrlConstants();
   public locations: any;
   showMore = false;
   start = 0;
@@ -101,11 +100,11 @@ export class VenueListingComponent implements OnInit {
     } else {
       let url = '';
       if (this.keyword !== '' && this.keyword !== undefined) {
-        url = 'https://kin-api-dev.kinparenting.com/venues/?q=' + this.keyword.trim();
+        url = API_URL + 'venues/?q=' + this.keyword.trim();
       } else if (this.category === undefined || this.category === '') {
-        url = 'https://kin-api-dev.kinparenting.com/venues/?limit=100';
+        url = API_URL + 'venues/?limit=100';
       } else {
-        url = 'https://kin-api-dev.kinparenting.com/venues/?categories=' + this.category;
+        url = API_URL + 'venues/?categories=' + this.category;
       }
       this.isExplore = true;
       const headers = new HttpHeaders();

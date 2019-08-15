@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApproveVenueReviewsService } from '../../component/approve-reviews/approve-review.service';
-import { UrlConstants } from '../../shared/constants/UrlConstants';
 import { VenuesService } from '../venues/venues.service';
+import { API_URL } from '@shared/constants/UrlConstants';
 
 
 @Component({
@@ -16,7 +16,6 @@ export class SubscribeVenueComponent implements OnInit {
   public isErrorVisible: Boolean;
   public errorMessage: String;
   public selected_row: any;
-  public URLConstatnts = new UrlConstants();
   public parent_id: any;
   public venue_id: any;
   public rows: any;
@@ -65,13 +64,7 @@ export class SubscribeVenueComponent implements OnInit {
   }
 
   get_subscribed_venues() {
-    let url = '';
-
-    if (this.parent_id === null) {
-      url = this.URLConstatnts.API_URL + 'subscribe-venue/';
-    } else {
-      url = this.URLConstatnts.API_URL + 'subscribe-venue/?parent_id=' + this.parent_id;
-    }
+    const url = this.parent_id === null ? API_URL + 'subscribe-venue/' : API_URL + 'subscribe-venue/?parent_id=' + this.parent_id;
     const headers = new HttpHeaders()
       .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
     this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {

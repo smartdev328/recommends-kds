@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UrlConstants } from '@shared/constants/UrlConstants';
 import { ReviewsService } from '../add-review/reviews.service';
+import { API_URL } from '@shared/constants/UrlConstants';
 
 @Component({
     selector: 'app-personalized',
@@ -22,7 +22,6 @@ export class PersonalizedComponent implements OnInit {
     isWeekend: Boolean = true;
     public is_closest: Boolean = true;
     public category: string;
-    public URLConstatnts = new UrlConstants();
     parent_id: Number;
     start = 0;
     end = 21;
@@ -57,7 +56,7 @@ export class PersonalizedComponent implements OnInit {
 
     get_event_details() {
         let url = '';
-        // url = this.URLConstatnts.API_URL + 'subscribed-events/?parent_id=' + this.parent_id;
+        // url = API_URL + 'subscribed-events/?parent_id=' + this.parent_id;
         const headers = new HttpHeaders()
             .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
         // this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
@@ -70,7 +69,7 @@ export class PersonalizedComponent implements OnInit {
         //     this.isFav = true;
         // }
         // });
-        url = this.URLConstatnts.API_URL + 'events/?tags=popular&limit=3';
+        url = API_URL + 'events/?tags=popular&limit=3';
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
             data = data.replace(/\n/g, '');
             data = JSON.parse(data);
@@ -85,7 +84,7 @@ export class PersonalizedComponent implements OnInit {
         });
 
         const order_by = 'date_dist_asc';
-        url = this.URLConstatnts.API_URL + 'events/?username=' +
+        url = API_URL + 'events/?username=' +
             this.parent_id + "&order_by=" + order_by + "&distance=20&limit=3";
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
             data = data.replace(/\n/g, '');
@@ -101,7 +100,7 @@ export class PersonalizedComponent implements OnInit {
         });
 
 
-        url = this.URLConstatnts.API_URL + 'events/?event_range_str=weekend&limit=3';
+        url = API_URL + 'events/?event_range_str=weekend&limit=3';
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
             data = data.replace(/\n/g, '');
             data = JSON.parse(data);

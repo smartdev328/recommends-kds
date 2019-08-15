@@ -6,9 +6,9 @@ import { Title, Meta } from '@angular/platform-browser';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
 import { ReviewsService } from '../../component/add-review/reviews.service';
 import { HikingTrailConstants, HikingTrailErrorMessage } from '../../shared/constants/HikingTrailConstants';
-import { UrlConstants } from '../../shared/constants/UrlConstants';
 import { ErrorMessage } from '../../shared/constants/CommonConstants';
 import { HikingTrailsListingService } from './hiking-listing.service';
+import { API_URL } from '@shared/constants/UrlConstants';
 
 
 declare let ga: any;
@@ -44,7 +44,6 @@ export class HikingTrailsListingComponent implements OnInit {
   public search_query: String;
   public username: String;
 
-  public uRLConstants = new UrlConstants();
   public hikingConstants = new HikingTrailConstants();
   public hikingErrorMessage = new HikingTrailErrorMessage();
   public commonErrorMessage = new ErrorMessage();
@@ -57,7 +56,6 @@ export class HikingTrailsListingComponent implements OnInit {
     private titleService: Title,
     private metaService: Meta,
     private reviewService: ReviewsService,
-    private hikingListingService: HikingTrailsListingService
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -113,7 +111,7 @@ export class HikingTrailsListingComponent implements OnInit {
 
 
   get_hiking_trail_details() {
-    const url = this.uRLConstants.API_URL + 'hiking-trails/?limit=43';
+    const url = API_URL + 'hiking-trails/?limit=43';
     this.hiking_explore = '';
     this.isExplore = true;
     this.showMore = false;
@@ -188,11 +186,11 @@ export class HikingTrailsListingComponent implements OnInit {
       this.filterErrorMessage = '';
       let url = '';
       if (this.keyword !== undefined) {
-        url = this.uRLConstants.API_URL + 'hiking-trails/?limit=43&q=' + this.keyword.trim();
+        url = API_URL + 'hiking-trails/?limit=43&q=' + this.keyword.trim();
       } else if (this.selected_loc != undefined) {
-        url = this.uRLConstants.API_URL + 'hiking-trails/?limit=43&city=' + this.selected_loc.trim() + ',CA';
+        url = API_URL + 'hiking-trails/?limit=43&city=' + this.selected_loc.trim() + ',CA';
       } else {
-        url = this.uRLConstants.API_URL + 'hiking-trails/?limit=43';
+        url = API_URL + 'hiking-trails/?limit=43';
       }
       this.hiking_explore = [];
       this.showMore = false;

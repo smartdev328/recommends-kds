@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import {UrlConstants} from '../shared/constants/UrlConstants';
 import {HttpClient} from '@angular/common/http';
+import { API_URL } from '@shared/constants/UrlConstants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HikingTrailService {
-  public URLConstants = new UrlConstants();
   constructor(private  http:  HttpClient) {
 
   }
 
   get_hiking_trail_by_id (trail_id: any) {
-    const url = this.URLConstants.API_URL + 'hiking-trails/' + trail_id + '/';
+    const url = API_URL + 'hiking-trails/' + trail_id + '/';
     console.log(url);
     return this.http.get(url);
   }

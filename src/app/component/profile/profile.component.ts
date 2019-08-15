@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { EventConstants } from '@shared/constants/EventConstants';
 import { Kid } from '@shared/model/kid';
 import { Item } from '@shared/model';
+import { UserRequest } from '@shared/model/request-body';
+import { CommonUtil } from '@shared/utils/common-util';
 
 @Component({
   selector: 'app-profile',
@@ -15,10 +17,15 @@ export class ProfileComponent implements OnInit {
   interests: Item[];
   kids: Kid[];
 
-  constructor() { }
+  constructor(
+    
+  ) { }
 
   ngOnInit() {
-    this.formGroup = new FormGroup({});
+    this.formGroup = new FormGroup({
+      firstName: new FormControl(),
+      lastName: new FormControl()
+    });
     this.interests = new EventConstants().PRIMARY_CATEGORY;
     this.kids = [new Kid()];
   }
@@ -28,6 +35,11 @@ export class ProfileComponent implements OnInit {
   }
 
   save() {
+
+  }
+
+  saveUser() {
+    const userReq = new UserRequest(CommonUtil.initRequestBody());
 
   }
 

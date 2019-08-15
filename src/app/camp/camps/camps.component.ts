@@ -3,13 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
-import { UrlConstants } from '../../shared/constants/UrlConstants';
 import { ReviewsService } from '../../component/add-review/reviews.service';
 import { ENTITY_TYPES_ENUM, TYPES_ENUM } from '../../shared/constants/VenueConstants';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
 
 import { CampErrorMessage, CampConstants } from '../../shared/constants/CampConstants';
 import { MatTabChangeEvent } from '@angular/material';
+import { API_URL } from '@shared/constants/UrlConstants';
 declare let ga: any;
 @Component({
   selector: 'app-camps',
@@ -34,7 +34,6 @@ export class CampsComponent implements OnInit {
   public campConstants: any;
   public isSaveVisible: boolean;
   public reviews_present: boolean;
-  public URLConstatnts = new UrlConstants();
   selectedIndex;
 
   @ViewChild('reviewsInput')
@@ -71,7 +70,7 @@ export class CampsComponent implements OnInit {
     this.add_analytics_data('CLICK');
   }
   get_camp_details() {
-    const url = this.URLConstatnts.API_URL + 'camps/' + this.camp_id + "/";
+    const url = API_URL + 'camps/' + this.camp_id + "/";
 
     const headers = new HttpHeaders();
     this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
