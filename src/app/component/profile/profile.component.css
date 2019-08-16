@@ -17,12 +17,35 @@ mat-divider {
     top: -25px;
 }
 
+h4 {
+    font-weight: 700;
+}
+
 mat-form-field {
     font-family: Montserrat;
+}
+
+.mat-chip.mat-standard-chip {
+    background-color: unset;
+    color: rgba(0,0,0,.87);
+    border: 1px solid #4a4949;
+    font-family: Montserrat;
+    font-size: 12px;
+}
+.mat-standard-chip:hover::after {
+    opacity: 0;
+}
+.mat-standard-chip:focus::after {
+    opacity: 0;
 }
 
 @media only screen and (max-width: 767px) {
     .profile-container {
         width: 90%;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        left: -100%;
     }
 }

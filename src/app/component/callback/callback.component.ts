@@ -19,8 +19,15 @@ export class CallbackComponent implements OnInit {
 
     this.authService.isAuthenticated.next(await client.isAuthenticated());
     this.authService.profile.next(await client.getUser());
+    client.getUser().then((user) => {
+      this.authService.profile.next(user);
+      if (user['http://user.information/loginCount'] == 1) {
+        this.router.navigate(['profile']);
+      } else {
+        this.router.navigate([targetRoute]);
+      }
+    });
 
-    this.router.navigate([targetRoute]);
 
   }
 }

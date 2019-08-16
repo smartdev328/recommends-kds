@@ -34,13 +34,13 @@
         <input matInput placeholder="Nickname">
       </mat-form-field>
       <mat-form-field class="col-12 col-md-6">
-        <input matInput placeholder="Age">
+        <input matInput placeholder="Age" type="number">
       </mat-form-field>
     </div>
     <h5>Interests</h5>
     <div class="form-group interests">
       <small class="clear">clear all</small>
-      <textarea class="form-control" row s="4" placeholder="Tell us what you’d like to see! (separated by commas)"></textarea>
+      <textarea class="form-control" rows="8" placeholder="Tell us what you’d like to see! (separated by commas)"></textarea>
     </div>
     <mat-chip-list aria-label="Interest selection">
       <mat-chip class="cursor" *ngFor="let interest of interests" [color]="getChipColor(kid, interest)"

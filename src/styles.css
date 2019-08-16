@@ -678,6 +678,10 @@
   width: 155px;
 }
 
+/* ng-masonry-grid-item .mat-card-content {
+  height: 136px;
+} */
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 668px) {
   .banner-heading .info{
   color: #ffffff;
