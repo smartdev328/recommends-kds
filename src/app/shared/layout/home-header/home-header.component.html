@@ -31,15 +31,16 @@
                 <a class="nav-link nav-button" href="https://www.messenger.com/t/kinparenting" target="_blank">
                     Chat on Messenger
                 </a>
-            </li>
-            <li class="nav-item justify-content-center" fxLayout="row" fxLayout.xs="column" *ngIf="isAuthenticated != null">
+            </li> -->
+            <li class="nav-item" fxLayout="row" fxLayout.xs="column" *ngIf="auth.loggedIn != null">
                 <!-- <a class="nav-link nav-button"  [routerLink]="['/','sign-up']">  -->
-                <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="signIn()" *ngIf="!isAuthenticated">
+                <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="auth.login()"
+                    *ngIf="!auth.loggedIn">
                     <button class="btn path-38 sign_up">SIGN IN</button>
                 </a>
-                <div class="dropdown" *ngIf="isAuthenticated">
-                    <div class="cursor ic-user" fxLayout="row" data-toggle="dropdown">
-                        <img src="assets/web_images/profile.png" alt="User" style="width: 32px" width="32">
+                <div class="dropdown" *ngIf="auth.loggedIn">
+                    <div class="cursor" fxLayout="row" data-toggle="dropdown">
+                        <img src="assets/web_images/profile.png" alt="User" width="32">
                         <mat-icon aria-hidden="false" aria-label="">keyboard_arrow_down</mat-icon>
                     </div>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -49,7 +50,7 @@
                         <!-- <li>Reset password</li>
                             <mat-divider></mat-divider> -->
                         <li routerLink="/profile">Settings</li>
-                        <li (click)="logout()">Logout</li>
+                        <li (click)="auth.logout()">Logout</li>
                     </ul>
                 </div>
                 <!-- <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="openModal()">

@@ -25,7 +25,8 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.isAuthenticated$ = this.authService.isAuthenticated.asObservable();
+    //this.isAuthenticated$ = this.authService.isAuthenticated.asObservable();
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
     this.titleService.setTitle('Kin - discover and plan family friendly activities around SF bay area');
     this.metaService.addTag({
       name: 'description', content: 'Kin is a smart assistant for parents to discover ' +

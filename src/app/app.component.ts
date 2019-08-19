@@ -9,11 +9,19 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   title = 'poppins-frontend';
-  isAuthenticated: Observable<boolean>;
+  //isAuthenticated: Observable<boolean>;
 
+  /*
   constructor(
     private authService: AuthService
   ) {
     this.isAuthenticated = this.authService.isAuthenticated.asObservable();
+  }
+  */
+
+  constructor(private auth: AuthService) {}
+
+  ngOnInit() {
+    this.auth.localAuthSetup();
   }
 }

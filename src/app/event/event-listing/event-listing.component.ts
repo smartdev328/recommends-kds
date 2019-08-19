@@ -102,7 +102,7 @@ export class EventListingComponent implements OnInit {
     this.loc_label = 'Location';
     this.date_label = 'Date';
     this.select_cat_id = '';
-    this.isAuthenticated$ = this.authService.isAuthenticated.asObservable();
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
   }
 
   ngOnInit() {

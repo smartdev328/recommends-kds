@@ -22,17 +22,17 @@ export class HomeHeaderComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
-    private authService: AuthService,
+    public auth: AuthService,
     private router: Router
   ) { }
 
 
-  async ngOnInit() {
-    this.auth0Client = await this.authService.getAuth0Client();
-    this.authService.isAuthenticated.subscribe((isAuthenticated) => this.isAuthenticated = isAuthenticated);
-    this.authService.profile.subscribe(profile => {
+  ngOnInit() {
+    //this.auth0Client = await this.authService.getAuth0Client();
+    /*this.authService.profile.subscribe(profile => {
       this.profile = profile;
-    });
+    });*/
+    //this.profile = this.auth.getUser$();
   }
 
   openModal() {
@@ -41,6 +41,7 @@ export class HomeHeaderComponent implements OnInit {
     this.router.navigate(['profile']);
   }
 
+  /*
   async signIn() {
     await this.auth0Client.loginWithRedirect({});
   }
@@ -51,4 +52,5 @@ export class HomeHeaderComponent implements OnInit {
       returnTo: window.location.origin
     });
   }
+  */
 }
