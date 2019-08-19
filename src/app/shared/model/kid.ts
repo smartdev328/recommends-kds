@@ -3,7 +3,7 @@ import { Item } from "./item";
 export class Kid {
     nickname: string;
     age: number;
-    interests: Item[];
+    interests: string[];
 
     constructor() {
         this.interests = [];

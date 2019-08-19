@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { EventConstants } from '@shared/constants/EventConstants';
 import { Kid } from '@shared/model/kid';
 import { Item } from '@shared/model';
 import { UserRequest } from '@shared/model/request-body';
 import { CommonUtil } from '@shared/utils/common-util';
+import { UserService } from '@shared/service/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,28 +15,44 @@ import { CommonUtil } from '@shared/utils/common-util';
 export class ProfileComponent implements OnInit {
 
   formGroup: FormGroup;
-  interests: Item[];
+  interests: string[];
   kids: Kid[];
+  kidControls: FormArray;
 
   constructor(
-    
+    private userService: UserService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
     this.formGroup = new FormGroup({
       firstName: new FormControl(),
-      lastName: new FormControl()
+      lastName: new FormControl(),
+      email: new FormControl(),
+      zipcode: new FormControl(),
+      kidControls: this.formBuilder.array([])
     });
-    this.interests = new EventConstants().PRIMARY_CATEGORY;
-    this.kids = [new Kid()];
+    this.interests = new EventConstants().PRIMARY_CATEGORY.map((item) => item.name);
+    this.kids = [];
+    this.addChild();
+    this.userService.getUser().subscribe((user) => {
+      console.log(user);
+    });
   }
 
   addChild() {
     this.kids.push(new Kid());
+    this.kidControls = this.formGroup.get('kidControls') as FormArray;
+    this.kidControls.push(new FormGroup({
+      nickname: new FormControl(),
+      age: new FormControl(),
+      interests: new FormControl()
+    }));
+    console.log(this.formGroup);
   }
 
   save() {
-
+    console.log(this.formGroup);
   }
 
   saveUser() {
@@ -43,11 +60,11 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  getChipColor(kid: Kid, interest: Item) {
+  getChipColor(kid: Kid, interest: string) {
     return kid.interests.includes(interest) ? 'accent' : 'none';
   }
 
-  toggleInterest(kid: Kid, interest: Item) {
+  toggleInterest(kid: Kid, interest: string) {
     if (kid.interests.includes(interest)) {
       kid.interests.splice(kid.interests.indexOf(interest), 1);
     } else {

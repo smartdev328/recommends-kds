@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@shared/service/auth.service';
 import { Router } from '@angular/router';
+import { CommonUtil } from '@shared/utils/common-util';
+import { UserRequest } from '@shared/model/request-body';
+import { UserService } from '@shared/service/user.service';
 
 @Component({
   selector: 'app-callback',
@@ -9,7 +12,11 @@ import { Router } from '@angular/router';
 })
 export class CallbackComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private userService: UserService
+  ) { }
 
   async ngOnInit() {
     const client = await this.authService.getAuth0Client();
@@ -20,8 +27,14 @@ export class CallbackComponent implements OnInit {
     this.authService.isAuthenticated.next(await client.isAuthenticated());
     this.authService.profile.next(await client.getUser());
     client.getUser().then((user) => {
+      const userRequest = new UserRequest(CommonUtil.initRequestBody());
+      userRequest.email = user.email;
+      this.userService.createUser(userRequest).subscribe((response) => {
+        console.log(response);
+      });
       this.authService.profile.next(user);
       if (user['http://user.information/loginCount'] == 1) {
+        // Fist login, create a new account
         this.router.navigate(['profile']);
       } else {
         this.router.navigate([targetRoute]);
