@@ -50,6 +50,11 @@
     background-color: #cad0d0
 }
 
+.chat-on-messenger {
+    font-family: Montserrat;
+    font-size: 18px;
+}
+
 @media only screen and (max-width: 767px) {
     .dropdown-menu {
         position: absolute;

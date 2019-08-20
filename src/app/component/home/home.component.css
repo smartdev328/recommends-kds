@@ -77,10 +77,13 @@ video {
 
 .go-to-messenger a {
     color: #FFFFFF;
+    font-weight: 300;
+    font-size: 18px;
 }
 
 .his-message {
     width: 70%;
+    font-family: Roboto;
 }
 
 .his-message div {
@@ -91,6 +94,7 @@ video {
 
 .my-message {
     text-align: right;
+    font-family: Roboto;
 }
 
 .my-message span {
@@ -102,6 +106,7 @@ video {
 
 .category {
     background-color: #ffffff;
+    font-family: Montserrat;
 }
 
 /* Mobile */

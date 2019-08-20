@@ -6,6 +6,7 @@ import { Item } from '@shared/model';
 import { UserRequest } from '@shared/model/request-body';
 import { CommonUtil } from '@shared/utils/common-util';
 import { UserService } from '@shared/service/user.service';
+import { User } from '@shared/model/user';
 
 @Component({
   selector: 'app-profile',
@@ -18,6 +19,7 @@ export class ProfileComponent implements OnInit {
   interests: string[];
   kids: Kid[];
   kidControls: FormArray;
+  user: User;
 
   constructor(
     private userService: UserService,
@@ -34,20 +36,26 @@ export class ProfileComponent implements OnInit {
     });
     this.interests = new EventConstants().PRIMARY_CATEGORY.map((item) => item.name);
     this.kids = [];
-    this.addChild();
+    this.getUser();
+  }
+
+  getUser() {
     this.userService.getUser().subscribe((user) => {
-      console.log(user);
+      this.user = user;
+      this.addChild((user.parent && user.parent.kids) ? user.parent.kids : [new Kid()]);
     });
   }
 
-  addChild() {
-    this.kids.push(new Kid());
+  addChild(kid: Kid[]) {
+    this.kids.push(...kid);
     this.kidControls = this.formGroup.get('kidControls') as FormArray;
-    this.kidControls.push(new FormGroup({
-      nickname: new FormControl(),
-      age: new FormControl(),
-      interests: new FormControl()
-    }));
+    for (let i = 0; i < this.user.parent.kids.length; i++) {
+      this.kidControls.push(new FormGroup({
+        nickname: new FormControl(this.user.parent.kids[i].nick_name),
+        age: new FormControl(this.user.parent.kids[i].age),
+        interests: new FormControl(this.user.parent.kids[i].interests)
+      }));
+    }
     console.log(this.formGroup);
   }
 

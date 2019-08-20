@@ -11,13 +11,11 @@
         <ul class="navbar-nav text-center">
             <li class="nav-item">
                 <a class="nav-link navbar-brand mr-0 Home-header" [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact: true}"
-                    [routerLink]="['/','family-friendly-events-near-me']">Events</a>
+                    [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','family-friendly-events-near-me']">Events</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link navbar-brand mr-0 Home-header" [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact: true}"
-                    [routerLink]="['/','family-friendly-places-near-me']">Places</a>
+                    [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','family-friendly-places-near-me']">Places</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link navbar-brand mr-0 Home-header " [routerLinkActive]="['active']"
@@ -25,20 +23,18 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link navbar-brand mr-0 Home-header " [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact: true}"
-                    [routerLink]="['/','family-friendly-hikes-near-me']">Hiking</a>
+                    [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','family-friendly-hikes-near-me']">Hiking</a>
             </li>
         </ul>
-        <ul class="navbar-nav flex-row justify-content-center flex-nowrap">
-            <!-- <li class="nav-item mr-2" hidden><a class="nav-link nav-button"
-                    href="https://www.messenger.com/t/kinparenting" target="_blank">
-                    <button class="btn path-38 sign_up">CHAT WITH KIN</button>
+        <ul class="navbar-nav text-center">
+            <li class="nav-item mr-2" *ngIf="isAuthenticated">
+                <a class="nav-link nav-button" href="https://www.messenger.com/t/kinparenting" target="_blank">
+                    Chat on Messenger
                 </a>
-            </li> -->
-            <li class="nav-item" fxLayout="row" fxLayout.xs="column" *ngIf="isAuthenticated != null">
+            </li>
+            <li class="nav-item justify-content-center" fxLayout="row" fxLayout.xs="column" *ngIf="isAuthenticated != null">
                 <!-- <a class="nav-link nav-button"  [routerLink]="['/','sign-up']">  -->
-                <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="signIn()"
-                    *ngIf="!isAuthenticated">
+                <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="signIn()" *ngIf="!isAuthenticated">
                     <button class="btn path-38 sign_up">SIGN IN</button>
                 </a>
                 <div class="dropdown" *ngIf="isAuthenticated">

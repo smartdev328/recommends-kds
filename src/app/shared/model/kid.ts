@@ -1,10 +1,12 @@
-import { Item } from "./item";
-
 export class Kid {
-    nickname: string;
+    dob: string;
+    gender: string;
+    id: string;
     age: number;
     interests: string[];
-
+    kid_id: string;
+    nick_name: string;
+    parent_id: string;
     constructor() {
         this.interests = [];
     }
