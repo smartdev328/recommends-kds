@@ -27,15 +27,14 @@ export class CallbackComponent implements OnInit {
     this.authService.isAuthenticated.next(await client.isAuthenticated());
     this.authService.profile.next(await client.getUser());
     client.getUser().then((user) => {
-      const userRequest = new UserRequest(CommonUtil.initRequestBody());
-      userRequest.email = user.email;
-      this.userService.createUser(userRequest).subscribe((response) => {
-        console.log(response);
-      });
       this.authService.profile.next(user);
       if (user['http://user.information/loginCount'] == 1) {
         // Fist login, create a new account
-        this.router.navigate(['profile']);
+        const userRequest = new UserRequest(CommonUtil.initRequestBody());
+        userRequest.email = user.email;
+        this.userService.createUser(userRequest).subscribe((response) => {
+          this.router.navigate(['profile']);
+        });
       } else {
         this.router.navigate([targetRoute]);
       }

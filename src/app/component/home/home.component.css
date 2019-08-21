@@ -68,7 +68,7 @@ video {
 }
 
 .title {
-    font-size: 40px;
+    font-size: 64px;
 }
 
 .go-to-messenger {
@@ -77,13 +77,14 @@ video {
 
 .go-to-messenger a {
     color: #FFFFFF;
-    font-weight: 300;
-    font-size: 18px;
+    font-weight: normal;
+    font-size: 28px;
 }
 
 .his-message {
     width: 70%;
     font-family: Roboto;
+    font-size: 24px;
 }
 
 .his-message div {
@@ -95,6 +96,7 @@ video {
 .my-message {
     text-align: right;
     font-family: Roboto;
+    font-size: 24px;
 }
 
 .my-message span {

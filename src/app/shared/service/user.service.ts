@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { API_URL } from "@shared/constants/UrlConstants";
 import { UserRequest } from "@shared/model/request-body";
 import { User } from "@shared/model/user";
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'

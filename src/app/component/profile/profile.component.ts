@@ -53,7 +53,8 @@ export class ProfileComponent implements OnInit {
       this.kidControls.push(new FormGroup({
         nickname: new FormControl(this.user.parent.kids[i].nick_name),
         age: new FormControl(this.user.parent.kids[i].age),
-        interests: new FormControl(this.user.parent.kids[i].interests)
+        // interests: new FormControl(this.user.parent.kids[i].interests)
+        interests: new FormControl()
       }));
     }
     console.log(this.formGroup);

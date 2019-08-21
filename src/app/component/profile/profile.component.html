@@ -24,7 +24,7 @@
     <h4>Newsletter</h4>
     <mat-slide-toggle class="ml-3"></mat-slide-toggle>
   </div>
-  <small>Sign up to get Kin's weekly calendar personalized for you</small>
+  <p>Sign up to get Kin's weekly calendar personalized for you</p>
   <mat-divider></mat-divider>
   <h4>Kids</h4>
   <div *ngFor="let kid of kids; let i = index">
@@ -37,15 +37,15 @@
       <mat-form-field class="col-12 col-md-6">
         <input matInput placeholder="Age" [formControl]="formGroup.controls.kidControls.controls[i].controls.age"
           maxlength="2">
-        <img class="cursor" src="assets\web_images\delete.png" alt="Clear" width="24"
+        <img class="cursor ic-clear" src="assets\web_images\delete.png" alt="Clear" width="24"
           [class.no-display]="!formGroup.controls.kidControls.controls[i].controls.age.value" matSuffix
           (click)="formGroup.controls.kidControls.controls[i].controls.age.setValue('')">
       </mat-form-field>
     </div>
     <h5>Interests</h5>
     <div class="form-group interests">
-      <small class="clear" (click)="formGroup.controls.kidControls.controls[i].controls.interests.setValue('')">clear
-        all</small>
+      <p class="clear" (click)="formGroup.controls.kidControls.controls[i].controls.interests.setValue('')">clear
+        all</p>
       <textarea class="form-control" rows="8" placeholder="Tell us what you’d like to see! (separated by commas)"
         [formControl]="formGroup.controls.kidControls.controls[i].controls.interests"></textarea>
     </div>
@@ -57,5 +57,5 @@
   </div>
   <h5 class="mt-4 cursor" (click)="addChild()">+ add child</h5>
   <mat-divider></mat-divider>
-  <button class="btn btn-yellow" (click)="save()">SAVE</button>
+  <button class="btn btn-yellow btn-save" (click)="save()">SAVE</button>
 </form>
