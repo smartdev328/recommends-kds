@@ -4,6 +4,9 @@ import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 import { from, of, Observable, BehaviorSubject, combineLatest, throwError } from 'rxjs';
 import { tap, catchError, concatMap, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { CommonUtil } from '@shared/utils/common-util';
+import { UserRequest } from '@shared/model/request-body';
+import { UserService } from '@shared/service/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +43,7 @@ export class AuthService {
   // Create a local property for login status
   loggedIn: boolean = null;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   // When calling, options can be passed if desired
   // https://auth0.github.io/auth0-spa-js/classes/auth0client.html#getuser
@@ -75,7 +78,7 @@ export class AuthService {
     });
   }
 
-  login(redirectPath: string = '/profile') {
+  login(redirectPath: string = '/') {
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
     // Ensure Auth0 client instance exists
@@ -109,8 +112,21 @@ export class AuthService {
     // Subscribe to authentication completion observable
     // Response will be an array of user and login status
     const authCompleteSub = authComplete$.subscribe(([user, loggedIn]) => {
+      
+        const userRequest = new UserRequest(CommonUtil.initRequestBody());
+        userRequest.email = user.email;
+        this.userService.createUser(userRequest).subscribe((response) => {
+          console.log(response);
+        });
+        if (user['http://user.information/loginCount'] == 1) {
+          // Fist login, create a new account
+          this.router.navigate(['get-started']);
+        } else {
+          this.router.navigate([targetRoute]);
+        }
+      
       // Redirect to target route after callback processing
-      this.router.navigate([targetRoute]);
+      //this.router.navigate([targetRoute]);
       // Clean up subscription
       authCompleteSub.unsubscribe();
     });

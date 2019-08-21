@@ -1,0 +1,61 @@
+<form class="profile-container" [formGroup]="formGroup">
+  <h4>Profile</h4>
+  <div class="row">
+    <mat-form-field class="col-12 col-md-6">
+      <input matInput placeholder="First name" formControlName="firstName" required>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6">
+      <input matInput placeholder="Last name" formControlName="lastName" required>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field class="col-12">
+      <input matInput type="email" placeholder="Email" formControlName="email">
+    </mat-form-field>
+  </div>
+  <div class="row" style="align-items: baseline">
+    <mat-form-field class="col-12 col-md-6">
+      <input matInput placeholder="Zipcode" formControlName="zipcode">
+    </mat-form-field>
+    <span class="col-12 col-md-6">City name</span>
+  </div>
+  <mat-divider></mat-divider>
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <h4>Newsletter</h4>
+    <mat-slide-toggle class="ml-3"></mat-slide-toggle>
+  </div>
+  <small>Sign up to get Kin's weekly calendar personalized for you</small>
+  <mat-divider></mat-divider>
+  <h4>Kids</h4>
+  <div *ngFor="let kid of kids; let i = index">
+    <mat-divider *ngIf="i != 0"></mat-divider>
+    <div class="row">
+      <mat-form-field class="col-12 col-md-6">
+        <input matInput placeholder="Nickname"
+          [formControl]="formGroup.controls.kidControls.controls[i].controls.nickname">
+      </mat-form-field>
+      <mat-form-field class="col-12 col-md-6">
+        <input matInput placeholder="Age" [formControl]="formGroup.controls.kidControls.controls[i].controls.age"
+          maxlength="2">
+        <img class="cursor" src="assets\web_images\delete.png" alt="Clear" width="24"
+          [class.no-display]="!formGroup.controls.kidControls.controls[i].controls.age.value" matSuffix
+          (click)="formGroup.controls.kidControls.controls[i].controls.age.setValue('')">
+      </mat-form-field>
+    </div>
+    <h5>Interests</h5>
+    <div class="form-group interests">
+      <small class="clear" (click)="formGroup.controls.kidControls.controls[i].controls.interests.setValue('')">clear
+        all</small>
+      <textarea class="form-control" rows="8" placeholder="Tell us what you’d like to see! (separated by commas)"
+        [formControl]="formGroup.controls.kidControls.controls[i].controls.interests"></textarea>
+    </div>
+    <mat-chip-list aria-label="Interest selection">
+      <mat-chip class="cursor" *ngFor="let interest of interests" [color]="getChipColor(kid, interest)"
+        (click)="toggleInterest(kid, interest)" selected>{{interest}}
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+  <h5 class="mt-4 cursor" (click)="addChild()">+ add child</h5>
+  <mat-divider></mat-divider>
+  <button class="btn btn-yellow" (click)="save()">SAVE</button>
+</form>

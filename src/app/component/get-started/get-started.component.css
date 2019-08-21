@@ -1,0 +1,56 @@
+.profile-container {
+    margin: 0% 5% 12% 5%;
+    width: 45%;
+}
+
+mat-divider {
+    margin: 20px 0;
+}
+
+.interests {
+    position: relative;
+}
+
+.clear {
+    position: absolute;
+    right: 0;
+    top: -25px;
+    cursor: pointer;
+}
+
+h4 {
+    font-weight: 700;
+}
+
+mat-form-field {
+    font-family: Montserrat;
+}
+
+.mat-chip.mat-standard-chip {
+    background-color: unset;
+    color: rgba(0,0,0,.87);
+    border: 1px solid #4a4949;
+    font-family: Montserrat;
+    font-size: 12px;
+}
+.mat-standard-chip:hover::after {
+    opacity: 0;
+}
+.mat-standard-chip:focus::after {
+    opacity: 0;
+}
+
+.no-display {
+    display: none;
+}
+
+@media only screen and (max-width: 767px) {
+    .profile-container {
+        width: 90%;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        left: -100%;
+    }
+}

@@ -15,6 +15,7 @@ import { PersonalizedComponent } from './component/personalized/personalized.com
 import { LoginComponent } from './component/login/login.component';
 import { CallbackComponent } from './component/callback/callback.component';
 import { ProfileComponent } from './component/profile/profile.component';
+import { GetStartedComponent } from './component/get-started/get-started.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,7 @@ const routes: Routes = [
   { path: 'callback', component: CallbackComponent },
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'get-started', component: GetStartedComponent },
   { path: '**', redirectTo: '' },
 ];
 

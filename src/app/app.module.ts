@@ -28,6 +28,7 @@ import { HikingModule } from './hiking/hiking.module';
 import { AuthInterceptor } from './shared/service/auth.interceptor';
 import { VenueModule } from './venue/venue.module';
 import { ProfileComponent } from './component/profile/profile.component';
+import { GetStartedComponent } from './component/get-started/get-started.component';
 
 
 
@@ -48,7 +49,8 @@ import { ProfileComponent } from './component/profile/profile.component';
     PersonalizedComponent,
     LoginComponent,
     CallbackComponent,
-    ProfileComponent
+    ProfileComponent,
+    GetStartedComponent
   ],
   imports: [
     AppRoutingModule,
