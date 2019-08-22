@@ -18,6 +18,8 @@ export class GetStartedComponent implements OnInit {
   interests: string[];
   kids: Kid[];
   kidControls: FormArray;
+  submitted = false;
+  eventConstants = new EventConstants();
 
   constructor(
     private userService: UserService,
@@ -28,15 +30,14 @@ export class GetStartedComponent implements OnInit {
     this.formGroup = new FormGroup({
       firstName: new FormControl(),
       lastName: new FormControl(),
-      email: new FormControl(),
       zipcode: new FormControl(),
       kidControls: this.formBuilder.array([])
     });
-    this.interests = new EventConstants().PRIMARY_CATEGORY.map((item) => item.name);
+    this.interests = this.eventConstants.PRIMARY_CATEGORY.map((item) => item.name);
     this.kids = [];
     this.addChild();
     this.userService.getUser().subscribe((user) => {
-      console.log(user);
+      console.log("user" + user);
     });
   }
 
@@ -44,11 +45,21 @@ export class GetStartedComponent implements OnInit {
     this.kids.push(new Kid());
     this.kidControls = this.formGroup.get('kidControls') as FormArray;
     this.kidControls.push(new FormGroup({
-      nickname: new FormControl(),
+      nick_name: new FormControl(),
       age: new FormControl(),
-      interests: new FormControl()
+      interests: new FormControl(),
+      categories: new FormControl()
     }));
-    console.log(this.formGroup);
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.formGroup.invalid) {
+        return;
+    } else {
+      console.log(this.formGroup);
+    }
   }
 
   save() {
@@ -64,12 +75,16 @@ export class GetStartedComponent implements OnInit {
     return kid.interests.includes(interest) ? 'accent' : 'none';
   }
 
-  toggleInterest(kid: Kid, interest: string) {
+  toggleInterest(kid: Kid, interest: string, idx: number) {
+    const interest_id = this.eventConstants.get_cat_id_by_name(interest);
     if (kid.interests.includes(interest)) {
       kid.interests.splice(kid.interests.indexOf(interest), 1);
+      kid.interest_categories.splice(kid.interest_categories.indexOf(interest_id), 1);
     } else {
       kid.interests.push(interest);
+      kid.interest_categories.push(interest_id);
     }
+    this.kidControls.controls[idx].get('categories').setValue(kid.interest_categories.toString());
   }
 
 }

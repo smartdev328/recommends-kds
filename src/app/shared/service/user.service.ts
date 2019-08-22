@@ -16,7 +16,7 @@ export class UserService {
 
     getUser() {
         // TODO: this API use hard code user (web:385649). Need to change after enable Authz in backend
-        return this.http.get<User>(API_URL + 'users/web:385649');
+        return this.http.get<User>(API_URL + 'users/web:502695');
     }
 
     createUser(user: UserRequest) {

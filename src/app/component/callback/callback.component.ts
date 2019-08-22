@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@shared/service/auth.service';
-import { Router } from '@angular/router';
-import { CommonUtil } from '@shared/utils/common-util';
-import { UserRequest } from '@shared/model/request-body';
-import { UserService } from '@shared/service/user.service';
 
 @Component({
   selector: 'app-callback',

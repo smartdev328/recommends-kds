@@ -6,6 +6,7 @@ export class Kid {
     id: string;
     age: number;
     interests: string[];
+    interest_categories: string[];
     interestsText?: string[];
     interestsChip?: string;
     kid_id: string;
@@ -13,6 +14,8 @@ export class Kid {
     parent_id: string;
     constructor() {
         this.interests = [];
+        this.interest_categories = []
+
     }
 
     initInterests() {

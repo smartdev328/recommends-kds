@@ -8,16 +8,17 @@
       <input matInput placeholder="Last name" formControlName="lastName" required>
     </mat-form-field>
   </div>
-  <div class="row">
+  <!--<div class="row">
     <mat-form-field class="col-12">
       <input matInput type="email" placeholder="Email" formControlName="email">
     </mat-form-field>
   </div>
+-->
   <div class="row" style="align-items: baseline">
     <mat-form-field class="col-12 col-md-6">
       <input matInput placeholder="Zipcode" formControlName="zipcode">
     </mat-form-field>
-    <span class="col-12 col-md-6">City name</span>
+    <!-- <span class="col-12 col-md-6">City name</span> -->
   </div>
   <mat-divider></mat-divider>
   <div fxLayout="row" fxLayoutAlign="start center">
@@ -32,7 +33,7 @@
     <div class="row">
       <mat-form-field class="col-12 col-md-6">
         <input matInput placeholder="Nickname"
-          [formControl]="formGroup.controls.kidControls.controls[i].controls.nickname">
+          [formControl]="formGroup.controls.kidControls.controls[i].controls.nick_name">
       </mat-form-field>
       <mat-form-field class="col-12 col-md-6">
         <input matInput placeholder="Age" [formControl]="formGroup.controls.kidControls.controls[i].controls.age"
@@ -46,12 +47,12 @@
     <div class="form-group interests">
       <small class="clear" (click)="formGroup.controls.kidControls.controls[i].controls.interests.setValue('')">clear
         all</small>
-      <textarea class="form-control" rows="8" placeholder="Tell us what you’d like to see! (separated by commas)"
+      <textarea class="form-control" rows="3" placeholder="Tell us what you’d like to see! (separated by commas)"
         [formControl]="formGroup.controls.kidControls.controls[i].controls.interests"></textarea>
     </div>
     <mat-chip-list aria-label="Interest selection">
       <mat-chip class="cursor" *ngFor="let interest of interests" [color]="getChipColor(kid, interest)"
-        (click)="toggleInterest(kid, interest)" selected>{{interest}}
+        (click)="toggleInterest(kid, interest, i)" selected>{{interest}}
       </mat-chip>
     </mat-chip-list>
   </div>

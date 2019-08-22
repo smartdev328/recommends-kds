@@ -86,4 +86,20 @@ export class EventConstants {
         }
         return cat_name;
     }
+
+    public get_cat_id_by_name(name) {
+        let cat_id = '';
+        if (name) {
+            for (let cat_arr_count = 0; cat_arr_count < this.PRIMARY_CATEGORY.length; cat_arr_count++) {
+                const current_cat = this.PRIMARY_CATEGORY[cat_arr_count];
+                const current_cat_id = current_cat.id;
+                const current_cat_name = current_cat.name;
+                if (current_cat_name == name) {
+                    cat_id = String(current_cat_id);
+                    break;
+                }
+            }
+        }
+        return cat_id;
+    }
 }
