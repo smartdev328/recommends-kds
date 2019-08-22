@@ -675,7 +675,23 @@
   color: #4A4949;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
   background-color: #FFD700;
-  width: 155px;
+  min-width: 155px;
+}
+
+.btn-white{
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.21;
+  border: 1px solid #4a4949 !important;
+  letter-spacing: normal;
+  text-align: center;
+  color: #4A4949;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff !important;
+  min-width: 155px;
 }
 
 /* ng-masonry-grid-item .mat-card-content {

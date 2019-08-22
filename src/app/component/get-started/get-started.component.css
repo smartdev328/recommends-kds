@@ -1,6 +1,5 @@
 .profile-container {
-    margin: 0% 5% 12% 5%;
-    width: 45%;
+    margin: 0% 5% 100px 5%;
 }
 
 mat-divider {
@@ -44,7 +43,15 @@ mat-form-field {
     display: none;
 }
 
+.btn {
+    margin: 0 1rem;
+}
+
 @media only screen and (max-width: 767px) {
+    mat-divider {
+        display: none;
+    }
+
     .profile-container {
         width: 90%;
     }
