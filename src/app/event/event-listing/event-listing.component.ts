@@ -9,6 +9,7 @@ import { ErrorMessage } from '../../shared/constants/CommonConstants';
 import { EventListingService } from './event-listing.service';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
+import { User } from '@shared/model/user';
 
 
 declare let ga: any;
@@ -77,6 +78,7 @@ export class EventListingComponent implements OnInit {
   public commonErrorMessage = new ErrorMessage();
   public categoryList = this.eventConstatnts.PRIMARY_CATEGORY;
   public locations = this.eventConstatnts.LOCATIONS;
+  public user: User;
 
   constructor(
     private route: ActivatedRoute,
@@ -127,6 +129,9 @@ export class EventListingComponent implements OnInit {
     this.distance = this.route.snapshot.queryParams['distance'];
     this.username = this.route.snapshot.queryParams['username'];
     this.get_explore_event_details();
+    this.authService.user$.subscribe((user) => {
+      this.user = user;
+    });
   }
   onLocationChange(loc_obj: object) {
     this.selected_loc = loc_obj['name'];

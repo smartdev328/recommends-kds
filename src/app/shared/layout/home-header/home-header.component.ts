@@ -15,13 +15,11 @@ import { Observable } from 'rxjs';
 
 export class HomeHeaderComponent implements OnInit {
   modalRef: BsModalRef;
-  private auth0Client: Auth0Client;
   public navbarCollapsed = true;
   profile: any;
   isAuthenticated: boolean;
 
   constructor(
-    private modalService: BsModalService,
     public auth: AuthService,
     private router: Router
   ) { }

@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import createAuth0Client from '@auth0/auth0-spa-js';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 import { from, of, Observable, BehaviorSubject, combineLatest, throwError } from 'rxjs';
-import { tap, catchError, concatMap, shareReplay } from 'rxjs/operators';
+import { tap, catchError, concatMap, shareReplay, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { CommonUtil } from '@shared/utils/common-util';
 import { UserRequest } from '@shared/model/request-body';
 import { UserService } from '@shared/service/user.service';
+import { Account } from '@shared/model/account';
+import { User } from '@shared/model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -43,15 +45,27 @@ export class AuthService {
   // Create a local property for login status
   loggedIn: boolean = null;
 
-  constructor(private router: Router, private userService: UserService) { }
+  private userSubject$ = new BehaviorSubject<User>(null);
+  user$ = this.userSubject$.asObservable();
+
+  constructor(
+    private router: Router,
+    private userService: UserService
+  ) { }
 
   // When calling, options can be passed if desired
   // https://auth0.github.io/auth0-spa-js/classes/auth0client.html#getuser
-  getUser$(options?): Observable<any> {
+  getUserProfile$(options?): Observable<any> {
     return this.auth0Client$.pipe(
       concatMap((client: Auth0Client) => from(client.getUser(options))),
       tap(user => this.userProfileSubject$.next(user))
     );
+  }
+
+  getUser$(): Observable<any> {
+    return this.userService.getUser().pipe(
+      map((user) => this.userSubject$.next(user))
+      );
   }
 
   localAuthSetup() {
@@ -62,6 +76,7 @@ export class AuthService {
         if (loggedIn) {
           // If authenticated, get user and set in app
           // NOTE: you could pass options here if needed
+          // return this.getUserProfile$();
           return this.getUser$();
         }
         // If not authenticated, return stream that emits 'false'
@@ -104,7 +119,7 @@ export class AuthService {
       concatMap(() => {
         // Redirect callback complete; get user and login status
         return combineLatest(
-          this.getUser$(),
+          this.getUserProfile$(),
           this.isAuthenticated$
         );
       })
@@ -121,6 +136,9 @@ export class AuthService {
           this.router.navigate(['get-started']);
         });
       } else {
+        this.userService.getUser().subscribe((user) => {
+          this.userSubject$.next(user);
+        });
         this.router.navigate([targetRoute]);
       }
 
