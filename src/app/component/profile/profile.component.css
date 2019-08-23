@@ -1,6 +1,5 @@
 .profile-container {
-    margin: 0% 5% 12% 5%;
-    width: 45%;
+    margin: 42px 100px;
     font-family: Montserrat;
 }
 
@@ -97,7 +96,8 @@ mat-chip {
         font-size: 12px;
     }
     .profile-container {
-        width: 90%;
+        width: auto;
+        margin: 30px 35px;
     }
     .dropdown-menu {
         position: absolute;
