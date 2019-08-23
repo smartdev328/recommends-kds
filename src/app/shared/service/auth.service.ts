@@ -112,19 +112,18 @@ export class AuthService {
     // Subscribe to authentication completion observable
     // Response will be an array of user and login status
     const authCompleteSub = authComplete$.subscribe(([user, loggedIn]) => {
-      
+
+      if (user['http://user.information/loginCount'] == 1) {
+        // Fist login, create a new account
         const userRequest = new UserRequest(CommonUtil.initRequestBody());
         userRequest.email = user.email;
         this.userService.createUser(userRequest).subscribe((response) => {
-          console.log(response);
-        });
-        if (user['http://user.information/loginCount'] == 1) {
-          // Fist login, create a new account
           this.router.navigate(['get-started']);
-        } else {
-          this.router.navigate([targetRoute]);
-        }
-      
+        });
+      } else {
+        this.router.navigate([targetRoute]);
+      }
+
       // Redirect to target route after callback processing
       //this.router.navigate([targetRoute]);
       // Clean up subscription

@@ -20,4 +20,8 @@ export class Parent {
     phone_no: string;
     referred_by: string;
     zip_code: string;
+
+    constructor(option?: { kid?: Kid }) {
+        this.kids = [option.kid];
+    }
 }

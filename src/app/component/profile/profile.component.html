@@ -17,7 +17,6 @@
     <mat-form-field class="col-12 col-md-6">
       <input matInput placeholder="Zipcode" formControlName="zipcode">
     </mat-form-field>
-    <span class="col-12 col-md-6">City name</span>
   </div>
   <mat-divider></mat-divider>
   <div fxLayout="row" fxLayoutAlign="start center">
@@ -27,7 +26,7 @@
   <p>Sign up to get Kin's weekly calendar personalized for you</p>
   <mat-divider></mat-divider>
   <h4>Kids</h4>
-  <div *ngFor="let kid of kids; let i = index">
+  <div *ngFor="let kid of user?.parent?.kids; let i = index">
     <mat-divider *ngIf="i != 0"></mat-divider>
     <div class="row">
       <mat-form-field class="col-12 col-md-6">
@@ -55,7 +54,7 @@
       </mat-chip>
     </mat-chip-list>
   </div>
-  <h5 class="mt-4 cursor" (click)="addChild()">+ add child</h5>
+  <p class="mt-4 cursor" (click)="addChild()">+ add child</p>
   <mat-divider></mat-divider>
   <button class="btn btn-yellow btn-save" (click)="save()">SAVE</button>
 </form>

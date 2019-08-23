@@ -17,7 +17,6 @@ export class ProfileComponent implements OnInit {
 
   formGroup: FormGroup;
   interests: string[];
-  kids: Kid[];
   kidControls: FormArray;
   user: User;
 
@@ -35,29 +34,31 @@ export class ProfileComponent implements OnInit {
       kidControls: this.formBuilder.array([])
     });
     this.interests = new EventConstants().PRIMARY_CATEGORY.map((item) => item.name);
-    this.kids = [];
     this.getUser();
   }
 
   getUser() {
     this.userService.getUser().subscribe((user) => {
       this.user = user;
-      this.addChild((user.parent && user.parent.kids) ? user.parent.kids : [new Kid()]);
+      this.initKidControls((user.parent && user.parent.kids) ? user.parent.kids : [new Kid()]);
     });
   }
 
-  addChild(kid: Kid[]) {
-    this.kids.push(...kid);
+  initKidControls(kids: Kid[]) {
     this.kidControls = this.formGroup.get('kidControls') as FormArray;
-    for (let i = 0; i < this.user.parent.kids.length; i++) {
+    for (let i = 0; i < kids.length; i++) {
       this.kidControls.push(new FormGroup({
-        nickname: new FormControl(this.user.parent.kids[i].nick_name),
-        age: new FormControl(this.user.parent.kids[i].age),
-        // interests: new FormControl(this.user.parent.kids[i].interests)
+        nickname: new FormControl(kids[i].nick_name),
+        age: new FormControl(kids[i].age),
+        // interests: new FormControl(kids[i].interests)
         interests: new FormControl()
       }));
     }
-    console.log(this.formGroup);
+  }
+
+  addChild(kid: Kid) {
+    this.user.parent.kids.push(kid);
+    this.initKidControls([kid]);
   }
 
   save() {
