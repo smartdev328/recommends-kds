@@ -15,8 +15,7 @@ declare let ga: any;
 @Component({
   selector: 'app-hiking-listing',
   templateUrl: './hiking-listing.component.html',
-  styleUrls: ['./hiking-listing.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./hiking-listing.component.css']
 })
 export class HikingTrailsListingComponent implements OnInit {
 

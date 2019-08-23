@@ -38,7 +38,7 @@
                     *ngIf="!auth.loggedIn">
                     <button class="btn path-38 sign_up">SIGN IN</button>
                 </a>
-                <div class="dropdown" *ngIf="auth.loggedIn">
+                <div class="mt-2 dropdown" fxLayout="row" fxLayoutAlign="center stretch" *ngIf="auth.loggedIn">
                     <div class="cursor" fxLayout="row" data-toggle="dropdown">
                         <img src="assets/web_images/profile.png" alt="User" width="32">
                         <mat-icon aria-hidden="false" aria-label="">keyboard_arrow_down</mat-icon>
