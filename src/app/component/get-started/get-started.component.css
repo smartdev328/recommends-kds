@@ -2,6 +2,10 @@
     margin: 0% 5% 100px 5%;
 }
 
+.content {
+    padding: 57px 60px;
+}
+
 mat-divider {
     margin: 20px 0;
 }
@@ -27,14 +31,15 @@ mat-form-field {
 
 .mat-chip.mat-standard-chip {
     background-color: unset;
-    color: rgba(0,0,0,.87);
+    color: rgba(0, 0, 0, .87);
     border: 1px solid #4a4949;
     font-family: Montserrat;
-    font-size: 12px;
 }
+
 .mat-standard-chip:hover::after {
     opacity: 0;
 }
+
 .mat-standard-chip:focus::after {
     opacity: 0;
 }
@@ -47,15 +52,61 @@ mat-form-field {
     margin: 0 1rem;
 }
 
+.fs-sm {
+    font-size: 18px !important;
+}
+
+.fs-md {
+    font-size: 24px !important;
+}
+
+.fs-lg {
+    font-size: 28px !important;
+}
+
+.fs-xl {
+    font-size: 32px !important;
+}
+
+.fs-xxl {
+    font-size: 48px !important;
+}
+
+.fs-xxxl {
+    font-size: 64px !important;
+}
+
 @media only screen and (max-width: 767px) {
+    .fs-sm {
+        font-size: 14px !important;
+    }
+    .fs-md {
+        font-size: 18px !important;
+    }
+    .fs-lg {
+        font-size: 18px !important;
+    }
+    .fs-xl {
+        font-size: 18px !important;
+    }
+    .fs-xxl {
+        font-size: 32px !important;
+    }
+    .fs-xxxl {
+        font-size: 32px !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .content {
+        padding: 31px 18px;
+    }
     mat-divider {
         display: none;
     }
-
     .profile-container {
         width: 90%;
     }
-
     .dropdown-menu {
         position: absolute;
         left: -100%;

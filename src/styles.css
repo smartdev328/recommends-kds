@@ -1,23 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "../node_modules/font-awesome/css/font-awesome.css";
-
-.homeImage{
-  background-image: url("https://image.shutterstock.com/z/stock-photo-happy-family-enjoying-life-together-at-meadow-outdoor-236160184.jpg");
-  background-repeat:no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 500px;
- }
-
+.homeImage {
+    background-image: url("https://image.shutterstock.com/z/stock-photo-happy-family-enjoying-life-together-at-meadow-outdoor-236160184.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+}
 
 @font-face {
     font-family: 'BubblegumSans';
-    src: url('assets/fonts/bubblegum-sans/BubblegumSans-Regular.otf'); /* IE9 Compat Modes */
+    src: url('assets/fonts/bubblegum-sans/BubblegumSans-Regular.otf');
+    /* IE9 Compat Modes */
 }
+
 @font-face {
     font-family: 'Montserrat';
-    src: url('assets/fonts/montserrat/Montserrat-Regular.ttf'); /* IE9 Compat Modes */
+    src: url('assets/fonts/montserrat/Montserrat-Regular.ttf');
+    /* IE9 Compat Modes */
 }
 
 .main-image {
@@ -39,7 +41,7 @@
 }
 
 .heading-bottom {
-  margin-bottom: 3em;
+    margin-bottom: 3em;
 }
 
 .Montserrat {
@@ -55,6 +57,7 @@
     text-align: center;
     color: #5d5d5a;
 }
+
 .Montserrat .BubblegumSans {
     height: 153px;
     font-family: BubblegumSans;
@@ -67,7 +70,6 @@
     text-align: left;
     color: #ef6c57;
     margin-left: 46%;
-
 }
 
 .BubblegumSans {
@@ -82,6 +84,7 @@
     text-align: left;
     color: #ef6c57;
 }
+
 .us {
     font-family: Montserrat;
     font-size: 40px;
@@ -103,38 +106,40 @@
     color: #5d5d5a;
     top: 27%;
 }
+
 .contactus {
-  font-family: Montserrat;
-  font-size: 40px;
-  font-weight: bold;
-  position: absolute;
-  bottom: 0px;
-  right: 5%;
-  color: #5d5d5a;
-  top: 74%;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0px;
+    right: 5%;
+    color: #5d5d5a;
+    top: 74%;
 }
 
 .policy {
-  font-family: Montserrat;
-  font-size: 40px;
-  font-weight: bold;
-  position: absolute;
-  bottom: 0px;
-  right: 50%;
-  color: #5d5d5a;
-  top: 44%;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0px;
+    right: 50%;
+    color: #5d5d5a;
+    top: 44%;
 }
 
 .terms_of_use {
-  font-family: Montserrat;
-  font-size: 40px;
-  font-weight: bold;
-  position: absolute;
-  bottom: 0px;
-  right: 40%;
-  color: #5d5d5a;
-  top: 44%;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0px;
+    right: 40%;
+    color: #5d5d5a;
+    top: 44%;
 }
+
 .Carousel-heading {
     height: 24px;
     font-family: Montserrat;
@@ -146,15 +151,14 @@
     letter-spacing: normal;
     text-align: left;
     color: #5d5d5a;
-  }
+}
 
-  .hr-top-margin {
+.hr-top-margin {
     top: 150%;
     position: absolute;
-  }
+}
 
-  .home-page-small-text {
-  
+.home-page-small-text {
     font-family: Montserrat;
     /* font-size: 21px; */
     font-weight: normal;
@@ -166,9 +170,9 @@
     color: #5d5d5a;
     position: absolute;
     top: 79%;
-  }
+}
 
-  .Dont-miss-out {
+.Dont-miss-out {
     /* width: 156px;
     height: 34px; */
     font-family: Montserrat;
@@ -180,10 +184,10 @@
     letter-spacing: normal;
     text-align: center;
     color: #ef6c57;
-        margin-right: 35%;
-  }
+    margin-right: 35%;
+}
 
-  .Sign-up-for-our-Newsletter {
+.Sign-up-for-our-Newsletter {
     /* width: 296px;
     height: 50px; */
     font-family: Montserrat;
@@ -197,26 +201,26 @@
     color: #ef6c57;
     position: absolute;
     right: 46%;
-  }
+}
 
-  .text-align-center {
+.text-align-center {
     text-align: center;
-  }
+}
 
-  .error-message-text {
+.error-message-text {
     text-align: center;
     font-family: Montserrat;
     font-size: 16px;
-  }
+}
 
-  .home-signup-btn {
+.home-signup-btn {
     width: 130px;
     height: 40px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     background-color: #ef6c57;
-  }
+}
 
-  .sign-up-text {
+.sign-up-text {
     width: 100px;
     height: 30px;
     font-family: Montserrat;
@@ -228,32 +232,33 @@
     letter-spacing: normal;
     text-align: center;
     color: #ffffff;
-  }
+}
 
-  .signup-btn{
+.signup-btn {
     width: 120px;
     height: 46px;
     border-radius: 37px;
     cursor: pointer;
-  }
-  .sign-up-position {
+}
+
+.sign-up-position {
     margin-left: 20%;
     margin-top: 35px;
-  }
+}
 
-  .home-events-camps-place-size {
+.home-events-camps-place-size {
     border-style: ridge;
     border-color: #ff0404;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     border-width: 1px;
     margin: 35px;
-    
-  }
-  .home-event-camps-places-size {
-      width : 100%
-  }
+}
 
-  .home-event-camps-places-text {
+.home-event-camps-places-size {
+    width: 100%
+}
+
+.home-event-camps-places-text {
     /* width: 141px; */
     height: 49px;
     font-family: BubblegumSans;
@@ -266,118 +271,139 @@
     text-align: left;
     color: #ffffff;
     margin: auto;
-  }
-  
-  .outer-div{
+}
+
+.outer-div {
     border: 1px solid #ffffff;
     border-radius: 5px;
     margin-bottom: 15px;
-  }
-  .main-section{
+}
+
+.main-section {
     padding: 0px 7%;
-  }
-  .main-section-listing{
+}
+
+.main-section-listing {
     padding: 0px 2%;
-  }
+}
 
-  .label-sec{
-    padding:10px 2%;
+.label-sec {
+    padding: 10px 2%;
     border-bottom: 4px solid #ef6c57;
-    margin:20px 0px;
+    margin: 20px 0px;
+}
 
-  }
-  .main-label{
+.main-label {
     color: #5d5d5a;
     font-size: 21px;
     font-weight: bold;
-  }
-  video{
-    width: 100%;
-    height:87%;
-    border-radius: 30px;
-  }
-  .Rectangle-172{
-  opacity: 0.3;
-  border-radius: 20px;
-  background-color: #d1d1d5;
-  }
+}
 
-  /*  */
-  .banner-heading{
+video {
+    width: 100%;
+    height: 87%;
+    border-radius: 30px;
+}
+
+.Rectangle-172 {
+    opacity: 0.3;
+    border-radius: 20px;
+    background-color: #d1d1d5;
+}
+
+
+/*  */
+
+.banner-heading {
     text-align: center;
     font-family: Montserrat;
     padding-top: 40px;
-  }
-  .about-banner-heading{
+}
+
+.about-banner-heading {
     text-align: center;
     font-family: Montserrat;
     padding-top: 2px;
-  }
-.banner-heading .main-heading{
-  color: #ef6c57;
-  font-size: 112px;
-  font-family: BubblegumSans;
-}
-.banner-heading .main-heading-events{
-  color: #459bca;
-  font-size: 112px;
-  font-family: BubblegumSans;
-}
-.banner-heading .main-heading-places{
-  color: #f9db55;
-  font-size: 112px;
-  font-family: BubblegumSans;
-}
-.banner-heading .main-heading-camps{
-  color: #e065b5;
-  font-size: 112px;
-  font-family: BubblegumSans;
-}
-.banner-heading .info{
-  color: #ffffff;
-  font-size: 55px;
-  font-weight: 400;
-  padding: 0px 0px 30px 0px;
 }
 
-.banner-heading .listing-info{
-  color: #5d5d5a;
-  font-size: 25px;
-  font-weight: 400;
-  padding: 0px 0px 30px 0px;
+.banner-heading .main-heading {
+    color: #ef6c57;
+    font-size: 112px;
+    font-family: BubblegumSans;
 }
-.dont-miss{
-  color: #FFFFFF;
-  font-size: 21px;
+
+.banner-heading .main-heading-events {
+    color: #459bca;
+    font-size: 112px;
+    font-family: BubblegumSans;
 }
-.newsletter{
-  color: #FFFFFF;
-  font-weight: 700;
-  font-size: 21px;
+
+.banner-heading .main-heading-places {
+    color: #f9db55;
+    font-size: 112px;
+    font-family: BubblegumSans;
 }
-.btn.btn-sign-up{
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  background-color: #ef6c57;
-  color: #ffffff;
-  font-size: 25px;
-  font-weight: bold;
-  padding: 2px 15px;
-  margin-top:15px;
-  border-radius: 30px;
+
+.banner-heading .main-heading-camps {
+    color: #e065b5;
+    font-size: 112px;
+    font-family: BubblegumSans;
 }
-.main-box img{
-  width: 500px;
-  height: 400px;
+
+.banner-heading .info {
+    color: #ffffff;
+    font-size: 55px;
+    font-weight: 400;
+    padding: 0px 0px 30px 0px;
 }
-.carousel{
-  margin-bottom: 15px;
+
+.banner-heading .listing-info {
+    color: #5d5d5a;
+    font-size: 25px;
+    font-weight: 400;
+    padding: 0px 0px 30px 0px;
 }
-.carousel img{
+
+.dont-miss {
+    color: #FFFFFF;
+    font-size: 21px;
+}
+
+.newsletter {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 21px;
+}
+
+.btn.btn-sign-up {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    background-color: #ef6c57;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 2px 15px;
+    margin-top: 15px;
     border-radius: 30px;
 }
-.slider-video-sec{
-  padding:0px 2%;
+
+.main-box img {
+    width: 500px;
+    height: 400px;
 }
+
+.carousel {
+    margin-bottom: 15px;
+}
+
+.carousel img {
+    border-radius: 30px;
+}
+
+.slider-video-sec {
+    padding: 0px 2%;
+}
+
+
 /* .box-gradient{
   text-align: center;
 }
@@ -386,146 +412,151 @@
   height:100%;
   padding-left: 20px;
   background: radial-gradient(ellipse, #6DD5FA 30%, #FFFFFF, #FFFFFF); 
-}*/ 
+}*/
 
-@media (max-width:600px){
-  .banner-heading{
-    padding-top:0px;
-  }
-  .main-box img{
-    width:100%;
-  }
-  .banner-heading .main-heading{
-    font-size: 110px;
-  }
-  .sign-up {box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.16);
-    background-color: #5d5d5a;
-    border-radius: 30px;
-    color: #eff1f4;
-    font-size: 24px;
-    font-weight: 100;
-    padding: 0px 6px !important;
-  }
-  .header-image{
-    width:100% !important;
-  }
-
-  .policy {
-    font-family: Montserrat;
-    font-size: 40px;
-    font-weight: bold;
-    position: absolute;
-    bottom: 0px;
-    right: 36%;
-    color: #5d5d5a;
-    top: 90%;
-  }
-  .About {
-    font-size: 100px !important;
-  }  
-  .Contact{
-    font-size: 95px !important;
-  }
-  .BubblegumSans{
-    font-size: 95px !important;;
-  }
+@media (max-width:600px) {
+    .banner-heading {
+        padding-top: 0px;
+    }
+    .main-box img {
+        width: 100%;
+    }
+    .banner-heading .main-heading {
+        font-size: 110px;
+    }
+    .sign-up {
+        box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.16);
+        background-color: #5d5d5a;
+        border-radius: 30px;
+        color: #eff1f4;
+        font-size: 24px;
+        font-weight: 100;
+        padding: 0px 6px !important;
+    }
+    .header-image {
+        width: 100% !important;
+    }
+    .policy {
+        font-family: Montserrat;
+        font-size: 40px;
+        font-weight: bold;
+        position: absolute;
+        bottom: 0px;
+        right: 36%;
+        color: #5d5d5a;
+        top: 90%;
+    }
+    .About {
+        font-size: 100px !important;
+    }
+    .Contact {
+        font-size: 95px !important;
+    }
+    .BubblegumSans {
+        font-size: 95px !important;
+        ;
+    }
 }
 
 .icon3a {
-  width: 722px;
-  height: 351px;
+    width: 722px;
+    height: 351px;
 }
 
 .logo-icon {
-  width: 120px;
-  height: 50px;
+    width: 120px;
+    height: 50px;
 }
 
 .bkgtry {
-	background-color: #067bc2;
+    background-color: #067bc2;
 }
 
-.mat-tab-label .mat-tab-label-content{
-  font-family: Montserrat;
-  font-size: 13px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.2;
-  letter-spacing: normal;
-  text-align: center;
-  color: #5d5d5a;
+.mat-tab-label .mat-tab-label-content {
+    font-family: Montserrat;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5d5d5a;
 }
 
-.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
-  height: 5px;
-  background-color: rgb(239, 108, 87);
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    height: 5px;
+    background-color: rgb(239, 108, 87);
 }
+
 .mat-card-title {
-  font-family: Montserrat;
-  font-size: 32px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.22;
-  letter-spacing: normal;
-  text-align: center;
-  color: #5d5d5a;
-  padding-right: 2%;
+    font-family: Montserrat;
+    font-size: 32px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5d5d5a;
+    padding-right: 2%;
 }
 
-
-.margin-center_width{
-  margin: auto;
-  max-width: 1%;
+.margin-center_width {
+    margin: auto;
+    max-width: 1%;
 }
 
-.cursor{
-  cursor: pointer !important;
+.cursor {
+    cursor: pointer !important;
 }
 
 .Camp-1-Lorem-Ipsum-is-simply-dummy-text {
-
-  font-family: Montserrat;
-  font-size: 14px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.43;
-  letter-spacing: normal;
-  color: #5d5d5a;
-  margin-top: 1rem !important;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    color: #5d5d5a;
+    margin-top: 1rem !important;
 }
 
 .column-border {
-  /* border-style: groove; */
-  margin: auto;
-  width: 20vw;
-  height: 300px;
-  padding: 0.8em;
-  border-radius: 10px;
-  border: 1px solid #5d5d5a;
+    /* border-style: groove; */
+    margin: auto;
+    width: 20vw;
+    height: 300px;
+    padding: 0.8em;
+    border-radius: 10px;
+    border: 1px solid #5d5d5a;
 }
+
 
 /* centered columns styles */
 
 .col-centered {
-  display:inline-block;
-  float:none;
-  /* reset the text-align */
-  text-align:left;
-  /* inline-block space fix */
-  margin-right:-4px;
-  text-align: center;
-  background-color: #ccc;
-  border: 1px solid #ddd;
+    display: inline-block;
+    float: none;
+    /* reset the text-align */
+    text-align: left;
+    /* inline-block space fix */
+    margin-right: -4px;
+    text-align: center;
+    background-color: #ccc;
+    border: 1px solid #ddd;
 }
 
 
 /* list pages */
+
+
 /* .info {
   color: #5d5d5a;
 } */
+
 
 /* .filter-box {
   width: 1150px;
@@ -555,6 +586,7 @@
   margin-top: 8px;
 } */
 
+
 /* @media only screen and (min-device-width : 320px) and (max-device-width : 620px) {
   .filter-box {
       height: auto;
@@ -578,169 +610,164 @@
 } */
 
 .svg-icons {
-  height: 40px;
+    height: 40px;
 }
 
 .filter-dropdown {
-  width: 75%;
-  float: right;
-  font-size: 16px!important;
-  height: 40px;
-  text-align: left!important;
-  border-radius: 17px!important;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding-right: 2em!important;
+    width: 75%;
+    float: right;
+    font-size: 16px!important;
+    height: 40px;
+    text-align: left!important;
+    border-radius: 17px!important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 2em!important;
 }
 
 .location-dropdown {
-  width: 100%;
-  font-size: 16px!important;
-  height: 40px;
-  text-align: left!important;
-  border-radius: 17px!important;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding-right: 2em!important;
+    width: 100%;
+    font-size: 16px!important;
+    height: 40px;
+    text-align: left!important;
+    border-radius: 17px!important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 2em!important;
 }
 
 .filter-datepicker {
-  height: calc(2.25rem + 2px);
+    height: calc(2.25rem + 2px);
 }
 
 .filter-box {
-  width: 1014px;
-  padding: 16px;
-  border-radius: 4px;
-  border: 1px solid #707070;
-  margin: auto;
-  margin-bottom: 2em;
+    width: 1014px;
+    padding: 16px;
+    border-radius: 4px;
+    border: 1px solid #707070;
+    margin: auto;
+    margin-bottom: 2em;
 }
 
 .hairline-down {
-  float: right;
-  position: absolute;
-  right: 8px;
+    float: right;
+    position: absolute;
+    right: 8px;
 }
 
 .keyword-text {
-  background-color: #dddddd!important;
-  border-radius: 16px!important;
+    background-color: #dddddd!important;
+    border-radius: 16px!important;
 }
 
 .filter-box-content {
-  font-family: Montserrat;
-  font-size: 15px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.67;
-  letter-spacing: normal;
-  text-align: left;
-  color: #5f6772;
-  margin-top: 0.5em;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.67;
+    letter-spacing: normal;
+    text-align: left;
+    color: #5f6772;
+    margin-top: 0.5em;
 }
 
 .details-button {
-  width: 64px;
-  height: 24px;
-  -webkit-text-stroke: 1px #707070;
-  font-family: Montserrat;
-  font-size: 20px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.2;
-  letter-spacing: normal;
-  /* text-align: left; */
-  color: #707070;
-  margin: auto;
+    width: 64px;
+    height: 24px;
+    -webkit-text-stroke: 1px #707070;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    /* text-align: left; */
+    color: #707070;
+    margin: auto;
 }
+
 .add-scroll {
-  overflow-y: scroll!important;
-  height: 200px;
+    overflow-y: scroll!important;
+    height: 200px;
 }
 
-.btn-yellow{
-  font-family: Montserrat;
-  font-size: 14px;
-  font-weight: 400;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.21;
-  letter-spacing: normal;
-  text-align: center;
-  color: #4A4949;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
-  background-color: #FFD700;
-  min-width: 155px;
+.btn-yellow {
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    text-align: center;
+    color: #4A4949;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+    background-color: #FFD700;
+    min-width: 155px;
 }
 
-.btn-white{
-  font-family: Montserrat;
-  font-size: 14px;
-  font-weight: 400;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.21;
-  border: 1px solid #4a4949 !important;
-  letter-spacing: normal;
-  text-align: center;
-  color: #4A4949;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
-  background-color: #ffffff !important;
-  min-width: 155px;
+.btn-white {
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    border: 1px solid #4a4949 !important;
+    letter-spacing: normal;
+    text-align: center;
+    color: #4A4949;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+    background-color: #ffffff !important;
+    min-width: 155px;
 }
+
 
 /* ng-masonry-grid-item .mat-card-content {
   height: 136px;
 } */
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 668px) {
-  .banner-heading .info{
-  color: #ffffff;
-  font-size: 25px;
-  font-weight: 400;
-  padding: 0px 0px 30px 0px;
-  }
-
-  .btn.btn-sign-up{
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  background-color: #ef6c57;
-  color: #ffffff;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 2px 5px;
-  margin-top: 5px;
-  border-radius: 10px;
- } 
-
- .homeImage{
-  background-image: url("https://image.shutterstock.com/z/stock-photo-happy-family-enjoying-life-together-at-meadow-outdoor-236160184.jpg");
-  background-repeat:no-repeat;
-  background-size: contain;
-  background-position: center;
-  height: 250px;
- }
- 
-  .filter-dropdown {
-    width: 100%;
-    float: none;
-  }
-
-  .svg-icons {
-    margin: auto;
-    display: block;
-  }
-
-  .filter-datepicker {
-    width: 82%;
-  }
-
-  .filter-box {
-    width: auto;
-  }
+@media only screen and (min-device-width: 320px) and (max-device-width: 668px) {
+    .banner-heading .info {
+        color: #ffffff;
+        font-size: 25px;
+        font-weight: 400;
+        padding: 0px 0px 30px 0px;
+    }
+    .btn.btn-sign-up {
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        background-color: #ef6c57;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: bold;
+        padding: 2px 5px;
+        margin-top: 5px;
+        border-radius: 10px;
+    }
+    .homeImage {
+        background-image: url("https://image.shutterstock.com/z/stock-photo-happy-family-enjoying-life-together-at-meadow-outdoor-236160184.jpg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        height: 250px;
+    }
+    .filter-dropdown {
+        width: 100%;
+        float: none;
+    }
+    .svg-icons {
+        margin: auto;
+        display: block;
+    }
+    .filter-datepicker {
+        width: 82%;
+    }
+    .filter-box {
+        width: auto;
+    }
 }
-

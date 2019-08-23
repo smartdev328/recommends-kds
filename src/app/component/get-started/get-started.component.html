@@ -1,78 +1,76 @@
 <form class="profile-container" [formGroup]="formGroup">
-  <div class="row py-3">
-    <div class="col-md-4">
-      <h3>Let's get started</h3>
-    </div>
-    <mat-card class="col-md-8 p-5">
-      <h4>Profile</h4>
-      <div class="row">
-        <mat-form-field class="col-12 col-md-6">
-          <input matInput placeholder="First name" formControlName="firstName" required>
-        </mat-form-field>
-        <mat-form-field class="col-12 col-md-6">
-          <input matInput placeholder="Last name" formControlName="lastName" required>
-        </mat-form-field>
-      </div>
-      <div class="row" style="align-items: baseline">
-        <mat-form-field class="col-12 col-md-6">
-          <input matInput placeholder="Zipcode" formControlName="zipcode">
-        </mat-form-field>
-      </div>
-    </mat-card>
-  </div>
-  <mat-divider></mat-divider>
-  <div class="row py-3">
-    <div class="col-md-4">
-      <h3>What are your kids’ current obsessions?</h3>
-      <p>Tell us or select what you’d like to see more of in your recommendations</p>
-    </div>
-    <mat-card class="col-md-8 p-5">
-      <h4>Kids</h4>
-      <div *ngFor="let kid of kids; let i = index">
-        <mat-divider *ngIf="i != 0"></mat-divider>
-        <div class="row">
-          <mat-form-field class="col-12 col-md-6">
-            <input matInput placeholder="Nickname"
-              [formControl]="formGroup.controls.kidControls.controls[i].controls.nick_name">
-          </mat-form-field>
-          <mat-form-field class="col-12 col-md-6">
-            <input matInput placeholder="Age" [formControl]="formGroup.controls.kidControls.controls[i].controls.age"
-              maxlength="2">
-            <img class="cursor" src="assets\web_images\delete.png" alt="Clear" width="24"
-              [class.no-display]="!formGroup.controls.kidControls.controls[i].controls.age.value" matSuffix
-              (click)="formGroup.controls.kidControls.controls[i].controls.age.setValue('')">
-          </mat-form-field>
+    <div class="row py-3 mx-0">
+        <div class="col-md-4">
+            <h3 class="fs-xxl">Let's get started</h3>
         </div>
-        <h5>Interests</h5>
-        <div class="form-group interests">
-          <small class="clear"
-            (click)="formGroup.controls.kidControls.controls[i].controls.interests.setValue('')">clear
-            all</small>
-          <textarea class="form-control" rows="3" placeholder="Tell us what you’d like to see! (separated by commas)"
-            [formControl]="formGroup.controls.kidControls.controls[i].controls.interests"></textarea>
+        <mat-card class="col-md-8 content">
+            <h4 class="fs-xl">Profile</h4>
+            <div class="row">
+                <mat-form-field class="col-12 col-md-6">
+                    <input matInput placeholder="First name" formControlName="firstName" required>
+                </mat-form-field>
+                <mat-form-field class="col-12 col-md-6">
+                    <input matInput placeholder="Last name" formControlName="lastName" required>
+                </mat-form-field>
+            </div>
+            <div class="row" style="align-items: baseline">
+                <mat-form-field class="col-12 col-md-6">
+                    <input matInput placeholder="Zipcode" formControlName="zipcode">
+                </mat-form-field>
+            </div>
+        </mat-card>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="row py-3 mx-0">
+        <div class="col-md-4">
+            <h3 class="fs-xxl">What are your kids’ current obsessions?</h3>
+            <p class="fs-sm">Tell us or select what you’d like to see more of in your recommendations</p>
         </div>
-        <mat-chip-list aria-label="Interest selection">
-          <mat-chip class="cursor" *ngFor="let interest of interests" [color]="getChipColor(kid, interest)"
-            (click)="toggleInterest(kid, interest, i)" selected>{{interest}}
-          </mat-chip>
-        </mat-chip-list>
-      </div>
-      <h5 class="mt-4 cursor" (click)="addChild()">+ add child</h5>
-    </mat-card>
-  </div>
-  <mat-divider></mat-divider>
-  <div class="row py-3">
-    <div class="col-md-4">
-      <h3>Would you like to sign up for the newsletter?</h3>
-      <p>Check the box to receive weekly plans personalized for your family</p>
+        <mat-card class="col-md-8 content">
+            <h4 class="fs-xl">Kids</h4>
+            <div *ngFor="let kid of kids; let i = index">
+                <mat-divider *ngIf="i != 0"></mat-divider>
+                <div class="row">
+                    <mat-form-field class="col-12 col-md-6">
+                        <input matInput placeholder="Nickname"
+                            [formControl]="formGroup.controls.kidControls.controls[i].controls.nick_name">
+                    </mat-form-field>
+                    <mat-form-field class="col-12 col-md-6">
+                        <input matInput placeholder="Age"
+                            [formControl]="formGroup.controls.kidControls.controls[i].controls.age" maxlength="2">
+                        <img class="cursor" src="assets\web_images\delete.png" alt="Clear" width="24"
+                            [class.no-display]="!formGroup.controls.kidControls.controls[i].controls.age.value"
+                            matSuffix (click)="formGroup.controls.kidControls.controls[i].controls.age.setValue('')">
+                    </mat-form-field>
+                </div>
+                <h5>Interests</h5>
+                <div class="form-group interests">
+                    <textarea class="form-control" rows="3"
+                        placeholder="Tell us what you’d like to see! (separated by commas)"
+                        [formControl]="formGroup.controls.kidControls.controls[i].controls.interests"></textarea>
+                </div>
+                <mat-chip-list aria-label="Interest selection">
+                    <mat-chip class="cursor fs-sm" *ngFor="let interest of interests" [color]="getChipColor(kid, interest)"
+                        (click)="toggleInterest(kid, interest, i)" selected>{{interest}}
+                    </mat-chip>
+                </mat-chip-list>
+            </div>
+            <h5 class="mt-4 cursor fs-sm" (click)="addChild()">+ add child</h5>
+        </mat-card>
     </div>
-    <div class="col-md-8 pl-md-5" fxLayout="column" fxLayoutAlign="end start">
-      <mat-checkbox class="mb-1">Yes, sign me up for the newsletter!</mat-checkbox>
+    <mat-divider></mat-divider>
+    <div class="row py-3 mx-0">
+        <div class="col-md-4">
+            <h3 class="fs-xxl">Would you like to sign up for the newsletter?</h3>
+            <p class="fs-sm">Check the box to receive weekly plans personalized for your family</p>
+        </div>
+        <div class="col-md-8 pl-md-5" fxLayout="column" fxLayoutAlign="end start">
+            <mat-checkbox class="mb-1 ml-md-5 pl-md-4 fs-md">Yes, sign me up for the newsletter!</mat-checkbox>
+        </div>
     </div>
-  </div>
-  <mat-divider></mat-divider>
-  <div class="mt-2" fxLayout="row" fxLayoutAlign="end stretch">
-      <button class="btn btn-white" (click)="save()">BACK</button>
-      <button class="btn btn-yellow" (click)="save()">FINISH</button>
-  </div>
+    <mat-divider></mat-divider>
+    <div class="mt-2" fxLayout="row" fxLayoutAlign="end stretch">
+        <button class="btn btn-white fs-sm" (click)="save()">BACK</button>
+        <button class="btn btn-yellow fs-sm" (click)="save()">FINISH</button>
+    </div>
 </form>
