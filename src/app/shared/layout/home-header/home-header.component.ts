@@ -26,7 +26,7 @@ export class HomeHeaderComponent implements OnInit {
 
 
   ngOnInit() {
-    //this.auth0Client = await this.authService.getAuth0Client();
+    //this.isAuthenticated = await this.auth.getAuth0Client().;
     /*this.authService.profile.subscribe(profile => {
       this.profile = profile;
     });*/

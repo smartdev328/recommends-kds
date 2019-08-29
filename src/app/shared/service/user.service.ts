@@ -17,12 +17,12 @@ export class UserService {
 
     getUser() {
         // TODO: this API use hard code user (web:385649). Need to change after enable Authz in backend
-        return this.http.get<User>(API_URL + 'users/web:385649').pipe(map((response) => {
+        return this.http.get<User>(API_URL + 'parents/').pipe(map((response) => {
             return response.error ? new User() : response;
         }));
     }
 
     createUser(user: UserRequest) {
-        return this.http.post(API_URL + 'users', user);
+        return this.http.post(API_URL + 'parents/', user);
     }
 }

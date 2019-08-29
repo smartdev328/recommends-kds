@@ -8,9 +8,7 @@ export class CampListingService {
 
   constructor(private http: HttpClient) { }
 
-  get_camp_details(api_input: any) {
-    const url = API_URL + 'camps/?category=' + api_input.category +
-      "&q=" + api_input.q;
-    return this.http.get(url);
+  get_camp_details(url: string) {
+    return this.http.get(url, { responseType: 'text' });
   }
 }

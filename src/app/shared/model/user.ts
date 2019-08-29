@@ -7,6 +7,6 @@ export class User {
     parent: Parent;
 
     constructor() {
-        this.parent = new Parent({ kid: new Kid() });
+        this.parent = new Parent();
     }
 }

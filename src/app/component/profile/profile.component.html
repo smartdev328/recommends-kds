@@ -21,7 +21,7 @@
   <mat-divider></mat-divider>
   <div fxLayout="row" fxLayoutAlign="start center">
     <h4>Newsletter</h4>
-    <mat-slide-toggle class="ml-3"></mat-slide-toggle>
+    <mat-slide-toggle class="ml-3" formControlName="newsletter"></mat-slide-toggle>
   </div>
   <p>Sign up to get Kin's weekly calendar personalized for you</p>
   <mat-divider></mat-divider>
@@ -45,7 +45,7 @@
     <div class="form-group interests">
       <p class="clear" (click)="formGroup.controls.kidControls.controls[i].controls.interests.setValue('')">clear
         all</p>
-      <textarea class="form-control" rows="8" placeholder="Tell us what you’d like to see! (separated by commas)"
+      <textarea class="form-control" rows="4" placeholder="Tell us what you’d like to see! (separated by commas)"
         [formControl]="formGroup.controls.kidControls.controls[i].controls.interests"></textarea>
     </div>
     <mat-chip-list aria-label="Interest selection">

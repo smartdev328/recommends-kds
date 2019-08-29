@@ -80,7 +80,6 @@ export class AuthService {
           return this.getUser$();
         }
         // If not authenticated, return stream that emits 'false'
-        console.log('not logged in');
         return of(loggedIn);
       })
     );

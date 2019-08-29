@@ -19,6 +19,7 @@ export class Parent {
     parent_id: string;
     phone_no: string;
     referred_by: string;
+    newsletter: boolean;
     zip_code: string;
 
     constructor(option?: { kid?: Kid }) {

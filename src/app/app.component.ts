@@ -19,9 +19,10 @@ export class AppComponent {
   }
   */
 
-  constructor(private auth: AuthService) {}
+  constructor(public auth: AuthService) {}
 
   ngOnInit() {
     this.auth.localAuthSetup();
+    console.log("Logged in " + this.auth.loggedIn);
   }
 }

@@ -16,17 +16,14 @@ export class HomeComponent implements OnInit {
   childForm: FormGroup;
   submitted = false;
   public isSuccessVisible: Boolean;
-  public isAuthenticated$: Observable<boolean>;
 
   constructor(
     private titleService: Title,
     private metaService: Meta,
-    private authService: AuthService
+    private auth: AuthService
   ) { }
 
   ngOnInit() {
-    //this.isAuthenticated$ = this.authService.isAuthenticated.asObservable();
-    this.isAuthenticated$ = this.authService.isAuthenticated$;
     this.titleService.setTitle('Kin - discover and plan family friendly activities around SF bay area');
     this.metaService.addTag({
       name: 'description', content: 'Kin is a smart assistant for parents to discover ' +

@@ -1,18 +1,18 @@
 .navbar {
-    padding: 20px 1% 20px 5%;
+    padding: 20px 5%;
     font-family: Montserrat;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 .navbar .navbar-brand {
     color: #4a4949;
-    font-size: 18px;
-    padding: 0 40px
+    font-size: 16px;
+    padding: 2px 5px;
 }
 
 .navbar-light .navbar-nav .nav-link {
     color: #4a4949;
-    font-size: 18px
+    font-size: 16px
 }
 
 .active {
@@ -36,7 +36,8 @@
 
 .dropdown-menu {
     font-family: Montserrat;
-    font-weight: 400;
+    font-weight: 300;
+    font-style: normal;
     font-size: 18px;
 }
 
@@ -56,6 +57,7 @@
     font-size: 18px;
 }
 
+/*
 @media only screen and (max-width: 767px) {
     .navbar {
         padding: 20px 15px;
@@ -71,12 +73,23 @@
         padding-top: .5rem;
     }
 }
+*/
+
+/* Mobile */
+@media (min-width: 769px){
+    .navbar-expand-md .navbar-nav .nav-link {
+      padding: 0px 40px;
+    }
+    .navbar-expand-md .navbar-nav .nav-link.nav-button{
+      padding: 0px;
+    }
+  }
 
 @media only screen and (min-width :768px) and (max-width :1280px) {
-    /* .navbar-light .navbar-nav .nav-link {
+    .navbar-light .navbar-nav .nav-link {
         color: #4a4949;
         font-size: 12px
-    } */
+    } 
     .sign_up {
         font-family: Montserrat;
         font-size: 14px;
@@ -93,8 +106,8 @@
     }
 }
 
-@media only screen and (min-width :768px) and (max-width :1120px) {
+/*@media only screen and (min-width :768px) and (max-width :1120px) {
     .navbar .navbar-brand {
         padding: 0 10px
     }
-}
+}*/

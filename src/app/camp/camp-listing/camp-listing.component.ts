@@ -7,8 +7,10 @@ import { ReviewsService } from '../../component/add-review/reviews.service';
 import { ACTION, ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM } from '../../shared/constants/AnalyticsConstants';
 import { CampConstants, CampErrorMessage } from '../../shared/constants/CampConstants';
 import { ErrorMessage } from '../../shared/constants/CommonConstants';
-import { CampListingService } from './camp-listing.service';
 import { API_URL } from '@shared/constants/UrlConstants';
+import { CampListingService } from './camp-listing.service';
+
+
 declare let ga: any;
 @Component({
   selector: 'app-camp-listing',
@@ -45,7 +47,7 @@ export class CampListingComponent implements OnInit {
     private titleService: Title,
     private metaService: Meta,
     private reviewService: ReviewsService,
-    private campListingService: CampListingService
+    private campsListingService: CampListingService
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -57,6 +59,7 @@ export class CampListingComponent implements OnInit {
     this.selected_cat = '';
     this.keyword = '';
     this.category_label = 'Category';
+    //this.isAuthenticated$ = this.authService.isAuthenticated$;
   }
 
   ngOnInit() {
@@ -110,8 +113,7 @@ export class CampListingComponent implements OnInit {
     this.camp_explore = '';
     this.isExplore = true;
     this.showMore = false;
-    const headers = new HttpHeaders();
-    this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+    this.campsListingService.get_camp_details(url).subscribe(data => {
       data = data.replace(/\n/g, '');
       data = JSON.parse(data);
       if (data['data'] != undefined && data['data'].length > 0) {
@@ -199,8 +201,7 @@ export class CampListingComponent implements OnInit {
       this.camp_explore = [];
       this.showMore = false;
       this.isExplore = true;
-      const headers = new HttpHeaders();
-      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+      this.http.get(url, { responseType: 'text' }).subscribe(data => {
         data = data.replace(/\n/g, '');
         data = JSON.parse(data);
         this.camp_explore = data['data'];
