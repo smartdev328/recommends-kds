@@ -7,6 +7,7 @@ import { CommonUtil } from '@shared/utils/common-util';
 import { UserService } from '@shared/service/user.service';
 import { User } from '@shared/model/user';
 import { AuthService } from '@shared/service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -20,15 +21,18 @@ export class ProfileComponent implements OnInit {
   kidControls: FormArray;
   user: User;
   eventConstants = new EventConstants();
+  parentEmail: string;
 
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
-    public auth: AuthService
+    public auth: AuthService,
+    private router:Router
   ) { }
 
   ngOnInit() {
     this.formGroup = new FormGroup({
+      kid_id: new FormControl(),
       firstName: new FormControl(),
       lastName: new FormControl(),
       email: new FormControl(),
@@ -43,12 +47,15 @@ export class ProfileComponent implements OnInit {
 
   getUser() {
     this.userService.getUser().subscribe((user) => {
+      console.log(user)
       this.user = user;
       if (user.parent) {
         this.formGroup.get('firstName').setValue(user.parent.first_name);
         this.formGroup.get('lastName').setValue(user.parent.last_name);
         this.formGroup.get('zipcode').setValue(user.parent.zip_code);
         this.formGroup.get('newsletter').setValue(user.parent.newsletter);
+        this.formGroup.get('email').setValue(user.parent.email);
+        this.parentEmail=user.parent.email;
         this.initKidControls((user.parent && user.parent.kids) ? user.parent.kids : [new Kid()]);
       }
     });
@@ -59,6 +66,7 @@ export class ProfileComponent implements OnInit {
     for (let i = 0; i < kids.length; i++) {
       //console.log(`Kid  Object: ${JSON.stringify(kids[i], null, 4)}`);
       this.kidControls.push(new FormGroup({
+        kid_id: new FormControl(kids[i].kid_id),
         nickname: new FormControl(kids[i].nick_name),
         age: new FormControl(kids[i].age),
         interests: new FormControl(kids[i].interests[0].freeform),
@@ -67,12 +75,32 @@ export class ProfileComponent implements OnInit {
   }
 
   addChild(kid: Kid) {
+    console.log('add child')
     this.user.parent.kids.push(kid);
     this.initKidControls([kid]);
   }
 
   save() {
-    //console.log(this.formGroup);
+
+    this.formGroup.value.newsletter = false;
+    let param = {
+      first_name: this.formGroup.value.firstName,
+      last_name: this.formGroup.value.lastName,
+      zip_code: this.formGroup.value.zipcode,
+      email: this.parentEmail,
+      newsletter: this.formGroup.value.newsletter,
+    }
+    const kidParam = this.formGroup.value.kidControls[0];
+    console.log(kidParam,'fsdfsdfsdfsd')
+    this.userService.updateUser(param).subscribe(
+      responseParent => {
+        this.userService.updateKids(kidParam).subscribe(
+          responseKid => {
+            this.router.navigate(['/home']);
+          });
+      }, err => {
+        console.log('Error in call service for parent and kid', err);
+      });
     // Call PATCH on /parents/ and /kids/ backend APIs to update
     // information for the parent and kids.
     console.log(`Kid  Object: ${JSON.stringify(this.user, null, 4)}`);

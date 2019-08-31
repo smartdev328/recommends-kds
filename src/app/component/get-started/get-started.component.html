@@ -50,8 +50,9 @@
                         [formControl]="formGroup.controls.kidControls.controls[i].controls.interests"></textarea>
                 </div>
                 <mat-chip-list aria-label="Interest selection">
-                    <mat-chip class="cursor fs-sm" *ngFor="let interest of interests" [color]="getChipColor(kid, interest)"
-                        (click)="toggleInterest(kid, interest, i)" selected>{{interest}}
+                    <!-- <pre>{{interests | json}}</pre> -->
+                    <mat-chip class="cursor fs-sm" *ngFor="let interest of interests" [color]="getChipColor(kid, interest.id)"
+                        (click)="toggleInterest(kid, interest.id, i)" selected>{{interest.name}}
                     </mat-chip>
                 </mat-chip-list>
             </div>

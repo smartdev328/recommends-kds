@@ -4,8 +4,7 @@ import { API_URL } from "@shared/constants/UrlConstants";
 import { UserRequest } from "@shared/model/request-body";
 import { User } from "@shared/model/user";
 import { map } from 'rxjs/operators';
-import { Observable, throwError } from "rxjs";
-
+import { HttpHeaders } from '@angular/common/http';
 @Injectable({
     providedIn: 'root'
 })
@@ -22,7 +21,35 @@ export class UserService {
         }));
     }
 
+    gethttpOptions() {
+        let httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'x-api-key': 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk',
+            })
+        };
+        return httpOptions;
+    }
+
+    //create user
     createUser(user: UserRequest) {
         return this.http.post(API_URL + 'parents/', user);
+    }
+
+    // Update user
+    updateUser(res) {
+        const httpOptions = this.gethttpOptions();
+        return this.http.patch(API_URL + 'parents/', res, httpOptions);
+    }
+    
+    // Create kid
+    createKid(inputObject: any) {
+        const httpOptions = this.gethttpOptions();
+        return this.http.post(API_URL + 'kids/', inputObject, httpOptions);
+    }
+
+    updateKids(inputObject: any) {
+        const httpOptions = this.gethttpOptions();
+        return this.http.patch(API_URL + 'kids/', inputObject, httpOptions);
     }
 }

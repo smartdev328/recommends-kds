@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { EventConstants } from '@shared/constants/EventConstants';
 import { Kid } from '@shared/model/kid';
-import { Item } from '@shared/model';
 import { UserRequest } from '@shared/model/request-body';
 import { CommonUtil } from '@shared/utils/common-util';
 import { UserService } from '@shared/service/user.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-get-started',
@@ -13,17 +14,20 @@ import { UserService } from '@shared/service/user.service';
   styleUrls: ['./get-started.component.css']
 })
 export class GetStartedComponent implements OnInit {
-
+  parentEmail: any;
   formGroup: FormGroup;
-  interests: string[];
+  interests: any[];
   kids: Kid[];
   kidControls: FormArray;
   submitted = false;
   eventConstants = new EventConstants();
 
+  newsletter: boolean = false;
   constructor(
     private userService: UserService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -31,13 +35,15 @@ export class GetStartedComponent implements OnInit {
       firstName: new FormControl(),
       lastName: new FormControl(),
       zipcode: new FormControl(),
+      newsletter: new FormControl(Boolean),
       kidControls: this.formBuilder.array([])
     });
-    this.interests = this.eventConstants.PRIMARY_CATEGORY.map((item) => item.name);
+    this.interests = this.eventConstants.PRIMARY_CATEGORY.map((item) => item);
     this.kids = [];
     this.addChild();
     this.userService.getUser().subscribe((user) => {
-      console.log("user" + user);
+      console.log(user);
+      this.parentEmail = user.parent.email
     });
   }
 
@@ -54,21 +60,36 @@ export class GetStartedComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    // stop here if form is invalid
     if (this.formGroup.invalid) {
-        return;
+      return;
     } else {
       console.log(this.formGroup);
     }
   }
 
   save() {
-    console.log(this.formGroup);
+    this.formGroup.value.newsletter = false;
+    let param = {
+      first_name: this.formGroup.value.firstName,
+      last_name: this.formGroup.value.lastName,
+      zip_code: this.formGroup.value.zipcode,
+      email: this.parentEmail,
+      newsletter: this.formGroup.value.newsletter,
+    }
+    const kidParam = this.formGroup.value.kidControls[0];
+    this.userService.updateUser(param).subscribe(
+      responseParent => {
+        this.userService.createKid(kidParam).subscribe(
+          responseKid => {
+            this.router.navigate(['/home']);
+          });
+      }, err => {
+        console.log('Error in call service for parent and kid', err);
+      });
   }
 
   saveUser() {
     const userReq = new UserRequest(CommonUtil.initRequestBody());
-
   }
 
   getChipColor(kid: Kid, interest: string) {
@@ -76,15 +97,12 @@ export class GetStartedComponent implements OnInit {
   }
 
   toggleInterest(kid: Kid, interest: string, idx: number) {
-    const interest_id = this.eventConstants.get_cat_id_by_name(interest);
+    const interest_id = this.eventConstants.get_cat_name_by_id(interest);
     if (kid.interests.includes(interest)) {
       kid.interests.splice(kid.interests.indexOf(interest), 1);
-      kid.interest_categories.splice(kid.interest_categories.indexOf(interest_id), 1);
     } else {
       kid.interests.push(interest);
-      kid.interest_categories.push(interest_id);
     }
-    this.kidControls.controls[idx].get('categories').setValue(kid.interest_categories.toString());
+    this.kidControls.controls[idx].get('categories').setValue(kid.interests.toString());
   }
-
 }

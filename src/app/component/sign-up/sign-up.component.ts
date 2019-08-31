@@ -74,6 +74,7 @@ export class SignUpComponent implements OnInit {
     }
 
     onSubmit() {
+        console.log("in");
         this.submitted = true;
         // stop here if form is invalid
         if (this.registerForm.invalid) {
@@ -92,7 +93,10 @@ export class SignUpComponent implements OnInit {
                 .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
                 .set('Content-Type', 'application/json');
             this.http.post(url, data, { headers: headers, responseType: 'text' }).subscribe(response => {
+                console.log(response);
+
                 data = response.replace(/\n/g, '');
+                console.log(data)
                 data = JSON.parse(data);
 
                 if (data['error'] !== undefined) {
@@ -111,8 +115,11 @@ export class SignUpComponent implements OnInit {
                             const headers = new HttpHeaders().set('Content-Type', 'application/json');
                             this.http.post(url, this.newChild.value[i], { headers: headers, responseType: 'text' }).
                                 subscribe(response => {
+                                    console.log('response',response)
                                     data = response.replace(/\n/g, '');
+                                    console.log('data',data)
                                     data = JSON.parse(data);
+                                    console.log('data1212',data)
                                 });
                         }
                     }
