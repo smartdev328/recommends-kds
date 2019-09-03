@@ -26,7 +26,7 @@
                     [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/','family-friendly-hikes-near-me']">Hiking</a>
             </li>
         </ul>
-        <ul class="navbar-nav text-center">
+        <ul class="navbar-nav text-center align-items-center">
             <li class="nav-item mr-2" *ngIf="auth.loggedIn">
                 <a class="nav-link nav-button" href="https://www.messenger.com/t/kinparenting" target="_blank">
                     Chat on Messenger
@@ -40,7 +40,7 @@
                 </a>
                 <div class="mt-2 dropdown" fxLayout="row" fxLayoutAlign="center stretch" *ngIf="auth.loggedIn">
                     <div class="cursor" fxLayout="row" data-toggle="dropdown">
-                        <img src="assets/web_images/profile.png" alt="User" width="32">
+                        <img src="assets/web_images/profile.png" alt="User" width="50" height="44" >
                         <mat-icon aria-hidden="false" aria-label="">keyboard_arrow_down</mat-icon>
                     </div>
                     <ul class="dropdown-menu dropdown-menu-right">

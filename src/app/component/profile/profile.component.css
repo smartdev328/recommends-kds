@@ -53,7 +53,7 @@ mat-chip {
     color: rgba(0, 0, 0, .87);
     border: 1px solid #4a4949;
     font-family: Montserrat;
-    font-size: 12px;
+    font-size: 18px;
 }
 
 .mat-standard-chip:hover::after {

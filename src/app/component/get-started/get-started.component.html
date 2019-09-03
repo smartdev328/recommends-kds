@@ -1,20 +1,25 @@
 <form class="profile-container" [formGroup]="formGroup">
     <div class="row py-3 mx-0">
         <div class="col-md-4">
-            <h3 class="fs-xxl">Let's get started</h3>
+            <h3 class="fs-xxl">Let's get started!</h3>
         </div>
         <mat-card class="col-md-8 content">
             <h4 class="fs-xl">Profile</h4>
             <div class="row">
                 <mat-form-field class="col-12 col-md-6">
-                    <input matInput placeholder="First name" formControlName="firstName" required>
+                    <input matInput placeholder="First name"  formControlName="firstName" required>
                 </mat-form-field>
                 <mat-form-field class="col-12 col-md-6">
                     <input matInput placeholder="Last name" formControlName="lastName" required>
                 </mat-form-field>
             </div>
+            <div class="row">
+                <mat-form-field class="col-12">
+                    <input matInput placeholder="Email" formControlName="email" required>
+                </mat-form-field>
+            </div>
             <div class="row" style="align-items: baseline">
-                <mat-form-field class="col-12 col-md-6">
+                <mat-form-field class="col-12 col-md-6 Zipcode">
                     <input matInput placeholder="Zipcode" formControlName="zipcode">
                 </mat-form-field>
             </div>
@@ -45,7 +50,7 @@
                 </div>
                 <h5>Interests</h5>
                 <div class="form-group interests">
-                    <textarea class="form-control" rows="3"
+                    <textarea class="form-control textarea" rows="3"
                         placeholder="Tell us what you’d like to see! (separated by commas)"
                         [formControl]="formGroup.controls.kidControls.controls[i].controls.interests"></textarea>
                 </div>
@@ -66,7 +71,7 @@
             <p class="fs-sm">Check the box to receive weekly plans personalized for your family</p>
         </div>
         <div class="col-md-8 pl-md-5" fxLayout="column" fxLayoutAlign="end start">
-            <mat-checkbox class="mb-1 ml-md-5 pl-md-4 fs-md">Yes, sign me up for the newsletter!</mat-checkbox>
+            <mat-checkbox class="mb-1 ml-md-5 pl-md-4 fs-md news-letter">Yes, sign me up for the newsletter!</mat-checkbox>
         </div>
     </div>
     <mat-divider></mat-divider>

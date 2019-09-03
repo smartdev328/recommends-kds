@@ -11,8 +11,10 @@
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: #4a4949;
-    font-size: 16px
+    color: #000000;
+    font-size: 18px;
+    font-family: Montserrat;
+
 }
 
 .active {

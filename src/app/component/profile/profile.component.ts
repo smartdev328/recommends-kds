@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   user: User;
   eventConstants = new EventConstants();
   parentEmail: string;
-
+  newsletter: boolean = false;
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
@@ -37,17 +37,15 @@ export class ProfileComponent implements OnInit {
       lastName: new FormControl(),
       email: new FormControl(),
       zipcode: new FormControl(),
-      newsletter: new FormControl(),
+      newsletter: new FormControl(Boolean),
       kidControls: this.formBuilder.array([])
     });
     this.interests = this.eventConstants.PRIMARY_CATEGORY.map((item) => item.name);
-    //console.log('Interests ' + this.interests);
     this.getUser();
   }
 
   getUser() {
     this.userService.getUser().subscribe((user) => {
-      console.log(user)
       this.user = user;
       if (user.parent) {
         this.formGroup.get('firstName').setValue(user.parent.first_name);
@@ -64,46 +62,56 @@ export class ProfileComponent implements OnInit {
   initKidControls(kids: Kid[]) {
     this.kidControls = this.formGroup.get('kidControls') as FormArray;
     for (let i = 0; i < kids.length; i++) {
-      //console.log(`Kid  Object: ${JSON.stringify(kids[i], null, 4)}`);
       this.kidControls.push(new FormGroup({
         kid_id: new FormControl(kids[i].kid_id),
         nickname: new FormControl(kids[i].nick_name),
         age: new FormControl(kids[i].age),
-        interests: new FormControl(kids[i].interests[0].freeform),
+        interests: new FormControl(kids[i].interests[0] && kids[i].interests[0].freeform ? kids[i].interests[0].freeform : ''),
       }));
     }
   }
 
-  addChild(kid: Kid) {
-    console.log('add child')
-    this.user.parent.kids.push(kid);
-    this.initKidControls([kid]);
+  addChild() {
+    const kid = [new Kid()]
+    this.user.parent.kids.push();
+    // this.kids.push(new Kid());
+    // this.kidControls = this.formGroup.get('kidControls') as FormArray;
+    // this.kidControls.push(new FormGroup({
+    //   nick_name: new FormControl(),
+    //   age: new FormControl(),
+    //   interests: new FormControl(),
+    //   categories: new FormControl()
+    // }));
+    this.initKidControls(kid);
   }
 
   save() {
-
     this.formGroup.value.newsletter = false;
     let param = {
       first_name: this.formGroup.value.firstName,
       last_name: this.formGroup.value.lastName,
       zip_code: this.formGroup.value.zipcode,
       email: this.parentEmail,
-      newsletter: this.formGroup.value.newsletter,
+      newsletter: this.formGroup.value.newsletter.toString,
     }
-    const kidParam = this.formGroup.value.kidControls[0];
-    console.log(kidParam,'fsdfsdfsdfsd')
+    const kidLength=this.formGroup.value.kidControls.length;
+    const kidParam = this.formGroup.value.kidControls;
     this.userService.updateUser(param).subscribe(
       responseParent => {
-        this.userService.updateKids(kidParam).subscribe(
-          responseKid => {
-            this.router.navigate(['/home']);
-          });
+        for(let i=0;i<kidLength;i++){
+          // this.userService.updateKids(kidParam[i]).subscribe(
+          //   responseKid => {
+          //     if(i === kidLength-1){
+          //       this.router.navigate(['/home']);
+          //     }
+          //   });
+        }
       }, err => {
         console.log('Error in call service for parent and kid', err);
       });
     // Call PATCH on /parents/ and /kids/ backend APIs to update
     // information for the parent and kids.
-    console.log(`Kid  Object: ${JSON.stringify(this.user, null, 4)}`);
+   
   }
 
   saveUser() {

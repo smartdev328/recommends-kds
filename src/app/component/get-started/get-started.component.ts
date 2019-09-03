@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit, ɵConsole, ComponentFactoryResolver } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { EventConstants } from '@shared/constants/EventConstants';
 import { Kid } from '@shared/model/kid';
@@ -35,6 +35,7 @@ export class GetStartedComponent implements OnInit {
       firstName: new FormControl(),
       lastName: new FormControl(),
       zipcode: new FormControl(),
+      email:new FormControl(),
       newsletter: new FormControl(Boolean),
       kidControls: this.formBuilder.array([])
     });
@@ -42,7 +43,6 @@ export class GetStartedComponent implements OnInit {
     this.kids = [];
     this.addChild();
     this.userService.getUser().subscribe((user) => {
-      console.log(user);
       this.parentEmail = user.parent.email
     });
   }
@@ -63,7 +63,7 @@ export class GetStartedComponent implements OnInit {
     if (this.formGroup.invalid) {
       return;
     } else {
-      console.log(this.formGroup);
+     
     }
   }
 
@@ -76,16 +76,25 @@ export class GetStartedComponent implements OnInit {
       email: this.parentEmail,
       newsletter: this.formGroup.value.newsletter,
     }
-    const kidParam = this.formGroup.value.kidControls[0];
+  
+    const kidLength=this.kidControls.length;
+    const kidParam = this.formGroup.value.kidControls;
     this.userService.updateUser(param).subscribe(
       responseParent => {
-        this.userService.createKid(kidParam).subscribe(
-          responseKid => {
-            this.router.navigate(['/home']);
-          });
+        for(let i=0;i<kidLength;i++){
+          this.userService.createKid(kidParam[i]).subscribe(
+            responseKid => {
+              if(i === kidLength-1){
+                this.router.navigate(['/home']);
+              }
+            });
+        }
+      
       }, err => {
         console.log('Error in call service for parent and kid', err);
       });
+
+
   }
 
   saveUser() {

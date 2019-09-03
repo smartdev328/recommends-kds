@@ -14,11 +14,21 @@ mat-divider {
     position: relative;
 }
 
+.textarea{
+  font-family: Montserrat;
+  font-size: 18px; 
+}
+
 .clear {
     position: absolute;
     right: 0;
     top: -25px;
     cursor: pointer;
+}
+
+.news-letter{
+    font-size: 24px;
+    font-family: Montserrat;
 }
 
 h4 {
@@ -27,6 +37,7 @@ h4 {
 
 mat-form-field {
     font-family: Montserrat;
+    font-size: 18px;
 }
 
 .mat-chip.mat-standard-chip {
@@ -65,11 +76,13 @@ mat-form-field {
 }
 
 .fs-xl {
-    font-size: 32px !important;
+    font-family: Montserrat;
+    font-size: 24px;
 }
 
 .fs-xxl {
-    font-size: 48px !important;
+        font-family: Montserrat;
+        font-size: 42px;    
 }
 
 .fs-xxxl {
@@ -97,18 +110,32 @@ mat-form-field {
     }
 }
 
-@media only screen and (max-width: 767px) {
-    .content {
-        padding: 31px 18px;
+@media only screen and (max-width: 420px) {
+    .btn-yellow,
+    .btn-white {
+        min-width: 100px;
+        margin: 0 5px;
     }
-    mat-divider {
-        display: none;
+    label.mat-checkbox-layout,
+    .mat-checkbox-label,
+    .mat-checkbox-inner-container {
+        white-space: normal !important;
     }
-    .profile-container {
-        width: 90%;
+    .fs-md {
+        font-size: 16px !important;
     }
-    .dropdown-menu {
-        position: absolute;
-        left: -100%;
+    .fs-xxl {
+        font-size: 24px !important;
+        margin-bottom: 3px;
+    }
+    .form-control {
+        font-size: 14px !important;
+    }
+    .mat-input-element {
+        font-weight: 400 !important;
+    }
+    #collapsingNavbar2 .navbar-nav .nav-button {
+        margin: 0 auto;
     }
 }
+
