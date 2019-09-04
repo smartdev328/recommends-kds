@@ -9,6 +9,8 @@ import { ENTITY_TYPES_ENUM, TYPES_ENUM, VenueConstants, VenueErrorMessage } from
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
 import { MatTabChangeEvent } from '@angular/material';
 import { ReviewsService } from '../../component/add-review/reviews.service';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
 declare let ga: any;
 @Component({
   selector: 'app-venues',
@@ -35,14 +37,14 @@ export class VenuesComponent implements OnInit {
   public category: string;
   public avg_rating: number;
   public google_rating_out_of: number;
-  public parent_id: any;
+  //public parent_id: any;
   public review: string;
   public user_reviews: any;
   public reviews_present: Boolean;
   public isErrorVisible: Boolean;
   public errorMessage: String;
   public url: String;
-  public is_parent_id: Boolean;
+  //public is_parent_id: Boolean;
   public is_review_click: Boolean;
   public isSubscribeVisible: Boolean;
   public isSaveVisible: Boolean;
@@ -55,12 +57,14 @@ export class VenuesComponent implements OnInit {
   public street: String;
   public isSuccessVisible: Boolean;
   public contact_number: String;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
   selectedIndex;
   class: any = false;
   @ViewChild('reviewsInput')
   reviewsInput: ElementRef;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
-    private metaService: Meta, private venuesService: VenuesService, private reviewService: ReviewsService,
+    private metaService: Meta,private authService: AuthService, private venuesService: VenuesService, private reviewService: ReviewsService,
     private router: Router) {
     this.venue = new UserSearch();
     this.parking = '';
@@ -75,7 +79,7 @@ export class VenuesComponent implements OnInit {
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.url = this.router.url;
-    this.is_parent_id = false;
+    //this.is_parent_id = false;
     this.is_review_click = false;
     this.user_reviews = [];
     this.reviews_present = false;
@@ -96,11 +100,16 @@ export class VenuesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.is_parent_id = false;
-    this.parent_id = '';
+    //this.is_parent_id = false;
+   // this.parent_id = '';
     this.venue_id = this.route.snapshot.params['id'];
-    this.parent_id = this.route.snapshot.queryParams['parent_id'];
-    this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
+    //this.parent_id = this.route.snapshot.queryParams['parent_id'];
+    //this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+  
+      this.isLogedin = data;
+    })
     this.is_save_action();
     this.show_reviews();
     if (this.venue_id > 0 && this.venue_id !== undefined) {
@@ -205,10 +214,10 @@ export class VenuesComponent implements OnInit {
   }
 
   save_venue() {
-    if (this.parent_id !== undefined) {
+    //if (this.parent_id !== undefined) {
       this.add_analytics_data('SAVE');
       this.isSaveVisible = true;
-    }
+    //}
   }
 
   calendar_redirects() {
@@ -240,13 +249,12 @@ export class VenuesComponent implements OnInit {
   }
 
   add_review_redirect(index: number): void {
-    console.log('click');
-    if (this.parent_id != undefined) {
-      this.is_parent_id = true;
+    //if (this.parent_id != undefined) {
+      //this.is_parent_id = true;
       this.is_review_click = true;
       this.selectedIndex = index;
       this.reviewsInput.nativeElement.scrollIntoView({ behavior: 'smooth' });
-    }
+    //}
   }
 
 
@@ -257,7 +265,7 @@ export class VenuesComponent implements OnInit {
         'input': {
           'entity_type': ENTITY_TYPES_ENUM.VENUE,
           'entity_id': this.venue_id,
-          'parent_id': this.parent_id,
+          'parent_id': null,
           'review': this.review,
           'is_approved': false
         }
@@ -302,7 +310,7 @@ export class VenuesComponent implements OnInit {
     this.isErrorVisible = false;
   }
   is_subscription_venue() {
-    this.venuesService.verify_subscribe_venue(this.parent_id, this.venue_id).subscribe(data => {
+    this.venuesService.verify_subscribe_venue(null, this.venue_id).subscribe(data => {
       if (data['status'] === true) {
         this.isSubscribeVisible = true;
       } else {
@@ -313,7 +321,7 @@ export class VenuesComponent implements OnInit {
   }
 
   is_save_action() {
-    this.reviewService.verify_save_action(this.parent_id, ANALYTICS_ENTITY_TYPES_ENUM.VENUE, this.venue_id).subscribe(data => {
+    this.reviewService.verify_save_action(null, ANALYTICS_ENTITY_TYPES_ENUM.VENUE, this.venue_id).subscribe(data => {
       if (data['status'] === true) {
         this.isSaveVisible = true;
       } else {
@@ -325,10 +333,10 @@ export class VenuesComponent implements OnInit {
 
   add_subscription_venue() {
 
-    if (this.parent_id !== undefined) {
+    //if (this.parent_id !== undefined) {
       const input_data = {
         "venue_subs_data": {
-          "parent_id": this.parent_id,
+          //"parent_id": this.parent_id,
           "venue_id": this.venue_id,
         }
       };
@@ -342,13 +350,13 @@ export class VenuesComponent implements OnInit {
         alert('Something went wrong while subscribe venue');
       });
       this.add_analytics_data('SUBSCRIBE');
-    }
+    //}
   }
 
   unsubscribe_venue() {
 
-    if (this.parent_id !== undefined) {
-      this.venuesService.remove_subscriptions(this.parent_id, this.venue_id).subscribe(data => {
+   // if (this.parent_id !== undefined) {
+      this.venuesService.remove_subscriptions(null, this.venue_id).subscribe(data => {
         if (data['status'] === true) {
           this.isSubscribeVisible = false;
         }
@@ -356,7 +364,7 @@ export class VenuesComponent implements OnInit {
         this.errorMessage = 'Something went wrong while subscribe venue';
       });
       // this.add_analytics_data('SUBSCRIBE');
-    }
+    //}
 
 
   }
@@ -378,31 +386,32 @@ export class VenuesComponent implements OnInit {
         break;
     }
     let analytics_input = {};
-    if (this.parent_id !== undefined) {
+    //if (this.parent_id !== undefined) {
       analytics_input = {
         'input_data': [{
           'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.VENUE,
           'entity_id': this.venue_id,
           'interface': INTERFACE_ENUM.FE,
-          'parent_id': this.parent_id,
+         // 'parent_id': this.parent_id,
           'action': action,
           'referrer': '/root/home'
         }]
       };
-    } else {
-      analytics_input = {
-        'input_data': [{
-          'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.VENUE,
-          'entity_id': this.venue_id,
-          'interface': INTERFACE_ENUM.FE,
-          'action': action,
-          'referrer': '/root/home'
-        }]
-      };
-    }
+    //}
+    //  else {
+    //   analytics_input = {
+    //     'input_data': [{
+    //       'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.VENUE,
+    //       'entity_id': this.venue_id,
+    //       'interface': INTERFACE_ENUM.FE,
+    //       'action': action,
+    //       'referrer': '/root/home'
+    //     }]
+    //   };
+    // }
     this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
-      if (this.parent_id !== undefined && atype === 'CLICK') {
-        this.is_parent_id = true;
+      if (atype === 'CLICK') {
+        //this.is_parent_id = true;
         this.is_subscription_venue();
         this.is_save_action();
       }
@@ -420,7 +429,6 @@ export class VenuesComponent implements OnInit {
     window.open(this.venue.url, '_blank');
   }
   addReviewSection(event) {
-    console.log(event);
     if (event == false) {
       this.class = true;
     } else {

@@ -52,7 +52,7 @@ export class EditHikingTrailComponent implements OnInit {
         alert('No data available');
       }
     }, error => {
-      console.log(error);
+      
       alert('Error getting data.');
     });
 

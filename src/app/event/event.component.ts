@@ -8,7 +8,8 @@ import { EventErrorMessage, EventConstants } from '../shared/constants/EventCons
 import { ReviewsService } from '../component/add-review/reviews.service';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../shared/constants/AnalyticsConstants';
 import { API_URL } from '@shared/constants/UrlConstants';
-
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
 
 declare let ga: any;
 @Component({
@@ -20,32 +21,34 @@ export class EventComponent implements OnInit {
   event_id: string;
   event: any;
   isLoaded = false;
-  public is_parent_id: Boolean;
+  // public is_parent_id: Boolean;
   public isErrorVisible: Boolean;
   public isSuccessVisible: Boolean;
   public isSaveVisible: Boolean;
   public errorMessage: String;
   public review: string;
   public user_reviews: any;
-  public parent_id: any;
+  // public parent_id: any;
   public is_review_click: Boolean;
   public reviews_present: Boolean;
   public eventErrorMessage = new EventErrorMessage();
   public eventConstatnts = new EventConstants();
   public eventCatString: String;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
   selectedIndex;
   class: any = false;
   @ViewChild('reviewsInput')
   reviewsInput: ElementRef;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
-    private reviewService: ReviewsService, private metaService: Meta) { }
+    private reviewService: ReviewsService, private authService: AuthService, private metaService: Meta) { }
 
   ngOnInit() {
     this.isSaveVisible = false;
     this.event_id = this.route.snapshot.params['id'];
-    this.parent_id = this.route.snapshot.queryParams['parent_id'];
-    this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
+    // this.parent_id = this.route.snapshot.queryParams['parent_id'];
+    // this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
     this.is_save_action();
     this.get_event_details();
     this.isErrorVisible = false;
@@ -58,12 +61,20 @@ export class EventComponent implements OnInit {
     this.reviews_present = false;
     this.selectedIndex = 0;
     this.eventCatString = '';
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
   }
 
   get_event_details() {
-    // let url = 'https://kin-api.kinparenting.com/events/' + this.event_id;
-    const url = API_URL + 'events/' + this.event_id + '/';
-    const headers = new HttpHeaders();
+
+    // let url = 'https://kin-api-dev.kinparenting.com/events/' + this.event_id;
+    // const url = API_URL + 'events/' + this.event_id + '/';
+    const url = 'https://kin-api-dev.kinparenting.com/' + 'events/' + this.event_id + '/';
+    const headers = new HttpHeaders()
+    .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
+    .set('Content-Type', 'application/json');
     this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
       data = data.replace(/\n/g, "");
       data = JSON.parse(data);
@@ -143,12 +154,12 @@ export class EventComponent implements OnInit {
   }
 
   add_review_redirect(index: number): void {
-    if (this.parent_id !== undefined) {
-      this.is_parent_id = true;
+    // if (this.parent_id !== undefined) {
+      // this.is_parent_id = true;
       this.selectedIndex = index;
       this.is_review_click = true;
       this.reviewsInput.nativeElement.scrollIntoView({ behavior: 'smooth' });
-    }
+    // }
   }
 
   add_review() {
@@ -157,7 +168,7 @@ export class EventComponent implements OnInit {
         'input': {
           'entity_type': ENTITY_TYPES_ENUM.EVENT,
           'entity_id': this.event_id,
-          'parent_id': this.parent_id,
+          'parent_id': null,
           'review': this.review,
           'is_approved': false
         }
@@ -170,7 +181,6 @@ export class EventComponent implements OnInit {
             this.isSuccessVisible = false;
             this.review = '';
           }, 3000);
-
           this.errorMessage = this.eventErrorMessage.REVIEW_ADDED_SUCCESS;
         } else {
           this.isErrorVisible = true;
@@ -180,8 +190,6 @@ export class EventComponent implements OnInit {
         this.isErrorVisible = true;
         this.errorMessage = this.eventErrorMessage.SOMETHING_WENT_WRONG;
       });
-
-
     }
   }
 
@@ -203,7 +211,6 @@ export class EventComponent implements OnInit {
       this.reviewService.get_reviews_by_type(TYPES_ENUM.EVENT, true, this.event_id).subscribe(data => {
         if (data['status']) {
           this.user_reviews = data['data'];
-          console.log(this.user_reviews);
           this.reviews_present = true;
         } else {
           this.user_reviews = [];
@@ -217,15 +224,17 @@ export class EventComponent implements OnInit {
 
   calendar_redirects() {
     this.add_analytics_data('CALENDAR');
-    const calendar_url = API_URL + 'cal_redirect/?event_id=' + this.event_id;
+    
+    // const calendar_url = API_URL + 'cal_redirect/?event_id=' + this.event_id;
+    const calendar_url = 'https://kin-api-dev.kinparenting.com' + 'cal_redirect/?event_id=' + this.event_id;
     window.open(calendar_url);
   }
 
   save_event() {
-    if (this.parent_id !== undefined) {
+    // if (this.parent_id !== undefined) {
       this.add_analytics_data('SAVE');
       this.isSaveVisible = true;
-    }
+    // }
   }
 
   add_analytics_data(atype: any) {
@@ -242,41 +251,41 @@ export class EventComponent implements OnInit {
         break;
     }
     let analytics_input = {};
-    if (this.parent_id !== undefined) {
+    // if (this.parent_id !== undefined) {
       analytics_input = {
         'input_data': [{
           'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
           'entity_id': this.event_id,
           'interface': INTERFACE_ENUM.FE,
-          'parent_id': this.parent_id,
+          // 'parent_id': this.parent_id,
           'action': action,
           'referrer': '/root/home'
         }]
-      };
-    } else {
-
-      analytics_input = {
-        'input_data': [{
-          'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
-          'entity_id': this.event_id,
-          'interface': INTERFACE_ENUM.FE,
-          'action': action,
-          'referrer': '/root/home'
-        }]
-      };
-    }
+      // };
+    } 
+    // else {
+    //   analytics_input = {
+    //     'input_data': [{
+    //       'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
+    //       'entity_id': this.event_id,
+    //       'interface': INTERFACE_ENUM.FE,
+    //       'action': action,
+    //       'referrer': '/root/home'
+    //     }]
+    //   };
+    // }
     this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
-      if (this.parent_id !== undefined && atype === 'CLICK') {
+      if (atype === 'CLICK') {
         this.is_save_action();
-        this.is_parent_id = true;
+        // this.is_parent_id = true;
       }
     }, error => {
     });
 
   }
   is_save_action() {
-    if (this.parent_id !== undefined) {
-      this.reviewService.verify_save_action(this.parent_id, ANALYTICS_ENTITY_TYPES_ENUM.EVENT, this.event_id).subscribe(data => {
+    // if (this.parent_id !== undefined) {
+      this.reviewService.verify_save_action(null, ANALYTICS_ENTITY_TYPES_ENUM.EVENT, this.event_id).subscribe(data => {
         if (data['status'] === true) {
           this.isSaveVisible = true;
         } else {
@@ -284,7 +293,7 @@ export class EventComponent implements OnInit {
         }
       }, error => {
       });
-    }
+    // }
   }
 
   addReviewSection(event) {

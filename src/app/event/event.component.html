@@ -10,14 +10,15 @@
         <div class="cards-footer">
           <span><span *ngIf="format_price()"> {{format_price()}}</span></span>  
           <ul>
-            <li (click)="calendar_redirects()" title="Add to Calendar"><button><img src="../../assets/icons/calendar_gray.png" class="dfkg" /> add to calendar</button></li>
+            <li (click)="calendar_redirects()" *ngIf="isLogedin" title="Add to Calendar"><button><img src="../../assets/icons/calendar_blue.png" class="dfkg" /> add to calendar</button></li>
             <!-- <li><button><img src="../../assets/icons/share.png" class="dfkg" /> share</button></li> -->
-            <li title="Save disabled" *ngIf="is_parent_id === false">
-                <button>
-                  <img src="../../assets/icons/heart_gray.png" class="dfkg" /> save
+            <!-- <li title="Save disabled" *ngIf="is_parent_id === false"> -->
+            <!-- <li title="Save" *ngIf="isLogedin === false">
+                <button [disabled] = "!isLogedin">
+                  <img src="../../assets/icons/heart_gray.png" class="dfkg" />save
                 </button>
-              </li>
-              <li  title="Save" (click)="save_event()" *ngIf="is_parent_id === true && isSaveVisible !== true">
+              </li> -->
+              <li  title="Save" (click)="save_event()" *ngIf="isLogedin === true && isSaveVisible !== true">
                 <button>
                   <img class="dfkg" src="../../assets/icons/save_blue.png" /> save
                 </button>
@@ -27,25 +28,16 @@
                   <img class="dfkg" src="../../assets/icons/save_orange.png" /> save
                 </button>
               </li>
-              <li (click)="add_review_redirect(2)" *ngIf="is_parent_id === false" title="Add Review">
+              <!-- <li (click)="add_review_redirect(2)" *ngIf="is_parent_id === false" title="Add Review">
                   <button class="btn path-38">
                      <img src="../../assets/icons/noun_review_1.png" class="dfkg" /> add a review
                    </button>
-                 </li>
-                 <li *ngIf="is_parent_id" (click)="add_review_redirect(2)" title="Add Review">
+                 </li> -->
+                 <li *ngIf="isLogedin" (click)="add_review_redirect(2)" title="Add Review">
                      <button class="btn path-38">
                          <img src="../../assets/icons/review_blue.png" class="dfkg" /> add a review
                      </button>
                    </li>
-            <!-- <li class="dropdown-menu-icon">
-              <i class="fas fa-ellipsis-v"></i>
-              <div class="menu-list">
-                  <ul>
-                    <li><a href=""><i class="fas fa-comment"></i> write a review</a></li>
-                    <li><a href=""><i class="fas fa-pen"></i> edit information</a></li>
-                  </ul>
-              </div>
-            </li> -->
           </ul>
         </div>
       </div>

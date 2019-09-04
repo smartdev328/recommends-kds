@@ -7,9 +7,11 @@ import { ReviewsService } from '../../component/add-review/reviews.service';
 import { ACTION, ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM } from '../../shared/constants/AnalyticsConstants';
 import { CampConstants, CampErrorMessage } from '../../shared/constants/CampConstants';
 import { ErrorMessage } from '../../shared/constants/CommonConstants';
-import { API_URL } from '@shared/constants/UrlConstants';
+// import { API_URL } from '@shared/constants/UrlConstants';
 import { CampListingService } from './camp-listing.service';
-
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
+const API_URL = 'https://kin-api-dev.kinparenting.com/';
 
 declare let ga: any;
 @Component({
@@ -39,7 +41,8 @@ export class CampListingComponent implements OnInit {
   oldCat_1 = true;
   oldCat_2 = false;
   // public campConstants :any;
-
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
   constructor(private route: ActivatedRoute,
     private http: HttpClient,
     private datePipe: DatePipe,
@@ -47,7 +50,8 @@ export class CampListingComponent implements OnInit {
     private titleService: Title,
     private metaService: Meta,
     private reviewService: ReviewsService,
-    private campsListingService: CampListingService
+    private campsListingService: CampListingService,
+    private authService: AuthService
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -59,7 +63,7 @@ export class CampListingComponent implements OnInit {
     this.selected_cat = '';
     this.keyword = '';
     this.category_label = 'Category';
-    //this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
   }
 
   ngOnInit() {
@@ -89,7 +93,10 @@ export class CampListingComponent implements OnInit {
     this.metaService.addTag({ property: 'og:image', content: 'https://kinparenting.com/assets/kin_logo.jpeg' });
     this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/camps-near-me' });
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
-
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
   }
   loadMore() {
 

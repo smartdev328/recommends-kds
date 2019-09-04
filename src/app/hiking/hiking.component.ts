@@ -8,6 +8,8 @@ import { ACTION, ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM } from '../shared/c
 import { HikingTrailConstants, HikingTrailErrorMessage } from '../shared/constants/HikingTrailConstants';
 import { HikingTrailModel } from './add-hiking/hiking.model';
 import { HikingTrailService } from './hiking.service';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
 declare let ga: any;
 
 @Component({
@@ -23,7 +25,7 @@ export class HikingTrailComponent implements OnInit {
   public hikingErrorMessage = new HikingTrailErrorMessage();
   public isShowMore: any;
   public place_reviews: any;
-  public parent_id: any;
+  //public parent_id: any;
   public review: string;
   public ratings: string;
   public user_reviews: any;
@@ -31,7 +33,7 @@ export class HikingTrailComponent implements OnInit {
   public isErrorVisible: boolean;
   public errorMessage: string;
   public url: string;
-  public is_parent_id: boolean;
+  //public is_parent_id: boolean;
   public is_review_click: boolean;
   public isSaveVisible: boolean;
   public google_place_reviews_count: number;
@@ -50,20 +52,22 @@ export class HikingTrailComponent implements OnInit {
   public emergency_support: string;
   public pet_friendly: string;
   public nearby_camps: string;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
   selectedIndex;
   class: any = false;
   @ViewChild('reviewsInput')
   reviewsInput: ElementRef;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title, private metaService: Meta,
-    private hikingTrailService: HikingTrailService, private reviewService: ReviewsService, private router: Router) {
+    private hikingTrailService: HikingTrailService,private authService: AuthService, private reviewService: ReviewsService, private router: Router) {
     this.trail = new HikingTrailModel();
     this.isShowMore = false;
     this.place_reviews = [];
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.url = this.router.url;
-    this.is_parent_id = false;
+   // this.is_parent_id = false;
     this.is_review_click = false;
     this.user_reviews = [];
     this.reviews_present = false;
@@ -87,23 +91,25 @@ export class HikingTrailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.is_parent_id = false;
-    this.parent_id = '';
+   // this.is_parent_id = false;
+   // this.parent_id = '';
     this.trail_id = this.route.snapshot.params['id'];
-    this.parent_id = this.route.snapshot.queryParams['parent_id'];
-    this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
+    //this.parent_id = this.route.snapshot.queryParams['parent_id'];
+    //this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
     this.is_save_action();
     this.get_reviews();
     if (this.trail_id > 0 && this.trail_id !== undefined) {
-      console.log(this.trail_id);
       this.get_trail_data(this.trail_id);
     }
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
   }
 
   get_trail_data(trail_id: number) {
     if (trail_id !== undefined) {
       this.hikingTrailService.get_hiking_trail_by_id(trail_id).subscribe(data => {
-        console.log(data);
         if (data['trails'] !== undefined) {
           this.trail = data['trails'][0];
           this.format_ratings();
@@ -137,7 +143,7 @@ export class HikingTrailComponent implements OnInit {
           alert(this.hikingErrorMessage.NO_INFO_AVAILABLE);
         }
       }, error => {
-        console.log(error);
+       
         alert(this.hikingErrorMessage.GET_DATA_ERROR);
       });
     }
@@ -146,7 +152,7 @@ export class HikingTrailComponent implements OnInit {
   get_reviews() {
     if (this.user_reviews.length === 0) {
       this.reviewService.get_reviews_by_type('hiking_trail', true, this.trail_id).subscribe(data => {
-        console.log(data);
+        
         if (data['status']) {
           this.reviews_present = true;
           this.user_reviews = data['data'];
@@ -162,10 +168,10 @@ export class HikingTrailComponent implements OnInit {
 
   show_reviews(event: MatTabChangeEvent) {
     const index = event.index;
-    console.log('HERE');
+    
     if (index === 1 && this.user_reviews.length === 0) {
       this.reviewService.get_reviews_by_type('hiking_trail', true, this.trail_id).subscribe(data => {
-        console.log(data);
+       
         if (data['status']) {
           this.reviews_present = true;
           this.user_reviews = data['data'];
@@ -338,20 +344,20 @@ export class HikingTrailComponent implements OnInit {
   }
 
   save_trail() {
-    if (this.parent_id !== undefined) {
+    //if (this.parent_id !== undefined) {
       this.add_analytics_data('SAVE');
       this.isSaveVisible = true;
-    }
+    //}
   }
 
 
   add_review_redirect(index: number): void {
-    if (this.parent_id != undefined) {
-      this.is_parent_id = true;
+    //if (this.parent_id != undefined) {
+     // this.is_parent_id = true;
       this.is_review_click = true;
       this.selectedIndex = index;
       this.reviewsInput.nativeElement.scrollIntoView({ behavior: 'smooth' });
-    }
+   // }
   }
 
 
@@ -362,7 +368,7 @@ export class HikingTrailComponent implements OnInit {
         'input': {
           'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.HIKING_TRAIL,
           'entity_id': this.trail_id,
-          'parent_id': this.parent_id,
+          'parent_id': null,
           'review': this.review,
           'is_approved': false
         }
@@ -409,7 +415,7 @@ export class HikingTrailComponent implements OnInit {
 
 
   is_save_action() {
-    this.reviewService.verify_save_action(this.parent_id,
+    this.reviewService.verify_save_action(null,
       ANALYTICS_ENTITY_TYPES_ENUM.HIKING_TRAIL, this.trail_id).subscribe(data => {
         if (data['status'] === true) {
           this.isSaveVisible = true;
@@ -433,31 +439,32 @@ export class HikingTrailComponent implements OnInit {
         break;
     }
     let analytics_input = {};
-    if (this.parent_id !== undefined) {
+    //if (this.parent_id !== undefined) {
       analytics_input = {
         'input_data': [{
           'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.HIKING_TRAIL,
           'entity_id': this.trail_id,
           'interface': INTERFACE_ENUM.FE,
-          'parent_id': this.parent_id,
+          //'parent_id': this.parent_id,
           'action': action,
           'referrer': '/root/home'
         }]
-      };
-    } else {
-      analytics_input = {
-        'input_data': [{
-          'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.HIKING_TRAIL,
-          'entity_id': this.trail_id,
-          'interface': INTERFACE_ENUM.FE,
-          'action': action,
-          'referrer': '/root/home'
-        }]
-      };
-    }
+      //};
+     } 
+    //else {
+    //   analytics_input = {
+    //     'input_data': [{
+    //       'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.HIKING_TRAIL,
+    //       'entity_id': this.trail_id,
+    //       'interface': INTERFACE_ENUM.FE,
+    //       'action': action,
+    //       'referrer': '/root/home'
+    //     }]
+    //   };
+    // }
     this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
-      if (this.parent_id !== undefined && atype === 'CLICK') {
-        this.is_parent_id = true;
+      if ( atype === 'CLICK') {
+       // this.is_parent_id = true;
         this.is_save_action();
       }
     }, error => {
@@ -475,7 +482,7 @@ export class HikingTrailComponent implements OnInit {
   }
 
   addReviewSection(event) {
-    console.log(event);
+    
     if (event == false) {
       this.class = true;
     } else {

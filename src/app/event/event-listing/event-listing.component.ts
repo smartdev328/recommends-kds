@@ -162,6 +162,8 @@ export class EventListingComponent implements OnInit {
     const d = Date.now();
     const url = 'https://kin-api-dev.kinparenting.com/events/?event_date_start='
       + this.datePipe.transform(d, 'yyyy-MM-dd') + '&event_date_range=30&limit=113';
+    // const url = 'http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/events/?event_date_start='
+    // + this.datePipe.transform(d, 'yyyy-MM-dd') + '&event_date_range=30&limit=113';
     const input = {
       'category': this.select_cat_id === undefined ? '' : this.select_cat_id,
       'q': this.keyword === undefined ? '' : this.keyword.trim(),
@@ -178,6 +180,8 @@ export class EventListingComponent implements OnInit {
         this.showMore = true;
       }
       this.isExplore = false;
+    }, err => {
+      console.log('Error in event list', err)
     });
 
   }

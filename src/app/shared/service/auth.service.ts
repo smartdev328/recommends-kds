@@ -53,6 +53,9 @@ export class AuthService {
     private userService: UserService
   ) { }
 
+
+ 
+
   // When calling, options can be passed if desired
   // https://auth0.github.io/auth0-spa-js/classes/auth0client.html#getuser
   getUserProfile$(options?): Observable<any> {
@@ -65,7 +68,7 @@ export class AuthService {
   getUser$(): Observable<any> {
     return this.userService.getUser().pipe(
       map((user) => this.userSubject$.next(user))
-      );
+    );
   }
 
   localAuthSetup() {
@@ -74,7 +77,7 @@ export class AuthService {
     const checkAuth$ = this.isAuthenticated$.pipe(
       concatMap((loggedIn: boolean) => {
         if (loggedIn) {
-          console.log("local auth s");
+          
           // If authenticated, get user and set in app
           // NOTE: you could pass options here if needed
           // return this.getUserProfile$();
@@ -94,13 +97,13 @@ export class AuthService {
   }
 
   login(redirectPath: string = '/') {
-    console.log("vxv");
+    
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
     // Ensure Auth0 client instance exists
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log in
-      console.log("client method",client);
+     
       client.loginWithRedirect({
         redirect_uri: `${window.location.origin}/callback`,
         appState: { target: redirectPath }

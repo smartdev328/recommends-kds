@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { API_URL } from '../../shared/constants/UrlConstants';
+//import { API_URL } from '../../shared/constants/UrlConstants';
 import { HttpClient } from '@angular/common/http';
+const url = 'https://kin-api-dev.kinparenting.com/';
 @Injectable({
   providedIn: 'root'
 })

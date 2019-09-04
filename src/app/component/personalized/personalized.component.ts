@@ -107,34 +107,11 @@ export class PersonalizedComponent implements OnInit {
             this.events_weekend = data['events'];
             this.events_weekend = this.events_weekend.slice(0, 3);
             this.all_events.weekend.push(this.events_weekend);
-            // this.closest_event = data['events'];
-            // this.closest_event = this.events_weekend;
-            // this.popular = this.events_weekend;
-            // this.favorite = this.events_weekend;
-            // this.closest_event = this.events_weekend;
-
-            // if (this.events_weekend.length > 0) {
-            //     this.isWeekend = true;
-            //     // this.is_closest = true;
-            //     // this.events_weekend = this.events_weekend.slice(0, 4);
-            //     // this.popular = this.events_weekend;
-            //     // this.favorite = this.events_weekend;
-            //     // this.closest_event = this.events_weekend;
-            // }
+            
 
         });
 
-        // console.log(this.popular);
-        // console.log(this.events_weekend)
-        // console.log(this.closest_event)
-        // console.log(this.favorite)
-        // this.all_events = {
-        //     'popular': this.popular,
-        //     'weekend': this.events_weekend,
-        //     'closest': this.closest_event,
-        //     'favourite': this.favorite,
-        // };
-
+       
     }
 
 }

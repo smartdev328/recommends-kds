@@ -39,6 +39,7 @@ export class ProfileComponent implements OnInit {
       zipcode: new FormControl(),
       newsletter: new FormControl(Boolean),
       kidControls: this.formBuilder.array([])
+      
     });
     this.interests = this.eventConstants.PRIMARY_CATEGORY.map((item) => item.name);
     this.getUser();
@@ -64,13 +65,14 @@ export class ProfileComponent implements OnInit {
     for (let i = 0; i < kids.length; i++) {
       this.kidControls.push(new FormGroup({
         kid_id: new FormControl(kids[i].kid_id),
-        nickname: new FormControl(kids[i].nick_name),
+       // nick_name: new FormControl(kids[i].nick_name),
+       nick_name: new FormControl(kids[i].nick_name),
         age: new FormControl(kids[i].age),
         interests: new FormControl(kids[i].interests[0] && kids[i].interests[0].freeform ? kids[i].interests[0].freeform : ''),
       }));
     }
   }
-
+ 
   addChild() {
     const kid = [new Kid()]
     this.user.parent.kids.push();
@@ -99,15 +101,17 @@ export class ProfileComponent implements OnInit {
     this.userService.updateUser(param).subscribe(
       responseParent => {
         for(let i=0;i<kidLength;i++){
-          // this.userService.updateKids(kidParam[i]).subscribe(
-          //   responseKid => {
-          //     if(i === kidLength-1){
-          //       this.router.navigate(['/home']);
-          //     }
-          //   });
+            this.userService.updateKids(kidParam[i]).subscribe(
+              responseKid => {
+                if(i === kidLength-1){
+                  this.router.navigate(['/home']);
+                }
+              },errKid => {
+                console.log('Error in call service for kid',i, errKid);
+              });
         }
       }, err => {
-        console.log('Error in call service for parent and kid', err);
+        console.log('Error in call service for parent and', err);
       });
     // Call PATCH on /parents/ and /kids/ backend APIs to update
     // information for the parent and kids.
@@ -120,7 +124,6 @@ export class ProfileComponent implements OnInit {
   }
 
   getChipColor(kid: Kid, interest: string) {
-    //console.log(`Kid  Object: ${JSON.stringify(kid, null, 4)}`);
     if (kid.interests.length > 0) {
       const kid_interests = kid.interests[0].interests.split(',');
       const cat_id = this.eventConstants.get_cat_id_by_name(interest);

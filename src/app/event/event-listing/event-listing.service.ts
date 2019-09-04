@@ -10,7 +10,7 @@ export class EventListingService {
 
   constructor(private http:  HttpClient, private datePipe: DatePipe) { }
   get_event_details (api_input: any) {
-    const url = API_URL + 'events/?event_date_start='
+    const url = 'https://kin-api-dev.kinparenting.com/' + 'events/?event_date_start='
        + this.datePipe.transform(Date.now(), 'yyyy-MM-dd') + '&limit=90'  +
     '&category=' + encodeURIComponent(api_input.category) +
     '&q=' + encodeURIComponent(api_input.q) +

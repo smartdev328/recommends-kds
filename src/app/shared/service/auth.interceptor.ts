@@ -3,6 +3,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { mergeMap, catchError } from 'rxjs/operators';
+import { UserService } from './user.service';
 
 
 @Injectable({
@@ -24,7 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
         return request.clone({ setHeaders: { Authorization: 'Bearer ' + token } });
     }
     */
-   constructor(private auth: AuthService) { }
+   constructor(private auth: AuthService, private user : UserService) { }
 
   intercept(
     req: HttpRequest<any>,
@@ -35,6 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
         const tokenReq = req.clone({
           setHeaders: { Authorization: `Bearer ${token}` }
         });
+        this.user.sendToken(token);
         return next.handle(tokenReq);
       }),
       catchError(err => throwError(err))

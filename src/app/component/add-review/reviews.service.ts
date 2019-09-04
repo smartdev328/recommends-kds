@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { API_URL } from '@shared/constants/UrlConstants';
+// import { API_URL } from '@shared/constants/UrlConstants';
+const API_URL = 'https://kin-api-dev.kinparenting.com/';
 
 
 @Injectable({
@@ -18,7 +19,6 @@ export class ReviewsService {
     return this.http.get(url);
   }
   add_analytics_actions (analytics_input: any) {
-
     const url = API_URL + 'actions/';
     return this.http.post(url , analytics_input);
   }

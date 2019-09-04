@@ -55,7 +55,6 @@ export class VenueComponent implements OnInit {
           }
 
         }, error => {
-          console.log(error);
           alert(JSON.stringify(error.error.error));
         });
     } else {

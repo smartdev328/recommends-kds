@@ -23,6 +23,5 @@ export class AppComponent {
 
   ngOnInit() {
     this.auth.localAuthSetup();
-    console.log("Logged in " + this.auth.loggedIn);
   }
 }

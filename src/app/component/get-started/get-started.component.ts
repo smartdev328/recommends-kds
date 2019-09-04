@@ -76,7 +76,6 @@ export class GetStartedComponent implements OnInit {
       email: this.parentEmail,
       newsletter: this.formGroup.value.newsletter,
     }
-  
     const kidLength=this.kidControls.length;
     const kidParam = this.formGroup.value.kidControls;
     this.userService.updateUser(param).subscribe(
@@ -93,8 +92,10 @@ export class GetStartedComponent implements OnInit {
       }, err => {
         console.log('Error in call service for parent and kid', err);
       });
+  }
 
-
+  back(){
+    this.router.navigate(['/home']);
   }
 
   saveUser() {

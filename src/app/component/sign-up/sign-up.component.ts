@@ -74,7 +74,6 @@ export class SignUpComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log("in");
         this.submitted = true;
         // stop here if form is invalid
         if (this.registerForm.invalid) {
@@ -87,16 +86,13 @@ export class SignUpComponent implements OnInit {
             let data = JSON.stringify(this.registerForm.value);
             data = data.replace(/[\u2018\u2019]/g, '\'')
                 .replace(/[\u201C\u201D]/g, '"');
-            const url = 'https://kin-api-dev.kinparenting.com/users/';
-
+            // const url = 'https://kin-api-dev.kinparenting.com/users/';
+            const url = 'http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/users/';
             const headers = new HttpHeaders()
                 .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
                 .set('Content-Type', 'application/json');
             this.http.post(url, data, { headers: headers, responseType: 'text' }).subscribe(response => {
-                console.log(response);
-
-                data = response.replace(/\n/g, '');
-                console.log(data)
+                 data = response.replace(/\n/g, '');
                 data = JSON.parse(data);
 
                 if (data['error'] !== undefined) {
@@ -106,7 +102,8 @@ export class SignUpComponent implements OnInit {
                         this.isUserCreationError = false;
                     }, 5000);
                 } else {
-                    const url = 'https://kin-api-dev.kinparenting.com/kids/';
+                    // const url = 'https://kin-api-dev.kinparenting.com/kids/';
+                    const url = 'http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/kids/';
                     for (let i = 0; i < this.newChild.length; i++) {
                         if (this.newChild.value[i].nick_name.trim().length
                             && this.newChild.value[i].interests.trim().length) {
@@ -115,11 +112,8 @@ export class SignUpComponent implements OnInit {
                             const headers = new HttpHeaders().set('Content-Type', 'application/json');
                             this.http.post(url, this.newChild.value[i], { headers: headers, responseType: 'text' }).
                                 subscribe(response => {
-                                    console.log('response',response)
                                     data = response.replace(/\n/g, '');
-                                    console.log('data',data)
                                     data = JSON.parse(data);
-                                    console.log('data1212',data)
                                 });
                         }
                     }

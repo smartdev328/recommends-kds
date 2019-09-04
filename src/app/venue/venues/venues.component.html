@@ -13,28 +13,28 @@
                     <!-- <li (click)="calendar_redirects()" title="Add to Calendar"><button><img src="../../assets/icons/calendar_gray.png" class="dfkg" /> add to calender</button></li> -->
                     
                     <!-- <li><button><img src="../../assets/icons/share.png" class="dfkg" /> share</button></li> -->
-                    <li  title="Subscribe" *ngIf="is_parent_id === false">
+                    <!-- <li  title="Subscribe" *ngIf="is_parent_id === false">
                         <button>
                           <img src="../../assets/icons/subscribe_grey.png" class="dfkg" /> Subscribe
                         </button>
-                      </li>
+                      </li> -->
                       <li  (click)="unsubscribe_venue()" title="UnSubscribe"  *ngIf="is_parent_id && isSubscribeVisible">
                         <button>
                           <img class="dfkg" src="../../assets/icons/subscribe_orange.png" /> UnSubscribe
                         </button>
                       </li>
-                      <li   (click)="add_subscription_venue()" title="Subscribe" *ngIf="is_parent_id && isSubscribeVisible != true">
+                      <li   (click)="add_subscription_venue()" title="Subscribe" *ngIf="isLogedin && isSubscribeVisible != true">
                         <button>
                           <img class="dfkg" src="../../assets/icons/subscribe_blue.png" /> Subscribe
                         </button>
                       </li>
 
-                    <li  title="Save" *ngIf="is_parent_id === false">
+                    <!-- <li  title="Save" *ngIf="is_parent_id === false">
                       <button>
                         <img src="../../assets/icons/heart_gray.png" class="dfkg" /> save
                       </button>
-                    </li>
-                    <li  title="Save" (click)="save_venue()" *ngIf="is_parent_id && isSaveVisible != true">
+                    </li> -->
+                    <li  title="Save" (click)="save_venue()" *ngIf="isLogedin && isSaveVisible != true">
                       <button>
                         <img class="dfkg" src="../../assets/icons/save_blue.png" /> save
                       </button>
@@ -44,12 +44,12 @@
                         <img class="dfkg" src="../../assets/icons/save_orange.png" /> save
                       </button>
                     </li>
-                    <li (click)="add_review_redirect(2)" *ngIf="is_parent_id === false" title="Add Review">
+                    <!-- <li (click)="add_review_redirect(2)" *ngIf="is_parent_id === false" title="Add Review">
                     <button class="btn path-38">
                         <img src="../../assets/icons/noun_review_1.png" class="dfkg" /> add a review
                       </button>
-                    </li>
-                    <li *ngIf="is_parent_id" (click)="add_review_redirect(2)" title="Add Review">
+                    </li> -->
+                    <li *ngIf="isLogedin" (click)="add_review_redirect(2)" title="Add Review">
                       <button class="btn path-38">
                           <img src="../../assets/icons/review_blue.png" class="dfkg" /> add a review
                       </button>

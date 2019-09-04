@@ -47,8 +47,8 @@ export class DataEntryComponent implements OnInit {
     let data = JSON.stringify(this.eventForm.value);
     data = data.replace(/[\u2018\u2019]/g, "'")
       .replace(/[\u201C\u201D]/g, '"');
-    const url = "https://kin-api-dev.kinparenting.com/events/";
-
+    //const url = "https://kin-api-dev.kinparenting.com/events/";
+      const url = "http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/events/";
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
     this.http.post(url, data, { headers: headers, responseType: 'text' }).subscribe(response => {

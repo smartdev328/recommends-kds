@@ -10,6 +10,8 @@ import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../share
 import { CampErrorMessage, CampConstants } from '../../shared/constants/CampConstants';
 import { MatTabChangeEvent } from '@angular/material';
 import { API_URL } from '@shared/constants/UrlConstants';
+import { Observable } from 'rxjs';
+import { AuthService } from '@shared/service/auth.service';
 declare let ga: any;
 @Component({
   selector: 'app-camps',
@@ -20,34 +22,36 @@ export class CampsComponent implements OnInit {
   camp_id: string;
   camp: any;
   isLoaded = false;
-  public is_parent_id: boolean;
+  //public is_parent_id: boolean;
   public is_review_click: boolean;
   public isErrorVisible: boolean;
   public isSuccessVisible: boolean;
   public errorMessage: String;
   public review: string;
   public user_reviews: any;
-  public parent_id: any;
+  //public parent_id: any;
   public category: string;
   public campStatus: boolean;
   public campErrorMessage = new CampErrorMessage();
   public campConstants: any;
   public isSaveVisible: boolean;
   public reviews_present: boolean;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
   selectedIndex;
 
   @ViewChild('reviewsInput')
   reviewsInput: ElementRef;
   class: any = false;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
-    private metaService: Meta, private reviewService: ReviewsService) { }
+    private metaService: Meta,private authService: AuthService, private reviewService: ReviewsService) { }
 
   ngOnInit() {
-    this.is_parent_id = false;
-    this.parent_id = '';
+   // this.is_parent_id = false;
+  //  this.parent_id = '';
     this.camp_id = this.route.snapshot.params['id'];
-    this.parent_id = this.route.snapshot.queryParams['parent_id'];
-    this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
+   // this.parent_id = this.route.snapshot.queryParams['parent_id'];
+    //this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
     this.is_save_action();
     this.get_camp_details();
     this.is_review_click = false;
@@ -68,6 +72,10 @@ export class CampsComponent implements OnInit {
     this.isSaveVisible = false;
     this.get_reviews();
     this.add_analytics_data('CLICK');
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
   }
   get_camp_details() {
     const url = API_URL + 'camps/' + this.camp_id + "/";
@@ -136,12 +144,12 @@ export class CampsComponent implements OnInit {
   }
 
   add_review_redirect(index: number): void {
-    if (this.parent_id !== undefined) {
-      this.is_parent_id = true;
+    // if (this.parent_id !== undefined) {
+     // this.is_parent_id = true;
       this.is_review_click = true;
       this.selectedIndex = index;
       this.reviewsInput.nativeElement.scrollIntoView({ behavior: 'smooth' });
-    }
+    // }
   }
 
   add_review() {
@@ -150,7 +158,7 @@ export class CampsComponent implements OnInit {
         'input': {
           'entity_type': ENTITY_TYPES_ENUM.CAMP,
           'entity_id': this.camp_id,
-          'parent_id': this.parent_id,
+          'parent_id': null,
           'review': this.review,
           'is_approved': false
         }
@@ -181,7 +189,6 @@ export class CampsComponent implements OnInit {
   get_reviews() {
     if (this.user_reviews.length === 0) {
       this.reviewService.get_reviews_by_type('hiking_trail', true, this.camp_id).subscribe(data => {
-        console.log(data);
         if (data['status']) {
           this.reviews_present = true;
           this.user_reviews = data['data'];
@@ -232,10 +239,10 @@ export class CampsComponent implements OnInit {
   }
 
   save_camp() {
-    if (this.parent_id !== undefined) {
+    //if (this.parent_id !== undefined) {
       this.add_analytics_data('SAVE');
       this.isSaveVisible = true;
-    }
+   // }
   }
   add_analytics_data(atype: any) {
     let action = '';
@@ -251,32 +258,33 @@ export class CampsComponent implements OnInit {
         break;
     }
     let analytics_input = {};
-    if (this.parent_id !== undefined) {
+   // if (this.parent_id !== undefined) {
       analytics_input = {
         'input_data': [{
           'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.CAMP,
           'entity_id': this.camp_id,
           'interface': INTERFACE_ENUM.FE,
-          'parent_id': this.parent_id,
+          //'parent_id': this.parent_id,
           'action': action,
           'referrer': '/root/home'
         }]
-      };
-    } else {
-      analytics_input = {
-        'input_data': [{
-          'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.CAMP,
-          'entity_id': this.camp_id,
-          'interface': INTERFACE_ENUM.FE,
-          'action': action,
-          'referrer': '/root/home'
-        }]
-      };
+     // };
     }
+    //  else {
+    //   analytics_input = {
+    //     'input_data': [{
+    //       'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.CAMP,
+    //       'entity_id': this.camp_id,
+    //       'interface': INTERFACE_ENUM.FE,
+    //       'action': action,
+    //       'referrer': '/root/home'
+    //     }]
+    //   };
+    // }
     this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
-      if (this.parent_id !== undefined && atype === 'CLICK') {
+      if (atype === 'CLICK') {
         this.is_save_action();
-        this.is_parent_id = true;
+        //this.is_parent_id = true;
       }
     }, error => {
     });
@@ -284,7 +292,7 @@ export class CampsComponent implements OnInit {
   }
 
   is_save_action() {
-    this.reviewService.verify_save_action(this.parent_id, ANALYTICS_ENTITY_TYPES_ENUM.CAMP, this.camp_id).subscribe(data => {
+    this.reviewService.verify_save_action(null, ANALYTICS_ENTITY_TYPES_ENUM.CAMP, this.camp_id).subscribe(data => {
       if (data['status'] === true) {
         this.isSaveVisible = true;
       } else {
@@ -294,7 +302,6 @@ export class CampsComponent implements OnInit {
     });
   }
   addReviewSection(event) {
-    console.log(event);
     if (event == false) {
       this.class = true;
     } else {
