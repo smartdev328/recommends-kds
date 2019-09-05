@@ -50,7 +50,7 @@
     </div>
     <mat-chip-list aria-label="Interest selection">
       <mat-chip class="cursor" *ngFor="let interest of interests" [color]="getChipColor(kid, interest)"
-        (click)="toggleInterest(kid, interest)" selected>{{interest}}
+      (click)="toggleInterest(kid, interest, i)" selected>{{interest}}
       </mat-chip>
     </mat-chip-list>
   </div>

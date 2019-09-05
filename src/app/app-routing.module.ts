@@ -16,6 +16,7 @@ import { LoginComponent } from './component/login/login.component';
 import { CallbackComponent } from './component/callback/callback.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { GetStartedComponent } from './component/get-started/get-started.component';
+import { MiddlewareComponent } from './middleware/middleware.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,7 @@ const routes: Routes = [
   { path: 'my-kin', component: PersonalizedComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'redirecting',component: MiddlewareComponent },
   { path: 'callback', component: CallbackComponent },
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },

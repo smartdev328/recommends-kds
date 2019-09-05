@@ -25,6 +25,7 @@
     "@angular/router": "~7.0.0",
     "@auth0/auth0-spa-js": "^1.1.1",
     "@material/tabs": "^0.42.0",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.1",
     "@ng-select/ng-select": "^2.13.2",
     "@swimlane/ngx-datatable": "^14.0.0",
     "angular-font-awesome": "^3.1.2",
@@ -38,7 +39,7 @@
     "ngx-bootstrap": "^5.0.0",
     "ngx-datatable": "^1.0.3",
     "rxjs": "~6.3.3",
-    "sweetalert2": "^8.13.0",
+    "sweetalert2": "^8.17.1",
     "underscore": "^1.9.1",
     "zone.js": "~0.8.26"
   },

@@ -70,8 +70,8 @@ export class EventComponent implements OnInit {
   get_event_details() {
 
     // let url = 'https://kin-api-dev.kinparenting.com/events/' + this.event_id;
-    // const url = API_URL + 'events/' + this.event_id + '/';
-    const url = 'https://kin-api-dev.kinparenting.com/' + 'events/' + this.event_id + '/';
+     const url = API_URL + 'events/' + this.event_id + '/';
+   // const url = 'https://kin-api-dev.kinparenting.com/' + 'events/' + this.event_id + '/';
     const headers = new HttpHeaders()
     .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
     .set('Content-Type', 'application/json');

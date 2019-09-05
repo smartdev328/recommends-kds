@@ -29,6 +29,11 @@ import { AuthInterceptor } from './shared/service/auth.interceptor';
 import { VenueModule } from './venue/venue.module';
 import { ProfileComponent } from './component/profile/profile.component';
 import { GetStartedComponent } from './component/get-started/get-started.component';
+import {SwalService }         from './shared/service/swal.service';
+import { MiddlewareComponent } from './middleware/middleware.component';
+
+
+
 
 
 
@@ -50,7 +55,8 @@ import { GetStartedComponent } from './component/get-started/get-started.compone
     LoginComponent,
     CallbackComponent,
     ProfileComponent,
-    GetStartedComponent
+    GetStartedComponent,
+    MiddlewareComponent
   ],
   imports: [
     AppRoutingModule,
@@ -61,13 +67,15 @@ import { GetStartedComponent } from './component/get-started/get-started.compone
     SharedModule,
     SharedLibsModule,
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    
   ],
   exports: [MatDatepickerModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    SwalService
   ],
   bootstrap: [AppComponent]
 })

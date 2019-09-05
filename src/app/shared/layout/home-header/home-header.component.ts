@@ -7,6 +7,10 @@ import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
+ 
+import 'sweetalert2/src/sweetalert2.scss'
+import { SwalService } from '@shared/service/swal.service';
+
 @Component({
   selector: 'app-layout-home-header',
   templateUrl: './home-header.component.html',
@@ -17,11 +21,15 @@ export class HomeHeaderComponent implements OnInit {
   modalRef: BsModalRef;
   public navbarCollapsed = true;
   profile: any;
-  isAuthenticated: boolean;
-
+  //isAuthenticated: boolean;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
+ 
   constructor(
     public auth: AuthService,
-    private router: Router
+    private router: Router,
+    private swal:SwalService
+
   ) { }
 
 
@@ -31,6 +39,11 @@ export class HomeHeaderComponent implements OnInit {
       this.profile = profile;
     });*/
     //this.profile = this.auth.getUser$();
+
+    this.isAuthenticated$= this.auth.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
   }
 
   openModal() {
@@ -51,4 +64,24 @@ export class HomeHeaderComponent implements OnInit {
     });
   }
   */
+
+ checkloginin(linkName){
+   console.log('wwwwwwwwwwwwwww', this.isLogedin)
+  if(this.isLogedin){
+    if(linkName =="Event"){
+      this.router.navigate(['/family-friendly-events-near-me']);
+    }
+    else if(linkName =="Places"){
+      this.router.navigate(['/family-friendly-places-near-me']);
+    } else if(linkName =="Camps"){
+      this.router.navigate(['/camps-near-me']);
+    } else if(linkName =="Hiking"){
+      this.router.navigate(['/family-friendly-hikes-near-me']);
+    }
+   
+
+  }else{
+    this.swal.showWarning(`Sign in to Follow this ${linkName}`)
+  }
+}
 }

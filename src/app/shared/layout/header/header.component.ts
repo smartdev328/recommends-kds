@@ -19,4 +19,6 @@ export class HeaderComponent implements OnInit {
     const initialState = { class: 'modal-lg', listener: this };
     this.modalRef = this.modalService.show(SignUpComponent, initialState);
   }
+
+ 
 }
