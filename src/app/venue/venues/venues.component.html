@@ -13,11 +13,11 @@
                     <!-- <li (click)="calendar_redirects()" title="Add to Calendar"><button><img src="../../assets/icons/calendar_gray.png" class="dfkg" /> add to calender</button></li> -->
                     
                     <!-- <li><button><img src="../../assets/icons/share.png" class="dfkg" /> share</button></li> -->
-                    <!-- <li  title="Subscribe" *ngIf="is_parent_id === false">
-                        <button>
+                    <li  title="Subscribe" *ngIf="is_parent_id === false || isLogedin === false">
+                        <button (click)="checklogin(subscribe)">
                           <img src="../../assets/icons/subscribe_grey.png" class="dfkg" /> Subscribe
                         </button>
-                      </li> -->
+                      </li>
                       <li  (click)="unsubscribe_venue()" title="UnSubscribe"  *ngIf="is_parent_id && isSubscribeVisible">
                         <button>
                           <img class="dfkg" src="../../assets/icons/subscribe_orange.png" /> UnSubscribe
@@ -29,11 +29,11 @@
                         </button>
                       </li>
 
-                    <!-- <li  title="Save" *ngIf="is_parent_id === false">
-                      <button>
+                    <li  title="Save" *ngIf="is_parent_id === false || isLogedin === false">
+                      <button (click)="checklogin(saveEvent)">
                         <img src="../../assets/icons/heart_gray.png" class="dfkg" /> save
                       </button>
-                    </li> -->
+                    </li>
                     <li  title="Save" (click)="save_venue()" *ngIf="isLogedin && isSaveVisible != true">
                       <button>
                         <img class="dfkg" src="../../assets/icons/save_blue.png" /> save
@@ -44,11 +44,11 @@
                         <img class="dfkg" src="../../assets/icons/save_orange.png" /> save
                       </button>
                     </li>
-                    <!-- <li (click)="add_review_redirect(2)" *ngIf="is_parent_id === false" title="Add Review">
-                    <button class="btn path-38">
+                    <li  *ngIf="is_parent_id === false || isLogedin === false" title="Add Review">
+                    <button class="btn path-38" (click)="checklogin(addToReview)">
                         <img src="../../assets/icons/noun_review_1.png" class="dfkg" /> add a review
                       </button>
-                    </li> -->
+                    </li>
                     <li *ngIf="isLogedin" (click)="add_review_redirect(2)" title="Add Review">
                       <button class="btn path-38">
                           <img src="../../assets/icons/review_blue.png" class="dfkg" /> add a review
@@ -101,7 +101,8 @@
         <div class="row reviews">
             <div class="col-md-12"> 
               <h2 #reviewsInput>Reviews</h2>
-              <div id="reviews-input-secyion" class="reviews-input-secyion"  *ngIf="is_review_click">
+              <!-- <div id="reviews-input-secyion" class="reviews-input-secyion"  *ngIf="is_review_click"> -->
+                <div id="reviews-input-secyion" class="reviews-input-secyion">
                 <textarea rows="3" placeholder="Some phrase to prompt user to write a review"id="review"
                 placeholder="Add review or tips to other parents" [(ngModel)]="review" required
                 (change)="validate_review()"></textarea>
@@ -136,5 +137,19 @@
               </div>
             </div>
           </div>
+          <ng-template #deleteuser>
+              <div class="modal-body thanks">
+                  <button type="button" style="float: right;" class="close pull-right" aria-label="Close" (click)="closeDialog()">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  <div class="text-center">
+                      <h2 class="app-name">Sign in to {{ClickName}}</h2>
+                  </div>
+                  <div class="btnYN">
+                      <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary" ><b class="SIGN-IN">SIGN IN</b></button><br>
+                     New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account</a>
+                  </div>
+              </div>
+          </ng-template>
 
         

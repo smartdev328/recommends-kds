@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { MatDatepickerModule } from '@angular/material';
+import { MatDatepickerModule ,MatDialogModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedLibsModule } from '@shared/shared-libs.module';
@@ -70,7 +70,7 @@ import { MiddlewareComponent } from './middleware/middleware.component';
     BrowserAnimationsModule,
     
   ],
-  exports: [MatDatepickerModule],
+  exports: [MatDatepickerModule,MatDialogModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     DatePipe,

@@ -32,6 +32,7 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     return this.auth.getTokenSilently$().pipe(
+
       mergeMap(token => {
         const tokenReq = req.clone({
           setHeaders: { Authorization: `Bearer ${token}` }
@@ -39,7 +40,12 @@ export class AuthInterceptor implements HttpInterceptor {
         this.user.sendToken(token);
         return next.handle(tokenReq);
       }),
-      catchError(err => throwError(err))
-    );
+      // catchError(err => throwError(err)
+      catchError(err => {
+        throw 'error in source. Details: ' + err;
+      }),
+      );
+    // );
+    
   }
 }

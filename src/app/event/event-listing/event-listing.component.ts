@@ -10,6 +10,7 @@ import { EventListingService } from './event-listing.service';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '@shared/model/user';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 declare let ga: any;
@@ -88,7 +89,8 @@ export class EventListingComponent implements OnInit {
     private metaService: Meta,
     private reviewService: ReviewsService,
     private eventListingService: EventListingService,
-    private authService: AuthService
+    private authService: AuthService,
+    private http:HttpClient,
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -162,18 +164,26 @@ export class EventListingComponent implements OnInit {
     const d = Date.now();
     // const url = 'https://kin-api-dev.kinparenting.com/events/?event_date_start='
     //   + this.datePipe.transform(d, 'yyyy-MM-dd') + '&event_date_range=30&limit=113';
-    const url='http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/events/?event_date_start=2019-08-22&limit=90'
+    // const url='http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/events/?event_date_start=2019-08-22&limit=90'
     // const url = 'http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/events/?event_date_start='
     // + this.datePipe.transform(d, 'yyyy-MM-dd') + '&event_date_range=30&limit=113';
-    const input = {
-      'category': this.select_cat_id === undefined ? '' : this.select_cat_id,
-      'q': this.keyword === undefined ? '' : this.keyword.trim(),
-      'city': this.selected_loc === undefined ? '' : this.selected_loc,
-      'event_range_str': this.selected_date === undefined ? '' : this.selected_date,
-      'distance': this.distance === undefined ? '' : this.distance,
-      'username': this.username === undefined ? '' : this.username
-    };
-    this.eventListingService.get_event_details(input).subscribe(data => {
+    // const input = {
+    //   'category': this.select_cat_id === undefined ? '' : this.select_cat_id,
+    //   'q': this.keyword === undefined ? '' : this.keyword.trim(),
+    //   'city': this.selected_loc === undefined ? '' : this.selected_loc,
+    //   'event_range_str': this.selected_date === undefined ? '' : this.selected_date,
+    //   'distance': this.distance === undefined ? '' : this.distance,
+    //   'username': this.username === undefined ? '' : this.username
+    // };
+    const url = 'https://kin-api-dev.kinparenting.com/' + 'events/?event_date_start='
+    + this.datePipe.transform(Date.now(), 'yyyy-MM-dd') + '&limit=90';
+    const headers = new HttpHeaders();
+      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+        data = data.replace(/\n/g, '');
+        data = JSON.parse(data);
+
+
+    // this.eventListingService.get_event_details().subscribe(data => {
       this.all_data = data['events'];
       this.showMore = false;
       this.isExplorelen = this.all_data.length;
@@ -222,7 +232,7 @@ export class EventListingComponent implements OnInit {
       };
       this.isExplore = true;
       this.end = 21;
-      this.eventListingService.get_event_details(input).subscribe(data => {
+      this.eventListingService.get_event_details().subscribe(data => {
         if (data['events'] !== undefined && data['events'].length > 0) {
           this.isErrorVisible = false;
           this.errorMessage = '';

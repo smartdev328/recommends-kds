@@ -90,7 +90,7 @@ export class GetStartedComponent implements OnInit {
         }
       
       }, err => {
-        console.log('Error in call service for parent and kid', err);
+       // console.log('Error in call service for parent and kid', err);
       });
   }
 

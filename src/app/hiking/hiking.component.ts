@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatTabChangeEvent } from '@angular/material';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { MatTabChangeEvent,MatDialogRef,MatDialog } from '@angular/material';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReviewsService } from '../component/add-review/reviews.service';
@@ -10,6 +10,8 @@ import { HikingTrailModel } from './add-hiking/hiking.model';
 import { HikingTrailService } from './hiking.service';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { API_URL } from '@shared/constants/UrlConstants';
 declare let ga: any;
 
 @Component({
@@ -18,6 +20,13 @@ declare let ga: any;
   styleUrls: ['./hiking.component.css']
 })
 export class HikingTrailComponent implements OnInit {
+  @ViewChild('deleteuser')deleteuser: TemplateRef<any>
+
+  dialogRef:any;
+  modalRef: BsModalRef;
+  ClickName:any;
+  saveEvent="save this trail";
+  addToReview="add a review ";
   public trail_id: any;
   public trail: any;
   public isLoaded = true;
@@ -58,9 +67,8 @@ export class HikingTrailComponent implements OnInit {
   class: any = false;
   @ViewChild('reviewsInput')
   reviewsInput: ElementRef;
-
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title, private metaService: Meta,
-    private hikingTrailService: HikingTrailService,private authService: AuthService, private reviewService: ReviewsService, private router: Router) {
+    private hikingTrailService: HikingTrailService,private authService: AuthService, private reviewService: ReviewsService, private router: Router,public dialog: MatDialog,) {
     this.trail = new HikingTrailModel();
     this.isShowMore = false;
     this.place_reviews = [];
@@ -94,6 +102,7 @@ export class HikingTrailComponent implements OnInit {
    // this.is_parent_id = false;
    // this.parent_id = '';
     this.trail_id = this.route.snapshot.params['id'];
+
     //this.parent_id = this.route.snapshot.queryParams['parent_id'];
     //this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
     this.is_save_action();
@@ -109,7 +118,14 @@ export class HikingTrailComponent implements OnInit {
 
   get_trail_data(trail_id: number) {
     if (trail_id !== undefined) {
-      this.hikingTrailService.get_hiking_trail_by_id(trail_id).subscribe(data => {
+      const url = API_URL + `hiking-trails/${trail_id}/`;
+
+      const headers = new HttpHeaders();
+      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+        data = data.replace(/\n/g, '');
+        data = JSON.parse(data);
+      // });
+      // this.hikingTrailService.get_hiking_trail_by_id(trail_id).subscribe(data => {
         if (data['trails'] !== undefined) {
           this.trail = data['trails'][0];
           this.format_ratings();
@@ -142,11 +158,11 @@ export class HikingTrailComponent implements OnInit {
           this.trail = 0;
           alert(this.hikingErrorMessage.NO_INFO_AVAILABLE);
         }
-      }, error => {
-       
+       }, error => {
         alert(this.hikingErrorMessage.GET_DATA_ERROR);
-      });
+       });
     }
+    
   }
 
   get_reviews() {
@@ -490,5 +506,30 @@ export class HikingTrailComponent implements OnInit {
     }
 
   }
+  deleteUser(linkName){
+    this.ClickName = linkName;
+    this.dialogRef = this.dialog.open(this.deleteuser, {
+        width: "626px"
+    });
+}
+
+//this function will open a popup when user is not loggen in
+checklogin(linkName){
+  if(this.isLogedin){
+   if(linkName == this.saveEvent){
+     this.save_trail();
+    } else if(linkName == this.addToReview){
+      this.add_review_redirect(2);
+    } 
+}else{
+this.deleteUser(linkName);
+}
+}
+signin(){
+  this.authService.login();
+  }
+  closeDialog(){
+    this.dialogRef.close();
+    }
 
 }

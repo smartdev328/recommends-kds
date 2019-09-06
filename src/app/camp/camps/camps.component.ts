@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
+import { Component, ViewChild, OnInit, ElementRef, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
@@ -6,12 +6,13 @@ import { Meta } from '@angular/platform-browser';
 import { ReviewsService } from '../../component/add-review/reviews.service';
 import { ENTITY_TYPES_ENUM, TYPES_ENUM } from '../../shared/constants/VenueConstants';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
-
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { CampErrorMessage, CampConstants } from '../../shared/constants/CampConstants';
-import { MatTabChangeEvent } from '@angular/material';
+import { MatTabChangeEvent, MatDialogRef, MatDialog } from '@angular/material';
 import { API_URL } from '@shared/constants/UrlConstants';
 import { Observable } from 'rxjs';
 import { AuthService } from '@shared/service/auth.service';
+
 declare let ga: any;
 @Component({
   selector: 'app-camps',
@@ -19,6 +20,14 @@ declare let ga: any;
   styleUrls: ['./camps.component.css']
 })
 export class CampsComponent implements OnInit {
+  @ViewChild('deleteuser') deleteuser: TemplateRef<any>
+
+  dialogRef: any;
+  modalRef: BsModalRef;
+  ClickName: any;
+
+  saveEvent = "save this camp";
+  addToReview = "add a review ";
   camp_id: string;
   camp: any;
   isLoaded = false;
@@ -44,13 +53,13 @@ export class CampsComponent implements OnInit {
   reviewsInput: ElementRef;
   class: any = false;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
-    private metaService: Meta,private authService: AuthService, private reviewService: ReviewsService) { }
+    private metaService: Meta, private authService: AuthService, private reviewService: ReviewsService, public dialog: MatDialog) { }
 
   ngOnInit() {
-   // this.is_parent_id = false;
-  //  this.parent_id = '';
+    // this.is_parent_id = false;
+    //  this.parent_id = '';
     this.camp_id = this.route.snapshot.params['id'];
-   // this.parent_id = this.route.snapshot.queryParams['parent_id'];
+    // this.parent_id = this.route.snapshot.queryParams['parent_id'];
     //this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
     this.is_save_action();
     this.get_camp_details();
@@ -145,10 +154,10 @@ export class CampsComponent implements OnInit {
 
   add_review_redirect(index: number): void {
     // if (this.parent_id !== undefined) {
-     // this.is_parent_id = true;
-      this.is_review_click = true;
-      this.selectedIndex = index;
-      this.reviewsInput.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    // this.is_parent_id = true;
+    this.is_review_click = true;
+    this.selectedIndex = index;
+    this.reviewsInput.nativeElement.scrollIntoView({ behavior: 'smooth' });
     // }
   }
 
@@ -240,9 +249,9 @@ export class CampsComponent implements OnInit {
 
   save_camp() {
     //if (this.parent_id !== undefined) {
-      this.add_analytics_data('SAVE');
-      this.isSaveVisible = true;
-   // }
+    this.add_analytics_data('SAVE');
+    this.isSaveVisible = true;
+    // }
   }
   add_analytics_data(atype: any) {
     let action = '';
@@ -258,17 +267,17 @@ export class CampsComponent implements OnInit {
         break;
     }
     let analytics_input = {};
-   // if (this.parent_id !== undefined) {
-      analytics_input = {
-        'input_data': [{
-          'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.CAMP,
-          'entity_id': this.camp_id,
-          'interface': INTERFACE_ENUM.FE,
-          //'parent_id': this.parent_id,
-          'action': action,
-          'referrer': '/root/home'
-        }]
-     // };
+    // if (this.parent_id !== undefined) {
+    analytics_input = {
+      'input_data': [{
+        'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.CAMP,
+        'entity_id': this.camp_id,
+        'interface': INTERFACE_ENUM.FE,
+        //'parent_id': this.parent_id,
+        'action': action,
+        'referrer': '/root/home'
+      }]
+      // };
     }
     //  else {
     //   analytics_input = {
@@ -308,6 +317,31 @@ export class CampsComponent implements OnInit {
       this.class = false;
     }
 
+  }
+  deleteUser(linkName) {
+    this.ClickName = linkName;
+    this.dialogRef = this.dialog.open(this.deleteuser, {
+      width: "626px"
+    });
+  }
+
+  //this function will open a popup when user is not loggen in
+  checklogin(linkName) {
+    if (this.isLogedin) {
+      if (linkName == this.saveEvent) {
+        this.save_camp();
+      } else if (linkName == this.ClickName.addToReview) {
+        this.add_review_redirect(2);
+      }
+    } else {
+      this.deleteUser(linkName);
+    }
+  }
+  signin() {
+    this.authService.login();
+  }
+  closeDialog() {
+    this.dialogRef.close();
   }
 
 }

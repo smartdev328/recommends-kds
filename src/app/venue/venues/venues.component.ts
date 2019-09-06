@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
+import { Component, ViewChild, OnInit, ElementRef, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
@@ -7,9 +7,11 @@ import { UserSearch } from '../venue.model';
 import { VenuesService } from './venues.service';
 import { ENTITY_TYPES_ENUM, TYPES_ENUM, VenueConstants, VenueErrorMessage } from '../../shared/constants/VenueConstants';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
-import { MatTabChangeEvent } from '@angular/material';
+import { MatTabChangeEvent, MatDialog } from '@angular/material';
 import { ReviewsService } from '../../component/add-review/reviews.service';
 import { AuthService } from '@shared/service/auth.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
 import { Observable } from 'rxjs';
 declare let ga: any;
 @Component({
@@ -18,6 +20,15 @@ declare let ga: any;
   styleUrls: ['./venues.component.css']
 })
 export class VenuesComponent implements OnInit {
+  @ViewChild('deleteuser')deleteuser: TemplateRef<any>
+
+  dialogRef:any;
+  modalRef: BsModalRef;
+  ClickName:any;
+
+  subscribe="subscribe this place";
+  saveEvent="save this place  ";
+  addToReview="add a review ";
   public dayOfWeek: any;
   public venue_id: any;
   public venue: any;
@@ -65,7 +76,7 @@ export class VenuesComponent implements OnInit {
   reviewsInput: ElementRef;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
     private metaService: Meta,private authService: AuthService, private venuesService: VenuesService, private reviewService: ReviewsService,
-    private router: Router) {
+    private router: Router,public dialog: MatDialog) {
     this.venue = new UserSearch();
     this.parking = '';
     this.rating = 0;
@@ -121,7 +132,12 @@ export class VenuesComponent implements OnInit {
 
   get_venue_data(venue_id: number) {
     if (venue_id !== undefined) {
-      this.venuesService.get_venue_by_id(venue_id).subscribe(data => {
+      const url = 'https://kin-api-dev.kinparenting.com/' + 'venues/' + venue_id + '/';
+      const headers = new HttpHeaders();
+      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+        data = data.replace(/\n/g, '');
+        data = JSON.parse(data);
+      //this.venuesService.get_venue_by_id(venue_id).subscribe(data => {
         if (data['venue'] !== undefined) {
           this.venue = data['venue'];
           this.category = this.venue.category !== undefined && this.venue.category.length > 0 ? this.venue.category.join() :
@@ -436,5 +452,33 @@ export class VenuesComponent implements OnInit {
     }
 
   }
+  deleteUser(linkName){
+    this.ClickName = linkName;
+    this.dialogRef = this.dialog.open(this.deleteuser, {
+        width: "626px"
+    });
+}
+
+//this function will open a popup when user is not loggen in
+checklogin(linkName){
+  if(this.isLogedin){
+    if(linkName == this.subscribe){
+      this.add_subscription_venue();
+    }
+    else if(linkName == this.saveEvent){
+     this.save_venue();
+    } else if(linkName == this.addToReview){
+      this.add_review_redirect(2);
+    } 
+}else{
+this.deleteUser(linkName);
+}
+}
+signin(){
+  this.authService.login();
+  }
+  closeDialog(){
+    this.dialogRef.close();
+    }
 
 }

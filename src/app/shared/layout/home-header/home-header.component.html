@@ -11,19 +11,19 @@
         <ul class="navbar-nav m-auto text-center">
             <li class="nav-item">
                 <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact: true}" (click)="checkloginin('Event')">Events</a>
+                    [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/family-friendly-events-near-me']">Events</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact: true}" (click)="checkloginin('Places')" >Places</a>
+                    [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/family-friendly-places-near-me']" >Places</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link navbar-brand mr-0 Home-header headercurser " [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact: true}" (click)="checkloginin('Camps')">Camps</a>
+                    [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/camps-near-me']" >Camps</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact: true}" (click)="checkloginin('Hiking')">Hiking</a>
+                    [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/family-friendly-hikes-near-me']" >Hiking</a>
             </li>
         </ul>
         <ul class="navbar-nav text-center align-items-center">
@@ -41,7 +41,7 @@
                 <div class="mt-2 dropdown" fxLayout="row" fxLayoutAlign="center stretch" *ngIf="auth.loggedIn">
                     <div class="cursor" fxLayout="row" data-toggle="dropdown">
                         <img src="assets/web_images/profile.png" alt="User" width="50" height="44" >
-                        <mat-icon aria-hidden="false" aria-label="">keyboard_arrow_down</mat-icon>
+                        <mat-icon aria-hidden="false" aria-label="keyboard_arrow_down"></mat-icon>
                     </div>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>Saved</li>
@@ -62,5 +62,6 @@
                 </a> -->
             </li>
         </ul>
-    </div>
+    </div> 
 </nav>
+

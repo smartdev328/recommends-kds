@@ -120,9 +120,14 @@ export class CampListingComponent implements OnInit {
     this.camp_explore = '';
     this.isExplore = true;
     this.showMore = false;
-    this.campsListingService.get_camp_details(url).subscribe(data => {
+
+
+    const headers = new HttpHeaders();
+    this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
       data = data.replace(/\n/g, '');
       data = JSON.parse(data);
+    // this.campsListingService.get_camp_details(url).subscribe(data => {
+  
       if (data['data'] != undefined && data['data'].length > 0) {
         this.camp_explore = data['data'];
       } else {
@@ -133,8 +138,8 @@ export class CampListingComponent implements OnInit {
       if (this.camp_explore.length > this.end) {
         this.showMore = true;
       }
-    });
-
+    // });
+  })
   }
 
   add_analytics_data() {

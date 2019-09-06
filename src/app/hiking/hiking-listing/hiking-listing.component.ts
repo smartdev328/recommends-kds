@@ -111,6 +111,7 @@ export class HikingTrailsListingComponent implements OnInit {
 
   get_hiking_trail_details() {
     const url = API_URL + 'hiking-trails/?limit=43';
+
     this.hiking_explore = '';
     this.isExplore = true;
     this.showMore = false;
@@ -175,6 +176,7 @@ export class HikingTrailsListingComponent implements OnInit {
 
 
   filter_hiking_data() {
+    debugger
     if ((this.keyword === undefined || this.keyword === '') && this.selected_loc === '') {
       this.isFilterErrorVisible = true;
       this.isErrorVisible = false;

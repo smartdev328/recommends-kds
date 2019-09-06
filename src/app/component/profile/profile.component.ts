@@ -60,7 +60,6 @@ export class ProfileComponent implements OnInit {
         this.formGroup.get('newsletter').setValue(isNewsLetter);
         this.formGroup.get('email').setValue(user.parent.email);
         this.parentEmail=user.parent.email;
-        console.log('22222222222',user.parent.newsletter)
         this.initKidControls((user.parent && user.parent.kids) ? user.parent.kids : [new Kid()]);
       }
     });
@@ -107,7 +106,7 @@ export class ProfileComponent implements OnInit {
                   this.router.navigate(['/home']);
                 }
               },errCreateKid => {
-                console.log('Error in call service for kid',i, errCreateKid);
+                //console.log('Error in call service for kid',i, errCreateKid);
               });
           }
           else{
@@ -117,12 +116,12 @@ export class ProfileComponent implements OnInit {
                   this.router.navigate(['/home']);
                 }
               },errUpdateKid => {
-                console.log('Error in call service for kid',i, errUpdateKid);
+                //console.log('Error in call service for kid',i, errUpdateKid);
               });
           }
         }
       }, err => {
-        console.log('Error in call service for parent and', err);
+        //console.log('Error in call service for parent and', err);
       });
     // Call PATCH on /parents/ and /kids/ backend APIs to update
     // information for the parent and kids.

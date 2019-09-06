@@ -1,5 +1,5 @@
-import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, ViewChild, OnInit, ElementRef, TemplateRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
@@ -9,6 +9,8 @@ import { ReviewsService } from '../component/add-review/reviews.service';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../shared/constants/AnalyticsConstants';
 import { API_URL } from '@shared/constants/UrlConstants';
 import { AuthService } from '@shared/service/auth.service';
+import { MatDialogRef,MatDialog,} from "@angular/material";
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 
 declare let ga: any;
@@ -18,9 +20,18 @@ declare let ga: any;
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
+  @ViewChild('deleteuser')deleteuser: TemplateRef<any>
+
+  dialogRef:any;
+  modalRef: BsModalRef;
+  public navbarCollapsed = true;
+  ClickName:any;
   event_id: string;
   event: any;
   isLoaded = false;
+  calendarEvent="add this event";
+  saveEvent="save this event";
+  addToReview="add a review "; 
   // public is_parent_id: Boolean;
   public isErrorVisible: Boolean;
   public isSuccessVisible: Boolean;
@@ -41,8 +52,13 @@ export class EventComponent implements OnInit {
   @ViewChild('reviewsInput')
   reviewsInput: ElementRef;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
-    private reviewService: ReviewsService, private authService: AuthService, private metaService: Meta) { }
+  constructor(private route: ActivatedRoute,
+     private http: HttpClient, private titleService: Title,
+    private reviewService: ReviewsService, 
+    private authService: AuthService, 
+    private metaService: Meta,
+    private router: Router,
+    public dialog: MatDialog,) { }
 
   ngOnInit() {
     this.isSaveVisible = false;
@@ -68,10 +84,9 @@ export class EventComponent implements OnInit {
   }
 
   get_event_details() {
-
     // let url = 'https://kin-api-dev.kinparenting.com/events/' + this.event_id;
-     const url = API_URL + 'events/' + this.event_id + '/';
-   // const url = 'https://kin-api-dev.kinparenting.com/' + 'events/' + this.event_id + '/';
+     //const url = API_URL + 'events/' + this.event_id + '/';
+    const url = 'https://kin-api-dev.kinparenting.com/' + 'events/' + this.event_id + '/';
     const headers = new HttpHeaders()
     .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
     .set('Content-Type', 'application/json');
@@ -79,6 +94,7 @@ export class EventComponent implements OnInit {
       data = data.replace(/\n/g, "");
       data = JSON.parse(data);
       this.event = data["event"];
+      
       this.add_analytics_data('CLICK');
       this.isLoaded = true;
       // let categories_array = JSON.parse(this.event.event_categories);
@@ -304,4 +320,32 @@ export class EventComponent implements OnInit {
     }
   }
 
+  deleteUser(linkName){
+    this.ClickName = linkName;
+    this.dialogRef = this.dialog.open(this.deleteuser, {
+        width: "626px"
+    });
+}
+
+//this function will open a popup when user is not loggen in
+checklogin(linkName){
+  if(this.isLogedin){
+    if(linkName == this.calendarEvent){
+      this.calendar_redirects();
+    }
+    else if(linkName == "Save"){
+      this.save_event();
+    } else if(linkName == "Add"){
+      this.add_review_redirect(2);
+    } 
+}else{
+this.deleteUser(linkName);
+}
+}
+signin(){
+  this.authService.login();
+  }
+  closeDialog(){
+    this.dialogRef.close();
+    }
 }
