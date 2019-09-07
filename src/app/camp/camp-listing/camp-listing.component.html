@@ -5,11 +5,12 @@
   </div>
   <div class="banner-wrapper">
     <h1 class="text-center heading-desktop"><span>Camps</span> For all those school breaks</h1>
+    <form (submit)="filter_camp_data()">
     <div class="filter-box">
       <div class="row filter-box-content">
         <div class="col-lg-7 col-md-8 col-sm-4 col-xs-1 mb-2">
           <div class="input-group">
-            <input type="text" class="form-control keyword-text" placeholder="Keyword" [(ngModel)]="keyword">
+            <input type="text" class="form-control keyword-text" placeholder="Keyword" name="keyword" [(ngModel)]="keyword">
           </div>
         </div>
         <div class="col-lg-3 col-md-2 col-sm-6 col-xs-2 mb-2">
@@ -39,6 +40,7 @@
       </div>
       <div *ngIf="isFilterErrorVisible"><div class="error-message-text alert-danger">{{filterErrorMessage}}</div></div>
     </div>
+    </form>
   </div>
 </div>
 <div class="container-fluid">
@@ -49,8 +51,26 @@
     <app-masonsry-camp-view *ngIf="oldCat_2" [camps]=camp_explore [start]=start [end]=end></app-masonsry-camp-view>
     <!-- <app-masonsry-camp-view *ngIf="isErrorVisible" [isErrorVisible]=isErrorVisible [errorMessage]=errorMessage></app-masonsry-camp-view> -->
       
-    <mat-card-actions class="detail-buttons-space">
+    <mat-card-actions *ngIf="isLogedin === false" class="detail-buttons-space">
+        <button mat-button class="detail-buttons mouse-pointer" (click)="checkLogin(moreCamps)">MORE CAMPS</button>
+      </mat-card-actions>
+      <mat-card-actions *ngIf="isLogedin === true" class="detail-buttons-space">
         <button mat-button class="detail-buttons mouse-pointer" (click)="loadMore()">MORE CAMPS</button>
-    </mat-card-actions>
+      </mat-card-actions>
       
   </div>
+
+  <ng-template #openModal>
+      <div class="modal-body thanks">
+          <button type="button" style="float: right;" class="close pull-right" aria-label="Close" (click)="closeDialog()">
+              <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="text-center">
+              <h2 class="app-name">Sign in for {{moreCamps}}</h2>
+          </div>
+          <div class="btnYN">
+              <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary" ><b class="SIGN-IN">SIGN IN</b></button><br>
+             New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account</a>
+          </div>
+      </div>
+    </ng-template>

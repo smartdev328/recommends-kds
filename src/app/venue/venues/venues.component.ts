@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit, ElementRef, TemplateRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
@@ -74,6 +74,7 @@ export class VenuesComponent implements OnInit {
   class: any = false;
   @ViewChild('reviewsInput')
   reviewsInput: ElementRef;
+  currentUrl: string;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
     private metaService: Meta,private authService: AuthService, private venuesService: VenuesService, private reviewService: ReviewsService,
     private router: Router,public dialog: MatDialog) {
@@ -108,6 +109,13 @@ export class VenuesComponent implements OnInit {
     this.dayOfWeek = this.dayOfWeek - 1; // To get array value
     this.price = 0;
     this.contact_number = '';
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        ga('set', 'page', event.urlAfterRedirects);
+        this.currentUrl= event.urlAfterRedirects;
+        ga('send', 'pageview');
+      }
+    });
   }
 
   ngOnInit() {
@@ -475,7 +483,9 @@ this.deleteUser(linkName);
 }
 }
 signin(){
+  sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
   this.authService.login();
+  this.closeDialog();
   }
   closeDialog(){
     this.dialogRef.close();

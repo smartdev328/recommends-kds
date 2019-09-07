@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ReviewsService } from '../../component/add-review/reviews.service';
@@ -11,6 +11,7 @@ import { ErrorMessage } from '../../shared/constants/CommonConstants';
 import { CampListingService } from './camp-listing.service';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
+import { MatDialogRef, MatDialog, } from "@angular/material";
 const API_URL = 'https://kin-api-dev.kinparenting.com/';
 
 declare let ga: any;
@@ -20,6 +21,9 @@ declare let ga: any;
   styleUrls: ['./camp-listing.component.css']
 })
 export class CampListingComponent implements OnInit {
+  @ViewChild('openModal') openModal: TemplateRef<any>
+
+  dialogRef: any;
   public selected_cat: String;
   public category_label: String;
   public keyword: String;
@@ -40,9 +44,12 @@ export class CampListingComponent implements OnInit {
   end: any = 20;
   oldCat_1 = true;
   oldCat_2 = false;
+  count = 0;
+  moreCamps = 'more Camps';
   // public campConstants :any;
   public isAuthenticated$: Observable<boolean>;
   isLogedin = false;
+  currentUrl: string;
   constructor(private route: ActivatedRoute,
     private http: HttpClient,
     private datePipe: DatePipe,
@@ -51,11 +58,13 @@ export class CampListingComponent implements OnInit {
     private metaService: Meta,
     private reviewService: ReviewsService,
     private campsListingService: CampListingService,
-    private authService: AuthService
+    private authService: AuthService,
+    public dialog: MatDialog,
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         ga('set', 'page', event.urlAfterRedirects);
+        this.currentUrl= event.urlAfterRedirects;
         ga('send', 'pageview');
       }
     });
@@ -188,6 +197,7 @@ export class CampListingComponent implements OnInit {
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.filterErrorMessage = '';
+    window.location.reload();
   }
 
 
@@ -243,5 +253,36 @@ export class CampListingComponent implements OnInit {
       });
     }
   }
+
+  //this function will open a popup when user is not loggen in
+ checkLogin(linkName) {
+  console.log(linkName,'1')
+  if (this.isLogedin) {
+    this.loadMore();
+  } else {
+    this.detectClick(linkName);
+  }
+}
+detectClick(moreCamps) {
+  let counter = this.count++
+  if(counter <= 1){
+    this.loadMore();
+  }else
+    this.openPopup(moreCamps);
+}
+openPopup(moreCamps) {
+  this.moreCamps = moreCamps;
+  this.dialogRef = this.dialog.open(this.openModal, {
+    width: "626px"
+  });
+}
+signin() {
+  sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
+  this.authService.login();
+}
+closeDialog() {
+  this.dialogRef.close();
+}
+
 
 }

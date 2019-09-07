@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { MatTabChangeEvent,MatDialogRef,MatDialog } from '@angular/material';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { ReviewsService } from '../component/add-review/reviews.service';
 import { ACTION, ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM } from '../shared/constants/AnalyticsConstants';
 import { HikingTrailConstants, HikingTrailErrorMessage } from '../shared/constants/HikingTrailConstants';
@@ -67,6 +67,7 @@ export class HikingTrailComponent implements OnInit {
   class: any = false;
   @ViewChild('reviewsInput')
   reviewsInput: ElementRef;
+  currentUrl: string;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title, private metaService: Meta,
     private hikingTrailService: HikingTrailService,private authService: AuthService, private reviewService: ReviewsService, private router: Router,public dialog: MatDialog,) {
     this.trail = new HikingTrailModel();
@@ -96,6 +97,15 @@ export class HikingTrailComponent implements OnInit {
     this.carrier = '';
     this.picnicing = '';
     this.emergency_support = '';
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        ga('set', 'page', event.urlAfterRedirects);
+        this.currentUrl= event.urlAfterRedirects;
+        ga('send', 'pageview');
+      }
+    });
+
   }
 
   ngOnInit() {
@@ -526,7 +536,9 @@ this.deleteUser(linkName);
 }
 }
 signin(){
+  sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
   this.authService.login();
+  this.closeDialog();
   }
   closeDialog(){
     this.dialogRef.close();

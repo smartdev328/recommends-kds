@@ -54,7 +54,7 @@ export class AuthService {
   ) { }
 
 
- 
+
 
   // When calling, options can be passed if desired
   // https://auth0.github.io/auth0-spa-js/classes/auth0client.html#getuser
@@ -77,7 +77,7 @@ export class AuthService {
     const checkAuth$ = this.isAuthenticated$.pipe(
       concatMap((loggedIn: boolean) => {
         if (loggedIn) {
-          
+
           // If authenticated, get user and set in app
           // NOTE: you could pass options here if needed
           // return this.getUserProfile$();
@@ -97,14 +97,15 @@ export class AuthService {
   }
 
   login(redirectPath: string = '/') {
-    
+
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
     // Ensure Auth0 client instance exists
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log in
-     
+
       client.loginWithRedirect({
+
         redirect_uri: `${window.location.origin}/callback`,
         appState: { target: redirectPath }
       });
@@ -115,11 +116,13 @@ export class AuthService {
   handleAuthCallback() {
     // Only the callback component should call this method
     // Call when app reloads after user logs in with Auth0
+    let currunrRoute :string;
     let targetRoute: string; // Path to redirect to after login processsed
     const authComplete$ = this.handleRedirectCallback$.pipe(
       // Have client, now call method to handle auth callback redirect
       tap(cbRes => {
         // Get and set target redirect route from callback results
+         currunrRoute = JSON.parse(sessionStorage.getItem('current_url'));
         targetRoute = cbRes.appState && cbRes.appState.target ? cbRes.appState.target : '/';
       }),
       concatMap(() => {
@@ -145,7 +148,12 @@ export class AuthService {
         this.userService.getUser().subscribe((user) => {
           this.userSubject$.next(user);
         });
-        this.router.navigate([targetRoute]);
+        if (currunrRoute) {
+          this.router.navigate([currunrRoute]);
+          sessionStorage.removeItem('current_url');
+        } else {
+          this.router.navigate([targetRoute]);
+        }
       }
 
       // Redirect to target route after callback processing

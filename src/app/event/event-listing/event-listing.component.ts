@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
@@ -10,7 +10,9 @@ import { EventListingService } from './event-listing.service';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '@shared/model/user';
+import { MatDialogRef, MatDialog, } from "@angular/material";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 
 declare let ga: any;
@@ -20,7 +22,9 @@ declare let ga: any;
   styleUrls: ['./event-listing.component.css']
 })
 export class EventListingComponent implements OnInit {
+  @ViewChild('openModal') openModal: TemplateRef<any>
 
+  dialogRef: any;
   public all_data;
   isToday = false;
   isExplore = false;
@@ -72,6 +76,7 @@ export class EventListingComponent implements OnInit {
   public search_query: String;
   public username: String;
   public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
   public isCalendarView: boolean;
 
   public eventConstatnts = new EventConstants();
@@ -80,6 +85,10 @@ export class EventListingComponent implements OnInit {
   public categoryList = this.eventConstatnts.PRIMARY_CATEGORY;
   public locations = this.eventConstatnts.LOCATIONS;
   public user: User;
+  count = 0;
+  moreEvent = 'more events';
+  currentUrl: string;
+  public searchDate = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -90,11 +99,15 @@ export class EventListingComponent implements OnInit {
     private reviewService: ReviewsService,
     private eventListingService: EventListingService,
     private authService: AuthService,
-    private http:HttpClient,
+    private http: HttpClient,
+    public dialog: MatDialog,
+    
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         ga('set', 'page', event.urlAfterRedirects);
+        this.currentUrl= event.urlAfterRedirects;
+
         ga('send', 'pageview');
       }
     });
@@ -126,6 +139,7 @@ export class EventListingComponent implements OnInit {
     this.errorMessage = '';
     this.selected_cat = this.eventConstatnts.get_cat_name_by_id(this.route.snapshot.queryParams['category']);
     this.keyword = this.route.snapshot.queryParams['q'];
+   
     this.selected_loc = this.route.snapshot.queryParams['location'];
     this.selected_date = this.route.snapshot.queryParams['date'];
     this.distance = this.route.snapshot.queryParams['distance'];
@@ -134,6 +148,9 @@ export class EventListingComponent implements OnInit {
     this.authService.user$.subscribe((user) => {
       this.user = user;
     });
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
   }
   onLocationChange(loc_obj: object) {
     this.selected_loc = loc_obj['name'];
@@ -176,14 +193,14 @@ export class EventListingComponent implements OnInit {
     //   'username': this.username === undefined ? '' : this.username
     // };
     const url = 'https://kin-api-dev.kinparenting.com/' + 'events/?event_date_start='
-    + this.datePipe.transform(Date.now(), 'yyyy-MM-dd') + '&limit=90';
+      + this.datePipe.transform(Date.now(), 'yyyy-MM-dd') + '&limit=90';
     const headers = new HttpHeaders();
-      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-        data = data.replace(/\n/g, '');
-        data = JSON.parse(data);
+    this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+      data = data.replace(/\n/g, '');
+      data = JSON.parse(data);
 
 
-    // this.eventListingService.get_event_details().subscribe(data => {
+      // this.eventListingService.get_event_details().subscribe(data => {
       this.all_data = data['events'];
       this.showMore = false;
       this.isExplorelen = this.all_data.length;
@@ -208,6 +225,7 @@ export class EventListingComponent implements OnInit {
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.filterErrorMessage = '';
+    window.location.reload();
   }
 
 
@@ -310,5 +328,37 @@ export class EventListingComponent implements OnInit {
       }
     }
     return cat_name;
+  }
+  //this function will open a popup when user is not loggen in
+  checkLogin(linkName) {
+    if (this.isLogedin) {
+      this.loadMore();
+    } else {
+      this.detectClick(linkName);
+    }
+  }
+  detectClick(moreEvent) {
+    let counter = this.count++
+    if(counter <= 1){
+      this.loadMore();
+    }else{
+      this.openPopup(moreEvent);
+    }
+      
+      
+      
+  }
+  openPopup(moreEvent) {
+    this.moreEvent = moreEvent;
+    this.dialogRef = this.dialog.open(this.openModal, {
+      width: "626px"
+    });
+  }
+  signin() {
+    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
+    this.authService.login();
+  }
+  closeDialog() {
+    this.dialogRef.close();
   }
 }

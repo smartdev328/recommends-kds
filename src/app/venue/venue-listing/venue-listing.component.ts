@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
@@ -10,6 +10,10 @@ import { VenueConstants, VenueErrorMessage } from '../../shared/constants/VenueC
 import { ErrorMessage } from '../../shared/constants/CommonConstants';
 import { VenueListingService } from './venue-listing.service';
 import { API_URL } from '@shared/constants/UrlConstants';
+import { MatDialogRef, MatDialog, } from "@angular/material";
+import { Observable } from 'rxjs';
+import { AuthService } from '@shared/service/auth.service';
+import { NgForm } from '@angular/forms';
 
 declare let ga: any;
 @Component({
@@ -18,6 +22,9 @@ declare let ga: any;
   styleUrls: ['./venue-listing.component.css']
 })
 export class VenueListingComponent implements OnInit {
+  @ViewChild('openModal') openModal: TemplateRef<any>
+
+  dialogRef: any;
   venues_list;
   isExplore = false;
   public category: string;
@@ -36,7 +43,10 @@ export class VenueListingComponent implements OnInit {
   public commonErrorMessage = new ErrorMessage();
   public venueErrorMessage = new VenueErrorMessage();
   public categoryList = this.venueConstants.PRIMARY_CATEGORY;
-
+  count = 0;
+  morePlace = 'more Places';
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
   /*
     Filter Variables
   */
@@ -45,6 +55,7 @@ export class VenueListingComponent implements OnInit {
   public keyword: String;
   public cat_label: String;
   public loc_label: String;
+  currentUrl: string;
   constructor(private route: ActivatedRoute,
     private http: HttpClient,
     private datePipe: DatePipe,
@@ -52,7 +63,9 @@ export class VenueListingComponent implements OnInit {
     private titleService: Title,
     private metaService: Meta,
     private reviewService: ReviewsService,
-    private venueListingService: VenueListingService
+    private venueListingService: VenueListingService,
+    private authService: AuthService,
+    public dialog: MatDialog,
   ) {
     /*
       Filter Variables
@@ -65,6 +78,7 @@ export class VenueListingComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         ga('set', 'page', event.urlAfterRedirects);
+        this.currentUrl= event.urlAfterRedirects;
         ga('send', 'pageview');
       }
     });
@@ -92,8 +106,14 @@ export class VenueListingComponent implements OnInit {
     this.metaService.addTag({ property: 'og:image', content: 'https://kinparenting.com/assets/kin_logo.jpeg' });
     this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/family-friendly-places-near-me' });
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
+  
   }
-
+  onSubmit(f: NgForm) {
+  
+  }
   get_venue_details() {
     if (this.venues_list) {
       this.isExplore = true;
@@ -183,6 +203,7 @@ export class VenueListingComponent implements OnInit {
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.filterErrorMessage = '';
+    window.location.reload();
   }
 
   filter_venue_data() {
@@ -199,6 +220,7 @@ export class VenueListingComponent implements OnInit {
         'q': this.keyword === undefined ? '' : this.keyword.trim(),
         'location': this.selected_loc === undefined ? '' : this.selected_loc
       };
+      
       this.showMore = false;
       this.isExplore = true;
       this.venueListingService.get_venue_details(input).subscribe(data => {
@@ -227,4 +249,35 @@ export class VenueListingComponent implements OnInit {
       });
     }
   }
+
+   //this function will open a popup when user is not loggen in
+   checkLogin(linkName) {
+    if (this.isLogedin) {
+      this.loadMore();
+    } else {
+      this.detectClick(linkName);
+    }
+  }
+  detectClick(morePlace) {
+    let counter = this.count++
+    if(counter <= 1){
+      this.loadMore();
+    }else
+      this.openPopup(morePlace);
+  }
+  openPopup(morePlace) {
+    this.morePlace = morePlace;
+    this.dialogRef = this.dialog.open(this.openModal, {
+      width: "626px"
+    });
+  }
+  signin() {
+    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
+    this.authService.login();
+  }
+  closeDialog() {
+    this.dialogRef.close();
+  }
 }
+
+

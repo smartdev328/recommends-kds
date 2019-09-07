@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
@@ -9,7 +9,9 @@ import { HikingTrailConstants, HikingTrailErrorMessage } from '../../shared/cons
 import { ErrorMessage } from '../../shared/constants/CommonConstants';
 import { HikingTrailsListingService } from './hiking-listing.service';
 import { API_URL } from '@shared/constants/UrlConstants';
-
+import { Observable } from 'rxjs';
+import { MatDialogRef, MatDialog, } from "@angular/material";
+import { AuthService } from '@shared/service/auth.service';
 
 declare let ga: any;
 @Component({
@@ -18,7 +20,9 @@ declare let ga: any;
   styleUrls: ['./hiking-listing.component.css']
 })
 export class HikingTrailsListingComponent implements OnInit {
+  @ViewChild('openModal') openModal: TemplateRef<any>
 
+  dialogRef: any;
   public all_data;
   isExplore = false;
   oldFilterData = true;
@@ -28,6 +32,8 @@ export class HikingTrailsListingComponent implements OnInit {
   end = 21;
   showMore = false;
   showLayout = false;
+  count = 0;
+  moreTralis = 'more Tralis';
   hiking_explore;
   /*
   Filter Variables
@@ -42,12 +48,13 @@ export class HikingTrailsListingComponent implements OnInit {
   public filterErrorMessage: String;
   public search_query: String;
   public username: String;
-
+  currentUrl:string;
   public hikingConstants = new HikingTrailConstants();
   public hikingErrorMessage = new HikingTrailErrorMessage();
   public commonErrorMessage = new ErrorMessage();
   public locations = this.hikingConstants.LOCATIONS;
-
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
   constructor(private route: ActivatedRoute,
     private http: HttpClient,
     private datePipe: DatePipe,
@@ -55,10 +62,13 @@ export class HikingTrailsListingComponent implements OnInit {
     private titleService: Title,
     private metaService: Meta,
     private reviewService: ReviewsService,
+    public dialog: MatDialog,
+    private authService: AuthService,
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         ga('set', 'page', event.urlAfterRedirects);
+        this.currentUrl= event.urlAfterRedirects;
         ga('send', 'pageview');
       }
     });
@@ -91,6 +101,9 @@ export class HikingTrailsListingComponent implements OnInit {
     this.metaService.addTag({ property: 'og:image', content: 'https://kinparenting.com/assets/kin_logo.jpeg' });
     this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/family-friendly-hikes-near-me' });
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
   }
 
 
@@ -172,11 +185,12 @@ export class HikingTrailsListingComponent implements OnInit {
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.filterErrorMessage = '';
+    window.location.reload();
   }
 
 
   filter_hiking_data() {
-    debugger
+    
     if ((this.keyword === undefined || this.keyword === '') && this.selected_loc === '') {
       this.isFilterErrorVisible = true;
       this.isErrorVisible = false;
@@ -229,6 +243,33 @@ export class HikingTrailsListingComponent implements OnInit {
       });
     }
   }
-
+ //this function will open a popup when user is not loggen in
+ checkLogin(linkName) {
+  if (this.isLogedin) {
+    this.loadMore();
+  } else {
+    this.detectClick(linkName);
+  }
+}
+detectClick(moreTralis) {
+  let counter = this.count++
+  if(counter <= 1){
+    this.loadMore();
+  }else
+    this.openPopup(moreTralis);
+}
+openPopup(moreTralis) {
+  this.moreTralis = moreTralis;
+  this.dialogRef = this.dialog.open(this.openModal, {
+    width: "626px"
+  });
+}
+signin() {
+  sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
+  this.authService.login();
+}
+closeDialog() {
+  this.dialogRef.close();
+}
 
 }

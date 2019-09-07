@@ -23,6 +23,6 @@ export class Parent {
     zip_code: string;
 
     constructor(option?: { kid?: Kid }) {
-        this.kids = [option.kid];
+        this.kids = option && option.kid ? [option.kid] : [];
     }
 }

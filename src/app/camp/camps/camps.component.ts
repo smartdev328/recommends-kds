@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit, ElementRef, TemplateRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
@@ -52,8 +52,18 @@ export class CampsComponent implements OnInit {
   @ViewChild('reviewsInput')
   reviewsInput: ElementRef;
   class: any = false;
+  currentUrl: string;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
-    private metaService: Meta, private authService: AuthService, private reviewService: ReviewsService, public dialog: MatDialog) { }
+    private metaService: Meta, private authService: AuthService,private router:Router, private reviewService: ReviewsService, public dialog: MatDialog) 
+    { 
+      this.router.events.subscribe(event => {
+        if (event instanceof NavigationEnd) {
+          ga('set', 'page', event.urlAfterRedirects);
+          this.currentUrl= event.urlAfterRedirects;
+          ga('send', 'pageview');
+        }
+      });
+    }
 
   ngOnInit() {
     // this.is_parent_id = false;
@@ -338,7 +348,9 @@ export class CampsComponent implements OnInit {
     }
   }
   signin() {
+    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
     this.authService.login();
+    this.closeDialog();
   }
   closeDialog() {
     this.dialogRef.close();
