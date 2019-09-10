@@ -61,6 +61,7 @@ export class ProfileComponent implements OnInit {
         this.formGroup.get('email').setValue(user.parent.email);
         this.parentEmail=user.parent.email;
         this.initKidControls((user.parent && user.parent.kids) ? user.parent.kids : [new Kid()]);
+        console.log(user.parent.kids);
       }
     });
   }
@@ -96,13 +97,18 @@ export class ProfileComponent implements OnInit {
 
     const kidLength=this.formGroup.value.kidControls.length;
     const kidParam = this.formGroup.value.kidControls;
+    console.log("kidParam",kidParam)
+
   
     this.userService.updateUser(param).subscribe(
       responseParent => {
         for(let i=0;i<kidLength;i++){
+          console.log("IIDD",kidParam[i].kid_id)
           if(kidParam[i].kid_id === null){
           this.userService.createKid(kidParam[i]).subscribe(
               responsecreateKid => {
+                console.log("create Kid", responsecreateKid,kidLength,i);
+
                 if(i === kidLength-1){
                   this.router.navigate(['/home']);
                 }
@@ -113,7 +119,11 @@ export class ProfileComponent implements OnInit {
           else{
             this.userService.updateKids(kidParam[i]).subscribe(
               responseUpdateKid => {
+                console.log("update Kid", responseUpdateKid,kidLength ,i )
+
                 if(i === kidLength-1){
+                  console.log("update Navigate")
+
                   this.router.navigate(['/home']);
                 }
               },errUpdateKid => {

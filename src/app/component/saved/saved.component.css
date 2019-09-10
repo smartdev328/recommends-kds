@@ -364,8 +364,12 @@ video {
     .home-body-div {
         width: 45%;
     }
-    .home-image-div {
+    /* .home-image-div {
         height: 700px;
+        width: auto;
+    } */
+     .home-image-div {
+        height: auto;
         width: auto;
     }
     .home-header {
@@ -466,3 +470,16 @@ video {
         transform: translate(-50%, -50%);
     }
 }
+
+div.saved{height:120px;background: linear-gradient(to right, rgba(229,231,233,1) 0%, rgba(255,255,255,1) 100%); padding-left: 3rem !important; }
+div.saved h1{font-family: Montserrat;
+    font-size: 42px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 120px;
+    letter-spacing: normal;
+background: transparent; padding:0 !important;
+color:#000;
+text-shadow: none;}
+

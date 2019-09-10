@@ -8,7 +8,6 @@ import { MasonsryCampViewComponent } from './camp-listing/masonsry-camp-view/mas
 import { CampRoutingModule } from './camp-routing.module';
 import { CampsComponent } from './camps/camps.component';
 import { EditCampComponent } from './edit-camp/edit-camp.component';
-import { SavedCampListingComponent } from './saved-camp-listing/saved-camp-listing.component';
 
 
 @NgModule({
@@ -24,7 +23,6 @@ import { SavedCampListingComponent } from './saved-camp-listing/saved-camp-listi
     CampsComponent,
     AddCampComponent,
     EditCampComponent,
-    SavedCampListingComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

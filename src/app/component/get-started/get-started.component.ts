@@ -51,7 +51,7 @@ export class GetStartedComponent implements OnInit {
         // this.formGroup.get('newsletter').setValue(isNewsLetter);
         this.formGroup.get('email').setValue(user.parent.email);
         this.parentEmail=user.parent.email;
-      }      console.log(this.parentEmail);
+      }    
 
     });
   }
@@ -85,7 +85,7 @@ export class GetStartedComponent implements OnInit {
       email: this.parentEmail,
       newsletter: this.formGroup.value.newsletter,
     }
-    console.log(param);
+   
     const kidLength=this.kidControls.length;
     const kidParam = this.formGroup.value.kidControls;
     this.userService.updateUser(param).subscribe(

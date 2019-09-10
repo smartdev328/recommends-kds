@@ -253,7 +253,7 @@ export class CampListingComponent implements OnInit {
 
   //this function will open a popup when user is not loggen in
  checkLogin(linkName) {
-  console.log(linkName,'1')
+ 
   if (this.isLogedin) {
     this.loadMore();
   } else {

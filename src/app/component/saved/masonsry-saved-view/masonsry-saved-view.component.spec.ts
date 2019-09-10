@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SavedVenuesListingComponent } from './saved-venues-listing.component';
+import { MasonsrySavedViewComponent } from './masonsry-saved-view.component';
 
-describe('SavedVenuesListingComponent', () => {
-  let component: SavedVenuesListingComponent;
-  let fixture: ComponentFixture<SavedVenuesListingComponent>;
+describe('MasonsrySavedViewComponent', () => {
+  let component: MasonsrySavedViewComponent;
+  let fixture: ComponentFixture<MasonsrySavedViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SavedVenuesListingComponent ]
+      declarations: [ MasonsrySavedViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SavedVenuesListingComponent);
+    fixture = TestBed.createComponent(MasonsrySavedViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

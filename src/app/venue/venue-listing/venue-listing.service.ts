@@ -15,8 +15,14 @@ export class VenueListingService {
       "&city=" + encodeURIComponent(api_input.location);
     return this.http.get(url);
   }
+
   get_Saved_Venues(){
     const url = API_URL + 'actions/?entity_type=ETYPE_VENUE&action_type=ATYPE_SAVE';
+    return this.http.get(url);
+  }
+
+  getSavedListing(type){
+    const url = API_URL + `actions/?entity_type=ETYPE_${type}&action_type=ATYPE_SAVE`;
     return this.http.get(url);
   }
 }

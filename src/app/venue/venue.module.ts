@@ -11,7 +11,6 @@ import { MasonsryVenuesViewComponent } from './masonsry-venues-view/masonsry-ven
 import { SearchVenueComponent } from './search-venue/search-venue.component';
 import { SubscribeVenueComponent } from './subscribe-venue/subscribe-venue.component';
 import { VenueListingComponent } from './venue-listing/venue-listing.component';
-import { SavedVenuesListingComponent } from './saved-venues-listing/saved-venues-listing.component';
 
 @NgModule({
   imports: [
@@ -27,8 +26,7 @@ import { SavedVenuesListingComponent } from './saved-venues-listing/saved-venues
     MasonsryVenuesViewComponent,
     SearchVenueComponent,
     SubscribeVenueComponent,
-    VenueListingComponent,
-    SavedVenuesListingComponent
+    VenueListingComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

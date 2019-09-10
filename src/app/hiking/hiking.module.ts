@@ -9,7 +9,6 @@ import { MasonsryHikingTrailViewComponent } from './hiking-listing/masonry-hikin
 import { AddHikingTrailComponent } from './add-hiking/add-hiking.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { SharedLibsModule } from 'app/shared/shared-libs.module';
-import { SavedHikingListingComponent } from './saved-hiking-listing/saved-hiking-listing.component';
 
 @NgModule({
   imports: [
@@ -23,8 +22,7 @@ import { SavedHikingListingComponent } from './saved-hiking-listing/saved-hiking
     EditHikingTrailComponent,
     HikingTrailsListingComponent,
     MasonsryHikingTrailViewComponent,
-    AddHikingTrailComponent,
-    SavedHikingListingComponent
+    AddHikingTrailComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

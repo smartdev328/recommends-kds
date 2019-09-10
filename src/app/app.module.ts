@@ -32,6 +32,8 @@ import { GetStartedComponent } from './component/get-started/get-started.compone
 import {SwalService }         from './shared/service/swal.service';
 import { MiddlewareComponent } from './middleware/middleware.component';
 import { SavedComponent } from './component/saved/saved.component';
+import { SavedListingComponent } from './component/saved/saved-listing/saved-listing.component';
+import { MasonsrySavedViewComponent } from './component/saved/masonsry-saved-view/masonsry-saved-view.component';
 
 
 
@@ -58,7 +60,9 @@ import { SavedComponent } from './component/saved/saved.component';
     ProfileComponent,
     GetStartedComponent,
     MiddlewareComponent,
-    SavedComponent
+    SavedComponent,
+    SavedListingComponent,
+    MasonsrySavedViewComponent
   ],
   imports: [
     AppRoutingModule,
@@ -72,7 +76,7 @@ import { SavedComponent } from './component/saved/saved.component';
     BrowserAnimationsModule,
     
   ],
-  exports: [MatDatepickerModule,MatDialogModule],
+  exports: [MatDatepickerModule,MatDialogModule,MasonsrySavedViewComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     DatePipe,

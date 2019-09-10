@@ -18,7 +18,7 @@ export class HikingTrailsListingService {
 
   getSavedHikingList(){
     const url =  API_URL  +'actions/?entity_type=ETYPE_hiking-trails&action_type=ATYPE_SAVE';
-    console.log(url,'gggggggggggggggggg')
+    
     return this.http.get(url);
   }
 }

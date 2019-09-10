@@ -93,7 +93,7 @@ export class SignUpComponent implements OnInit {
                 .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
                 .set('Content-Type', 'application/json');
             this.http.post(url, data, { headers: headers, responseType: 'text' }).subscribe(response => {
-                console.log(data,'fsafsaf') 
+                
                 data = response.replace(/\n/g, '');
                 data = JSON.parse(data);
 
@@ -114,7 +114,7 @@ export class SignUpComponent implements OnInit {
                             const headers = new HttpHeaders().set('Content-Type', 'application/json');
                             this.http.post(url, this.newChild.value[i], { headers: headers, responseType: 'text' }).
                                 subscribe(response => {
-                                    console.log('999999999')
+                                    
                                     data = response.replace(/\n/g, '');
                                     data = JSON.parse(data);
                                     this.router.navigate(['/get-started']);

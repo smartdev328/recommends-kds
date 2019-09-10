@@ -1,0 +1,60 @@
+<img src="assets/loading.gif" *ngIf="!showLayout" class="loading-gif">
+    <ng-masonry-grid [ngClass]="{'hide-layout': !showLayout, 'show-layout': showLayout}"
+    [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }"
+    [useAnimation]="true"
+    [useImagesLoaded]="true"
+    [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
+    <ng-masonry-grid-item class="tiles" *ngFor="let data of venues | slice:start:end; let i=index">
+      <a style="text-decoration: none;" >
+          <mat-card class="event-list-cards ">
+            <div class="img-wrp">
+            <img mat-card-image src={{data.image_url}} alt="Image not available">
+          </div>
+            <mat-card-content *ngIf="type == 'VENUE'" class="">
+              <p class="event-group-title">
+                {{data.name}}
+              </p>
+              <p class="event-venue">
+                  {{data.city}}, {{data.state}}
+              </p>
+            </mat-card-content>
+
+            <mat-card-content *ngIf="type == 'EVENT'" class="">
+                <p class="event-group-title">
+                    {{data.name}}
+                </p>
+                <p class="event-date">
+                  <span class="text">{{data.dates}}</span>,
+                  <span class="lower-text">{{data.start_time}} - {{data.end_time}}</span>
+                </p>
+                <p class="event-venue">
+                  {{data.venue}}
+                </p>
+              </mat-card-content>
+            
+              <mat-card-content *ngIf="type == 'CAMP'" class="">
+                  <p class="event-group-title">
+                    {{data.name}}
+                  </p>
+                  <p class="event-venue">
+                    {{data.cities}}
+                  </p>
+                  <p class="event-venue">
+                    {{data.misc['timings']}}
+                  </p>
+                </mat-card-content>
+
+                <mat-card-content *ngIf="type == 'HIKING'" class="">
+                    <p class="event-group-title">
+                      {{trail.name}}
+                    </p>
+                    <p class="event-venue">
+                      {{trail.city}}, {{trail.state}}
+                    </p>
+                      <br>
+                  </mat-card-content>
+          </mat-card>
+      </a>
+    </ng-masonry-grid-item>
+  </ng-masonry-grid>
+

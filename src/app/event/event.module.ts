@@ -6,7 +6,6 @@ import { EditEventComponent } from './edit-event/edit-event.component';
 import { EventListingComponent } from './event-listing/event-listing.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { SharedLibsModule } from 'app/shared/shared-libs.module';
-import { SavedEventListingComponent } from './saved-event-listing/saved-event-listing.component';
 
 @NgModule({
   imports: [
@@ -18,8 +17,7 @@ import { SavedEventListingComponent } from './saved-event-listing/saved-event-li
   declarations: [
     EventComponent,
     EditEventComponent,
-    EventListingComponent,
-    SavedEventListingComponent
+    EventListingComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
