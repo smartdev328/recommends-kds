@@ -140,12 +140,12 @@ export class VenuesComponent implements OnInit {
 
   get_venue_data(venue_id: number) {
     if (venue_id !== undefined) {
-      const url = 'https://kin-api-dev.kinparenting.com/' + 'venues/' + venue_id + '/';
-      const headers = new HttpHeaders();
-      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-        data = data.replace(/\n/g, '');
-        data = JSON.parse(data);
-      //this.venuesService.get_venue_by_id(venue_id).subscribe(data => {
+      // const url = 'https://kin-api-dev.kinparenting.com/' + 'venues/' + venue_id + '/';
+      // const headers = new HttpHeaders();
+      // this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+        // data = data.replace(/\n/g, '');
+        // data = JSON.parse(data);
+      this.venuesService.get_venue_by_id(venue_id).subscribe(data => {
         if (data['venue'] !== undefined) {
           this.venue = data['venue'];
           this.category = this.venue.category !== undefined && this.venue.category.length > 0 ? this.venue.category.join() :

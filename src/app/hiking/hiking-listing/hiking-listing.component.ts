@@ -64,6 +64,8 @@ export class HikingTrailsListingComponent implements OnInit {
     private reviewService: ReviewsService,
     public dialog: MatDialog,
     private authService: AuthService,
+    private hikeService: HikingTrailsListingService,
+
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -76,7 +78,7 @@ export class HikingTrailsListingComponent implements OnInit {
     this.selected_loc = '';
     this.keyword = '';
     this.loc_label = 'Location';
-
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
   }
 
   ngOnInit() {
@@ -128,10 +130,12 @@ export class HikingTrailsListingComponent implements OnInit {
     this.hiking_explore = '';
     this.isExplore = true;
     this.showMore = false;
-    const headers = new HttpHeaders();
-    this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-      data = data.replace(/\n/g, '');
-      data = JSON.parse(data);
+    // const headers = new HttpHeaders();
+    
+    this.hikeService.get_hiking_trail_details(url).subscribe(data => {
+    // this.http.get(url, { headers: headers, responseType: 'text' })
+      // data = data.replace(/\n/g, '');
+      // data = JSON.parse(data);
       if (data['trails'] != undefined && data['trails'].length > 0) {
         this.hiking_explore = data['trails'];
       } else {
@@ -207,13 +211,19 @@ export class HikingTrailsListingComponent implements OnInit {
       } else {
         url = API_URL + 'hiking-trails/?limit=43';
       }
+      const input = {
+        'q': this.keyword === undefined ? '' : this.keyword.trim(),
+        'city': this.selected_loc === undefined ? '' : this.selected_loc,
+       
+      };
       this.hiking_explore = [];
       this.showMore = false;
       this.end = 21;
-      const headers = new HttpHeaders();
-      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-        data = data.replace(/\n/g, '');
-        data = JSON.parse(data);
+      //const headers = new HttpHeaders();
+      this.hikeService.get_hiking_trail_details(url).subscribe(data => {
+      // this.http.get(url, { , responseType: 'text' }).subscribe(data => {
+        // data = data.replace(/\n/g, '');
+        // data = JSON.parse(data);
         this.hiking_explore = data['trails'];
         if (data['trails'] !== undefined && data['trails'].length > 0) {
           this.isErrorVisible = false;

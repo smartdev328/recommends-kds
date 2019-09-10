@@ -51,24 +51,32 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-2 col-md-2 col-sm-6 col-xs-2 mb-2">
+          <!-- <div class="col-lg-2 col-md-2 col-sm-6 col-xs-2 mb-2">
 
             <div class="dropdown">
               <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{date_label}}
-                <span class="hairline-down">
-                  <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12"
-                    viewBox="0 0 24 24">
-                    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
-                  </svg>
-                </span>
+               
               </button>
               <div class="dropdown-menu add-scroll" aria-labelledby="dropdownMenuButton">
                 <label class="dropdown-item cursor" (click)="onDateChange(data)" *ngFor="let data
                           of dateFilter">{{data.desc}}</label>
               </div>
             </div>
+          </div> -->
+          <div class="datepicker">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Date">
+            <span class="hairline-down">
+              <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12"
+                viewBox="0 0 24 24">
+                <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
+              </svg>
+            </span>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
           </div>
           <div class="col-xs-1 search-button">
             <svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"

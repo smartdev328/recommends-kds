@@ -7,12 +7,12 @@ import { ReviewsService } from '../../component/add-review/reviews.service';
 import { ACTION, ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM } from '../../shared/constants/AnalyticsConstants';
 import { CampConstants, CampErrorMessage } from '../../shared/constants/CampConstants';
 import { ErrorMessage } from '../../shared/constants/CommonConstants';
-// import { API_URL } from '@shared/constants/UrlConstants';
+import { API_URL } from '@shared/constants/UrlConstants';
 import { CampListingService } from './camp-listing.service';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
 import { MatDialogRef, MatDialog, } from "@angular/material";
-const API_URL = 'https://kin-api-dev.kinparenting.com/';
+//const API_URL = 'https://kin-api-dev.kinparenting.com/';
 
 declare let ga: any;
 @Component({
@@ -102,7 +102,6 @@ export class CampListingComponent implements OnInit {
     this.metaService.addTag({ property: 'og:image', content: 'https://kinparenting.com/assets/kin_logo.jpeg' });
     this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/camps-near-me' });
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
-    this.isAuthenticated$ = this.authService.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
     })
@@ -131,12 +130,11 @@ export class CampListingComponent implements OnInit {
     this.showMore = false;
 
 
-    const headers = new HttpHeaders();
-    this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-      data = data.replace(/\n/g, '');
-      data = JSON.parse(data);
-    // this.campsListingService.get_camp_details(url).subscribe(data => {
-  
+    // const headers = new HttpHeaders();
+    // this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+    //   data = data.replace(/\n/g, '');
+    //   data = JSON.parse(data);
+     this.campsListingService.get_camp_details(url).subscribe(data => {
       if (data['data'] != undefined && data['data'].length > 0) {
         this.camp_explore = data['data'];
       } else {
@@ -223,9 +221,8 @@ export class CampListingComponent implements OnInit {
       this.camp_explore = [];
       this.showMore = false;
       this.isExplore = true;
-      this.http.get(url, { responseType: 'text' }).subscribe(data => {
-        data = data.replace(/\n/g, '');
-        data = JSON.parse(data);
+      this.campsListingService.get_camp_details(url).subscribe(data => {
+
         this.camp_explore = data['data'];
         if (data['data'] != undefined && data['data'].length > 0) {
           this.isErrorVisible = false;

@@ -781,5 +781,31 @@ video {
     }
 }
 
+.datepicker {
+    padding-top: 12px;
+    padding-right: 10px;
+    position: relative;
+}
+.datepicker .mat-form-field-underline {
+    background-color: #FFD700;
+}
 
+.datepicker span.mat-form-field-label-wrapper {
+    color: #fff;
+}
 
+.datepicker span.mat-form-field-label-wrapper label, .datepicker .mat-form-field-infix input.mat-input-element  {
+    color: #fff!important;
+}
+
+.datepicker span.hairline-down {
+    right: -16px;
+}
+
+.datepicker .mat-form-field-infix {
+    width: 120px;
+}
+
+.datepicker .mat-form-field-suffix {
+    opacity: 0;
+}

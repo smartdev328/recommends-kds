@@ -83,6 +83,8 @@ export class VenueListingComponent implements OnInit {
       }
     });
     this.locations = this.venueConstants.LOCATIONS;
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+
   }
 
   ngOnInit() {
@@ -106,6 +108,7 @@ export class VenueListingComponent implements OnInit {
     this.metaService.addTag({ property: 'og:image', content: 'https://kinparenting.com/assets/kin_logo.jpeg' });
     this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/family-friendly-places-near-me' });
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
+
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
     })

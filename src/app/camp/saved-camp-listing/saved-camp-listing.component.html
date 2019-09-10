@@ -1,0 +1,56 @@
+<!-- <div class="banner-section events-banner">
+  <div class="banner-mobile">
+    <img src="../../assets/web_images/home_camps.jpg" />
+    <h1 class="text-center heading-mobile"><span>Camps</span> For all those school breaks</h1>
+  </div>
+  <div class="banner-wrapper">
+    <h1 class="text-center heading-desktop"><span>Camps</span> For all those school breaks</h1>
+    <form (submit)="filter_camp_data()">
+    <div class="filter-box">
+      <div class="row filter-box-content">
+        <div class="col-lg-7 col-md-8 col-sm-4 col-xs-1 mb-2">
+          <div class="input-group">
+            <input type="text" class="form-control keyword-text" placeholder="Keyword" name="keyword" [(ngModel)]="keyword">
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-2 col-sm-6 col-xs-2 mb-2">
+          <div class="dropdown">
+            <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              {{category_label}}
+              <span class="hairline-down">
+                <span class="hairline-down">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg>
+                </span>
+              </span>
+            </button>
+            <div class="dropdown-menu add-scroll" aria-labelledby="dropdownMenuButton">
+              <label class="dropdown-item cursor" (click)="onCategoryChange(each_cat)" *ngFor="let each_cat
+                          of categoryList">{{each_cat.name}}</label>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-1 search-button cursor">
+          <svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-icons cursor" (click)="filter_camp_data()">
+            <path d="M 5 3 C 3.895 3 3 3.895 3 5 L 3 19 C 3 20.105 3.895 21 5 21 L 19 21 C 20.105 21 21 20.105 21 19 L 21 5 C 21 3.895 20.105 3 19 3 L 5 3 z M 11 6 C 13.761 6 16 8.239 16 11 C 16 12.019 15.691969 12.963906 15.167969 13.753906 L 17.707031 16.292969 C 18.098031 16.682969 18.098031 17.317031 17.707031 17.707031 C 17.316031 18.098031 16.682969 18.098031 16.292969 17.707031 L 13.753906 15.167969 C 12.963906 15.691969 12.019 16 11 16 C 8.239 16 6 13.761 6 11 C 6 8.239 8.239 6 11 6 z M 11 8 A 3 3 0 0 0 8 11 A 3 3 0 0 0 11 14 A 3 3 0 0 0 14 11 A 3 3 0 0 0 11 8 z"
+              style="fill: #FFD700;"></path>
+          </svg>
+        </div>
+        <button type="button" class="btn btn-link cursor clear-search" (click) = "clear_filter_data()">Clear Search</button>
+      </div>
+      <div *ngIf="isFilterErrorVisible"><div class="error-message-text alert-danger">{{filterErrorMessage}}</div></div>
+    </div>
+    </form>
+  </div>
+</div> -->
+<div class="container-fluid">
+  <div class="main-section-listing">
+   <div class="event-listing-card">
+    <div *ngIf="isErrorVisible"><div class="error-message-text alert-danger">{{errorMessage}}</div></div>
+    <app-masonsry-camp-view *ngIf="oldCat_1" [camps]=camp_explore [start]=start [end]=end></app-masonsry-camp-view>
+    <app-masonsry-camp-view *ngIf="oldCat_2" [camps]=camp_explore [start]=start [end]=end></app-masonsry-camp-view>
+    <!-- <app-masonsry-camp-view *ngIf="isErrorVisible" [isErrorVisible]=isErrorVisible [errorMessage]=errorMessage></app-masonsry-camp-view> -->
+      
+  </div>
+  </div>
+</div>

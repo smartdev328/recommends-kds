@@ -43,7 +43,16 @@ export class GetStartedComponent implements OnInit {
     this.kids = [];
     this.addChild();
     this.userService.getUser().subscribe((user) => {
-      this.parentEmail = user.parent.email
+      this.formGroup.controls.setValue
+      if (user.parent) {
+        this.formGroup.get('firstName').setValue(user.parent.first_name);
+        this.formGroup.get('lastName').setValue(user.parent.last_name);
+        this.formGroup.get('zipcode').setValue(user.parent.zip_code);
+        // this.formGroup.get('newsletter').setValue(isNewsLetter);
+        this.formGroup.get('email').setValue(user.parent.email);
+        this.parentEmail=user.parent.email;
+      }      console.log(this.parentEmail);
+
     });
   }
 
@@ -76,6 +85,7 @@ export class GetStartedComponent implements OnInit {
       email: this.parentEmail,
       newsletter: this.formGroup.value.newsletter,
     }
+    console.log(param);
     const kidLength=this.kidControls.length;
     const kidParam = this.formGroup.value.kidControls;
     this.userService.updateUser(param).subscribe(

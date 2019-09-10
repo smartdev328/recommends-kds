@@ -1,0 +1,42 @@
+<ng-container>
+  <div class="banner-section events-banner" *ngIf="(isAuthenticated$ | async) == false">
+    <div class="banner-mobile">
+      <img src="../../assets/web_images/home_events.jpg" />
+      <h1 class="text-center heading-mobile">Family-friendly <span>Events</span> around you</h1>
+    </div>
+
+    <div class="banner-wrapper">
+      <h1 class="text-center heading-desktop">Family-friendly <span>Events</span> around you</h1>
+
+    </div>
+  </div>
+  <div class="container-fluid ">
+    <div class="event-listing-card">
+     
+      <div *ngIf="isErrorVisible">
+        <div class="error-message-text alert-danger">{{errorMessage}}</div>
+      </div>
+      <div *ngIf="!isCalendarView">
+        <app-masonsry-view *ngIf="newFilterData" [events]=all_data [start]=start [end]=end></app-masonsry-view>
+        <app-masonsry-view *ngIf="oldFilterData" [events]=all_data [start]=start [end]=end></app-masonsry-view>
+      </div>
+      <app-event-calendar *ngIf="isCalendarView"></app-event-calendar>
+    </div>
+  </div>
+</ng-container>
+<ng-template #openModal>
+  <div class="modal-body thanks">
+    <button type="button" style="float: right;" class="close pull-right" aria-label="Close" (click)="closeDialog()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="text-center">
+      <h2 class="app-name">Sign in for {{moreEvent}}</h2>
+    </div>
+    <div class="btnYN">
+      <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary"><b class="SIGN-IN">SIGN
+          IN</b></button><br>
+      New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create
+        an account</a>
+    </div>
+  </div>
+</ng-template>

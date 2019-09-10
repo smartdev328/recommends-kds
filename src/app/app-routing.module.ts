@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './component/home/home.component';
 import { ComingSoonComponent } from './component/coming-soon/coming-soon.component';
@@ -17,6 +17,7 @@ import { CallbackComponent } from './component/callback/callback.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { GetStartedComponent } from './component/get-started/get-started.component';
 import { MiddlewareComponent } from './middleware/middleware.component';
+import { SavedComponent } from './component/saved/saved.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'get-started', component: GetStartedComponent },
+  {path:'saved',component:SavedComponent},
   { path: '**', redirectTo: '' },
 ];
 

@@ -4,6 +4,7 @@ import { AddCampComponent } from './add-camp/add-camp.component';
 import { CampListingComponent } from './camp-listing/camp-listing.component';
 import { CampsComponent } from './camps/camps.component';
 import { EditCampComponent } from './edit-camp/edit-camp.component';
+import { SavedCampListingComponent } from './saved-camp-listing/saved-camp-listing.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'edit-camp/:campId',
     component: EditCampComponent
+  },
+  {
+    path:'saved-camps-listing',
+    component:SavedCampListingComponent
   }
 ];
 

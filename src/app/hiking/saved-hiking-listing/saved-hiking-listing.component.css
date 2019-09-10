@@ -1,6 +1,22 @@
 /* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+    border-bottom: 1px solid rgb(255, 77, 77);
+    color: rgb(255, 77, 77);
+}
+
+.hikingImage{
+    background-image: url("https://image.shutterstock.com/z/stock-photo-happy-little-boy-and-girl-travel-in-norway-719982943.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+}
+.event-listing-card {
+    margin: auto;
+}
+
 img {
-    /* width: auto; */
+    width: auto;
     max-width: 100%;
 }
 .mat-tab-label.mat-tab-label-active {
@@ -48,15 +64,7 @@ img {
     text-decoration: underline;
     cursor: pointer;
 }
-.event-listing-card h3 {
-    font-size: 40px;
-    font-family: 'Paytone One', sans-serif; 
-    margin: 36px 0 24px;
-} 
-.event-listing-card .filter-box {
-    width: auto;
-    margin: 0 100px 2em;
-}
+
 .logo {
     height: 30px;
     width: 35px;
@@ -91,64 +99,39 @@ img {
     height: 49px;
 }
 
-.filter-dropdown {
-    width: 100%;
+.detail-buttons-space {
+    text-align: center;
+    display: block;
 }
-.hairline-down {
-    right: 15px;
-}
-.mat-chip.mat-standard-chip {
-    background-color: #e5e7e9;
-}
-mat-chip {
+
+.mouse-pointer{
     cursor: pointer;
 }
 
-/* Desktop */
-@media only screen and (min-width : 1280px) {
-    .loading-gif {
-        margin-left: 40%;
-    }
-    .filter-box {
-        background-color: #4A4949;
-        border: #4A4949;
-        height: 100px;
-    }
-    .input-group {
-        width: 275px;
-        margin-left: 20px;
-    }
-    .filter-dropdown,
-    .form-control {
-        background-color: #4A4949 !important;
-        border-radius: 0 !important;
-        border-bottom: 1px solid #FFD700;
-        border-top: 0;
-        border-left: 0;
-        border-right: 0;
-        color: #FFFFFF !important;
-        font-weight: 300;
-        height: 55px;
-        /* width: 165px; */
-        padding-top: 30px;
-    }
-    .search-button {
-        margin-top: 20px;
-    }
-    .clear-search {
-        padding-top: 35px;
-    }
-    .event-listing-card {
-        margin: 30px 4% 12% 4% !important;
-    } 
-    
+.mat-datepicker-toggle-default-icon {
+  color: #ef6c57!important;
+  width: 60px;
 }
-
+.filter-dropdown,
+.form-control {
+    background-color: #4A4949 !important;
+    border-radius: 0 !important;
+    border-bottom: 1px solid #FFD700;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    color: #FFFFFF !important;
+    font-weight: 300;
+    /* font-size: 10px !important; */
+    height: 40px;
+    width: 90%;
+    padding: 20px 0 0 16px;
+}
+.form-control{
+    padding: .375rem .75rem;
+}
 /* Tablets */
 @media only screen and (min-width : 768px) and (max-width : 1279px) {
-    .event-listing-card .filter-box {
-        margin: 0 0 2em;
-    }
     .loading-gif {
         margin-left: 35%;
     }
@@ -159,26 +142,18 @@ mat-chip {
         width: 75%;
     }
     .input-group {
-        width: 85%;
-        margin-left: 20%;
+        width: 90%;
+        margin-left: 10%;
     }
-    /* .col-sm-6 {
+    .col-sm-6 {
         padding-left: 0 !important;
         padding-right: 0 !important;
-    } */
+    }
     .filter-dropdown,
     .form-control {
-        background-color: #4A4949 !important;
-        border-radius: 0 !important;
-        border-bottom: 1px solid #FFD700;
-        border-top: 0;
-        border-left: 0;
-        border-right: 0;
-        color: #FFFFFF !important;
-        font-weight: 300;
         font-size: 10px !important;
         height: 40px;
-        /* width: 90%; */
+        width: 95%;
         padding: 20px 0 0 5px;
     }
     .search-button {
@@ -203,20 +178,38 @@ mat-chip {
     }
 }
 
-
-.detail-buttons-space {
-    text-align: center;
-    display: block;
+/* Desktop */
+@media only screen and (min-width : 1280px) {
+    .loading-gif {
+        margin-left: 40%;
+    }
+    .filter-box {
+        background-color: #4A4949;
+        border: #4A4949;
+        height: 100px;
+    }
+    .input-group {
+        width: 620px;
+        margin-left: 20px;
+    }
+    .filter-dropdown,
+    .form-control {
+        height: 55px;
+        width: 165px;
+        padding-top: 30px;
+    }
+    .search-button {
+        margin-top: 20px;
+    }
+    .clear-search {
+        padding-top: 35px;
+    }
+    .event-listing-card {
+        margin: 30px 4% 12% 4% !important;
+    } 
 }
+/* Phones */ 
 
-.mouse-pointer{
-    cursor: pointer;
-}
-
-.mat-datepicker-toggle-default-icon {
-  color: #ef6c57!important;
-  width: 60px;
-}
 @media only screen and (max-width : 992px) {
     .banner-wrapper h1 {
         font-size: 25px;
@@ -227,25 +220,17 @@ mat-chip {
     .filter-box {
         margin-bottom: 0;
     }
-    .form-control {
-        flex: unset!important;
-        width: 90% !important;
-    }
 }
 @media only screen and (min-width : 768px) { 
    .heading-mobile {
         display: none;
     } 
 }
-/* Phones */ 
 @media only screen and (max-width : 767px) {
-    .event-listing-card .filter-box {
-        margin: 0 0 2em;
-    }
     .loading-gif {
         margin-left: 10%;
     }
-    .heading-desktop {
+     .heading-desktop {
         display: none;
     }
     .banner-mobile {
@@ -268,16 +253,16 @@ mat-chip {
     .heading-mobile span {
         font-size: 50px;
     }
+    .banner-wrapper {
+        position: relative;
+        bottom: 0;
+        margin-top: 0;    }
     .filter-box {
         background-color: #4A4949;
         border: #4A4949;
         width: 100%;
         padding: 16px;
     }
-    .banner-wrapper {
-        position: relative;
-        bottom: 0;
-        margin-top: 0;    }
     .input-group {
         width: 100%;
     }
@@ -295,6 +280,7 @@ mat-chip {
         width: 100% !important;
         padding-top: 10px;
         font-size: 12px !important;
+        padding: 10px 12px 6px;
     }
     .filter-dropdown {
         padding-left: 12px;
@@ -308,10 +294,6 @@ mat-chip {
         margin-left: auto;
         margin-right: 5px;
     }
-    .event-listing-card h3 {
-        font-size: 22px;
-        margin: 15px 0;
-    }
     .detail-buttons {
         height: 36px;
         border-radius: 8px;
@@ -321,7 +303,11 @@ mat-chip {
         width: auto;
         padding: 8px 27px;
     }
+    .mat-card-content br {
+        display: none;
+    }
 }
+
 @media only screen and (max-width : 600px) {
     .heading-mobile {
         font-size: 18px;
@@ -336,6 +322,7 @@ mat-chip {
         line-height: 25px;
     }
 }
+
 .SIGN-IN{
     
     width: 78px;
@@ -406,6 +393,3 @@ padding: 0;
 .btnYN{
   padding-bottom: 25px;
 } 
-.form-control::-webkit-input-placeholder {
-    color: #fff;
-}

@@ -1,11 +1,6 @@
-/* Styles for the active tab label */
 img {
-    /* width: auto; */
+    width: auto;
     max-width: 100%;
-}
-.mat-tab-label.mat-tab-label-active {
-    border-bottom: 1px solid rgb(255, 77, 77);
-    color: rgb(255, 77, 77);
 }
 .banner-section  {
     position: relative;
@@ -26,15 +21,7 @@ img {
     font-size: 100px;
     text-transform: uppercase;
 }
-/*.banner {
-    position: fixed;
-    bottom: 0;
-    z-index: 1000;
-    background-color: white;
-    text-align: center;
-    width: 100%;
-    left: 0;
-}*/
+
 .link-to-kin {
     border-top: 1px solid;
     padding: 4%;
@@ -48,21 +35,14 @@ img {
     text-decoration: underline;
     cursor: pointer;
 }
-.event-listing-card h3 {
-    font-size: 40px;
-    font-family: 'Paytone One', sans-serif; 
-    margin: 36px 0 24px;
-} 
-.event-listing-card .filter-box {
-    width: auto;
-    margin: 0 100px 2em;
-}
+
 .logo {
     height: 30px;
     width: 35px;
     position: relative;
     top: 10px;
 }
+
 .clear-search {
     font-size: 11px;
     font-weight: 300;
@@ -91,21 +71,11 @@ img {
     height: 49px;
 }
 
-.filter-dropdown {
-    width: 100%;
-}
-.hairline-down {
-    right: 15px;
-}
-.mat-chip.mat-standard-chip {
-    background-color: #e5e7e9;
-}
-mat-chip {
-    cursor: pointer;
-}
+
+
 
 /* Desktop */
-@media only screen and (min-width : 1280px) {
+@media only screen and (min-width : 1281px) {
     .loading-gif {
         margin-left: 40%;
     }
@@ -115,7 +85,7 @@ mat-chip {
         height: 100px;
     }
     .input-group {
-        width: 275px;
+        width: 620px;
         margin-left: 20px;
     }
     .filter-dropdown,
@@ -129,7 +99,7 @@ mat-chip {
         color: #FFFFFF !important;
         font-weight: 300;
         height: 55px;
-        /* width: 165px; */
+        width: 165px;
         padding-top: 30px;
     }
     .search-button {
@@ -139,83 +109,16 @@ mat-chip {
         padding-top: 35px;
     }
     .event-listing-card {
-        margin: 30px 4% 12% 4% !important;
-    } 
-    
-}
-
-/* Tablets */
-@media only screen and (min-width : 768px) and (max-width : 1279px) {
-    .event-listing-card .filter-box {
-        margin: 0 0 2em;
-    }
-    .loading-gif {
-        margin-left: 35%;
-    }
-    .filter-box {
-        background-color: #4A4949;
-        border: #4A4949;
-        height: 115px;
-        width: 75%;
-    }
-    .input-group {
-        width: 85%;
-        margin-left: 20%;
-    }
-    /* .col-sm-6 {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    } */
-    .filter-dropdown,
-    .form-control {
-        background-color: #4A4949 !important;
-        border-radius: 0 !important;
-        border-bottom: 1px solid #FFD700;
-        border-top: 0;
-        border-left: 0;
-        border-right: 0;
-        color: #FFFFFF !important;
-        font-weight: 300;
-        font-size: 10px !important;
-        height: 40px;
-        /* width: 90%; */
-        padding: 20px 0 0 5px;
-    }
-    .search-button {
-        margin-left: 25px;
-        margin-top: 5px;
-    }
-    .clear-search {
-        padding-left: 50px;
-        padding-right: 0;
-    }
-    .event-listing-card {
-        margin: 0% 5% 12% 5% !important;
-    }
-    .banner-wrapper h1 {
-        font-size: 28px;
-    }
-    .banner-wrapper h1 span {
-        font-size: 70px;
-    }
-    .event-listing-card h3 {
-        font-size: 22px;
+        margin: 25px 2% 12% 2% !important;
     }
 }
-
 
 .detail-buttons-space {
     text-align: center;
     display: block;
 }
-
-.mouse-pointer{
+.mouse-pointer {
     cursor: pointer;
-}
-
-.mat-datepicker-toggle-default-icon {
-  color: #ef6c57!important;
-  width: 60px;
 }
 @media only screen and (max-width : 992px) {
     .banner-wrapper h1 {
@@ -232,16 +135,74 @@ mat-chip {
         width: 90% !important;
     }
 }
+
+/* Tablets */
+@media only screen and (min-width : 768px) and (max-width : 1280px) {
+    .loading-gif {
+        margin-left: 35%;
+    }
+    .filter-box {
+        background-color: #4A4949;
+        border: #4A4949;
+        height: 115px;
+        width: 75%;
+    }
+    
+    .input-group {
+        width: 90%;
+        margin-left: 10%;
+    }
+    .col-sm-6 {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .filter-dropdown,
+    .form-control {
+        background-color: #4A4949 !important;
+        border-radius: 0 !important;
+        border-bottom: 1px solid #FFD700;
+        border-top: 0;
+        border-left: 0;
+        border-right: 0;
+        color: #FFFFFF !important;
+        font-weight: 300;
+        font-size: 10px !important;
+        height: 40px;
+        width: 100% !important;
+        padding: 20px 0 0 5px;
+    }
+    .search-button {
+        margin-top: 5px;
+        margin-left: 20px;
+        color: #FFFFFF;
+    }
+    .clear-search {
+        padding-left: 50px;
+        padding-right: 0;
+    }
+    .event-listing-card {
+        margin: 0% 5% 12% 5% !important;
+    }
+    .event-listing-card {
+        margin: 5% 5% 12% 5% !important;
+    }
+    .banner-wrapper h1 {
+        font-size: 28px;
+    }
+    .banner-wrapper h1 span {
+        font-size: 70px;
+    }
+    .event-listing-card h3 {
+        font-size: 22px;
+    }
+}
 @media only screen and (min-width : 768px) { 
    .heading-mobile {
         display: none;
     } 
 }
-/* Phones */ 
+/* Phones */
 @media only screen and (max-width : 767px) {
-    .event-listing-card .filter-box {
-        margin: 0 0 2em;
-    }
     .loading-gif {
         margin-left: 10%;
     }
@@ -268,16 +229,15 @@ mat-chip {
     .heading-mobile span {
         font-size: 50px;
     }
-    .filter-box {
-        background-color: #4A4949;
-        border: #4A4949;
-        width: 100%;
-        padding: 16px;
-    }
     .banner-wrapper {
         position: relative;
         bottom: 0;
         margin-top: 0;    }
+    .filter-box {
+        background-color: #4A4949;
+        border: #4A4949;
+        width: 100%;;
+    }
     .input-group {
         width: 100%;
     }
@@ -308,6 +268,9 @@ mat-chip {
         margin-left: auto;
         margin-right: 5px;
     }
+    .event-listing-card {
+        margin: 5% 0% 0% 0% !important;
+    }
     .event-listing-card h3 {
         font-size: 22px;
         margin: 15px 0;
@@ -336,6 +299,7 @@ mat-chip {
         line-height: 25px;
     }
 }
+
 .SIGN-IN{
     
     width: 78px;
@@ -406,6 +370,3 @@ padding: 0;
 .btnYN{
   padding-bottom: 25px;
 } 
-.form-control::-webkit-input-placeholder {
-    color: #fff;
-}

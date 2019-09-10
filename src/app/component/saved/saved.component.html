@@ -1,0 +1,67 @@
+
+<div class="container-fluid">
+  <div class="home-image-div home-personalized-image">
+      <div class="p-5" fxLayout="row wrap">
+          <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
+              <!-- <p class="title">Try the Kin chatbot on Messenger</p> -->
+              <button fxHide.lt-md="true" class="btn go-to-messenger">
+                  <a href="https://www.messenger.com/t/kinparenting" target="_blank">SAVED </a>
+              </button>
+          </div>
+          <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column">
+              <!-- <div class="my-message py-3">
+                  <span>hi</span>
+              </div> -->
+              <div class="his-message py-3" fxLayout="row" fxLayoutAlign="start end">
+                  <!-- <img class="mx-1" src="assets/web_images/messenger-profile.png" width="30">
+                  <div>Hi Ana! What are you looking for today?</div> -->
+              </div>
+              <div class="my-message py-3">
+                  <!-- <span>Events</span> -->
+              </div>
+              <!-- <div fxLayout="row" fxLayoutAlign="center center">
+                  <button fxHide.gt-sm="true" class="btn go-to-messenger">
+                      <a href="https://www.messenger.com/t/kinparenting" target="_blank">SAVED </a>
+                  </button>
+              </div> -->
+          </div>
+      </div>
+      <div class="category p-3 m-3">
+          <div class="row">
+              <div class="col-md-3">
+                  <!--events-->
+                  <a [routerLink]="['/saved-event-listing']">
+                      <div class="eventsImage">
+                          <label class="category-label-sm">Events</label>
+                      </div>
+                  </a>
+              </div>
+              <div class="col-md-3">
+                  <!--places-->
+                  <a [routerLink]="['/saved-venues-listing']">
+                      <div class="placesImage">
+                          <label class="category-label-sm">Places</label>
+                      </div>
+                  </a>
+              </div>
+              <div class="col-md-3">
+                  <!--events-->
+                  <a [routerLink]="['/saved-camps-listing']">
+                      <div class="campsImage">
+                          <label class="category-label-sm">Camps</label>
+                      </div>
+                  </a>
+              </div>
+              <div class="col-md-3">
+                  <!--places-->
+                  <a [routerLink]="['/saved-hiking-listing']">
+                      <div class="hikingImage">
+                          <label class="category-label-sm">Hiking</label>
+                      </div>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<app-layout-footer></app-layout-footer>

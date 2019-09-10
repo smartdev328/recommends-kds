@@ -11,8 +11,8 @@ export class VenuesService {
   }
 
   get_venue_by_id (venue_id: any) {
-    //const url = API_URL + 'venues/' + venue_id + '/';
-    const url = 'https://kin-api-dev.kinparenting.com/' + 'venues/' + venue_id + '/';
+    const url = API_URL + 'venues/' + venue_id + '/';
+    //const url = 'https://kin-api-dev.kinparenting.com/' + 'venues/' + venue_id + '/';
     return this.http.get(url);
   }
 

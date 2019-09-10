@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-sign-up',
@@ -23,7 +24,8 @@ export class SignUpComponent implements OnInit {
         private titleService: Title,
         private formBuilder: FormBuilder,
         private fb: FormBuilder,
-        private http: HttpClient) {
+        private http: HttpClient,
+        private router:Router) {
     }
 
 
@@ -79,20 +81,20 @@ export class SignUpComponent implements OnInit {
         if (this.registerForm.invalid) {
             return;
         } else {
-
             const random = Math.floor(Math.random() * (999999 - 100000)) + 100000;
             this.registerForm.controls['src'].setValue('web');
             this.registerForm.controls['src_id'].setValue(random);
             let data = JSON.stringify(this.registerForm.value);
             data = data.replace(/[\u2018\u2019]/g, '\'')
                 .replace(/[\u201C\u201D]/g, '"');
-            // const url = 'https://kin-api-dev.kinparenting.com/users/';
-            const url = 'http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/users/';
+            const url = 'https://kin-api-dev.kinparenting.com/users/';
+            // const url = 'http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/users/';
             const headers = new HttpHeaders()
                 .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
                 .set('Content-Type', 'application/json');
             this.http.post(url, data, { headers: headers, responseType: 'text' }).subscribe(response => {
-                 data = response.replace(/\n/g, '');
+                console.log(data,'fsafsaf') 
+                data = response.replace(/\n/g, '');
                 data = JSON.parse(data);
 
                 if (data['error'] !== undefined) {
@@ -112,8 +114,10 @@ export class SignUpComponent implements OnInit {
                             const headers = new HttpHeaders().set('Content-Type', 'application/json');
                             this.http.post(url, this.newChild.value[i], { headers: headers, responseType: 'text' }).
                                 subscribe(response => {
+                                    console.log('999999999')
                                     data = response.replace(/\n/g, '');
                                     data = JSON.parse(data);
+                                    this.router.navigate(['/get-started']);
                                 });
                         }
                     }

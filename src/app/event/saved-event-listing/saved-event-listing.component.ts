@@ -1,3 +1,4 @@
+
 import { Component, OnInit, ViewEncapsulation, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { DatePipe } from '@angular/common';
@@ -6,22 +7,20 @@ import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../share
 import { ReviewsService } from '../../component/add-review/reviews.service';
 import { EventConstants, EventErrorMessage } from '../../shared/constants/EventConstants';
 import { ErrorMessage } from '../../shared/constants/CommonConstants';
-import { EventListingService } from './event-listing.service';
+import { EventListingService } from '../event-listing/event-listing.service';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '@shared/model/user';
 import { MatDialogRef, MatDialog, } from "@angular/material";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-
-
 declare let ga: any;
 @Component({
-  selector: 'app-event-listing',
-  templateUrl: './event-listing.component.html',
-  styleUrls: ['./event-listing.component.css']
+  selector: 'app-saved-event-listing',
+  templateUrl: './saved-event-listing.component.html',
+  styleUrls: ['./saved-event-listing.component.css']
 })
-export class EventListingComponent implements OnInit {
+export class SavedEventListingComponent implements OnInit {
+
   @ViewChild('openModal') openModal: TemplateRef<any>
 
   dialogRef: any;
@@ -184,14 +183,14 @@ export class EventListingComponent implements OnInit {
     // const url='http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/events/?event_date_start=2019-08-22&limit=90'
     // const url = 'http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/events/?event_date_start='
     // + this.datePipe.transform(d, 'yyyy-MM-dd') + '&event_date_range=30&limit=113';
-    const input = {
-      'category': this.select_cat_id === undefined ? '' : this.select_cat_id,
-      'q': this.keyword === undefined ? '' : this.keyword.trim(),
-      'city': this.selected_loc === undefined ? '' : this.selected_loc,
-      'event_range_str': this.selected_date === undefined ? '' : this.selected_date,
-      'distance': this.distance === undefined ? '' : this.distance,
-      'username': this.username === undefined ? '' : this.username
-    };
+    // const input = {
+    //   'category': this.select_cat_id === undefined ? '' : this.select_cat_id,
+    //   'q': this.keyword === undefined ? '' : this.keyword.trim(),
+    //   'city': this.selected_loc === undefined ? '' : this.selected_loc,
+    //   'event_range_str': this.selected_date === undefined ? '' : this.selected_date,
+    //   'distance': this.distance === undefined ? '' : this.distance,
+    //   'username': this.username === undefined ? '' : this.username
+    // };
     // const url = 'https://kin-api-dev.kinparenting.com/' + 'events/?event_date_start='
     //   + this.datePipe.transform(Date.now(), 'yyyy-MM-dd') + '&limit=90';
     // const headers = new HttpHeaders();
@@ -200,7 +199,7 @@ export class EventListingComponent implements OnInit {
     //   data = JSON.parse(data);
 
 
-      this.eventListingService.get_event_details(input).subscribe(data => {
+      this.eventListingService.get_Saved_event_details().subscribe(data => {
       this.all_data = data['events'];
       this.showMore = false;
       this.isExplorelen = this.all_data.length;
@@ -361,4 +360,5 @@ export class EventListingComponent implements OnInit {
   closeDialog() {
     this.dialogRef.close();
   }
+
 }

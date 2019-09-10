@@ -31,6 +31,7 @@ import { ProfileComponent } from './component/profile/profile.component';
 import { GetStartedComponent } from './component/get-started/get-started.component';
 import {SwalService }         from './shared/service/swal.service';
 import { MiddlewareComponent } from './middleware/middleware.component';
+import { SavedComponent } from './component/saved/saved.component';
 
 
 
@@ -56,7 +57,8 @@ import { MiddlewareComponent } from './middleware/middleware.component';
     CallbackComponent,
     ProfileComponent,
     GetStartedComponent,
-    MiddlewareComponent
+    MiddlewareComponent,
+    SavedComponent
   ],
   imports: [
     AppRoutingModule,
