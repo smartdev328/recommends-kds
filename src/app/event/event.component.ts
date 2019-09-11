@@ -94,8 +94,8 @@ export class EventComponent implements OnInit {
 
   get_event_details() {
     // let url = 'https://kin-api-dev.kinparenting.com/events/' + this.event_id;
-     //const url = API_URL + 'events/' + this.event_id + '/';
-    const url = 'https://kin-api-dev.kinparenting.com/' + 'events/' + this.event_id + '/';
+     const url = API_URL + 'events/' + this.event_id + '/';
+    //const url = 'https://kin-api-dev.kinparenting.com/' + 'events/' + this.event_id + '/';
     const headers = new HttpHeaders()
     .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
     .set('Content-Type', 'application/json');
@@ -250,8 +250,8 @@ export class EventComponent implements OnInit {
   calendar_redirects() {
     this.add_analytics_data('CALENDAR');
     
-    // const calendar_url = API_URL + 'cal_redirect/?event_id=' + this.event_id;
-    const calendar_url = 'https://kin-api-dev.kinparenting.com' + 'cal_redirect/?event_id=' + this.event_id;
+    const calendar_url = API_URL + 'cal_redirect/?event_id=' + this.event_id;
+    // const calendar_url = 'https://kin-api-dev.kinparenting.com' + 'cal_redirect/?event_id=' + this.event_id;
     window.open(calendar_url);
   }
 

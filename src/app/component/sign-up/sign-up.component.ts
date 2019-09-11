@@ -87,8 +87,8 @@ export class SignUpComponent implements OnInit {
             let data = JSON.stringify(this.registerForm.value);
             data = data.replace(/[\u2018\u2019]/g, '\'')
                 .replace(/[\u201C\u201D]/g, '"');
-            const url = 'https://kin-api-dev.kinparenting.com/users/';
-            // const url = 'http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/users/';
+            //const url = 'https://kin-api-dev.kinparenting.com/users/';
+             const url = 'http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/users/';
             const headers = new HttpHeaders()
                 .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
                 .set('Content-Type', 'application/json');

@@ -28,6 +28,8 @@ import { VenueListingComponent } from './venue-listing/venue-listing.component';
     SubscribeVenueComponent,
     VenueListingComponent
   ],
+  exports:[MasonsryVenuesViewComponent],
+
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class VenueModule { }

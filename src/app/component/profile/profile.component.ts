@@ -158,26 +158,28 @@ export class ProfileComponent implements OnInit {
   toggleInterest(kid: Kid, interest: string, idx: number) {
     const cat_id = this.eventConstants.get_cat_id_by_name(interest);
     if (kid.interests.length > 0 && kid.interests[0].interests) {
-    const kid_interests = kid.interests[0].interests.split(',');
-    if (kid_interests.includes(cat_id)) {
-      kid_interests.splice(kid_interests.indexOf(cat_id), 1);
-    } else {
-      kid_interests.push(cat_id);
+      const kid_interests = kid.interests[0].interests.split(',');
+      if (kid_interests.includes(cat_id)) {
+        kid_interests.splice(kid_interests.indexOf(cat_id), 1);
+      } else {
+        kid_interests.push(cat_id);
+      }
+      kid.interests[0].interests = kid_interests.toString();
+      this.kidControls.controls[idx].get('categories').setValue(kid.interests[0].interests);
+    } else{
+        if(kid.interests.length == 0){
+          kid.interests.push({"interests":""})
+        }
+        const kid_interests = kid.interests[0].interests.split(',');
+        if (kid_interests.includes(cat_id)) {
+          kid_interests.splice(kid_interests.indexOf(cat_id), 1);
+        } else {
+          kid_interests[0] = cat_id
+        }
+        kid.interests[0].interests = kid_interests.toString();
+        this.kidControls.controls[idx].get('categories').setValue(kid.interests[0].interests);
     }
-    kid.interests[0].interests = kid_interests.toString();
-    this.kidControls.controls[idx].get('categories').setValue(kid.interests[0].interests);
-  }
-else{
-
-  // const interest_id = this.eventConstants.get_cat_name_by_id(interest);
-  if (kid.interests.includes(cat_id)) {
-    kid.interests.splice(kid.interests.indexOf(cat_id), 1);
-  } else {
-    kid.interests.push(cat_id);
-  }
-  this.kidControls.controls[idx].get('categories').setValue(kid.interests.toString());
-
-}
+    
   }
 
 }

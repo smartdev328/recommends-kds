@@ -40,7 +40,7 @@ export class SavedListingComponent implements OnInit {
   isLogedin = false;
 
 
-  event_Type: string;
+  entity_type: string;
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
               private datePipe: DatePipe,
@@ -58,7 +58,7 @@ export class SavedListingComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.event_Type = params.get("id");
+      this.entity_type = params.get("id");
     })
     this.isErrorVisible = false;
     this.errorMessage = '';
@@ -69,26 +69,26 @@ export class SavedListingComponent implements OnInit {
   
   }
   get_venue_details() {
-      this.venueListingService.getSavedListing(this.event_Type).subscribe(data => {
-        if(this.event_Type == 'EVENT'){
+      this.venueListingService.getSavedListing(this.entity_type).subscribe(data => {
+        if(this.entity_type == 'EVENT'){
           this.data_list = data['events'];
           if (this.data_list.length > this.end) {
             this.showMore = true;
           }
           this.isExplore = false;
-        }if(this.event_Type == 'VENUE'){
+        }if(this.entity_type == 'VENUE'){
           this.data_list = data['venues'];
           if (this.data_list.length > this.end) {
             this.showMore = true;
           }
           this.isExplore = false;
-        }if(this.event_Type == 'HIKING'){
-          this.data_list = data['hiking'];
+        }if(this.entity_type == 'HIKING_TRAIL'){
+          this.data_list = data['trails'];
           if (this.data_list.length > this.end) {
             this.showMore = true;
           }
           this.isExplore = false;
-        }if(this.event_Type == 'CAMP'){
+        }if(this.entity_type == 'CAMP'){
           this.data_list = data['camps'];
           if (this.data_list.length > this.end) {
             this.showMore = true;

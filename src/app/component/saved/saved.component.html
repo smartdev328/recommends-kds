@@ -4,9 +4,7 @@
       <div class="saved" fxLayout="row wrap">
           <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
               <!-- <p class="title">Try the Kin chatbot on Messenger</p> -->
-            
                  <h1 class="saved-h">Saved</h1>
-    
           </div>
         
       </div>
@@ -14,7 +12,7 @@
           <div class="row">
               <div class="col-md-3">
                   <!--events-->
-                  <a (click)="getSavedListing('EVENT')">
+                        <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'EVENT']" target="_blank">    
                       <div class="eventsImage">
                           <label class="category-label-sm">Events</label>
                       </div>
@@ -22,7 +20,7 @@
               </div>
               <div class="col-md-3">
                   <!--places-->
-                  <a (click)="getSavedListing('VENUE')">
+                    <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'VENUE']" target="_blank">    
                       <div class="placesImage">
                           <label class="category-label-sm">Places</label>
                       </div>
@@ -30,15 +28,15 @@
               </div>
               <div class="col-md-3">
                   <!--camps-->
-                  <a (click)="getSavedListing('CAMP')">
-                      <div class="campsImage">
+                    <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'CAMP']" target="_blank">    
+                            <div class="campsImage">
                           <label class="category-label-sm">Camps</label>
                       </div>
                   </a>
               </div>
               <div class="col-md-3">
                   <!--hikking-->
-                  <a (click)="getSavedListing('HIKING')">
+                        <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'HIKING_TRAIL']" target="_blank">    
                       <div class="hikingImage">
                           <label class="category-label-sm">Hiking</label>
                       </div>
@@ -51,11 +49,11 @@
         <div class="saved" fxLayout="row wrap">
             <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
                 <!-- <p class="title">Try the Kin chatbot on Messenger</p> -->
-              
                    <h1 class="saved-h">Subscribed</h1>
-      
             </div>
-          
+        </div>
+        <div class="category p-3 m-3">
+<!-- Listing to be done here-->
         </div>
 
     </div>

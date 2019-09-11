@@ -44,12 +44,12 @@
                   </p>
                 </mat-card-content>
 
-                <mat-card-content *ngIf="type == 'HIKING'" class="">
+                <mat-card-content *ngIf="type == 'HIKING_TRAIL'" class="">
                     <p class="event-group-title">
-                      {{trail.name}}
+                      {{data.name}}
                     </p>
                     <p class="event-venue">
-                      {{trail.city}}, {{trail.state}}
+                      {{data.city}}, {{data.state}}
                     </p>
                       <br>
                   </mat-card-content>
