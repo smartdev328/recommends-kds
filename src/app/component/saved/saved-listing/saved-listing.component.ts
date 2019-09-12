@@ -57,8 +57,12 @@ export class SavedListingComponent implements OnInit {
               
 
   ngOnInit() {
+    // Getting the Entity type
     this.route.paramMap.subscribe(params => {
       this.entity_type = params.get("id");
+      if(this.entity_type == 'HIKING_TRAIL'){
+        this.entity_type =  'Hiking Trail';
+      }
     })
     this.isErrorVisible = false;
     this.errorMessage = '';
@@ -68,6 +72,7 @@ export class SavedListingComponent implements OnInit {
     })
   
   }
+  //Get listing of Saved Entity
   get_venue_details() {
       this.venueListingService.getSavedListing(this.entity_type).subscribe(data => {
         if(this.entity_type == 'EVENT'){
@@ -82,7 +87,7 @@ export class SavedListingComponent implements OnInit {
             this.showMore = true;
           }
           this.isExplore = false;
-        }if(this.entity_type == 'HIKING_TRAIL'){
+        }if(this.entity_type == 'Hiking Trail'){
           this.data_list = data['trails'];
           if (this.data_list.length > this.end) {
             this.showMore = true;

@@ -21,7 +21,15 @@ export class VenueListingService {
     return this.http.get(url);
   }
 
+  get_subscribed_Venues(){
+    const url = API_URL + 'subscribe-venue/';
+    return this.http.get(url);
+  }
+
   getSavedListing(type){
+    if(type == 'Hiking Trail'){
+      type = 'HIKING_TRAIL';
+    }
     const url = API_URL + `actions/?entity_type=ETYPE_${type}&action_type=ATYPE_SAVE`;
     return this.http.get(url);
   }

@@ -18,10 +18,6 @@ export class MasonsrySavedViewComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.showLayout = true;
-    }, 2000);
+    }, 1000);
   }
-
-  // venue_redirect(id) {
-  //   this.router.navigate(['/venues', id]);
-  // }
 }

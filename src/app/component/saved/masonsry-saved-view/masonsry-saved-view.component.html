@@ -7,8 +7,9 @@
     <ng-masonry-grid-item class="tiles" *ngFor="let data of venues | slice:start:end; let i=index">
       <a style="text-decoration: none;" >
           <mat-card class="event-list-cards ">
-            <div class="img-wrp">
-            <img mat-card-image src={{data.image_url}} alt="Image not available">
+          <div class="img-wrp">
+            <img *ngIf="type != 'Hiking Trail'" mat-card-image src={{data.image_url}} alt="Image not available">
+            <img *ngIf="type == 'Hiking Trail'" mat-card-image src={{data.image_urls.first}} alt="">
           </div>
             <mat-card-content *ngIf="type == 'VENUE'" class="">
               <p class="event-group-title">
@@ -30,29 +31,29 @@
                 <p class="event-venue">
                   {{data.venue}}
                 </p>
-              </mat-card-content>
+            </mat-card-content>
             
-              <mat-card-content *ngIf="type == 'CAMP'" class="">
-                  <p class="event-group-title">
-                    {{data.name}}
-                  </p>
-                  <p class="event-venue">
-                    {{data.cities}}
-                  </p>
-                  <p class="event-venue">
-                    {{data.misc['timings']}}
-                  </p>
-                </mat-card-content>
+            <mat-card-content *ngIf="type == 'CAMP'" class="">
+                <p class="event-group-title">
+                  {{data.name}}
+                </p>
+                <p class="event-venue">
+                  {{data.cities}}
+                </p>
+                <p class="event-venue">
+                  {{data.misc['timings']}}
+                </p>
+            </mat-card-content>
 
-                <mat-card-content *ngIf="type == 'HIKING_TRAIL'" class="">
-                    <p class="event-group-title">
-                      {{data.name}}
-                    </p>
-                    <p class="event-venue">
-                      {{data.city}}, {{data.state}}
-                    </p>
-                      <br>
-                  </mat-card-content>
+            <mat-card-content *ngIf="type == 'Hiking Trail'" class="">
+              <p class="event-group-title">
+                {{data.name}}
+              </p>
+              <p class="event-venue">
+                {{data.city}}, {{data.state}}
+              </p>
+                <br>
+            </mat-card-content>
           </mat-card>
       </a>
     </ng-masonry-grid-item>

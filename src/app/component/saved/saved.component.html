@@ -48,12 +48,18 @@
   <div class="home-image-div">
         <div class="saved" fxLayout="row wrap">
             <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
-                <!-- <p class="title">Try the Kin chatbot on Messenger</p> -->
                    <h1 class="saved-h">Subscribed</h1>
             </div>
         </div>
         <div class="category p-3 m-3">
-<!-- Listing to be done here-->
+            <!-- Listing venue-->
+            <div class="container-fluid">
+                <div class="event-listing-card">
+                    <div *ngIf="isErrorVisible"><div class="error-message-text alert-danger">{{errorMessage}}</div></div>
+                    <app-masonsry-venues-view *ngIf="newFilterData"  [venues]=venues_list [start]=start [end]=end></app-masonsry-venues-view>
+                    <app-masonsry-venues-view  *ngIf="oldFilterData" [venues]=venues_list [start]=start [end]=end></app-masonsry-venues-view>
+                </div>
+            </div>
         </div>
 
     </div>
