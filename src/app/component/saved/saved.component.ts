@@ -19,6 +19,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 export class SavedComponent implements OnInit {
 
 
+  subscribe_list: any;
   venues_list;
   isExplore = false;
   showMore = false;
@@ -71,42 +72,23 @@ export class SavedComponent implements OnInit {
 
   }
 
-  venueSubscription(){
-  // Subscription code here
-  }
-
   get_venue_details() {
-    this.venueListingService.get_Saved_Venues().subscribe(data => {
-      console.log(data);
-        this.venues_list = data['venues'];
-        if (this.venues_list.length > this.end) {
-          this.showMore = true;
-        }
-        this.isExplore = false;
-      });
+    this.venueListingService.get_subscribed_Venues().subscribe(data => {
+      this.subscribe_list = data['venues'];
+      this.subscribe_list.forEach((item, index) => {
+        this.subscribe_list[index].sub = 0;
+    });
+      if (this.subscribe_list.length > this.end) {
+        this.showMore = true;
+      }
+      this.isExplore = false;
+    }, error => {
+      if (error.status == 400 || error.status == 404) {
+        console.log("Iferror", error);
+      } else {
+        console.log("else", error);
+      }
+    });
   }
-
-//   get_subscribed_venues() {
-//     const url =  API_URL + 'subscribe-venue/';
-//     const headers = new HttpHeaders()
-//       .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
-//     this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-//       data = data.replace(/\n/g, "");
-//       data = JSON.parse(data);
-//       if (data['status']) {
-//         this.rows = data['data'];
-//       } else {
-//         this.isErrorVisible = true;
-//         this.errorMessage = data['msg'];
-//       }
-//     }, error => {
-//       if (error.status == 400 || error.status == 404) {
-//         alert(error.error.msg);
-//       } else {
-//         alert('Something went wrong');
-//       }
-//     });
-
-//  }
 
 }

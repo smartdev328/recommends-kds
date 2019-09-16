@@ -70,6 +70,7 @@ export class SubscribeVenueComponent implements OnInit {
     this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
       data = data.replace(/\n/g, "");
       data = JSON.parse(data);
+      console.log(data,'faf');
       if (data['status']) {
         this.rows = data['data'];
       } else {

@@ -338,6 +338,7 @@ export class VenuesComponent implements OnInit {
       if (data['status'] === true) {
         this.isSubscribeVisible = true;
       } else {
+
         this.isSubscribeVisible = false;
       }
     }, error => {

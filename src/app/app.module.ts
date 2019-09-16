@@ -34,6 +34,7 @@ import { MiddlewareComponent } from './middleware/middleware.component';
 import { SavedComponent } from './component/saved/saved.component';
 import { SavedListingComponent } from './component/saved/saved-listing/saved-listing.component';
 import { MasonsrySavedViewComponent } from './component/saved/masonsry-saved-view/masonsry-saved-view.component';
+import { MasonrySubscribeViewComponent } from './component/saved/masonry-subscribe-view/masonry-subscribe-view.component';
 
 
 
@@ -62,7 +63,8 @@ import { MasonsrySavedViewComponent } from './component/saved/masonsry-saved-vie
     MiddlewareComponent,
     SavedComponent,
     SavedListingComponent,
-    MasonsrySavedViewComponent
+    MasonsrySavedViewComponent,
+    MasonrySubscribeViewComponent
   ],
   imports: [
     AppRoutingModule,
@@ -76,7 +78,7 @@ import { MasonsrySavedViewComponent } from './component/saved/masonsry-saved-vie
     BrowserAnimationsModule,
     
   ],
-  exports: [MatDatepickerModule,MatDialogModule,MasonsrySavedViewComponent],
+  exports: [MatDatepickerModule,MatDialogModule,MasonsrySavedViewComponent,MasonrySubscribeViewComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     DatePipe,

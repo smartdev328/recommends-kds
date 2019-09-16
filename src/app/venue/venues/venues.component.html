@@ -15,17 +15,17 @@
                     <!-- <li><button><img src="../../assets/icons/share.png" class="dfkg" /> share</button></li> -->
                     <li  title="Subscribe" *ngIf="is_parent_id === false || isLogedin === false">
                         <button (click)="checklogin(subscribe)">
-                          <img src="../../assets/icons/subscribe_grey.png" class="dfkg" /> Subscribe
+                          <img src="../../assets/icons/subscribe_grey.png" class="dfkg" /> subscribe
                         </button>
                       </li>
-                      <li  (click)="unsubscribe_venue()" title="UnSubscribe"  *ngIf="is_parent_id && isSubscribeVisible">
+                      <li  (click)="unsubscribe_venue()" title="UnSubscribe"  *ngIf="isSubscribeVisible == true">
                         <button>
-                          <img class="dfkg" src="../../assets/icons/subscribe_orange.png" /> UnSubscribe
+                          <img class="dfkg" src="../../assets/icons/subscribe_orange.png" /> unsubscribe
                         </button>
                       </li>
                       <li   (click)="add_subscription_venue()" title="Subscribe" *ngIf="isLogedin && isSubscribeVisible != true">
                         <button>
-                          <img class="dfkg" src="../../assets/icons/subscribe_blue.png" /> Subscribe
+                          <img class="dfkg" src="../../assets/icons/subscribe_blue.png" /> subscribe
                         </button>
                       </li>
 

@@ -23,8 +23,11 @@ export class VenueListingService {
 
   get_subscribed_Venues(){
     const url = API_URL + 'subscribe-venue/';
+    let res = this.http.get(url);
+    console.log(res);
     return this.http.get(url);
   }
+
 
   getSavedListing(type){
     if(type == 'Hiking Trail'){
@@ -33,4 +36,6 @@ export class VenueListingService {
     const url = API_URL + `actions/?entity_type=ETYPE_${type}&action_type=ATYPE_SAVE`;
     return this.http.get(url);
   }
+
+  
 }

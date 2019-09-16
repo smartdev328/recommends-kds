@@ -56,8 +56,8 @@
             <div class="container-fluid">
                 <div class="event-listing-card">
                     <div *ngIf="isErrorVisible"><div class="error-message-text alert-danger">{{errorMessage}}</div></div>
-                    <app-masonsry-venues-view *ngIf="newFilterData"  [venues]=venues_list [start]=start [end]=end></app-masonsry-venues-view>
-                    <app-masonsry-venues-view  *ngIf="oldFilterData" [venues]=venues_list [start]=start [end]=end></app-masonsry-venues-view>
+                    <app-masonry-subscribe-view *ngIf="newFilterData"  [venues]=subscribe_list [start]=start [end]=end></app-masonry-subscribe-view>
+                    <app-masonry-subscribe-view  *ngIf="oldFilterData" [venues]=subscribe_list [start]=start [end]=end></app-masonry-subscribe-view>
                 </div>
             </div>
         </div>

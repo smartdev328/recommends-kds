@@ -1,0 +1,45 @@
+<img src="assets/loading.gif" *ngIf="!showLayout" class="loading-gif">
+    <ng-masonry-grid [ngClass]="{'hide-layout': !showLayout, 'show-layout': showLayout}"
+    [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }"
+    [useAnimation]="true"
+    [useImagesLoaded]="true"
+    [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
+    <ng-masonry-grid-item class="tiles" *ngFor="let data of venues | slice:start:end; let i=index">
+      <a style="text-decoration: none;" >
+          <mat-card class="event-list-cards ">
+          <div class="img-wrp">
+            <img *ngIf="type != 'Hiking Trail'" mat-card-image src={{data.image_url}} alt="Image not available">
+            <img *ngIf="type == 'Hiking Trail'" mat-card-image src={{data.image_urls.first}} alt="">
+          </div>
+            <mat-card-content class="">
+              <p class="event-group-title">
+                {{data.name}}
+              </p>
+              <p class="event-venue">
+                  {{data.city}}, {{data.state}}
+              </p>
+
+              <p class="star-btn"   *ngIf="data.sub == 0">
+                <button >
+                  <img class="dfkg" src="../../../../assets/icons/share.png" />
+                </button>
+                <button title="unsubscribe"  (click)="unsubscribe_venue(data.id,i)" >
+                  <img class="dfkg" src="../../../../assets/icons/subscribe_orange.png" />
+                </button>
+              </p>
+              <p  class="star-btn"  *ngIf="data.sub !=0">
+                <button >
+                  <img class="dfkg" src="../../../../assets/icons/share.png" />
+                </button>
+                <button  title="subscribe" (click)="add_subscription_venue(data.id,i)" >
+                  <img class="dfkg" src="../../../../assets/icons/subscribe_blue.png" />
+                </button>
+              </p>
+
+            </mat-card-content>
+            
+          </mat-card>
+      </a>
+    </ng-masonry-grid-item>
+  </ng-masonry-grid>
+
