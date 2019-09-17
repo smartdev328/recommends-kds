@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
 import { User } from '@shared/model/user';
 import { MatDialogRef, MatDialog, } from "@angular/material";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { API_URL } from '@shared/constants/UrlConstants';
+import { VenueListingService } from '../../venue/venue-listing/venue-listing.service';
 
 
 
@@ -22,6 +24,9 @@ declare let ga: any;
   styleUrls: ['./event-listing.component.css']
 })
 export class EventListingComponent implements OnInit {
+  all: string;
+  kid_id: any;
+  tags: string;
   @ViewChild('openModal') openModal: TemplateRef<any>
 
   dialogRef: any;
@@ -101,6 +106,7 @@ export class EventListingComponent implements OnInit {
     private authService: AuthService,
     private http: HttpClient,
     public dialog: MatDialog,
+    private venueListingService: VenueListingService
     
   ) {
     this.router.events.subscribe(event => {
@@ -192,15 +198,13 @@ export class EventListingComponent implements OnInit {
       'distance': this.distance === undefined ? '' : this.distance,
       'username': this.username === undefined ? '' : this.username
     };
-    // const url = 'https://kin-api-dev.kinparenting.com/' + 'events/?event_date_start='
-    //   + this.datePipe.transform(Date.now(), 'yyyy-MM-dd') + '&limit=90';
+    // const url = API_URL + 'events/?limit=90';
     // const headers = new HttpHeaders();
     // this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+    //   console.log(data);
     //   data = data.replace(/\n/g, '');
     //   data = JSON.parse(data);
-
-
-      this.eventListingService.get_event_details(input).subscribe(data => {
+      this.eventListingService.get_event_details(input).subscribe(data => {        
       this.all_data = data['events'];
       this.showMore = false;
       this.isExplorelen = this.all_data.length;
@@ -209,8 +213,47 @@ export class EventListingComponent implements OnInit {
       }
       this.isExplore = false;
     }, err => {
+      console.log(err);
     });
 
+  }
+
+  sortBy(type,kid){
+    if(type == 'subscribed'){
+      this.distance = null;
+      this.kid_id= null;
+      this.tags= null;
+      this.all = null;
+      this.subscribeVenue();
+    }
+    if(type == 'nearby'){
+      this.distance = "20";
+      this.kid_id= null;
+      this.tags= null;
+      this.all = null;
+      this.filter_event_data();
+    }
+    if(type == 'trending'){
+      this.distance = null;
+      this.kid_id= null;
+      this.tags='popular';
+      this.all = null;
+      this.filter_event_data();
+    }
+    if(type == 'all'){
+      this.distance = null;
+      this.kid_id= null;
+      this.tags=null;
+      this.all = 'yes';
+      this.filter_event_data();
+    }
+    if(kid == 'kid'){
+      this.kid_id= type;
+      this.distance = null;
+      this.tags= null;
+      this.all = null;
+      this.filter_event_data();
+    }
   }
 
   clear_filter_data() {
@@ -230,14 +273,15 @@ export class EventListingComponent implements OnInit {
 
 
   filter_event_data() {
-    if ((this.selected_cat === undefined || this.selected_cat === '') && (this.keyword === undefined || this.keyword === '')
-      && (this.selected_loc === undefined || this.selected_loc === '')
-      && (this.selected_date === undefined || this.selected_date === '')) {
-      this.isFilterErrorVisible = true;
-      this.isErrorVisible = false;
-      this.errorMessage = '';
-      this.filterErrorMessage = this.commonErrorMessage.SELECT_FILTER_CRITERIA;
-    } else {
+      // if ((this.selected_cat === undefined || this.selected_cat === '') && (this.keyword === undefined || this.keyword === '')
+      //   && (this.selected_loc === undefined || this.selected_loc === '')
+      //   && (this.selected_date === undefined || this.selected_date === '')) {
+      //   this.isFilterErrorVisible = true;
+      //   this.isErrorVisible = false;
+      //   this.errorMessage = '';
+      //   this.filterErrorMessage = this.commonErrorMessage.SELECT_FILTER_CRITERIA;
+      //   console.log("in")
+      // } else {
       this.isFilterErrorVisible = false;
       this.filterErrorMessage = '';
       const input = {
@@ -246,8 +290,24 @@ export class EventListingComponent implements OnInit {
         'city': this.selected_loc === undefined ? '' : this.selected_loc,
         'event_range_str': this.selected_date === undefined ? '' : this.selected_date,
         'distance': this.distance === undefined ? '' : this.distance,
-        'username': this.username === undefined ? '' : this.username
+        'username': this.username === undefined ? '' : this.username,
+        'tags': this.tags === undefined ? '' : this.tags,
+        'kid_id': this.kid_id === undefined ? '' : this.kid_id,
+        'all': this.all === undefined ? '' : this.all,
+
       };
+      if(input.tags === undefined || input.tags === ''){
+        delete input.tags;
+      }
+      if(input.kid_id === undefined || input.kid_id === ''){
+        delete input.kid_id;
+      }
+      if(input.distance === undefined || input.distance === ''){
+        delete input.distance;
+      }
+      if(input.all === undefined || input.all === ''){
+        delete input.all;
+      }
       this.isExplore = true;
       this.end = 21;
       this.eventListingService.get_event_details(input).subscribe(data => {
@@ -279,7 +339,7 @@ export class EventListingComponent implements OnInit {
         this.showMore = false;
         this.isExplore = false;
       });
-    }
+    // }
   }
 
   add_analytics_data() {
@@ -305,6 +365,7 @@ export class EventListingComponent implements OnInit {
     });
 
   }
+
   kin_redirect() {
     ga('send', 'event', {
       eventCategory: 'Clicks',
@@ -361,4 +422,64 @@ export class EventListingComponent implements OnInit {
   closeDialog() {
     this.dialogRef.close();
   }
+
+  subscribeVenue(){
+      this.venueListingService.get_subscribed_Venues().subscribe(data => {
+      
+        if (data && data['venues'].length>0) {
+        this.get_subscribe_listing();
+        }else{
+          this.isErrorVisible = true;
+          this.errorMessage = this.eventErrorMessage.NO_SUBSCRIPTION_FOUND;
+          this.all_data = [];
+          this.showMore = false;
+          this.isExplore = false;
+        }
+      }, error => {
+        if (error.status == 400 || error.status == 404) {
+          this.isErrorVisible = true;
+          this.errorMessage = this.eventErrorMessage.NO_SUBSCRIPTION_FOUND;
+          this.all_data = [];
+          this.showMore = false;
+          this.isExplore = false;
+        } else {
+          this.isErrorVisible = true;
+          this.errorMessage = this.eventErrorMessage.NO_SUBSCRIPTION_FOUND;
+          this.all_data = [];
+          this.showMore = false;
+          this.isExplore = false;
+        }
+      });
+    }
+
+    get_subscribe_listing(){
+      this.all_data =null;
+      this.showMore = false;
+      this.isExplore = true;
+          this.eventListingService.subscribe_events().subscribe(data => { 
+          this.all_data = data['data'];
+          this.showMore = false;
+          this.isExplorelen = this.all_data.length;
+          if (this.isExplorelen > this.end) {
+            this.showMore = true;
+          }
+          this.isExplore = false;
+        }, error => {
+          if (error.status == 400 || error.status == 404) {
+            this.isErrorVisible = true;
+            this.errorMessage = this.eventErrorMessage.NO_SUBSCRIPTION_FOUND;
+            this.all_data = [];
+            this.showMore = false;
+            this.isExplore = false;
+          } else {
+            this.isErrorVisible = true;
+            this.errorMessage = this.eventErrorMessage.NO_SUBSCRIPTION_FOUND;
+            this.all_data = [];
+            this.showMore = false;
+            this.isExplore = false;
+          }
+    })
+  }
 }
+  
+

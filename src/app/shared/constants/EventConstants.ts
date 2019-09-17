@@ -4,7 +4,8 @@ export class EventErrorMessage {
     public GET_DATA_ERROR = "Error while getting information";
     public REVIEW_ADDED_SUCCESS = "Thank you!";
     public NO_EVENTS_FOUND = "No events found.";
-}
+    public NO_SUBSCRIPTION_FOUND = "No events found. You have either not followed any places or the places you are following do not have any upcoming events"
+}                     
 export class EventConstants {
 
     public PRIMARY_CATEGORY = [

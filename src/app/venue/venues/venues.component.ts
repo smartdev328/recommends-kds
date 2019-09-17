@@ -366,6 +366,7 @@ export class VenuesComponent implements OnInit {
         }
       };
       this.venuesService.add_subscriptions(input_data).subscribe(data => {
+        console.log(data);
         if (data['status'] === true) {
           this.isSubscribeVisible = true;
         } else {

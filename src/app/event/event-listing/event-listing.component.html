@@ -193,9 +193,12 @@
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <h3>Nearby Events</h3>
           <mat-chip-list>
-            <mat-chip *ngFor="let kid of user?.parent?.kids">For {{kid.nick_name}}</mat-chip>
-            <mat-chip>Subscribed</mat-chip>
-            <mat-chip>All</mat-chip>
+            <mat-chip (click)="sortBy(kid.id,'kid')" *ngFor="let kid of user?.parent?.kids">For {{kid.nick_name}}</mat-chip>
+            <mat-chip (click)="sortBy('subscribed','')" >Subscribed</mat-chip>
+            <mat-chip (click)="sortBy('nearby','')" >Nearby</mat-chip>
+            <mat-chip (click)="sortBy('trending','')" >Trending</mat-chip>
+
+            <mat-chip (click)="sortBy('all','')">All</mat-chip>
           </mat-chip-list>
         </div>
       </div>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
 import { EventConstants } from '../../shared/constants/EventConstants';
-import { VenueConstants, VenueErrorMessage } from '../../shared/constants/VenueConstants';
 import { ErrorMessage } from '../../shared/constants/CommonConstants';
 import { VenueListingService } from '../../venue/venue-listing/venue-listing.service';
 import { API_URL } from '@shared/constants/UrlConstants';
