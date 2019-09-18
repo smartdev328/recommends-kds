@@ -112,6 +112,7 @@ export class HikingTrailsListingComponent implements OnInit {
   onLocationChange(loc_obj: object) {
     this.selected_loc = loc_obj['name'];
     this.loc_label = this.selected_loc;
+    this.filter_hiking_data();
   }
 
   loadMore() {
@@ -189,7 +190,7 @@ export class HikingTrailsListingComponent implements OnInit {
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.filterErrorMessage = '';
-    window.location.reload();
+    this.ngOnInit();
   }
 
 

@@ -56,19 +56,21 @@
     </div>
   </div>
   <div class="row center-section ">
-    <div class="col-md-4"> 
+    <div class="col-md-5"> 
       <div class="left-section">
         <h5 *ngIf="event.start_date">Date & Time</h5>
         <p *ngIf="event.start_date">{{event.start_date | date:'longDate'}}</p>
         <p *ngIf="event.start_date">{{format_time(event.start_time)}} - {{format_time(event.end_time)}}</p>
         <br>
         <h5>Location</h5>
-        <p>{{event.venue}}</p>
-        <p>{{event.street}}, {{event.city}}, {{event.state}}</p>
+        <a style="color: #0000FF; cursor: pointer;"[routerLink]="['/venues', event.venue_id]" target="_blank">   
+        <p style="color: #0000FF;" >{{event.venue}}</p>
+       <p style="color: #0000FF;">{{event.street}}, {{event.city}}, {{event.state}}</p>
+      </a>
         <button style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="event_redirect()">Event website</button>
       </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-7">
       <div class="contact-section">
         <h6 *ngIf="eventCatString"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" /> Category</h6>
         <p *ngIf="eventCatString">{{eventCatString}}</p>
@@ -78,7 +80,7 @@
     </div>
   </div>
   <div class="row reviews">
-    <div class="col-md-12"> 
+    <div *ngIf="other_dates.length>0" class="col-md-5"> 
       <h2 #reviewsInput>Reviews</h2>
       <!-- <div class="reviews-input-secyion"  *ngIf="is_review_click"> -->
       <div class="reviews-input-secyion">
@@ -114,7 +116,55 @@
                 </li> -->
           </ul>
         </div>
+    </div>
+
+    <div *ngIf="other_dates.length>0"class="col-md-7"> 
+      <h2 #reviewsInput>Other Dates</h2>
+      <!-- <div class="reviews-input-secyion"  *ngIf="is_review_click"> -->
+      <div class="reviews-input-secyion">
+        <app-masonsry-view class="other-dates-col" [events]=other_dates [start]=start [end]=end></app-masonsry-view>
+        <!-- <app-masonsry-view *ngIf="oldFilterData" [events]=all_data [start]=start [end]=end></app-masonsry-view> -->
       </div>
+    </div>
+
+    <div *ngIf="other_dates.length == 0" class="col-md-12"> 
+    <h2 #reviewsInput>Reviews</h2>
+    <!-- <div class="reviews-input-secyion"  *ngIf="is_review_click"> -->
+    <div class="reviews-input-secyion">
+      <textarea rows="3" placeholder="Some phrase to prompt user to write a review"id="review"
+      placeholder="Add review or tips to other parents" [(ngModel)]="review" required
+      (change)="validate_review()"></textarea>
+      <div *ngIf="isErrorVisible" class="alert alert-danger">
+        <div>
+          {{errorMessage }}
+        </div>
+      </div>
+      <div *ngIf="isSuccessVisible" class="alert alert-success">
+        <div>
+          {{errorMessage }}
+        </div>
+      </div>
+      <button class="post-btn" (click)="add_review()">post</button>
+      </div>
+      <p>Be the first to write a review!</p>
+      <div class="post-reviews">
+        <ul>
+          <li *ngFor="let current_review of user_reviews;">
+            <span><img src="../../assets/icons/profile.png" /></span>
+            <p>{{current_review.review}}</p>
+          </li>
+          <!-- <li>
+              <span><img src="../../assets/icons/profile.png" /></span>
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            </li>
+            <li>
+                <span><img src="../../assets/icons/profile.png" /></span>
+                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </li> -->
+        </ul>
+      </div>
+    </div>
+
     </div>
      <ng-template #deleteuser>
         <div class="modal-body thanks">

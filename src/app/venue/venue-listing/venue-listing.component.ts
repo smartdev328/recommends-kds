@@ -190,10 +190,12 @@ export class VenueListingComponent implements OnInit {
   onLocationChange(loc_obj: object) {
     this.selected_loc = loc_obj['name'];
     this.loc_label = this.selected_loc;
+    this.filter_venue_data();
   }
   onCategoryChange(cat_obj: object) {
     this.selected_cat = cat_obj['name'];
     this.cat_label = this.selected_cat;
+    this.filter_venue_data();
   }
 
   clear_filter_data() {
@@ -206,7 +208,7 @@ export class VenueListingComponent implements OnInit {
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.filterErrorMessage = '';
-    window.location.reload();
+    this.ngOnInit();
   }
 
   filter_venue_data() {

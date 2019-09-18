@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
@@ -10,7 +10,7 @@ import { EventListingService } from './event-listing.service';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '@shared/model/user';
-import { MatDialogRef, MatDialog, } from "@angular/material";
+import { MatDialogRef, MatDialog, MatDatepicker, MatDatepickerInputEvent, } from "@angular/material";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API_URL } from '@shared/constants/UrlConstants';
 import { VenueListingService } from '../../venue/venue-listing/venue-listing.service';
@@ -24,10 +24,15 @@ declare let ga: any;
   styleUrls: ['./event-listing.component.css']
 })
 export class EventListingComponent implements OnInit {
+  event_date_start: any;
+  pickDate: boolean = false;
   all: string;
   kid_id: any;
   tags: string;
   @ViewChild('openModal') openModal: TemplateRef<any>
+  @ViewChild('picker') datePicker: MatDatepicker<Date>;
+
+
 
   dialogRef: any;
   public all_data;
@@ -60,6 +65,18 @@ export class EventListingComponent implements OnInit {
   {
     id: 1,
     desc: 'next week'
+  },
+  {
+    id: 1,
+    desc: 'this month'
+  },
+  {
+    id: 1,
+    desc: 'next month'
+  },
+  {
+    id: 1,
+    desc: 'Pick a date'
   }];
 
   /*
@@ -68,12 +85,12 @@ export class EventListingComponent implements OnInit {
   public selected_cat: String;
   public select_cat_id: any;
   public selected_loc: String;
-  public selected_date: String;
+  public selected_date: any;
   public distance: String;
   public keyword: String;
   public cat_label: String;
   public loc_label: String;
-  public date_label: String;
+  public date_label: any;
   public isErrorVisible: Boolean;
   public isFilterErrorVisible: Boolean;
   public errorMessage: String;
@@ -161,15 +178,58 @@ export class EventListingComponent implements OnInit {
   onLocationChange(loc_obj: object) {
     this.selected_loc = loc_obj['name'];
     this.loc_label = this.selected_loc;
+    this.filter_event_data();
+
   }
   onCategoryChange(cat_obj: object) {
     this.selected_cat = cat_obj['name'];
     this.select_cat_id = cat_obj['id'];
     this.cat_label = this.selected_cat;
+    this.filter_event_data();
   }
   onDateChange(date_obj: object) {
-    this.selected_date = date_obj['desc'];
-    this.date_label = this.selected_date;
+    if(date_obj['desc'] == 'Pick a date'){
+      this.pickDate = true;
+      setTimeout(() => {
+        this.datePicker.open();
+      }, 1000);
+    }else{
+      this.pickDate = false;
+      this.selected_date = date_obj['desc'];
+      this.date_label = this.selected_date;
+      this.filter_event_data();
+    }
+
+
+  }
+
+  fromDate(type: string, event: MatDatepickerInputEvent<Date>) {
+    // this.selected_date = this.formatDate(event.value);
+    // this.date_label = this.selected_date;
+    this.event_date_start = this.formatDate(event.value);
+
+    if(this.event_date_start){
+      this.filter_event_data();
+    }
+  }
+
+  formatDate(date){
+    if(date == null){
+      let a = "";
+      return a
+    }
+    let a = new Date(date);    
+    var frommonth=('0'+(a.getMonth()+1)).slice(-2)
+    let fromday;
+    let d = new Date(date);
+    if (d.getDate() < 10) {
+      fromday='0' + (a.getDate());
+    } else{
+      fromday = (a.getDate());
+    } 
+    let fromyear = a.getFullYear();
+    let finaldate = fromyear+'-'+frommonth+'-'+fromday;
+    return finaldate;
   }
 
   loadMore() {
@@ -179,8 +239,8 @@ export class EventListingComponent implements OnInit {
     if (this.isExplorelen < this.end) {
       this.showMore = false;
     }
-
   }
+
   get_explore_event_details() {
     this.showMore = false;
     this.isExplore = true;
@@ -260,6 +320,7 @@ export class EventListingComponent implements OnInit {
     this.selected_cat = '';
     this.selected_loc = '';
     this.selected_date = '';
+    this.event_date_start ='';
     this.loc_label = 'None';
     this.cat_label = 'None';
     this.date_label = 'None';
@@ -268,7 +329,10 @@ export class EventListingComponent implements OnInit {
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.filterErrorMessage = '';
-    window.location.reload();
+    this.all ='';
+    this.kid_id ='';
+    this.tags ='';
+    this.ngOnInit();
   }
 
 
@@ -294,7 +358,7 @@ export class EventListingComponent implements OnInit {
         'tags': this.tags === undefined ? '' : this.tags,
         'kid_id': this.kid_id === undefined ? '' : this.kid_id,
         'all': this.all === undefined ? '' : this.all,
-
+        'event_date_start': this.event_date_start === undefined ? '' : this.event_date_start,
       };
       if(input.tags === undefined || input.tags === ''){
         delete input.tags;

@@ -20,6 +20,7 @@ declare let ga: any;
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
+  other_dates: any;
   @ViewChild('deleteuser')deleteuser: TemplateRef<any>
 
   dialogRef:any;
@@ -52,6 +53,10 @@ export class EventComponent implements OnInit {
   @ViewChild('reviewsInput')
   reviewsInput: ElementRef;
   currentUrl: string;
+  start = 0;
+  end = 21;
+  showMore = false;
+  showLayout = false;
 
   constructor(private route: ActivatedRoute,
      private http: HttpClient, private titleService: Title,
@@ -103,6 +108,11 @@ export class EventComponent implements OnInit {
       data = data.replace(/\n/g, "");
       data = JSON.parse(data);
       this.event = data["event"];
+      if(data["other_dates"]){
+        this.other_dates = data["other_dates"];
+      }else{
+        this.other_dates =[];
+      }
       
       this.add_analytics_data('CLICK');
       this.isLoaded = true;

@@ -138,7 +138,7 @@
                         of locations">{{each_location.name}}</label>
                 </div>
               </div>
-              <div class="dropdown col-lg-2 col-md-2 col-sm-6 col-xs-2 mb-2">
+              <div class="dropdown col-lg-2 col-md-2 col-sm-6 col-xs-2 mb-2 ">
               <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{date_label}}
@@ -153,23 +153,16 @@
                 <label class="dropdown-item cursor" (click)="onDateChange(data)" *ngFor="let data
                                 of dateFilter">{{data.desc}}</label>
               </div>
+              <div *ngIf="pickDate === true" class="date-picker-input">
+                <!-- <mat-form-field> -->
+                  <input  [matDatepicker]="picker" (dateInput)="fromDate('input', $event)" placeholder="Choose a date" >
+                  <mat-datepicker-toggle matSuffix [for]="picker" hidden></mat-datepicker-toggle >
+                  <mat-datepicker #picker></mat-datepicker>
+                <!-- </mat-form-field> -->
+              </div>
             </div>
 
-              <!-- <div class="dropdown col-lg-2 col-md-2 col-sm-6 col-xs-2 mb-2">
-                <mat-form-field class="date-picker dateClass">
-                  <input [(ngModel)]="searchDate" name="date" matInput [matDatepicker]="picker" placeholder="Date"
-                    class="Dateinput">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <span class="hairline-down hairline-down-2">
-                    <svg height="12" style="fill: #FFFFFF" viewBox="0 0 24 24" width="12"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <path _ngcontent-c4="" d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z">
-                      </path>
-                    </svg>
-                  </span>
-                  <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-              </div> -->
+
               <div class="col-xs-1 search-button">
                 <svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                   class="svg-icons cursor" (click)="filter_event_data()">

@@ -809,3 +809,6 @@ video {
 .datepicker .mat-form-field-suffix {
     opacity: 0;
 }
+
+.mat-datepicker-popup{bottom:20px !important ; height: 360px !important; }
+.other-dates-col .show-layout .tiles{width: 50%; float:left; position: static !important;}

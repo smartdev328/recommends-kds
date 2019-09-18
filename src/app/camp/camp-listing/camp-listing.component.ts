@@ -185,6 +185,7 @@ export class CampListingComponent implements OnInit {
     this.oldCat = this.selected_cat;
     this.selected_cat = current_cat_obj['name'];
     this.category_label = this.selected_cat;
+    this.filter_camp_data();
   }
 
   clear_filter_data() {
@@ -195,7 +196,7 @@ export class CampListingComponent implements OnInit {
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.filterErrorMessage = '';
-    window.location.reload();
+    this.ngOnInit();
   }
 
 
