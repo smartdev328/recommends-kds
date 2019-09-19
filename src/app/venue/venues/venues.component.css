@@ -15,6 +15,29 @@
     color: #4a4949;
 
 }
+.detail-buttons {
+    color: #4a4949;
+    background-color: #ffd700;
+    border: none;
+    padding: 10px 50px;
+    margin-top: 2%;
+    font-family: Montserrat;
+    border: none;
+    font-size: 20px;
+    font-weight: 700;
+    height: 50px;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.58);
+    text-shadow: 0 1px 1px rgba(111, 111, 111, 0.38);
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+    background-color: #ffd700;
+    width: 258px;
+    height: 49px;
+}
+.detail-buttons-space {
+    text-align: center;
+    display: block;
+}
 .sign_up{
     font-size: 20px;
     font-weight: 700;

@@ -35,6 +35,7 @@ import { SavedComponent } from './component/saved/saved.component';
 import { SavedListingComponent } from './component/saved/saved-listing/saved-listing.component';
 import { MasonsrySavedViewComponent } from './component/saved/masonsry-saved-view/masonsry-saved-view.component';
 import { MasonrySubscribeViewComponent } from './component/saved/masonry-subscribe-view/masonry-subscribe-view.component';
+import { NewsletterComponent } from './component/newsletter/newsletter.component';
 
 
 
@@ -64,7 +65,8 @@ import { MasonrySubscribeViewComponent } from './component/saved/masonry-subscri
     SavedComponent,
     SavedListingComponent,
     MasonsrySavedViewComponent,
-    MasonrySubscribeViewComponent
+    MasonrySubscribeViewComponent,
+    NewsletterComponent
   ],
   imports: [
     AppRoutingModule,

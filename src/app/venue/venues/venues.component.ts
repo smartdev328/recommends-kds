@@ -20,6 +20,18 @@ declare let ga: any;
   styleUrls: ['./venues.component.css']
 })
 export class VenuesComponent implements OnInit {
+  entity_type: string;
+  isExploreTrail: boolean;
+  showMoreTrail: boolean;
+  isExplore: boolean;
+  trail_list: any=[];
+  event_list: any=[];
+  start = 0;
+  end = 4;
+  startTrail = 0;
+  endTrail = 4;
+  showMore = false;
+  showLayout = false;
   @ViewChild('deleteuser')deleteuser: TemplateRef<any>
 
   dialogRef:any;
@@ -137,6 +149,23 @@ export class VenuesComponent implements OnInit {
     }
 
   }
+  loadMore() {
+    if (this.event_list.length > this.end) {
+      this.end = this.end + 4;
+    }
+    if (this.event_list.length < this.end) {
+      this.showMore = false;
+    }
+  }
+
+  loadMoreTrail() {
+    if (this.trail_list.length > this.endTrail) {
+      this.endTrail = this.endTrail + 4;
+    }
+    if (this.trail_list.length < this.endTrail) {
+      this.showMoreTrail = false;
+    }
+  }
 
   get_venue_data(venue_id: number) {
     if (venue_id !== undefined) {
@@ -148,6 +177,25 @@ export class VenuesComponent implements OnInit {
       this.venuesService.get_venue_by_id(venue_id).subscribe(data => {
         if (data['venue'] !== undefined) {
           this.venue = data['venue'];
+
+          if(data['events']){
+            this.showMore = true;
+            this.event_list = data['events'];
+            if (this.event_list.length > this.end) {
+              this.showMore = true;
+            }
+            this.isExplore = false;
+          }
+
+          if(data['trails']){
+            this.showMoreTrail = true;
+            this.trail_list = data['trails'];
+            this.entity_type ="Hiking Trail"
+            if (this.trail_list.length > this.endTrail) {
+              this.showMoreTrail = true;
+            }
+            this.isExploreTrail = false
+          }
           this.category = this.venue.category !== undefined && this.venue.category.length > 0 ? this.venue.category.join() :
             0;
           this.venue.perm_close = this.venue.perm_closed === true ? '1' : '0';

@@ -9,7 +9,7 @@ import { ReviewsService } from '../component/add-review/reviews.service';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../shared/constants/AnalyticsConstants';
 import { API_URL } from '@shared/constants/UrlConstants';
 import { AuthService } from '@shared/service/auth.service';
-import { MatDialogRef,MatDialog,} from "@angular/material";
+import { MatDialogRef, MatDialog, } from "@angular/material";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 
@@ -21,18 +21,18 @@ declare let ga: any;
 })
 export class EventComponent implements OnInit {
   other_dates: any;
-  @ViewChild('deleteuser')deleteuser: TemplateRef<any>
+  @ViewChild('deleteuser') deleteuser: TemplateRef<any>
 
-  dialogRef:any;
+  dialogRef: any;
   modalRef: BsModalRef;
   public navbarCollapsed = true;
-  ClickName:any;
+  ClickName: any;
   event_id: string;
   event: any;
   isLoaded = false;
-  calendarEvent="add this event";
-  saveEvent="save this event";
-  addToReview="add a review "; 
+  calendarEvent = "add this event";
+  saveEvent = "save this event";
+  addToReview = "add a review ";
   // public is_parent_id: Boolean;
   public isErrorVisible: Boolean;
   public isSuccessVisible: Boolean;
@@ -59,20 +59,20 @@ export class EventComponent implements OnInit {
   showLayout = false;
 
   constructor(private route: ActivatedRoute,
-     private http: HttpClient, private titleService: Title,
-    private reviewService: ReviewsService, 
-    private authService: AuthService, 
+    private http: HttpClient, private titleService: Title,
+    private reviewService: ReviewsService,
+    private authService: AuthService,
     private metaService: Meta,
     private router: Router,
-    public dialog: MatDialog,) {
-      this.router.events.subscribe(event => {
-        if (event instanceof NavigationEnd) {
-          ga('set', 'page', event.urlAfterRedirects);
-          this.currentUrl= event.urlAfterRedirects;
-          ga('send', 'pageview');
-        }
-      });
-     }
+    public dialog: MatDialog, ) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        ga('set', 'page', event.urlAfterRedirects);
+        this.currentUrl = event.urlAfterRedirects;
+        ga('send', 'pageview');
+      }
+    });
+  }
 
   ngOnInit() {
     this.isSaveVisible = false;
@@ -99,21 +99,21 @@ export class EventComponent implements OnInit {
 
   get_event_details() {
     // let url = 'https://kin-api-dev.kinparenting.com/events/' + this.event_id;
-     const url = API_URL + 'events/' + this.event_id + '/';
+    const url = API_URL + 'events/' + this.event_id + '/';
     //const url = 'https://kin-api-dev.kinparenting.com/' + 'events/' + this.event_id + '/';
     const headers = new HttpHeaders()
-    .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
-    .set('Content-Type', 'application/json');
+      .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
+      .set('Content-Type', 'application/json');
     this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
       data = data.replace(/\n/g, "");
       data = JSON.parse(data);
       this.event = data["event"];
-      if(data["other_dates"]){
+      if (data["other_dates"]) {
         this.other_dates = data["other_dates"];
-      }else{
-        this.other_dates =[];
+      } else {
+        this.other_dates = [];
       }
-      
+
       this.add_analytics_data('CLICK');
       this.isLoaded = true;
       // let categories_array = JSON.parse(this.event.event_categories);
@@ -190,10 +190,10 @@ export class EventComponent implements OnInit {
 
   add_review_redirect(index: number): void {
     // if (this.parent_id !== undefined) {
-      // this.is_parent_id = true;
-      this.selectedIndex = index;
-      this.is_review_click = true;
-      this.reviewsInput.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    // this.is_parent_id = true;
+    this.selectedIndex = index;
+    this.is_review_click = true;
+    this.reviewsInput.nativeElement.scrollIntoView({ behavior: 'smooth' });
     // }
   }
 
@@ -259,7 +259,7 @@ export class EventComponent implements OnInit {
 
   calendar_redirects() {
     this.add_analytics_data('CALENDAR');
-    
+
     const calendar_url = API_URL + 'cal_redirect/?event_id=' + this.event_id;
     // const calendar_url = 'https://kin-api-dev.kinparenting.com' + 'cal_redirect/?event_id=' + this.event_id;
     window.open(calendar_url);
@@ -267,8 +267,8 @@ export class EventComponent implements OnInit {
 
   save_event() {
     // if (this.parent_id !== undefined) {
-      this.add_analytics_data('SAVE');
-      this.isSaveVisible = true;
+    this.add_analytics_data('SAVE');
+    this.isSaveVisible = true;
     // }
   }
 
@@ -287,17 +287,17 @@ export class EventComponent implements OnInit {
     }
     let analytics_input = {};
     // if (this.parent_id !== undefined) {
-      analytics_input = {
-        'input_data': [{
-          'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
-          'entity_id': this.event_id,
-          'interface': INTERFACE_ENUM.FE,
-          // 'parent_id': this.parent_id,
-          'action': action,
-          'referrer': '/root/home'
-        }]
+    analytics_input = {
+      'input_data': [{
+        'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
+        'entity_id': this.event_id,
+        'interface': INTERFACE_ENUM.FE,
+        // 'parent_id': this.parent_id,
+        'action': action,
+        'referrer': '/root/home'
+      }]
       // };
-    } 
+    }
     // else {
     //   analytics_input = {
     //     'input_data': [{
@@ -320,14 +320,14 @@ export class EventComponent implements OnInit {
   }
   is_save_action() {
     // if (this.parent_id !== undefined) {
-      this.reviewService.verify_save_action(null, ANALYTICS_ENTITY_TYPES_ENUM.EVENT, this.event_id).subscribe(data => {
-        if (data['status'] === true) {
-          this.isSaveVisible = true;
-        } else {
-          this.isSaveVisible = false;
-        }
-      }, error => {
-      });
+    this.reviewService.verify_save_action(null, ANALYTICS_ENTITY_TYPES_ENUM.EVENT, this.event_id).subscribe(data => {
+      if (data['status'] === true) {
+        this.isSaveVisible = true;
+      } else {
+        this.isSaveVisible = false;
+      }
+    }, error => {
+    });
     // }
   }
 
@@ -339,34 +339,34 @@ export class EventComponent implements OnInit {
     }
   }
 
-  deleteUser(linkName){
+  deleteUser(linkName) {
     this.ClickName = linkName;
     this.dialogRef = this.dialog.open(this.deleteuser, {
-        width: "626px"
+      width: "626px"
     });
-}
-
-//this function will open a popup when user is not loggen in
-checklogin(linkName){
-  if(this.isLogedin){
-    if(linkName == this.calendarEvent){
-      this.calendar_redirects();
-    }
-    else if(linkName == "Save"){
-      this.save_event();
-    } else if(linkName == "Add"){
-      this.add_review_redirect(2);
-    } 
-}else{
-this.deleteUser(linkName);
-}
-}
-signin(){
-  sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
-  this.authService.login();
-  this.closeDialog();
   }
-  closeDialog(){
+
+  //this function will open a popup when user is not loggen in
+  checklogin(linkName) {
+    if (this.isLogedin) {
+      if (linkName == this.calendarEvent) {
+        this.calendar_redirects();
+      }
+      else if (linkName == "Save") {
+        this.save_event();
+      } else if (linkName == "Add") {
+        this.add_review_redirect(2);
+      }
+    } else {
+      this.deleteUser(linkName);
+    }
+  }
+  signin() {
+    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
+    this.authService.login();
+    this.closeDialog();
+  }
+  closeDialog() {
     this.dialogRef.close();
   }
 }

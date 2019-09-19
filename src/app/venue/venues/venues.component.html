@@ -99,7 +99,7 @@
           </div>
         </div>
         <div class="row reviews">
-            <div class="col-md-12"> 
+            <div class="col-md-5"> 
               <h2 #reviewsInput>Reviews</h2>
               <!-- <div id="reviews-input-secyion" class="reviews-input-secyion"  *ngIf="is_review_click"> -->
                 <div id="reviews-input-secyion" class="reviews-input-secyion">
@@ -135,6 +135,34 @@
                       </li> -->
                 </ul>
               </div>
+            </div>
+            <div *ngIf="event_list.length>0"class="col-md-7"> 
+              <h2>Upcoming Events</h2>
+              <!-- <div class="reviews-input-secyion"  *ngIf="is_review_click"> -->
+              <div class="reviews-input-secyion">
+                <app-masonsry-view class="other-dates-col" [events]=event_list [start]=start [end]=end></app-masonsry-view>
+                <!-- <app-masonsry-view *ngIf="oldFilterData" [events]=all_data [start]=start [end]=end></app-masonsry-view> -->
+              </div>
+              <mat-card-actions *ngIf="isLogedin === true" class="detail-buttons-space">
+                <button mat-button class="detail-buttons mouse-pointer" (click)="loadMore()">MORE Events</button>
+                
+             </mat-card-actions>
+            </div>
+            <div *ngIf="trail_list.length>0"class="col-md-7"> 
+              <h2>Other Trails</h2>
+              <!-- <div class="reviews-input-secyion"  *ngIf="is_review_click"> -->
+              <div class="reviews-input-secyion">
+                <!-- <app-masonsry-hiking-view class="other-dates-col" [trails]=trail_list [start]=startTrail [end]=endTrail></app-masonsry-hiking-view> -->
+                <!-- <app-masonsry-saved-view   [type]="entity_type" [venues]=trail_list [start]=start [end]=end></app-masonsry-saved-view> -->
+                <app-masonsry-view class="other-dates-col" [type]="entity_type" [events]=trail_list [start]=startTrail [end]=endTrail></app-masonsry-view>
+
+                
+                <!-- <app-masonsry-view *ngIf="oldFilterData" [events]=all_data [start]=start [end]=end></app-masonsry-view> -->
+              </div>
+              <mat-card-actions *ngIf="isLogedin === true" class="detail-buttons-space">
+                <button mat-button class="detail-buttons mouse-pointer" (click)="loadMoreTrail()">MORE Trails</button>
+                
+             </mat-card-actions>
             </div>
           </div>
           <ng-template #deleteuser>

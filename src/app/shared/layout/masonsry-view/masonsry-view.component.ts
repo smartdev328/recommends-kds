@@ -11,6 +11,8 @@ export class MasonsryViewComponent implements OnInit {
   @Input() events;
   @Input() start;
   @Input() end;
+  @Input() type;
+
   constructor(private router: Router) { }
 
   ngOnInit() {

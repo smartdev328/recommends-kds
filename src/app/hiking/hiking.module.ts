@@ -24,6 +24,7 @@ import { SharedLibsModule } from 'app/shared/shared-libs.module';
     MasonsryHikingTrailViewComponent,
     AddHikingTrailComponent
   ],
+  exports:[MasonsryHikingTrailViewComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HikingModule { }

@@ -26,7 +26,7 @@ import { VenueListingComponent } from './venue-listing/venue-listing.component';
     MasonsryVenuesViewComponent,
     SearchVenueComponent,
     SubscribeVenueComponent,
-    VenueListingComponent
+    VenueListingComponent,
   ],
   exports:[MasonsryVenuesViewComponent],
 

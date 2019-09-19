@@ -19,6 +19,7 @@ import { GetStartedComponent } from './component/get-started/get-started.compone
 import { MiddlewareComponent } from './middleware/middleware.component';
 import { SavedComponent } from './component/saved/saved.component';
 import { SavedListingComponent } from './component/saved/saved-listing/saved-listing.component';
+import { NewsletterComponent } from './component/newsletter/newsletter.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,8 @@ const routes: Routes = [
   { path: 'get-started', component: GetStartedComponent },
   {path:'saved',component:SavedComponent},
   {path:'saved-listing/:id',component:SavedListingComponent},
+  {path:'newsletter',component:NewsletterComponent},
+
 
   
   { path: '**', redirectTo: '' },

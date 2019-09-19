@@ -7,19 +7,33 @@
   <ng-masonry-grid-item class="tiles" *ngFor="let event of events | slice:start:end; let i=index">
   <a style="text-decoration: none;" [routerLink]="['/events', event.id]" target="_blank">
       <mat-card class="event-list-cards">
-          <div class="img-wrp"><img mat-card-image src={{event.image_url}} alt=""></div>
-          <mat-card-content class="">
+          <div class="img-wrp">
+            <img *ngIf="type != 'Hiking Trail'" mat-card-image src={{event.image_url}} >
+            <img *ngIf="type == 'Hiking Trail'" mat-card-image src={{event.image_urls.first}} alt="">
+
+          </div>
+          <mat-card-content *ngIf="type != 'Hiking Trail'" class="">
             <p class="event-group-title">
                 {{event.name}}
             </p>
             <p class="event-date">
-              <span class="text">{{event.dates}}</span>,
+              <span *ngIf="event.dates" class="text">{{event.dates}} ,</span>
               <span class="lower-text">{{event.start_time}} - {{event.end_time}}</span>
             </p>
             <p class="event-venue">
               {{event.venue}}
             </p>
           </mat-card-content>
+
+          <mat-card-content *ngIf="type == 'Hiking Trail'" class="">
+              <p class="event-group-title">
+                {{event.name}}
+              </p>
+              <p class="event-venue">
+                {{event.city}}, {{event.state}}
+              </p>
+                <br>
+            </mat-card-content>
       </mat-card>
   </a>
   </ng-masonry-grid-item>
