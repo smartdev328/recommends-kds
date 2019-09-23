@@ -465,6 +465,12 @@ video {
         font-size: 95px !important;
         ;
     }
+    .form-control{
+        font-size:14px !important;
+    }
+    .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        font-size:14px !important;
+      }
 }
 
 .icon3a {
@@ -812,3 +818,14 @@ video {
 
 .mat-datepicker-popup{bottom:20px !important ; height: 360px !important; }
 .other-dates-col .show-layout .tiles{width: 50%; float:left; position: static !important;}
+.newsletter-label .mat-checkbox-layout{white-space: pre-line !important;}
+
+
+.reviews-input-secyion  .show-layout{
+    height: auto !important;
+    min-height: 710px !important;
+}
+
+@media only screen and (max-width : 640px){
+    .other-dates-col .show-layout .tiles{width: 100% !important;}
+}

@@ -105,9 +105,29 @@ mat-form-field {
     .fs-xxl {
         font-size: 32px !important;
     }
+    
     .fs-xxxl {
         font-size: 32px !important;
     }
+    
+}
+
+@media only screen and (max-width: 640px){
+    .content{
+        padding: 57px 19px;
+    }
+    .fs-xxl {
+        font-size: 24px !important;
+
+    }
+    .mat-form-field{
+        font-size: 14px !important;
+    }
+    .mat-standard-chip{
+       height: 44px !important;
+       border-radius: 25px !important;
+    }
+    .news-letter {white-space: pre-line !important;}
 }
 
 @media only screen and (max-width: 420px) {

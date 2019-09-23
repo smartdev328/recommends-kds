@@ -38,6 +38,11 @@
     text-align: center;
     display: block;
 }
+.mat-card-actions .detail-buttons{
+    margin: 0 auto !important;
+    background: #ffd700 !important;
+    cursor: pointer;
+}
 .sign_up{
     font-size: 20px;
     font-weight: 700;
@@ -235,7 +240,7 @@
     font-size: 18px;
     color: #4a4949;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
+    font-weight: 600;
     display: flex;
     align-items: center;
 }
@@ -269,6 +274,9 @@
 }
 .reviews-input-secyion {
     position: relative;
+}
+.reviews-input-secyion  .show-layout{
+    height: 200px !important;
 }
 .reviews-input-secyion textarea {
     padding: 15px 15px 59px;
@@ -455,7 +463,7 @@
     }
     .top-banner .mat-image-wrp {
         position: relative;
-        z-index: 1111111;
+        z-index: 1;
     }
     .top-banner .mat-image-wrp:after {
         content: "";
@@ -480,6 +488,36 @@
         font-weight: 300;
     }
 } 
+@media only screen and (max-width : 640px) {
+    .contact-section h3{
+        font-size: 16px !important;
+    }
+    .center-section .contact-section h6 img{
+        float: right;
+        margin-top: 3px;
+    }
+    .center-section .contact-section h6 div{
+        float: left; padding-right: 6px;
+    }
+    .center-section .contact-section h6{
+        display: inline-block;
+    }
+    .center-section .contact-section p{
+        display: inline-block;
+        width: 100%;
+    }
+    .detail-buttons{margin-top: 20px !important;}
+   .modal-body h2.app-name{font-size: 24px !important; padding: 35px 35px 22px 35px; }
+   .modal-body .close{font-size: 11px !important;}
+   .btnYN a, .btnYN span{font-size: 14px !important;}
+   .mat-dialog-container{padding:24px 15px 24px 15px; }
+
+}
+@media only screen and (max-width : 420px){
+    .btnYN .btnSubmit, .left-section .detail-buttons{
+        width: 100%;
+    }
+}
 .SIGN-IN{
     
     width: 78px;
@@ -540,7 +578,7 @@ border:0;
 margin:-6px -6px 0 0;
 }
 .modal-body{
-padding: 0;
+ padding: 0;
 
 }
 

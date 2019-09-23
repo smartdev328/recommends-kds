@@ -292,7 +292,14 @@ img {
     .heading-mobile span {
         font-size: 30px;
     }
+    .event-group-title{
+        font-size: 16px !important;
+    }
+    .event-venue{
+        font-size: 14px !important;
+    }
 }
+
 @media only screen and (max-width : 480px) {
     .heading-mobile span {
         display: block;

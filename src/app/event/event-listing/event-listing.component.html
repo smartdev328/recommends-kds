@@ -99,6 +99,7 @@
     <div class="event-listing-card">
       <h3 *ngIf="(isAuthenticated$ | async) == false">Upcoming Events</h3>
       <div *ngIf="isAuthenticated$ | async" fxLayout="column">
+        
         <form (submit)="filter_event_data()">
           <div class="filter-box">
             <div class="row filter-box-content">
@@ -183,15 +184,32 @@
         <div>
           <mat-slide-toggle style="float: right" [(ngModel)]="isCalendarView">Calendar view</mat-slide-toggle>
         </div>
-        <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="space-between center" >
           <h3>Nearby Events</h3>
-          <mat-chip-list>
-            <mat-chip (click)="sortBy(kid.id,'kid')" *ngFor="let kid of user?.parent?.kids">For {{kid.nick_name}}</mat-chip>
-            <mat-chip (click)="sortBy('subscribed','')" >Subscribed</mat-chip>
-            <mat-chip (click)="sortBy('nearby','')" >Nearby</mat-chip>
-            <mat-chip (click)="sortBy('trending','')" >Trending</mat-chip>
 
-            <mat-chip (click)="sortBy('all','')">All</mat-chip>
+          
+          <mat-chip-list class="sort-by-mat">
+              <div class="form-group"> 
+                <!-- <label for="">Sort by</label> -->
+                <i class="fa fa-angle-down" aria-hidden="true"></i>
+              <select (change)="sortBy($event.target.value)"  class="form-control" >
+                  <option selected disabled hidden>Sort By</option>
+                  <option [value]="kid.id" *ngFor="let kid of user?.parent?.kids" >For {{kid.nick_name}}</option>
+                 <option value="subscribed">Subscribed</option>
+                 <option value="nearby">Nearby</option>
+                 <option value="trending">Trending</option>
+                 <option value="all">All</option>  
+              </select>
+                             
+              </div>
+          <div class="mat-list-container">
+              <mat-chip (click)="sortBy(kid.id,'kid')" *ngFor="let kid of user?.parent?.kids">For {{kid.nick_name}}</mat-chip>
+              <mat-chip (click)="sortBy('subscribed','')" >Subscribed</mat-chip>
+              <mat-chip (click)="sortBy('nearby','')" >Nearby</mat-chip>
+              <mat-chip (click)="sortBy('trending','')" >Trending</mat-chip>
+              <mat-chip (click)="sortBy('all','')">All</mat-chip>
+
+          </div>
           </mat-chip-list>
         </div>
       </div>

@@ -73,9 +73,9 @@
     </div>
     <div class="col-md-7">
       <div class="contact-section">
-        <h6 *ngIf="eventCatString"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" /> Category</h6>
+        <h6 *ngIf="eventCatString"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" /> <div>Category</div></h6>
         <p *ngIf="eventCatString">{{eventCatString}}</p>
-        <h6 *ngIf="format_age()"><img src="../../assets/icons/noun_age_1.png" class="dfkg" /> Age Group</h6>
+        <h6 *ngIf="format_age()"><img src="../../assets/icons/noun_age_1.png" class="dfkg" /> <div>Age Group</div></h6>
         <p *ngIf="format_age()">{{format_age()}}</p>
       </div>
     </div>

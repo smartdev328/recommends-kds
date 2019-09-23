@@ -131,12 +131,14 @@ export class HikingTrailsListingComponent implements OnInit {
     this.hiking_explore = '';
     this.isExplore = true;
     this.showMore = false;
-    // const headers = new HttpHeaders();
-    
-    this.hikeService.get_hiking_trail_details(url).subscribe(data => {
-    // this.http.get(url, { headers: headers, responseType: 'text' })
-      // data = data.replace(/\n/g, '');
-      // data = JSON.parse(data);
+    const headers = new HttpHeaders();
+    //uncomment below mentioned line for authorization
+    // this.hikeService.get_hiking_trail_details(url).subscribe(data => {
+
+    //uncomment below mentioned line for non authorization
+    this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+      data = data.replace(/\n/g, '');
+      data = JSON.parse(data);
       if (data['trails'] != undefined && data['trails'].length > 0) {
         this.hiking_explore = data['trails'];
       } else {

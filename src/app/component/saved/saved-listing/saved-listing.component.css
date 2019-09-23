@@ -300,6 +300,9 @@ img {
     .heading-mobile span {
         font-size: 30px;
     }
+    div.saved h1{
+        font-size: 24px !important;
+    }
 }
 @media only screen and (max-width : 480px) {
     .heading-mobile span {

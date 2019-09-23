@@ -65,56 +65,57 @@
               <a style="color: #0000FF; cursor: pointer;" [routerLink]="['/venues', trail.venue_id]" target="_blank">   
               <p style="color: #0000FF; cursor: pointer;">{{format_address()}}</p>
               </a>
+              <br>
               <button style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="trail_redirect()">Trail website</button>
             </div>
           </div>
           <div class="col-md-8">
             <div class="contact-section">
-              <h6 *ngIf="trail.park_name"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" /> Category</h6>
+              <h6 *ngIf="trail.park_name"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" /> <div>Category</div> </h6>
               <p *ngIf="trail.park_name">{{trail.park_name}}</p>
-              <h6 *ngIf="trail.length"><img src="../../assets/icons/hiking/noun_distance_668133.png" class="dfkg" /> Distance</h6>
+              <h6 *ngIf="trail.length"><img src="../../assets/icons/hiking/noun_distance_668133.png" class="dfkg" /> <div>Distance</div> </h6>
               <p *ngIf="trail.length">{{trail.length}} miles</p>
               <h6 *ngIf="ratings"><img src="../../assets/icons/rating.png" class="dfkg" /> Rating</h6>
               <p *ngIf="ratings">{{ratings}}</p>
-              <h6 *ngIf="stroller_friendly"><img src="../../assets/icons/hiking/noun_Stroller_161.png" class="dfkg" /> Strollers</h6>
+              <h6 *ngIf="stroller_friendly"><img src="../../assets/icons/hiking/noun_Stroller_161.png" class="dfkg" /> <div>Strollers</div> </h6>
               <p *ngIf="stroller_friendly">{{stroller_friendly}}</p>
-              <h6 *ngIf="bathrooms"><img src="../../assets/icons/hiking/noun_Bathroom_151635.png" class="dfkg" /> Bathrooms</h6>
+              <h6 *ngIf="bathrooms"><img src="../../assets/icons/hiking/noun_Bathroom_151635.png" class="dfkg" /> <div>Bathrooms</div>  </h6>
               <p *ngIf="bathrooms">{{bathrooms}}</p>
-              <h6 *ngIf="entrance_fee"><img src="../../assets/icons/hiking/ticket.png" class="dfkg" /> Entrance Fee</h6>
+              <h6 *ngIf="entrance_fee"><img src="../../assets/icons/hiking/ticket.png" class="dfkg" /> <div>Entrance Fee</div> </h6>
               <p *ngIf="entrance_fee">{{entrance_fee}}</p>
               <h6 *ngIf="parking"><img src="../../assets/icons/parking.png" class="dfkg" /> Parking</h6>
               <p *ngIf="parking">{{parking}}</p>
-              <h6 *ngIf="trail.trail_surface"><img src="../../assets/icons/hiking/noun_Trail_523.png" class="dfkg" /> Trail Surface</h6>
+              <h6 *ngIf="trail.trail_surface"><img src="../../assets/icons/hiking/noun_Trail_523.png" class="dfkg" />  <div>Trail Surface</div> </h6>
               <p *ngIf="trail.trail_surface">{{trail.trail_surface}}</p>
-              <h6 *ngIf="format_difficulty()"><img src="../../assets/icons/hiking/noun_Difficulty_1143709.png" class="dfkg" /> Difficulty</h6>
+              <h6 *ngIf="format_difficulty()"><img src="../../assets/icons/hiking/noun_Difficulty_1143709.png" class="dfkg" /> <div>Difficulty</div>  </h6>
               <p *ngIf="format_difficulty()">{{format_difficulty()}}</p>
-              <h6 *ngIf="trail.attractions"><img src="../../assets/icons/attractions.png" class="dfkg" /> Attractions</h6>
+              <h6 *ngIf="trail.attractions"><img src="../../assets/icons/attractions.png" class="dfkg" /> <div>Attractions</div></h6>
               <p *ngIf="trail.attractions">{{trail.attractions}}</p>
-              <h6 *ngIf="trail.tips"><img src="../../assets/icons/noun_tips_1.png" class="dfkg" /> Tips</h6>
+              <h6 *ngIf="trail.tips"><img src="../../assets/icons/noun_tips_1.png" class="dfkg" /> <div>Tips</div></h6>
               <p *ngIf="trail.tips">{{trail.tips}}</p>
-              <h6  *ngIf="carrier"><img src="../../assets/icons/hiking/noun_carrier_1996252.png" class="dfkg" /> Carrier</h6>
+              <h6  *ngIf="carrier"><img src="../../assets/icons/hiking/noun_carrier_1996252.png" class="dfkg" /> <div>Carrier</div></h6>
               <p *ngIf="carrier">{{carrier}}</p>
-              <h6 *ngIf="ada_accessible"><img src="../../assets/icons/hiking/noun_Accessibility_2392994.png" class="dfkg" /> ADA Accessibility</h6>
+              <h6 *ngIf="ada_accessible"><img src="../../assets/icons/hiking/noun_Accessibility_2392994.png" class="dfkg" /> <div>ADA Accessibility</div> </h6>
               <p *ngIf="ada_accessible">{{ada_accessible}}</p>
-              <h6 *ngIf="trail.water_feature"><img src="../../assets/icons/hiking/noun_Lake_2437407.png" class="dfkg" /> Water Features</h6>
+              <h6 *ngIf="trail.water_feature"><img src="../../assets/icons/hiking/noun_Lake_2437407.png" class="dfkg" /> <div>Water Features</div></h6>
               <p *ngIf="trail.water_feature">{{trail.water_feature}}</p>
-              <h6 *ngIf="picnicing"><img src="../../assets/icons/hiking/noun_Picnic_1753913.png" class="dfkg" /> Picnic Tables</h6>
+              <h6 *ngIf="picnicing"><img src="../../assets/icons/hiking/noun_Picnic_1753913.png" class="dfkg" /> <div>Picnic Tables</div></h6>
               <p *ngIf="picnicing">{{picnicing}}</p>
-              <h6 *ngIf="in_park_food"><img src="../../assets/icons/hiking/food.png" class="dfkg" /> In-park Food</h6>
+              <h6 *ngIf="in_park_food"><img src="../../assets/icons/hiking/food.png" class="dfkg" /> <div>In-park Food</div></h6>
               <p *ngIf="in_park_food">{{in_park_food}}</p>
-              <h6 *ngIf="emergency_support"><img src="../../assets/icons/hiking/noun_emergency_1784248.png" class="dfkg" /> Emergency Support</h6>
+              <h6 *ngIf="emergency_support"><img src="../../assets/icons/hiking/noun_emergency_1784248.png" class="dfkg" /> <div> Emergency Support</div></h6>
               <p *ngIf="emergency_support">{{emergency_support}}</p>
-              <h6 *ngIf="trail.shade"><img src="../../assets/icons/hiking/noun_shade_637740.png" class="dfkg" /> Shade</h6>
+              <h6 *ngIf="trail.shade"><img src="../../assets/icons/hiking/noun_shade_637740.png" class="dfkg" /> <div>Shade</div></h6>
               <p *ngIf="trail.shade">{{trail.shade}}</p>
-              <h6 *ngIf="trail.elevation"><img src="../../assets/icons/hiking/noun_elevation_525997.png" class="dfkg" /> Elevation</h6>
+              <h6 *ngIf="trail.elevation"><img src="../../assets/icons/hiking/noun_elevation_525997.png" class="dfkg" /> <div>Elevation</div> </h6>
               <p *ngIf="trail.elevation">{{trail.elevation}} ft.</p>
-              <h6 *ngIf="trail.type"><img src="../../assets/icons/hiking/noun_Loop_2500157.png" class="dfkg" /> Trail Type</h6>
+              <h6 *ngIf="trail.type"><img src="../../assets/icons/hiking/noun_Loop_2500157.png" class="dfkg" /> <div>Trail Type</div></h6>
               <p *ngIf="trail.type">{{trail.type}}</p>
-              <h6 *ngIf="trail.best_season"><img src="../../assets/icons/hiking/seasons.png" class="dfkg" /> Best Season to Visit</h6>
+              <h6 *ngIf="trail.best_season"><img src="../../assets/icons/hiking/seasons.png" class="dfkg" /> <div>Best Season to Visit</div></h6>
               <p  *ngIf="trail.best_season">{{trail.best_season}}</p>
-              <h6 *ngIf="pet_friendly"><img src="../../assets/icons/hiking/noun_Pet_1859363.png" class="dfkg" /> Pets</h6>
+              <h6 *ngIf="pet_friendly"><img src="../../assets/icons/hiking/noun_Pet_1859363.png" class="dfkg" /> <div>Pets</div></h6>
               <p  *ngIf="pet_friendly">{{pet_friendly}}</p>
-              <h6 *ngIf="nearby_camps"><img src="../../assets/icons/hiking/noun_camp_2498543.png" class="dfkg" /> Camps</h6>
+              <h6 *ngIf="nearby_camps"><img src="../../assets/icons/hiking/noun_camp_2498543.png" class="dfkg" /> <div>Camps</div></h6>
               <p *ngIf="nearby_camps">{{nearby_camps}}</p>
               
             </div>

@@ -89,9 +89,9 @@
           </div>
           <div class="col-md-8">
             <div class="contact-section">
-                <h6  *ngIf="category"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" /> Category</h6>
+                <h6  *ngIf="category"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" /> <div>Category</div> </h6>
               <p  *ngIf="category">{{category}}</p>
-              <h6 *ngIf="rating"><img src="../../assets/icons/rating.png" class="dfkg" /> Rating</h6>
+              <h6 *ngIf="rating"><img src="../../assets/icons/rating.png" class="dfkg" /> <div>Rating</div></h6>
               <p *ngIf="rating">{{rating}} / {{google_rating_out_of}}</p>
               <h6 *ngIf="parking"><img src="../../assets/icons/parking.png" class="dfkg" /> Parking</h6>
               <p *ngIf="parking">{{parking}}</p>
@@ -159,8 +159,8 @@
                 
                 <!-- <app-masonsry-view *ngIf="oldFilterData" [events]=all_data [start]=start [end]=end></app-masonsry-view> -->
               </div>
-              <mat-card-actions *ngIf="isLogedin === true" class="detail-buttons-space">
-                <button mat-button class="detail-buttons mouse-pointer" (click)="loadMoreTrail()">MORE Trails</button>
+              <mat-card-actions *ngIf="isLogedin === true" class="detail-buttons-space ">
+                <button mat-button class="detail-buttons mouse-pointer load-more-trail" (click)="loadMoreTrail()">MORE Trails</button>
                 
              </mat-card-actions>
             </div>
@@ -175,7 +175,7 @@
                   </div>
                   <div class="btnYN">
                       <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary" ><b class="SIGN-IN">SIGN IN</b></button><br>
-                     New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account</a>
+                     <span>New to Kin?</span> <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account</a>
                   </div>
               </div>
           </ng-template>

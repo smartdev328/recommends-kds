@@ -278,7 +278,9 @@ export class EventListingComponent implements OnInit {
 
   }
 
-  sortBy(type,kid){
+  sortBy(type){
+    console.log(type)
+
     if(type == 'subscribed'){
       this.distance = null;
       this.kid_id= null;
@@ -307,7 +309,7 @@ export class EventListingComponent implements OnInit {
       this.all = 'yes';
       this.filter_event_data();
     }
-    if(kid == 'kid'){
+    else{
       this.kid_id= type;
       this.distance = null;
       this.tags= null;
