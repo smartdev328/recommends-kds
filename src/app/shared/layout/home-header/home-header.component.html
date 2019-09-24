@@ -42,16 +42,17 @@
                     <div class="cursor" fxLayout="row" data-toggle="dropdown">
                         <img src="assets/web_images/profile.png" alt="User" width="50" height="44" >
                         <mat-icon aria-hidden="false" aria-label="keyboard_arrow_down"></mat-icon>
+                        
+                        <ul class="dropdown-menu dropdown-menu-right">
+                                <li routerLink='/saved'>Saved</li>
+                                <li>Following</li>
+                                <mat-divider></mat-divider>
+                                <!-- <li>Reset password</li>
+                                    <mat-divider></mat-divider> -->
+                                <li routerLink="/profile">Settings</li>
+                                <li (click)="auth.logout()">Logout</li>
+                        </ul>
                     </div>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li routerLink='/saved'>Saved</li>
-                        <li>Following</li>
-                        <mat-divider></mat-divider>
-                        <!-- <li>Reset password</li>
-                            <mat-divider></mat-divider> -->
-                        <li routerLink="/profile">Settings</li>
-                        <li (click)="auth.logout()">Logout</li>
-                    </ul>
                 </div>
                 <!-- <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="openModal()">
                     <button class="btn path-38 sign_up">SUBSCRIBE</button>

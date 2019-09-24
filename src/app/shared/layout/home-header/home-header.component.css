@@ -139,6 +139,15 @@
     }
 }*/
 
+@media (max-width: 640px){
+    .navbar-light .navbar-nav .nav-link, .dropdown-menu li{font-size: 14px; margin: 0;}
+    .mat-icon{height: 0; width:0;}
+    .navbar-light .navbar-nav .cursor img{width: 25px; height: 25px;}
+    .navbar-light .navbar-nav .cursor{position: relative;}
+    .navbar-light .navbar-nav .cursor .dropdown-menu{position: absolute; right:-95px; top:0;}
+    .dropdown-menu{min-width: auto;}
+}
+
 
 
   
