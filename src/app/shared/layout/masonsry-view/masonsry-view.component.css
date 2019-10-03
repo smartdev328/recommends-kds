@@ -35,6 +35,12 @@ mat-card {
     font-family: "Montserrat";
     font-weight: 700;
 }
+p.event-group-title.otherDate {
+    font-weight: 500 !important ;
+}
+p.event-venue.otherDate {
+    font-weight: 700;
+}
 
 .event-group-title {
     background-color: #FFD700;

@@ -36,7 +36,7 @@ export class GetStartedComponent implements OnInit {
       lastName: new FormControl(),
       zipcode: new FormControl(),
       email:new FormControl(),
-      newsletter: new FormControl(Boolean),
+      newsletter: new FormControl(false),
       kidControls: this.formBuilder.array([])
     });
     this.interests = this.eventConstants.PRIMARY_CATEGORY.map((item) => item);
@@ -77,15 +77,13 @@ export class GetStartedComponent implements OnInit {
   }
 
   save() {
-    this.formGroup.value.newsletter = false;
     let param = {
       first_name: this.formGroup.value.firstName,
       last_name: this.formGroup.value.lastName,
       zip_code: this.formGroup.value.zipcode,
       email: this.parentEmail,
       newsletter: this.formGroup.value.newsletter,
-    }
-   
+    }   
     const kidLength=this.kidControls.length;
     const kidParam = this.formGroup.value.kidControls;
     this.userService.updateUser(param).subscribe(
@@ -100,7 +98,7 @@ export class GetStartedComponent implements OnInit {
         }
       
       }, err => {
-       // console.log('Error in call service for parent and kid', err);
+       console.log('Error in call service for parent and kid', err);
       });
   }
 

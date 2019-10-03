@@ -36,13 +36,13 @@
             <div *ngFor="let kid of kids; let i = index">
                 <mat-divider *ngIf="i != 0"></mat-divider>
                 <div class="row">
-                    <mat-form-field class="col-12 col-md-6">
+                    <mat-form-field class="col-12 col-md-6 mt-4">
                         <input matInput placeholder="Nickname"
-                            [formControl]="formGroup.controls.kidControls.controls[i].controls.nick_name">
+                            [formControl]="formGroup.controls.kidControls.controls[i].controls.nick_name" required>
                     </mat-form-field>
-                    <mat-form-field class="col-12 col-md-6">
+                    <mat-form-field class="col-12 col-md-6 mt-4">
                         <input matInput placeholder="Age"
-                            [formControl]="formGroup.controls.kidControls.controls[i].controls.age" maxlength="2">
+                            [formControl]="formGroup.controls.kidControls.controls[i].controls.age" maxlength="2" required>
                         <img class="cursor" src="assets\web_images\delete.png" alt="Clear" width="24"
                             [class.no-display]="!formGroup.controls.kidControls.controls[i].controls.age.value"
                             matSuffix (click)="formGroup.controls.kidControls.controls[i].controls.age.setValue('')">
@@ -71,12 +71,12 @@
             <p class="fs-sm">Check the box to receive weekly plans personalized for your family</p>
         </div>
         <div class="col-md-8 pl-md-5" fxLayout="column" fxLayoutAlign="end start">
-            <mat-checkbox class="mb-1 ml-md-5 pl-md-4 fs-md news-letter newsletter-label">Yes, sign me up for the newsletter!</mat-checkbox>
+            <mat-checkbox formControlName="newsletter" class="mb-1 ml-md-5 pl-md-4 fs-md news-letter newsletter-label">Yes, sign me up for the newsletter!</mat-checkbox>
         </div>
     </div>
     <mat-divider></mat-divider>
     <div class="mt-2" fxLayout="row" fxLayoutAlign="end stretch">
         <button class="btn btn-white fs-sm" (click)="back()">BACK</button>
-        <button class="btn btn-yellow fs-sm" (click)="save()">FINISH</button>
+        <button class="btn btn-yellow fs-sm" [disabled]="formGroup.invalid" (click)="save()">FINISH</button>
     </div>
 </form>

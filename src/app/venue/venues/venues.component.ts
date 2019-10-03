@@ -180,6 +180,8 @@ export class VenuesComponent implements OnInit {
 
           if(data['events']){
             this.showMore = true;
+            this.entity_type ="eventData"
+
             this.event_list = data['events'];
             if (this.event_list.length > this.end) {
               this.showMore = true;
@@ -187,7 +189,7 @@ export class VenuesComponent implements OnInit {
             this.isExplore = false;
           }
 
-          if(data['trails']){
+          else if(data['trails']){
             this.showMoreTrail = true;
             this.trail_list = data['trails'];
             this.entity_type ="Hiking Trail"

@@ -16,6 +16,7 @@ export class MasonsryViewComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    console.log(this.type);
     setTimeout(() => {
       this.showLayout = true;
     }, 2000);

@@ -36,6 +36,7 @@ import { SavedListingComponent } from './component/saved/saved-listing/saved-lis
 import { MasonsrySavedViewComponent } from './component/saved/masonsry-saved-view/masonsry-saved-view.component';
 import { MasonrySubscribeViewComponent } from './component/saved/masonry-subscribe-view/masonry-subscribe-view.component';
 import { NewsletterComponent } from './component/newsletter/newsletter.component';
+import { MasonsryVenuesPersonaliseViewComponent } from '@shared/layout/masonsry-personalise-view/masonsry-personalise-view.component';
 
 
 
@@ -80,7 +81,7 @@ import { NewsletterComponent } from './component/newsletter/newsletter.component
     BrowserAnimationsModule,
     
   ],
-  exports: [MatDatepickerModule,MatDialogModule,MasonsrySavedViewComponent,MasonrySubscribeViewComponent],
+  exports: [MatDatepickerModule,MatDialogModule,MasonsrySavedViewComponent,MasonrySubscribeViewComponent,MasonsryVenuesPersonaliseViewComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     DatePipe,

@@ -8,17 +8,41 @@
   <a style="text-decoration: none;" [routerLink]="['/events', event.id]" target="_blank">
       <mat-card class="event-list-cards">
           <div class="img-wrp">
-            <img *ngIf="type != 'Hiking Trail'" mat-card-image src={{event.image_url}} >
+            <img *ngIf="!type" mat-card-image src={{event.image_url}} >
             <img *ngIf="type == 'Hiking Trail'" mat-card-image src={{event.image_urls.first}} alt="">
 
           </div>
-          <mat-card-content *ngIf="type != 'Hiking Trail'" class="">
+          <mat-card-content *ngIf="!type" class="">
             <p class="event-group-title">
                 {{event.name}}
             </p>
             <p class="event-date">
               <span *ngIf="event.dates" class="text">{{event.dates}} ,</span>
-              <span class="lower-text">{{event.start_time}} - {{event.end_time}}</span>
+              <span class="lower-text">{{event.start_time }} - {{event.end_time}}</span>
+            </p>
+            <p class="event-venue">
+              {{event.venue}}
+            </p>
+          </mat-card-content>
+
+          <mat-card-content *ngIf="type == 'eventData'" class="">
+              <p class="event-group-title otherDate">
+                  <span class="lower-text">{{event.start_date | date : 'EEE, MMM d'}},{{event.start_time}} - {{event.end_time}}</span>
+              </p>
+            <p class="event-venue otherDate">
+              {{event.name}}
+            </p>
+            <p class="event-venue">
+              {{event.venue}}
+            </p>
+          </mat-card-content>
+
+          <mat-card-content *ngIf="type == 'otherDate'" class="">
+              <p class="event-group-title otherDate">
+                  <span class="lower-text">{{event.start_date | date : 'EEE, MMM d'}},{{event.start_time}} - {{event.end_time}}</span>
+              </p>
+            <p class="event-venue otherDate">
+              {{event.name}}
             </p>
             <p class="event-venue">
               {{event.venue}}

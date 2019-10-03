@@ -55,6 +55,7 @@ export class EventComponent implements OnInit {
   currentUrl: string;
   start = 0;
   end = 21;
+  otherDate = "otherDate";
   showMore = false;
   showLayout = false;
 

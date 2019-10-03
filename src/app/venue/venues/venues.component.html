@@ -99,7 +99,7 @@
           </div>
         </div>
         <div class="row reviews">
-            <div class="col-md-5"> 
+            <div *ngIf="event_list.length>0 || trail_list.length>0"  class="col-md-5"> 
               <h2 #reviewsInput>Reviews</h2>
               <!-- <div id="reviews-input-secyion" class="reviews-input-secyion"  *ngIf="is_review_click"> -->
                 <div id="reviews-input-secyion" class="reviews-input-secyion">
@@ -136,11 +136,48 @@
                 </ul>
               </div>
             </div>
+            <div *ngIf="event_list.length == 0 && trail_list.length == 0"  class="col-md-12"> 
+              <h2 #reviewsInput>Reviews</h2>
+              <!-- <div id="reviews-input-secyion" class="reviews-input-secyion"  *ngIf="is_review_click"> -->
+                <div id="reviews-input-secyion" class="reviews-input-secyion">
+                <textarea rows="3" placeholder="Some phrase to prompt user to write a review"id="review"
+                placeholder="Add review or tips to other parents" [(ngModel)]="review" required
+                (change)="validate_review()"></textarea>
+                <div *ngIf="isErrorVisible" class="alert alert-danger">
+                  <div>
+                    {{errorMessage }}
+                  </div>
+                </div>
+                <div *ngIf="isSuccessVisible" class="alert alert-success">
+                  <div>
+                    {{errorMessage }}
+                  </div>
+                </div>
+                <button class="post-btn" (click)="add_review()">post</button>
+              </div>
+              <p *ngIf="user_reviews.length>0">Be the first to write a review!</p>
+              <div *ngIf="user_reviews.length>0" class="post-reviews">
+               <ul>
+                <li *ngFor="let current_review of user_reviews;">
+                  <span><img src="../../assets/icons/profile.png" /></span>
+                  <p>{{current_review.review}}</p>
+                </li>
+                  <!-- <li>
+                      <span><img src="../../assets/web_images/events_desktop-sketch.png" /></span>
+                      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    </li>
+                    <li>
+                        <span><img src="../../assets/icons/profile.png" /></span>
+                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                      </li> -->
+                </ul>
+              </div>
+            </div>
             <div *ngIf="event_list.length>0"class="col-md-7"> 
               <h2>Upcoming Events</h2>
               <!-- <div class="reviews-input-secyion"  *ngIf="is_review_click"> -->
               <div class="reviews-input-secyion">
-                <app-masonsry-view class="other-dates-col" [events]=event_list [start]=start [end]=end></app-masonsry-view>
+                <app-masonsry-view class="other-dates-col" [events]=event_list [start]=start [end]=end [type]=entity_type></app-masonsry-view>
                 <!-- <app-masonsry-view *ngIf="oldFilterData" [events]=all_data [start]=start [end]=end></app-masonsry-view> -->
               </div>
               <mat-card-actions *ngIf="isLogedin === true" class="detail-buttons-space">

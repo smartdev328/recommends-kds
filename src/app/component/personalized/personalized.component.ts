@@ -5,6 +5,8 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReviewsService } from '../add-review/reviews.service';
 import { API_URL } from '@shared/constants/UrlConstants';
+import { Observable } from 'rxjs';
+import { AuthService } from '@shared/service/auth.service';
 
 @Component({
     selector: 'app-personalized',
@@ -28,12 +30,20 @@ export class PersonalizedComponent implements OnInit {
     showMore: Boolean = true;
     showLayout = true;
     public all_events: any;
+    isAuthenticated$: Observable<boolean>;
+    currentUrl: string;
+    isLogedin:boolean;
 
     constructor(private route: ActivatedRoute,
         private http: HttpClient,
         private datePipe: DatePipe,
         private router: Router,
-        private titleService: Title, private reviewService: ReviewsService) {
+        private titleService: Title, private reviewService: ReviewsService,
+        private authService: AuthService) {
+            this.isAuthenticated$ = this.authService.isAuthenticated$;
+            this.isAuthenticated$.subscribe(data => {
+              this.isLogedin = data;
+            })
         // this.popular = [];
         // this.favorite = [];
         // this.events_weekend = []
@@ -43,6 +53,9 @@ export class PersonalizedComponent implements OnInit {
     }
 
     ngOnInit() {
+        if(this.isLogedin == false){
+             this.authService.login();
+          }
         this.all_events = {
             'popular': [],
             'weekend': [],

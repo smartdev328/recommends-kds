@@ -100,6 +100,7 @@ export class EventListingComponent implements OnInit {
   public isAuthenticated$: Observable<boolean>;
   isLogedin = false;
   public isCalendarView: boolean;
+  public eventName= "Nearby";
 
   public eventConstatnts = new EventConstants();
   public eventErrorMessage = new EventErrorMessage();
@@ -143,6 +144,9 @@ export class EventListingComponent implements OnInit {
     this.date_label = 'Date';
     this.select_cat_id = '';
     this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
   }
 
   ngOnInit() {
@@ -171,9 +175,6 @@ export class EventListingComponent implements OnInit {
     this.authService.user$.subscribe((user) => {
       this.user = user;
     });
-    this.isAuthenticated$.subscribe(data => {
-      this.isLogedin = data;
-    })
   }
   onLocationChange(loc_obj: object) {
     this.selected_loc = loc_obj['name'];
@@ -255,15 +256,15 @@ export class EventListingComponent implements OnInit {
       'q': this.keyword === undefined ? '' : this.keyword.trim(),
       'city': this.selected_loc === undefined ? '' : this.selected_loc,
       'event_range_str': this.selected_date === undefined ? '' : this.selected_date,
-      'distance': this.distance === undefined ? '' : this.distance,
+      'distance': this.distance === undefined ? 50 : this.distance,
       'username': this.username === undefined ? '' : this.username
     };
     // const url = API_URL + 'events/?limit=90';
     // const headers = new HttpHeaders();
-    // this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+    // this.http.get(url, { headers: headers, responseType: 'json' }).subscribe(data => {
     //   console.log(data);
-    //   data = data.replace(/\n/g, '');
-    //   data = JSON.parse(data);
+      // data = data.replace(/\n/g, '');
+      // data = JSON.parse(data);
       this.eventListingService.get_event_details(input).subscribe(data => {        
       this.all_data = data['events'];
       this.showMore = false;
@@ -278,36 +279,40 @@ export class EventListingComponent implements OnInit {
 
   }
 
-  sortBy(type){
-    console.log(type)
-
+  sortBy(type,kid){
     if(type == 'subscribed'){
+      this.eventName = "subscribed";
+
       this.distance = null;
       this.kid_id= null;
       this.tags= null;
       this.all = null;
       this.subscribeVenue();
+
     }
-    if(type == 'nearby'){
+    else if(type == 'nearby'){
       this.distance = "20";
       this.kid_id= null;
       this.tags= null;
       this.all = null;
       this.filter_event_data();
+      this.eventName = "Nearby";
     }
-    if(type == 'trending'){
+    else if(type == 'trending'){
       this.distance = null;
       this.kid_id= null;
       this.tags='popular';
       this.all = null;
       this.filter_event_data();
+      this.eventName = "Trending";
     }
-    if(type == 'all'){
+    else if(type == 'all'){
       this.distance = null;
       this.kid_id= null;
       this.tags=null;
       this.all = 'yes';
       this.filter_event_data();
+      this.eventName = "All";
     }
     else{
       this.kid_id= type;
@@ -315,6 +320,7 @@ export class EventListingComponent implements OnInit {
       this.tags= null;
       this.all = null;
       this.filter_event_data();
+      this.eventName = kid.nick_name;
     }
   }
 
@@ -382,7 +388,7 @@ export class EventListingComponent implements OnInit {
           this.errorMessage = '';
           this.all_data = [];
           this.all_data = data['events'];
-          this.showMore = data['events'].length > this.end;
+          this.showMore = this.all_data.length > this.end;
           if (this.oldFilterData) {
             this.newFilterData = true;
             this.oldFilterData = false;
@@ -394,11 +400,14 @@ export class EventListingComponent implements OnInit {
           this.isExplore = false;
 
         } else {
-          this.isErrorVisible = true;
           this.errorMessage = this.eventErrorMessage.NO_EVENTS_FOUND;
           this.all_data = [];
+          this.newFilterData = false;
+          this.oldFilterData = false;
           this.showMore = false;
           this.isExplore = false;
+          this.isErrorVisible = true;
+
         }
       }, error => {
         this.all_data = [];
@@ -495,25 +504,27 @@ export class EventListingComponent implements OnInit {
         if (data && data['venues'].length>0) {
         this.get_subscribe_listing();
         }else{
-          this.isErrorVisible = true;
           this.errorMessage = this.eventErrorMessage.NO_SUBSCRIPTION_FOUND;
           this.all_data = [];
           this.showMore = false;
           this.isExplore = false;
+          this.isErrorVisible = true;
         }
       }, error => {
         if (error.status == 400 || error.status == 404) {
-          this.isErrorVisible = true;
           this.errorMessage = this.eventErrorMessage.NO_SUBSCRIPTION_FOUND;
           this.all_data = [];
           this.showMore = false;
           this.isExplore = false;
+          this.isErrorVisible = true;
+
         } else {
-          this.isErrorVisible = true;
           this.errorMessage = this.eventErrorMessage.NO_SUBSCRIPTION_FOUND;
           this.all_data = [];
           this.showMore = false;
           this.isExplore = false;
+          this.isErrorVisible = true;
+
         }
       });
     }
@@ -523,26 +534,34 @@ export class EventListingComponent implements OnInit {
       this.showMore = false;
       this.isExplore = true;
           this.eventListingService.subscribe_events().subscribe(data => { 
-          this.all_data = data['data'];
-          this.showMore = false;
-          this.isExplorelen = this.all_data.length;
-          if (this.isExplorelen > this.end) {
-            this.showMore = true;
-          }
-          this.isExplore = false;
+            this.isErrorVisible = false;
+            this.errorMessage = '';
+            this.all_data = [];
+            this.all_data = data['data'];
+            this.showMore = data['events'].length > this.end;
+            if (this.oldFilterData) {
+              this.newFilterData = true;
+              this.oldFilterData = false;
+            } else {
+              this.newFilterData = false;
+              this.oldFilterData = true;
+            }
+            this.isExplorelen = this.all_data.length;
+            this.isExplore = false;
         }, error => {
           if (error.status == 400 || error.status == 404) {
-            this.isErrorVisible = true;
             this.errorMessage = this.eventErrorMessage.NO_SUBSCRIPTION_FOUND;
             this.all_data = [];
             this.showMore = false;
             this.isExplore = false;
+            this.isErrorVisible = true;
+
           } else {
-            this.isErrorVisible = true;
             this.errorMessage = this.eventErrorMessage.NO_SUBSCRIPTION_FOUND;
             this.all_data = [];
             this.showMore = false;
             this.isExplore = false;
+            this.isErrorVisible = true;
           }
     })
   }

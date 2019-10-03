@@ -64,7 +64,7 @@ export class CampListingComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         ga('set', 'page', event.urlAfterRedirects);
-        this.currentUrl= event.urlAfterRedirects;
+        this.currentUrl = event.urlAfterRedirects;
         ga('send', 'pageview');
       }
     });
@@ -73,6 +73,9 @@ export class CampListingComponent implements OnInit {
     this.keyword = '';
     this.category_label = 'Category';
     this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
   }
 
   ngOnInit() {
@@ -102,9 +105,7 @@ export class CampListingComponent implements OnInit {
     this.metaService.addTag({ property: 'og:image', content: 'https://kinparenting.com/assets/kin_logo.jpeg' });
     this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/camps-near-me' });
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
-    this.isAuthenticated$.subscribe(data => {
-      this.isLogedin = data;
-    })
+
   }
   loadMore() {
 
@@ -129,24 +130,36 @@ export class CampListingComponent implements OnInit {
     this.isExplore = true;
     this.showMore = false;
 
-
-    // const headers = new HttpHeaders();
-    // this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-    //   data = data.replace(/\n/g, '');
-    //   data = JSON.parse(data);
-     this.campsListingService.get_camp_details(url).subscribe(data => {
-      if (data['data'] != undefined && data['data'].length > 0) {
-        this.camp_explore = data['data'];
-      } else {
-        alert('No data found');
-        this.camp_explore = [];
-      }
-      this.isExplore = false;
-      if (this.camp_explore.length > this.end) {
-        this.showMore = true;
-      }
-    // });
-  })
+    if (this.isLogedin == true) {
+      this.campsListingService.get_camp_details(url).subscribe(data => {
+        if (data['data'] != undefined && data['data'].length > 0) {
+          this.camp_explore = data['data'];
+        } else {
+          alert('No data found');
+          this.camp_explore = [];
+        }
+        this.isExplore = false;
+        if (this.camp_explore.length > this.end) {
+          this.showMore = true;
+        }
+      })
+    } else {
+      const headers = new HttpHeaders();
+      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+        data = data.replace(/\n/g, '');
+        data = JSON.parse(data);
+        if (data['data'] != undefined && data['data'].length > 0) {
+          this.camp_explore = data['data'];
+        } else {
+          alert('No data found');
+          this.camp_explore = [];
+        }
+        this.isExplore = false;
+        if (this.camp_explore.length > this.end) {
+          this.showMore = true;
+        }
+      })
+    }
   }
 
   add_analytics_data() {
@@ -222,65 +235,97 @@ export class CampListingComponent implements OnInit {
       this.camp_explore = [];
       this.showMore = false;
       this.isExplore = true;
-      this.campsListingService.get_camp_details(url).subscribe(data => {
+      if (this.isLogedin == true) {
+        this.campsListingService.get_camp_details(url).subscribe(data => {
 
-        this.camp_explore = data['data'];
-        if (data['data'] != undefined && data['data'].length > 0) {
-          this.isErrorVisible = false;
-          this.errorMessage = '';
-          if (this.oldCat_1) {
-            this.oldCat_2 = true;
-            this.oldCat_1 = false;
+          this.camp_explore = data['data'];
+          if (data['data'] != undefined && data['data'].length > 0) {
+            this.isErrorVisible = false;
+            this.errorMessage = '';
+            if (this.oldCat_1) {
+              this.oldCat_2 = true;
+              this.oldCat_1 = false;
+            } else {
+              this.oldCat_2 = false;
+              this.oldCat_1 = true;
+            }
+  
           } else {
-            this.oldCat_2 = false;
-            this.oldCat_1 = true;
+            this.isErrorVisible = true;
+            this.errorMessage = this.campErrorMessage.NO_CAMPS_FOUND;
+            this.camp_explore = [];
           }
-
-        } else {
+          this.isExplore = false;
+          if (this.camp_explore.length > this.end) {
+            this.showMore = true;
+          }
+        }, error => {
           this.isErrorVisible = true;
-          this.errorMessage = this.campErrorMessage.NO_CAMPS_FOUND;
-          this.camp_explore = [];
-        }
-        this.isExplore = false;
-        if (this.camp_explore.length > this.end) {
-          this.showMore = true;
-        }
-      }, error => {
-        this.isErrorVisible = true;
-        this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
-      });
+          this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
+        });      
+      } else {
+        const headers = new HttpHeaders();
+        this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+          data = data.replace(/\n/g, '');
+          data = JSON.parse(data);
+          this.camp_explore = data['data'];
+          if (data['data'] != undefined && data['data'].length > 0) {
+            this.isErrorVisible = false;
+            this.errorMessage = '';
+            if (this.oldCat_1) {
+              this.oldCat_2 = true;
+              this.oldCat_1 = false;
+            } else {
+              this.oldCat_2 = false;
+              this.oldCat_1 = true;
+            }
+  
+          } else {
+            this.isErrorVisible = true;
+            this.errorMessage = this.campErrorMessage.NO_CAMPS_FOUND;
+            this.camp_explore = [];
+          }
+          this.isExplore = false;
+          if (this.camp_explore.length > this.end) {
+            this.showMore = true;
+          }
+        }, error => {
+          this.isErrorVisible = true;
+          this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
+        });        }
+
     }
   }
 
   //this function will open a popup when user is not loggen in
- checkLogin(linkName) {
- 
-  if (this.isLogedin) {
-    this.loadMore();
-  } else {
-    this.detectClick(linkName);
+  checkLogin(linkName) {
+
+    if (this.isLogedin) {
+      this.loadMore();
+    } else {
+      this.detectClick(linkName);
+    }
   }
-}
-detectClick(moreCamps) {
-  let counter = this.count++
-  if(counter <= 1){
-    this.loadMore();
-  }else
-    this.openPopup(moreCamps);
-}
-openPopup(moreCamps) {
-  this.moreCamps = moreCamps;
-  this.dialogRef = this.dialog.open(this.openModal, {
-    width: "626px"
-  });
-}
-signin() {
-  sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
-  this.authService.login();
-}
-closeDialog() {
-  this.dialogRef.close();
-}
+  detectClick(moreCamps) {
+    let counter = this.count++
+    if (counter <= 1) {
+      this.loadMore();
+    } else
+      this.openPopup(moreCamps);
+  }
+  openPopup(moreCamps) {
+    this.moreCamps = moreCamps;
+    this.dialogRef = this.dialog.open(this.openModal, {
+      width: "626px"
+    });
+  }
+  signin() {
+    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
+    this.authService.login();
+  }
+  closeDialog() {
+    this.dialogRef.close();
+  }
 
 
 }

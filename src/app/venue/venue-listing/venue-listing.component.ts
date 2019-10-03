@@ -14,6 +14,7 @@ import { MatDialogRef, MatDialog, } from "@angular/material";
 import { Observable } from 'rxjs';
 import { AuthService } from '@shared/service/auth.service';
 import { NgForm } from '@angular/forms';
+import { DATEPICKER_CONTROL_VALUE_ACCESSOR } from 'ngx-bootstrap/datepicker/datepicker.component';
 
 declare let ga: any;
 @Component({
@@ -84,6 +85,9 @@ export class VenueListingComponent implements OnInit {
     });
     this.locations = this.venueConstants.LOCATIONS;
     this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
 
   }
 
@@ -109,9 +113,7 @@ export class VenueListingComponent implements OnInit {
     this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/family-friendly-places-near-me' });
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
 
-    this.isAuthenticated$.subscribe(data => {
-      this.isLogedin = data;
-    })
+
   
   }
   onSubmit(f: NgForm) {
@@ -130,18 +132,30 @@ export class VenueListingComponent implements OnInit {
         url = API_URL + 'venues/?categories=' + this.category;
       }
       this.isExplore = true;
-      const headers = new HttpHeaders();
-      this.http.get(url, { headers: headers, responseType: 'text' }).
-        subscribe(data => {
-          data = data.replace(/\n/g, '');
-          data = JSON.parse(data);
+      if(this.isLogedin == true){
+        this.venueListingService.get_venue_details(url).subscribe(data => {
           this.venues_list = data['venues'];
-          if (this.venues_list.length > this.end) {
-            this.showMore = true;
-          }
-          // this.add_analytics_data();
-          this.isExplore = false;
-        });
+            if (this.venues_list.length > this.end) {
+              this.showMore = true;
+            }
+            // this.add_analytics_data();
+            this.isExplore = false;
+          });
+      }else{
+        const headers = new HttpHeaders();
+        this.http.get(url, { headers: headers, responseType: 'text' }).
+          subscribe(data => {
+            data = data.replace(/\n/g, '');
+            data = JSON.parse(data);
+            this.venues_list = data['venues'];
+            if (this.venues_list.length > this.end) {
+              this.showMore = true;
+            }
+            // this.add_analytics_data();
+            this.isExplore = false;
+          });
+      }
+
     }
   }
   loadMore() {
@@ -220,38 +234,72 @@ export class VenueListingComponent implements OnInit {
     } else {
       this.isFilterErrorVisible = false;
       this.filterErrorMessage = '';
-      const input = {
-        'categories': this.selected_cat === undefined ? '' : this.selected_cat,
-        'q': this.keyword === undefined ? '' : this.keyword.trim(),
-        'location': this.selected_loc === undefined ? '' : this.selected_loc
-      };
-      
+      let url = '';
+      if (this.keyword !== undefined) {
+        url = API_URL + 'hiking-trails/?limit=43&q=' + this.keyword.trim();
+      } else if (this.selected_loc != undefined) {
+        url = API_URL + 'hiking-trails/?limit=43&city=' + this.selected_loc.trim() + ',CA';
+      } else {
+        url = API_URL + 'hiking-trails/?limit=43';
+      }
       this.showMore = false;
       this.isExplore = true;
-      this.venueListingService.get_venue_details(input).subscribe(data => {
-        if (data['venues'] !== undefined && data['venues'].length > 0) {
-          this.isErrorVisible = false;
-          this.errorMessage = '';
-          if (data['venues'].length > 21) {
-            this.showMore = true;
-          }
-          if (this.oldFilterData) {
-            this.newFilterData = true;
-            this.oldFilterData = false;
+      if(this.isLogedin == true){
+        this.venueListingService.get_venue_details(url).subscribe(data => {
+          if (data['venues'] !== undefined && data['venues'].length > 0) {
+            this.isErrorVisible = false;
+            this.errorMessage = '';
+            if (data['venues'].length > 21) {
+              this.showMore = true;
+            }
+            if (this.oldFilterData) {
+              this.newFilterData = true;
+              this.oldFilterData = false;
+            } else {
+              this.newFilterData = false;
+              this.oldFilterData = true;
+            }
+            this.venues_list = data['venues'];
           } else {
-            this.newFilterData = false;
-            this.oldFilterData = true;
+            this.isErrorVisible = true;
+            this.errorMessage = this.venueErrorMessage.NO_VENUES_FOUND;
+            this.venues_list = [];
+            this.showMore = false;
           }
-          this.venues_list = data['venues'];
-        } else {
-          this.isErrorVisible = true;
-          this.errorMessage = this.venueErrorMessage.NO_VENUES_FOUND;
-          this.venues_list = [];
-          this.showMore = false;
-        }
-        this.isExplore = false;
+          this.isExplore = false;
+  
+        });
+      }else{
+        const headers = new HttpHeaders();
+        this.http.get(url, { headers: headers, responseType: 'text' }).
+          subscribe(data => {
+            data = data.replace(/\n/g, '');
+            data = JSON.parse(data);
+            if (data['venues'] !== undefined && data['venues'].length > 0) {
+            this.isErrorVisible = false;
+            this.errorMessage = '';
+            if (data['venues'].length > 21) {
+              this.showMore = true;
+            }
+            if (this.oldFilterData) {
+              this.newFilterData = true;
+              this.oldFilterData = false;
+            } else {
+              this.newFilterData = false;
+              this.oldFilterData = true;
+            }
+            this.venues_list = data['venues'];
+          } else {
+            this.isErrorVisible = true;
+            this.errorMessage = this.venueErrorMessage.NO_VENUES_FOUND;
+            this.venues_list = [];
+            this.showMore = false;
+          }
+          this.isExplore = false;
+  
+        });
+      }
 
-      });
     }
   }
 

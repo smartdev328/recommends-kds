@@ -181,6 +181,57 @@
 .tiles {
   width: 32%;
 }
+
+.newsletter-banner{
+    height: 440px; 
+    width:100%; 
+    background:#e2e2e2;
+    background-image: url(https://loremflickr.com/1920/1080/usa/all);
+    background-position: bottom center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.newsletter-banner .banner-content{
+    position: absolute;
+    left:217px;
+    top:178px;
+}
+.newsletter-banner .banner-content span{
+
+    color: #fff;
+    text-transform: capitalize;
+    font-family: Montserrat;
+    font-size: 42px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+}
+.newsletter-banner ul{float: right;}
+.newsletter-banner ul li{
+    float: left;
+    padding: 0 3px;
+    color:#fff;
+    list-style: none;
+}
+.newsletter-banner ul li:first-child{font-size: 16px;padding-top: 5px;}
+.newsletter-banner ul li:last-child{font-size: 24px;}
+.newsletter-banner ul li img{width: 36px; width: 36px;}
+.newsletter{margin: 30px auto 45px auto;}
+.newsletter h3 {
+  
+    font-family: Montserrat;
+    font-size: 42px ;
+    font-weight: normal ;
+    font-style: normal ;
+    font-stretch: normal ;
+    line-height: normal ;
+    letter-spacing: normal ;
+    color: #000;
+    margin-bottom: 25px;
+  }
 /* Phones */ 
 @media only screen and (max-width : 767px) {
     .tiles {
@@ -223,4 +274,24 @@
       /* margin-bottom: 12px; */
       margin: 0;
     }
+  }
+  @media only screen and (max-width : 640px) {
+    .newsletter-banner{
+        height: 193px;
+    }
+    .newsletter-banner .banner-content{
+        top:58px;
+        left:15px;
+        
+    }
+    .newsletter-banner .banner-content span{
+        font-size: 18px;
+    }
+  
+    .newsletter-banner ul li:first-child{font-size: 8px;padding-top: 5px;}
+    .newsletter-banner ul li:last-child{font-size: 10px;}
+    .newsletter-banner ul li img{width: 16px; width: 16px;}
+    .newsletter h3{font-size: 24px !important;}
+    .event-list-cards .img-wrp{height: auto;}
+    .main-section{padding: 0 !important;}
   }

@@ -8,11 +8,7 @@ export class VenueListingService {
 
   constructor(private http: HttpClient) { }
 
-  get_venue_details(api_input: any) {
-    const url = API_URL + 'venues/?categories=' + 
-    encodeURIComponent(api_input.categories) +
-      "&q=" + api_input.q +
-      "&city=" + encodeURIComponent(api_input.location);
+  get_venue_details(url) {
     return this.http.get(url);
   }
 
