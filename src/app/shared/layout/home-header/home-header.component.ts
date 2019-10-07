@@ -18,6 +18,8 @@ import { SwalService } from '@shared/service/swal.service';
 })
 
 export class HomeHeaderComponent implements OnInit {
+  dd: string;
+  title: string;
   @ViewChild('deleteuser')deleteuser: TemplateRef<any>
 
   dialogRef:any;
@@ -27,7 +29,7 @@ export class HomeHeaderComponent implements OnInit {
   ClickName:any;
   //isAuthenticated: boolean;
   public isAuthenticated$: Observable<boolean>;
-  isLogedin = false;
+  isLogedin;
  
   constructor(
     public auth: AuthService,
@@ -38,20 +40,29 @@ export class HomeHeaderComponent implements OnInit {
 
 
 
-  ) { }
+  ) { 
+    this.isAuthenticated$= this.auth.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
+  }
 
 
   ngOnInit() {
+    this.auth.isLogedin.subscribe(data => {
+      this.isLogedin = data;
+    });
+    this.isAuthenticated$= this.auth.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
     //this.isAuthenticated = await this.auth.getAuth0Client().;
     /*this.authService.profile.subscribe(profile => {
       this.profile = profile;
     });*/
     //this.profile = this.auth.getUser$();
 
-    this.isAuthenticated$= this.auth.isAuthenticated$;
-    this.isAuthenticated$.subscribe(data => {
-      this.isLogedin = data;
-    })
+
   }
 
 closeDialog(){

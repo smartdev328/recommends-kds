@@ -62,6 +62,6 @@ export class UserService {
 
     updateKids(inputObject: any) {
         const httpOptions = this.gethttpOptions();
-        return this.http.patch(API_URL + 'kids/', inputObject, httpOptions);
+        return this.http.put(API_URL + 'kids/', inputObject, httpOptions);
     }
 }

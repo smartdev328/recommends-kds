@@ -10,10 +10,14 @@ import { UserService } from '@shared/service/user.service';
 import { Account } from '@shared/model/account';
 import { User } from '@shared/model/user';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public isLogedin = new BehaviorSubject('Title');
+
   // Create an observable of Auth0 instance of client
   auth0Client$ = (from(
     createAuth0Client({
@@ -178,6 +182,10 @@ export class AuthService {
     return this.auth0Client$.pipe(
       concatMap((client: Auth0Client) => from(client.getTokenSilently(options)))
     );
+  }
+
+  setAuth(isLogedin) {
+    this.isLogedin.next(isLogedin);
   }
 
 }

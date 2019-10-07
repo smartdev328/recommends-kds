@@ -35,7 +35,7 @@ export class GetStartedComponent implements OnInit {
       firstName: new FormControl(),
       lastName: new FormControl(),
       zipcode: new FormControl(),
-      email:new FormControl(),
+      // email:new FormControl(),
       newsletter: new FormControl(false),
       kidControls: this.formBuilder.array([])
     });
@@ -49,8 +49,8 @@ export class GetStartedComponent implements OnInit {
         this.formGroup.get('lastName').setValue(user.parent.last_name);
         this.formGroup.get('zipcode').setValue(user.parent.zip_code);
         // this.formGroup.get('newsletter').setValue(isNewsLetter);
-        this.formGroup.get('email').setValue(user.parent.email);
-        this.parentEmail=user.parent.email;
+        // this.formGroup.get('email').setValue(user.parent.email);
+        // this.parentEmail=user.parent.email;
       }    
 
     });
@@ -81,7 +81,7 @@ export class GetStartedComponent implements OnInit {
       first_name: this.formGroup.value.firstName,
       last_name: this.formGroup.value.lastName,
       zip_code: this.formGroup.value.zipcode,
-      email: this.parentEmail,
+      // email: this.parentEmail,
       newsletter: this.formGroup.value.newsletter,
     }   
     const kidLength=this.kidControls.length;

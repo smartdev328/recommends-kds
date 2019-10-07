@@ -5,6 +5,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,18 +13,32 @@ import { Observable } from 'rxjs';
 })
 
 export class HomeComponent implements OnInit {
+  isLogedin: boolean = false;
   registerForm: FormGroup;
   childForm: FormGroup;
   submitted = false;
   public isSuccessVisible: Boolean;
+  public isAuthenticated$: Observable<boolean>;
+
 
   constructor(
     private titleService: Title,
     private metaService: Meta,
     private auth: AuthService
-  ) { }
+  ) {
+    this.isAuthenticated$= this.auth.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
+   }
 
   ngOnInit() {
+    this.isAuthenticated$= this.auth.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+    })
+    this.auth.setAuth(this.isLogedin);
+
     this.titleService.setTitle('Kin - discover and plan family friendly activities around SF bay area');
     this.metaService.addTag({
       name: 'description', content: 'Kin is a smart assistant for parents to discover ' +

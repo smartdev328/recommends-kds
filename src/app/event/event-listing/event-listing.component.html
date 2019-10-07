@@ -11,7 +11,7 @@
         <div class="row filter-box-content" *ngIf="(isAuthenticated$ | async) == false">
           <div class="col-lg-3 col-md-4 col-sm-6 col-xs-1">
             <div class="input-group">
-              <input type="text" class="form-control keyword-text search-style" placeholder="Search"
+              <input type="text" class="form-control keyword-text search-style" (keyup.enter)="filter_event_data()" placeholder="Search"
                 [(ngModel)]="keyword">
             </div>
           </div>
@@ -186,7 +186,7 @@
               <select (change)="sortBy($event.target.value)" class="form-control">
                 <option selected disabled hidden>Sort By</option>
                 <option [value]="kid.id" *ngFor="let kid of user?.parent?.kids">For {{kid.nick_name}}</option>
-                <option value="subscribed">Subscribed</option>
+                <option value="subscribed">following</option>
                 <option value="nearby">Nearby</option>
                 <option value="trending">Trending</option>
                 <option value="all">All</option>
@@ -196,7 +196,7 @@
             <div class="mat-list-container">
               <mat-chip (click)="sortBy(kid.id,kid)" *ngFor="let kid of user?.parent?.kids">For {{kid.nick_name}}
               </mat-chip>
-              <mat-chip (click)="sortBy('subscribed','')">Subscribed</mat-chip>
+              <mat-chip (click)="sortBy('subscribed','')">following</mat-chip>
               <mat-chip (click)="sortBy('nearby','')">Nearby</mat-chip>
               <mat-chip (click)="sortBy('trending','')">Trending</mat-chip>
               <mat-chip (click)="sortBy('all','')">All</mat-chip>

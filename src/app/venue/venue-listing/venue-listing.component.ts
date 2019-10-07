@@ -236,11 +236,11 @@ export class VenueListingComponent implements OnInit {
       this.filterErrorMessage = '';
       let url = '';
       if (this.keyword !== undefined) {
-        url = API_URL + 'hiking-trails/?limit=43&q=' + this.keyword.trim();
+        url = API_URL + 'venues/?limit=43&q=' + this.keyword.trim();
       } else if (this.selected_loc != undefined) {
-        url = API_URL + 'hiking-trails/?limit=43&city=' + this.selected_loc.trim() + ',CA';
+        url = API_URL + 'venues/?limit=43&city=' + this.selected_loc.trim() + ',CA';
       } else {
-        url = API_URL + 'hiking-trails/?limit=43';
+        url = API_URL + 'venues/?limit=43';
       }
       this.showMore = false;
       this.isExplore = true;

@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   kidControls: FormArray;
   user: User;
   eventConstants = new EventConstants();
-  parentEmail: string;
+  // parentEmail: string;
   kids: Kid[];
   constructor(
     private userService: UserService,
@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
       kid_id: new FormControl(),
       firstName: new FormControl(),
       lastName: new FormControl(),
-      email: new FormControl(),
+      // email: new FormControl(),
       zipcode: new FormControl(),
       newsletter: new FormControl(),
       kidControls: this.formBuilder.array([])
@@ -58,10 +58,9 @@ export class ProfileComponent implements OnInit {
         this.formGroup.get('lastName').setValue(user.parent.last_name);
         this.formGroup.get('zipcode').setValue(user.parent.zip_code);
         this.formGroup.get('newsletter').setValue(isNewsLetter);
-        this.formGroup.get('email').setValue(user.parent.email);
-        this.parentEmail=user.parent.email;
+        // this.formGroup.get('email').setValue(user.parent.email);
+        // this.parentEmail=user.parent.email;
         this.initKidControls((user.parent && user.parent.kids) ? user.parent.kids : [new Kid()]);
-        console.log(user.parent.kids);
       }
     });
   }
@@ -91,24 +90,17 @@ export class ProfileComponent implements OnInit {
       first_name: this.formGroup.value.firstName,
       last_name: this.formGroup.value.lastName,
       zip_code: this.formGroup.value.zipcode,
-      email: this.parentEmail,
+      // email: this.parentEmail,
       newsletter: this.formGroup.value.newsletter,
     }
-
     const kidLength=this.formGroup.value.kidControls.length;
     const kidParam = this.formGroup.value.kidControls;
-    console.log("kidParam",kidParam)
-
-  
     this.userService.updateUser(param).subscribe(
       responseParent => {
         for(let i=0;i<kidLength;i++){
-          console.log("IIDD",kidParam[i].kid_id)
           if(kidParam[i].kid_id === null){
           this.userService.createKid(kidParam[i]).subscribe(
               responsecreateKid => {
-                console.log("create Kid", responsecreateKid,kidLength,i);
-
                 if(i === kidLength-1){
                   this.router.navigate(['/home']);
                 }
@@ -119,11 +111,7 @@ export class ProfileComponent implements OnInit {
           else{
             this.userService.updateKids(kidParam[i]).subscribe(
               responseUpdateKid => {
-                console.log("update Kid", responseUpdateKid,kidLength ,i )
-
                 if(i === kidLength-1){
-                  console.log("update Navigate")
-
                   this.router.navigate(['/home']);
                 }
               },errUpdateKid => {
