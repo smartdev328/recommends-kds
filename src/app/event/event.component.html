@@ -59,8 +59,14 @@
     <div class="col-md-5"> 
       <div class="left-section">
         <h5 *ngIf="event.start_date">Date & Time</h5>
-        <p *ngIf="event.start_date">{{event.start_date | date:'longDate'}}</p>
+        <div class= "date">
+          <p *ngIf="event.start_date">{{event.start_date | date:'mediumDate'}}</p>
+          <p class = "dateSpacing"*ngIf="event.end_date" >-</p>
+          <p *ngIf="event.end_date">{{event.end_date | date:'mediumDate'}}</p>
+        </div>
         <p *ngIf="event.start_date">{{format_time(event.start_time)}} - {{format_time(event.end_time)}}</p>
+
+
         <br>
         <h5>Location</h5>
         <a style="color: #0000FF; cursor: pointer;"[routerLink]="['/venues', event.venue_id]" target="_blank">   

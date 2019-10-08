@@ -48,7 +48,7 @@ export class HikingTrailsListingComponent implements OnInit {
   public filterErrorMessage: String;
   public search_query: String;
   public username: String;
-  currentUrl:string;
+  currentUrl: string;
   public hikingConstants = new HikingTrailConstants();
   public hikingErrorMessage = new HikingTrailErrorMessage();
   public commonErrorMessage = new ErrorMessage();
@@ -70,7 +70,7 @@ export class HikingTrailsListingComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         ga('set', 'page', event.urlAfterRedirects);
-        this.currentUrl= event.urlAfterRedirects;
+        this.currentUrl = event.urlAfterRedirects;
         ga('send', 'pageview');
       }
     });
@@ -149,7 +149,7 @@ export class HikingTrailsListingComponent implements OnInit {
           this.showMore = true;
         }
       });
-    }else{
+    } else {
       this.hikeService.get_hiking_trail_details(url).subscribe(data => {
         if (data['trails'] != undefined && data['trails'].length > 0) {
           this.hiking_explore = data['trails'];
@@ -211,7 +211,7 @@ export class HikingTrailsListingComponent implements OnInit {
 
 
   filter_hiking_data() {
-    
+
     if ((this.keyword === undefined || this.keyword === '') && this.selected_loc === '') {
       this.isFilterErrorVisible = true;
       this.isErrorVisible = false;
@@ -231,98 +231,98 @@ export class HikingTrailsListingComponent implements OnInit {
       this.hiking_explore = [];
       this.showMore = false;
       this.end = 21;
-if(this.isLogedin == true){
-  this.hikeService.get_hiking_trail_details(url).subscribe(data => {
-      this.hiking_explore = data['trails'];
-      if (data['trails'] !== undefined && data['trails'].length > 0) {
-        this.isErrorVisible = false;
-        this.errorMessage = '';
-        this.showMore = data['trails'].length > this.end;
-        if (this.oldFilterData) {
-          this.newFilterData = true;
-          this.oldFilterData = false;
-        } else {
-          this.newFilterData = false;
-          this.oldFilterData = true;
-        }
+      if (this.isLogedin == true) {
+        this.hikeService.get_hiking_trail_details(url).subscribe(data => {
+          this.hiking_explore = data['trails'];
+          if (data['trails'] !== undefined && data['trails'].length > 0) {
+            this.isErrorVisible = false;
+            this.errorMessage = '';
+            this.showMore = data['trails'].length > this.end;
+            if (this.oldFilterData) {
+              this.newFilterData = true;
+              this.oldFilterData = false;
+            } else {
+              this.newFilterData = false;
+              this.oldFilterData = true;
+            }
+          } else {
+            this.isErrorVisible = true;
+            this.errorMessage = this.hikingErrorMessage.NO_HIKING_TRAILS_FOUND;
+            this.showMore = false;
+            this.hiking_explore = [];
+          }
+          this.isExplore = false;
+          if (this.hiking_explore.length > this.end) {
+            this.showMore = true;
+          }
+        }, error => {
+          this.showMore = false;
+          this.isErrorVisible = true;
+          this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
+        });
       } else {
-        this.isErrorVisible = true;
-        this.errorMessage = this.hikingErrorMessage.NO_HIKING_TRAILS_FOUND;
-        this.showMore = false;
-        this.hiking_explore = [];
-      }
-      this.isExplore = false;
-      if (this.hiking_explore.length > this.end) {
-        this.showMore = true;
-      }
-    }, error => {
-      this.showMore = false;
-      this.isErrorVisible = true;
-      this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
-    });
-}else{
-    const headers = new HttpHeaders();
-    this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-      data = data.replace(/\n/g, '');
-      data = JSON.parse(data);
-      this.hiking_explore = data['trails'];
-      if (data['trails'] !== undefined && data['trails'].length > 0) {
-        this.isErrorVisible = false;
-        this.errorMessage = '';
-        this.showMore = data['trails'].length > this.end;
-        if (this.oldFilterData) {
-          this.newFilterData = true;
-          this.oldFilterData = false;
-        } else {
-          this.newFilterData = false;
-          this.oldFilterData = true;
-        }
-      } else {
-        this.isErrorVisible = true;
-        this.errorMessage = this.hikingErrorMessage.NO_HIKING_TRAILS_FOUND;
-        this.showMore = false;
-        this.hiking_explore = [];
-      }
-      this.isExplore = false;
-      if (this.hiking_explore.length > this.end) {
-        this.showMore = true;
-      }
-    }, error => {
-      this.showMore = false;
-      this.isErrorVisible = true;
-      this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
-    });
+        const headers = new HttpHeaders();
+        this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+          data = data.replace(/\n/g, '');
+          data = JSON.parse(data);
+          this.hiking_explore = data['trails'];
+          if (data['trails'] !== undefined && data['trails'].length > 0) {
+            this.isErrorVisible = false;
+            this.errorMessage = '';
+            this.showMore = data['trails'].length > this.end;
+            if (this.oldFilterData) {
+              this.newFilterData = true;
+              this.oldFilterData = false;
+            } else {
+              this.newFilterData = false;
+              this.oldFilterData = true;
+            }
+          } else {
+            this.isErrorVisible = true;
+            this.errorMessage = this.hikingErrorMessage.NO_HIKING_TRAILS_FOUND;
+            this.showMore = false;
+            this.hiking_explore = [];
+          }
+          this.isExplore = false;
+          if (this.hiking_explore.length > this.end) {
+            this.showMore = true;
+          }
+        }, error => {
+          this.showMore = false;
+          this.isErrorVisible = true;
+          this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
+        });
 
-}
+      }
     }
   }
- //this function will open a popup when user is not loggen in
- checkLogin(linkName) {
-  if (this.isLogedin) {
-    this.loadMore();
-  } else {
-    this.detectClick(linkName);
+  //this function will open a popup when user is not loggen in
+  checkLogin(linkName) {
+    if (this.isLogedin) {
+      this.loadMore();
+    } else {
+      this.detectClick(linkName);
+    }
   }
-}
-detectClick(moreTralis) {
-  let counter = this.count++
-  if(counter <= 1){
-    this.loadMore();
-  }else
-    this.openPopup(moreTralis);
-}
-openPopup(moreTralis) {
-  this.moreTralis = moreTralis;
-  this.dialogRef = this.dialog.open(this.openModal, {
-    width: "626px"
-  });
-}
-signin() {
-  sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
-  this.authService.login();
-}
-closeDialog() {
-  this.dialogRef.close();
-}
+  detectClick(moreTralis) {
+    let counter = this.count++
+    if (counter <= 1) {
+      this.loadMore();
+    } else
+      this.openPopup(moreTralis);
+  }
+  openPopup(moreTralis) {
+    this.moreTralis = moreTralis;
+    this.dialogRef = this.dialog.open(this.openModal, {
+      width: "626px"
+    });
+  }
+  signin() {
+    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
+    this.authService.login();
+  }
+  closeDialog() {
+    this.dialogRef.close();
+  }
 
 }

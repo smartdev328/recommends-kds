@@ -20,6 +20,9 @@
               <span *ngIf="event.dates" class="text">{{event.dates}} ,</span>
               <span class="lower-text">{{event.start_time }} - {{event.end_time}}</span>
             </p>
+            <p class="event-date">
+              <span *ngIf="event.age" class="lower-text">{{event.age }}</span>
+            </p>
             <p class="event-venue">
               {{event.venue}}
             </p>
