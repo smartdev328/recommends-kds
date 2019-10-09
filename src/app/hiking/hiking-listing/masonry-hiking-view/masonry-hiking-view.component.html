@@ -17,6 +17,19 @@
       <p class="event-venue">
         {{trail.city}}, {{trail.state}}
       </p>
+      <p class="star-btn">
+        <button title="click to save"  (click)="unsubscribe_venue(data.id,i)" >
+          <img class="dfkg" src="../../../../assets/icons/save_orange.png" />
+        </button>
+      </p>
+      <!-- <p  class="star-btn">
+        <button >
+          <img class="dfkg" src="../../../../assets/icons/calendar_grey.png" />
+        </button>
+        <button  title="follow" (click)="add_subscription_venue(data.id,i)" >
+          <img class="dfkg" src="../../../../assets/icons/save_blue.png" />
+        </button>
+      </p> -->
         <br>
     </mat-card-content>
   </mat-card>

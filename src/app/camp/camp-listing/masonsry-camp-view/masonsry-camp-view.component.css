@@ -84,6 +84,11 @@
 .tiles {
     width: 32%;
 }
+.star-btn{text-align: right;}
+.star-btn button {background: none; border:0; height: 24px; width: 24px; padding: 0; cursor:pointer;}
+.star-btn button:first-child{margin-right: 10px;} 
+.star-btn button img{width: 100%;}
+
 /* Desktop */
 @media only screen and (min-width : 1280px) {
     

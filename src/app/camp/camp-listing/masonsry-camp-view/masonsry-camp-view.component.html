@@ -20,6 +20,16 @@
       <p class="event-venue">
         {{camp.misc['timings']}}
       </p>
+      <p class="star-btn">
+        <button title="click to save"  (click)="unsubscribe_venue(data.id,i)" >
+          <img class="dfkg" src="../../../../assets/icons/save_orange.png" />
+        </button>
+      </p>
+      <!-- <p  class="star-btn">
+        <button  title="follow" (click)="add_subscription_venue(data.id,i)" >
+          <img class="dfkg" src="../../../../assets/icons/save_blue.png" />
+        </button>
+      </p> -->
     </mat-card-content>
   </mat-card>
 </a>

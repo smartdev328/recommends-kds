@@ -26,6 +26,23 @@
             <p class="event-venue">
               {{event.venue}}
             </p>
+
+            <p class="star-btn">
+              <button title="Add to calendar">
+                <img class="dfkg" src="../../../../assets/icons/calendar_blue.png" />
+              </button>
+              <button title="click to save"  (click)="unsubscribe_venue(data.id,i)" >
+                <img class="dfkg" src="../../../../assets/icons/save_orange.png" />
+              </button>
+            </p>
+            <!-- <p  class="star-btn">
+              <button >
+                <img class="dfkg" src="../../../../assets/icons/calendar_grey.png" />
+              </button>
+              <button  title="follow" (click)="add_subscription_venue(data.id,i)" >
+                <img class="dfkg" src="../../../../assets/icons/save_blue.png" />
+              </button>
+            </p> -->
           </mat-card-content>
 
           <mat-card-content *ngIf="type == 'eventData'" class="">

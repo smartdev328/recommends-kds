@@ -24,6 +24,7 @@ declare let ga: any;
   styleUrls: ['./event-listing.component.css']
 })
 export class EventListingComponent implements OnInit {
+  kidHeading: string;
   limit: Number = 80;
   event_date_start: any;
   pickDate: boolean = false;
@@ -101,7 +102,7 @@ export class EventListingComponent implements OnInit {
   public isAuthenticated$: Observable<boolean>;
   isLogedin = false;
   public isCalendarView: boolean;
-  public eventName = "Nearby";
+  public eventName = "All";
 
   public eventConstatnts = new EventConstants();
   public eventErrorMessage = new EventErrorMessage();
@@ -206,8 +207,8 @@ export class EventListingComponent implements OnInit {
   }
 
   fromDate(type: string, event: MatDatepickerInputEvent<Date>) {
-    // this.selected_date = this.formatDate(event.value);
-    // this.date_label = this.selected_date;
+    this.selected_date = 1;
+    this.date_label = this.formatDate(event.value);
     this.event_date_start = this.formatDate(event.value);
 
     if (this.event_date_start) {
@@ -245,17 +246,37 @@ export class EventListingComponent implements OnInit {
 
   get_explore_event_details() {
     this.showMore = false;
-    this.isExplore = true;
-    let url = `${API_URL}` + `events/?order_by=date_dist_asc&distance=100&limit=${this.limit}`;
+    // this.isExplore = true;
+    let url = `${API_URL}` + `events/?distance=100&limit=${this.limit}`;
     if (this.isLogedin == true) {
       this.eventListingService.get_event_details(url).subscribe(data => {
         this.all_data = data['events'];
-        this.showMore = false;
-        this.isExplorelen = this.all_data.length;
-        if (this.isExplorelen > this.end) {
-          this.showMore = true;
+        if (data['events'] !== undefined && data['events'].length > 0) {
+          this.isErrorVisible = false;
+          this.errorMessage = '';
+          this.all_data = [];
+          this.all_data = data['events'];
+          this.showMore = this.all_data.length > this.end;
+          if (this.oldFilterData) {
+            this.newFilterData = true;
+            this.oldFilterData = false;
+          } else {
+            this.newFilterData = false;
+            this.oldFilterData = true;
+          }
+          this.isExplorelen = this.all_data.length;
+          this.isExplore = false;
+  
+        } else {
+          this.errorMessage = this.eventErrorMessage.NO_EVENTS_FOUND;
+          this.all_data = [];
+          this.newFilterData = false;
+          this.oldFilterData = false;
+          this.showMore = false;
+          this.isExplore = false;
+          this.isErrorVisible = true;
+  
         }
-        this.isExplore = false;
       }, err => {
         console.log(err);
       });
@@ -265,12 +286,32 @@ export class EventListingComponent implements OnInit {
         data = data.replace(/\n/g, '');
         data = JSON.parse(data);
         this.all_data = data['events'];
-        this.showMore = false;
-        this.isExplorelen = this.all_data.length;
-        if (this.isExplorelen > this.end) {
-          this.showMore = true;
+        if (data['events'] !== undefined && data['events'].length > 0) {
+          this.isErrorVisible = false;
+          this.errorMessage = '';
+          this.all_data = [];
+          this.all_data = data['events'];
+          this.showMore = this.all_data.length > this.end;
+          if (this.oldFilterData) {
+            this.newFilterData = true;
+            this.oldFilterData = false;
+          } else {
+            this.newFilterData = false;
+            this.oldFilterData = true;
+          }
+          this.isExplorelen = this.all_data.length;
+          this.isExplore = false;
+  
+        } else {
+          this.errorMessage = this.eventErrorMessage.NO_EVENTS_FOUND;
+          this.all_data = [];
+          this.newFilterData = false;
+          this.oldFilterData = false;
+          this.showMore = false;
+          this.isExplore = false;
+          this.isErrorVisible = true;
+  
         }
-        this.isExplore = false;
       }, err => {
         console.log(err);
       });
@@ -281,40 +322,43 @@ export class EventListingComponent implements OnInit {
 
   sortBy(type, kid) {
     if (type == 'subscribed') {
-      this.eventName = "subscribed";
-
-      this.distance = null;
-      this.kid_id = null;
-      this.tags = null;
-      this.all = null;
+      this.kidHeading = "other";
+      this.eventName = "Following";
+      this.distance = '';
+      this.kid_id = '';
+      this.tags = '';
+      this.all = '';
       this.subscribeVenue();
-
     }
     else if (type == 'nearby') {
-      this.distance = "20";
-      this.kid_id = null;
-      this.tags = null;
-      this.all = null;
+      this.kidHeading = "other";
+      this.distance = 10;
+      this.kid_id ='';
+      this.tags ='';
+      this.all ='';
       this.filter_event_data();
       this.eventName = "Nearby";
     }
     else if (type == 'trending') {
-      this.distance = null;
-      this.kid_id = null;
+      this.kidHeading = "other";
+      this.distance = '';
+      this.kid_id = '';
       this.tags = 'popular';
-      this.all = null;
+      this.all ='';
       this.filter_event_data();
       this.eventName = "Trending";
     }
     else if (type == 'all') {
-      this.distance = null;
-      this.kid_id = null;
-      this.tags = null;
+      this.kidHeading = "other";
+      this.distance ='';
+      this.kid_id ='';
+      this.tags ='';
       this.all = 'yes';
       this.filter_event_data();
       this.eventName = "All";
     }
     else {
+      this.kidHeading = "kid";
       this.kid_id = type;
       this.distance = null;
       this.tags = null;
@@ -329,9 +373,9 @@ export class EventListingComponent implements OnInit {
     this.selected_loc = '';
     this.selected_date = '';
     this.event_date_start = '';
-    this.loc_label = 'None';
-    this.cat_label = 'None';
-    this.date_label = 'None';
+    this.cat_label = 'Category';
+    this.loc_label = 'Location';
+    this.date_label = 'Date';
     this.keyword = '';
     this.isFilterErrorVisible = false;
     this.isErrorVisible = false;
@@ -340,34 +384,45 @@ export class EventListingComponent implements OnInit {
     this.all = '';
     this.kid_id = '';
     this.tags = '';
+    this.eventName = "All";
+    this.kidHeading = "other";
     this.ngOnInit();
   }
 
 
   filter_event_data() {
-    console.log(this.tags);
-    console.log(this.keyword);
-
-
     this.isFilterErrorVisible = false;
+    this.isErrorVisible = false;
     this.filterErrorMessage = '';
+    this.errorMessage = '';
     const input = {
-      'category': this.select_cat_id === ((undefined || null))? '' : this.select_cat_id,
+      'category': this.select_cat_id === undefined ? '' : this.select_cat_id,
       'q': this.keyword == undefined ? '' : this.keyword,
       'city': this.selected_loc == undefined? '' : this.selected_loc,
       'event_range_str': this.selected_date == undefined? '' : this.selected_date,
-      'distance': this.distance === (undefined || null)? 50 : this.distance,
-      'username': this.username === (undefined || null)? '' : this.username,
-      'tags': this.tags === (undefined || null)? '' : this.tags,
-      'kid_id': this.kid_id === (undefined || null)? '' : this.kid_id,
-      'all': this.all === (undefined || null)? '' : this.all,
+      'distance': this.distance === undefined? 50 : this.distance,
+      'username': this.username === undefined ? '' : this.username,
+      'tags': this.tags === undefined ? '' : this.tags,
+      'kid_id': this.kid_id === undefined ? '' : this.kid_id,
+      'all': this.all === undefined ? '' : this.all,
       'event_date_start': this.event_date_start == undefined? '' : this.event_date_start,
     };
+    if(input.event_range_str == "today" ||input.event_range_str == "tomorrow" ||input.event_range_str == "weekend"){
+     input.distance = 25; 
+    }
+    if(input.distance == null){
+      input.distance ='';
+    }
+    if(input.kid_id == null){
+      input.kid_id ='';
+    }
+    if(input.tags == null){
+      input.tags ='';
+    }
     let url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str) +'&order_by=date_dist_asc'+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
     if (input.kid_id) {
      url = url+ "&personalize=True";
     }
-    console.log(url);
     this.isExplore = true;
     this.end = 21;
     if(this.isLogedin ==true){

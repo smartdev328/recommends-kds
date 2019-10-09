@@ -173,10 +173,12 @@
       <h3 *ngIf="(isAuthenticated$ | async) == false">Upcoming Events</h3>
       <div *ngIf="isAuthenticated$ | async" fxLayout="column">
         <div>
-          <mat-slide-toggle style="float: right" [(ngModel)]="isCalendarView">Calendar view</mat-slide-toggle>
+          <mat-slide-toggle *ngIf="!isLogedin" style="float: right" [(ngModel)]="isCalendarView">Calendar view</mat-slide-toggle>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between center">
-          <h3>{{eventName | titlecase}} Events</h3>
+          <h3 *ngIf="kidHeading !='kid'">{{eventName | titlecase}} Events</h3>
+          <h3 *ngIf="kidHeading =='kid'" > Events for {{eventName | titlecase}}</h3>
+
 
 
           <mat-chip-list class="sort-by-mat">
