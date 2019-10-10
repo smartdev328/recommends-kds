@@ -16,7 +16,7 @@ import { User } from '@shared/model/user';
   providedIn: 'root'
 })
 export class AuthService {
-  public isLogedin = new BehaviorSubject('Title');
+  public isLogedin = new BehaviorSubject(false);
 
   // Create an observable of Auth0 instance of client
   auth0Client$ = (from(
@@ -47,7 +47,7 @@ export class AuthService {
   private userProfileSubject$ = new BehaviorSubject<any>(null);
   userProfile$ = this.userProfileSubject$.asObservable();
   // Create a local property for login status
-  loggedIn: boolean = null;
+  loggedIn: boolean;
 
   private userSubject$ = new BehaviorSubject<User>(null);
   user$ = this.userSubject$.asObservable();
@@ -81,10 +81,13 @@ export class AuthService {
     const checkAuth$ = this.isAuthenticated$.pipe(
       concatMap((loggedIn: boolean) => {
         if (loggedIn) {
+          console.log("AUTH",loggedIn)
 
           // If authenticated, get user and set in app
           // NOTE: you could pass options here if needed
           // return this.getUserProfile$();
+          this.setAuth(loggedIn);
+
           return this.getUser$();
         }
         // If not authenticated, return stream that emits 'false'
@@ -183,7 +186,7 @@ export class AuthService {
       concatMap((client: Auth0Client) => from(client.getTokenSilently(options)))
     );
   }
-
+  
   setAuth(isLogedin) {
     this.isLogedin.next(isLogedin);
   }

@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 
 export class HomeComponent implements OnInit {
-  isLogedin: boolean = false;
+  isLogedin: boolean;
   registerForm: FormGroup;
   childForm: FormGroup;
   submitted = false;
@@ -29,15 +29,11 @@ export class HomeComponent implements OnInit {
     this.isAuthenticated$= this.auth.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
+      this.auth.setAuth(this.isLogedin);
     })
    }
 
   ngOnInit() {
-    this.isAuthenticated$= this.auth.isAuthenticated$;
-    this.isAuthenticated$.subscribe(data => {
-      this.isLogedin = data;
-    })
-    this.auth.setAuth(this.isLogedin);
 
     this.titleService.setTitle('Kin - discover and plan family friendly activities around SF bay area');
     this.metaService.addTag({

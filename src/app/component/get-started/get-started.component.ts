@@ -7,6 +7,8 @@ import { CommonUtil } from '@shared/utils/common-util';
 import { UserService } from '@shared/service/user.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-get-started',
@@ -14,6 +16,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./get-started.component.css']
 })
 export class GetStartedComponent implements OnInit {
+  isLogedin: boolean;
   parentEmail: any;
   formGroup: FormGroup;
   interests: any[];
@@ -21,6 +24,8 @@ export class GetStartedComponent implements OnInit {
   kidControls: FormArray;
   submitted = false;
   eventConstants = new EventConstants();
+  public isAuthenticated$: Observable<boolean>;
+
 
   newsletter: boolean = false;
   constructor(
@@ -28,7 +33,14 @@ export class GetStartedComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private router: Router,
-  ) { }
+    private auth: AuthService,
+  ) {
+    this.isAuthenticated$= this.auth.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.auth.setAuth(this.isLogedin);
+    })
+   }
 
   ngOnInit() {
     this.formGroup = new FormGroup({
@@ -67,6 +79,11 @@ export class GetStartedComponent implements OnInit {
     }));
   }
 
+  removechild(i){
+    this.kidControls.removeAt(i);
+    this.kids.splice(i,1);
+  }
+
   onSubmit() {
     this.submitted = true;
     if (this.formGroup.invalid) {
@@ -86,20 +103,21 @@ export class GetStartedComponent implements OnInit {
     }   
     const kidLength=this.kidControls.length;
     const kidParam = this.formGroup.value.kidControls;
-    this.userService.updateUser(param).subscribe(
-      responseParent => {
-        for(let i=0;i<kidLength;i++){
-          this.userService.createKid(kidParam[i]).subscribe(
-            responseKid => {
-              if(i === kidLength-1){
-                this.router.navigate(['/home']);
-              }
-            });
-        }
+    console.log(kidParam);
+    // this.userService.updateUser(param).subscribe(
+    //   responseParent => {
+    //     for(let i=0;i<kidLength;i++){
+    //       this.userService.createKid(kidParam[i]).subscribe(
+    //         responseKid => {
+    //           if(i === kidLength-1){
+    //             this.router.navigate(['/home']);
+    //           }
+    //         });
+    //     }
       
-      }, err => {
-       console.log('Error in call service for parent and kid', err);
-      });
+    //   }, err => {
+    //    console.log('Error in call service for parent and kid', err);
+    //   });
   }
 
   back(){

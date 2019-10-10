@@ -93,7 +93,6 @@ export class HikingTrailsListingComponent implements OnInit {
     this.selected_loc = this.route.snapshot.queryParams['location'];
     this.distance = this.route.snapshot.queryParams['distance'];
     this.username = this.route.snapshot.queryParams['username'];
-    this.get_hiking_trail_details();
 
     this.titleService.setTitle('Family friendly hikes around SF bay area');
     this.metaService.addTag({ name: 'description', content: 'Family friendly hikes around SF bay area' });
@@ -107,6 +106,7 @@ export class HikingTrailsListingComponent implements OnInit {
     this.metaService.addTag({ property: 'og:image', content: 'https://kinparenting.com/assets/kin_logo.jpeg' });
     this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/family-friendly-hikes-near-me' });
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
+    this.get_hiking_trail_details();
 
   }
 
@@ -128,7 +128,7 @@ export class HikingTrailsListingComponent implements OnInit {
 
 
   get_hiking_trail_details() {
-    const url = API_URL + 'hiking-trails/?limit=43';
+    const url = API_URL + 'hiking-trails/?limit=43&distance=50';
 
     this.hiking_explore = '';
     this.isExplore = true;

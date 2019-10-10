@@ -28,6 +28,12 @@
   <h4>Kids</h4>
   <div *ngFor="let kid of user?.parent?.kids; let i = index">
     <mat-divider *ngIf="i != 0"></mat-divider>
+    <div class="text-right">
+    <span (click)="removechild(i)" class = "removeChild" *ngIf = "user?.parent?.kids.length>1">
+        <img class="cursor" src="assets\web_images\delete.png" alt="Clear" width="24"
+        matSuffix > remove child
+</span>
+</div>
     <div class="row">
       <mat-form-field class="col-12 col-md-6">
         <input matInput placeholder="Nickname"

@@ -20,7 +20,6 @@ export class VenueListingService {
   get_subscribed_Venues(){
     const url = API_URL + 'subscribe-venue/';
     let res = this.http.get(url);
-    console.log(res);
     return this.http.get(url);
   }
 

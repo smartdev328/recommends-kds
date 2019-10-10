@@ -17,6 +17,9 @@
             <p class="event-venue">
                 {{venue.city}}, {{venue.state}}
             </p>
+            <p *ngIf ="venue.distance" class="event-venue">
+              {{venue.distance}}
+            </p>
 
             <p class="star-btn">
               <button title="unfollow"  (click)="unsubscribe_venue(data.id,i)" >

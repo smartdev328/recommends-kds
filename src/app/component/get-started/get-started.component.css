@@ -10,6 +10,10 @@ mat-divider {
     margin: 20px 0;
 }
 
+.mat-card .mat-get-divider {
+    position: relative;
+}
+
 .interests {
     position: relative;
 }

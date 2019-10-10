@@ -100,7 +100,7 @@ export class EventListingComponent implements OnInit {
   public search_query: String;
   public username: String;
   public isAuthenticated$: Observable<boolean>;
-  isLogedin = false;
+  isLogedin;
   public isCalendarView: boolean;
   public eventName = "All";
 
@@ -145,13 +145,14 @@ export class EventListingComponent implements OnInit {
     this.loc_label = 'Location';
     this.date_label = 'Date';
     this.select_cat_id = '';
-    this.isAuthenticated$ = this.authService.isAuthenticated$;
-    this.isAuthenticated$.subscribe(data => {
-      this.isLogedin = data;
-    })
   }
 
   ngOnInit() {
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.get_explore_event_details();
+    })
     this.titleService.setTitle('Family friendly events around SF bay area');
     this.metaService.addTag({ name: 'description', content: 'Family friendly events around SF bay area' });
     this.metaService.addTag({ name: 'keywords', content: 'Family friendly events, kids events, SF bay area kids events' });
@@ -173,7 +174,6 @@ export class EventListingComponent implements OnInit {
     this.selected_date = this.route.snapshot.queryParams['date'];
     this.distance = this.route.snapshot.queryParams['distance'];
     this.username = this.route.snapshot.queryParams['username'];
-    this.get_explore_event_details();
     this.authService.user$.subscribe((user) => {
       this.user = user;
     });
@@ -336,8 +336,8 @@ export class EventListingComponent implements OnInit {
       this.kid_id ='';
       this.tags ='';
       this.all ='';
-      this.filter_event_data();
       this.eventName = "Nearby";
+      this.filter_event_data();
     }
     else if (type == 'trending') {
       this.kidHeading = "other";
@@ -345,8 +345,8 @@ export class EventListingComponent implements OnInit {
       this.kid_id = '';
       this.tags = 'popular';
       this.all ='';
-      this.filter_event_data();
       this.eventName = "Trending";
+      this.filter_event_data();
     }
     else if (type == 'all') {
       this.kidHeading = "other";
@@ -354,8 +354,8 @@ export class EventListingComponent implements OnInit {
       this.kid_id ='';
       this.tags ='';
       this.all = 'yes';
-      this.filter_event_data();
       this.eventName = "All";
+      this.filter_event_data();
     }
     else {
       this.kidHeading = "kid";
@@ -363,8 +363,8 @@ export class EventListingComponent implements OnInit {
       this.distance = null;
       this.tags = null;
       this.all = null;
-      this.filter_event_data();
       this.eventName = kid.nick_name;
+      this.filter_event_data();
     }
   }
 
@@ -409,6 +409,9 @@ export class EventListingComponent implements OnInit {
     };
     if(input.event_range_str == "today" ||input.event_range_str == "tomorrow" ||input.event_range_str == "weekend"){
      input.distance = 25; 
+     if(this.eventName == "Nearby"){
+      input.distance = 10; 
+     }
     }
     if(input.distance == null){
       input.distance ='';
@@ -422,6 +425,9 @@ export class EventListingComponent implements OnInit {
     let url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str) +'&order_by=date_dist_asc'+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
     if (input.kid_id) {
      url = url+ "&personalize=True";
+    }
+    if(this.eventName == "All"){
+      url = `${API_URL}` + `events/?distance=100&limit=${this.limit}`;
     }
     this.isExplore = true;
     this.end = 21;

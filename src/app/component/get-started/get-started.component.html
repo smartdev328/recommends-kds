@@ -7,7 +7,7 @@
             <h4 class="fs-xl">Profile</h4>
             <div class="row">
                 <mat-form-field class="col-12 col-md-6">
-                    <input matInput placeholder="First name"  formControlName="firstName" required>
+                    <input matInput placeholder="First name" formControlName="firstName" required>
                 </mat-form-field>
                 <mat-form-field class="col-12 col-md-6">
                     <input matInput placeholder="Last name" formControlName="lastName" required>
@@ -34,15 +34,26 @@
         <mat-card class="col-md-8 content">
             <h4 class="fs-xl">Kids</h4>
             <div *ngFor="let kid of kids; let i = index">
-                <mat-divider *ngIf="i != 0"></mat-divider>
+                <mat-divider class="mat-get-divider" *ngIf="i != 0">
+
+                </mat-divider>
+                <div  class="text-right">
+                        <span *ngIf="kids.length>1" class="mt-4 cursor fs-sm" (click)="removechild(i)">
+                        <img class="cursor" src="assets\web_images\delete.png" alt="Clear" width="24" > remove
+                        child
+                        </span>
+                </div>
+
                 <div class="row">
+
                     <mat-form-field class="col-12 col-md-6 mt-4">
                         <input matInput placeholder="Nickname"
                             [formControl]="formGroup.controls.kidControls.controls[i].controls.nick_name" required>
                     </mat-form-field>
                     <mat-form-field class="col-12 col-md-6 mt-4">
                         <input matInput placeholder="Age"
-                            [formControl]="formGroup.controls.kidControls.controls[i].controls.age" maxlength="2" required>
+                            [formControl]="formGroup.controls.kidControls.controls[i].controls.age" maxlength="2"
+                            required>
                         <img class="cursor" src="assets\web_images\delete.png" alt="Clear" width="24"
                             [class.no-display]="!formGroup.controls.kidControls.controls[i].controls.age.value"
                             matSuffix (click)="formGroup.controls.kidControls.controls[i].controls.age.setValue('')">
@@ -56,10 +67,12 @@
                 </div>
                 <mat-chip-list aria-label="Interest selection">
                     <!-- <pre>{{interests | json}}</pre> -->
-                    <mat-chip class="cursor fs-sm" *ngFor="let interest of interests" [color]="getChipColor(kid, interest.id)"
-                        (click)="toggleInterest(kid, interest.id, i)" selected>{{interest.name}}
+                    <mat-chip class="cursor fs-sm" *ngFor="let interest of interests"
+                        [color]="getChipColor(kid, interest.id)" (click)="toggleInterest(kid, interest.id, i)" selected>
+                        {{interest.name}}
                     </mat-chip>
                 </mat-chip-list>
+
             </div>
             <h5 class="mt-4 cursor fs-sm" (click)="addChild()">+ add child</h5>
         </mat-card>
@@ -71,7 +84,8 @@
             <p class="fs-sm">Check the box to receive weekly plans personalized for your family</p>
         </div>
         <div class="col-md-8 pl-md-5" fxLayout="column" fxLayoutAlign="end start">
-            <mat-checkbox formControlName="newsletter" class="mb-1 ml-md-5 pl-md-4 fs-md news-letter newsletter-label">Yes, sign me up for the newsletter!</mat-checkbox>
+            <mat-checkbox formControlName="newsletter" class="mb-1 ml-md-5 pl-md-4 fs-md news-letter newsletter-label">
+                Yes, sign me up for the newsletter!</mat-checkbox>
         </div>
     </div>
     <mat-divider></mat-divider>

@@ -135,11 +135,27 @@ export class VenueListingComponent implements OnInit {
       if(this.isLogedin == true){
         this.venueListingService.get_venue_details(url).subscribe(data => {
           this.venues_list = data['venues'];
-            if (this.venues_list.length > this.end) {
+          if (data['venues'] !== undefined && data['venues'].length > 0) {
+            this.isErrorVisible = false;
+            this.errorMessage = '';
+            if (data['venues'].length > 21) {
               this.showMore = true;
             }
-            // this.add_analytics_data();
-            this.isExplore = false;
+            if (this.oldFilterData) {
+              this.newFilterData = true;
+              this.oldFilterData = false;
+            } else {
+              this.newFilterData = false;
+              this.oldFilterData = true;
+            }
+            this.venues_list = data['venues'];
+          } else {
+            this.isErrorVisible = true;
+            this.errorMessage = this.venueErrorMessage.NO_VENUES_FOUND;
+            this.venues_list = [];
+            this.showMore = false;
+          }
+          this.isExplore = false;
           });
       }else{
         const headers = new HttpHeaders();
@@ -148,10 +164,26 @@ export class VenueListingComponent implements OnInit {
             data = data.replace(/\n/g, '');
             data = JSON.parse(data);
             this.venues_list = data['venues'];
-            if (this.venues_list.length > this.end) {
-              this.showMore = true;
+            if (data['venues'] !== undefined && data['venues'].length > 0) {
+              this.isErrorVisible = false;
+              this.errorMessage = '';
+              if (data['venues'].length > 21) {
+                this.showMore = true;
+              }
+              if (this.oldFilterData) {
+                this.newFilterData = true;
+                this.oldFilterData = false;
+              } else {
+                this.newFilterData = false;
+                this.oldFilterData = true;
+              }
+              this.venues_list = data['venues'];
+            } else {
+              this.isErrorVisible = true;
+              this.errorMessage = this.venueErrorMessage.NO_VENUES_FOUND;
+              this.venues_list = [];
+              this.showMore = false;
             }
-            // this.add_analytics_data();
             this.isExplore = false;
           });
       }
@@ -207,6 +239,7 @@ export class VenueListingComponent implements OnInit {
     this.filter_venue_data();
   }
   onCategoryChange(cat_obj: object) {
+    console.log(cat_obj);
     this.selected_cat = cat_obj['name'];
     this.cat_label = this.selected_cat;
     this.filter_venue_data();
@@ -215,8 +248,8 @@ export class VenueListingComponent implements OnInit {
   clear_filter_data() {
     this.selected_cat = '';
     this.selected_loc = '';
-    this.loc_label = 'None';
-    this.cat_label = 'None';
+    this.cat_label = 'Category';
+    this.loc_label = 'Location';
     this.keyword = '';
     this.isFilterErrorVisible = false;
     this.isErrorVisible = false;
@@ -234,13 +267,13 @@ export class VenueListingComponent implements OnInit {
     } else {
       this.isFilterErrorVisible = false;
       this.filterErrorMessage = '';
-      let url = '';
-      if (this.keyword !== undefined) {
-        url = API_URL + 'venues/?limit=43&q=' + this.keyword.trim();
-      } else if (this.selected_loc != undefined) {
-        url = API_URL + 'venues/?limit=43&city=' + this.selected_loc.trim() + ',CA';
-      } else {
-        url = API_URL + 'venues/?limit=43';
+      let url = API_URL + 'venues/?limit=43';
+      if (this.keyword) {
+        url = url +'&q=' + this.keyword.trim();
+      }if(this.selected_loc) {
+        url = url +'&city=' + this.selected_loc.trim() + ',CA';
+      }if(this.selected_cat){
+        url = url +'&category=' + this.selected_cat.trim();
       }
       this.showMore = false;
       this.isExplore = true;

@@ -1,4 +1,4 @@
-<div class="container-fluid" *ngIf="!auth.loggedIn">
+<div class="container-fluid" *ngIf="isLogedin==false">
     <div class="home-image-div home-image">
         <div class="col-md-12">
             <div class="info">
@@ -83,7 +83,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid" *ngIf="auth.loggedIn">
+<div class="container-fluid" *ngIf="isLogedin">
     <div class="home-image-div home-personalized-image">
         <div class="p-5" fxLayout="row wrap">
             <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">

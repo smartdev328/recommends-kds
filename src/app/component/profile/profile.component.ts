@@ -85,6 +85,13 @@ export class ProfileComponent implements OnInit {
     this.initKidControls(kid);
   }
 
+  removechild(i){
+    this.kidControls.removeAt(i);
+    this.kids.splice(i,1);
+    this.user.parent.kids.splice(i,1);
+
+  }
+
   save() {
     let param = {
       first_name: this.formGroup.value.firstName,
