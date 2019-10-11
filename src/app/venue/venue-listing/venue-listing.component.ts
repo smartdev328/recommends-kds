@@ -84,21 +84,22 @@ export class VenueListingComponent implements OnInit {
       }
     });
     this.locations = this.venueConstants.LOCATIONS;
-    this.isAuthenticated$ = this.authService.isAuthenticated$;
-    this.isAuthenticated$.subscribe(data => {
-      this.isLogedin = data;
-    })
+
 
   }
 
   ngOnInit() {
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.get_venue_details();
+    })
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.isFilterErrorVisible = false;
     this.filterErrorMessage = '';
     this.category = this.route.snapshot.queryParams['category'];
     this.keyword = this.route.snapshot.queryParams['q'];
-    this.get_venue_details();
 
     this.titleService.setTitle('Family friendly places around SF bay area');
     this.metaService.addTag({ name: 'description', content: 'Family friendly places around SF bay area' });
@@ -239,7 +240,6 @@ export class VenueListingComponent implements OnInit {
     this.filter_venue_data();
   }
   onCategoryChange(cat_obj: object) {
-    console.log(cat_obj);
     this.selected_cat = cat_obj['name'];
     this.cat_label = this.selected_cat;
     this.filter_venue_data();

@@ -78,14 +78,14 @@ export class HikingTrailsListingComponent implements OnInit {
     this.selected_loc = '';
     this.keyword = '';
     this.loc_label = 'Location';
-    this.isAuthenticated$ = this.authService.isAuthenticated$;
-    this.isAuthenticated$.subscribe(data => {
-      this.isLogedin = data;
-    })
   }
 
   ngOnInit() {
-
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.get_hiking_trail_details();
+    })
     this.isErrorVisible = false;
     this.isFilterErrorVisible = false;
     this.errorMessage = '';
@@ -106,7 +106,6 @@ export class HikingTrailsListingComponent implements OnInit {
     this.metaService.addTag({ property: 'og:image', content: 'https://kinparenting.com/assets/kin_logo.jpeg' });
     this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/family-friendly-hikes-near-me' });
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
-    this.get_hiking_trail_details();
 
   }
 
@@ -128,20 +127,30 @@ export class HikingTrailsListingComponent implements OnInit {
 
 
   get_hiking_trail_details() {
-    const url = API_URL + 'hiking-trails/?limit=43&distance=50';
-
-    this.hiking_explore = '';
+    this.hiking_explore = [];
     this.isExplore = true;
     this.showMore = false;
+    const url = API_URL + 'hiking-trails/?limit=43&distance=50';
     const headers = new HttpHeaders();
     if (this.isLogedin == false) {
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
         data = data.replace(/\n/g, '');
         data = JSON.parse(data);
-        if (data['trails'] != undefined && data['trails'].length > 0) {
-          this.hiking_explore = data['trails'];
+        if (data['trails'] !== undefined && data['trails'].length > 0) {
+          this.isErrorVisible = false;
+          this.errorMessage = '';
+          this.showMore = data['trails'].length > this.end;
+          if (this.oldFilterData) {
+            this.newFilterData = true;
+            this.oldFilterData = false;
+          } else {
+            this.newFilterData = false;
+            this.oldFilterData = true;
+          }
         } else {
-          alert('No data found');
+          this.isErrorVisible = true;
+          this.errorMessage = this.hikingErrorMessage.NO_HIKING_TRAILS_FOUND;
+          this.showMore = false;
           this.hiking_explore = [];
         }
         this.isExplore = false;
@@ -151,10 +160,21 @@ export class HikingTrailsListingComponent implements OnInit {
       });
     } else {
       this.hikeService.get_hiking_trail_details(url).subscribe(data => {
-        if (data['trails'] != undefined && data['trails'].length > 0) {
-          this.hiking_explore = data['trails'];
+        if (data['trails'] !== undefined && data['trails'].length > 0) {
+          this.isErrorVisible = false;
+          this.errorMessage = '';
+          this.showMore = data['trails'].length > this.end;
+          if (this.oldFilterData) {
+            this.newFilterData = true;
+            this.oldFilterData = false;
+          } else {
+            this.newFilterData = false;
+            this.oldFilterData = true;
+          }
         } else {
-          alert('No data found');
+          this.isErrorVisible = true;
+          this.errorMessage = this.hikingErrorMessage.NO_HIKING_TRAILS_FOUND;
+          this.showMore = false;
           this.hiking_explore = [];
         }
         this.isExplore = false;
@@ -202,6 +222,7 @@ export class HikingTrailsListingComponent implements OnInit {
 
   clear_filter_data() {
     this.keyword = '';
+    this.loc_label = 'Location';
     this.isFilterErrorVisible = false;
     this.isErrorVisible = false;
     this.errorMessage = '';

@@ -16,6 +16,9 @@
     width: 38%;
   
 }
+.form-group.form-group-select {
+    margin-right: 12%;
+}
 .form-group-select-secondary{
     float: right;
     padding-right: 12%;

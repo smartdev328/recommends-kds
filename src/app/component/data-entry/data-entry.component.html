@@ -192,9 +192,7 @@
     <div class="form-group">
         <label>State</label>
         <br>
-        <input type="text" formControlName="state" class="form-control"
-        />
-
+        <input type="text" formControlName="state" class="form-control"/>
     </div>
 
     <div class="form-group">
@@ -243,6 +241,14 @@
             </ng-select>
         </div>
 
+        
+
+    </div>
+
+    <div class="form-group">
+        <label>Related Event Id</label>
+        <br>
+        <input type="text" formControlName="related_event_id" class="form-control"/>
     </div>
 
     <div class="form-group"></div>
@@ -260,5 +266,6 @@
 <div *ngIf="showServerResponse">
   <h3>Server Response:</h3>
   <p>{{serverResponse}}</p>
+  <p>Event Id : {{event_id}}</p>
 </div>
 </div>

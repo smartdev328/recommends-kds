@@ -168,7 +168,7 @@
     <div class="form-group">
       <label>Contact Number</label>
       <br>
-      <input type="text" formControlName="contact_number" class="form-control" [ngClass]="{ 'box-error': submitted && f.contact_number.errors }" />
+      <input id="mobilenumber" (keyup)="onMobileNumberKeyUp($event)" maxlength="16" type="text" formControlName="contact_number" class="form-control" placeholder="(999) 999-9999"  [ngClass]="{ 'box-error': submitted && f.contact_number.errors }" />
       <div *ngIf="submitted && f.contact_number.errors" class="text-error">
         <div *ngIf="submitted && f.contact_number.errors.required">Contact Number is required</div>
       </div>

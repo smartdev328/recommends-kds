@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventConstants } from '../../shared/constants/EventConstants';
 import { ActivatedRoute, Router } from '@angular/router';
+declare var $:any;
 @Component({
     selector: 'app-edit-event',
     templateUrl: './edit-event.component.html',
@@ -181,9 +182,7 @@ export class EditEventComponent implements OnInit {
             'max_age': new FormControl(99, []),
             'misc': new FormControl('', []),
             'email': new FormControl('', []),
-            'contact_number': new FormControl('', [
-                this.checkIsNumber
-            ]),
+            'contact_number': new FormControl('', []),
             'state': new FormControl({ disabled: false }, []),
             'host': new FormControl('', []),
             'country': new FormControl({ disabled: false }, []),
@@ -196,6 +195,12 @@ export class EditEventComponent implements OnInit {
 
         });
     }
+
+    onMobileNumberKeyUp(event) {
+        $('#mobilenumber').usPhoneFormat({
+          format: '(xxx) xxx-xxxx',
+        });
+      }
 
     get_event_details() {
         //const url = 'https://kin-api-dev.kinparenting.com/events/' + this.event_id + "/";

@@ -72,19 +72,19 @@ export class CampListingComponent implements OnInit {
     this.selected_cat = '';
     this.keyword = '';
     this.category_label = 'Category';
-    this.isAuthenticated$ = this.authService.isAuthenticated$;
-    this.isAuthenticated$.subscribe(data => {
-      this.isLogedin = data;
-    })
   }
 
   ngOnInit() {
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.get_camps_details();
+    })
     this.route
       .queryParams
       .subscribe(params => {
         this.category = params['category'];
         this.keyword = params['q'];
-        this.get_camps_details();
       });
 
     this.isErrorVisible = false;
@@ -126,7 +126,7 @@ export class CampListingComponent implements OnInit {
     } else {
       url = API_URL + 'camps/?limit=50';
     }
-    this.camp_explore = '';
+    this.camp_explore = [];
     this.isExplore = true;
     this.showMore = false;
 

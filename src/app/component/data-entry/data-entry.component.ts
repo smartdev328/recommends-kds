@@ -9,9 +9,10 @@ import { EventConstants } from '@shared/constants/EventConstants';
   styleUrls: ['./data-entry.component.css']
 })
 export class DataEntryComponent implements OnInit {
+  event_id: any;
   eventForm: FormGroup;
   submitted = false;
-  serverResponse: string;
+  serverResponse: any;
   showServerResponse = false;
   public eventConstatnts = new EventConstants();
   public primary_cat = this.eventConstatnts.PRIMARY_CATEGORY;
@@ -48,14 +49,13 @@ export class DataEntryComponent implements OnInit {
     data = data.replace(/[\u2018\u2019]/g, "'")
       .replace(/[\u201C\u201D]/g, '"');
     //const url = "https://kin-api-dev.kinparenting.com/events/";
-      const url = "http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/events/";
+    const url = "http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/events/";
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    this.http.post(url, data, { headers: headers, responseType: 'text' }).subscribe(response => {
+    this.http.post(url, data, { headers: headers, responseType: 'json' }).subscribe(response => {
       this.serverResponse = response;
-      if (this.serverResponse.indexOf("Error") < 0) {
-        this.serverResponse = 'Event Added successfully';
-      }
+      this.event_id = response['event']['event_id'];
+      this.serverResponse = 'Event Added successfully';
       this.showServerResponse = true;
     }, error => {
       alert('Something went wrong');
@@ -176,8 +176,8 @@ export class DataEntryComponent implements OnInit {
       ]),
       'tags': new FormControl('', []),
       'classifications': new FormControl('', []),
-      'venue_id': new FormControl('', [])
-
+      'venue_id': new FormControl('', []),
+      'related_event_id': new FormControl('',[])
     });
   }
 }
