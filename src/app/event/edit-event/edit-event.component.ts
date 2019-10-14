@@ -191,7 +191,9 @@ export class EditEventComponent implements OnInit {
             'tags': new FormControl('', []),
             'event_id': new FormControl('', []),
             'classifications': new FormControl('', []),
-            'venue_id': new FormControl('', [])
+            'venue_id': new FormControl('', []),
+            'related_event_id': new FormControl('', [])
+
 
         });
     }

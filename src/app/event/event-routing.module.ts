@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { EditEventComponent } from './edit-event/edit-event.component';
 import { EventComponent } from './event.component';
 import { EventListingComponent } from './event-listing/event-listing.component';
+import { AuthGuard } from '@shared/guards/auth.guard';
 
 const routes: Routes = [
     {
@@ -11,7 +12,7 @@ const routes: Routes = [
     },
     {
         path: 'edit-event/:eventId',
-        component: EditEventComponent
+        component: EditEventComponent ,canActivate: [AuthGuard]
     },
     {
         path: 'family-friendly-events-near-me',

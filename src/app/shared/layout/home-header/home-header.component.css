@@ -81,6 +81,11 @@
     font-size: 18px;
 }
 
+.logo-icon {
+    width: 112px;
+    height: 48px;
+}
+
 /*
 @media only screen and (max-width: 767px) {
     .navbar {

@@ -37,13 +37,6 @@
                 <mat-divider class="mat-get-divider" *ngIf="i != 0">
 
                 </mat-divider>
-                <div  class="text-right">
-                        <span *ngIf="kids.length>1" class="mt-4 cursor fs-sm" (click)="removechild(i)">
-                        <img class="cursor" src="assets\web_images\delete.png" alt="Clear" width="24" > remove
-                        child
-                        </span>
-                </div>
-
                 <div class="row">
 
                     <mat-form-field class="col-12 col-md-6 mt-4">
@@ -72,9 +65,14 @@
                         {{interest.name}}
                     </mat-chip>
                 </mat-chip-list>
-
+                <div  class="text-right cursor">
+                        <span *ngIf="kids.length>1" class="mt-4 cursor fs-sm" (click)="removechild(i)">
+                        <img class="cursor" src="assets\web_images\delete.png" alt="Clear" width="24" > remove
+                        child
+                        </span>
+                </div>
             </div>
-            <h5 class="mt-4 cursor fs-sm" (click)="addChild()">+ add child</h5>
+            <h5 class="cursor fs-sm" (click)="addChild()">+ add child</h5>
         </mat-card>
     </div>
     <mat-divider></mat-divider>

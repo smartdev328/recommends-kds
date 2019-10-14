@@ -81,13 +81,9 @@ export class AuthService {
     const checkAuth$ = this.isAuthenticated$.pipe(
       concatMap((loggedIn: boolean) => {
         if (loggedIn) {
-          console.log("AUTH",loggedIn)
-
           // If authenticated, get user and set in app
           // NOTE: you could pass options here if needed
           // return this.getUserProfile$();
-          this.setAuth(loggedIn);
-
           return this.getUser$();
         }
         // If not authenticated, return stream that emits 'false'
@@ -110,7 +106,6 @@ export class AuthService {
     // Ensure Auth0 client instance exists
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log in
-
       client.loginWithRedirect({
 
         redirect_uri: `${window.location.origin}/callback`,
@@ -169,6 +164,7 @@ export class AuthService {
       authCompleteSub.unsubscribe();
     });
   }
+
 
   logout() {
     // Ensure Auth0 client instance exists

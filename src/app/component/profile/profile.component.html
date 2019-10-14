@@ -28,12 +28,6 @@
   <h4>Kids</h4>
   <div *ngFor="let kid of user?.parent?.kids; let i = index">
     <mat-divider *ngIf="i != 0"></mat-divider>
-    <div class="text-right">
-    <span (click)="removechild(i)" class = "removeChild" *ngIf = "user?.parent?.kids.length>1">
-        <img class="cursor" src="assets\web_images\delete.png" alt="Clear" width="24"
-        matSuffix > remove child
-</span>
-</div>
     <div class="row">
       <mat-form-field class="col-12 col-md-6">
         <input matInput placeholder="Nickname"
@@ -56,11 +50,16 @@
     </div>
     <mat-chip-list aria-label="Interest selection">
       <mat-chip class="cursor" *ngFor="let interest of interests" [color]="getChipColor(kid, interest)"
-      (click)="toggleInterest(kid, interest, i)" selected>{{interest}}
+        (click)="toggleInterest(kid, interest, i)" selected>{{interest}}
       </mat-chip>
     </mat-chip-list>
+    <div class="text-right cursor">
+        <span (click)="removechild(i)" class="removeChild" *ngIf="user?.parent?.kids.length>1">
+          - remove child
+        </span>
+      </div>
   </div>
-  <p class="mt-4 cursor" (click)="addChild()">+ add child</p>
+  <p class="cursor" (click)="addChild()">+ add child</p>
   <mat-divider></mat-divider>
   <button class="btn btn-yellow btn-save" [disabled]="formGroup.invalid" (click)="save()">SAVE</button>
 </form>

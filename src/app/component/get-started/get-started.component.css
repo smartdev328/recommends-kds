@@ -13,6 +13,9 @@ mat-divider {
 .mat-card .mat-get-divider {
     position: relative;
 }
+.text-right {
+    margin-bottom: -4%;
+}
 
 .interests {
     position: relative;
