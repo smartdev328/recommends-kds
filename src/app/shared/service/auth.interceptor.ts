@@ -4,6 +4,12 @@ import { Observable, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { mergeMap, catchError } from 'rxjs/operators';
 import { UserService } from './user.service';
+import {
+
+  HttpResponse,
+  HttpErrorResponse
+ } from '@angular/common/http';
+ import { retry } from 'rxjs/operators';
 
 
 @Injectable({
@@ -32,7 +38,6 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     return this.auth.getTokenSilently$().pipe(
-
       mergeMap(token => {
         const tokenReq = req.clone({
           setHeaders: { Authorization: `Bearer ${token}` }
@@ -41,9 +46,18 @@ export class AuthInterceptor implements HttpInterceptor {
         return next.handle(tokenReq);
       }),
       // catchError(err => throwError(err)
-      catchError(err => {
-        throw 'error in source. Details: ' + err;
-      }),
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage = '';
+        if (error.error instanceof ErrorEvent) {
+          // client-side error
+          errorMessage = `Error: ${error.error.message}`;
+        } else {
+          // server-side error
+          errorMessage = `Error : ${error.error}\nMessage: ${error}`;
+        }
+        console.log(error);
+        return throwError(errorMessage);
+      })
       );
     // );
     

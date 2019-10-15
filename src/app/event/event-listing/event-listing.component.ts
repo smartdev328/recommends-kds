@@ -179,18 +179,21 @@ export class EventListingComponent implements OnInit {
     });
   }
   onLocationChange(loc_obj: object) {
+    this.eventName ="";
     this.selected_loc = loc_obj['name'];
     this.loc_label = this.selected_loc;
     this.filter_event_data();
 
   }
   onCategoryChange(cat_obj: object) {
+    this.eventName ="";
     this.selected_cat = cat_obj['name'];
     this.select_cat_id = cat_obj['id'];
     this.cat_label = this.selected_cat;
     this.filter_event_data();
   }
   onDateChange(date_obj: object) {
+    this.eventName ="";
     if (date_obj['desc'] == 'Pick a date') {
       this.pickDate = true;
       setTimeout(() => {
@@ -349,7 +352,7 @@ export class EventListingComponent implements OnInit {
       this.filter_event_data();
     }
     else if (type == 'all') {
-      this.kidHeading = "other";
+      this.kidHeading = "";
       this.distance ='';
       this.kid_id ='';
       this.tags ='';

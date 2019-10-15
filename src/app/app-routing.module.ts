@@ -65,7 +65,7 @@ const routes: Routes = [
   { path: 'get-started', component: GetStartedComponent },
   {path:'saved',component:SavedComponent},
   {path:'saved-listing/:id',component:SavedListingComponent},
-  {path:'newsletter',component:NewsletterComponent},
+  {path:':city',component:NewsletterComponent},
 
 
   

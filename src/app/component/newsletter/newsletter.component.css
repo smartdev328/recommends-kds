@@ -18,13 +18,28 @@
     color: #fff;
     text-transform: capitalize;
     font-family: Montserrat;
-    font-size: 42px;
+    font-size: 64px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
     letter-spacing: normal;
 }
+.col-md-3.more {
+    margin-top: 20px;
+    text-align: right;
+}
+.lower-text{
+    margin-right: 10px;
+}
+.more {
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #000;
+  }
 .newsletter-banner ul{float: right;}
 .newsletter-banner ul li{
     float: left;
@@ -53,20 +68,19 @@
   .mat-card-content{padding: 15px !important;}
   .event-list-cards .img-wrp img{margin: 0 !important;}
   .newsletter .event-list-cards .event-group-title{
-    font-family: Montserrat;
-    font-size: 24px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #000;
-    text-transform: capitalize;
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #000;
   }
   .newsletter .event-list-cards .event-date,  .newsletter .event-list-cards .event-venue{
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     font-family: Montserrat;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
