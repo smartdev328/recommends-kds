@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventConstants } from '@shared/constants/EventConstants';
+import { API_URL } from '@shared/constants/UrlConstants';
 
 @Component({
   selector: 'app-data-entry',
@@ -48,8 +49,7 @@ export class DataEntryComponent implements OnInit {
     let data = JSON.stringify(this.eventForm.value);
     data = data.replace(/[\u2018\u2019]/g, "'")
       .replace(/[\u201C\u201D]/g, '"');
-    //const url = "https://kin-api-dev.kinparenting.com/events/";
-    const url = "http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/events/";
+    const url = `${API_URL}events/`;
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
     this.http.post(url, data, { headers: headers, responseType: 'json' }).subscribe(response => {

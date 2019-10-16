@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventConstants } from '../../shared/constants/EventConstants';
 import { ActivatedRoute, Router } from '@angular/router';
+import { API_URL } from '@shared/constants/UrlConstants';
 declare var $:any;
 @Component({
     selector: 'app-edit-event',
@@ -56,10 +57,7 @@ export class EditEventComponent implements OnInit {
         let data = JSON.stringify({ 'input_data': this.eventForm.value });
         data = data.replace(/[\u2018\u2019]/g, "'")
             .replace(/[\u201C\u201D]/g, '"');
-
-        //const url = 'https://kin-api-dev.kinparenting.com/events/';
-        // let url = "http://127.0.0.1:9006/events/";
-        const url = 'http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/events/';
+        const url = API_URL +'events/';
         const headers = new HttpHeaders()
             .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
             .set('Content-Type', 'application/json');
@@ -205,9 +203,7 @@ export class EditEventComponent implements OnInit {
       }
 
     get_event_details() {
-        //const url = 'https://kin-api-dev.kinparenting.com/events/' + this.event_id + "/";
-        const url = 'http://ec2-54-215-142-151.us-west-1.compute.amazonaws.com/events/' + this.event_id + "/";
-        // let url = 'http://127.0.0.1:9006/events/' + this.event_id +"/";
+       const url = API_URL +'events/'+ this.event_id + "/";
         const headers = new HttpHeaders()
             .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk');
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {

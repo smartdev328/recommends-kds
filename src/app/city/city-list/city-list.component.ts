@@ -13,14 +13,12 @@ import { CampListingService } from '../../camp/camp-listing/camp-listing.service
 import { CampErrorMessage } from '@shared/constants/CampConstants';
 import { HikingTrailsListingService } from '../../hiking/hiking-listing/hiking-listing.service';
 import { HikingTrailErrorMessage } from '@shared/constants/HikingTrailConstants';
-
-
 @Component({
-  selector: 'app-newsletter',
-  templateUrl: './newsletter.component.html',
-  styleUrls: ['./newsletter.component.css']
+  selector: 'app-city-list',
+  templateUrl: './city-list.component.html',
+  styleUrls: ['./city-list.component.css']
 })
-export class NewsletterComponent implements OnInit {
+export class CityListComponent implements OnInit {
 
   trailList: any;
   campList: any;
@@ -79,7 +77,9 @@ export class NewsletterComponent implements OnInit {
       });
     } else {
       const headers = new HttpHeaders();
-      this.http.get(url, { headers: headers, responseType: 'json' }).subscribe(data => {
+      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
+        data = data.replace(/\n/g, '');
+        data = JSON.parse(data);
         if (data['events'] !== undefined && data['events'].length > 0) {
           this.eventList = data['events'];
         } else {
@@ -167,8 +167,9 @@ export class NewsletterComponent implements OnInit {
     } else {
       const headers = new HttpHeaders();
       this.http.get(url, { headers: headers, responseType: 'json' }).subscribe(data => {
-        if (data['trails'] !== undefined && data['trails'].length > 0) {
-          this.trailList = data['data'];
+        console.log(data['trails']);
+        if (data['trails'] !== undefined && data['trails'].length != 0) {
+          this.trailList = data['trails'];
         } else {
           this.errorMessage = this.hikeErrorMessage.NO_HIKING_TRAILS_FOUND;
         }

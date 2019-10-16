@@ -137,6 +137,7 @@ export class HikingTrailsListingComponent implements OnInit {
         data = data.replace(/\n/g, '');
         data = JSON.parse(data);
         if (data['trails'] !== undefined && data['trails'].length > 0) {
+          this.hiking_explore = data['trails'];
           this.isErrorVisible = false;
           this.errorMessage = '';
           this.showMore = data['trails'].length > this.end;
@@ -161,6 +162,7 @@ export class HikingTrailsListingComponent implements OnInit {
     } else {
       this.hikeService.get_hiking_trail_details(url).subscribe(data => {
         if (data['trails'] !== undefined && data['trails'].length > 0) {
+          this.hiking_explore = data['trails'];
           this.isErrorVisible = false;
           this.errorMessage = '';
           this.showMore = data['trails'].length > this.end;

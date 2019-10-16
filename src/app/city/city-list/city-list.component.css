@@ -1,29 +1,39 @@
 .newsletter-banner{
     height: 440px; 
     width:100%; 
-    background:#e2e2e2;
-    background-image: url(https://loremflickr.com/1920/1080/usa/all);
-    background-position: bottom center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
+      position: relative;
 }
+.newsletter-banner:before{
+    content: "";
+
+    position: absolute;
+    left:0;
+    bottom:0;
+    width: 90%;
+    height: 100%;
+    background: #ffd700;
+    display: block;
+
+    clip-path: polygon(0 0, 100% 0%, 100% 0, 0 100%);
+}
+
 .newsletter-banner .banner-content{
     position: absolute;
-    left:217px;
+    right:147px;
     top:178px;
 }
 .newsletter-banner .banner-content span{
 
-    color: #fff;
+    color: #000;
     text-transform: capitalize;
     font-family: Montserrat;
-    font-size: 64px;
+    font-size: 78px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
     letter-spacing: normal;
+    text-transform: uppercase;
 }
 .col-md-3.more {
     margin-top: 20px;
@@ -63,9 +73,25 @@
     color: #000;
     margin-bottom: 25px;
   }
+  .mat-content{
+    display: inline-block; width:100%;
+    padding: 15px 15px 30px 15px;
+    -webkit-box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.2) !important;
+    max-height: 140px;
+    min-height: 140px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+  .event-list-cards .img-wrp {max-height: 150px; min-height: 150px; overflow: hidden;}
   .event-list-cards .img-wrp img{width:100%;}
-  .event-list-cards{padding-left: 0 !important; padding-right:0 !important; padding-top: 0 !important; box-shadow: none; margin-bottom: 25px; max-height: 440px; position: relative; border:1px solid #f7f7f7;}
-  .mat-card-content{padding: 15px !important;}
+  .event-list-cards{
+      display: inline-block;
+      width: 100%;
+
+      padding-left: 0 !important; padding-right:0 !important; padding-top: 0 !important; box-shadow: none; margin-bottom: 25px; max-height: 440px; position: relative; border:1px solid #f7f7f7;}
+  .mat-card-content{padding: 15px !important; }
   .event-list-cards .img-wrp img{margin: 0 !important;}
   .newsletter .event-list-cards .event-group-title{
   font-family: Montserrat;
@@ -78,15 +104,14 @@
   color: #000;
   }
   .newsletter .event-list-cards .event-date,  .newsletter .event-list-cards .event-venue{
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    font-family: Montserrat;
-    font-size: 14px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #4a4949;
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #4a4949;
   }
 
   .see-more{
@@ -113,14 +138,15 @@
     top:50%;
     transform: translate(-50%, -50%);
   }
+  .cityLanding{}
 
   @media only screen and (max-width : 640px) {
     .newsletter-banner{
-        height: 193px;
+        height: 102px;
     }
     .newsletter-banner .banner-content{
         top:58px;
-        left:15px;
+        right:15px;
         
     }
     .newsletter-banner .banner-content span{

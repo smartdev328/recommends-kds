@@ -35,8 +35,8 @@ import { SavedComponent } from './component/saved/saved.component';
 import { SavedListingComponent } from './component/saved/saved-listing/saved-listing.component';
 import { MasonsrySavedViewComponent } from './component/saved/masonsry-saved-view/masonsry-saved-view.component';
 import { MasonrySubscribeViewComponent } from './component/saved/masonry-subscribe-view/masonry-subscribe-view.component';
-import { NewsletterComponent } from './component/newsletter/newsletter.component';
 import { MasonsryVenuesPersonaliseViewComponent } from '@shared/layout/masonsry-personalise-view/masonsry-personalise-view.component';
+import { CityModule } from './city/city.module';
 
 
 
@@ -67,7 +67,7 @@ import { MasonsryVenuesPersonaliseViewComponent } from '@shared/layout/masonsry-
     SavedListingComponent,
     MasonsrySavedViewComponent,
     MasonrySubscribeViewComponent,
-    NewsletterComponent
+    
   ],
   imports: [
     AppRoutingModule,
@@ -76,6 +76,7 @@ import { MasonsryVenuesPersonaliseViewComponent } from '@shared/layout/masonsry-
     VenueModule,
     HikingModule,
     SharedModule,
+    CityModule,
     SharedLibsModule,
     BrowserModule,
     BrowserAnimationsModule,

@@ -12,7 +12,6 @@ import { CampListingService } from './camp-listing.service';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
 import { MatDialogRef, MatDialog, } from "@angular/material";
-//const API_URL = 'https://kin-api-dev.kinparenting.com/';
 
 declare let ga: any;
 @Component({

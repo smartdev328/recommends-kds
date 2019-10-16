@@ -19,7 +19,6 @@ import { GetStartedComponent } from './component/get-started/get-started.compone
 import { MiddlewareComponent } from './middleware/middleware.component';
 import { SavedComponent } from './component/saved/saved.component';
 import { SavedListingComponent } from './component/saved/saved-listing/saved-listing.component';
-import { NewsletterComponent } from './component/newsletter/newsletter.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 
 
@@ -45,6 +44,10 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./hiking/hiking.module').then(mod => mod.HikingModule)
   },
+  {
+    path: '',
+    loadChildren: () => import('./city/city.module').then(mod => mod.CityModule)
+  },
   { path: 'data-entry', component: DataEntryComponent,canActivate: [AuthGuard]},
   { path: 'add/review', component: ReviewsComponent },
   { path: 'approve-reviews', component: ApproveReviewComponent },
@@ -65,7 +68,7 @@ const routes: Routes = [
   { path: 'get-started', component: GetStartedComponent },
   {path:'saved',component:SavedComponent},
   {path:'saved-listing/:id',component:SavedListingComponent},
-  {path:':city',component:NewsletterComponent},
+ 
 
 
   
