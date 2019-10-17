@@ -1,37 +1,36 @@
 <img src="assets/loading.gif" *ngIf="!showLayout" class="loading-gif">
 <ng-masonry-grid [ngClass]="{'hide-layout': !showLayout, 'show-layout': showLayout}"
-[masonryOptions]="{ transitionDuration: '1s', gutter: 5 }"
-[useAnimation]="true"
-[useImagesLoaded]="true"
-[scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
-<ng-masonry-grid-item class="tiles" *ngFor="let camp of camps | slice:start:end; let i=index">
-<a style="text-decoration: none;" [routerLink]="['/camps', camp.id]" target="_blank">    
-  <mat-card class="event-list-cards">
-    <div class="img-wrp">
-      <img mat-card-image src={{camp.image_url}} alt="Image not available">
-    </div>
-    <mat-card-content class="">
-      <p class="event-group-title">
-        {{camp.name}}
-      </p>
-      <p class="event-venue">
-        {{camp.cities}}
-      </p>
-      <p class="event-venue">
-        {{camp.misc['timings']}}
-      </p>
-      <p class="star-btn">
-        <button title="click to save"  (click)="unsubscribe_venue(data.id,i)" >
-          <img class="dfkg" src="../../../../assets/icons/save_orange.png" />
-        </button>
-      </p>
-      <!-- <p  class="star-btn">
-        <button  title="follow" (click)="add_subscription_venue(data.id,i)" >
-          <img class="dfkg" src="../../../../assets/icons/save_blue.png" />
-        </button>
-      </p> -->
-    </mat-card-content>
-  </mat-card>
-</a>
-</ng-masonry-grid-item>
+  [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }" [useAnimation]="true" [useImagesLoaded]="true"
+  [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
+  <ng-masonry-grid-item class="tiles" *ngFor="let camp of camps | slice:start:end; let i=index">
+    <mat-card class="event-list-cards">
+      <a style="text-decoration: none;" [routerLink]="['/camps', camp.id]" target="_blank">
+        <div class="img-wrp">
+          <img mat-card-image src={{camp.image_url}} alt="Image not available">
+        </div>
+      </a>
+
+      <mat-card-content class="">
+        <p class="event-group-title">
+          {{camp.name}}
+        </p>
+        <p class="event-venue">
+          {{camp.cities}}
+        </p>
+        <p class="event-venue">
+          {{camp.misc['timings']}}
+        </p>
+        <p class="star-btn" *ngIf="isLogedin && camp.is_saved == 'true'">
+          <button title="saved">
+            <img class="dfkg" src="../../../../assets/icons/save_orange.png" />
+          </button>
+        </p>
+        <p *ngIf="isLogedin && camp.is_saved == 'false'" class="star-btn">
+          <button (click)="save_camp(camp.id,i)" title="click to save">
+            <img class="dfkg" src="../../../../assets/icons/save_blue.png" />
+          </button>
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </ng-masonry-grid-item>
 </ng-masonry-grid>

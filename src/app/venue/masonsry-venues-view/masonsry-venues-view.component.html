@@ -5,10 +5,12 @@
   [useImagesLoaded]="true"
   [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
   <ng-masonry-grid-item class="tiles" *ngFor="let venue of venues | slice:start:end; let i=index">
-    <a style="text-decoration: none;" [routerLink]="['/venues', venue.id]" target="_blank">
         <mat-card class="event-list-cards ">
           <div class="img-wrp">
+              <a style="text-decoration: none;" [routerLink]="['/venues', venue.id]" target="_blank">
           <img mat-card-image src={{venue.image_url}} alt="Image not available">
+        </a>
+
         </div>
           <mat-card-content class="">
             <p class="event-group-title">
@@ -21,18 +23,17 @@
               {{venue.distance}}
             </p>
 
-            <p class="star-btn">
-              <button title="unfollow"  (click)="unsubscribe_venue(data.id,i)" >
+            <p *ngIf ="venue.is_followed == 'true'" class="star-btn">
+              <button title="unfollow"  (click)="unsubscribe_venue(venue.id,i)" >
                 <img class="dfkg" src="../../../../assets/icons/subscribe_orange.png" />
               </button>
             </p>
-            <!-- <p  class="star-btn">
-              <button  title="follow" (click)="add_subscription_venue(data.id,i)" >
+            <p  *ngIf ="venue.is_followed == 'false'"  class="star-btn">
+              <button  title="follow" (click)="add_subscription_venue(venue.id,i)" >
                 <img class="dfkg" src="../../../../assets/icons/subscribe_blue.png" />
               </button>
-            </p> -->
+            </p>
           </mat-card-content>
         </mat-card>
-    </a>
   </ng-masonry-grid-item>
 </ng-masonry-grid>

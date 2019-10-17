@@ -77,9 +77,7 @@ export class CityListComponent implements OnInit {
       });
     } else {
       const headers = new HttpHeaders();
-      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-        data = data.replace(/\n/g, '');
-        data = JSON.parse(data);
+      this.http.get(url, { headers: headers, responseType: 'json' }).subscribe(data => {
         if (data['events'] !== undefined && data['events'].length > 0) {
           this.eventList = data['events'];
         } else {
@@ -107,12 +105,9 @@ export class CityListComponent implements OnInit {
       });
     } else {
       const headers = new HttpHeaders();
-      this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
-        data = data.replace(/\n/g, '');
-        data = JSON.parse(data);
+      this.http.get(url, { headers: headers, responseType: 'json' }).subscribe(data => {
         if (data['venues'] !== undefined && data['venues'].length > 0) {
           this.venueList = data['venues'];
-          console.log(this.venueList)
         } else {
           this.errorMessage = this.venueErrorMessage.NO_VENUES_FOUND;
         }
@@ -167,7 +162,6 @@ export class CityListComponent implements OnInit {
     } else {
       const headers = new HttpHeaders();
       this.http.get(url, { headers: headers, responseType: 'json' }).subscribe(data => {
-        console.log(data['trails']);
         if (data['trails'] !== undefined && data['trails'].length != 0) {
           this.trailList = data['trails'];
         } else {
