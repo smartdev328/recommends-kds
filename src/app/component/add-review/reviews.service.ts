@@ -28,5 +28,10 @@ export class ReviewsService {
     return  this.http.get(url);
   }
 
+  delete_action (entity_id: any,type: any) {
+    const url = `${API_URL}actions/?entity_id=${entity_id}&entity_type=${type}&action_type=ATYPE_SAVE`
+    return  this.http.delete(url);
+  }
+
 
 }

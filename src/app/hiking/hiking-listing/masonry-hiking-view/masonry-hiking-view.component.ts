@@ -1,10 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input, TemplateRef, ViewChild } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { ACTION, ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM } from '../../../shared/constants/AnalyticsConstants';
 import { ReviewsService } from '../../../component/add-review/reviews.service';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
+import { BsModalRef } from 'ngx-bootstrap';
+import { MatDialog } from '@angular/material';
 
+declare let ga: any;
 
 @Component({
   selector: 'app-masonsry-hiking-view',
@@ -13,26 +16,42 @@ import { Observable } from 'rxjs';
 })
 
 export class MasonsryHikingTrailViewComponent implements OnInit {
-
+  currentUrl: string;
+  @ViewChild('deleteuser') deleteuser: TemplateRef<any>
+  isLogedin = false;
+  public isAuthenticated$: Observable<boolean>;
+  dialogRef: any;
+  modalRef: BsModalRef;
+  ClickName: any;
+  saveEvent = "save this trail";
   showLayout = false;
   @Input() trails: any;
   @Input() start: any;
   @Input() end: any;
-  isLogedin = false;
-  public isAuthenticated$: Observable<boolean>;
+
 
 
   constructor(private router: Router,
     private reviewService: ReviewsService,
-    private authService: AuthService) {
+    private authService: AuthService,
+    public dialog: MatDialog) {
     this.isAuthenticated$ = this.authService.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
     })
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        ga('set', 'page', event.urlAfterRedirects);
+        this.currentUrl = event.urlAfterRedirects;
+        ga('send', 'pageview');
+      }
+    });
   }
   ngOnInit() {
     setTimeout(() => {
       this.showLayout = true;
+      this.currentUrl = this.router.url
     }, 2000);
   }
 
@@ -40,10 +59,11 @@ export class MasonsryHikingTrailViewComponent implements OnInit {
     this.router.navigate(['/hiking-trails', id]);
   }
 
-  save_camp(id, i) {
+  save_trail(id, i) {
     this.add_analytics_data(id, i, 'SAVE');
     this.trails[i].is_saved = "true";
   }
+
   add_analytics_data(id, i, atype: any) {
     let action = '';
     switch (atype) {
@@ -85,6 +105,43 @@ export class MasonsryHikingTrailViewComponent implements OnInit {
       }
     }, error => {
     });
+  }
+
+  is_delete_action(id, i) {
+    this.reviewService.delete_action(id,ANALYTICS_ENTITY_TYPES_ENUM.HIKING_TRAIL).subscribe(data => {
+      if (data['status'] === true) {
+        this.trails[i].is_saved = "false";
+      } else {
+        this.trails[i].is_saved = "true";
+      }
+    }, error => {
+    });
+  }
+
+  deleteUser(linkName) {
+    this.ClickName = linkName;
+    this.dialogRef = this.dialog.open(this.deleteuser, {
+      width: "626px"
+    });
+  }
+
+  //this function will open a popup when user is not loggen in
+  checklogin(id, i, linkName) {
+    if (this.isLogedin) {
+      this.save_trail(id, i);
+    } else {
+      this.deleteUser(linkName);
+    }
+  }
+
+  signin() {
+    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
+    this.authService.login();
+    this.closeDialog();
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
   }
 }
 

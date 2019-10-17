@@ -84,6 +84,7 @@ export class HikingTrailsListingComponent implements OnInit {
     this.isAuthenticated$ = this.authService.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
       this.get_hiking_trail_details();
     })
     this.isErrorVisible = false;

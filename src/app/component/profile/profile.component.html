@@ -54,12 +54,12 @@
       </mat-chip>
     </mat-chip-list>
     <div class="text-right cursor">
-        <span (click)="removechild(i)" class="removeChild" *ngIf="user?.parent?.kids.length>1">
+        <span (click)="removechild(i)" class="mt-4 cursor" *ngIf="user?.parent?.kids.length>0">
           - remove child
         </span>
       </div>
   </div>
-  <p class="cursor" (click)="addChild()">+ add child</p>
+  <p class="mt-4 cursor" (click)="addChild()">+ add child</p>
   <mat-divider></mat-divider>
   <button class="btn btn-yellow btn-save" [disabled]="formGroup.invalid" (click)="save()">SAVE</button>
 </form>

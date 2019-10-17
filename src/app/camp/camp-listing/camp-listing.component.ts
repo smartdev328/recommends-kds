@@ -77,6 +77,7 @@ export class CampListingComponent implements OnInit {
     this.isAuthenticated$ = this.authService.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
       this.get_camps_details();
     })
     this.route
@@ -238,29 +239,29 @@ export class CampListingComponent implements OnInit {
         this.campsListingService.get_camp_details(url).subscribe(data => {
           if (data['data'] != undefined && data['data'].length > 0) {
             this.camp_explore = data['data'];
-              this.isErrorVisible = false;
-              this.errorMessage = '';
-              if (this.oldCat_1) {
-                this.oldCat_2 = true;
-                this.oldCat_1 = false;
-              } else {
-                this.oldCat_2 = false;
-                this.oldCat_1 = true;
-              }
-    
+            this.isErrorVisible = false;
+            this.errorMessage = '';
+            if (this.oldCat_1) {
+              this.oldCat_2 = true;
+              this.oldCat_1 = false;
             } else {
-              this.isErrorVisible = true;
-              this.errorMessage = this.campErrorMessage.NO_CAMPS_FOUND;
-              this.camp_explore = [];
+              this.oldCat_2 = false;
+              this.oldCat_1 = true;
             }
-            this.isExplore = false;
-            if (this.camp_explore.length > this.end) {
-              this.showMore = true;
-            }
+
+          } else {
+            this.isErrorVisible = true;
+            this.errorMessage = this.campErrorMessage.NO_CAMPS_FOUND;
+            this.camp_explore = [];
+          }
+          this.isExplore = false;
+          if (this.camp_explore.length > this.end) {
+            this.showMore = true;
+          }
         }, error => {
           this.isErrorVisible = true;
           this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
-        });      
+        });
       } else {
         const headers = new HttpHeaders();
         this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
@@ -277,7 +278,7 @@ export class CampListingComponent implements OnInit {
               this.oldCat_2 = false;
               this.oldCat_1 = true;
             }
-  
+
           } else {
             this.isErrorVisible = true;
             this.errorMessage = this.campErrorMessage.NO_CAMPS_FOUND;
@@ -290,7 +291,8 @@ export class CampListingComponent implements OnInit {
         }, error => {
           this.isErrorVisible = true;
           this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
-        });        }
+        });
+      }
 
     }
   }

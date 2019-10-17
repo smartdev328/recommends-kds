@@ -20,8 +20,13 @@
         <p class="event-venue">
           {{camp.misc['timings']}}
         </p>
+        <p class="star-btn" *ngIf="!isLogedin">
+          <button title="click to save" (click)="checklogin(saveEvent)">
+            <img src="../../assets/icons/heart_gray.png" class="dfkg" />
+          </button>
+        </p>
         <p class="star-btn" *ngIf="isLogedin && camp.is_saved == 'true'">
-          <button title="saved">
+          <button title="saved" (click)="is_delete_action(camp.id,i)">
             <img class="dfkg" src="../../../../assets/icons/save_orange.png" />
           </button>
         </p>
@@ -34,3 +39,20 @@
     </mat-card>
   </ng-masonry-grid-item>
 </ng-masonry-grid>
+
+<ng-template #deleteuser>
+  <div class="modal-body thanks">
+    <button type="button" style="float: right;" class="close pull-right" aria-label="Close" (click)="closeDialog()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="text-center">
+      <h2 class="app-name">Sign in to {{ClickName}}</h2>
+    </div>
+    <div class="btnYN">
+      <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary"><b class="SIGN-IN">SIGN
+          IN</b></button><br>
+      New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create
+        an account</a>
+    </div>
+  </div>
+</ng-template>
