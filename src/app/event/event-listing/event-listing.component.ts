@@ -151,6 +151,7 @@ export class EventListingComponent implements OnInit {
     this.isAuthenticated$ = this.authService.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
       this.get_explore_event_details();
     })
     this.titleService.setTitle('Family friendly events around SF bay area');

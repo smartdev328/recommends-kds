@@ -49,6 +49,8 @@ export class MasonsryVenuesViewComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.showLayout = true;
+      this.currentUrl = this.router.url
+
     }, 2000);
   }
 

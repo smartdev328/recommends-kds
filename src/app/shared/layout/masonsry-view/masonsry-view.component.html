@@ -1,86 +1,104 @@
 <img src="assets/loading.gif" *ngIf="!showLayout" class="loading-gif">
 <ng-masonry-grid [ngClass]="{'hide-layout': !showLayout, 'show-layout': showLayout}"
-  [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }"
-  [useAnimation]="true"
-  [useImagesLoaded]="true"
+  [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }" [useAnimation]="true" [useImagesLoaded]="true"
   [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
   <ng-masonry-grid-item class="tiles" *ngFor="let event of events | slice:start:end; let i=index">
-  <a style="text-decoration: none;" [routerLink]="['/events', event.id]" target="_blank">
-      <mat-card class="event-list-cards">
-          <div class="img-wrp">
-            <img *ngIf="!type" mat-card-image src={{event.image_url}} >
-            <img *ngIf="type == 'Hiking Trail'" mat-card-image src={{event.image_urls.first}} alt="">
+    <mat-card class="event-list-cards">
+      <a style="text-decoration: none;" [routerLink]="['/events', event.id]" target="_blank">
+        <div class="img-wrp">
+          <img *ngIf="!type" mat-card-image src={{event.image_url}}>
+          <img *ngIf="type == 'Hiking Trail'" mat-card-image src={{event.image_urls.first}} alt="">
+        </div>
+      </a>
+      <mat-card-content *ngIf="!type" class="">
+        <p class="event-group-title">
+          {{event.name}}
+        </p>
+        <p class="event-date">
+          <span *ngIf="event.dates" class="text">{{event.dates}} ,</span>
+          <span class="lower-text">{{event.start_time }} - {{event.end_time}}</span>
+        </p>
+        <p class="event-date">
+          <span *ngIf="event.age" class="lower-text">{{event.age }}</span>
+          <span *ngIf="event.distance" class="lower-text"> , {{event.distance}} miles</span>
 
-          </div>
-          <mat-card-content *ngIf="!type" class="">
-            <p class="event-group-title">
-                {{event.name}}
-            </p>
-            <p class="event-date">
-              <span *ngIf="event.dates" class="text">{{event.dates}} ,</span>
-              <span class="lower-text">{{event.start_time }} - {{event.end_time}}</span>
-            </p>
-            <p class="event-date">
-              <span *ngIf="event.age" class="lower-text">{{event.age }}</span>
-              <span *ngIf="event.distance" class="lower-text"> , {{event.distance}} miles</span>
+        </p>
+        <p class="event-venue">
+          {{event.venue}}
+        </p>
 
-            </p>
-            <p class="event-venue">
-              {{event.venue}}
-            </p>
+        <p class="star-btn">
 
-            <p class="star-btn">
-              <button title="Add to calendar">
-                <img class="dfkg" src="../../../../assets/icons/calendar_blue.png" />
-              </button>
-              <button title="click to save"  (click)="unsubscribe_venue(data.id,i)" >
-                <img class="dfkg" src="../../../../assets/icons/save_orange.png" />
-              </button>
-            </p>
-            <!-- <p  class="star-btn">
-              <button >
-                <img class="dfkg" src="../../../../assets/icons/calendar_grey.png" />
-              </button>
-              <button  title="follow" (click)="add_subscription_venue(data.id,i)" >
-                <img class="dfkg" src="../../../../assets/icons/save_blue.png" />
-              </button>
-            </p> -->
-          </mat-card-content>
+          <button title="click to save" *ngIf="!isLogedin" (click)="checklogin(saveEvent)">
+            <img src="../../assets/icons/heart_gray.png" class="dfkg" />
+          </button>
+          <button title="Add to calendar" *ngIf="!isLogedin" (click)="checklogin(saveEvent)">
+            <img class="dfkg" src="../../../../assets/icons/calendar_grey.png" />
+          </button>
+          <button *ngIf="isLogedin" (click)="calendar_redirects(event.id,i)" title="Add to calendar">
+            <img class="dfkg" src="../../../../assets/icons/calendar_blue.png" />
+          </button>
+          <button title="saved" *ngIf="isLogedin && event.is_saved == 'true'" (click)="is_delete_action(event.id,i)">
+            <img class="dfkg" src="../../../../assets/icons/save_orange.png" />
+          </button>
+          <button *ngIf="isLogedin && event.is_saved == 'false'" (click)="save_camp(event.id,i)" title="click to save">
+            <img class="dfkg" src="../../../../assets/icons/save_blue.png" />
+          </button>
+        </p>
+      </mat-card-content>
 
-          <mat-card-content *ngIf="type == 'eventData'" class="">
-              <p class="event-group-title otherDate">
-                  <span class="lower-text">{{event.start_date | date : 'EEE, MMM d'}},{{event.start_time}} - {{event.end_time}}</span>
-              </p>
-            <p class="event-venue otherDate">
-              {{event.name}}
-            </p>
-            <p class="event-venue">
-              {{event.venue}}
-            </p>
-          </mat-card-content>
+      <mat-card-content *ngIf="type == 'eventData'" class="">
+        <p class="event-group-title otherDate">
+          <span class="lower-text">{{event.start_date | date : 'EEE, MMM d'}},{{event.start_time}} -
+            {{event.end_time}}</span>
+        </p>
+        <p class="event-venue otherDate">
+          {{event.name}}
+        </p>
+        <p class="event-venue">
+          {{event.venue}}
+        </p>
+      </mat-card-content>
 
-          <mat-card-content *ngIf="type == 'otherDate'" class="">
-              <p class="event-group-title otherDate">
-                  <span class="lower-text">{{event.start_date | date : 'EEE, MMM d'}},{{event.start_time}} - {{event.end_time}}</span>
-              </p>
-            <p class="event-venue otherDate">
-              {{event.name}}
-            </p>
-            <p class="event-venue">
-              {{event.venue}}
-            </p>
-          </mat-card-content>
+      <mat-card-content *ngIf="type == 'otherDate'" class="">
+        <p class="event-group-title otherDate">
+          <span class="lower-text">{{event.start_date | date : 'EEE, MMM d'}},{{event.start_time}} -
+            {{event.end_time}}</span>
+        </p>
+        <p class="event-venue otherDate">
+          {{event.name}}
+        </p>
+        <p class="event-venue">
+          {{event.venue}}
+        </p>
+      </mat-card-content>
 
-          <mat-card-content *ngIf="type == 'Hiking Trail'" class="">
-              <p class="event-group-title">
-                {{event.name}}
-              </p>
-              <p class="event-venue">
-                {{event.city}}, {{event.state}}
-              </p>
-                <br>
-            </mat-card-content>
-      </mat-card>
-  </a>
+      <mat-card-content *ngIf="type == 'Hiking Trail'" class="">
+        <p class="event-group-title">
+          {{event.name}}
+        </p>
+        <p class="event-venue">
+          {{event.city}}, {{event.state}}
+        </p>
+        <br>
+      </mat-card-content>
+    </mat-card>
   </ng-masonry-grid-item>
 </ng-masonry-grid>
+
+<ng-template #deleteuser>
+  <div class="modal-body thanks">
+    <button type="button" style="float: right;" class="close pull-right" aria-label="Close" (click)="closeDialog()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="text-center">
+      <h2 class="app-name">Sign in to {{ClickName}}</h2>
+    </div>
+    <div class="btnYN">
+      <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary"><b class="SIGN-IN">SIGN
+          IN</b></button><br>
+      New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create
+        an account</a>
+    </div>
+  </div>
+</ng-template>

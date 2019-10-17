@@ -92,6 +92,7 @@ export class VenueListingComponent implements OnInit {
     this.isAuthenticated$ = this.authService.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
       this.get_venue_details();
     })
     this.isErrorVisible = false;
