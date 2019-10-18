@@ -76,6 +76,11 @@ export class EventComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
+    })
     this.isSaveVisible = false;
     this.event_id = this.route.snapshot.params['id'];
     // this.parent_id = this.route.snapshot.queryParams['parent_id'];
@@ -92,10 +97,7 @@ export class EventComponent implements OnInit {
     this.reviews_present = false;
     this.selectedIndex = 0;
     this.eventCatString = '';
-    this.isAuthenticated$ = this.authService.isAuthenticated$;
-    this.isAuthenticated$.subscribe(data => {
-      this.isLogedin = data;
-    })
+
   }
 
   get_event_details() {

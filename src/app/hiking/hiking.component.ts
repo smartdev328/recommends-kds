@@ -109,6 +109,11 @@ export class HikingTrailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
+    })
    // this.is_parent_id = false;
    // this.parent_id = '';
     this.trail_id = this.route.snapshot.params['id'];
@@ -120,10 +125,7 @@ export class HikingTrailComponent implements OnInit {
     if (this.trail_id > 0 && this.trail_id !== undefined) {
       this.get_trail_data(this.trail_id);
     }
-    this.isAuthenticated$ = this.authService.isAuthenticated$;
-    this.isAuthenticated$.subscribe(data => {
-      this.isLogedin = data;
-    })
+
   }
 
   get_trail_data(trail_id: number) {

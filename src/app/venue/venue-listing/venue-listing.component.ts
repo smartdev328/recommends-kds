@@ -127,14 +127,15 @@ export class VenueListingComponent implements OnInit {
     } else {
       let url = '';
       if (this.keyword !== '' && this.keyword !== undefined) {
-        url = API_URL + 'venues/?q=' + this.keyword.trim();
+        url = API_URL + 'venues/?distance=100&q=' + this.keyword.trim();
       } else if (this.category === undefined || this.category === '') {
-        url = API_URL + 'venues/?limit=100';
+        url = API_URL + 'venues/?distance=100&limit=100';
       } else {
-        url = API_URL + 'venues/?categories=' + this.category;
+        url = API_URL + 'venues/?distance=100&categories=' + this.category;
       }
       this.isExplore = true;
       if(this.isLogedin == true){
+        url = url +'&order_by=date_dist_asc';
         this.venueListingService.get_venue_details(url).subscribe(data => {
           this.venues_list = data['venues'];
           if (data['venues'] !== undefined && data['venues'].length > 0) {
@@ -268,7 +269,7 @@ export class VenueListingComponent implements OnInit {
     } else {
       this.isFilterErrorVisible = false;
       this.filterErrorMessage = '';
-      let url = API_URL + 'venues/?limit=43';
+      let url = API_URL + 'venues/?distance=100&limit=43';
       if (this.keyword) {
         url = url +'&q=' + this.keyword.trim();
       }if(this.selected_loc) {
@@ -279,6 +280,7 @@ export class VenueListingComponent implements OnInit {
       this.showMore = false;
       this.isExplore = true;
       if(this.isLogedin == true){
+        url = url +'&order_by=date_dist_asc';
         this.venueListingService.get_venue_details(url).subscribe(data => {
           if (data['venues'] !== undefined && data['venues'].length > 0) {
             this.isErrorVisible = false;

@@ -120,17 +120,18 @@ export class CampListingComponent implements OnInit {
   get_camps_details() {
     let url = '';
     if (this.keyword !== '' && this.keyword !== undefined) {
-      url = API_URL + 'camps/?limit=50&q=' + this.keyword.trim();
+      url = API_URL + 'camps/?distance=100&limit=50&q=' + this.keyword.trim();
     } else if (this.category !== '' && this.category !== undefined) {
-      url = API_URL + 'camps/?limit=80&category=' + this.category.trim();
+      url = API_URL + 'camps/?distance=100&limit=80&category=' + this.category.trim();
     } else {
-      url = API_URL + 'camps/?limit=50';
+      url = API_URL + 'camps/?distance=100&limit=50';
     }
     this.camp_explore = [];
     this.isExplore = true;
     this.showMore = false;
 
     if (this.isLogedin == true) {
+      url = url +'&order_by=date_dist_asc';
       this.campsListingService.get_camp_details(url).subscribe(data => {
         if (data['data'] != undefined && data['data'].length > 0) {
           this.camp_explore = data['data'];
@@ -226,16 +227,17 @@ export class CampListingComponent implements OnInit {
       let url = '';
       this.category = this.selected_cat;
       if (this.category !== '' && this.category !== undefined && this.keyword !== undefined && this.keyword !== '') {
-        url = API_URL + 'camps/?limit=80&q=' + this.keyword.trim() + '&category=' + this.category.trim();
+        url = API_URL + 'camps/?distance=100&limit=80&q=' + this.keyword.trim() + '&category=' + this.category.trim();
       } else if ((this.category === undefined || this.category === '') && this.keyword !== undefined && this.keyword !== '') {
-        url = API_URL + 'camps/?limit=80&q=' + this.keyword.trim();
+        url = API_URL + 'camps/?distance=100&limit=80&q=' + this.keyword.trim();
       } else if (this.category !== '' && this.category !== undefined) {
-        url = API_URL + 'camps/?limit=80&category=' + this.category.trim();
+        url = API_URL + 'camps/?distance=100&limit=80&category=' + this.category.trim();
       }
       this.camp_explore = [];
       this.showMore = false;
       this.isExplore = true;
       if (this.isLogedin == true) {
+        url = url +'&order_by=date_dist_asc';
         this.campsListingService.get_camp_details(url).subscribe(data => {
           if (data['data'] != undefined && data['data'].length > 0) {
             this.camp_explore = data['data'];

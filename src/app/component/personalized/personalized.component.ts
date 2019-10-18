@@ -53,6 +53,10 @@ export class PersonalizedComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.isAuthenticated$.subscribe(data => {
+            this.isLogedin = data;
+            this.authService.setAuth(this.isLogedin);
+          })
         if(this.isLogedin == false){
              this.authService.login();
           }

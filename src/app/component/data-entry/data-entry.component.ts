@@ -3,6 +3,10 @@ import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventConstants } from '@shared/constants/EventConstants';
 import { API_URL } from '@shared/constants/UrlConstants';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-data-entry',
@@ -20,9 +24,21 @@ export class DataEntryComponent implements OnInit {
   public secondary_cat = this.eventConstatnts.SECONDARY_CATEGORY;
   public selectedPrimaryCat: number = null;
   public selectedSecondaryCat: number = null;
-  constructor(private http: HttpClient) { }
+    // public campConstants :any;
+    public isAuthenticated$: Observable<boolean>;
+    isLogedin = false;
+
+  constructor(private http: HttpClient,
+  private authService: AuthService) { }
 
   ngOnInit() {
+      
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
+
+    })
     this.createForm();
   }
 

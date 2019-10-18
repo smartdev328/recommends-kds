@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { HikingTrailModel } from './hiking.model';
 import { AddHikingTrailService } from './add-hiking.service';
 import { ValidationRules } from '../../shared/utils/ValidationRules';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
+
+
 
 
 @Component({
@@ -18,9 +22,15 @@ export class AddHikingTrailComponent implements OnInit {
   public hiking_trail_error: any;
   public validationRules: any;
   serverResponse: string;
+    // public campConstants :any;
+    public isAuthenticated$: Observable<boolean>;
+    isLogedin = false;
+  
 
 
-  constructor(private addHikingTrailService: AddHikingTrailService) {
+
+  constructor(private addHikingTrailService: AddHikingTrailService,
+  private authService :AuthService) {
     this.hikingTrailModel = new HikingTrailModel();
     this.validationRules = new ValidationRules();
     this.showError = false;
@@ -28,6 +38,12 @@ export class AddHikingTrailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
+
+    })
   }
 
   onSubmit() {

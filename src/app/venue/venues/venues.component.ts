@@ -38,7 +38,7 @@ export class VenuesComponent implements OnInit {
   modalRef: BsModalRef;
   ClickName:any;
 
-  subscribe="subscribe this place";
+  subscribe="follow this place";
   saveEvent="save this place  ";
   addToReview="add a review ";
   public dayOfWeek: any;
@@ -138,8 +138,8 @@ export class VenuesComponent implements OnInit {
     //this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
     this.isAuthenticated$ = this.authService.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
-  
       this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
     })
     this.is_save_action();
     this.show_reviews();
@@ -178,7 +178,7 @@ export class VenuesComponent implements OnInit {
         if (data['venue'] !== undefined) {
           this.venue = data['venue'];
 
-          if(data['events']){
+          if(data['events'].length>0){
             this.showMore = true;
             this.entity_type ="eventData"
 
@@ -189,10 +189,12 @@ export class VenuesComponent implements OnInit {
             this.isExplore = false;
           }
 
-          else if(data['trails']){
+          else if(data['trails'].length>0){
+            
             this.showMoreTrail = true;
             this.trail_list = data['trails'];
             this.entity_type ="Hiking Trail"
+            console.log(this.entity_type);
             if (this.trail_list.length > this.endTrail) {
               this.showMoreTrail = true;
             }

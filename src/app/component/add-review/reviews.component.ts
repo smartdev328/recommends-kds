@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ReviewsService } from './reviews.service';
 import { ENTITY_TYPES_ENUM } from '@shared/constants/VenueConstants';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-reviews',
@@ -12,13 +16,25 @@ export class ReviewsComponent implements OnInit {
   public review: string;
   public isErrorVisible: Boolean;
   public errorMessage: String;
+    // public campConstants :any;
+    public isAuthenticated$: Observable<boolean>;
+    isLogedin = false;
+  
 
-  constructor(private reviewService: ReviewsService) {
+
+  constructor(private reviewService: ReviewsService,
+              private authService: AuthService) {
     this.isErrorVisible = false;
     this.errorMessage = '';
   }
 
   ngOnInit() {
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
+
+    })
   }
 
   add_review() {

@@ -4,6 +4,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventConstants } from '../../shared/constants/EventConstants';
 import { ActivatedRoute, Router } from '@angular/router';
 import { API_URL } from '@shared/constants/UrlConstants';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
+
+
 declare var $:any;
 @Component({
     selector: 'app-edit-event',
@@ -25,9 +29,22 @@ export class EditEventComponent implements OnInit {
     public secondary_cat = this.eventConstatnts.SECONDARY_CATEGORY;
     public selectedPrimaryCat: number = null;
     public selectedSecondaryCat: number = null;
-    constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
+      // public campConstants :any;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
+
+
+    constructor(private route: ActivatedRoute,
+        private authService : AuthService,
+         private router: Router, private http: HttpClient) { }
 
     ngOnInit() {
+        this.isAuthenticated$ = this.authService.isAuthenticated$;
+        this.isAuthenticated$.subscribe(data => {
+          this.isLogedin = data;
+          this.authService.setAuth(this.isLogedin);
+    
+        })
         this.route.params.subscribe(params => {
             this.event_id = params['eventId'];
             this.edit_page_event_id = this.event_id;

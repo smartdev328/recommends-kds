@@ -3,6 +3,10 @@ import { CampModel } from './camp.model';
 import { CampConstants } from '../../shared/constants/CampConstants';
 import { AddCampService } from './add-camp.service';
 import { ValidationRules } from '../../shared/utils/ValidationRules';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
+
+
 
 
 @Component({
@@ -12,6 +16,11 @@ import { ValidationRules } from '../../shared/utils/ValidationRules';
 })
 
 export class AddCampComponent implements OnInit {
+    // public campConstants :any;
+    public isAuthenticated$: Observable<boolean>;
+    isLogedin = false;
+  
+
 
   public campModel: any;
   public categoryList: any;
@@ -23,7 +32,8 @@ export class AddCampComponent implements OnInit {
   public validationRules: any;
   data: any = {};
 
-  constructor(private addCampService: AddCampService) {
+  constructor(private addCampService: AddCampService,
+              private authService :AuthService) {
     this.campModel = new CampModel();
     this.campConstants = new CampConstants();
     this.validationRules = new ValidationRules();
@@ -34,6 +44,12 @@ export class AddCampComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
+
+    })
 
   }
 

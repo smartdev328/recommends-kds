@@ -18,14 +18,14 @@
           {{venue.city}}, {{venue.state}}
         </p>
         <p *ngIf="venue.distance" class="event-venue">
-          {{venue.distance}}
+          {{venue.distance}} miles
         </p>
         <p class="star-btn" >
-          <button title="click to save" *ngIf="!isLogedin" (click)="checklogin(saveEvent)">
+          <button title="click to save" *ngIf="!isLogedin" (click)="checklogin(venue.id,i,'save this place')">
             <img src="../../assets/icons/heart_gray.png" class="dfkg" />
           </button>
 
-            <button title="follow" *ngIf="!isLogedin" (click)="checklogin(saveEvent)">
+            <button title="follow" *ngIf="!isLogedin" (click)="checklogin(venue.id,i,'follow this place')">
                 <img src="../../assets/icons/subscribe_grey.png" class="dfkg" />
               </button>
 

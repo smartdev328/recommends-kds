@@ -131,7 +131,7 @@ export class HikingTrailsListingComponent implements OnInit {
     this.hiking_explore = [];
     this.isExplore = true;
     this.showMore = false;
-    const url = API_URL + 'hiking-trails/?limit=43&distance=50';
+    let url = API_URL + 'hiking-trails/?limit=43&distance=50';
     const headers = new HttpHeaders();
     if (this.isLogedin == false) {
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
@@ -161,6 +161,7 @@ export class HikingTrailsListingComponent implements OnInit {
         }
       });
     } else {
+      url = url +'&order_by=date_dist_asc';
       this.hikeService.get_hiking_trail_details(url).subscribe(data => {
         if (data['trails'] !== undefined && data['trails'].length > 0) {
           this.hiking_explore = data['trails'];
@@ -256,6 +257,7 @@ export class HikingTrailsListingComponent implements OnInit {
       this.showMore = false;
       this.end = 21;
       if (this.isLogedin == true) {
+        url = url +'&order_by=date_dist_asc';
         this.hikeService.get_hiking_trail_details(url).subscribe(data => {
           this.hiking_explore = data['trails'];
           if (data['trails'] !== undefined && data['trails'].length > 0) {

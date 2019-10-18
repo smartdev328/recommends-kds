@@ -251,8 +251,8 @@ export class EventListingComponent implements OnInit {
   get_explore_event_details() {
     this.showMore = false;
     // this.isExplore = true;
-    let url = `${API_URL}` + `events/?distance=100&limit=${this.limit}`;
     if (this.isLogedin == true) {
+      let url = `${API_URL}` + `events/?order_by=date_dist_asc&distance=100&limit=${this.limit}`;
       this.eventListingService.get_event_details(url).subscribe(data => {
         this.all_data = data['events'];
         if (data['events'] !== undefined && data['events'].length > 0) {
@@ -285,6 +285,7 @@ export class EventListingComponent implements OnInit {
         console.log(err);
       });
     } else {
+      let url = `${API_URL}` + `events/?distance=100&limit=${this.limit}`;
       const headers = new HttpHeaders();
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
         data = data.replace(/\n/g, '');
@@ -426,7 +427,12 @@ export class EventListingComponent implements OnInit {
     if(input.tags == null){
       input.tags ='';
     }
-    let url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str) +'&order_by=date_dist_asc'+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
+    let url;
+    if(this.isLogedin){
+    url = `${API_URL}` + 'events/?order_by=date_dist_asc&event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str)+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
+    }if(!this.isLogedin){
+      url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str)+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
+    }
     if (input.kid_id) {
      url = url+ "&personalize=True";
     }

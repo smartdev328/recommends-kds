@@ -26,6 +26,7 @@ export class MasonsryVenuesPersonaliseViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.events);
 
     this.nearby_events_query_params = { distance: '20', username: this.parent_id, order_by: 'date_dist_asc' };
     setTimeout(() => {

@@ -56,6 +56,7 @@ export class CityListComponent implements OnInit {
     this.isAuthenticated$ = this.authService.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
       this.getEvents()
       this.getPlaces();
       this.getCamps();

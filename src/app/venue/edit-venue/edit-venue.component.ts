@@ -5,6 +5,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { VenueConstants, VenueErrorMessage } from '../../shared/constants/VenueConstants';
 import { ValidationRules } from '../../shared/utils/ValidationRules';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
+
+
 
 
 @Component({
@@ -28,10 +32,16 @@ export class EditVenueComponent implements OnInit {
     public rating: number;
     public tips_for_parent: string;
     public edit_page_venue_id: any;
+      // public campConstants :any;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
+
+
 
     constructor(private editVenue_service: EditVenueService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private authService : AuthService
     ) {
         this.userSearch = new UserSearch();
         this.parking = '';
@@ -40,6 +50,12 @@ export class EditVenueComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.isAuthenticated$ = this.authService.isAuthenticated$;
+        this.isAuthenticated$.subscribe(data => {
+          this.isLogedin = data;
+          this.authService.setAuth(this.isLogedin);
+    
+        })
         this.route.params.subscribe(params => {
             const venue_id = params['venueId'];
             this.edit_page_venue_id = venue_id;

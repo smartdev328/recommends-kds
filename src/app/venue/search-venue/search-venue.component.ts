@@ -4,6 +4,8 @@ import { SearchVenueService } from './search-venue.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { VenueConstants, VenueErrorMessage } from '../../shared/constants/VenueConstants';
 import { ValidationRules } from '../../shared/utils/ValidationRules';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
 
 
 
@@ -30,13 +32,28 @@ export class SearchVenueComponent implements OnInit {
     public venueData: any;
     public query_search: string;
 
-    constructor(private searchVenueService: SearchVenueService, private router: Router) {
+  // public campConstants :any;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
+
+
+
+    constructor(private searchVenueService: SearchVenueService,
+        private authService :AuthService,
+         private router: Router) {
         this.isShowTable = true;
         this.isErrorVisible = false;
         this.venueData = [];
     }
 
     ngOnInit() {
+
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
+
+    })
     }
 
     get_venue_data(this) {

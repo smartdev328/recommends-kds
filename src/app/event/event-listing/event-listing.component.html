@@ -188,7 +188,7 @@
               <select (change)="sortBy($event.target.value)" class="form-control">
                 <option selected disabled hidden>Sort By</option>
                 <option [value]="kid.id" *ngFor="let kid of user?.parent?.kids">For {{kid.nick_name}}</option>
-                <option value="subscribed">following</option>
+                <option value="subscribed">Following</option>
                 <option value="nearby">Nearby</option>
                 <option value="trending">Trending</option>
                 <option value="all">All</option>

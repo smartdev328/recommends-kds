@@ -5,6 +5,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ValidationRules } from '../../shared/utils/ValidationRules';
 import { API_URL } from '@shared/constants/UrlConstants';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
+
 
 
 @Component({
@@ -21,8 +24,16 @@ export class EditHikingTrailComponent implements OnInit {
   public showError: Boolean;
   public hiking_trail_error: any;
   public validationRules: any;
+    // public campConstants :any;
+    public isAuthenticated$: Observable<boolean>;
+    isLogedin = false;
+  
 
-  constructor(private addHikingTrailService: AddHikingTrailService, private route: ActivatedRoute,
+  
+
+  constructor(private addHikingTrailService: AddHikingTrailService,
+    private authService : AuthService,
+    private route: ActivatedRoute,
     private router: Router, private http: HttpClient) {
     this.hikingTrailModel = new HikingTrailModel();
     this.validationRules = new ValidationRules();
@@ -31,6 +42,12 @@ export class EditHikingTrailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
+
+    })
     this.route.params.subscribe(params => {
       this.hiking_trail_id = params['hikingTrailId'];
       this.edit_page_hiking_trail_id = this.hiking_trail_id;

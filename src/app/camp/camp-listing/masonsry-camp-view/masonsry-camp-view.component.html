@@ -17,11 +17,14 @@
         <p class="event-venue">
           {{camp.cities}}
         </p>
+        <p *ngIf="camp.distance" class="event-venue">
+          {{camp.distance}} miles
+        </p>
         <p class="event-venue">
           {{camp.misc['timings']}}
         </p>
         <p class="star-btn" *ngIf="!isLogedin">
-          <button title="click to save" (click)="checklogin(saveEvent)">
+          <button title="click to save" (click)="checklogin(camp.id,i,'save this camp')">
             <img src="../../assets/icons/heart_gray.png" class="dfkg" />
           </button>
         </p>

@@ -4,6 +4,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApproveVenueReviewsService } from '../../component/approve-reviews/approve-review.service';
 import { VenuesService } from '../venues/venues.service';
 import { API_URL } from '@shared/constants/UrlConstants';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
+
+
 
 
 @Component({
@@ -21,8 +25,15 @@ export class SubscribeVenueComponent implements OnInit {
   public rows: any;
   public columns: any;
   public selected: any;
+    // public campConstants :any;
+    public isAuthenticated$: Observable<boolean>;
+    isLogedin = false;
+  
 
-  constructor(private route: ActivatedRoute, private approveReviewsService: ApproveVenueReviewsService,
+
+  constructor(private route: ActivatedRoute,
+    private authService: AuthService,
+     private approveReviewsService: ApproveVenueReviewsService,
     private http: HttpClient, private venuesService: VenuesService) {
     this.selected_row = [];
     this.rows = [];
@@ -54,6 +65,12 @@ export class SubscribeVenueComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
+
+    })
     this.parent_id = this.route.snapshot.queryParamMap.get('parent_id');
     this.get_subscribed_venues();
 

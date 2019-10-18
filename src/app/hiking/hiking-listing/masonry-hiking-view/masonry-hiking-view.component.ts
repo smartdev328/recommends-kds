@@ -59,7 +59,7 @@ export class MasonsryHikingTrailViewComponent implements OnInit {
     this.router.navigate(['/hiking-trails', id]);
   }
 
-  save_trail(id, i) {
+  save_camp(id, i) {
     this.add_analytics_data(id, i, 'SAVE');
     this.trails[i].is_saved = "true";
   }
@@ -128,7 +128,7 @@ export class MasonsryHikingTrailViewComponent implements OnInit {
   //this function will open a popup when user is not loggen in
   checklogin(id, i, linkName) {
     if (this.isLogedin) {
-      this.save_trail(id, i);
+      this.save_camp(id, i);
     } else {
       this.deleteUser(linkName);
     }

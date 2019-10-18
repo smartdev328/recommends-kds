@@ -4,6 +4,9 @@ import { UserSearch } from './venue.model';
 import { VenueConstants, VenueErrorMessage } from '../shared/constants/VenueConstants';
 import { ValidationRules } from '../shared/utils/ValidationRules';
 import { Router } from '@angular/router';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-venue',
@@ -22,13 +25,27 @@ export class VenueComponent implements OnInit {
   public isErrorVisible: Boolean;
   public jsonMiscData: JSON;
   public showErrorDialog: boolean;
+    // public campConstants :any;
+    public isAuthenticated$: Observable<boolean>;
+    isLogedin = false;
+  
 
 
-  constructor(private eventService: VenueService, private router: Router) {
+
+  constructor(private eventService: VenueService,
+    private authService: AuthService,
+    private router: Router) {
     this.showErrorDialog = false;
   }
 
   ngOnInit(): void {
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
+
+    })
+
 
   }
 

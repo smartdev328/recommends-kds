@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ApproveVenueReviewsService } from './approve-review.service';
 import { _ } from 'underscore';
+import { AuthService } from '@shared/service/auth.service';
+import { Observable } from 'rxjs';
+
+
 
 
 @Component({
@@ -20,8 +24,14 @@ export class ApproveReviewComponent implements OnInit {
   public rows: any;
   public columns: any;
   public selected: any;
+    // public campConstants :any;
+    public isAuthenticated$: Observable<boolean>;
+    isLogedin = false;
+  
 
-  constructor(private approveReviewsService: ApproveVenueReviewsService) {
+
+  constructor(private approveReviewsService: ApproveVenueReviewsService,
+  private authService :AuthService) {
     this.review_data = [];
     this.selected_reviews = [];
     this.rows = [];
@@ -61,6 +71,12 @@ export class ApproveReviewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$.subscribe(data => {
+      this.isLogedin = data;
+      this.authService.setAuth(this.isLogedin);
+
+    })
 
   }
 

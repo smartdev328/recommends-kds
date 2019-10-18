@@ -1,5 +1,5 @@
 <img src="assets/loading.gif" *ngIf="!showLayout" class="loading-gif">
-<div class="container newsletter">
+<div class="container-fluid newsletter">
   <div class="row">
     <!-- 
     <div class="col-md-12" *ngIf="favorite_events">
@@ -33,129 +33,137 @@
     </div>
     -->
 
-    <div class="col-md-12" *ngIf="popular_events">
-        <div class="Events-at-your-favorite-venues">Popular Events</div>
-        <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
-          [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
-          <!-- Masonry Grid Item -->
-          <ng-masonry-grid-item class="tiles" id="{{'masonry-item-'+i}}" *ngFor="let event of events.popular[0]; let i = index;">
-            <!-- Grid Content  -->
-            <!-- <div class="col-md-4">
+    <div class="col-md-12" *ngIf="events.popular && events.popular[0]?.length>0">
+      <h3>Popular Events</h3>
+      <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
+        [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+        <!-- Masonry Grid Item -->
+        <ng-masonry-grid-item class="tiles productBlock" id="{{'masonry-item-'+i}}"
+          *ngFor="let event of events.popular[0]; let i = index;">
+          <!-- Grid Content  -->
+          <!-- <div class="col-md-4">
                           <img src={{event.image_url}} alt="" width="400" height="400">
                         </div> -->
 
-            <mat-card class="event-list-cards" (click)="event_redirect(event.id)">
-              <div class="img-wrp"><img src={{event.image_url}} alt="" class="tiles-image img-fluid" mat-card-image></div>
-              <mat-card-content class="">
-                <p class="event-date">
-                  <span class="text">{{event.dates}} &nbsp;&nbsp;</span>
+          <mat-card class="event-list-cards" (click)="event_redirect(event.id)">
+            <div class="img-wrp"><img src={{event.image_url}} alt="" class="tiles-image img-fluid" mat-card-image></div>
+            <mat-card-content class="">
+              <p class="event-group-title">
+                {{event.name}}
+              </p>
+              <p class="event-date">
+                <span class="text">{{event.dates}} &nbsp;&nbsp;</span>
 
-                  <span class="lower-text">{{event.start_time}} - {{event.end_time}}</span>
-                </p>
-                <p class="event-group-title">
-                  {{event.name}}
-                </p>
-                <p class="event-venue">
-                  {{event.venue}}
-                </p>
-              </mat-card-content>
-            </mat-card>
+                <span class="lower-text">{{event.start_time}} - {{event.end_time}}</span>
+              </p>
 
-           
-          </ng-masonry-grid-item>
-          <ng-masonry-grid-item class="tiles col-md-4" id="SEEmORE1" *ngIf="events.popular[0]">
-              <div class="see-more event-list-cards">
-                  <a class="See-more seemore-link" [routerLink]="['/','family-friendly-events-near-me']" [queryParams]="{q: 'popular'}" target="_blank">See more</a>
-                </div>
-      </ng-masonry-grid-item>
-        </ng-masonry-grid>
+              <p class="event-venue">
+                {{event.venue}}
+              </p>
+            </mat-card-content>
+          </mat-card>
+
+
+        </ng-masonry-grid-item>
+        <ng-masonry-grid-item class="tiles col-md-4" id="SEEmORE1" *ngIf="events.popular[0].length>5">
+          <div class="see-more event-list-cards">
+            <a class="See-more seemore-link" [routerLink]="['/','family-friendly-events-near-me']"
+              [queryParams]="{q: 'popular'}" target="_blank">+ See More</a>
+          </div>
+        </ng-masonry-grid-item>
+      </ng-masonry-grid>
     </div>
-    </div>
+  </div>
 
-    <div class="row">
-    <div class="col-md-12" *ngIf="weekend_events">
-        <div class="Events-at-your-favorite-venues">Weekend Events</div>
-        <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
-          [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
-          <!-- Masonry Grid Item -->
-          <ng-masonry-grid-item class="tiles" id="{{'masonry-item-'+i}}" *ngFor="let event of events.weekend[0]; let i = index;">
-            <!-- Grid Content  -->
-            <!-- <div class="col-md-4">
+  <div class="row">
+    <div class="col-md-12" *ngIf="events.weekend && events.weekend[0]?.length>0">
+      <h3>Weekend Events</h3>
+      = <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
+        [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+        <!-- Masonry Grid Item -->
+        <ng-masonry-grid-item class="tiles productBlock" id="{{'masonry-item-'+i}}"
+          *ngFor="let event of events.weekend[0]; let i = index;">
+          <!-- Grid Content  -->
+          <!-- <div class="col-md-4">
                             <img src={{event.image_url}} alt="" width="400" height="400">
                           </div> -->
 
-            <mat-card class="event-list-cards" (click)="event_redirect(event.id)">
-                <div class="img-wrp">
+          <mat-card class="event-list-cards" (click)="event_redirect(event.id)">
+            <div class="img-wrp">
               <img src={{event.image_url}} alt="" class="tiles-image img-fluid" mat-card-image>
-              </div>
-              <mat-card-content>
-                <p class="event-date">
-                  <span class="text">{{event.dates}} &nbsp;&nbsp;</span>
+            </div>
+            <mat-card-content>
+              <p class="event-group-title">
+                {{event.name}}
+              </p>
+              <p class="event-date">
+                <span class="text">{{event.dates}} &nbsp;&nbsp;</span>
+                <span class="lower-text">{{event.start_time}} - {{event.end_time}}</span>
+              </p>
 
-                  <span class="lower-text">{{event.start_time}} - {{event.end_time}}</span>
-                </p>
-                <p class="event-group-title">
-                  {{event.name}}
-                </p>
-                <p class="event-venue">
-                  {{event.venue}}
-                </p>
-              </mat-card-content>
-            </mat-card>
-          </ng-masonry-grid-item>
-          <ng-masonry-grid-item class="tiles col-md-4" id="SEEmORE1" *ngIf="events.weekend[0]">
-              <div class="see-more event-list-cards">
-                  <a class="See-more seemore-link"[routerLink]="['/','family-friendly-events-near-me']" [queryParams]="{date: 'weekend'}" target="_blank">See more</a>
-                </div>
-      </ng-masonry-grid-item>
-        </ng-masonry-grid>
+              <p class="event-venue">
+                {{event.venue}}
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </ng-masonry-grid-item>
+        <ng-masonry-grid-item class="tiles col-md-4" id="SEEmORE1" *ngIf="events.weekend[0].length>5">
+          <div class="see-more event-list-cards">
+            <a class="See-more seemore-link" [routerLink]="['/','family-friendly-events-near-me']"
+              [queryParams]="{date: 'weekend'}" target="_blank">+ See More</a>
+          </div>
+        </ng-masonry-grid-item>
+      </ng-masonry-grid>
     </div>
-    </div>
+  </div>
 
-    <div class="row">
-    <div class="col-md-12" *ngIf="closest_events">
-        <div class="Events-at-your-favorite-venues">Events closest to you</div>
-        <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
-          [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
-          <!-- Masonry Grid Item -->
-          <ng-masonry-grid-item class="tiles" id="{{'masonry-item-'+i}}" *ngFor="let event of events.closest[0]; let i = index;">
-            <!-- Grid Content  -->
-            <!-- <div class="col-md-4">
+  <div class="row">
+    <div class="col-md-12" *ngIf="events.closest && events.closest[0]?.length>0">
+      <h3 class="Events-at-your-favorite-venues">Events closest to you</h3>
+      <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
+        [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+        <!-- Masonry Grid Item -->
+        <ng-masonry-grid-item class="tiles productBlock" id="{{'masonry-item-'+i}}"
+          *ngFor="let event of events.closest[0]; let i = index;">
+          <!-- Grid Content  -->
+          <!-- <div class="col-md-4">
                               <img src={{event.image_url}} alt="" width="400" height="400">
                             </div> -->
 
-            <mat-card class="event-list-cards" (click)="event_redirect(event.id)">
-                <div class="img-wrp">
+          <mat-card class="event-list-cards" (click)="event_redirect(event.id)">
+            <div class="img-wrp">
               <img src={{event.image_url}} alt="" class="tiles-image img-fluid" mat-card-image>
-              </div>
-              <mat-card-content>
-                <p class="event-date">
-                  <span class="text">{{event.dates}} &nbsp;&nbsp;</span>
+            </div>
+            <mat-card-content>
+              <p class="event-group-title">
+                {{event.name}}
+              </p>
+              <p class="event-date">
+                <span class="text">{{event.dates}} &nbsp;&nbsp;</span>
 
-                  <span class="lower-text">{{event.start_time}} - {{event.end_time}}</span>
-                </p>
-                <p class="event-group-title">
-                  {{event.name}}
-                </p>
-                <p class="event-venue">
-                  {{event.venue}}
-                </p>
-              </mat-card-content>
-            </mat-card>
+                <span class="lower-text">{{event.start_time}} - {{event.end_time}}</span>
+              </p>
+
+              <p class="event-venue">
+                {{event.venue}}
+              </p>
+            </mat-card-content>
+          </mat-card>
 
 
 
-          </ng-masonry-grid-item>
-          <ng-masonry-grid-item class="tiles col-md-4" id="SEEmORE1" *ngIf="events.closest[0]">
-                  <div class="see-more event-list-cards">
-                      <a class="See-more seemore-link" [routerLink]="['/','family-friendly-events-near-me']" [queryParams]="this.nearby_events_query_params" target="_blank">See more</a>
-                    </div>
-          </ng-masonry-grid-item>
-  
-        </ng-masonry-grid>
-    
-  
-        
+        </ng-masonry-grid-item>
+        <ng-masonry-grid-item class="tiles col-md-4" id="SEEmORE1" *ngIf="events.closest[0].length>5">
+          <div class="see-more event-list-cards">
+            <a class="See-more seemore-link" [routerLink]="['/','family-friendly-events-near-me']"
+              [queryParams]="this.nearby_events_query_params" target="_blank">+ See More</a>
+          </div>
+        </ng-masonry-grid-item>
+
+      </ng-masonry-grid>
+
+
+
     </div>
   </div>
 </div>

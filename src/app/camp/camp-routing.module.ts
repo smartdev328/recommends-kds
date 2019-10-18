@@ -4,6 +4,7 @@ import { AddCampComponent } from './add-camp/add-camp.component';
 import { CampListingComponent } from './camp-listing/camp-listing.component';
 import { CampsComponent } from './camps/camps.component';
 import { EditCampComponent } from './edit-camp/edit-camp.component';
+import { AuthGuard } from '@shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -17,10 +18,12 @@ const routes: Routes = [
   {
     path: 'add-camp',
     component: AddCampComponent
+    ,canActivate: [AuthGuard]
   },
   {
     path: 'edit-camp/:campId',
     component: EditCampComponent
+    ,canActivate: [AuthGuard]
   }
 ];
 

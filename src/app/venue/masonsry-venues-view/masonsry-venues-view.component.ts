@@ -22,7 +22,6 @@ export class MasonsryVenuesViewComponent implements OnInit {
   dialogRef: any;
   modalRef: BsModalRef;
   ClickName: any;
-  saveEvent = "save this camp";
   showLayout: Boolean = false;
   @Input() venues;
   @Input() start;
@@ -152,6 +151,7 @@ deleteUser(linkName) {
 //this function will open a popup when user is not loggen in
 checklogin(id, i, linkName) {
   if (this.isLogedin) {
+    this.ClickName = linkName;
     // this.save_camp(id, i);
   } else {
     this.deleteUser(linkName);
