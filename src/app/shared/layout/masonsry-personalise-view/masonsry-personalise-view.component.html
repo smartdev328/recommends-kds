@@ -34,12 +34,12 @@
     -->
 
     <div class="col-md-12" *ngIf="events.popular && events.popular[0]?.length>0">
-      <h3>Popular Events</h3>
+      <h3>Trending Events</h3>
       <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
         [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
         <!-- Masonry Grid Item -->
         <ng-masonry-grid-item class="tiles productBlock" id="{{'masonry-item-'+i}}"
-          *ngFor="let event of events.popular[0]; let i = index;">
+          *ngFor="let event of events.popular[0] | slice:0:5; let i = index; ">
           <!-- Grid Content  -->
           <!-- <div class="col-md-4">
                           <img src={{event.image_url}} alt="" width="400" height="400">
@@ -82,7 +82,7 @@
         [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
         <!-- Masonry Grid Item -->
         <ng-masonry-grid-item class="tiles productBlock" id="{{'masonry-item-'+i}}"
-          *ngFor="let event of events.weekend[0]; let i = index;">
+          *ngFor="let event of events.weekend[0] | slice:0:5; let i = index;">
           <!-- Grid Content  -->
           <!-- <div class="col-md-4">
                             <img src={{event.image_url}} alt="" width="400" height="400">
@@ -124,7 +124,7 @@
         [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
         <!-- Masonry Grid Item -->
         <ng-masonry-grid-item class="tiles productBlock" id="{{'masonry-item-'+i}}"
-          *ngFor="let event of events.closest[0]; let i = index;">
+          *ngFor="let event of events.closest[0] | slice:0:5; let i = index;">
           <!-- Grid Content  -->
           <!-- <div class="col-md-4">
                               <img src={{event.image_url}} alt="" width="400" height="400">

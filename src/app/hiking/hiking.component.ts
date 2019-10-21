@@ -425,6 +425,9 @@ export class HikingTrailComponent implements OnInit {
     }
   }
 
+
+
+
   validate_review() {
     if (this.review.trim().length === 0) {
       this.isErrorVisible = true;
@@ -452,6 +455,17 @@ export class HikingTrailComponent implements OnInit {
         }
       }, error => {
       });
+  }
+
+  is_delete_action() {
+    this.reviewService.delete_action(this.trail_id,ANALYTICS_ENTITY_TYPES_ENUM.HIKING_TRAIL).subscribe(data => {
+      if (data['status'] === true) {
+        this.isSaveVisible = false;
+      } else {
+        this.isSaveVisible = true;
+      }
+    }, error => {
+    });
   }
 
 

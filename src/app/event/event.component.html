@@ -22,7 +22,7 @@
             <!-- <li title="Save disabled" *ngIf="is_parent_id === false"> -->
             <li title="Save" *ngIf="isLogedin === false">
                 <button  (click)="checklogin(saveEvent)">
-                  <img src="../../assets/icons/heart_gray.png" class="dfkg" />save
+                  <img src="../../assets/icons/save_grey.png" class="dfkg" />save
                 </button>
               </li>
               <li  title="Save" (click)="save_event()" *ngIf="isLogedin === true && isSaveVisible !== true">
@@ -30,7 +30,7 @@
                   <img class="dfkg" src="../../assets/icons/save_blue.png" /> save
                 </button>
               </li>
-              <li   title="Saved" *ngIf="isSaveVisible">
+              <li   title="Saved" (click)="is_delete_action()" *ngIf="isLogedin === true && isSaveVisible">
                 <button>
                   <img class="dfkg" src="../../assets/icons/save_orange.png" /> save
                 </button>

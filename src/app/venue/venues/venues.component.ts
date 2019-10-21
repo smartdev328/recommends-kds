@@ -408,6 +408,17 @@ export class VenuesComponent implements OnInit {
     });
   }
 
+  is_delete_action() {
+    this.reviewService.delete_action(this.venue_id,ANALYTICS_ENTITY_TYPES_ENUM.VENUE).subscribe(data => {
+      if (data['status'] === true) {
+        this.isSaveVisible = false;
+      } else {
+        this.isSaveVisible = true;
+      }
+    }, error => {
+    });
+  }
+
   add_subscription_venue() {
 
     //if (this.parent_id !== undefined) {

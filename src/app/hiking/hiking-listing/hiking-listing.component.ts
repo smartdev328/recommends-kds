@@ -331,10 +331,10 @@ export class HikingTrailsListingComponent implements OnInit {
     }
   }
   detectClick(moreTralis) {
-    let counter = this.count++
-    if (counter <= 1) {
-      this.loadMore();
-    } else
+    // let counter = this.count++
+    // if (counter <= 1) {
+    //   this.loadMore();
+    // } else
       this.openPopup(moreTralis);
   }
   openPopup(moreTralis) {

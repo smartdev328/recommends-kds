@@ -348,10 +348,10 @@ export class VenueListingComponent implements OnInit {
     }
   }
   detectClick(morePlace) {
-    let counter = this.count++
-    if(counter <= 1){
-      this.loadMore();
-    }else
+    // let counter = this.count++
+    // if(counter <= 1){
+    //   this.loadMore();
+    // }else
       this.openPopup(morePlace);
   }
   openPopup(morePlace) {

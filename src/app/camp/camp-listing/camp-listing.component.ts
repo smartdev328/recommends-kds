@@ -309,10 +309,10 @@ export class CampListingComponent implements OnInit {
     }
   }
   detectClick(moreCamps) {
-    let counter = this.count++
-    if (counter <= 1) {
-      this.loadMore();
-    } else
+    // let counter = this.count++
+    // if (counter <= 1) {
+    //   this.loadMore();
+    // } else
       this.openPopup(moreCamps);
   }
   openPopup(moreCamps) {

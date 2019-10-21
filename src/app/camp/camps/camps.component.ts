@@ -322,6 +322,18 @@ export class CampsComponent implements OnInit {
     }, error => {
     });
   }
+
+  is_delete_action() {
+    this.reviewService.delete_action(this.camp_id,ANALYTICS_ENTITY_TYPES_ENUM.CAMP).subscribe(data => {
+      if (data['status'] === true) {
+        this.isSaveVisible = false;
+      } else {
+        this.isSaveVisible = true;
+      }
+    }, error => {
+    });
+  }
+
   addReviewSection(event) {
     if (event == false) {
       this.class = true;

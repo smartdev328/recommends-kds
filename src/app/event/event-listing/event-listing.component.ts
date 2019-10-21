@@ -573,12 +573,12 @@ export class EventListingComponent implements OnInit {
     }
   }
   detectClick(moreEvent) {
-    let counter = this.count++
-    if (counter <= 1) {
-      this.loadMore();
-    } else {
+    // let counter = this.count++
+    // if (counter <= 1) {
+    //   this.loadMore();
+    // } else {
       this.openPopup(moreEvent);
-    }
+    // }
 
 
 
