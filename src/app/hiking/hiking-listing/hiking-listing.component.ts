@@ -161,7 +161,7 @@ export class HikingTrailsListingComponent implements OnInit {
         }
       });
     } else {
-      url = url +'&order_by=date_dist_asc';
+      url = url +'&distance=100&order_by=date_dist_asc';
       this.hikeService.get_hiking_trail_details(url).subscribe(data => {
         if (data['trails'] !== undefined && data['trails'].length > 0) {
           this.hiking_explore = data['trails'];
@@ -257,7 +257,7 @@ export class HikingTrailsListingComponent implements OnInit {
       this.showMore = false;
       this.end = 21;
       if (this.isLogedin == true) {
-        url = url +'&order_by=date_dist_asc';
+        url = url +'&distance=100&order_by=date_dist_asc';
         this.hikeService.get_hiking_trail_details(url).subscribe(data => {
           this.hiking_explore = data['trails'];
           if (data['trails'] !== undefined && data['trails'].length > 0) {
