@@ -127,11 +127,11 @@ export class VenueListingComponent implements OnInit {
     } else {
       let url = '';
       if (this.keyword !== '' && this.keyword !== undefined) {
-        url = API_URL + 'venues/?distance=100&q=' + this.keyword.trim();
+        url = API_URL + 'venues/?q=' + this.keyword.trim();
       } else if (this.category === undefined || this.category === '') {
-        url = API_URL + 'venues/?distance=100&limit=100';
+        url = API_URL + 'venues/?limit=100';
       } else {
-        url = API_URL + 'venues/?distance=100&categories=' + this.category;
+        url = API_URL + 'venues/?categories=' + this.category;
       }
       this.isExplore = true;
       if(this.isLogedin == true){

@@ -131,7 +131,7 @@ export class HikingTrailsListingComponent implements OnInit {
     this.hiking_explore = [];
     this.isExplore = true;
     this.showMore = false;
-    let url = API_URL + 'hiking-trails/?limit=43&distance=50';
+    let url = API_URL + 'hiking-trails/?limit=43';
     const headers = new HttpHeaders();
     if (this.isLogedin == false) {
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
