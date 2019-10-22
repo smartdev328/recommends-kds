@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { API_URL } from '@shared/constants/UrlConstants';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
+import { EventListingService } from '../event-listing/event-listing.service';
 
 
 declare var $:any;
@@ -36,7 +37,9 @@ export class EditEventComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
         private authService : AuthService,
-         private router: Router, private http: HttpClient) { }
+        private eventListingService : EventListingService,
+        private router: Router,
+        private http: HttpClient) { }
 
     ngOnInit() {
         this.isAuthenticated$ = this.authService.isAuthenticated$;
@@ -242,6 +245,18 @@ export class EditEventComponent implements OnInit {
 
 
         });
+    }
+
+    delete_event(){
+        this.eventListingService.delete_event(this.event_id).subscribe(data => {
+            if (data ) {
+                this.next_event();
+            } else {
+      
+            }
+          }, err => {
+            console.log(err);
+          });
     }
 
     reset_event() {

@@ -1,6 +1,7 @@
 <mat-card *ngIf="isLoaded" class="event-card landing-page">
   <div class="row top-banner">
-    <div class="col-md-4 col-sm-12 xs-12  mat-image-wrp"> <img mat-card-image class="header-image" [src]=event.image_url alt="Photo of the event">
+    <div class="col-md-4 col-sm-12 xs-12  mat-image-wrp"> <img mat-card-image class="header-image" [src]=event.image_url
+        alt="Photo of the event">
     </div>
     <div class="col-md-8 col-sm-12 xs-12">
       <div class="contact-section">
@@ -8,60 +9,60 @@
         <h3>{{ event.name }}</h3>
         <p>{{event.description}}</p>
         <div class="cards-footer">
-          <span><span *ngIf="format_price()"> {{format_price()}}</span></span>  
+          <span><span *ngIf="format_price()"> {{format_price()}}</span></span>
           <ul>
-              <li title="Add to Calendar" *ngIf="isLogedin === false">
-                  <button (click)="checklogin(calendarEvent)">
-                    <img src="../../assets/icons/calendar_gray.png" class="dfkg" /> add to calendar
-                  </button>
-                </li>
+            <li title="Add to Calendar" *ngIf="isLogedin === false">
+              <button (click)="checklogin(calendarEvent)">
+                <img src="../../assets/icons/calendar_gray.png" class="dfkg" /> add to calendar
+              </button>
+            </li>
             <li *ngIf="isLogedin" (click)="calendar_redirects()" title="Add to Calendar">
               <button><img src="../../assets/icons/calendar_blue.png" class="dfkg" /> add to calendar</button>
             </li>
             <!-- <li><button><img src="../../assets/icons/share.png" class="dfkg" /> share</button></li> -->
             <!-- <li title="Save disabled" *ngIf="is_parent_id === false"> -->
             <li title="Save" *ngIf="isLogedin === false">
-                <button  (click)="checklogin(saveEvent)">
-                  <img src="../../assets/icons/save_grey.png" class="dfkg" />save
-                </button>
-              </li>
-              <li  title="Save" (click)="save_event()" *ngIf="isLogedin === true && isSaveVisible !== true">
-                <button>
-                  <img class="dfkg" src="../../assets/icons/save_blue.png" /> save
-                </button>
-              </li>
-              <li   title="Saved" (click)="is_delete_action()" *ngIf="isLogedin === true && isSaveVisible">
-                <button>
-                  <img class="dfkg" src="../../assets/icons/save_orange.png" /> save
-                </button>
-              </li>
-              <!-- <li (click)="add_review_redirect(2)" *ngIf="is_parent_id === false" title="Add Review">
+              <button (click)="checklogin(saveEvent)">
+                <img src="../../assets/icons/save_grey.png" class="dfkg" />save
+              </button>
+            </li>
+            <li title="Save" (click)="save_event()" *ngIf="isLogedin === true && isSaveVisible !== true">
+              <button>
+                <img class="dfkg" src="../../assets/icons/save_blue.png" /> save
+              </button>
+            </li>
+            <li title="Saved" (click)="is_delete_action()" *ngIf="isLogedin === true && isSaveVisible">
+              <button>
+                <img class="dfkg" src="../../assets/icons/save_orange.png" /> save
+              </button>
+            </li>
+            <!-- <li (click)="add_review_redirect(2)" *ngIf="is_parent_id === false" title="Add Review">
                   <button class="btn path-38">
                      <img src="../../assets/icons/noun_review_1.png" class="dfkg" /> add a review
                    </button>
                  </li> -->
-                 <li title="Add Review" *ngIf="isLogedin === false">
-                    <button (click)="checklogin(addToReview)">
-                      <img src="../../assets/icons/review_grey.png" class="dfkg" />add a review
-                    </button>
-                  </li>
-                 <li *ngIf="isLogedin" (click)="add_review_redirect(2)" title="Add Review">
-                     <button class="btn path-38">
-                         <img src="../../assets/icons/review_blue.png" class="dfkg" /> add a review
-                     </button>
-                   </li>
+            <li title="Add Review" *ngIf="isLogedin === false">
+              <button (click)="checklogin(addToReview)">
+                <img src="../../assets/icons/review_grey.png" class="dfkg" />add a review
+              </button>
+            </li>
+            <li *ngIf="isLogedin" (click)="add_review_redirect(2)" title="Add Review">
+              <button class="btn path-38">
+                <img src="../../assets/icons/review_blue.png" class="dfkg" /> add a review
+              </button>
+            </li>
           </ul>
         </div>
       </div>
     </div>
   </div>
   <div class="row center-section ">
-    <div class="col-md-5"> 
+    <div class="col-md-5">
       <div class="left-section">
         <h5 *ngIf="event.start_date">Date & Time</h5>
-        <div class= "date">
+        <div class="date">
           <p *ngIf="event.start_date">{{event.start_date | date:'mediumDate'}}</p>
-          <p class = "dateSpacing" *ngIf="event.end_date && event.start_date!=event.end_date" >-</p>
+          <p class="dateSpacing" *ngIf="event.end_date && event.start_date!=event.end_date">-</p>
           <p *ngIf="event.end_date && event.start_date!=event.end_date">{{event.end_date | date:'mediumDate'}}</p>
         </div>
         <p *ngIf="event.start_date">{{format_time(event.start_time)}} - {{format_time(event.end_time)}}</p>
@@ -69,31 +70,36 @@
 
         <br>
         <h5>Location</h5>
-        <a style="color: #0000FF; cursor: pointer;"[routerLink]="['/venues', event.venue_id]" target="_blank">   
-        <p style="color: #0000FF;" >{{event.venue}}</p>
-       <p style="color: #0000FF;">{{event.street}}, {{event.city}}, {{event.state}}</p>
-      </a>
-      <br>
-        <button style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="event_redirect()">Event website</button>
+        <a style="color: #0000FF; cursor: pointer;" [routerLink]="['/venues', event.venue_id]" target="_blank">
+          <p style="color: #0000FF;">{{event.venue}}</p>
+          <p style="color: #0000FF;">{{event.street}}, {{event.city}}, {{event.state}}</p>
+        </a>
+        <br>
+        <button style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="event_redirect()">Event
+          website</button>
       </div>
     </div>
     <div class="col-md-7">
       <div class="contact-section">
-        <h6 *ngIf="eventCatString"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" /> <div>Category</div></h6>
+        <h6 *ngIf="eventCatString"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" />
+          <div>Category</div>
+        </h6>
         <p *ngIf="eventCatString">{{eventCatString}}</p>
-        <h6 *ngIf="format_age()"><img src="../../assets/icons/noun_age_1.png" class="dfkg" /> <div>Age Group</div></h6>
+        <h6 *ngIf="format_age()"><img src="../../assets/icons/noun_age_1.png" class="dfkg" />
+          <div>Age Group</div>
+        </h6>
         <p *ngIf="format_age()">{{format_age()}}</p>
       </div>
     </div>
   </div>
   <div class="row reviews">
-    <div *ngIf="other_dates.length>0" class="col-md-5"> 
+    <div *ngIf="other_dates.length>0" class="col-md-5">
       <h2 #reviewsInput>Reviews</h2>
       <!-- <div class="reviews-input-secyion"  *ngIf="is_review_click"> -->
       <div class="reviews-input-secyion">
-        <textarea rows="3" placeholder="Some phrase to prompt user to write a review"id="review"
-        placeholder="Add review or tips to other parents" [(ngModel)]="review" required
-        (change)="validate_review()"></textarea>
+        <textarea rows="3" placeholder="Some phrase to prompt user to write a review" id="review"
+          placeholder="Add review or tips to other parents" [(ngModel)]="review" required
+          (change)="validate_review()"></textarea>
         <div *ngIf="isErrorVisible" class="alert alert-danger">
           <div>
             {{errorMessage }}
@@ -104,16 +110,17 @@
             {{errorMessage }}
           </div>
         </div>
-        <button class="post-btn" (click)="add_review()">post</button>
-        </div>
-        <p>Be the first to write a review!</p>
-        <div class="post-reviews">
-          <ul>
-            <li *ngFor="let current_review of user_reviews;">
-              <span><img src="../../assets/icons/profile.png" /></span>
-              <p>{{current_review.review}}</p>
-            </li>
-            <!-- <li>
+        <button class="post-btn" *ngIf="isLogedin" (click)="add_review()">post</button>
+        <button class="grey-button" *ngIf="!isLogedin" (click)="checklogin(addToReview)">post</button>
+      </div>
+      <p>Be the first to write a review!</p>
+      <div class="post-reviews">
+        <ul>
+          <li *ngFor="let current_review of user_reviews;">
+            <span><img src="../../assets/icons/profile.png" /></span>
+            <p>{{current_review.review}}</p>
+          </li>
+          <!-- <li>
                 <span><img src="../../assets/icons/profile.png" /></span>
                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
               </li>
@@ -121,38 +128,39 @@
                   <span><img src="../../assets/icons/profile.png" /></span>
                   <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </li> -->
-          </ul>
-        </div>
+        </ul>
+      </div>
     </div>
 
-    <div *ngIf="other_dates.length>0"class="col-md-7"> 
+    <div *ngIf="other_dates.length>0" class="col-md-7">
       <h2 #reviewsInput>Other Dates</h2>
       <!-- <div class="reviews-input-secyion"  *ngIf="is_review_click"> -->
       <div class="reviews-input-secyion">
-        <app-masonsry-view class="other-dates-col" [events]=other_dates [start]=start [end]=end [type]=otherDate></app-masonsry-view>
+        <app-masonsry-view class="other-dates-col" [events]=other_dates [start]=start [end]=end [type]=otherDate>
+        </app-masonsry-view>
         <!-- <app-masonsry-view *ngIf="oldFilterData" [events]=all_data [start]=start [end]=end></app-masonsry-view> -->
       </div>
     </div>
 
-    <div *ngIf="other_dates.length == 0" class="col-md-12"> 
-    <h2 #reviewsInput>Reviews</h2>
-    <!-- <div class="reviews-input-secyion"  *ngIf="is_review_click"> -->
-    <div class="reviews-input-secyion">
-      <textarea rows="3" placeholder="Some phrase to prompt user to write a review"id="review"
-      placeholder="Add review or tips to other parents" [(ngModel)]="review" required
-      (change)="validate_review()"></textarea>
-      <div *ngIf="isErrorVisible" class="alert alert-danger">
-        <div>
-          {{errorMessage }}
+    <div *ngIf="other_dates.length == 0" class="col-md-12">
+      <h2 #reviewsInput>Reviews</h2>
+      <!-- <div class="reviews-input-secyion"  *ngIf="is_review_click"> -->
+      <div class="reviews-input-secyion">
+        <textarea rows="3" placeholder="Some phrase to prompt user to write a review" id="review"
+          placeholder="Add review or tips to other parents" [(ngModel)]="review" required
+          (change)="validate_review()"></textarea>
+        <div *ngIf="isErrorVisible" class="alert alert-danger">
+          <div>
+            {{errorMessage }}
+          </div>
         </div>
-      </div>
-      <div *ngIf="isSuccessVisible" class="alert alert-success">
-        <div>
-          {{errorMessage }}
+        <div *ngIf="isSuccessVisible" class="alert alert-success">
+          <div>
+            {{errorMessage }}
+          </div>
         </div>
-      </div>
-      <button class="post-btn" (click)="add_review()">post</button>
-      </div>
+        <button class="post-btn" *ngIf="isLogedin" (click)="add_review()">post</button>
+        <button class="grey-button" *ngIf="!isLogedin" (click)="checklogin(addToReview)">post</button>       </div>
       <p>Be the first to write a review!</p>
       <div class="post-reviews">
         <ul>
@@ -172,20 +180,20 @@
       </div>
     </div>
 
+  </div>
+  <ng-template #deleteuser>
+    <div class="modal-body thanks">
+      <button type="button" style="float: right;" class="close pull-right" aria-label="Close" (click)="closeDialog()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="text-center">
+        <h2 class="app-name">Sign in to {{ClickName}}</h2>
+      </div>
+      <div class="btnYN">
+        <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary"><b class="SIGN-IN">SIGN
+            IN</b></button><br>
+        New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;"
+          (click)="signin()">Create an account - it's free!!!</a>
+      </div>
     </div>
-     <ng-template #deleteuser>
-        <div class="modal-body thanks">
-            <button type="button" style="float: right;" class="close pull-right" aria-label="Close" (click)="closeDialog()">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <div class="text-center">
-                <h2 class="app-name">Sign in to {{ClickName}}</h2>
-            </div>
-            <div class="btnYN">
-                <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary" ><b class="SIGN-IN">SIGN IN</b></button><br>
-               New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account</a>
-            </div>
-        </div>
-    </ng-template>
-
-
+  </ng-template>

@@ -46,7 +46,7 @@ export class SwalService {
       confirmButtonColor: '#FBD702',
       cancelButtonColor: '#d33',
       confirmButtonText: '<b style="color:black;"> <h6 style="width:199px; ;height: 24px; border-radius: 8px; padding-top:8px;font-family: Montserrat;font-size: 20px; border:none;">SIGN IN</h6> </b>',
-     footer: '<p style ="font-size:14px;font-family: Montserrat;">New to Kin?</p>' + ' ' +  `<a style= "color:#000000;margin-left:4px;font-family: Montserrat;font-size:14px;" href="/redirecting"> Create an account</a>`,
+     footer: '<p style ="font-size:14px;font-family: Montserrat;">New to Kin?</p>' + ' ' +  `<a style= "color:#000000;margin-left:4px;font-family: Montserrat;font-size:14px;" href="/redirecting"> Create an account - it's free!!!</a>`,
     }).then((result) => {
       if (result.value) {
         this.auth.login();

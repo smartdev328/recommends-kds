@@ -25,5 +25,10 @@ export class EventListingService {
       return this.http.get(url);
     }
 
+    delete_event(id) {
+      const url = `${API_URL}` + `events/${id}/`;
+      return this.http.delete(url);
+    }
+
 
   }
