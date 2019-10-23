@@ -833,11 +833,11 @@ video {
 }
 @media only screen and (max-width : 640px){
     .other-dates-col .show-layout .tiles{width: 100% !important;}
-    .datepicker span.mat-form-field-label-wrapper label, .datepicker .mat-form-field-infix input.mat-input-element  {
+    /* .datepicker span.mat-form-field-label-wrapper label, .datepicker .mat-form-field-infix input.mat-input-element  {
      
         font-size: 12px !important;
    
-    }
+    } */
 }
 
 

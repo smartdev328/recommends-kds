@@ -16,7 +16,7 @@
       </div>
   </div>
   <div class="row">
-      <div *ngFor="let event of eventList | slice:0:4; let i=index" class="col-md-3">
+      <div *ngFor="let event of eventList | slice:0:3; let i=index" class="col-md-4">
           <mat-card class="event-list-cards">
               <div class="img-wrp">
                   <img mat-card-image [src]='event.image_url' alt="">
@@ -46,7 +46,7 @@
       </div>
   </div>
   <div class="row">
-      <div *ngFor="let venue of venueList | slice:0:4; let i=index" class="col-md-3">
+      <div *ngFor="let venue of venueList | slice:0:3; let i=index" class="col-md-4">
           <mat-card class="event-list-cards">
               <div class="img-wrp">
                   <img mat-card-image [src]='venue.image_url' alt="">
@@ -74,7 +74,7 @@
       </div>
   </div>
   <div class="row">
-      <div *ngFor="let camp of campList | slice:0:4; let i=index" class="col-md-3">
+      <div *ngFor="let camp of campList | slice:0:3; let i=index" class="col-md-4">
           <mat-card class="event-list-cards">
               <div class="img-wrp">
                   <img mat-card-image [src]='camp.image_url' alt="">
@@ -103,7 +103,7 @@
       </div>
   </div>
   <div class="row">
-      <div *ngFor="let trail of trailList | slice:0:4; let i=index" class="col-md-3">
+      <div *ngFor="let trail of trailList | slice:0:3; let i=index" class="col-md-4">
           <mat-card class="event-list-cards">
               <div class="img-wrp">
                   <img mat-card-image [src]='trail.image_urls.first' alt="">
