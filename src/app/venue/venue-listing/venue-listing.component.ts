@@ -45,7 +45,7 @@ export class VenueListingComponent implements OnInit {
   public venueErrorMessage = new VenueErrorMessage();
   public categoryList = this.venueConstants.PRIMARY_CATEGORY;
   count = 0;
-  morePlace = 'more Places';
+  morePlace = 'more places';
   public isAuthenticated$: Observable<boolean>;
   isLogedin = false;
   /*

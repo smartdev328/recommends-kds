@@ -800,9 +800,6 @@ video {
     color: #fff;
 }
 
-.datepicker span.mat-form-field-label-wrapper label, .datepicker .mat-form-field-infix input.mat-input-element  {
-    color: #fff!important;
-}
 
 .datepicker span.hairline-down {
     right: -16px;
@@ -825,7 +822,22 @@ video {
     height: auto !important;
     min-height: 710px !important;
 }
-
+.datepicker span.mat-form-field-label-wrapper label, .datepicker .mat-form-field-infix input.mat-input-element  {
+    color: #fff!important;
+    font-size: 10px !important;
+    padding-left: 11px !important;
+    font-family: 'Montserrat' !important;
+}
+.datepicker .mat-form-field-suffix .mat-icon-button{
+    width: 2.2em !important;
+}
 @media only screen and (max-width : 640px){
     .other-dates-col .show-layout .tiles{width: 100% !important;}
+    .datepicker span.mat-form-field-label-wrapper label, .datepicker .mat-form-field-infix input.mat-input-element  {
+     
+        font-size: 12px !important;
+   
+    }
 }
+
+

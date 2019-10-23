@@ -9,13 +9,13 @@
       <h1 class="text-center heading-desktop">Family-friendly <span>Events</span> around you</h1>
       <div class="filter-box">
         <div class="row filter-box-content" *ngIf="(isAuthenticated$ | async) == false">
-          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-1">
+          <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-1">
             <div class="input-group">
               <input type="text" class="form-control keyword-text search-style" (keyup.enter)="filter_event_data()" placeholder="Search"
                 [(ngModel)]="keyword">
             </div>
           </div>
-          <div class="col-lg-3 col-md-2 col-sm-6 col-xs-2 mb-2">
+          <div class="dropdown col-lg-3 col-md-2 col-sm-6 col-xs-2 mb-2">
             <div class="dropdown">
               <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,7 +33,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-2 col-md-2 col-sm-6 col-xs-2 mb-2">
+          <div class="dropdown col-lg-3 col-md-2 col-sm-6 col-xs-2 mb-2">
             <div class="dropdown">
               <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -65,9 +65,9 @@
               </div>
             </div>
           </div> -->
-          <div class="datepicker">
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker" placeholder="Date">
+          <!-- <div class="datepicker dropdown col-lg-3 col-md-2 col-sm-6 col-xs-2 mb-2">
+            <mat-form-field class ="datepickerforum" >
+              <input class ="datepickerinput" matInput [matDatepicker]="picker" placeholder="Date">
               <span class="hairline-down">
                 <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12"
                   viewBox="0 0 24 24">
@@ -77,7 +77,30 @@
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
-          </div>
+          </div> -->
+          <div class="dropdown col-lg-2 col-md-2 col-sm-6 col-xs-2 mb-2 ">
+              <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{date_label}}
+                <span class="hairline-down">
+                  <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12"
+                    viewBox="0 0 24 24">
+                    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
+                  </svg>
+                </span>
+              </button>
+              <div class="dropdown-menu add-scroll" aria-labelledby="dropdownMenuButton">
+                <label class="dropdown-item cursor" (click)="onDateChange(data)" *ngFor="let data
+                                of dateFilter">{{data.desc}}</label>
+              </div>
+              <div *ngIf="pickDate === true" class="date-picker-input">
+                <!-- <mat-form-field> -->
+                <input [matDatepicker]="picker" (dateInput)="fromDate('input', $event)" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker" hidden></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <!-- </mat-form-field> -->
+              </div>
+            </div>
           <div class="col-xs-1 search-button">
             <svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
               class="svg-icons cursor" (click)="filter_event_data()">

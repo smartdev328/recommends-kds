@@ -12,17 +12,17 @@
                 <ul>
                     <!-- <li><button><img src="../../assets/icons/calendar_gray.png" class="dfkg" /> add to calender</button></li> -->
                     <!-- <li><button><img src="../../assets/icons/share.png" class="dfkg" /> share</button></li> -->
-                    <li title="Save" *ngIf="is_parent_id === false || isLogedin === false">
+                    <li title="save" *ngIf="is_parent_id === false || isLogedin === false">
                         <button (click)="checklogin(saveEvent)">
                           <img src="../../assets/icons/save_grey.png" class="dfkg" /> save
                         </button>
                       </li>
-                      <li  title="Save" title="Save" (click)="save_camp()" *ngIf="isLogedin && isSaveVisible != true">
+                      <li  title="save" title="Save" (click)="save_camp()" *ngIf="isLogedin && isSaveVisible != true">
                         <button>
                           <img class="dfkg" src="../../assets/icons/save_blue.png" /> save
                         </button>
                       </li>
-                      <li   title="Saved" (click)="is_delete_action()" *ngIf="isLogedin && isSaveVisible">
+                      <li   title="saved" (click)="is_delete_action()" *ngIf="isLogedin && isSaveVisible">
                         <button>
                           <img class="dfkg" src="../../assets/icons/save_orange.png" /> save
                         </button>

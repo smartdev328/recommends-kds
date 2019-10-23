@@ -44,7 +44,7 @@ export class CampListingComponent implements OnInit {
   oldCat_1 = true;
   oldCat_2 = false;
   count = 0;
-  moreCamps = 'more Camps';
+  moreCamps = 'more camps';
   // public campConstants :any;
   public isAuthenticated$: Observable<boolean>;
   isLogedin = false;

@@ -33,7 +33,7 @@ export class HikingTrailsListingComponent implements OnInit {
   showMore = false;
   showLayout = false;
   count = 0;
-  moreTralis = 'more Tralis';
+  moreTralis = 'more trails';
   hiking_explore;
   /*
   Filter Variables

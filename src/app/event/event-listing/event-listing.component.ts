@@ -24,6 +24,7 @@ declare let ga: any;
   styleUrls: ['./event-listing.component.css']
 })
 export class EventListingComponent implements OnInit {
+  myDate = new Date();
   kidHeading: string;
   limit: Number = 80;
   event_date_start: any;
@@ -129,6 +130,8 @@ export class EventListingComponent implements OnInit {
     private venueListingService: VenueListingService
 
   ) {
+    this.event_date_start = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         ga('set', 'page', event.urlAfterRedirects);
@@ -285,7 +288,7 @@ export class EventListingComponent implements OnInit {
         console.log(err);
       });
     } else {
-      let url = `${API_URL}` + `events/?distance=100&limit=${this.limit}`;
+      let url = `${API_URL}` + `events/?limit=${this.limit}`;
       const headers = new HttpHeaders();
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
         data = data.replace(/\n/g, '');
@@ -377,6 +380,7 @@ export class EventListingComponent implements OnInit {
     this.selected_cat = '';
     this.selected_loc = '';
     this.selected_date = '';
+    this.select_cat_id ='';
     this.event_date_start = '';
     this.cat_label = 'Category';
     this.loc_label = 'Location';
@@ -436,7 +440,7 @@ export class EventListingComponent implements OnInit {
     if (input.kid_id) {
      url = url+ "&personalize=True";
     }
-    if(this.eventName == "All"){
+    if(this.eventName == "All" && this.all == 'yes'){
       url = `${API_URL}` + `events/?distance=100&limit=${this.limit}`;
     }
     this.isExplore = true;

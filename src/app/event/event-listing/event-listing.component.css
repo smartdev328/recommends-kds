@@ -468,3 +468,18 @@ padding: 0;
 }
 
 .date-picker-input input {visibility: hidden; overflow: hidden;}
+
+
+.datepicker {
+padding-top: 0 !important;
+}
+
+.datepickerforum{
+    display: block;
+}
+
+.datepicker .mat-form-field-suffix{
+    padding-right: 10px !important;
+    margin-bottom: 6px !important;
+}
+
