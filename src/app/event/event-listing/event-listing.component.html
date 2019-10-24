@@ -11,7 +11,7 @@
         <div class="row filter-box-content" *ngIf="(isAuthenticated$ | async) == false">
           <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-1">
             <div class="input-group">
-              <input type="text" class="form-control keyword-text search-style" (keyup.enter)="filter_event_data()" placeholder="Search"
+              <input type="text" class="form-control keyword-text search-style" (keyup.enter)="filter_event_data()" placeholder="Keyword"
                 [(ngModel)]="keyword">
             </div>
           </div>
@@ -114,7 +114,7 @@
         </div>
         <div class="row filter-box-content" *ngIf="isAuthenticated$ | async">
           <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-1">
-            <input type="text" class="form-control keyword-text search-style" placeholder="Search" [(ngModel)]="keyword"
+            <input type="text" class="form-control keyword-text search-style" placeholder="keyword" [(ngModel)]="keyword"
               (keyup.enter)="filter_event_data();" name="keyword">
           </div>
           <div class="dropdown col-lg-3 col-md-2 col-sm-6 col-xs-2 mb-2">
@@ -208,7 +208,7 @@
             <div class="form-group">
               <!-- <label for="">Sort by</label> -->
               <i class="fa fa-angle-down" aria-hidden="true"></i>
-              <select (change)="sortBy($event.target.value)" class="form-control">
+              <select (change)="sortBy($event.target.value,'')"  class="selectDropdown">
                 <option selected disabled hidden>Sort By</option>
                 <option [value]="kid.id" *ngFor="let kid of user?.parent?.kids">For {{kid.nick_name}}</option>
                 <option value="subscribed">Following</option>
@@ -259,7 +259,7 @@
     <div class="btnYN">
       <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary"><b class="SIGN-IN">SIGN
           IN</b></button><br>
-      New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
+      <span class="kin-pop"> New to Kin? </span> <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
     </div>
   </div>
 </ng-template>

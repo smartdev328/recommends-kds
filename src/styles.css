@@ -840,4 +840,19 @@ video {
     } */
 }
 
+span.kin-pop {
+    color: #000000;
+    font-family: Montserrat;
+    font-family: 18px;
+}
+
+.alert-success{
+    background: #ffd700 !important;
+    color: #4a4949 !important;
+    font-size: 18px !important;
+    font-family: 'Montserrat', sans-serif !important;
+    border:0 !important;
+}
+
+
 

@@ -178,6 +178,7 @@ img {
     }
     .clear-search {
         padding-top: 35px;
+        padding-left: 15px;
         color: #FFFFFF;
     }
     .event-listing-card {

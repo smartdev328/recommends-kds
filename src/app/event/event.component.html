@@ -70,10 +70,11 @@
 
         <br>
         <h5>Location</h5>
-        <a style="color: #0000FF; cursor: pointer;" [routerLink]="['/venues', event.venue_id]" target="_blank">
+        <a *ngIf="event.venue_id!='0'" style="color: #0000FF; cursor: pointer;" [routerLink]="['/venues', event.venue_id]" target="_blank">
           <p style="color: #0000FF;">{{event.venue}}</p>
-          <p style="color: #0000FF;">{{event.street}}, {{event.city}}, {{event.state}}</p>
         </a>
+          <p *ngIf="event.venue_id == '0'">{{event.venue}}</p>
+          <p >{{event.street}}, {{event.city}}, {{event.state}}</p>
         <br>
         <button style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="event_redirect()">Event
           website</button>
@@ -192,7 +193,7 @@
       <div class="btnYN">
         <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary"><b class="SIGN-IN">SIGN
             IN</b></button><br>
-        New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;"
+        <span class="kin-pop"> New to Kin? </span> <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;"
           (click)="signin()">Create an account - it's free!!!</a>
       </div>
     </div>

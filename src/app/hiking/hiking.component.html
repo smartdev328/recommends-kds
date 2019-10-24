@@ -62,17 +62,19 @@
               <p>5:00PM - 6:00PM</p>
               <br>
               <h5>Location</h5>
-              <a style="color: #0000FF; cursor: pointer;" [routerLink]="['/venues', trail.venue_id]" target="_blank">   
-              <p style="color: #0000FF; cursor: pointer;">{{format_address()}}</p>
-              </a>
-              <br>
+                <a *ngIf="trail.venue_id!= 0" style="color: #0000FF; cursor: pointer;" [routerLink]="['/venues', trail.venue_id]" target="_blank">
+                  <p style="color: #0000FF;">{{trail.park_name}}</p>
+                </a>
+                  <p *ngIf="trail.venue_id == '0'">{{trail.park_name}}</p>
+                  <p >{{trail.street}}, {{trail.city}}, {{trail.state}}</p>
+                <br>
               <button style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="trail_redirect()">Trail website</button>
             </div>
           </div>
           <div class="col-md-8">
             <div class="contact-section">
-              <h6 *ngIf="trail.park_name"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" /> <div>Category</div> </h6>
-              <p *ngIf="trail.park_name">{{trail.park_name}}</p>
+              <!-- <h6 *ngIf="trail.park_name"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" /> <div>Category</div> </h6>
+              <p *ngIf="trail.park_name">{{trail.park_name}}</p> -->
               
               <h6 *ngIf="trail.length"><img src="../../assets/icons/hiking/noun_distance_668133.png" class="dfkg" /> <div>Distance</div> </h6>
               <p *ngIf="trail.length">{{trail.length}} miles</p>
@@ -192,7 +194,7 @@
                   </div>
                   <div class="btnYN">
                       <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary" ><b class="SIGN-IN">SIGN IN</b></button><br>
-                     New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
+                     <span class="kin-pop"> New to Kin? </span> <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
                   </div>
               </div>
           </ng-template>

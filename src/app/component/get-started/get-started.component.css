@@ -71,11 +71,11 @@ mat-form-field {
 }
 
 .fs-sm {
-    font-size: 18px !important;
+    font-size: 16px !important;
 }
 
 .fs-md {
-    font-size: 24px !important;
+    font-size: 18px !important;
 }
 
 .fs-lg {
@@ -84,12 +84,12 @@ mat-form-field {
 
 .fs-xl {
     font-family: Montserrat;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .fs-xxl {
         font-family: Montserrat;
-        font-size: 42px;    
+        font-size: 32px;    
 }
 
 .fs-xxxl {

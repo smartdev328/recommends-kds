@@ -3,7 +3,7 @@
   [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }" [useAnimation]="true" [useImagesLoaded]="true"
   [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
   <ng-masonry-grid-item class="tiles" *ngFor="let trail of trails | slice:start:end; let i=index">
-    <mat-card class="event-list-cards">
+    <mat-card class="event-list-cards hike-list">
       <a style="text-decoration: none;" [routerLink]="['/hiking-trails', trail.id]" target="_blank">
         <div class="img-wrp">
           <img mat-card-image src={{trail.image_urls.first}} alt="">
@@ -13,10 +13,10 @@
         <p class="event-group-title">
           {{trail.name}}
         </p>
-        <p class="event-venue">
+        <p class="event-date">
           {{trail.city}}, {{trail.state}}
         </p>
-        <p *ngIf="trail.distance" class="event-venue">
+        <p *ngIf="trail.distance" class="event-date">
           {{trail.distance}} miles
         </p>
         <p class="star-btn" *ngIf="!isLogedin">
@@ -53,7 +53,7 @@
     <div class="btnYN">
       <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary"><b class="SIGN-IN">SIGN
           IN</b></button><br>
-      New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
+      <span class="kin-pop"> New to Kin? </span> <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
     </div>
   </div>
 </ng-template>

@@ -17,18 +17,17 @@
           {{event.name}}
         </p>
         <p class="event-date">
-          <span *ngIf="event.dates" class="text">{{event.dates}} ,</span>
+          <span *ngIf="event.venue" class="text">{{event.venue}}</span>
+          <span *ngIf="event.city" class="lower-text">, {{event.city }}</span>
+        </p>
+        <p class="event-date">
+          <span *ngIf="event.dates" class="text">{{event.dates}}, </span>
           <span class="lower-text">{{event.start_time }} - {{event.end_time}}</span>
         </p>
         <p class="event-date">
           <span *ngIf="event.age" class="lower-text">{{event.age }}</span>
-          <span *ngIf="event.distance" class="lower-text"> , {{event.distance}} miles</span>
-
+          <span *ngIf="event.distance" class="lower-text">, {{event.distance}} miles</span>
         </p>
-        <p class="event-venue">
-          {{event.venue}}
-        </p>
-
         <p class="star-btn">
 
           <button title="click to save" *ngIf="!isLogedin" (click)="checklogin(event.id,i,'save this event')">
@@ -64,39 +63,39 @@
 
       <mat-card-content *ngIf="type == 'eventData'" class="">
 
-          <p class="event-group-title">
-            {{event.name}}
-          </p>
-          <p class="event-date">
-            <span *ngIf="event.dates" class="text">{{event.dates}} ,</span>
-            <span class="lower-text">{{event.start_time }} - {{event.end_time}}</span>
-          </p>
-          <p class="event-date">
-            <span *ngIf="event.age" class="lower-text">{{event.age }}</span>
-            <span *ngIf="event.distance" class="lower-text"> , {{event.distance}} miles</span>
-  
-          </p>
-          <p class="event-venue">
-            {{event.venue}}
-          </p>
+        <p class="event-group-title">
+          {{event.name}}
+        </p>
+        <p class="event-date">
+          <span *ngIf="event.venue" class="text">{{event.venue}}</span>
+          <span *ngIf="event.city" class="lower-text">, {{event.city }}</span>
+        </p>
+        <p class="event-date">
+          <span *ngIf="event.dates" class="text">{{event.dates}}, </span>
+          <span class="lower-text">{{event.start_time }} - {{event.end_time}}</span>
+        </p>
+        <p class="event-date">
+          <span *ngIf="event.age" class="lower-text">{{event.age }}</span>
+          <span *ngIf="event.distance" class="lower-text">, {{event.distance}} miles</span>
+        </p>
         </mat-card-content>
 
       <mat-card-content *ngIf="type == 'otherDate'" class="">
-          <p class="event-group-title">
-              {{event.name}}
-            </p>
-            <p class="event-date">
-              <span *ngIf="event.dates" class="text">{{event.dates}} ,</span>
-              <span class="lower-text">{{event.start_time }} - {{event.end_time}}</span>
-            </p>
-            <p class="event-date">
-              <span *ngIf="event.age" class="lower-text">{{event.age }}</span>
-              <span *ngIf="event.distance" class="lower-text"> , {{event.distance}} miles</span>
-    
-            </p>
-            <p class="event-venue">
-              {{event.venue}}
-            </p>
+        <p class="event-group-title">
+          {{event.name}}
+        </p>
+        <p class="event-date">
+          <span *ngIf="event.venue" class="text">{{event.venue}}</span>
+          <span *ngIf="event.city" class="lower-text">, {{event.city }}</span>
+        </p>
+        <p class="event-date">
+          <span *ngIf="event.dates" class="text">{{event.dates}}, </span>
+          <span class="lower-text">{{event.start_time }} - {{event.end_time}}</span>
+        </p>
+        <p class="event-date">
+          <span *ngIf="event.age" class="lower-text">{{event.age }}</span>
+          <span *ngIf="event.distance" class="lower-text">, {{event.distance}} miles</span>
+        </p>
       </mat-card-content>
 
       <mat-card-content *ngIf="type == 'Hiking Trail'" class="">
@@ -104,9 +103,9 @@
           {{event.name}}
         </p>
         <p class="event-date">
-            <span *ngIf="event.distance" class="lower-text"> , {{event.distance}} miles</span>
+            <span *ngIf="event.distance" class="lower-text">, {{event.distance}} miles</span>
           </p>
-        <p class="event-venue">
+        <p  *ngIf="event.city"class="event-venue">
           {{event.city}}, {{event.state}}
         </p>
         <br>
@@ -126,7 +125,7 @@
     <div class="btnYN">
       <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary"><b class="SIGN-IN">SIGN
           IN</b></button><br>
-      New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
+      <span class="kin-pop"> New to Kin? </span> <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
     </div>
   </div>
 </ng-template>

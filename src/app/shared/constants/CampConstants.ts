@@ -22,6 +22,6 @@ export class CampErrorMessage {
     public ERROR_ADDING_NEW_REVIEW = "Error while adding a new review";
     public SOMETHING_WENT_WRONG = " Something went wrong, please try again later";
     public GET_DATA_ERROR = "Error while getting information";
-    public REVIEW_ADDED_SUCCESS = "Review , successfully added";
+    public REVIEW_ADDED_SUCCESS = "Thanks! Your review has been submitted";
     public NO_CAMPS_FOUND = "No camps found.";
 }

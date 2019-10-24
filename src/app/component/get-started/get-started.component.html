@@ -10,17 +10,17 @@
                     <input matInput placeholder="First name" formControlName="firstName" required>
                 </mat-form-field>
                 <mat-form-field class="col-12 col-md-6">
-                    <input matInput placeholder="Last name" formControlName="lastName" required>
+                    <input matInput placeholder="Last name" formControlName="lastName">
                 </mat-form-field>
             </div>
-            <!-- <div class="row">
+            <div class="row">
                 <mat-form-field class="col-12">
                     <input matInput formControlName="email" placeholder="Email" >
                 </mat-form-field>
-            </div> -->
+            </div>
             <div class="row" style="align-items: baseline">
                 <mat-form-field class="col-12 col-md-6 Zipcode">
-                    <input matInput placeholder="Zipcode" formControlName="zipcode">
+                    <input matInput placeholder="Zipcode" formControlName="zipcode" required>
                 </mat-form-field>
             </div>
         </mat-card>
@@ -65,14 +65,12 @@
                         {{interest.name}}
                     </mat-chip>
                 </mat-chip-list>
-                <div  class="text-right cursor">
-                        <span *ngIf="kids.length>0" class="mt-4 cursor fs-sm" (click)="removechild(i)">
-                        - remove
-                        child
-                        </span>
+                <div  class="cursor pt-2 ">
+                        <span *ngIf="kids.length>0" class="mt-4 cursor fs-sm text-danger" (click)="removechild(i)">
+                        - remove                        </span>
                 </div>
             </div>
-            <h5 class="mt-4 cursor fs-sm" (click)="addChild()">+ add child</h5>
+            <h5 class="mt-1 cursor fs-sm" (click)="addChild()">+ add child</h5>
         </mat-card>
     </div>
     <mat-divider></mat-divider>

@@ -14,13 +14,13 @@
         <p class="event-group-title">
           {{camp.name}}
         </p>
-        <p class="event-venue">
+        <p class="event-date">
           {{camp.cities}}
         </p>
-        <p *ngIf="camp.distance" class="event-venue">
+        <p *ngIf="camp.distance" class="event-date">
           {{camp.distance}} miles
         </p>
-        <p class="event-venue">
+        <p class="event-date">
           {{camp.misc['timings']}}
         </p>
         <p class="star-btn" *ngIf="!isLogedin">
@@ -54,7 +54,7 @@
     <div class="btnYN">
       <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary"><b class="SIGN-IN">SIGN
           IN</b></button><br>
-      New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
+      <span class="kin-pop"> New to Kin? </span> <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
     </div>
   </div>
 </ng-template>

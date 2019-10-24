@@ -80,11 +80,19 @@ export class SavedListingComponent implements OnInit {
           if (this.data_list.length > this.end) {
             this.showMore = true;
           }
+          if(this.data_list.length == 0){
+            this.isErrorVisible = true;
+            this.errorMessage = "You haven't saved any events. Add them from the listings page to better track things that interest you."; 
+          }
           this.isExplore = false;
         }if(this.entity_type == 'VENUE'){
           this.data_list = data['venues'];
           if (this.data_list.length > this.end) {
             this.showMore = true;
+          }
+          if(this.data_list.length == 0){
+            this.isErrorVisible = true;
+            this.errorMessage = "You haven't saved any venues. Add them from the listings page to better track things that interest you."; 
           }
           this.isExplore = false;
         }if(this.entity_type == 'Hiking Trail'){
@@ -92,11 +100,19 @@ export class SavedListingComponent implements OnInit {
           if (this.data_list.length > this.end) {
             this.showMore = true;
           }
+          if(this.data_list.length == 0){
+            this.isErrorVisible = true;
+            this.errorMessage = "You haven't saved any trails. Add them from the listings page to better track things that interest you."; 
+          }
           this.isExplore = false;
         }if(this.entity_type == 'CAMP'){
           this.data_list = data['camps'];
           if (this.data_list.length > this.end) {
             this.showMore = true;
+          }
+          if(this.data_list.length == 0){
+            this.isErrorVisible = true;
+            this.errorMessage = "You haven't saved any camps. Add them from the listings page to better track things that interest you."; 
           }
           this.isExplore = false;
         }

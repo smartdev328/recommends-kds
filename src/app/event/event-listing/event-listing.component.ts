@@ -371,7 +371,16 @@ export class EventListingComponent implements OnInit {
       this.distance = null;
       this.tags = null;
       this.all = null;
-      this.eventName = kid.nick_name;
+      if(kid){
+        this.eventName = kid.nick_name;
+      }else {
+        this.user.parent.kids.forEach(element => {
+          if(type == element.id){
+            this.eventName = element.nick_name;
+          }
+        });
+
+      }
       this.filter_event_data();
     }
   }
@@ -641,7 +650,7 @@ export class EventListingComponent implements OnInit {
       this.errorMessage = '';
       this.all_data = [];
       this.all_data = data['data'];
-      this.showMore = data['events'].length > this.end;
+      this.showMore = data['data'].length > this.end;
       if (this.oldFilterData) {
         this.newFilterData = true;
         this.oldFilterData = false;

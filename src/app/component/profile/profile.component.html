@@ -5,17 +5,17 @@
       <input matInput placeholder="First name" formControlName="firstName" required>
     </mat-form-field>
     <mat-form-field class="col-12 col-md-6">
-      <input matInput placeholder="Last name" formControlName="lastName" required>
+      <input matInput placeholder="Last name" formControlName="lastName">
     </mat-form-field>
   </div>
-  <!-- <div class="row">
+  <div class="row">
     <mat-form-field class="col-12">
       <input matInput type="email" placeholder="Email" formControlName="email">
     </mat-form-field>
-  </div> -->
+  </div>
   <div class="row" style="align-items: baseline">
     <mat-form-field class="col-12 col-md-6">
-      <input matInput placeholder="Zipcode" formControlName="zipcode">
+      <input matInput placeholder="Zipcode" formControlName="zipcode" required>
     </mat-form-field>
   </div>
   <mat-divider></mat-divider>
@@ -53,13 +53,13 @@
         (click)="toggleInterest(kid, interest, i)" selected>{{interest}}
       </mat-chip>
     </mat-chip-list>
-    <div class="text-right cursor">
-        <span (click)="removechild(i)" class="mt-4 cursor" *ngIf="user?.parent?.kids.length>0">
-          - remove child
+    <div class=" cursor pt-2">
+        <span (click)="removechild(i)" class="mt-4 cursor text-danger " *ngIf="user?.parent?.kids.length>0 && !user?.parent?.kids[i].kid_id">
+          - remove
         </span>
       </div>
   </div>
-  <p class="mt-4 cursor" (click)="addChild()">+ add child</p>
+  <p class="mt-1 cursor" (click)="addChild()">+ add child</p>
   <mat-divider></mat-divider>
   <button class="btn btn-yellow btn-save" [disabled]="formGroup.invalid" (click)="save()">SAVE</button>
 </form>

@@ -5,11 +5,21 @@
     [useImagesLoaded]="true"
     [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
     <ng-masonry-grid-item class="tiles" *ngFor="let data of venues | slice:start:end; let i=index">
-      <a style="text-decoration: none;" >
+
           <mat-card class="event-list-cards ">
-          <div class="img-wrp">
-            <img *ngIf="type != 'Hiking Trail'" mat-card-image src={{data.image_url}} alt="Image not available">
-            <img *ngIf="type == 'Hiking Trail'" mat-card-image src={{data.image_urls.first}} alt="">
+          <div class="img-wrp">            
+            <a *ngIf="type == 'Hiking Trail'" style="text-decoration: none;" [routerLink]="['/hiking-trails', data.id]" target="_blank">
+              <img *ngIf="type == 'Hiking Trail'" mat-card-image src={{data.image_urls.first}} alt="">
+            </a>
+            <a *ngIf="type == 'CAMP'" style="text-decoration: none;" [routerLink]="['/camps', data.id]" target="_blank">
+              <img *ngIf="type == 'CAMP'" mat-card-image src={{data.image_url}} alt="Image not available">
+            </a>
+            <a *ngIf="type == 'EVENT'" style="text-decoration: none;" [routerLink]="['/events', data.id]" target="_blank">
+              <img *ngIf="type == 'EVENT'" mat-card-image src={{data.image_url}} alt="Image not available">
+            </a>
+            <a *ngIf="type == 'VENUE'" style="text-decoration: none;" [routerLink]="['/venues', data.id]" target="_blank">
+              <img *ngIf="type == 'VENUE'" mat-card-image src={{data.image_url}} alt="Image not available">
+            </a>
           </div>
             <mat-card-content *ngIf="type == 'VENUE'" class="">
               <p class="event-group-title">
@@ -23,14 +33,19 @@
             <mat-card-content *ngIf="type == 'EVENT'" class="">
                 <p class="event-group-title">
                     {{data.name}}
-                </p>
-                <p class="event-date">
-                  <span class="text">{{data.dates}}</span>,
-                  <span class="lower-text">{{data.start_time}} - {{data.end_time}}</span>
-                </p>
-                <p class="event-venue">
-                  {{data.venue}}
-                </p>
+                  </p>
+                  <p class="event-date">
+                    <span *ngIf="data.venue" class="text">{{data.venue}}</span>
+                    <span *ngIf="data.city" class="lower-text">, {{data.city }}</span>
+                  </p>
+                  <p class="event-date">
+                    <span *ngIf="data.dates" class="text">{{data.dates}}</span>
+                    <span class="lower-text">, {{data.start_time }} - {{data.end_time}}</span>
+                  </p>
+                  <p class="event-date">
+                    <span *ngIf="data.age" class="lower-text">{{data.age }}</span>
+                    <span *ngIf="data.distance" class="lower-text">, {{data.distance}} miles</span>
+                  </p>
             </mat-card-content>
             
             <mat-card-content *ngIf="type == 'CAMP'" class="">
@@ -56,7 +71,6 @@
             </mat-card-content>
             
           </mat-card>
-      </a>
     </ng-masonry-grid-item>
   </ng-masonry-grid>
 

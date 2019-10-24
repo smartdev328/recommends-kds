@@ -2,7 +2,7 @@ export class EventErrorMessage {
     public ERROR_ADDING_NEW_REVIEW = "Error while adding a new review";
     public SOMETHING_WENT_WRONG = " Something went wrong,please try again later";
     public GET_DATA_ERROR = "Error while getting information";
-    public REVIEW_ADDED_SUCCESS = "Thank you!";
+    public REVIEW_ADDED_SUCCESS = "Thanks! Your review has been submitted";
     public NO_EVENTS_FOUND = "No events found.";
     public NO_SUBSCRIPTION_FOUND = "No events found. You have either not followed any places or the places you are following do not have any upcoming events"
 }                     

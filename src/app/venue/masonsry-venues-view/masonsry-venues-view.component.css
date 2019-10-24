@@ -37,7 +37,6 @@
 }
 
 .event-date {
-    background-color: #FFD700;
     font-size: 12px;
     margin-bottom: 0em;
     font-family: "Montserrat";
@@ -106,7 +105,7 @@
     .loading-gif {
         margin-left: 35%;
     }
-    img {
+    .img-wrp img {
         object-fit: cover;
         height: 150px;
     }

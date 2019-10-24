@@ -14,10 +14,13 @@
         <p class="event-group-title">
           {{venue.name}}
         </p>
-        <p class="event-venue">
+        <p *ngIf="venue.category" class="event-date">
+          {{venue.category[0]}}
+        </p>
+        <p *ngIf="venue.city" class="event-date">
           {{venue.city}}, {{venue.state}}
         </p>
-        <p *ngIf="venue.distance" class="event-venue">
+        <p *ngIf="venue.distance" class="event-date">
           {{venue.distance}} miles
         </p>
         <p class="star-btn" >
@@ -59,7 +62,7 @@
     <div class="btnYN">
       <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary"><b class="SIGN-IN">SIGN
           IN</b></button><br>
-      New to Kin? <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
+      <span class="kin-pop"> New to Kin? </span> <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
     </div>
   </div>
 </ng-template>

@@ -20,6 +20,10 @@
     font-family: Montserrat;
     box-shadow: none;
 }
+
+.mat-card.event-list-cards.hike-list.mat-card {
+    height: 340px;
+}
 .event-listing-card h3 {
     font-size: 25px;
     font-weight: bold;
@@ -38,7 +42,6 @@
 }
 
 .event-date {
-    background-color: #FFD700;
     font-size: 12px;
     margin-bottom: 0em;
     font-family: "Montserrat";
@@ -109,7 +112,7 @@
     .loading-gif {
         margin-left: 35%;
     }
-    img {
+    .img-wrp img {
         object-fit: cover;
         height: 150px;
     }
@@ -144,6 +147,9 @@
     }
     .tiles {
         width: 100%;
+    }
+    .mat-card.event-list-cards.hike-list.mat-card {
+        height: auto;
     }
 }
 

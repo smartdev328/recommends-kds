@@ -7,7 +7,7 @@
         </div>
         
         <div class="event-listing-card">
-            <div *ngIf="isErrorVisible"><div class="error-message-text alert-danger">{{errorMessage}}</div></div>
+            <div *ngIf="isErrorVisible"><div class="mt-4 error-message-text alert-danger">{{errorMessage}}</div></div>
             <app-masonsry-saved-view *ngIf="newFilterData"  [type]="entity_type" [venues]=data_list [start]=start [end]=end></app-masonsry-saved-view>
             <app-masonsry-saved-view  *ngIf="oldFilterData" [type]="entity_type" [venues]=data_list [start]=start [end]=end></app-masonsry-saved-view>
         </div>

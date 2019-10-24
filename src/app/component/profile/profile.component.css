@@ -24,11 +24,11 @@ mat-divider {
 h4 {
     font-weight: bold;
     font-family: Montserrat;
-    font-size: 32px;
+    font-size: 22px;
 }
 
 h5 {
-    font-size: 24px;
+    font-size: 16px;
 }
 
 mat-form-field {
@@ -36,19 +36,19 @@ mat-form-field {
 }
 
 .mat-input-element {
-    font-size: 32px;
+    font-size: 20px;
 }
 
 ::ng-deep.mat-form-field-label {
-    font-size: 24px !important;
+    font-size: 22px !important;
 }
 
 p {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 mat-chip {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .mat-chip.mat-standard-chip {
@@ -56,9 +56,11 @@ mat-chip {
     color: rgba(0, 0, 0, .87);
     border: 1px solid #4a4949;
     font-family: Montserrat;
-    font-size: 18px;
+    font-size: 14px;
 }
-
+.mat-form-field-label-wrapper{
+    font-size: 15px;
+}
 .mat-standard-chip:hover::after {
     opacity: 0;
 }
@@ -76,7 +78,7 @@ mat-chip {
 }
 
 .btn-save {
-    font-size: 18px;
+    font-size: 16px;
 }
 @media only screen and (max-width: 1052px){
     .profile-container{
