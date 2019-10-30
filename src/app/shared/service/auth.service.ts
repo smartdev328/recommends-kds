@@ -10,8 +10,6 @@ import { UserService } from '@shared/service/user.service';
 import { Account } from '@shared/model/account';
 import { User } from '@shared/model/user';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,11 +19,10 @@ export class AuthService {
   // Create an observable of Auth0 instance of client
   auth0Client$ = (from(
     createAuth0Client({
-      domain: "dev--ilicir1.auth0.com",
-      //client_id: "360XW2Ge6hB69Z5ae32T1ekhJHITyj7m",
-      client_id: "SK978DumFV6PAhxKNFgM0g8vkZoLoxUN",
+      domain: "kinparenting.auth0.com",
+      client_id: "z8JRBH8EX7Zls92Dui3W9fHUP7Uwoy3k",
       redirect_uri: `${window.location.origin}/callback`,
-      audience: "https://kin-dev-api-gateway",
+      audience: "https://kin-api",
       scope: 'openid profile email'
     })
   ) as Observable<Auth0Client>).pipe(
@@ -144,18 +141,14 @@ export class AuthService {
         const userRequest = new UserRequest(CommonUtil.initRequestBody());
         userRequest.email = user.email;
         this.userService.createUser(userRequest).subscribe((response) => {
-          this.router.navigate(['get-started']);
+            this.router.navigate(['get-started']);
+        },
+        (error) => {
+          console.log(error);
+          this.findUserAndRedirect(currunrRoute, targetRoute);
         });
       } else {
-        this.userService.getUser().subscribe((user) => {
-          this.userSubject$.next(user);
-        });
-        if (currunrRoute) {
-          this.router.navigate([currunrRoute]);
-          sessionStorage.removeItem('current_url');
-        } else {
-          this.router.navigate([targetRoute]);
-        }
+        this.findUserAndRedirect(currunrRoute, targetRoute);
       }
 
       // Redirect to target route after callback processing
@@ -165,13 +158,25 @@ export class AuthService {
     });
   }
 
+  findUserAndRedirect(currunrRoute :string, targetRoute: string) {
+    this.userService.getUser().subscribe((user) => {
+      this.userSubject$.next(user);
+    });
+    if (currunrRoute) {
+      this.router.navigate([currunrRoute]);
+      sessionStorage.removeItem('current_url');
+    } else {
+      this.router.navigate([targetRoute]);
+    }
+  }
+
 
   logout() {
     // Ensure Auth0 client instance exists
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log out
       client.logout({
-        client_id: "360XW2Ge6hB69Z5ae32T1ekhJHITyj7m",
+        client_id: "z8JRBH8EX7Zls92Dui3W9fHUP7Uwoy3k",
         returnTo: `${window.location.origin}`
       });
     });

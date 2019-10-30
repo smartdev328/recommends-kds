@@ -11,6 +11,7 @@ import { MatTabChangeEvent, MatDialog } from '@angular/material';
 import { ReviewsService } from '../../component/add-review/reviews.service';
 import { AuthService } from '@shared/service/auth.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { API_URL } from '@shared/constants/UrlConstants';
 
 import { Observable } from 'rxjs';
 declare let ga: any;
@@ -169,7 +170,7 @@ export class VenuesComponent implements OnInit {
 
   get_venue_data(venue_id: number) {
     if (venue_id !== undefined) {
-      const url = 'https://kin-api-dev.kinparenting.com/' + 'venues/' + venue_id + '/';
+      const url = `${API_URL}` + 'venues/' + venue_id + '/';
       const headers = new HttpHeaders();
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
         data = data.replace(/\n/g, '');

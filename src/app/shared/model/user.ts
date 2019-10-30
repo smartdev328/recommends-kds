@@ -2,7 +2,7 @@ import { Account, Parent } from "./account";
 import { Kid } from "./kid";
 
 export class User {
-    error?: string;
+    error: string;
     account: Account;
     parent: Parent;
 
