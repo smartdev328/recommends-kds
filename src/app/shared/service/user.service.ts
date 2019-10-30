@@ -5,7 +5,9 @@ import { UserRequest } from "@shared/model/request-body";
 import { User } from "@shared/model/user";
 import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
-import { Observable, BehaviorSubject, } from 'rxjs'
+import { Observable, BehaviorSubject, empty, } from 'rxjs'
+
+
 @Injectable({
     providedIn: 'root'
 })
@@ -26,9 +28,24 @@ export class UserService {
     ) { }
    
     getUser() {
-        // TODO: this API use hard code user (web:385649). Need to change after enable Authz in backend
         return this.http.get<User>(API_URL + 'parents/').pipe(map((response) => {
-            return response.error ? new User() : response;
+            if (response.error) {
+                let emptyUser = new User();
+                emptyUser.error = response.error;
+                return emptyUser;
+            } else {
+                return response;
+            }
+        }));
+    }
+
+    upsertUser(user: UserRequest) {
+        return this.http.get<User>(API_URL + 'parents/').pipe(map((response) => {
+            if (response.error) {
+                return this.createUser(user);
+            } else {
+                return response;
+            }
         }));
     }
 
