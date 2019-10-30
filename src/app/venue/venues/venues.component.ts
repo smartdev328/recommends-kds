@@ -354,7 +354,7 @@ export class VenuesComponent implements OnInit {
             this.isSuccessVisible = false;
             this.review = '';
           }, 3000);
-          this.errorMessage = 'Review added successfully';
+          this.errorMessage = 'Thanks! Your review has been submitted.';
         } else {
           this.isErrorVisible = true;
           this.errorMessage = 'Error while adding a new review';

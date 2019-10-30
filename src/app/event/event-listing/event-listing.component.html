@@ -114,7 +114,7 @@
         </div>
         <div class="row filter-box-content" *ngIf="isAuthenticated$ | async">
           <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-1">
-            <input type="text" class="form-control keyword-text search-style" placeholder="keyword" [(ngModel)]="keyword"
+            <input type="text" class="form-control keyword-text search-style" placeholder="Keyword" [(ngModel)]="keyword"
               (keyup.enter)="filter_event_data();" name="keyword">
           </div>
           <div class="dropdown col-lg-3 col-md-2 col-sm-6 col-xs-2 mb-2">
