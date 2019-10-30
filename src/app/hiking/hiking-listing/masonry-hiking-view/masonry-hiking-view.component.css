@@ -128,7 +128,7 @@
     }
 }
 @media only screen and (max-width : 992px) {
-    .img-wrp {
+    .img-wrp img {
         height: 150px;
     }
 }  

@@ -79,6 +79,11 @@
     width: 33%;
 }
 
+.star-btn{text-align: right;}
+.star-btn button {background: none; border:0; height: 24px; width: 24px; padding: 0; cursor:pointer;}
+.star-btn button:first-child{margin-right: 10px;} 
+.star-btn button img{width: 100%;}
+
 @media only screen and (max-width : 1280px) {
     
 }
@@ -102,7 +107,7 @@
     .loading-gif {
         margin-left: 35%;
     }
-    img {
+    .img-wrp img {
         object-fit: cover;
         height: 150px;
     }
@@ -118,7 +123,7 @@
     }
 }
 @media only screen and (max-width : 992px) {
-    .img-wrp {
+    .img-wrp img {
         height: 150px;
     }
 }  

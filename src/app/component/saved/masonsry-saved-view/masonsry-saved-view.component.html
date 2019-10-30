@@ -1,76 +1,124 @@
 <img src="assets/loading.gif" *ngIf="!showLayout" class="loading-gif">
-    <ng-masonry-grid [ngClass]="{'hide-layout': !showLayout, 'show-layout': showLayout}"
-    [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }"
-    [useAnimation]="true"
-    [useImagesLoaded]="true"
-    [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
-    <ng-masonry-grid-item class="tiles" *ngFor="let data of venues | slice:start:end; let i=index">
+<ng-masonry-grid [ngClass]="{'hide-layout': !showLayout, 'show-layout': showLayout}"
+  [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }" [useAnimation]="true" [useImagesLoaded]="true"
+  [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
+  <ng-masonry-grid-item class="tiles" *ngFor="let data of venues | slice:start:end; let i=index">
 
-          <mat-card class="event-list-cards ">
-          <div class="img-wrp">            
-            <a *ngIf="type == 'Hiking Trail'" style="text-decoration: none;" [routerLink]="['/hiking-trails', data.id]" target="_blank">
-              <img *ngIf="type == 'Hiking Trail'" mat-card-image src={{data.image_urls.first}} alt="">
-            </a>
-            <a *ngIf="type == 'CAMP'" style="text-decoration: none;" [routerLink]="['/camps', data.id]" target="_blank">
-              <img *ngIf="type == 'CAMP'" mat-card-image src={{data.image_url}} alt="Image not available">
-            </a>
-            <a *ngIf="type == 'EVENT'" style="text-decoration: none;" [routerLink]="['/events', data.id]" target="_blank">
-              <img *ngIf="type == 'EVENT'" mat-card-image src={{data.image_url}} alt="Image not available">
-            </a>
-            <a *ngIf="type == 'VENUE'" style="text-decoration: none;" [routerLink]="['/venues', data.id]" target="_blank">
-              <img *ngIf="type == 'VENUE'" mat-card-image src={{data.image_url}} alt="Image not available">
-            </a>
-          </div>
-            <mat-card-content *ngIf="type == 'VENUE'" class="">
-              <p class="event-group-title">
-                {{data.name}}
-              </p>
-              <p class="event-venue">
-                  {{data.city}}, {{data.state}}
-              </p>
-            </mat-card-content>
+    <mat-card class="event-list-cards ">
+      <div class="img-wrp">
+        <a *ngIf="type == 'Hiking Trail'" style="text-decoration: none;" [routerLink]="['/hiking-trails', data.id]"
+          target="_blank">
+          <img *ngIf="type == 'Hiking Trail'" mat-card-image src={{data.image_urls.first}} alt="">
+        </a>
+        <a *ngIf="type == 'CAMP'" style="text-decoration: none;" [routerLink]="['/camps', data.id]" target="_blank">
+          <img *ngIf="type == 'CAMP'" mat-card-image src={{data.image_url}} alt="Image not available">
+        </a>
+        <a *ngIf="type == 'EVENT'" style="text-decoration: none;" [routerLink]="['/events', data.id]" target="_blank">
+          <img *ngIf="type == 'EVENT'" mat-card-image src={{data.image_url}} alt="Image not available">
+        </a>
+        <a *ngIf="type == 'VENUE'" style="text-decoration: none;" [routerLink]="['/venues', data.id]" target="_blank">
+          <img *ngIf="type == 'VENUE'" mat-card-image src={{data.image_url}} alt="Image not available">
+        </a>
+      </div>
+      <mat-card-content *ngIf="type == 'VENUE'" class="">
+        <p class="event-group-title">
+          {{data.name}}
+        </p>
+        <p class="event-venue">
+          {{data.city}}, {{data.state}}
+        </p>
+        <p class="star-btn">
+          <button title="saved" *ngIf="data.is_saved == 'true'" (click)="is_delete_action(data.id,i,'ETYPE_VENUE')">
+            <img class="dfkg" src="../../../../assets/icons/save_orange.png" />
+          </button>
 
-            <mat-card-content *ngIf="type == 'EVENT'" class="">
-                <p class="event-group-title">
-                    {{data.name}}
-                  </p>
-                  <p class="event-date">
-                    <span *ngIf="data.venue" class="text">{{data.venue}}</span>
-                    <span *ngIf="data.city" class="lower-text">, {{data.city }}</span>
-                  </p>
-                  <p class="event-date">
-                    <span *ngIf="data.dates" class="text">{{data.dates}}</span>
-                    <span class="lower-text">, {{data.start_time }} - {{data.end_time}}</span>
-                  </p>
-                  <p class="event-date">
-                    <span *ngIf="data.age" class="lower-text">{{data.age }}</span>
-                    <span *ngIf="data.distance" class="lower-text">, {{data.distance}} miles</span>
-                  </p>
-            </mat-card-content>
-            
-            <mat-card-content *ngIf="type == 'CAMP'" class="">
-                <p class="event-group-title">
-                  {{data.name}}
-                </p>
-                <p class="event-venue">
-                  {{data.cities}}
-                </p>
-                <p class="event-venue">
-                  {{data.misc['timings']}}
-                </p>
-            </mat-card-content>
+          <button *ngIf="data.is_saved == 'false'" (click)="save_action(data.id,i,'ETYPE_VENUE')" title="click to save">
+            <img class="dfkg" src="../../../../assets/icons/save_blue.png" />
+          </button>
 
-            <mat-card-content *ngIf="type == 'Hiking Trail'" class="">
-              <p class="event-group-title">
-                {{data.name}}
-              </p>
-              <p class="event-venue">
-                {{data.city}}, {{data.state}}
-              </p>
-                <br>
-            </mat-card-content>
-            
-          </mat-card>
-    </ng-masonry-grid-item>
-  </ng-masonry-grid>
+          <button title="unfollow" *ngIf="data.is_followed == 'true'" (click)="unsubscribe_venue(data.id,i)">
+            <img class="dfkg" src="../../../../assets/icons/subscribe_orange.png" />
+          </button>
+          <button title="follow" *ngIf="data.is_followed == 'false'" (click)="add_subscription_venue(data.id,i)">
+            <img class="dfkg" src="../../../../assets/icons/subscribe_blue.png" />
+          </button>
+        </p>
+      </mat-card-content>
 
+      <mat-card-content *ngIf="type == 'EVENT'" class="">
+        <p class="event-group-title">
+          {{data.name}}
+        </p>
+        <p class="event-date">
+          <span *ngIf="data.venue" class="text">{{data.venue}}</span>
+          <span *ngIf="data.city" class="lower-text">, {{data.city }}</span>
+        </p>
+        <p class="event-date">
+          <span *ngIf="data.dates" class="text">{{data.dates}}</span>
+          <span class="lower-text">, {{data.start_time }} - {{data.end_time}}</span>
+        </p>
+        <p class="event-date">
+          <span *ngIf="data.age" class="lower-text">{{data.age }}</span>
+          <span *ngIf="data.distance" class="lower-text">, {{data.distance}} miles</span>
+        </p>
+        <p class="star-btn">
+          <button (click)="calendar_redirects(data.id,i,'ETYPE_EVENT')" title="Add to calendar">
+            <img class="dfkg" src="../../../../assets/icons/calendar_blue.png" />
+          </button>
+          <button title="saved" *ngIf="data.is_saved == 'true'" (click)="is_delete_action(data.id,i,'ETYPE_EVENT')">
+            <img class="dfkg" src="../../../../assets/icons/save_orange.png" />
+          </button>
+          <button *ngIf="data.is_saved == 'false'" (click)="save_action(data.id,i,'ETYPE_EVENT')" title="click to save">
+            <img class="dfkg" src="../../../../assets/icons/save_blue.png" />
+          </button>
+        </p>
+      </mat-card-content>
+
+      <mat-card-content *ngIf="type == 'CAMP'" class="">
+        <p class="event-group-title">
+          {{data.name}}
+        </p>
+        <p class="event-venue">
+          {{data.cities}}
+        </p>
+        <p class="event-venue">
+          {{data.misc['timings']}}
+        </p>
+        <p class="star-btn" *ngIf="data.is_saved == 'true'">
+          <button title="saved" (click)="is_delete_action(data.id,i,'ETYPE_CAMP')">
+            <img class="dfkg" src="../../../../assets/icons/save_orange.png" />
+          </button>
+        </p>
+        <p *ngIf="data.is_saved == 'false'" class="star-btn">
+          <button (click)="save_action(data.id,i,'ETYPE_CAMP')" title="click to save">
+            <img class="dfkg" src="../../../../assets/icons/save_blue.png" />
+          </button>
+        </p>
+      </mat-card-content>
+
+      <mat-card-content *ngIf="type == 'Hiking Trail'" class="">
+        <p class="event-group-title">
+          {{data.name}}
+        </p>
+        <p class="event-date">
+          {{data.city}}, {{data.state}}
+        </p>
+        <p *ngIf="data.distance" class="event-date">
+          {{data.distance}} miles
+        </p>
+        <p class="star-btn" *ngIf="data.is_saved == 'true'">
+          <button title="saved" (click)="is_delete_action(data.id,i,'ETYPE_HIKING_TRAIL')">
+            <img class="dfkg" src="../../../../assets/icons/save_orange.png" />
+          </button>
+        </p>
+        <p *ngIf="data.is_saved == 'false'" class="star-btn">
+          <button (click)="save_action(data.id,i,'ETYPE_HIKING_TRAIL')" title="click to save">
+            <img class="dfkg" src="../../../../assets/icons/save_blue.png" />
+          </button>
+        </p>
+        <br>
+      </mat-card-content>
+
+    </mat-card>
+  </ng-masonry-grid-item>
+</ng-masonry-grid>
