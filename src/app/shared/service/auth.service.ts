@@ -136,7 +136,7 @@ export class AuthService {
     // Response will be an array of user and login status
     const authCompleteSub = authComplete$.subscribe(([user, loggedIn]) => {
 
-      if (user['http://user.information/loginCount'] == 1) {
+      if (user['http://user.information/loginCount'] == undefined) {
         // Fist login, create a new account
         const userRequest = new UserRequest(CommonUtil.initRequestBody());
         userRequest.email = user.email;
@@ -144,7 +144,8 @@ export class AuthService {
             this.router.navigate(['get-started']);
         },
         (error) => {
-          console.log(error);
+          // if the user with the same email already exists
+          // then continue the flow.
           this.findUserAndRedirect(currunrRoute, targetRoute);
         });
       } else {
