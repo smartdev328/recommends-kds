@@ -102,7 +102,7 @@ export class CampListingComponent implements OnInit {
 
     // OG meta properties
     this.metaService.addTag({ property: 'og:title', content: 'Summer camps around SF bay area' });
-    this.metaService.addTag({ property: 'og:image', content: 'https://kinparenting.com/assets/kin_logo.jpeg' });
+    this.metaService.addTag({ property: 'og:image', content: 'https://kinparenting.com/assets/web_images/kinNest120.jpg' });
     this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/camps-near-me' });
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
 

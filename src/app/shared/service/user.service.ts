@@ -53,7 +53,6 @@ export class UserService {
         let httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
-                // 'x-api-key': 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk',
                 "Authorization": `Bearer ${this.subject.value}`
             })
         };
@@ -75,6 +74,16 @@ export class UserService {
     createKid(inputObject: any) {
         const httpOptions = this.gethttpOptions();
         return this.http.post(API_URL + 'kids/', inputObject, httpOptions);
+    }
+
+    createKids(kids: any) {
+        const httpOptions = this.gethttpOptions();
+        return this.http.post(API_URL + 'kids-bulk/', kids, httpOptions);
+    }
+
+    updateAllKids(kids: any) {
+        const httpOptions = this.gethttpOptions();
+        return this.http.put(API_URL + 'kids-bulk/', kids, httpOptions);
     }
 
     updateKids(inputObject: any) {

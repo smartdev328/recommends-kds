@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { ReviewsService } from '../component/add-review/reviews.service';
 import { ACTION, ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM } from '../shared/constants/AnalyticsConstants';
 import { HikingTrailConstants, HikingTrailErrorMessage } from '../shared/constants/HikingTrailConstants';
+import { ErrorMessage } from '../shared/constants/CommonConstants';
 import { HikingTrailModel } from './add-hiking/hiking.model';
 import { HikingTrailService } from './hiking.service';
 import { AuthService } from '@shared/service/auth.service';
@@ -32,6 +33,7 @@ export class HikingTrailComponent implements OnInit {
   public isLoaded = true;
   public hikingConstants = new HikingTrailConstants();
   public hikingErrorMessage = new HikingTrailErrorMessage();
+  public commonErrorMessage = new ErrorMessage();
   public isShowMore: any;
   public place_reviews: any;
   //public parent_id: any;
@@ -409,14 +411,14 @@ export class HikingTrailComponent implements OnInit {
             this.isSuccessVisible = false;
             this.review = '';
           }, 3000);
-          this.errorMessage = 'Thanks! Your review has been submitted.';
+          this.errorMessage = this.commonErrorMessage.REVIEW_ADDED_SUCCESS;
         } else {
           this.isErrorVisible = true;
-          this.errorMessage = 'Error while adding a new review';
+          this.errorMessage = this.commonErrorMessage.DUPLICATE_REVIEW;
         }
       }, error => {
         this.isErrorVisible = true;
-        this.errorMessage = 'Something went wrong while adding review';
+        this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
       });
 
     } else {

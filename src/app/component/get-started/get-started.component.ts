@@ -106,15 +106,10 @@ export class GetStartedComponent implements OnInit {
     const kidParam = this.formGroup.value.kidControls;
     this.userService.updateUser(param).subscribe(
       responseParent => {
-        for(let i=0;i<kidLength;i++){
-          this.userService.createKid(kidParam[i]).subscribe(
+          this.userService.createKids(kidParam).subscribe(
             responseKid => {
-              if(i === kidLength-1){
                 this.router.navigate(['/home']);
-              }
-            });
-        }
-      
+            });  
       }, err => {
        console.log('Error in call service for parent and kid', err);
       });

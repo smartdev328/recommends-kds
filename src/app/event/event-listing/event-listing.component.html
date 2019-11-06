@@ -11,7 +11,7 @@
         <div class="row filter-box-content" *ngIf="(isAuthenticated$ | async) == false">
           <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-1">
             <div class="input-group">
-              <input type="text" class="form-control keyword-text search-style" (keyup.enter)="filter_event_data()" placeholder="Keyword"
+              <input type="text" class="form-control keyword-text" (keyup.enter)="filter_event_data()" placeholder="Keyword"
                 [(ngModel)]="keyword">
             </div>
           </div>

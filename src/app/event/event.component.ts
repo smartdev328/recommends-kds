@@ -5,12 +5,13 @@ import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
 import { ENTITY_TYPES_ENUM, TYPES_ENUM } from '../shared/constants/VenueConstants';
 import { EventErrorMessage, EventConstants } from '../shared/constants/EventConstants';
+import { ErrorMessage } from '../shared/constants/CommonConstants';
 import { ReviewsService } from '../component/add-review/reviews.service';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../shared/constants/AnalyticsConstants';
 import { API_URL } from '@shared/constants/UrlConstants';
 import { AuthService } from '@shared/service/auth.service';
-import { MatDialogRef, MatDialog, } from "@angular/material";
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { MatDialog } from "@angular/material";
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 
 declare let ga: any;
@@ -44,6 +45,7 @@ export class EventComponent implements OnInit {
   public is_review_click: Boolean;
   public reviews_present: Boolean;
   public eventErrorMessage = new EventErrorMessage();
+  public commonErrorMessage = new ErrorMessage();
   public eventConstatnts = new EventConstants();
   public eventCatString: String;
   public isAuthenticated$: Observable<boolean>;
@@ -101,11 +103,8 @@ export class EventComponent implements OnInit {
   }
 
   get_event_details() {
-    // let url = 'https://kin-api-dev.kinparenting.com/events/' + this.event_id;
     const url = API_URL + 'events/' + this.event_id + '/';
-    //const url = 'https://kin-api-dev.kinparenting.com/' + 'events/' + this.event_id + '/';
     const headers = new HttpHeaders()
-      .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
       .set('Content-Type', 'application/json');
     this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
       data = data.replace(/\n/g, "");
@@ -147,6 +146,20 @@ export class EventComponent implements OnInit {
       this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
 
     });
+  }
+
+  format_address() {
+    let address = '';
+    if (this.event.street) {
+      address = this.event.street + ', ';
+    }
+    if (this.event.city) {
+      address = address + this.event.city + ', ';
+    }
+    if (this.event.state) {
+      address = address + this.event.state;
+    }
+    return address;
   }
 
   format_time(timeString) {
@@ -219,15 +232,16 @@ export class EventComponent implements OnInit {
             this.isSuccessVisible = false;
             this.review = '';
           }, 3000);
-          this.errorMessage = this.eventErrorMessage.REVIEW_ADDED_SUCCESS;
+          this.errorMessage = this.commonErrorMessage.REVIEW_ADDED_SUCCESS;
         } else {
           this.isErrorVisible = true;
-          this.errorMessage = this.eventErrorMessage.ERROR_ADDING_NEW_REVIEW;
+          this.errorMessage = this.commonErrorMessage.DUPLICATE_REVIEW;
         }
       }, error => {
         this.isErrorVisible = true;
-        this.errorMessage = this.eventErrorMessage.SOMETHING_WENT_WRONG;
-      });
+        this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
+      }
+      );
     }
   }
 

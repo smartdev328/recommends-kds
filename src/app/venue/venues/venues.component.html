@@ -83,7 +83,7 @@
               </ul>
               <br>
               <h5>Location</h5>
-              <p>{{street}}, {{city}}, {{state}}</p>
+              <p>{{format_address()}}</p>
               <button style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="venue_redirect()">Place website</button>
             </div>
           </div>
@@ -118,7 +118,7 @@
                 </div>
                 <button class="post-btn" *ngIf="isLogedin" (click)="add_review()">post</button>
                 <button class="grey-button" *ngIf="!isLogedin" (click)="checklogin(addToReview)">post</button>              </div>
-              <p>Be the first to write a review!</p>
+              <p *ngIf="!(user_reviews.length>0)">Be the first to write a review!</p>
               <div class="post-reviews">
                <ul>
                 <li *ngFor="let current_review of user_reviews;">

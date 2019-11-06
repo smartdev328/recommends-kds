@@ -5,7 +5,8 @@
     </div>
     <div class="col-md-8 col-sm-12 xs-12">
       <div class="contact-section">
-        <h4>{{event.start_date | date:'longDate'}}</h4>
+        <h4 *ngIf="event.start_date == event.end_date">{{event.start_date | date:'longDate'}}</h4>
+        <h4 *ngIf="event.end_date && event.start_date != event.end_date">{{event.start_date | date:'longDate'}} - {{event.end_date | date:'longDate'}}</h4>
         <h3>{{ event.name }}</h3>
         <p>{{event.description}}</p>
         <div class="cards-footer">
@@ -74,7 +75,8 @@
           <p style="color: #0000FF;">{{event.venue}}</p>
         </a>
           <p *ngIf="event.venue_id == '0'">{{event.venue}}</p>
-          <p >{{event.street}}, {{event.city}}, {{event.state}}</p>
+          <!-- <p >{{event.street}}, {{event.city}}, {{event.state}}</p> -->
+          <p>{{format_address()}}</p>
         <br>
         <button style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="event_redirect()">Event
           website</button>

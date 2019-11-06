@@ -6,6 +6,7 @@ import { Meta } from '@angular/platform-browser';
 import { UserSearch } from '../venue.model';
 import { VenuesService } from './venues.service';
 import { ENTITY_TYPES_ENUM, TYPES_ENUM, VenueConstants, VenueErrorMessage } from '../../shared/constants/VenueConstants';
+import { ErrorMessage } from '../../shared/constants/CommonConstants';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
 import { MatTabChangeEvent, MatDialog } from '@angular/material';
 import { ReviewsService } from '../../component/add-review/reviews.service';
@@ -54,6 +55,7 @@ export class VenuesComponent implements OnInit {
   public miscData: any;
   public venueConstatnts = new VenueConstants();
   public venueErrorMessage = new VenueErrorMessage();
+  public commonErrorMessage = new ErrorMessage();
   public timings_array: any;
   public isShowMore: any;
   public place_full_info: any;
@@ -277,6 +279,20 @@ export class VenuesComponent implements OnInit {
     }
   }
 
+  format_address() {
+    let address = '';
+    if (this.venue.street) {
+      address = this.venue.street + ', ';
+    }
+    if (this.venue.city) {
+      address = address + this.venue.city + ', ';
+    }
+    if (this.venue.state) {
+      address = address + this.venue.state;
+    }
+    return address;
+  }
+
   format_price() {
     if (this.venue.price == "Free" || this.venue.price == "free" || this.venue.price == "") {
       return "Free";
@@ -355,14 +371,14 @@ export class VenuesComponent implements OnInit {
             this.isSuccessVisible = false;
             this.review = '';
           }, 3000);
-          this.errorMessage = 'Thanks! Your review has been submitted.';
+          this.errorMessage = this.commonErrorMessage.REVIEW_ADDED_SUCCESS;
         } else {
           this.isErrorVisible = true;
-          this.errorMessage = 'Error while adding a new review';
+          this.errorMessage = this.commonErrorMessage.DUPLICATE_REVIEW;
         }
       }, error => {
         this.isErrorVisible = true;
-        this.errorMessage = 'Something went wrong while adding review';
+        this.errorMessage = this.commonErrorMessage.SOMETHING_WENT_WRONG;
       });
 
     } else {

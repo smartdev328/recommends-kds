@@ -104,7 +104,7 @@ export class HikingTrailsListingComponent implements OnInit {
 
     // OG meta properties
     this.metaService.addTag({ property: 'og:title', content: 'Family friendly hikes around SF bay area' });
-    this.metaService.addTag({ property: 'og:image', content: 'https://kinparenting.com/assets/kin_logo.jpeg' });
+    this.metaService.addTag({ property: 'og:image', content: 'https://kinparenting.com/assets/web_images/kinNest120.jpg' });
     this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/family-friendly-hikes-near-me' });
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
 

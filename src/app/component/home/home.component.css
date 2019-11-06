@@ -28,6 +28,10 @@ a {
     background-size: cover;
 }
 
+.home-list {
+    background: rgb(254, 215, 5);
+}
+
 .home-personalized-image {
     height: 100%;
     background: rgb(254, 215, 5);
@@ -66,7 +70,7 @@ video {
 }
 
 .title {
-    font-size: 64px;
+    font-size: 50px;
 }
 
 .go-to-messenger {
@@ -76,13 +80,13 @@ video {
 .go-to-messenger a {
     color: #FFFFFF;
     font-weight: normal;
-    font-size: 28px;
+    font-size: 20px;
 }
 
 .his-message {
     width: 70%;
     font-family: Roboto;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .his-message div {
@@ -94,7 +98,7 @@ video {
 .my-message {
     text-align: right;
     font-family: Roboto;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .my-message span {
@@ -104,8 +108,7 @@ video {
     border-radius: 10px;
 }
 
-.category {
-    background-color: #ffffff;
+.category {    
     font-family: Montserrat;
 }
 
@@ -472,9 +475,9 @@ video {
         padding: 33px !important;
     }
     .title{font-size: 24px !important; font-weight: 400 !important;}
-    .his-message{width:100% !important; font-size: 14px !important;}
-    .my-message{font-size: 14px !important;}
-    .go-to-messenger a{font-size: 18px !important;}
+    .his-message{width:100% !important; font-size: 18px !important;}
+    .my-message{font-size: 18px !important;}
+    .go-to-messenger a{font-size: 20px !important;}
     .category-label-sm{font-size: 24px !important;}
     .eventsImage, .placesImage, .campsImage, .hikingImage{height: 172px; background-size: auto 172px;}
     .category-label-sm{bottom: 4% !important;}

@@ -66,7 +66,7 @@
                   <p style="color: #0000FF;">{{trail.park_name}}</p>
                 </a>
                   <p *ngIf="trail.venue_id == '0'">{{trail.park_name}}</p>
-                  <p >{{trail.street}}, {{trail.city}}, {{trail.state}}</p>
+                  <p >{{format_address()}}</p>
                 <br>
               <button style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="trail_redirect()">Trail website</button>
             </div>

@@ -10,7 +10,7 @@ import { EventListingService } from './event-listing.service';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '@shared/model/user';
-import { MatDialogRef, MatDialog, MatDatepicker, MatDatepickerInputEvent, } from "@angular/material";
+import { MatDialog, MatDatepicker, MatDatepickerInputEvent, } from "@angular/material";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API_URL } from '@shared/constants/UrlConstants';
 import { VenueListingService } from '../../venue/venue-listing/venue-listing.service';
@@ -163,7 +163,7 @@ export class EventListingComponent implements OnInit {
 
     // OG meta properties
     this.metaService.addTag({ property: 'og:title', content: 'Family friendly events around SF bay area' });
-    this.metaService.addTag({ property: 'og:image', content: 'https://kinparenting.com/assets/kin_logo.jpeg' });
+    this.metaService.addTag({ property: 'og:image', content: 'https://kinparenting.com/assets/web_images/kinNest120.jpg' });
     this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/family-friendly-events-near-me' });
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
 
@@ -186,6 +186,7 @@ export class EventListingComponent implements OnInit {
     this.eventName ="";
     this.selected_loc = loc_obj['name'];
     this.loc_label = this.selected_loc;
+    this.kid_id='';
     this.filter_event_data();
 
   }
@@ -194,10 +195,12 @@ export class EventListingComponent implements OnInit {
     this.selected_cat = cat_obj['name'];
     this.select_cat_id = cat_obj['id'];
     this.cat_label = this.selected_cat;
+    this.kid_id='';
     this.filter_event_data();
   }
   onDateChange(date_obj: object) {
     this.eventName ="";
+    this.kid_id = '';
     if (date_obj['desc'] == 'Pick a date') {
       this.pickDate = true;
       setTimeout(() => {
@@ -214,7 +217,7 @@ export class EventListingComponent implements OnInit {
   }
 
   fromDate(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.selected_date = 1;
+    this.selected_date = 0;
     this.date_label = this.formatDate(event.value);
     this.event_date_start = this.formatDate(event.value);
 
@@ -288,7 +291,7 @@ export class EventListingComponent implements OnInit {
         console.log(err);
       });
     } else {
-      let url = `${API_URL}` + `events/?limit=${this.limit}`;
+      let url = `${API_URL}` + `events/?limit=${this.limit}&order_by=start_date_asc`;
       const headers = new HttpHeaders();
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
         data = data.replace(/\n/g, '');
@@ -344,6 +347,7 @@ export class EventListingComponent implements OnInit {
       this.kid_id ='';
       this.tags ='';
       this.all ='';
+      this.resetFilterParams();
       this.eventName = "Nearby";
       this.filter_event_data();
     }
@@ -353,6 +357,7 @@ export class EventListingComponent implements OnInit {
       this.kid_id = '';
       this.tags = 'popular';
       this.all ='';
+      this.resetFilterParams();
       this.eventName = "Trending";
       this.filter_event_data();
     }
@@ -362,6 +367,7 @@ export class EventListingComponent implements OnInit {
       this.kid_id ='';
       this.tags ='';
       this.all = 'yes';
+      this.resetFilterParams();
       this.eventName = "All";
       this.filter_event_data();
     }
@@ -381,6 +387,7 @@ export class EventListingComponent implements OnInit {
         });
 
       }
+      this.resetFilterParams();
       this.filter_event_data();
     }
   }
@@ -405,6 +412,15 @@ export class EventListingComponent implements OnInit {
     this.eventName = "All";
     this.kidHeading = "other";
     this.ngOnInit();
+  }
+
+  resetFilterParams() {
+    this.selected_cat = '';
+    this.selected_loc = '';
+    this.selected_date = '';
+    this.select_cat_id ='';
+    this.event_date_start = '';
+    this.keyword = '';
   }
 
 
@@ -446,7 +462,7 @@ export class EventListingComponent implements OnInit {
     }if(!this.isLogedin){
       url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str)+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
     }
-    if (input.kid_id) {
+    if (input.kid_id && input.kid_id !== '') {
      url = url+ "&personalize=True";
     }
     if(this.eventName == "All" && this.all == 'yes'){

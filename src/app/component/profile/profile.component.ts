@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   eventConstants = new EventConstants();
   parentEmail: string;
   kids: Kid[];
+  success: boolean;
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
@@ -45,6 +46,7 @@ export class ProfileComponent implements OnInit {
     this.interests = this.eventConstants.PRIMARY_CATEGORY.map((item) => item.name);
     this.getUser();
     this.formGroup.controls['email'].disable();
+    this.success = false;
 
   }
 
@@ -104,35 +106,49 @@ export class ProfileComponent implements OnInit {
     }
     const kidLength=this.formGroup.value.kidControls.length;
     const kidParam = this.formGroup.value.kidControls;
+    var kidsToUpdate = [];
+    var kidsToCreate = [];
+    for(let i=0;i<kidLength;i++){
+      if(kidParam[i].kid_id !== null) {
+        kidsToUpdate.push(kidParam[i]);
+      } else {
+        kidsToCreate.push(kidParam[i]);
+      }
+    }
     this.userService.updateUser(param).subscribe(
       responseParent => {
-        for(let i=0;i<kidLength;i++){
-          if(kidParam[i].kid_id === null){
-          this.userService.createKid(kidParam[i]).subscribe(
-              responsecreateKid => {
-                if(i === kidLength-1){
-                  this.router.navigate(['/home']);
-                }
-              },errCreateKid => {
-                //console.log('Error in call service for kid',i, errCreateKid);
-              });
-          }
-          else{
-            this.userService.updateKids(kidParam[i]).subscribe(
-              responseUpdateKid => {
-                if(i === kidLength-1){
-                  this.router.navigate(['/home']);
-                }
-              },errUpdateKid => {
-                //console.log('Error in call service for kid',i, errUpdateKid);
-              });
-          }
+        if (kidsToCreate.length > 0) {
+          this.userService.createKids(kidsToCreate).subscribe(
+            responsecreateKid => {
+              if (kidsToUpdate.length > 0) {
+                this.userService.updateAllKids(kidsToUpdate).subscribe(
+                  responsecreateKid => {
+                    this.router.navigate(['/home']);
+                  },errCreateKid => {
+                    this.setSuccess(false);
+                  });
+              }
+              this.setSuccess(true);
+            },errCreateKid => {
+              this.setSuccess(false);
+            });
+        }
+        if (kidsToUpdate.length > 0) {
+          this.userService.updateAllKids(kidsToUpdate).subscribe(
+            responsecreateKid => {
+              this.router.navigate(['/home']);
+            },errCreateKid => {
+              this.setSuccess(false);
+            });
         }
       }, err => {
-        //console.log('Error in call service for parent and', err);
-      });
-    // Call PATCH on /parents/ and /kids/ backend APIs to update
-    // information for the parent and kids.
+        this.setSuccess(false);
+      }
+    );
+  }
+
+  setSuccess(value: boolean) {
+    this.success = value;
   }
 
   saveUser() {

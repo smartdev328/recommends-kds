@@ -6,8 +6,9 @@ import { Meta } from '@angular/platform-browser';
 import { ReviewsService } from '../../component/add-review/reviews.service';
 import { ENTITY_TYPES_ENUM, TYPES_ENUM } from '../../shared/constants/VenueConstants';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { CampErrorMessage, CampConstants } from '../../shared/constants/CampConstants';
+import { ErrorMessage } from '../../shared/constants/CommonConstants';
 import { MatTabChangeEvent, MatDialogRef, MatDialog } from '@angular/material';
 import { API_URL } from '@shared/constants/UrlConstants';
 import { Observable } from 'rxjs';
@@ -42,6 +43,7 @@ export class CampsComponent implements OnInit {
   public category: string;
   public campStatus: boolean;
   public campErrorMessage = new CampErrorMessage();
+  public commonErrorMessage = new ErrorMessage();
   public campConstants: any;
   public isSaveVisible: boolean;
   public reviews_present: boolean;
@@ -194,10 +196,10 @@ export class CampsComponent implements OnInit {
             this.review = '';
           }, 3000);
 
-          this.errorMessage = this.campErrorMessage.REVIEW_ADDED_SUCCESS;
+          this.errorMessage = this.commonErrorMessage.REVIEW_ADDED_SUCCESS;
         } else {
           this.isErrorVisible = true;
-          this.errorMessage = this.campErrorMessage.ERROR_ADDING_NEW_REVIEW;
+          this.errorMessage = this.commonErrorMessage.DUPLICATE_REVIEW;
         }
       }, error => {
         this.isErrorVisible = true;
