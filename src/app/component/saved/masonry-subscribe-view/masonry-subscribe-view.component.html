@@ -8,8 +8,12 @@
       <a style="text-decoration: none;" >
           <mat-card class="event-list-cards ">
           <div class="img-wrp">
-            <img *ngIf="type != 'Hiking Trail'" mat-card-image src={{data.image_url}} alt="Image not available">
+            <!-- <img *ngIf="type != 'Hiking Trail'" mat-card-image src={{data.image_url}} alt="Image not available">
             <img *ngIf="type == 'Hiking Trail'" mat-card-image src={{data.image_urls.first}} alt="">
+            -->
+            <a style="text-decoration: none;" [routerLink]="['/venues', data.id]" target="_blank">
+              <img mat-card-image src={{data.image_url}} alt="Image not available">
+            </a>
           </div>
             <mat-card-content class="">
               <p class="event-group-title">

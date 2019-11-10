@@ -8,12 +8,14 @@ import { EventConstants, EventErrorMessage } from '../../shared/constants/EventC
 import { ErrorMessage } from '../../shared/constants/CommonConstants';
 import { EventListingService } from './event-listing.service';
 import { AuthService } from '@shared/service/auth.service';
+import { UserService } from '@shared/service/user.service';
 import { Observable } from 'rxjs';
 import { User } from '@shared/model/user';
 import { MatDialog, MatDatepicker, MatDatepickerInputEvent, } from "@angular/material";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API_URL } from '@shared/constants/UrlConstants';
 import { VenueListingService } from '../../venue/venue-listing/venue-listing.service';
+import { map } from 'rxjs/operators';
 
 
 
@@ -101,7 +103,7 @@ export class EventListingComponent implements OnInit {
   public search_query: String;
   public username: String;
   public isAuthenticated$: Observable<boolean>;
-  isLogedin;
+  public isLoggedIn: boolean;
   public isCalendarView: boolean;
   public eventName = "All";
 
@@ -123,6 +125,7 @@ export class EventListingComponent implements OnInit {
     private titleService: Title,
     private metaService: Meta,
     private reviewService: ReviewsService,
+    private userService: UserService,
     private eventListingService: EventListingService,
     private authService: AuthService,
     private http: HttpClient,
@@ -153,8 +156,8 @@ export class EventListingComponent implements OnInit {
   ngOnInit() {
     this.isAuthenticated$ = this.authService.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
-      this.isLogedin = data;
-      this.authService.setAuth(this.isLogedin);
+      this.isLoggedIn = data;
+      this.authService.setAuth(this.isLoggedIn);
       this.get_explore_event_details();
     })
     this.titleService.setTitle('Family friendly events around SF bay area');
@@ -178,7 +181,10 @@ export class EventListingComponent implements OnInit {
     this.selected_date = this.route.snapshot.queryParams['date'];
     this.distance = this.route.snapshot.queryParams['distance'];
     this.username = this.route.snapshot.queryParams['username'];
-    this.authService.user$.subscribe((user) => {
+    /*this.authService.user$.subscribe((user) => {
+      this.user = user;
+    });*/
+    this.userService.getUser().subscribe((user) => {
       this.user = user;
     });
   }
@@ -257,7 +263,7 @@ export class EventListingComponent implements OnInit {
   get_explore_event_details() {
     this.showMore = false;
     // this.isExplore = true;
-    if (this.isLogedin == true) {
+    if (this.isLoggedIn == true) {
       let url = `${API_URL}` + `events/?order_by=date_dist_asc&distance=100&limit=${this.limit}`;
       this.eventListingService.get_event_details(url).subscribe(data => {
         this.all_data = data['events'];
@@ -457,9 +463,9 @@ export class EventListingComponent implements OnInit {
       input.tags ='';
     }
     let url;
-    if(this.isLogedin){
+    if(this.isLoggedIn){
     url = `${API_URL}` + 'events/?order_by=date_dist_asc&event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str)+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
-    }if(!this.isLogedin){
+    }if(!this.isLoggedIn){
       url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str)+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
     }
     if (input.kid_id && input.kid_id !== '') {
@@ -470,7 +476,7 @@ export class EventListingComponent implements OnInit {
     }
     this.isExplore = true;
     this.end = 21;
-    if(this.isLogedin ==true){
+    if(this.isLoggedIn ==true){
       this.eventListingService.get_event_details(url).subscribe(data => {
         if (data['events'] !== undefined && data['events'].length > 0) {
           this.isErrorVisible = false;
@@ -595,7 +601,7 @@ export class EventListingComponent implements OnInit {
   }
   //this function will open a popup when user is not loggen in
   checkLogin(linkName) {
-    if (this.isLogedin) {
+    if (this.isLoggedIn) {
       this.loadMore();
     } else {
       this.detectClick(linkName);

@@ -6,9 +6,9 @@
 
     <mat-card class="event-list-cards ">
       <div class="img-wrp">
-        <a *ngIf="type == 'Hiking Trail'" style="text-decoration: none;" [routerLink]="['/hiking-trails', data.id]"
+        <a *ngIf="type == 'HIKING_TRAIL'" style="text-decoration: none;" [routerLink]="['/hiking-trails', data.id]"
           target="_blank">
-          <img *ngIf="type == 'Hiking Trail'" mat-card-image src={{data.image_urls.first}} alt="">
+          <img *ngIf="type == 'HIKING_TRAIL'" mat-card-image src={{data.image_urls.first}} alt="">
         </a>
         <a *ngIf="type == 'CAMP'" style="text-decoration: none;" [routerLink]="['/camps', data.id]" target="_blank">
           <img *ngIf="type == 'CAMP'" mat-card-image src={{data.image_url}} alt="Image not available">
@@ -96,7 +96,7 @@
         </p>
       </mat-card-content>
 
-      <mat-card-content *ngIf="type == 'Hiking Trail'" class="">
+      <mat-card-content *ngIf="type == 'HIKING_TRAIL'" class="">
         <p class="event-group-title">
           {{data.name}}
         </p>

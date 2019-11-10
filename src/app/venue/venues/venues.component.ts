@@ -197,7 +197,6 @@ export class VenuesComponent implements OnInit {
             this.showMoreTrail = true;
             this.trail_list = data['trails'];
             this.entity_type ="Hiking Trail"
-            console.log(this.entity_type);
             if (this.trail_list.length > this.endTrail) {
               this.showMoreTrail = true;
             }
@@ -437,7 +436,6 @@ export class VenuesComponent implements OnInit {
   }
 
   add_subscription_venue() {
-
     //if (this.parent_id !== undefined) {
       const input_data = {
         "venue_subs_data": {
@@ -446,7 +444,6 @@ export class VenuesComponent implements OnInit {
         }
       };
       this.venuesService.add_subscriptions(input_data).subscribe(data => {
-        console.log(data);
         if (data['status'] === true) {
           this.isSubscribeVisible = true;
         } else {

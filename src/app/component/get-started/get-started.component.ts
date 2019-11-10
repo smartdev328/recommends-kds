@@ -101,15 +101,22 @@ export class GetStartedComponent implements OnInit {
       zip_code: this.formGroup.value.zipcode,
       // email: this.parentEmail,
       newsletter: this.formGroup.value.newsletter,
+    }
+    var kidLength = 0;
+    if (this.formGroup.value.kidControls !== undefined) {
+      kidLength = this.formGroup.value.kidControls.length;
     }   
-    const kidLength=this.kidControls.length;
-    const kidParam = this.formGroup.value.kidControls;
+    
     this.userService.updateUser(param).subscribe(
       responseParent => {
-          this.userService.createKids(kidParam).subscribe(
-            responseKid => {
-                this.router.navigate(['/home']);
-            });  
+          if (kidLength > 0) {
+              this.userService.createKids(this.formGroup.value.kidControls).subscribe(
+                responseKid => {
+                  this.router.navigate(['/home']);
+              });
+          } else {
+            this.router.navigate(['/home']);
+          }
       }, err => {
        console.log('Error in call service for parent and kid', err);
       });

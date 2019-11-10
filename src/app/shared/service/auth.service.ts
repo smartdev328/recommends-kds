@@ -77,12 +77,13 @@ export class AuthService {
     // Set up local authentication streams
     const checkAuth$ = this.isAuthenticated$.pipe(
       concatMap((loggedIn: boolean) => {
-        if (loggedIn) {
+        /*if (loggedIn) {
           // If authenticated, get user and set in app
           // NOTE: you could pass options here if needed
           // return this.getUserProfile$();
+          console.log("LOCAL AUTH SETUP");
           return this.getUser$();
-        }
+        }*/
         // If not authenticated, return stream that emits 'false'
         return of(loggedIn);
       })
@@ -96,7 +97,7 @@ export class AuthService {
     });
   }
 
-  login(redirectPath: string = '/') {
+  login(redirectPath: string = '/family-friendly-events-near-me') {
 
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
@@ -122,7 +123,7 @@ export class AuthService {
       tap(cbRes => {
         // Get and set target redirect route from callback results
          currunrRoute = JSON.parse(sessionStorage.getItem('current_url'));
-        targetRoute = cbRes.appState && cbRes.appState.target ? cbRes.appState.target : '/';
+        targetRoute = cbRes.appState && cbRes.appState.target ? cbRes.appState.target : '/family-friendly-events-near-me';
       }),
       concatMap(() => {
         // Redirect callback complete; get user and login status

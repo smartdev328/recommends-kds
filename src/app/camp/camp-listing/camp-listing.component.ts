@@ -117,6 +117,17 @@ export class CampListingComponent implements OnInit {
     }
 
   }
+
+  resetClearFilterVariables() {
+    if (this.oldCat_1) {
+      this.oldCat_2 = true;
+      this.oldCat_1 = false;
+    } else {
+      this.oldCat_2 = false;
+      this.oldCat_1 = true;
+    }
+  }
+  
   get_camps_details() {
     let url = '';
     if (this.keyword !== '' && this.keyword !== undefined) {
@@ -130,7 +141,7 @@ export class CampListingComponent implements OnInit {
     this.isExplore = true;
     this.showMore = false;
 
-    if (this.isLogedin == true) {
+    if (this.isLogedin) {
       url = url +'&order_by=date_dist_asc';
       this.campsListingService.get_camp_details(url).subscribe(data => {
         if (data['data'] != undefined && data['data'].length > 0) {
@@ -143,6 +154,7 @@ export class CampListingComponent implements OnInit {
         if (this.camp_explore.length > this.end) {
           this.showMore = true;
         }
+        this.resetClearFilterVariables();
       })
     } else {
       const headers = new HttpHeaders();
@@ -159,6 +171,7 @@ export class CampListingComponent implements OnInit {
         if (this.camp_explore.length > this.end) {
           this.showMore = true;
         }
+        this.resetClearFilterVariables();
       })
     }
   }

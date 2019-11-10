@@ -25,9 +25,6 @@ export class VenueListingService {
 
 
   getSavedListing(type){
-    if(type == 'Hiking Trail'){
-      type = 'HIKING_TRAIL';
-    }
     const url = API_URL + `actions/?entity_type=ETYPE_${type}&action_type=ATYPE_SAVE`;
     return this.http.get(url);
   }

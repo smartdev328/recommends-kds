@@ -104,15 +104,17 @@ export class ProfileComponent implements OnInit {
       email: this.parentEmail,
       newsletter: this.formGroup.value.newsletter,
     }
-    const kidLength=this.formGroup.value.kidControls.length;
-    const kidParam = this.formGroup.value.kidControls;
+    var kidLength = 0;
+    if (this.formGroup.value.kidControls !== undefined) {
+      kidLength = this.formGroup.value.kidControls.length;
+    }
     var kidsToUpdate = [];
     var kidsToCreate = [];
     for(let i=0;i<kidLength;i++){
-      if(kidParam[i].kid_id !== null) {
-        kidsToUpdate.push(kidParam[i]);
+      if(this.formGroup.value.kidControls[i].kid_id !== null) {
+        kidsToUpdate.push(this.formGroup.value.kidControls[i]);
       } else {
-        kidsToCreate.push(kidParam[i]);
+        kidsToCreate.push(this.formGroup.value.kidControls[i]);
       }
     }
     this.userService.updateUser(param).subscribe(
@@ -120,13 +122,17 @@ export class ProfileComponent implements OnInit {
         if (kidsToCreate.length > 0) {
           this.userService.createKids(kidsToCreate).subscribe(
             responsecreateKid => {
+              //console.log('created kids');
               if (kidsToUpdate.length > 0) {
                 this.userService.updateAllKids(kidsToUpdate).subscribe(
                   responsecreateKid => {
+                    //console.log('created updated kids');
                     this.router.navigate(['/home']);
                   },errCreateKid => {
                     this.setSuccess(false);
                   });
+              } else {
+                this.router.navigate(['/home']);
               }
               this.setSuccess(true);
             },errCreateKid => {
@@ -136,11 +142,13 @@ export class ProfileComponent implements OnInit {
         if (kidsToUpdate.length > 0) {
           this.userService.updateAllKids(kidsToUpdate).subscribe(
             responsecreateKid => {
+              //console.log('just updated kids');
               this.router.navigate(['/home']);
             },errCreateKid => {
               this.setSuccess(false);
             });
         }
+        this.router.navigate(['/home']);
       }, err => {
         this.setSuccess(false);
       }

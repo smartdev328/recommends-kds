@@ -122,9 +122,6 @@ export class VenueListingComponent implements OnInit {
   
   }
   get_venue_details() {
-    if (this.venues_list) {
-      this.isExplore = true;
-    } else {
       let url = '';
       if (this.keyword !== '' && this.keyword !== undefined) {
         url = API_URL + 'venues/?q=' + this.keyword.trim();
@@ -191,10 +188,10 @@ export class VenueListingComponent implements OnInit {
           });
       }
 
-    }
+    //}
   }
+  
   loadMore() {
-
     if (this.venues_list.length > this.end) {
       this.end = this.end + 20;
     }
