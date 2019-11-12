@@ -6,7 +6,7 @@
     <mat-card class="event-list-cards ">
       <div class="img-wrp">
         <a style="text-decoration: none;" [routerLink]="['/venues', venue.id]" target="_blank">
-          <img mat-card-image src={{venue.image_url}} alt="Image not available">
+          <img mat-card-image src={{venue.image_url}} onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" alt="Image not available">
         </a>
 
       </div>

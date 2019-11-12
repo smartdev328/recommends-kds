@@ -195,9 +195,11 @@
     <div class="event-listing-card">
       <h3 *ngIf="(isAuthenticated$ | async) == false">Upcoming Events</h3>
       <div *ngIf="isAuthenticated$ | async" fxLayout="column">
+        <!-- 
         <div>
           <mat-slide-toggle *ngIf="!isLogedin" style="float: right" [(ngModel)]="isCalendarView">Calendar view</mat-slide-toggle>
         </div>
+        -->
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <h3 *ngIf="kidHeading !='kid'">{{eventName | titlecase}} Events</h3>
           <h3 *ngIf="kidHeading =='kid'" > Events for {{eventName | titlecase}}</h3>
@@ -237,14 +239,14 @@
         <app-masonsry-view *ngIf="newFilterData" [events]=all_data [start]=start [end]=end></app-masonsry-view>
         <app-masonsry-view *ngIf="oldFilterData" [events]=all_data [start]=start [end]=end></app-masonsry-view>
 
-        <mat-card-actions *ngIf="isLogedin === false" class="detail-buttons-space">
+        <mat-card-actions *ngIf="isLoggedIn === false" class="detail-buttons-space">
           <button mat-button class="detail-buttons mouse-pointer" (click)="checkLogin(moreEvent)">MORE EVENTS</button>
         </mat-card-actions>
-        <mat-card-actions *ngIf="isLogedin === true && showMore" class="detail-buttons-space">
+        <mat-card-actions *ngIf="isLoggedIn === true && showMore" class="detail-buttons-space">
           <button mat-button class="detail-buttons mouse-pointer" (click)="loadMore()">MORE EVENTS</button>
         </mat-card-actions>
       </div>
-      <app-event-calendar *ngIf="isCalendarView"></app-event-calendar>
+      <!-- <app-event-calendar *ngIf="isCalendarView"></app-event-calendar> -->
     </div>
   </div>
 </ng-container>

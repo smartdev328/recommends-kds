@@ -1,6 +1,7 @@
 <mat-card *ngIf="isLoaded" class="event-card landing-page">
         <div class="row top-banner">
-          <div class="col-md-4 col-sm-12 xs-12  mat-image-wrp"> <img mat-card-image class="header-image" [src]=camp.image_url alt="Photo of the camps" />
+          <div class="col-md-4 col-sm-12 xs-12  mat-image-wrp"> <img mat-card-image class="header-image" 
+            [src]=camp.image_url alt="Photo of the camps" onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';"/>
           </div>
           <div class="col-md-8 col-sm-12 xs-12">
             <div class="contact-section">

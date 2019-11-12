@@ -46,7 +46,7 @@
                         </div> -->
 
           <mat-card class="event-list-cards" (click)="event_redirect(event.id)">
-            <div class="img-wrp"><img src={{event.image_url}} alt="" class="tiles-image img-fluid" mat-card-image></div>
+            <div class="img-wrp"><img src={{event.image_url}} onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid" mat-card-image></div>
             <mat-card-content class="">
               <p class="event-group-title">
                 {{event.name}}
@@ -90,7 +90,7 @@
 
           <mat-card class="event-list-cards" (click)="event_redirect(event.id)">
             <div class="img-wrp">
-              <img src={{event.image_url}} alt="" class="tiles-image img-fluid" mat-card-image>
+              <img src={{event.image_url}} onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid" mat-card-image>
             </div>
             <mat-card-content>
               <p class="event-group-title">
@@ -132,7 +132,7 @@
 
           <mat-card class="event-list-cards" (click)="event_redirect(event.id)">
             <div class="img-wrp">
-              <img src={{event.image_url}} alt="" class="tiles-image img-fluid" mat-card-image>
+              <img src={{event.image_url}} onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid" mat-card-image>
             </div>
             <mat-card-content>
               <p class="event-group-title">

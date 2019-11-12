@@ -4,12 +4,12 @@
   [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
   <ng-masonry-grid-item class="tiles" *ngFor="let event of events | slice:start:end; let i=index">
     <mat-card class="event-list-cards">
-      <a style="text-decoration: none;" [routerLink]="['/events', event.id]" target="_blank">
+      <a style="text-decoration: none;" [routerLink]="['/events', event.id]">
         <div class="img-wrp">
-          <img *ngIf="!type" mat-card-image src={{event.image_url}}>
-          <img *ngIf="type == 'otherDate'" mat-card-image src={{event.image_url}}>
-          <img *ngIf="type == 'eventData'" mat-card-image src={{event.image_url}}>
-          <img *ngIf="type == 'Hiking Trail'" mat-card-image src={{event.image_urls.first}} alt="">
+          <img *ngIf="!type" mat-card-image src={{event.image_url}} onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';">
+          <img *ngIf="type == 'otherDate'" mat-card-image src={{event.image_url}} onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';">
+          <img *ngIf="type == 'eventData'" mat-card-image src={{event.image_url}} onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';">
+          <img *ngIf="type == 'Hiking Trail'" mat-card-image src={{event.image_urls.first}} onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';">
         </div>
       </a>
       <mat-card-content *ngIf="!type" class="">

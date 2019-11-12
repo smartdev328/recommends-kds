@@ -6,7 +6,7 @@
     <mat-card class="event-list-cards hike-list">
       <a style="text-decoration: none;" [routerLink]="['/hiking-trails', trail.id]" target="_blank">
         <div class="img-wrp">
-          <img mat-card-image src={{trail.image_urls.first}} alt="">
+          <img mat-card-image src={{trail.image_urls.first}} onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" alt="">
         </div>
       </a>
       <mat-card-content class="">
