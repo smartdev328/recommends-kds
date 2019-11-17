@@ -1,10 +1,10 @@
 <img src="assets/loading.gif" *ngIf="!showLayout" class="loading-gif">
 <ng-masonry-grid [ngClass]="{'hide-layout': !showLayout, 'show-layout': showLayout}"
-  [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }" [useAnimation]="true" [useImagesLoaded]="true"
+  [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }" [useAnimation]="true" [useImagesLoaded]="false"
   [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
   <ng-masonry-grid-item class="tiles" *ngFor="let trail of trails | slice:start:end; let i=index">
     <mat-card class="event-list-cards hike-list">
-      <a style="text-decoration: none;" [routerLink]="['/hiking-trails', trail.id]" target="_blank">
+      <a style="text-decoration: none;" [routerLink]="['/hiking-trails', trail.id]">
         <div class="img-wrp">
           <img mat-card-image src={{trail.image_urls.first}} onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" alt="">
         </div>

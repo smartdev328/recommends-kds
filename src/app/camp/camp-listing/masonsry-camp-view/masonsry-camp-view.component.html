@@ -4,7 +4,7 @@
   [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
   <ng-masonry-grid-item class="tiles" *ngFor="let camp of camps | slice:start:end; let i=index">
     <mat-card class="event-list-cards">
-      <a style="text-decoration: none;" [routerLink]="['/camps', camp.id]" target="_blank">
+      <a style="text-decoration: none;" [routerLink]="['/camps', camp.id]">
         <div class="img-wrp">
           <img mat-card-image src={{camp.image_url}} onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" alt="Image not available">
         </div>

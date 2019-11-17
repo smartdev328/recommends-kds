@@ -11,7 +11,7 @@
         <div class="row filter-box-content" *ngIf="(isAuthenticated$ | async) == false">
           <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-1">
             <div class="input-group">
-              <input type="text" class="form-control keyword-text" (keyup.enter)="filter_event_data()" placeholder="Keyword"
+              <input type="text" class="form-control keyword-text" (keyup.enter)="call_event_filter()" placeholder="Keyword"
                 [(ngModel)]="keyword">
             </div>
           </div>
@@ -103,7 +103,7 @@
             </div>
           <div class="col-xs-1 search-button">
             <svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-              class="svg-icons cursor" (click)="filter_event_data()">
+              class="svg-icons cursor" (click)="call_event_filter()">
               <path
                 d="M 5 3 C 3.895 3 3 3.895 3 5 L 3 19 C 3 20.105 3.895 21 5 21 L 19 21 C 20.105 21 21 20.105 21 19 L 21 5 C 21 3.895 20.105 3 19 3 L 5 3 z M 11 6 C 13.761 6 16 8.239 16 11 C 16 12.019 15.691969 12.963906 15.167969 13.753906 L 17.707031 16.292969 C 18.098031 16.682969 18.098031 17.317031 17.707031 17.707031 C 17.316031 18.098031 16.682969 18.098031 16.292969 17.707031 L 13.753906 15.167969 C 12.963906 15.691969 12.019 16 11 16 C 8.239 16 6 13.761 6 11 C 6 8.239 8.239 6 11 6 z M 11 8 A 3 3 0 0 0 8 11 A 3 3 0 0 0 11 14 A 3 3 0 0 0 14 11 A 3 3 0 0 0 11 8 z"
                 style="fill: #FFD700;"></path>
@@ -115,7 +115,7 @@
         <div class="row filter-box-content" *ngIf="isAuthenticated$ | async">
           <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-1">
             <input type="text" class="form-control keyword-text search-style" placeholder="Keyword" [(ngModel)]="keyword"
-              (keyup.enter)="filter_event_data();" name="keyword">
+              (keyup.enter)="call_event_filter()" name="keyword">
           </div>
           <div class="dropdown col-lg-3 col-md-2 col-sm-6 col-xs-2 mb-2">
             <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton"
@@ -176,7 +176,7 @@
 
           <div class="col-xs-1 search-button">
             <svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-              class="svg-icons cursor" (click)="filter_event_data()">
+              class="svg-icons cursor" (click)="call_event_filter()">
               <path
                 d="M 5 3 C 3.895 3 3 3.895 3 5 L 3 19 C 3 20.105 3.895 21 5 21 L 19 21 C 20.105 21 21 20.105 21 19 L 21 5 C 21 3.895 20.105 3 19 3 L 5 3 z M 11 6 C 13.761 6 16 8.239 16 11 C 16 12.019 15.691969 12.963906 15.167969 13.753906 L 17.707031 16.292969 C 18.098031 16.682969 18.098031 17.317031 17.707031 17.707031 C 17.316031 18.098031 16.682969 18.098031 16.292969 17.707031 L 13.753906 15.167969 C 12.963906 15.691969 12.019 16 11 16 C 8.239 16 6 13.761 6 11 C 6 8.239 8.239 6 11 6 z M 11 8 A 3 3 0 0 0 8 11 A 3 3 0 0 0 11 14 A 3 3 0 0 0 14 11 A 3 3 0 0 0 11 8 z"
                 style="fill: #FFD700;"></path>

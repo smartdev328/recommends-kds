@@ -68,7 +68,7 @@
         <ng-masonry-grid-item class="tiles col-md-4" id="SEEmORE1" *ngIf="events.popular[0].length>5">
           <div class="see-more event-list-cards">
             <a class="See-more seemore-link" [routerLink]="['/','family-friendly-events-near-me']"
-              [queryParams]="{q: 'popular'}" target="_blank">+ See More</a>
+              [queryParams]="{q: 'popular', distance: '100'}" target="_blank">+ See More</a>
           </div>
         </ng-masonry-grid-item>
       </ng-masonry-grid>

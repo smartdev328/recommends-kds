@@ -68,19 +68,19 @@ export class PersonalizedComponent implements OnInit {
     }
 
     get_event_details() {
-        let url = API_URL + 'events/?tags=popular&distance=100&order_by=date_dist_asc';
+        let url = API_URL + 'events/?tags=popular&distance=100&order_by=date_dist_asc&limit=90';
             this.eventListingService.get_event_details(url).subscribe(data => {
             this.popular = data['events'];
             this.popular = this.popular;
             this.all_events.popular.push(this.popular);
         });
-        let urlNearby  = API_URL + 'events/?order_by=date_dist_asc&distance=10';
+        let urlNearby  = API_URL + 'events/?order_by=date_dist_asc&distance=15&limit=90';
             this.eventListingService.get_event_details(urlNearby).subscribe(data => {
             this.closest_event = data['events'];
             this.closest_event = this.closest_event;
             this.all_events.closest.push(this.closest_event);
         });
-        let urlWeekend = API_URL + 'events/?event_range_str=weekend?order_by=date_dist_asc';
+        let urlWeekend = API_URL + 'events/?event_range_str=weekend&order_by=date_dist_asc&distance=50&limit=90';
         this.eventListingService.get_event_details(urlWeekend).subscribe(data => {
             this.events_weekend = data['events'];
             this.events_weekend = this.events_weekend;

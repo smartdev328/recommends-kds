@@ -57,10 +57,6 @@
         <div class="row center-section ">
           <div class="col-md-4"> 
             <div class="left-section">
-              <h5>Date & Time</h5>
-              <p>June 26, 2019</p>
-              <p>5:00PM - 6:00PM</p>
-              <br>
               <h5>Location</h5>
                 <a *ngIf="trail.venue_id!= 0" style="color: #0000FF; cursor: pointer;" [routerLink]="['/venues', trail.venue_id]" target="_blank">
                   <p style="color: #0000FF;">{{trail.park_name}}</p>

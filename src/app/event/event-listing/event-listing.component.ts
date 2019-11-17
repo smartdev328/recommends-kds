@@ -193,6 +193,7 @@ export class EventListingComponent implements OnInit {
     this.selected_loc = loc_obj['name'];
     this.loc_label = this.selected_loc;
     this.kid_id='';
+    this.tags='';
     this.filter_event_data();
 
   }
@@ -202,11 +203,13 @@ export class EventListingComponent implements OnInit {
     this.select_cat_id = cat_obj['id'];
     this.cat_label = this.selected_cat;
     this.kid_id='';
+    this.tags='';
     this.filter_event_data();
   }
   onDateChange(date_obj: object) {
     this.eventName ="";
     this.kid_id = '';
+    this.tags = '';
     if (date_obj['desc'] == 'Pick a date') {
       this.pickDate = true;
       setTimeout(() => {
@@ -427,6 +430,21 @@ export class EventListingComponent implements OnInit {
     this.select_cat_id ='';
     this.event_date_start = '';
     this.keyword = '';
+    this.cat_label = 'Category';
+    this.loc_label = 'Location';
+    this.date_label = 'Date';
+    this.isFilterErrorVisible = false;
+    this.isErrorVisible = false;
+    this.errorMessage = '';
+    this.filterErrorMessage = '';
+  }
+
+  call_event_filter() {
+    this.tags = '';
+    this.kid_id = '';
+    this.eventName = '';
+    this.all = '';
+    this.filter_event_data();
   }
 
 
@@ -440,13 +458,14 @@ export class EventListingComponent implements OnInit {
       'q': this.keyword == undefined ? '' : this.keyword,
       'city': this.selected_loc == undefined? '' : this.selected_loc,
       'event_range_str': this.selected_date == undefined? '' : this.selected_date,
-      'distance': this.distance === undefined? 50 : this.distance,
+      'distance': this.distance === undefined || this.distance === '' ? 50 : this.distance,
       'username': this.username === undefined ? '' : this.username,
       'tags': this.tags === undefined ? '' : this.tags,
       'kid_id': this.kid_id === undefined ? '' : this.kid_id,
       'all': this.all === undefined ? '' : this.all,
       'event_date_start': this.event_date_start == undefined? '' : this.event_date_start,
     };
+
     if(input.event_range_str == "today" ||input.event_range_str == "tomorrow" ||input.event_range_str == "weekend"){
      input.distance = 25; 
      if(this.eventName == "Nearby"){
