@@ -251,6 +251,12 @@
     <div class="form-group"></div>
     <div class="form-group"></div>
     <div class="form-group">
+        <div *ngIf="showServerResponse">
+          <h3>Server Response:</h3>
+          <p>Event Id : {{event_id}} was updated successfully</p>
+        </div>
+    </div>
+    <div class="form-group">
       <div class="row">
         <div class="col">
           <div class="form-group">

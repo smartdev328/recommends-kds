@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { API_URL } from '@shared/constants/UrlConstants';
 
@@ -30,5 +30,11 @@ export class EventListingService {
       return this.http.delete(url);
     }
 
+    update_event(data) {
+      const url = API_URL +'events/';
+      const headers = new HttpHeaders()
+            .set('Content-Type', 'application/json');
+      return this.http.put(url, data, { headers: headers, responseType: 'text' });
+    }
 
   }

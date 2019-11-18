@@ -77,20 +77,14 @@ export class EditEventComponent implements OnInit {
         let data = JSON.stringify({ 'input_data': this.eventForm.value });
         data = data.replace(/[\u2018\u2019]/g, "'")
             .replace(/[\u201C\u201D]/g, '"');
-        const url = API_URL +'events/';
-        const headers = new HttpHeaders()
-            .set('x-api-key', 'seDqmi1mqn25insmLa0NF404jcDUi79saFHylHVk')
-            .set('Content-Type', 'application/json');
-        this.http.put(url, data, { headers: headers, responseType: 'text' }).subscribe(response => {
-            alert('Data updated successfully');
+        
+        this.eventListingService.update_event(data).subscribe(response => {
             this.serverResponse = response;
             this.showServerResponse = true;
         }, error => {
             if (error.status == 409) {
                 alert('Url Or Image url already exist');
             } else if (error.status == 400) {
-                alert('Please enter valid Url or Image Url');
-            } else {
                 alert('Something went wrong');
             }
         });
