@@ -105,7 +105,7 @@ export class EventListingComponent implements OnInit {
   public isAuthenticated$: Observable<boolean>;
   public isLoggedIn: boolean;
   public isCalendarView: boolean;
-  public eventName = "All";
+  public eventName = '';
 
   public eventConstatnts = new EventConstants();
   public eventErrorMessage = new EventErrorMessage();
@@ -154,11 +154,23 @@ export class EventListingComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.route.snapshot.queryParams);
+    if (Object.keys(this.route.snapshot.queryParams).length > 0) {
+    this.selected_cat = this.eventConstatnts.get_cat_name_by_id(this.route.snapshot.queryParams['category']);
+    this.keyword = this.route.snapshot.queryParams['q'];
+    this.selected_loc = this.route.snapshot.queryParams['location'];
+    this.selected_date = this.route.snapshot.queryParams['date'];
+    this.distance = this.route.snapshot.queryParams['distance'];
+    this.username = this.route.snapshot.queryParams['username'];
+    } else {
+      this.eventName = 'Nearby';
+    }
     this.isAuthenticated$ = this.authService.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
       this.isLoggedIn = data;
       this.authService.setAuth(this.isLoggedIn);
-      this.get_explore_event_details();
+      //this.get_explore_event_details();
+      this.filter_event_data();
     })
     this.titleService.setTitle('Family friendly events around SF bay area');
     this.metaService.addTag({ name: 'description', content: 'Family friendly events around SF bay area' });
@@ -174,13 +186,8 @@ export class EventListingComponent implements OnInit {
     this.isErrorVisible = false;
     this.isFilterErrorVisible = false;
     this.errorMessage = '';
-    this.selected_cat = this.eventConstatnts.get_cat_name_by_id(this.route.snapshot.queryParams['category']);
-    this.keyword = this.route.snapshot.queryParams['q'];
-
-    this.selected_loc = this.route.snapshot.queryParams['location'];
-    this.selected_date = this.route.snapshot.queryParams['date'];
-    this.distance = this.route.snapshot.queryParams['distance'];
-    this.username = this.route.snapshot.queryParams['username'];
+    
+    
     /*this.authService.user$.subscribe((user) => {
       this.user = user;
     });*/
@@ -267,12 +274,13 @@ export class EventListingComponent implements OnInit {
     this.showMore = false;
     // this.isExplore = true;
     if (this.isLoggedIn == true) {
-      let url = `${API_URL}` + `events/?order_by=date_dist_asc&distance=100&limit=${this.limit}`;
+      let url = `${API_URL}` + `events/?order_by=date_dist_asc&distance=10&limit=${this.limit}`;
       this.eventListingService.get_event_details(url).subscribe(data => {
         this.all_data = data['events'];
         if (data['events'] !== undefined && data['events'].length > 0) {
           this.isErrorVisible = false;
           this.errorMessage = '';
+          this.eventName = 'Nearby';
           this.all_data = [];
           this.all_data = data['events'];
           this.showMore = this.all_data.length > this.end;
@@ -467,11 +475,11 @@ export class EventListingComponent implements OnInit {
     };
 
     if(input.event_range_str == "today" ||input.event_range_str == "tomorrow" ||input.event_range_str == "weekend"){
-     input.distance = 25; 
-     if(this.eventName == "Nearby"){
+      input.distance = 25; 
+    }
+    if(this.eventName == "Nearby"){
       input.distance = 10; 
      }
-    }
     if(input.distance == null){
       input.distance ='';
     }
