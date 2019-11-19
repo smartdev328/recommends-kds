@@ -360,7 +360,7 @@ export class EventListingComponent implements OnInit {
     }
     else if (type == 'nearby') {
       this.kidHeading = "other";
-      this.distance = 10;
+      this.distance = 15;
       this.kid_id ='';
       this.tags ='';
       this.all ='';
@@ -478,7 +478,7 @@ export class EventListingComponent implements OnInit {
       input.distance = 25; 
     }
     if(this.eventName == "Nearby"){
-      input.distance = 10; 
+      input.distance = 15; 
      }
     if(input.distance == null){
       input.distance ='';
