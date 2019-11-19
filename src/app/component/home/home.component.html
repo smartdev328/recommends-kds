@@ -2,7 +2,7 @@
     <div class="home-image-div home-image">
         <div class="col-md-12">
             <div class="info">
-                <h1>Personalized Discovery & Planning for Parents</h1>
+                <h1>Sign in for your 2019 Holiday Planner</h1>
             </div>
             <div class="row">
                 <div class="col"><button class="btn sign_up"><a (click)="auth.login()" class="chat_button_1">SIGN IN</a></button></div>
@@ -83,6 +83,31 @@
 <div class="container-fluid" *ngIf="isLogedin">
     <div class="home-image-div home-personalized-image">
         <div class="category p-3 m-3">
+            
+            <div class="row holidayImage">
+                <div class="col center-block" style="text-align:center;">
+                    <p class="title center-block">HOLIDAY PLANNER</p>
+                    <div class="holidayMenuDiv">
+                        <a [routerLink]="['/','family-friendly-events-near-me']" [queryParams]="{q: 'holiday'}">
+                            <h3 class="holidayMenu">ALL</h3>
+                        </a>
+                        <a [routerLink]="['/','family-friendly-events-near-me']" [queryParams]="{q: 'meetsanta19'}">
+                            <h3 class="holidayMenu">MEET SANTA</h3>
+                        </a>
+                        <a [routerLink]="['/','family-friendly-events-near-me']" [queryParams]="{q: 'holidaylights19'}">
+                            <h3 class="holidayMenu">HOLIDAY LIGHTS</h3>
+                        </a>
+                        <a [routerLink]="['/','family-friendly-events-near-me']" [queryParams]="{q: 'holidayshow'}">
+                            <h3 class="holidayMenu">HOLIDAY SHOWS</h3>
+                        </a>
+                        <a [routerLink]="['/','family-friendly-events-near-me']" [queryParams]="{q: 'holidayspecials19 '}">
+                            <h3 class="holidayMenu">HOLIDAY SPECIALS</h3>
+                        </a>
+                        </div>    
+                    </div>
+            </div>
+        </div>
+        <div class="category p-3 m-3">
             <div class="row">
                 <div class="col-md-3">
                     <!--events-->
@@ -118,29 +143,6 @@
                 </div>
             </div>
         </div>
-        <div class="p-5" fxLayout="row wrap">
-                <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
-                    <p class="title">You can also chat with Kin on Messenger</p>
-                    <button fxHide.lt-md="true" class="btn go-to-messenger">
-                        <a href="https://www.messenger.com/t/kinparenting" target="_blank">GO TO MESSENGER </a>
-                    </button>
-                </div>
-                <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column">
-                    <div class="my-message py-3">
-                        <span>Hi</span>
-                    </div>
-                    <div class="his-message py-3" fxLayout="row" fxLayoutAlign="start end">
-                        <img class="mx-1" src="assets/web_images/kinNest150.png" width="30">
-                        <div>Hi Ana! What are you looking for today?</div>
-                    </div>
-                    <div class="my-message py-3"><span>Events</span></div>
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <button fxHide.gt-sm="true" class="btn go-to-messenger">
-                            <a href="https://www.messenger.com/t/kinparenting" target="_blank">GO TO MESSENGER </a>
-                        </button>
-                    </div>
-                </div>
-            </div>
     </div>
 </div>
 <app-layout-footer></app-layout-footer>

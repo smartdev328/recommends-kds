@@ -11,7 +11,7 @@ export class SearchVenueService {
   constructor(private  http:  HttpClient) { }
 
   search_venue (query_term: String) {
-    const url = API_URL + 'venues/?q=' + query_term;
+    const url = API_URL + 'venues/?q=' + query_term + '&distance=100';
     return this.http.get(url);
   }
 

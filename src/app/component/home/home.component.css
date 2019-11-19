@@ -11,6 +11,20 @@ h3 {
     font-size: 20px;
 }
 
+.holidayMenu {
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: underline;
+    color: #d4af37;
+}
+
+.holidayMenuDiv {
+    display: table;
+    margin: auto;
+}
+
 p {
     font-family: Montserrat;
     font-size: 16px;
@@ -22,7 +36,7 @@ a {
 }
 
 .home-image {
-    background-image: url("assets/web_images/home_banner.jpg");
+    background-image: url("assets/web_images/kin_holiday.jpg");
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -71,6 +85,8 @@ video {
 
 .title {
     font-size: 50px;
+    font-weight: 500;
+    color: 	#74d680;
 }
 
 .go-to-messenger {
@@ -120,7 +136,7 @@ video {
         font-family: Montserrat;
         font-size: 22px;
         letter-spacing: 0.05em;
-        font-weight: 300;
+        font-weight: 500;
         color: #FBFCFC;
         text-shadow: 0px 0px 4px #797D7F;
         text-align: center;
@@ -167,6 +183,18 @@ video {
     .sign_up_2 {
         color: #FFFFFF;
     }
+
+    .holidayImage {
+        background-image: url("assets/web_images/xmas_home.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top;
+        margin-top: .5em;
+        margin-bottom: .5em;
+        height: 250px;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+    }
+
     .eventsImage {
         background-image: url("assets/web_images/home_events.jpg");
         background-repeat: no-repeat;
@@ -238,7 +266,7 @@ video {
         font-family: Montserrat;
         font-size: 36px;
         letter-spacing: 0.05em;
-        font-weight: 300;
+        font-weight: 500;
         color: #FBFCFC;
         text-shadow: 0px 0px 4px #797D7F;
         text-align: center;
@@ -282,6 +310,17 @@ video {
         padding: 10px 25px 10px 25px;
         margin: auto auto 40px auto;
         display: block;
+    }
+    .holidayImage {
+        background-image: url("assets/web_images/xmas_home.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        height: 300px;
+        width: 100%;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     }
     .eventsImage {
         background-image: url("assets/web_images/home_events.jpg");
@@ -354,7 +393,7 @@ video {
         font-family: Montserrat;
         font-size: 48px;
         letter-spacing: 0.05em;
-        font-weight: 300;
+        font-weight: 500;
         color: #FBFCFC;
         text-shadow: 0px 0px 4px #797D7F;
         text-align: center;
@@ -407,6 +446,18 @@ video {
         margin-right: auto;
         display: block;
     }
+    
+    .holidayImage {
+        background-image: url("assets/web_images/xmas_home.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: bottom;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        height: 300px;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+    }
+
     .eventsImage {
         background-image: url("assets/web_images/home_events.jpg");
         background-repeat: no-repeat;
@@ -482,3 +533,4 @@ video {
     .eventsImage, .placesImage, .campsImage, .hikingImage{height: 172px; background-size: auto 172px;}
     .category-label-sm{bottom: 4% !important;}
 }
+  
