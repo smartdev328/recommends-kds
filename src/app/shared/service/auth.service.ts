@@ -97,7 +97,7 @@ export class AuthService {
     });
   }
 
-  login(redirectPath: string = '/family-friendly-events-near-me') {
+  login(redirectPath: string = '/') {
 
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
@@ -123,7 +123,7 @@ export class AuthService {
       tap(cbRes => {
         // Get and set target redirect route from callback results
          currunrRoute = JSON.parse(sessionStorage.getItem('current_url'));
-        targetRoute = cbRes.appState && cbRes.appState.target ? cbRes.appState.target : '/family-friendly-events-near-me';
+        targetRoute = cbRes.appState && cbRes.appState.target ? cbRes.appState.target : '/';
       }),
       concatMap(() => {
         // Redirect callback complete; get user and login status
