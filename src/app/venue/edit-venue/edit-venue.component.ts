@@ -24,8 +24,8 @@ export class EditVenueComponent implements OnInit {
     public jsonMiscData: String;
     public miscData: any;
     public isUpdateShow = false;
-    public primary_cat = this.venueConstatnts.PRIMARY_CATEGORY;
-    public secondary_cat = this.venueConstatnts.SECONDARY_CATEGORY;
+    public primary_cat = this.venueConstatnts.PRIMARY_CATEGORY_DATA_ENTRY;
+    public secondary_cat;
     public errorMessage: String;
     public isErrorVisible: Boolean;
     public parking: String;
@@ -69,9 +69,15 @@ export class EditVenueComponent implements OnInit {
                 if (data['venue'] !== undefined) {
                     this.userSearch = data['venue'];
                     const temp_cat = this.userSearch.category;
-                    this.userSearch.category = this.get_primary_cat_by_key(temp_cat[0]);
+                    this.userSearch.category = this.get_cat_by_key(temp_cat[0]);
+                    if (this.userSearch.category === 50000) {
+                        this.secondary_cat = this.venueConstatnts.CLASSES_CATEGORIES;
+                    } else {
+                        this.secondary_cat = this.venueConstatnts.SECONDARY_CATEGORY;
+                    }
                     this.userSearch.perm_close = this.userSearch.perm_closed == true ? '1' : '0';
-                    this.userSearch.sec_cat = this.userSearch.sec_cat;
+                    this.userSearch.category_sec = this.userSearch.category_sec ? 
+                                this.get_cat_by_key(this.userSearch.category_sec[0]) : '';
                     this.parking = this.userSearch.misc.parking === '' ? '' : this.userSearch.misc.parking;
                     this.tips_for_parent = this.userSearch.misc.tips_for_parent === '' ? '' : this.userSearch.misc.tips_for_parent;
                     this.rating = this.userSearch.misc.rating;
@@ -157,12 +163,26 @@ export class EditVenueComponent implements OnInit {
         }
     }
 
-    get_primary_cat_by_key(cat_string: string) {
+    get_cat_by_key(cat_string: string) {
         const primary_cat_length = this.primary_cat.length;
         for (let count = 0; count < primary_cat_length; count++) {
             if (this.primary_cat[count]['name'] === cat_string) {
                 return this.primary_cat[count]['id'];
             }
+        }
+        const secondary_cat_length = this.secondary_cat.length;
+        for (let count = 0; count < secondary_cat_length; count++) {
+            if (this.secondary_cat[count]['name'] === cat_string) {
+                return this.secondary_cat[count]['id'];
+            }
+        }
+    }
+
+    refreshSecondaryCategory() {
+        if (this.userSearch.category === 50000) {
+            this.secondary_cat = this.venueConstatnts.CLASSES_CATEGORIES;
+        } else {
+            this.secondary_cat = this.venueConstatnts.SECONDARY_CATEGORY;
         }
     }
 

@@ -44,6 +44,32 @@ export class VenueConstants {
         {'name' : 'National & State Park', 'id': 40100},     
     ];
 
+    public PRIMARY_CATEGORY_DATA_ENTRY = [
+        {'name' : 'Amusement Park' , 'id' : 30100},
+        {'name' : 'Arts' , 'id' : 30500},
+        {'name' : 'Farms/Ranch/Barn' , 'id' : 31000},
+        {'name' : 'Indoor play/park' , 'id' : 31200},
+        {'name' : 'Library' , 'id' : 20000},
+        {'name' : 'Museum' , 'id' : 31500},
+        {'name' : 'Parks & Playgrounds' , 'id' : 10000},
+        {'name' : 'Point of Interest' , 'id' : 31700},
+        {'name' : 'Sports & Games' , 'id' : 32000},
+        {'name' : 'Store' , 'id' : 32100},
+        {'name' : 'Theater' , 'id' : 32200},
+        {'name' : 'Zoo' , 'id' : 32400},    
+        {'name' : 'National & State Park', 'id': 40100},
+        {'name' : 'Classes', 'id': 50000},
+    ];
+
+    public CLASSES_CATEGORIES = [
+        {'name': 'Music', 'id': 51000},
+        {'name': 'Arts', 'id': 52000},
+        {'name': 'Dance', 'id': 53000},
+        {'name': 'Swimming', 'id': 54000},
+        {'name': 'Soccer', 'id': 55000},
+        {'name': 'Gymnastics', 'id': 56000},
+    ];
+    
     public TEXT_MAX_LENGTH = 50;
 
     public TEXT_MIN_LENGTH = 0;

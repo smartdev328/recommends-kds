@@ -50,6 +50,7 @@
                            bindValue="id"
                            [(ngModel)]="userSearch.category"
                            placeholder="Select primary category"
+                           (click)="refreshSecondaryCategory()"
                 >
                 </ng-select>
             </div>
