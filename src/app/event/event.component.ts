@@ -278,15 +278,12 @@ export class EventComponent implements OnInit {
     this.add_analytics_data('CALENDAR');
 
     const calendar_url = API_URL + 'cal_redirect/?event_id=' + this.event_id;
-    // const calendar_url = 'https://kin-api-dev.kinparenting.com' + 'cal_redirect/?event_id=' + this.event_id;
     window.open(calendar_url);
   }
 
   save_event() {
-    // if (this.parent_id !== undefined) {
     this.add_analytics_data('SAVE');
     this.isSaveVisible = true;
-    // }
   }
 
   add_analytics_data(atype: any) {
@@ -303,38 +300,24 @@ export class EventComponent implements OnInit {
         break;
     }
     let analytics_input = {};
-    // if (this.parent_id !== undefined) {
     analytics_input = {
       'input_data': [{
         'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
         'entity_id': this.event_id,
         'interface': INTERFACE_ENUM.FE,
-        // 'parent_id': this.parent_id,
         'action': action,
         'referrer': '/root/home'
       }]
-      // };
     }
-    // else {
-    //   analytics_input = {
-    //     'input_data': [{
-    //       'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
-    //       'entity_id': this.event_id,
-    //       'interface': INTERFACE_ENUM.FE,
-    //       'action': action,
-    //       'referrer': '/root/home'
-    //     }]
-    //   };
-    // }
     this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
       if (atype === 'CLICK') {
         this.is_save_action();
-        // this.is_parent_id = true;
       }
     }, error => {
     });
-
   }
+
+
   is_save_action() {
     // if (this.parent_id !== undefined) {
     this.reviewService.verify_save_action(null, ANALYTICS_ENTITY_TYPES_ENUM.EVENT, this.event_id).subscribe(data => {

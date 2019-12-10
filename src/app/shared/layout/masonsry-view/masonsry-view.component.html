@@ -4,7 +4,7 @@
   [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
   <ng-masonry-grid-item class="tiles" *ngFor="let event of events | slice:start:end; let i=index">
     <mat-card class="event-list-cards">
-      <a style="text-decoration: none;" [routerLink]="['/events', event.id]">
+      <a style="text-decoration: none;" (click)="checkLoginAndRedirect(event.id,'view this event')">
         <div class="img-wrp">
           <img *ngIf="!type" mat-card-image src={{event.image_url}} onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';">
           <img *ngIf="type == 'otherDate'" mat-card-image src={{event.image_url}} onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';">

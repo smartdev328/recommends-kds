@@ -55,7 +55,6 @@ export class AuthInterceptor implements HttpInterceptor {
           // server-side error
           errorMessage = `Error : ${error.error}\nMessage: ${error}`;
         }
-        console.log(error);
         return throwError(errorMessage);
       })
       );

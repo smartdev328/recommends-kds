@@ -20,6 +20,7 @@ export class MasonsryViewComponent implements OnInit {
   currentUrl: string;
   @ViewChild('deleteuser') deleteuser: TemplateRef<any>
   isLogedin = false;
+  clickCount = 0;
   public isAuthenticated$: Observable<boolean>;
   dialogRef: any;
   modalRef: BsModalRef;
@@ -49,7 +50,6 @@ export class MasonsryViewComponent implements OnInit {
     });
   }
   ngOnInit() {
-    console.log(this.type);
     setTimeout(() => {
       this.showLayout = true;
       this.currentUrl = this.router.url
@@ -113,10 +113,10 @@ export class MasonsryViewComponent implements OnInit {
     });
   }
 
-  deleteUser(linkName) {
+  deleteUser(id, linkName) {
     this.ClickName = linkName;
     this.dialogRef = this.dialog.open(this.deleteuser, {
-      width: "626px"
+      width: "626px", id: id
     });
   }
 
@@ -125,12 +125,27 @@ export class MasonsryViewComponent implements OnInit {
     if (this.isLogedin) {
       // this.save_camp(id, i);
     } else {
-      this.deleteUser(linkName);
+      this.deleteUser(id, linkName);
     }
   }
 
+  checkLoginAndRedirect(id, message) {
+    let click_count = 0;
+    if (parseInt(sessionStorage.getItem('click_count'))) {
+      click_count = parseInt(sessionStorage.getItem('click_count'));
+    }
+    if (this.isLogedin || click_count < 3) {
+      this.router.navigate(['/events', id]);
+    } else { 
+        this.deleteUser(id, message);
+    }
+    click_count++;
+    sessionStorage.setItem('click_count', JSON.stringify(click_count));
+  }
+
   signin() {
-    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
+    //sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl));
+    sessionStorage.setItem('current_url', JSON.stringify('/events/'+ this.dialogRef._containerInstance._config.id));
     this.authService.login();
     this.closeDialog();
   }

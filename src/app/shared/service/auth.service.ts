@@ -123,7 +123,7 @@ export class AuthService {
       tap(cbRes => {
         // Get and set target redirect route from callback results
          currunrRoute = JSON.parse(sessionStorage.getItem('current_url'));
-        targetRoute = cbRes.appState && cbRes.appState.target ? cbRes.appState.target : '/';
+        targetRoute = cbRes.appState && cbRes.appState.target ? cbRes.appState.target : currunrRoute;
       }),
       concatMap(() => {
         // Redirect callback complete; get user and login status
