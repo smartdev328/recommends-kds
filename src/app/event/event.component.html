@@ -9,6 +9,8 @@
         <h4 *ngIf="event.end_date && event.start_date != event.end_date">{{event.start_date | date:'longDate'}} - {{event.end_date | date:'longDate'}}</h4>
         <h3>{{ event.name }}</h3>
         <p>{{event.description}}</p>
+        <h2>*We do our best to keep the details as accurate as possible. 
+          But we strongly recommend verifying details on the <a href="{{event.url}}">event website</a> before making plans.</h2>
         <div class="cards-footer">
           <span><span *ngIf="format_price()"> {{format_price()}}</span></span>
           <ul>

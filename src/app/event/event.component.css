@@ -326,12 +326,23 @@ p.dateSpacing {
     border-bottom: 1px solid #e5e7e9;
     padding: 20px 0 26px;
  }
-@media only screen and (max-width : 1360px) { 
+
+.contact-section h2 {
+    font-size: 12px;
+    font-style: italic;
+}
+
+ @media only screen and (max-width : 1360px) { 
     .contact-section span {
         font-size: 25px;
     }
     .contact-section button {
         font-size: 14px;
+    }
+
+    .contact-section h2 {
+        font-size: 12px;
+        font-style: italic;
     }
 } 
 @media only screen and (max-width : 1250px) {
