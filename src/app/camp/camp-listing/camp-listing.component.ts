@@ -130,12 +130,16 @@ export class CampListingComponent implements OnInit {
   
   get_camps_details() {
     let url = '';
+    let limit = '50';
+    if (!this.isLogedin) {
+      limit = '25';
+    }
     if (this.keyword !== '' && this.keyword !== undefined) {
-      url = API_URL + 'camps/?limit=50&q=' + this.keyword.trim();
+      url = API_URL + 'camps/?limit=' + limit +'&q=' + this.keyword.trim();
     } else if (this.category !== '' && this.category !== undefined) {
-      url = API_URL + 'camps/?limit=80&category=' + this.category.trim();
+      url = API_URL + 'camps/?limit=' + limit + '&category=' + this.category.trim();
     } else {
-      url = API_URL + 'camps/?limit=50';
+      url = API_URL + 'camps/?limit=' + limit;
     }
     this.camp_explore = [];
     this.isExplore = true;

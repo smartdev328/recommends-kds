@@ -454,10 +454,10 @@ background-color: #fff;
 .modal-body{
   text-align: center;
 }
-h2.app-name{
 
+h2.app-name{
 font-family: Montserrat;
-font-size: 32px;
+font-size: 24px;
 font-weight: normal;
 font-style: normal;
 font-stretch: normal;
@@ -465,7 +465,6 @@ line-height: normal;
 letter-spacing: normal;
 text-align: center;
 color: #000;
-padding: 35px 58px 38px 57px 
 }
 
 button.close{

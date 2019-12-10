@@ -123,10 +123,14 @@ export class VenueListingComponent implements OnInit {
   }
   get_venue_details() {
       let url = '';
+      let limit = '100';
+      if (!this.isLogedin) {
+        limit = '25';
+      }
       if (this.keyword !== '' && this.keyword !== undefined) {
         url = API_URL + 'venues/?q=' + this.keyword.trim();
       } else if (this.category === undefined || this.category === '') {
-        url = API_URL + 'venues/?limit=100';
+        url = API_URL + 'venues/?limit=' + limit;
       } else {
         url = API_URL + 'venues/?categories=' + this.category;
       }

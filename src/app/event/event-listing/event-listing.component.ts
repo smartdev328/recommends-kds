@@ -114,7 +114,7 @@ export class EventListingComponent implements OnInit {
   public locations = this.eventConstatnts.LOCATIONS;
   public user: User;
   count = 0;
-  moreEvent = 'more events';
+  moreEvent = "to see more events and personalize for your family!";
   currentUrl: string;
   public searchDate = null;
 
@@ -491,9 +491,10 @@ export class EventListingComponent implements OnInit {
     }
     let url;
     if(this.isLoggedIn){
-    url = `${API_URL}` + 'events/?order_by=date_dist_asc&event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str)+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
-    }if(!this.isLoggedIn){
-      url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str)+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
+      url = `${API_URL}` + 'events/?order_by=date_dist_asc&event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str)+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
+    } else {
+      //url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str)+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
+      url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=25&q=popular&distance=100';
     }
     if (input.kid_id && input.kid_id !== '') {
      url = url+ "&personalize=True";
