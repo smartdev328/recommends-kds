@@ -473,6 +473,10 @@ export class EventListingComponent implements OnInit {
       'all': this.all === undefined ? '' : this.all,
       'event_date_start': this.event_date_start == undefined? '' : this.event_date_start,
     };
+    
+    if (input.q === '' && !this.isLoggedIn) {
+      input.q = 'popular';
+    }
 
     if(input.event_range_str == "today" ||input.event_range_str == "tomorrow" ||input.event_range_str == "weekend"){
       input.distance = 25; 
@@ -493,8 +497,8 @@ export class EventListingComponent implements OnInit {
     if(this.isLoggedIn){
       url = `${API_URL}` + 'events/?order_by=date_dist_asc&event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str)+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
     } else {
-      //url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str)+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
-      url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=25&q=popular&distance=100';
+      url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=25'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str)+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
+      //url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=25&q=popular&distance=100';
     }
     if (input.kid_id && input.kid_id !== '') {
      url = url+ "&personalize=True";
