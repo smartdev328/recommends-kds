@@ -97,7 +97,7 @@ export class AuthService {
     });
   }
 
-  login(redirectPath: string = '/') {
+  login(redirectPath: string = '/family-friendly-events-near-me') {
 
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
