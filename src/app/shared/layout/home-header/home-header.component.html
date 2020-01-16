@@ -25,6 +25,10 @@
                 <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
                     [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/family-friendly-hikes-near-me']" >Hiking</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
+                    [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/kids-classes-near-me']" >Classes</a>
+            </li>
         </ul>
         <ul class="navbar-nav text-center align-items-center">
             <li class="nav-item" fxLayout="row" fxLayout.xs="column" *ngIf="isLogedin != null">

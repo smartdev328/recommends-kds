@@ -6,21 +6,21 @@
 
     <mat-card class="event-list-cards ">
       <div class="img-wrp">
-        <a *ngIf="type == 'HIKING_TRAIL'" style="text-decoration: none;" [routerLink]="['/hiking-trails', data.id]"
+        <a *ngIf="type === 'HIKING_TRAIL'" style="text-decoration: none;" [routerLink]="['/hiking-trails', data.id]"
           target="_blank">
-          <img *ngIf="type == 'HIKING_TRAIL'" mat-card-image src={{data.image_urls.first}} alt="">
+          <img *ngIf="type === 'HIKING_TRAIL'" mat-card-image src={{data.image_urls.first}} alt="">
         </a>
-        <a *ngIf="type == 'CAMP'" style="text-decoration: none;" [routerLink]="['/camps', data.id]" target="_blank">
-          <img *ngIf="type == 'CAMP'" mat-card-image src={{data.image_url}} alt="Image not available">
+        <a *ngIf="type === 'CAMP'" style="text-decoration: none;" [routerLink]="['/camps', data.id]" target="_blank">
+          <img *ngIf="type === 'CAMP'" mat-card-image src={{data.image_url}} alt="Image not available">
         </a>
-        <a *ngIf="type == 'EVENT'" style="text-decoration: none;" [routerLink]="['/events', data.id]" target="_blank">
-          <img *ngIf="type == 'EVENT'" mat-card-image src={{data.image_url}} alt="Image not available">
+        <a *ngIf="type === 'EVENT'" style="text-decoration: none;" [routerLink]="['/events', data.id]" target="_blank">
+          <img *ngIf="type === 'EVENT'" mat-card-image src={{data.image_url}} alt="Image not available">
         </a>
-        <a *ngIf="type == 'VENUE'" style="text-decoration: none;" [routerLink]="['/venues', data.id]" target="_blank">
-          <img *ngIf="type == 'VENUE'" mat-card-image src={{data.image_url}} alt="Image not available">
+        <a *ngIf="type === 'VENUE' || type === 'CLASSES'" style="text-decoration: none;" [routerLink]="['/venues', data.id]" target="_blank">
+          <img *ngIf="type === 'VENUE' || type === 'CLASSES'" mat-card-image src={{data.image_url}} alt="Image not available">
         </a>
       </div>
-      <mat-card-content *ngIf="type == 'VENUE'" class="">
+      <mat-card-content *ngIf="type === 'VENUE' || type === 'CLASSES'" class="">
         <p class="event-group-title">
           {{data.name}}
         </p>

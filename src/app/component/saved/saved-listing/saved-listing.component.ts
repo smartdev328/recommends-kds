@@ -78,7 +78,7 @@ export class SavedListingComponent implements OnInit {
             this.errorMessage = "You haven't saved any events. Add them from the listings page to better track things that interest you."; 
           }
           this.isExplore = false;
-        }if(this.entity_type == 'VENUE'){
+        } if(this.entity_type == 'VENUE'){
           this.display_entity_type = "Places";
           this.data_list = data['venues'];
           if (this.data_list.length > this.end) {
@@ -109,6 +109,17 @@ export class SavedListingComponent implements OnInit {
           if(this.data_list.length == 0){
             this.isErrorVisible = true;
             this.errorMessage = "You haven't saved any camps. Add them from the listings page to better track things that interest you."; 
+          }
+          this.isExplore = false;
+        } if(this.entity_type == 'CLASSES'){
+          this.display_entity_type = "Classes";
+          this.data_list = data['venues'];
+          if (this.data_list.length > this.end) {
+            this.showMore = true;
+          }
+          if(this.data_list.length == 0){
+            this.isErrorVisible = true;
+            this.errorMessage = "You haven't saved any classes. Add them from the listings page to better track things that interest you."; 
           }
           this.isExplore = false;
         }

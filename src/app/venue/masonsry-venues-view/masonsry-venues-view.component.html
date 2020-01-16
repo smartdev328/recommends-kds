@@ -1,6 +1,6 @@
 <img src="assets/loading.gif" *ngIf="!showLayout" class="loading-gif">
 <ng-masonry-grid [ngClass]="{'hide-layout': !showLayout, 'show-layout': showLayout}"
-  [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }" [useAnimation]="true" [useImagesLoaded]="true"
+  [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }" [useAnimation]="true" [useImagesLoaded]="false"
   [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
   <ng-masonry-grid-item class="tiles" *ngFor="let venue of venues | slice:start:end; let i=index">
     <mat-card class="event-list-cards ">

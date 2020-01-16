@@ -474,7 +474,7 @@ export class EventListingComponent implements OnInit {
       'event_date_start': this.event_date_start == undefined? '' : this.event_date_start,
     };
     
-    if (input.q === '' && !this.isLoggedIn) {
+    if (!this.isLoggedIn && input.q === '' && input.event_range_str === '' && input.city === '') {
       input.q = 'popular';
     }
 

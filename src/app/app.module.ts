@@ -37,10 +37,7 @@ import { MasonsrySavedViewComponent } from './component/saved/masonsry-saved-vie
 import { MasonrySubscribeViewComponent } from './component/saved/masonry-subscribe-view/masonry-subscribe-view.component';
 import { MasonsryVenuesPersonaliseViewComponent } from '@shared/layout/masonsry-personalise-view/masonsry-personalise-view.component';
 import { CityModule } from './city/city.module';
-
-
-
-
+import { ClassesModule } from './classes/classes.module';
 
 
 @NgModule({
@@ -67,7 +64,6 @@ import { CityModule } from './city/city.module';
     SavedListingComponent,
     MasonsrySavedViewComponent,
     MasonrySubscribeViewComponent,
-    
   ],
   imports: [
     AppRoutingModule,
@@ -77,12 +73,15 @@ import { CityModule } from './city/city.module';
     HikingModule,
     SharedModule,
     CityModule,
+    ClassesModule,
     SharedLibsModule,
     BrowserModule,
     BrowserAnimationsModule,
     
   ],
-  exports: [MatDatepickerModule,MatDialogModule,MasonsrySavedViewComponent,MasonrySubscribeViewComponent,MasonsryVenuesPersonaliseViewComponent],
+  exports: [MatDatepickerModule,MatDialogModule,
+    MasonsrySavedViewComponent,MasonrySubscribeViewComponent,
+    MasonsryVenuesPersonaliseViewComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     DatePipe,

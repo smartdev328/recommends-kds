@@ -1,5 +1,6 @@
 .container-fluid {
     padding: 0;
+    height: 100%;
 }
 
 .meet-kin-descrp {
@@ -149,6 +150,10 @@ video {
     .home-body-div {
         width: 100%;
     }
+    .home-image-div {
+        height: 500px;
+        width: auto;
+    }
     .home-header {
         font-weight: bold;
         font-size: 35px;
@@ -227,6 +232,16 @@ video {
     }
     .hikingImage {
         background-image: url("assets/web_images/home_hiking.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        height: 100px;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+    }
+    .classesImage {
+        background-image: url("assets/web_images/home_classes.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -354,6 +369,16 @@ video {
     }
     .hikingImage {
         background-image: url("assets/web_images/home_hiking.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        height: 150px;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+    }
+    .classesImage {
+        background-image: url("assets/web_images/home_classes.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -498,6 +523,16 @@ video {
         height: 200px;
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     }
+    .classesImage {
+        background-image: url("assets/web_images/home_classes.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        height: 200px;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+    }
     .category-label {
         font-family: 'Paytone One', sans-serif;
         color: #FBFCFC;
@@ -530,7 +565,7 @@ video {
     .my-message{font-size: 18px !important;}
     .go-to-messenger a{font-size: 20px !important;}
     .category-label-sm{font-size: 24px !important;}
-    .eventsImage, .placesImage, .campsImage, .hikingImage{height: 172px; background-size: auto 172px;}
+    .eventsImage, .placesImage, .campsImage, .hikingImage, .classesImage{height: 172px; background-size: auto 172px;}
     .category-label-sm{bottom: 4% !important;}
 }
   

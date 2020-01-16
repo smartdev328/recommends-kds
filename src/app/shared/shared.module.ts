@@ -27,7 +27,7 @@ import { EventCalendarComponent } from './layout/event-calendar/event-calendar.c
     FooterComponent,
     HomeHeaderComponent,
     MasonsryVenuesPersonaliseViewComponent,
-    EventCalendarComponent
+    EventCalendarComponent,
   ],
   exports: [
     CommonModule,

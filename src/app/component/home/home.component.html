@@ -56,6 +56,18 @@
                 </a>
             </div>
         </div>
+        <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <!--classes-->
+                    <a [routerLink]="['/','kids-classes-near-me']">
+                        <div class="classesImage">
+                            <label class="category-label">Classes</label>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3"></div>
+        </div>
     </div>
     <div class="row video-section">
         <div class="col-md-6">
@@ -81,7 +93,7 @@
     </div>
 </div>
 <div class="container-fluid" *ngIf="isLogedin">
-    <div class="home-image-div home-personalized-image">
+    <div class="home-image-div">
         <!-- 
         <div class="category p-3 m-3">
             
@@ -115,42 +127,54 @@
             </div>
         </div>
         -->
+        <iframe class="airtable-embed" 
+        src="https://airtable.com/embed/shr6bGQXhdhashEPF?backgroundColor=orange&viewControls=on" 
+        frameborder="0" onmousewheel="" width="100%" height="100%" 
+        style="background: transparent; border: 1px solid #ccc;">
+        </iframe>
+        <!--  
         <div class="category p-3 m-3">
             <div class="row">
-                <div class="col-md-3">
-                    <!--events-->
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
                     <a [routerLink]="['/','family-friendly-events-near-me']">
                         <div class="eventsImage">
                             <label class="category-label-sm">Events</label>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3">
-                    <!--places-->
+                <div class="col-md-2">
                     <a [routerLink]="['/','family-friendly-places-near-me']">
                         <div class="placesImage">
                             <label class="category-label-sm">Places</label>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3">
-                    <!--events-->
+                <div class="col-md-2">
                     <a [routerLink]="['/','camps-near-me']">
                         <div class="campsImage">
                             <label class="category-label-sm">Camps</label>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3">
-                    <!--places-->
+                <div class="col-md-2">
                     <a [routerLink]="['/','family-friendly-hikes-near-me']">
                         <div class="hikingImage">
                             <label class="category-label-sm">Hiking</label>
                         </div>
                     </a>
                 </div>
+                <div class="col-md-2">
+                        <a [routerLink]="['/','kids-classes-near-me']">
+                            <div class="classesImage">
+                                <label class="category-label-sm">Classes</label>
+                            </div>
+                        </a>
+                </div>
+                <div class="col-md-1"></div>
             </div>
         </div>
+        -->
     </div>
 </div>
 <app-layout-footer></app-layout-footer>

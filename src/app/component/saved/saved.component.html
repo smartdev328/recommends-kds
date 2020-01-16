@@ -10,7 +10,8 @@
       </div>
       <div class="category p-3 m-3">
           <div class="row">
-              <div class="col-md-3">
+            <div class="col-md-1"></div>
+              <div class="col-md-2">
                   <!--events-->
                         <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'EVENT']" target="_blank">    
                       <div class="eventsImage">
@@ -18,7 +19,7 @@
                       </div>
                   </a>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                   <!--places-->
                     <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'VENUE']" target="_blank">    
                       <div class="placesImage">
@@ -26,7 +27,7 @@
                       </div>
                   </a>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                   <!--camps-->
                     <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'CAMP']" target="_blank">    
                             <div class="campsImage">
@@ -34,14 +35,23 @@
                       </div>
                   </a>
               </div>
-              <div class="col-md-3">
-                  <!--hikking-->
+              <div class="col-md-2">
+                  <!--hiking-->
                         <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'HIKING_TRAIL']" target="_blank">    
                       <div class="hikingImage">
                           <label class="category-label-sm">Hiking</label>
                       </div>
                   </a>
               </div>
+              <div class="col-md-2">
+                    <!--classes-->
+                          <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'CLASSES']" target="_blank">    
+                        <div class="classesImage">
+                            <label class="category-label-sm">Classes</label>
+                        </div>
+                    </a>
+                </div>
+              <div class="col-md-1"></div>
           </div>
       </div>
   </div>

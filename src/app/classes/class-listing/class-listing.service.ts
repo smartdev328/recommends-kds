@@ -4,12 +4,16 @@ import { API_URL } from '@shared/constants/UrlConstants';
 @Injectable({
   providedIn: 'root'
 })
-export class VenueListingService {
+export class ClassListingService {
 
   constructor(private http: HttpClient) { }
 
-  get_venue_details(url) {
-    return this.http.get(url);
+  get_venue_details(url, httpClient, loggedIn) {
+      if (loggedIn) {
+        return this.http.get(url);
+      } else {
+        return httpClient.get(url);
+      }
   }
 
   get_Saved_Venues(){
@@ -25,17 +29,7 @@ export class VenueListingService {
 
 
   getSavedListing(type){
-    let url = '';
-    if (type === "CLASSES") {
-      url = API_URL + `actions/?entity_type=ETYPE_VENUE&category=50000&action_type=ATYPE_SAVE`;
-    } else {
-      url = API_URL + `actions/?entity_type=ETYPE_${type}&action_type=ATYPE_SAVE`;
-    }
-    return this.http.get(url);
-  }
-
-  getSavedClasses(){
-    const url = API_URL + `actions/?entity_type=ETYPE_VENUE&category=50000&action_type=ATYPE_SAVE`;
+    const url = API_URL + `actions/?entity_type=ETYPE_${type}&action_type=ATYPE_SAVE`;
     return this.http.get(url);
   }
 

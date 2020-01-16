@@ -17,7 +17,7 @@ import { VenueListingComponent } from './venue-listing/venue-listing.component';
     CommonModule,
     VenueRoutingModule,
     SharedModule,
-    SharedLibsModule
+    SharedLibsModule,
   ],
   declarations: [
     VenueComponent,
