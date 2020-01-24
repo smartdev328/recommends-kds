@@ -14,8 +14,11 @@
         <p class="event-group-title">
           {{venue.name}}
         </p>
-        <p *ngIf="venue.category" class="event-date">
+        <p *ngIf="venue.category && venue.category[0] !== 'Classes'" class="event-date">
           {{venue.category[0]}}
+        </p>
+        <p *ngIf="venue.category_sec && venue.category[0] === 'Classes'" class="event-date">
+            {{venue.category_sec[0]}}, ⭐ {{venue.rating}}/5
         </p>
         <p *ngIf="venue.city" class="event-date">
           {{venue.city}}, {{venue.state}}
@@ -28,7 +31,7 @@
             <img src="../../assets/icons/save_grey.png" class="dfkg" />
           </button>
 
-            <button title="follow" *ngIf="!isLogedin" (click)="checklogin(venue.id,i,'follow this place')">
+            <button title="follow" *ngIf="!isLogedin && venue.category && venue.category[0] !== 'Classes'" (click)="checklogin(venue.id,i,'follow this place')">
                 <img src="../../assets/icons/subscribe_grey.png" class="dfkg" />
               </button>
 
@@ -40,10 +43,10 @@
             <img class="dfkg" src="../../../../assets/icons/save_blue.png" />
           </button>
 
-          <button title="unfollow" *ngIf="isLogedin && venue.is_followed == 'true'" (click)="unsubscribe_venue(venue.id,i)">
+          <button title="unfollow" *ngIf="isLogedin && venue.is_followed == 'true' && venue.category && venue.category[0] !== 'Classes'" (click)="unsubscribe_venue(venue.id,i)">
             <img class="dfkg" src="../../../../assets/icons/subscribe_orange.png" />
           </button>
-          <button title="follow" *ngIf=" isLogedin && venue.is_followed == 'false'" (click)="add_subscription_venue(venue.id,i)">
+          <button title="follow" *ngIf=" isLogedin && venue.is_followed == 'false' && venue.category && venue.category[0] !== 'Classes'" (click)="add_subscription_venue(venue.id,i)">
             <img class="dfkg" src="../../../../assets/icons/subscribe_blue.png" />
           </button>
         </p>

@@ -7,23 +7,27 @@
             <div class="contact-section">
               <h3>{{ venue.name }}</h3>
               <p>{{venue.description}}</p>
+              <h2>*We do our best to keep the details as accurate as possible. 
+                  But we strongly recommend verifying details on the <a href="{{venue.url}}">place website</a> before making plans.</h2>
               <div class="cards-footer">
                 <span ><span *ngIf="price">${{price}}</span></span>  
                 <ul>
                     <!-- <li (click)="calendar_redirects()" title="Add to Calendar"><button><img src="../../assets/icons/calendar_gray.png" class="dfkg" /> add to calender</button></li> -->
                     
                     <!-- <li><button><img src="../../assets/icons/share.png" class="dfkg" /> share</button></li> -->
-                    <li  title="follow" *ngIf="is_parent_id === false || isLogedin === false">
+                    <li  title="follow" *ngIf="(is_parent_id === false || isLogedin === false) && venue.category && venue.category[0] !== 'Classes'">
                         <button (click)="checklogin(subscribe)">
                           <img src="../../assets/icons/subscribe_grey.png" class="dfkg" /> follow
                         </button>
                       </li>
-                      <li  (click)="unsubscribe_venue()" title="unfollow"  *ngIf="isSubscribeVisible == true">
+                      <li  (click)="unsubscribe_venue()" title="unfollow"  
+                      *ngIf="isSubscribeVisible == true && venue.category && venue.category[0] !== 'Classes'">
                         <button>
                           <img class="dfkg" src="../../assets/icons/subscribe_orange.png" /> unfollow
                         </button>
                       </li>
-                      <li   (click)="add_subscription_venue()" title="follow" *ngIf="isLogedin && isSubscribeVisible != true">
+                      <li   (click)="add_subscription_venue()" title="follow" 
+                      *ngIf="isLogedin && isSubscribeVisible != true && venue.category && venue.category[0] !== 'Classes'">
                         <button>
                           <img class="dfkg" src="../../assets/icons/subscribe_blue.png" /> follow
                         </button>
@@ -72,7 +76,7 @@
           <div class="col-md-4"> 
             <div class="left-section">
               <h5 *ngIf="timings_array[dayOfWeek]">Date & Time</h5>
-              <p class="expand_more" *ngIf="timings_array[dayOfWeek]">Hours Today - {{timings_array[dayOfWeek]}}<span (click)="showMoreHours()" *ngIf="isShowMoreHours"><svg height="12" style="fill: #ef6c57" viewBox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"></path></svg></span>
+              <p class="expand_more" *ngIf="timings_array[dayOfWeek]">Hours<br>Today - {{timings_array[dayOfWeek]}}<span (click)="showMoreHours()" *ngIf="isShowMoreHours"><svg height="12" style="fill: #ef6c57" viewBox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"></path></svg></span>
               
               </p>
               <ul class="list-group" *ngIf="isShowMore" >
@@ -84,7 +88,10 @@
               <br>
               <h5>Location</h5>
               <p>{{format_address()}}</p>
-              <button style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="venue_redirect()">Place website</button>
+              <button *ngIf="venue.category && venue.category[0] !== 'Classes'"
+              style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="venue_redirect()">Place website</button>
+              <button *ngIf="venue.category && venue.category[0] === 'Classes'"
+              style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="venue_redirect()">Class website</button>
             </div>
           </div>
           <div class="col-md-8">

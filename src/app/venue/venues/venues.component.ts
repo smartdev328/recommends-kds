@@ -202,8 +202,13 @@ export class VenuesComponent implements OnInit {
             }
             this.isExploreTrail = false
           }
-          this.category = this.venue.category !== undefined && this.venue.category.length > 0 ? this.venue.category.join() :
-            0;
+          if (this.venue.category !== undefined && this.venue.category.length > 0) {
+            if(this.venue.category[0] !== 'Classes') {
+              this.category = this.venue.category[0];
+            } else {
+              this.category = this.venue.category_sec[0];
+            }
+          }
           this.venue.perm_close = this.venue.perm_closed === true ? '1' : '0';
           this.venue.sec_cat = this.venue.sec_cat;
           this.city = this.venue.city;

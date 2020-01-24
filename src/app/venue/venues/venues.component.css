@@ -71,6 +71,10 @@
     margin: 20px 0 20px;
     font-weight: 400;
 }
+.contact-section h2 {
+    font-size: 12px;
+    font-style: italic;
+}
 .contact-section p {
     font-size: 18px;
     line-height: 30px;
