@@ -154,7 +154,6 @@ export class EventListingComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.route.snapshot.queryParams);
     if (Object.keys(this.route.snapshot.queryParams).length > 0) {
     this.selected_cat = this.eventConstatnts.get_cat_name_by_id(this.route.snapshot.queryParams['category']);
     this.keyword = this.route.snapshot.queryParams['q'];

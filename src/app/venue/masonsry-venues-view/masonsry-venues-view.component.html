@@ -17,8 +17,11 @@
         <p *ngIf="venue.category && venue.category[0] !== 'Classes'" class="event-date">
           {{venue.category[0]}}
         </p>
-        <p *ngIf="venue.category_sec && venue.category[0] === 'Classes'" class="event-date">
+        <p *ngIf="venue.category_sec && venue.category[0] === 'Classes' && venue.rating !== 0" class="event-date">
             {{venue.category_sec[0]}}, ⭐ {{venue.rating}}/5
+        </p>
+        <p *ngIf="venue.category_sec && venue.category[0] === 'Classes' && venue.rating === 0" class="event-date">
+            {{venue.category_sec[0]}}
         </p>
         <p *ngIf="venue.city" class="event-date">
           {{venue.city}}, {{venue.state}}
