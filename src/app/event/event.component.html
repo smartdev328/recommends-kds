@@ -43,7 +43,7 @@
                   <button class="btn path-38">
                      <img src="../../assets/icons/noun_review_1.png" class="dfkg" /> add a review
                    </button>
-                 </li> -->
+                 </li>
             <li title="Add Review" *ngIf="isLogedin === false">
               <button (click)="checklogin(addToReview)">
                 <img src="../../assets/icons/review_grey.png" class="dfkg" />add a review
@@ -53,6 +53,17 @@
               <button class="btn path-38">
                 <img src="../../assets/icons/review_blue.png" class="dfkg" /> add a review
               </button>
+            </li>
+          -->
+          <li title="Invite" *ngIf="isLogedin === false">
+              <button (click)="checklogin(inviteEvent)">
+                <img src="../../assets/icons/noun_children_1.png" class="dfkg" />playdate
+              </button>
+          </li>
+            <li title="Invite" *ngIf="isLogedin === true">
+                <button (click)="playdateDialog(event)">
+                  <img src="../../assets/icons/noun_children_2.png" class="dfkg" />playdate
+                </button>
             </li>
           </ul>
         </div>

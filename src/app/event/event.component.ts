@@ -10,9 +10,10 @@ import { ReviewsService } from '../component/add-review/reviews.service';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../shared/constants/AnalyticsConstants';
 import { API_URL } from '@shared/constants/UrlConstants';
 import { AuthService } from '@shared/service/auth.service';
-import { MatDialog } from "@angular/material";
+import { MatDialog, MatDialogConfig} from "@angular/material";
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
+import { PlaydateDialogComponent } from './playdate-dialog/playdate-dialog.component';
 
 declare let ga: any;
 @Component({
@@ -34,6 +35,7 @@ export class EventComponent implements OnInit {
   calendarEvent = "add this event";
   saveEvent = "save this event";
   addToReview = "add a review ";
+  inviteEvent = "invite a friend";
   // public is_parent_id: Boolean;
   public isErrorVisible: Boolean;
   public isSuccessVisible: Boolean;
@@ -379,5 +381,16 @@ export class EventComponent implements OnInit {
   }
   closeDialog() {
     this.dialogRef.close();
+  }
+
+  playdateDialog(event) {
+    const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        dialogConfig.data = { event: event, isLoggedIn: this.isLogedin }
+
+        this.dialog.open(PlaydateDialogComponent, dialogConfig);
+
   }
 }

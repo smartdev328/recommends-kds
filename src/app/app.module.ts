@@ -38,6 +38,7 @@ import { MasonrySubscribeViewComponent } from './component/saved/masonry-subscri
 import { MasonsryVenuesPersonaliseViewComponent } from '@shared/layout/masonsry-personalise-view/masonsry-personalise-view.component';
 import { CityModule } from './city/city.module';
 import { ClassesModule } from './classes/classes.module';
+import { PlaydateDialogComponent } from './event/playdate-dialog/playdate-dialog.component';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { ClassesModule } from './classes/classes.module';
     SavedListingComponent,
     MasonsrySavedViewComponent,
     MasonrySubscribeViewComponent,
+    PlaydateDialogComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -88,6 +90,7 @@ import { ClassesModule } from './classes/classes.module';
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     SwalService
   ],
+  entryComponents: [PlaydateDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

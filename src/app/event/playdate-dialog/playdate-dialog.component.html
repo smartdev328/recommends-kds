@@ -1,0 +1,65 @@
+<mat-dialog-actions><button style="float: right;" class="btnSubmit pull-right" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button></mat-dialog-actions>
+<br>
+<h2 mat-dialog-title>Invite a friend along to join you!</h2>
+
+<mat-dialog-content [formGroup]="form">
+    <mat-form-field>
+            <input matInput placeholder="Your name" formControlName="senderName">
+                <mat-error *ngIf="form.get('senderName').hasError('pattern')">
+                        Please enter your name.
+                </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Friend's Phone Number" formControlName="toPhone" 
+            minLength="10" maxlength="10" (keypress)=_keyPress($event)>
+        <mat-error *ngIf="form.get('toPhone').hasError('pattern')">
+                Please enter a valid mobile number.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Friend's Email" formControlName="toEmail" [disabled]="form.get('toPhone').valid">
+        <mat-error *ngIf="form.get('toEmail').hasError('pattern')">
+                Please enter a valid email.
+        </mat-error>
+    </mat-form-field>
+
+
+    <!-- <mat-form-field>
+
+        <input matInput [matDatepicker]="myDatepicker"
+            formControlName="goingAt">
+
+        <mat-datepicker-toggle matSuffix
+                               [for]="myDatepicker">
+
+        </mat-datepicker-toggle>
+
+        <mat-datepicker #myDatepicker></mat-datepicker>
+
+    </mat-form-field>
+    -->
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+    <!-- <button class="mat-raised-button"
+            (click)="close()">
+        Close
+    </button>
+-->
+    <button class="btnSubmit rectangle" (click)="save()" 
+        mat-raised-button color="primary" 
+        [disabled]="form.get('toPhone').hasError('pattern') || form.get('toEmail').hasError('pattern')
+                    || (form.get('toPhone').value === '' && form.get('toEmail').value === '')">
+        <b class="invite">Invite</b></button>
+    <!-- <button class="mat-raised-button mat-primary"
+            (click)="save()"> 
+        Send
+    </button>
+-->
+
+</mat-dialog-actions>

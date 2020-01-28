@@ -31,19 +31,25 @@
         <p class="star-btn">
 
           <button title="click to save" *ngIf="!isLogedin" (click)="checklogin(event.id,i,'save this event')">
-            <img src="../../assets/icons/save_grey.png" class="dfkg" />
+            <img src="../../../../assets/icons/save_grey.png" class="dfkg" />
           </button>
           <button title="Add to calendar" *ngIf="!isLogedin" (click)="checklogin(event.id,i,'add this event')">
-            <img class="dfkg" src="../../../../assets/icons/calendar_grey.png" />
+            <img class="dfkg" src="../../../../assets/icons/calendar_grey.png" />&nbsp;
           </button>
-          <button *ngIf="isLogedin" (click)="calendar_redirects(event.id,i)" title="Add to calendar">
-            <img class="dfkg" src="../../../../assets/icons/calendar_blue.png" />
+          <button *ngIf="!isLogedin" (click)="checklogin(event.id,i,'invite your friend to this event')">
+              <img src="../../assets/icons/noun_children_1.png" class="dfkg" />
           </button>
           <button title="saved" *ngIf="isLogedin && event.is_saved == 'true'" (click)="is_delete_action(event.id,i)">
-            <img class="dfkg" src="../../../../assets/icons/save_orange.png" />
+            <img class="dfkg" src="../../../../assets/icons/save_orange.png" />&nbsp;
           </button>
           <button *ngIf="isLogedin && event.is_saved == 'false'" (click)="save_camp(event.id,i)" title="click to save">
-            <img class="dfkg" src="../../../../assets/icons/save_blue.png" />
+              <img class="dfkg" src="../../../../assets/icons/save_blue.png" />&nbsp;
+          </button>
+          <button *ngIf="isLogedin" (click)="calendar_redirects(event.id,i)" title="Add to calendar">
+              <img class="dfkg" src="../../../../assets/icons/calendar_blue.png" />&nbsp;
+          </button>
+          <button *ngIf="isLogedin" (click)="playdateDialog(event)">
+                <img src="../../assets/icons/noun_children_2.png" class="dfkg" />
           </button>
         </p>
       </mat-card-content>

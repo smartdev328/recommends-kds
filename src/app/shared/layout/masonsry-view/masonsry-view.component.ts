@@ -5,9 +5,10 @@ import { ReviewsService } from '../../../component/add-review/reviews.service';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { VenuesService } from '../../../venue/venues/venues.service';
 import { API_URL } from '@shared/constants/UrlConstants';
+import { PlaydateDialogComponent } from '../../../event/playdate-dialog/playdate-dialog.component';
 declare let ga: any;
 
 
@@ -159,5 +160,16 @@ export class MasonsryViewComponent implements OnInit {
 
     const calendar_url = API_URL + 'cal_redirect/?event_id=' + id;
     window.open(calendar_url);
+  }
+
+  playdateDialog(event) {
+    const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        dialogConfig.data = { event: event, isLoggedIn: this.isLogedin }
+
+        this.dialog.open(PlaydateDialogComponent, dialogConfig);
+
   }
 }
