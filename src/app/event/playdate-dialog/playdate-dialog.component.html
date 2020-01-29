@@ -13,7 +13,7 @@
     </mat-form-field>
     <mat-form-field>
         <input matInput placeholder="Friend's Phone Number" formControlName="toPhone" 
-            minLength="10" maxlength="10" (keypress)=_keyPress($event)>
+            minLength="10" maxlength="10">
         <mat-error *ngIf="form.get('toPhone').hasError('pattern')">
                 Please enter a valid mobile number.
         </mat-error>
