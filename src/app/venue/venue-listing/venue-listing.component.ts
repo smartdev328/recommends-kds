@@ -55,6 +55,7 @@ export class VenueListingComponent implements OnInit {
   public selected_loc: String;
   public keyword: String;
   public tag: String;
+  public city: String;
   public cat_label: String;
   public loc_label: String;
   currentUrl: string;
@@ -103,6 +104,7 @@ export class VenueListingComponent implements OnInit {
     this.category = this.route.snapshot.queryParams['category'];
     this.keyword = this.route.snapshot.queryParams['q'];
     this.tag = this.route.snapshot.queryParams['tag'];
+    this.city = this.route.snapshot.queryParams['city'];
 
     this.titleService.setTitle('Family friendly places around SF bay area');
     this.metaService.addTag({ name: 'description', content: 'Family friendly places around SF bay area' });
@@ -132,10 +134,15 @@ export class VenueListingComponent implements OnInit {
       url = API_URL + 'venues/?limit=' + limit;
       if (this.keyword !== '' && this.keyword !== undefined) {
         url = url + '&q=' + this.keyword.trim();
-      } else if (this.category !== undefined && this.category !== '') {
-        url = url + '&category=' + this.category;
-      } else if (this.tag !== undefined && this.tag !== '') {
-        url = url + '&tags=' + this.tag;
+      }
+      if (this.category !== undefined && this.category !== '') {
+        url = url + '&category=' + encodeURIComponent(this.category);
+      }
+      if (this.tag !== undefined && this.tag !== '') {
+        url = url + '&tags=' + this.tag.trim();
+      }
+      if (this.city !== undefined && this.city !== '') {
+        url = url + '&city=' + this.city.trim();
       }
       this.isExplore = true;
       if(this.isLogedin == true){
@@ -273,13 +280,17 @@ export class VenueListingComponent implements OnInit {
     } else {
       this.isFilterErrorVisible = false;
       this.filterErrorMessage = '';
-      let url = API_URL + 'venues/?limit=43';
+      let limit = '100';
+      if (!this.isLogedin) {
+        limit = '25';
+      }
+      let url = API_URL + 'venues/?limit=' + limit;
       if (this.keyword) {
         url = url +'&q=' + this.keyword.trim();
       }if(this.selected_loc) {
-        url = url +'&city=' + this.selected_loc.trim() + ',CA';
+        url = url +'&city=' + this.selected_loc.trim();
       }if(this.selected_cat){
-        url = url +'&category=' + this.selected_cat.trim();
+        url = url +'&category=' + encodeURIComponent(this.selected_cat.trim());
       }
       this.showMore = false;
       this.isExplore = true;

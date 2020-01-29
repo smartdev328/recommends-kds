@@ -53,6 +53,7 @@ export class ClassListingComponent implements OnInit {
   public selected_cat: string;
   public selected_loc: String;
   public keyword: String;
+  public city: String;
   public cat_label: String;
   public loc_label: String;
   currentUrl: string;
@@ -100,6 +101,7 @@ export class ClassListingComponent implements OnInit {
     this.filterErrorMessage = '';
     this.category = this.route.snapshot.queryParams['category'];
     this.keyword = this.route.snapshot.queryParams['q'];
+    this.city = this.route.snapshot.queryParams['city'];
 
     this.titleService.setTitle('Classes for kids around SF bay area');
     this.metaService.addTag({ name: 'description', content: 'Classes for kids around SF bay area' });
@@ -122,17 +124,20 @@ export class ClassListingComponent implements OnInit {
 
 
   get_venue_details() {
-      let url = '';
       let limit = '100';
       if (!this.isLogedin) {
         limit = '25';
       }
+      let url = API_URL + 'venues/?category=Classes&limit=' + limit;
+      
       if (this.keyword !== '' && this.keyword !== undefined) {
-        url = API_URL + 'venues/?category=Classes&q=' + this.keyword.trim();
-      } else if (this.category === undefined || this.category === '') {
-        url = API_URL + 'venues/?category=Classes&limit=' + limit;
-      } else {
-        url = API_URL + 'venues/?category=Classes&category_sec=' + this.category + '&limit=' + limit;
+        url = url + '&q=' + this.keyword.trim();
+      } 
+      if (this.category !== undefined && this.category !== '') {
+        url = url + '&category_sec=' + encodeURIComponent(this.category);
+      }
+      if (this.city !== undefined && this.city !== '') {
+        url = url + '&city=' + this.city.trim();
       }
       this.isExplore = true;
       if(this.isLogedin == true){
@@ -252,13 +257,17 @@ export class ClassListingComponent implements OnInit {
         } else {
             this.isFilterErrorVisible = false;
             this.filterErrorMessage = '';
-            let url = API_URL + 'venues/?category=Classes&limit=43';
+            let limit = '100';
+            if (!this.isLogedin) {
+              limit = '25';
+            }
+            let url = API_URL + 'venues/?category=Classes&limit=' + limit;
             if (this.keyword) {
                 url = url + '&q=' + this.keyword.trim();
             } if (this.selected_loc) {
                 url = url + '&city=' + this.selected_loc.trim();
             } if (this.selected_cat) {
-                url = url + '&category_sec=' + this.selected_cat.trim();
+                url = url + '&category_sec=' + encodeURIComponent(this.selected_cat.trim());
             }
             this.showMore = false;
             this.isExplore = true;
