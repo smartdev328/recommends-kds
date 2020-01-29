@@ -3,16 +3,18 @@
     font-family: Montserrat;
 }
 
+.h2 .mat-dialog-title{
+    font-family: Montserrat;
+    font-size: 12px;
+}
+
 textarea {
-    height: 100px;
+    height: 75px;
     resize: vertical;
     font-family: Montserrat;
 }
 
 .invite{
-    
-    width: 78px;
-    height: 24px;
     font-family: Montserrat;
     font-size: 20px;
     font-weight: normal;

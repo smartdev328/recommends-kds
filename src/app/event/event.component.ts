@@ -385,9 +385,10 @@ export class EventComponent implements OnInit {
 
   playdateDialog(event) {
     const dialogConfig = new MatDialogConfig();
-
-        dialogConfig.disableClose = true;
+        dialogConfig.disableClose = false;
         dialogConfig.autoFocus = true;
+        dialogConfig.hasBackdrop = true;
+        dialogConfig.position = { bottom:'0'};
         dialogConfig.data = { event: event, isLoggedIn: this.isLogedin }
 
         this.dialog.open(PlaydateDialogComponent, dialogConfig);

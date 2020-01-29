@@ -31,8 +31,10 @@ export class PlaydateDialogComponent implements OnInit {
         private dialogRef: MatDialogRef<PlaydateDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any) {
 
-        this.message = " has invited you to join the event " + this.data.event.name 
-                + " - https://kinparenting.com/events/" + this.data.event.event_id;
+        this.message = " found this interesting family-friendly event on Kin Parenting - " 
+                + this.data.event.name 
+                + " - https://kinparenting.com/events/" + this.data.event.event_id 
+                + ". ";
        
         this.form = fb.group({
             senderName: ['', [Validators.required, Validators.pattern("[A-Za-z]*")]],
@@ -78,7 +80,8 @@ export class PlaydateDialogComponent implements OnInit {
         var data = {};
         data["toEmails"] = [this.form.get('toEmail').value];
         data["subject"] =  this.form.get('senderName').value + " is inviting you....";
-        data["message"] = "Hi there!\n" + this.form.get('senderName').value + this.message + "\nThank you,\nKin Parenting Team (https://kinparenting.com)";
+        data["message"] = "Hi there!\n" + "Your friend " + this.form.get('senderName').value + this.message 
+        + "Let " + this.form.get('senderName').value + " know if you'd like to join along! PS: Do not reply to this message.\nThank you,\nKin Parenting Team (https://kinparenting.com)";
         const url = `${API_URL}send-email/`;
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
         this.http.post(url, data, { headers: headers, responseType: 'json' }).subscribe(response => {
@@ -90,7 +93,8 @@ export class PlaydateDialogComponent implements OnInit {
         var data = {};
         data["To"] = "+1" + this.form.get('toPhone').value;
         data["From"] =  "+12562083976";
-        data["Body"] = this.form.get('senderName').value + this.message;
+        data["Body"] = "Your friend " + this.form.get('senderName').value + this.message 
+        + "Let " + this.form.get('senderName').value + " know if you'd like to join along!\nPS: Do not reply to this message.";
         const url = `${API_URL}send-sms/`;
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
         this.http.post(url, data, { headers: headers, responseType: 'json' }).subscribe(response => {
