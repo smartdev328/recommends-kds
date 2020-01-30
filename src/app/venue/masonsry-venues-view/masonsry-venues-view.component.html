@@ -30,26 +30,35 @@
           {{venue.distance}} miles
         </p>
         <p class="star-btn" >
-          <button title="click to save" *ngIf="!isLogedin" (click)="checklogin(venue.id,i,'save this place')">
+          <button title="click to save" *ngIf="!isLogedin" 
+              (click)="checklogin(venue.id,i,'save this place', venue.category, 'SAVE')">
             <img src="../../assets/icons/save_grey.png" class="dfkg" />
           </button>
 
-            <button title="follow" *ngIf="!isLogedin && venue.category && venue.category[0] !== 'Classes'" (click)="checklogin(venue.id,i,'follow this place')">
+          <button title="follow" *ngIf="!isLogedin && venue.category && venue.category[0] !== 'Classes'" 
+                  (click)="checklogin(venue.id,i,'follow this place', venue.category, 'SUBSCRIBE')">
                 <img src="../../assets/icons/subscribe_grey.png" class="dfkg" />
-              </button>
+            </button>
 
-          <button title="saved" *ngIf="isLogedin && venue.is_saved == 'true'" (click)="is_delete_action(venue.id,i)">
+          <button title="saved" *ngIf="isLogedin && venue.is_saved == 'true'" 
+                (click)="is_delete_action(venue.id,i)">
             <img class="dfkg" src="../../../../assets/icons/save_orange.png" />
           </button>
 
-          <button *ngIf="isLogedin && venue.is_saved == 'false'" (click)="save_camp(venue.id,i)" title="click to save">
+          <button *ngIf="isLogedin && venue.is_saved == 'false'" (click)="save_camp(venue.id,i, venue.category)" 
+                  title="click to save">
             <img class="dfkg" src="../../../../assets/icons/save_blue.png" />
           </button>
 
-          <button title="unfollow" *ngIf="isLogedin && venue.is_followed == 'true' && venue.category && venue.category[0] !== 'Classes'" (click)="unsubscribe_venue(venue.id,i)">
+          <button title="unfollow" 
+            *ngIf="isLogedin && venue.is_followed == 'true' && venue.category && venue.category[0] !== 'Classes'" 
+            (click)="unsubscribe_venue(venue.id,i)">
             <img class="dfkg" src="../../../../assets/icons/subscribe_orange.png" />
           </button>
-          <button title="follow" *ngIf=" isLogedin && venue.is_followed == 'false' && venue.category && venue.category[0] !== 'Classes'" (click)="add_subscription_venue(venue.id,i)">
+
+          <button title="follow" 
+            *ngIf="isLogedin && venue.is_followed == 'false' && venue.category && venue.category[0] !== 'Classes'" 
+            (click)="add_subscription_venue(venue.id,i,venue.category)">
             <img class="dfkg" src="../../../../assets/icons/subscribe_blue.png" />
           </button>
         </p>
