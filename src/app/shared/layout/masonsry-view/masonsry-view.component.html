@@ -30,13 +30,13 @@
         </p>
         <p class="star-btn">
 
-          <button title="click to save" *ngIf="!isLogedin" (click)="checklogin(event.id,i,'save this event')">
+          <button title="click to save" *ngIf="!isLogedin" (click)="checklogin(event.id,i,'save this event', 'SAVE')">
             <img style="margin: 0px 6px" src="../../../../assets/icons/save_grey.png" class="dfkg" />
           </button>
-          <button title="Add to calendar" *ngIf="!isLogedin" (click)="checklogin(event.id,i,'add this event')">
+          <button title="Add to calendar" *ngIf="!isLogedin" (click)="checklogin(event.id,i,'add this event', 'CALENDAR')">
             <img class="dfkg" src="../../../../assets/icons/calendar_grey.png" />&nbsp;&nbsp;
           </button>
-          <button *ngIf="!isLogedin" (click)="checklogin(event.id,i,'invite your friend to this event')">
+          <button *ngIf="!isLogedin" (click)="checklogin(event.id,i,'invite your friend to this event', 'PLAYDATE_CLICK')">
               <img style="margin: 0px 3px" src="../../assets/icons/noun_children_1.png" class="dfkg" />
           </button>
           <button title="saved" *ngIf="isLogedin && event.is_saved == 'true'" (click)="is_delete_action(event.id,i)">
@@ -48,7 +48,7 @@
           <button *ngIf="isLogedin" (click)="calendar_redirects(event.id,i)" title="Add to calendar">
               <img class="dfkg" src="../../../../assets/icons/calendar_blue.png" />&nbsp;&nbsp;
           </button>
-          <button *ngIf="isLogedin" (click)="playdateDialog(event)">
+          <button *ngIf="isLogedin" (click)="playdateDialog(event,i)">
                 <img style="margin: 0px 3px" src="../../assets/icons/noun_children_2.png" class="dfkg" />
           </button>
         </p>

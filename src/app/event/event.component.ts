@@ -300,6 +300,9 @@ export class EventComponent implements OnInit {
       case 'CALENDAR':
         action = ACTION.CALENDAR;
         break;
+      case 'PLAYDATE_CLICK':
+        action = ACTION.PLAYDATE_CLICK;
+        break;
     }
     let analytics_input = {};
     analytics_input = {
@@ -311,12 +314,19 @@ export class EventComponent implements OnInit {
         'referrer': '/root/home'
       }]
     }
+    if (!this.isLogedin) {
+      this.http.post(API_URL + 'actions/' , analytics_input).subscribe(data => {
+        console.log('after post');
+        this.is_save_action();
+      });
+    } else {
     this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
       if (atype === 'CLICK') {
         this.is_save_action();
       }
     }, error => {
     });
+  }
   }
 
 
@@ -371,6 +381,13 @@ export class EventComponent implements OnInit {
         this.add_review_redirect(2);
       }
     } else {
+      if (linkName == this.inviteEvent) {
+        this.add_analytics_data('PLAYDATE_CLICK');
+      } else if (linkName == this.calendarEvent) {
+        this.add_analytics_data('CALENDAR');
+      } else if (linkName == "Save") {
+        this.add_analytics_data('SAVE');
+      }
       this.deleteUser(linkName);
     }
   }
@@ -384,6 +401,7 @@ export class EventComponent implements OnInit {
   }
 
   playdateDialog(event) {
+    this.add_analytics_data('PLAYDATE_CLICK');
     const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = false;
         dialogConfig.autoFocus = true;

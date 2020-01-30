@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { ACTION, ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM } from '../../constants/AnalyticsConstants';
 import { ReviewsService } from '../../../component/add-review/reviews.service';
 import { AuthService } from '@shared/service/auth.service';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap';
 import { MatDialog, MatDialogConfig } from '@angular/material';
@@ -34,6 +35,7 @@ export class MasonsryViewComponent implements OnInit {
   @Input() type;
 
   constructor(private router: Router,
+    private http: HttpClient,
     private venuesService: VenuesService,
     private reviewService: ReviewsService,
     private authService: AuthService,
@@ -72,6 +74,9 @@ export class MasonsryViewComponent implements OnInit {
       case 'CALENDAR':
         action = ACTION.CALENDAR;
         break;
+      case 'PLAYDATE_CLICK':
+        action = ACTION.PLAYDATE_CLICK;
+        break;
     }
     let analytics_input = {};
     analytics_input = {
@@ -83,6 +88,11 @@ export class MasonsryViewComponent implements OnInit {
         'referrer': '/root/home'
       }]
     }
+    if (!this.isLogedin) {
+      this.http.post(API_URL + 'actions/' , analytics_input).subscribe(data => {
+        this.is_save_action(id, i);
+      });
+    } else {
     this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
       if (atype === 'CLICK') {
         this.is_save_action(id, i);
@@ -90,6 +100,7 @@ export class MasonsryViewComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
   }
 
   is_save_action(id, i) {
@@ -122,10 +133,9 @@ export class MasonsryViewComponent implements OnInit {
   }
 
   //this function will open a popup when user is not loggen in
-  checklogin(id, i, linkName) {
-    if (this.isLogedin) {
-      // this.save_camp(id, i);
-    } else {
+  checklogin(id, i, linkName, action) {
+    if (!this.isLogedin) {
+      this.add_analytics_data(id, i, action);
       this.deleteUser(id, linkName);
     }
   }
@@ -162,7 +172,8 @@ export class MasonsryViewComponent implements OnInit {
     window.open(calendar_url);
   }
 
-  playdateDialog(event) {
+  playdateDialog(event, i) {
+    this.add_analytics_data(event.id, i,'PLAYDATE_CLICK');
     const dialogConfig = new MatDialogConfig();
 
         dialogConfig.disableClose = true;

@@ -18,7 +18,7 @@
                 Please enter a valid mobile number.
         </mat-error>
     </mat-form-field>
-
+    OR
     <mat-form-field>
         <input matInput placeholder="Friend's Email" formControlName="toEmail" [disabled]="form.get('toPhone').valid">
         <mat-error *ngIf="form.get('toEmail').hasError('pattern')">

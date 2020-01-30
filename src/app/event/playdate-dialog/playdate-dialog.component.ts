@@ -8,6 +8,8 @@ import { AuthService } from '@shared/service/auth.service';
 import { UserService } from '@shared/service/user.service';
 import { User } from '@shared/model/user';
 import { Observable } from 'rxjs';
+import { ReviewsService } from '../../component/add-review/reviews.service';
+import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
 
 @Component({
     selector: 'playdate-dialog',
@@ -26,6 +28,7 @@ export class PlaydateDialogComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private userService: UserService,
+        private reviewService: ReviewsService,
         private http: HttpClient,
         private fb: FormBuilder,
         private dialogRef: MatDialogRef<PlaydateDialogComponent>,
@@ -33,7 +36,8 @@ export class PlaydateDialogComponent implements OnInit {
 
         this.message = " found this interesting family-friendly event on Kin Parenting - " 
                 + this.data.event.name 
-                + " - https://kinparenting.com/events/" + this.data.event.event_id 
+                + " - https://kinparenting.com/events/" 
+                + (this.data.event.event_id ? this.data.event.event_id : this.data.event.id)
                 + ". ";
        
         this.form = fb.group({
@@ -59,10 +63,27 @@ export class PlaydateDialogComponent implements OnInit {
         }
     }
 
+    add_analytics_data() {
+        const final_data = {
+          'input_data': []
+        };
+        const input_final_data = [];
+          const final_key_value_pair = {
+            'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.EVENT,
+            'entity_id': (this.data.event.event_id ? this.data.event.event_id : this.data.event.id),
+            'interface': INTERFACE_ENUM.FE,
+            'action': ACTION.PLAYDATE_INVITE,
+            'referrer': '/root/home' };
+        input_final_data.push(final_key_value_pair);
+        final_data['input_data'] = input_final_data;
+        this.reviewService.add_analytics_actions(final_data).subscribe(data => {
+          }, error => {
+        });
+    }
+
 
     save() {
-        console.log(this.form.value);
-        console.log(this.data);
+        this.add_analytics_data();
         if (this.form.get('toPhone').value !== '') {
             this.sendSMS();
         }
@@ -81,7 +102,7 @@ export class PlaydateDialogComponent implements OnInit {
         data["toEmails"] = [this.form.get('toEmail').value];
         data["subject"] =  this.form.get('senderName').value + " is inviting you....";
         data["message"] = "Hi there!\n" + "Your friend " + this.form.get('senderName').value + this.message 
-        + "Let " + this.form.get('senderName').value + " know if you'd like to join along! PS: Do not reply to this message.\nThank you,\nKin Parenting Team (https://kinparenting.com)";
+        + "Let " + this.form.get('senderName').value + " know if you'd like to join along!\n\nThank you,\nKin Parenting Team (https://kinparenting.com)\n PS: Do not reply to this message.";
         const url = `${API_URL}send-email/`;
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
         this.http.post(url, data, { headers: headers, responseType: 'json' }).subscribe(response => {

@@ -215,7 +215,7 @@ export class VenueListingComponent implements OnInit {
 
   }
 
-  add_analytics_data() {
+  add_analytics_data_view() {
     const final_data = {
       'input_data': []
     };
@@ -236,6 +236,29 @@ export class VenueListingComponent implements OnInit {
     }, error => {
       alert('Something went wrong');
     });
+  }
+
+  add_analytics_data(action_type) {
+    const final_data = {
+      'input_data': []
+    };
+    const input_final_data = [];
+      const final_key_value_pair = {
+        'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.VENUE,
+        'entity_id': 0,
+        'interface': INTERFACE_ENUM.FE,
+        'action': action_type,
+        'referrer': '/root/home' };
+    input_final_data.push(final_key_value_pair);
+    final_data['input_data'] = input_final_data;
+    if (!this.isLogedin) {
+      this.http.post(API_URL + 'actions/' , final_data).subscribe(data => {
+      });
+    } else {
+      this.reviewService.add_analytics_actions(final_data).subscribe(data => {
+      }, error => {
+    });
+   }
   }
 
   kin_redirect() {
@@ -359,6 +382,7 @@ export class VenueListingComponent implements OnInit {
     if (this.isLogedin) {
       this.loadMore();
     } else {
+      this.add_analytics_data(ACTION.MORE);
       this.detectClick(linkName);
     }
   }

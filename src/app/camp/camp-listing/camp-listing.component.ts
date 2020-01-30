@@ -180,30 +180,30 @@ export class CampListingComponent implements OnInit {
     }
   }
 
-  add_analytics_data() {
+  add_analytics_data(action_type) {
     const final_data = {
       'input_data': []
     };
     const input_final_data = [];
-    for (let i = 0; i < this.camp_explore.length; i++) {
       const final_key_value_pair = {
         'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.CAMP,
-        'entity_id': undefined,
+        'entity_id': 0,
         'interface': INTERFACE_ENUM.FE,
-        'action': ACTION.VIEW,
-        'referrer': '/root/home'
-      };
-      final_key_value_pair['entity_id'] = this.camp_explore[i].id;
-      input_final_data.push(final_key_value_pair);
-    }
+        'action': action_type,
+        'referrer': '/root/home' };
+    input_final_data.push(final_key_value_pair);
     final_data['input_data'] = input_final_data;
-    this.reviewService.add_analytics_actions(final_data).subscribe(data => {
-    }, error => {
-      alert('Something went wrong');
+    if (!this.isLogedin) {
+      this.http.post(API_URL + 'actions/' , final_data).subscribe(data => {
+      });
+    } else {
+      this.reviewService.add_analytics_actions(final_data).subscribe(data => {
+      }, error => {
     });
-
+   }
   }
-  kin_redirect() {
+
+  kin_redirect(){
     ga('send', 'camp', {
       eventCategory: 'Clicks',
       eventLabel: 'Kin Redirect',
@@ -318,10 +318,10 @@ export class CampListingComponent implements OnInit {
 
   //this function will open a popup when user is not loggen in
   checkLogin(linkName) {
-
     if (this.isLogedin) {
       this.loadMore();
     } else {
+      this.add_analytics_data(ACTION.MORE);
       this.detectClick(linkName);
     }
   }
