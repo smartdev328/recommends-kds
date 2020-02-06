@@ -13,6 +13,7 @@ import { ReviewsService } from '../../component/add-review/reviews.service';
 import { AuthService } from '@shared/service/auth.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { API_URL } from '@shared/constants/UrlConstants';
+import {NgxLinkifyjsService, Link, LinkType} from 'ngx-linkifyjs';
 
 import { Observable } from 'rxjs';
 declare let ga: any;
@@ -48,7 +49,7 @@ export class VenuesComponent implements OnInit {
   public venue: any;
   public isLoaded = true;
   public parking: String;
-  public tips_for_parent: String;
+  public tips_for_parent: string;
   public rating: Number;
   public place_reviews_length: Number;
   public jsonMiscData: String;
@@ -77,6 +78,7 @@ export class VenuesComponent implements OnInit {
   public google_place_reviews_count: number;
   public isShowMoreHours: Boolean;
   public price: any;
+  public partyLink: string;
 
   city: String;
   state: String;
@@ -92,11 +94,13 @@ export class VenuesComponent implements OnInit {
   currentUrl: string;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
     private metaService: Meta,private authService: AuthService, private venuesService: VenuesService, private reviewService: ReviewsService,
-    private router: Router,public dialog: MatDialog) {
+    private router: Router,public dialog: MatDialog,
+    public linkifyService: NgxLinkifyjsService) {
     this.venue = new UserSearch();
     this.parking = '';
     this.rating = 0;
     this.tips_for_parent = '';
+    this.partyLink = '';
     this.timings_array = [];
     this.isShowMore = false;
     this.place_full_info = {};
@@ -219,6 +223,14 @@ export class VenuesComponent implements OnInit {
           this.parking = this.venue.misc.parking === undefined || this.venue.misc.parking.trim().length === 0 ?
             0 : this.venue.misc.parking;
           this.tips_for_parent = this.venue.misc.tips_for_parent === '' ? '' : this.venue.misc.tips_for_parent;
+          if (this.tips_for_parent !== '') {
+            const foundLinks: Link[] = this.linkifyService.find(this.tips_for_parent);
+            if (foundLinks.length > 0) {
+              this.partyLink = foundLinks[0].href;
+              this.tips_for_parent = this.tips_for_parent.replace(this.partyLink, '');
+            }
+          }
+          //console.log(this.tips_for_parent);
           this.rating = this.venue.rating === '' ? 0 : this.venue.rating;
           this.jsonMiscData = JSON.stringify(this.venue.misc);
           this.miscData = this.venue.misc;

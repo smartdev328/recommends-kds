@@ -102,6 +102,9 @@
               <p *ngIf="rating">{{rating}} / {{google_rating_out_of}}</p>
               <h6 *ngIf="parking"><img src="../../assets/icons/parking.png" class="dfkg" /> Parking</h6>
               <p *ngIf="parking">{{parking}}</p>
+              <h6 *ngIf="tips_for_parent"><img src="../../assets/icons/noun_Birthday.png" class="dfkg" /> Birthday party at {{venue.name}}</h6>
+              <p *ngIf="tips_for_parent">{{tips_for_parent}}<br><a href="{{partyLink}}">More information</a></p>
+              
             </div>
           </div>
         </div>

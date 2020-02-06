@@ -1,4 +1,5 @@
 import { DatePipe } from '@angular/common';
+import { NgxLinkifyjsModule } from 'ngx-linkifyjs';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { MatDatepickerModule ,MatDialogModule } from '@angular/material';
@@ -79,7 +80,7 @@ import { PlaydateDialogComponent } from './event/playdate-dialog/playdate-dialog
     SharedLibsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    
+    NgxLinkifyjsModule.forRoot(),
   ],
   exports: [MatDatepickerModule,MatDialogModule,
     MasonsrySavedViewComponent,MasonrySubscribeViewComponent,

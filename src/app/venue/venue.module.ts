@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgxLinkifyjsModule } from 'ngx-linkifyjs';
 import { VenueRoutingModule } from './venue-routing.module';
 import { SharedModule } from 'app/shared/shared.module';
 import { SharedLibsModule } from 'app/shared/shared-libs.module';
@@ -18,6 +18,7 @@ import { VenueListingComponent } from './venue-listing/venue-listing.component';
     VenueRoutingModule,
     SharedModule,
     SharedLibsModule,
+    NgxLinkifyjsModule,
   ],
   declarations: [
     VenueComponent,
