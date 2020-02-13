@@ -7,6 +7,7 @@ export class UserRequest extends RequestBody {
     first_name: string;
     last_name: string;
     email: string;
+    referral: boolean;
 
     constructor(requestBody?: RequestBody) {
         super();

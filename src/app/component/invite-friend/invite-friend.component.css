@@ -1,0 +1,39 @@
+.mat-form-field {
+    display: block;
+    font-family: Montserrat;
+}
+
+.h2 .mat-dialog-title{
+    font-family: Montserrat;
+    font-size: 12px;
+}
+
+textarea {
+    height: 75px;
+    resize: vertical;
+    font-family: Montserrat;
+}
+
+.invite{
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000;
+    cursor: pointer;
+
+}
+.rectangle {
+width: 258px;
+height: 49px;
+border-radius: 8px;
+background-color: #ffd700;
+color: #000;
+border:0;
+margin: 20px 0 15px 0;
+cursor: pointer;
+}

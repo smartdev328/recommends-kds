@@ -97,7 +97,7 @@ export class AuthService {
     });
   }
 
-  login(redirectPath: string = '/') {
+  login(redirectPath: string = '/', additionalParams: string = '') {
 
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
@@ -107,7 +107,7 @@ export class AuthService {
       client.loginWithRedirect({
 
         redirect_uri: `${window.location.origin}/callback`,
-        appState: { target: redirectPath }
+        appState: { target: redirectPath, additionalParams: additionalParams }
       });
 
     });
@@ -118,12 +118,14 @@ export class AuthService {
     // Call when app reloads after user logs in with Auth0
     let currunrRoute :string;
     let targetRoute: string; // Path to redirect to after login processsed
+    let isReferral: boolean;
     const authComplete$ = this.handleRedirectCallback$.pipe(
       // Have client, now call method to handle auth callback redirect
       tap(cbRes => {
         // Get and set target redirect route from callback results
          currunrRoute = JSON.parse(sessionStorage.getItem('current_url'));
         targetRoute = cbRes.appState && cbRes.appState.target ? cbRes.appState.target : currunrRoute;
+        isReferral = cbRes.appState.additionalParams === 'referral';
       }),
       concatMap(() => {
         // Redirect callback complete; get user and login status
@@ -138,9 +140,10 @@ export class AuthService {
     const authCompleteSub = authComplete$.subscribe(([user, loggedIn]) => {
 
       if (user['http://user.information/loginCount'] == undefined) {
-        // Fist login, create a new account
+        // First login, create a new account
         const userRequest = new UserRequest(CommonUtil.initRequestBody());
         userRequest.email = user.email;
+        userRequest.referral = isReferral;
         this.userService.createUser(userRequest).subscribe((response) => {
             this.router.navigate(['get-started']);
         },
