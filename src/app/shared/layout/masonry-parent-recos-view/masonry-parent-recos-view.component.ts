@@ -24,7 +24,6 @@ export class MasonryParentRecosViewComponent implements OnInit {
   @Input() recos;
   @Input() start;
   @Input() end;
-  @Input() parent_id;
   _masonry: Masonry;
   masonryItems: any[];
   constructor(private router: Router) {
