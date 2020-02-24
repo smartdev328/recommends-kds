@@ -1,0 +1,34 @@
+<img src="assets/loading.gif" *ngIf="!showLayout" class="loading-gif">
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-12">
+<ng-masonry-grid [ngClass]="{'hide-layout': !showLayout, 'show-layout': showLayout}"
+  [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }" [useAnimation]="true" [useImagesLoaded]="false"
+  [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
+  <ng-masonry-grid-item class="tiles productBlock" *ngFor="let reco of recos | slice:start:end; let i=index">
+    <mat-card class="event-list-cards ">
+      <div class="img-wrp">
+        <img src={{reco.fields.Image[0].url}}
+          onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+          mat-card-image>
+      </div>
+      <mat-card-content class="">
+        <p class="event-group-title">
+          {{reco.fields.Title}}
+        </p>
+        <p class="age" *ngIf="reco.fields.hasOwnProperty('Age')">
+            {{reco.fields.Age}}
+          </p>
+        <p class="event-venue" *ngIf="friends_reco && reco.fields.hasOwnProperty('Review')">
+            <span style="color:blue">{{reco.fields.Recommender}} says </span> <span style="color:darkgray">"{{reco.fields.Review}}"</span>
+          </p>
+        <p class="event-venue" *ngIf="!friends_reco && reco.fields.hasOwnProperty('Review')">
+          "{{reco.fields.Review}}"
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </ng-masonry-grid-item>
+</ng-masonry-grid>
+</div>
+</div>
+</div>

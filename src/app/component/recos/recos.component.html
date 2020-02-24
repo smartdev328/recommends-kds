@@ -1,0 +1,125 @@
+
+<div class="container-fluid">
+  <div class="home-image-div">
+      <div class="saved" fxLayout="row wrap">
+          <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
+              <!-- <p class="title">Try the Kin chatbot on Messenger</p> -->
+                 <h1 class="saved-h">By Category</h1>
+          </div>
+        
+      </div>
+      <div class="category p-3 m-3">
+          <div class="row">
+            <!-- <div class="col-md-1"></div> -->
+              <div class="col-md-3">
+                     <a style="text-decoration: none;" [routerLink]="['/recos-listing', 'apps']" target="_blank">    
+                      <div class="appsImage">
+                          <label class="category-label-sm">Apps & Games</label>
+                      </div>
+                  </a>
+              </div>
+              <div class="col-md-2">
+                    <a style="text-decoration: none;" [routerLink]="['/recos-listing', 'books']" target="_blank">    
+                      <div class="booksImage">
+                          <label class="category-label-sm">Books</label>
+                      </div>
+                  </a>
+              </div>
+              <div class="col-md-2">
+                          <a style="text-decoration: none;" [routerLink]="['/recos-listing', 'camps']" target="_blank">    
+                        <div class="campsImage">
+                            <label class="category-label-sm">Camps</label>
+                        </div>
+                    </a>
+                </div>
+              <div class="col-md-2">
+                    <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'classes']" target="_blank">    
+                            <div class="classesImage">
+                          <label class="category-label-sm">Classes</label>
+                      </div>
+                  </a>
+              </div>
+              <div class="col-md-3">
+                  <!--hiking-->
+                        <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'events']" target="_blank">    
+                      <div class="eventsImage">
+                          <label class="category-label-sm">Events & Experiences</label>
+                      </div>
+                  </a>
+              </div>
+              <!-- <div class="col-md-1"></div> -->
+          </div>
+          <div class="row">
+            <!-- <div class="col-md-1"></div> -->
+              <div class="col-md-3">
+                     <a style="text-decoration: none;" [routerLink]="['/recos-listing', 'movies']" target="_blank">    
+                      <div class="moviesImage">
+                          <label class="category-label-sm">Movies & TV</label>
+                      </div>
+                  </a>
+              </div>
+              <div class="col-md-2">
+                    <a style="text-decoration: none;" [routerLink]="['/recos-listing', 'places']" target="_blank">    
+                      <div class="placesImage">
+                          <label class="category-label-sm">Places</label>
+                      </div>
+                  </a>
+              </div>
+              <div class="col-md-2">
+                          <a style="text-decoration: none;" [routerLink]="['/recos-listing', 'products']" target="_blank">    
+                        <div class="productsImage">
+                            <label class="category-label-sm">Products</label>
+                        </div>
+                    </a>
+                </div>
+              <div class="col-md-2">
+                    <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'services']" target="_blank">    
+                            <div class="servicesImage">
+                          <label class="category-label-sm">Services</label>
+                      </div>
+                  </a>
+              </div>
+              <div class="col-md-3">
+                  <!--hiking-->
+                        <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'toys']" target="_blank">    
+                      <div class="toysImage">
+                          <label class="category-label-sm">Toys</label>
+                      </div>
+                  </a>
+              </div>
+              <!-- <div class="col-md-1"></div> -->
+          </div>
+      </div>
+  </div>
+  <div class="home-image-div">
+        <div class="saved" fxLayout="row wrap">
+            <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
+                   <h1 class="saved-h">By Friends</h1>
+            </div>
+        </div>
+        <div class="category s-3 p-3 m-3">
+            <div class="row">
+              <!-- <div class="col-md-1"></div> -->
+                <div class="col" *ngFor="let friend of friends;">
+                       <a style="text-decoration: none;" [routerLink]="['/recos', friend]" target="_blank">
+                        <div class="circle-with-text"><span class="friend-label-sm">{{friend}}</span>
+                        </div>
+                        </a>
+                </div>
+            </div>
+        </div>
+        <!-- 
+        <div class="category p-3 m-3">
+            <div class="container-fluid">
+                <div class="event-listing-card">
+                    <div *ngIf="isErrorVisible"><div class="error-message-text alert-danger">{{errorMessage}}</div></div>
+                    <app-masonry-subscribe-view *ngIf="newFilterData"  [venues]=subscribe_list [start]=start [end]=end></app-masonry-subscribe-view>
+                    <app-masonry-subscribe-view  *ngIf="oldFilterData" [venues]=subscribe_list [start]=start [end]=end></app-masonry-subscribe-view>
+                </div>
+            </div>
+        </div>
+    -->
+
+    </div>
+</div>
+<app-layout-footer></app-layout-footer>

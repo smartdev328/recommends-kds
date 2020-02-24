@@ -12,6 +12,7 @@ import { ContactUsComponent } from './component/contact-us/contact-us.component'
 import { PrivacyComponent } from './component/privacy/privacy.component';
 import { TermsComponent } from './component/terms/terms.component';
 import { PersonalizedComponent } from './component/personalized/personalized.component';
+import { ParentRecosComponent } from './component/parent-recos/parent-recos.component';
 import { LoginComponent } from './component/login/login.component';
 import { CallbackComponent } from './component/callback/callback.component';
 import { ProfileComponent } from './component/profile/profile.component';
@@ -19,7 +20,9 @@ import { GetStartedComponent } from './component/get-started/get-started.compone
 import { MiddlewareComponent } from './middleware/middleware.component';
 import { SavedComponent } from './component/saved/saved.component';
 import { SavedListingComponent } from './component/saved/saved-listing/saved-listing.component';
+import { RecosListingComponent } from './component/recos/recos-listing/recos-listing.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { RecosComponent } from './component/recos/recos.component';
 
 
 const routes: Routes = [
@@ -55,8 +58,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    //loadChildren: () => import('./classes/classes.module').then(mod => mod.ClassesModule)
-    loadChildren: './classes/classes.module#ClassesModule'
+    loadChildren: () => import('./classes/classes.module').then(mod => mod.ClassesModule)
+    //loadChildren: './classes/classes.module#ClassesModule'
   },
   { path: 'data-entry', component: DataEntryComponent,canActivate: [AuthGuard]},
   { path: 'add/review', component: ReviewsComponent },
@@ -69,6 +72,7 @@ const routes: Routes = [
   { path: 'privacy', component: PrivacyComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'my-kin', component: PersonalizedComponent },
+  { path: 'recos/:recommender', component: ParentRecosComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'redirecting',component: MiddlewareComponent },
@@ -76,8 +80,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'get-started', component: GetStartedComponent },
-  {path:'saved',component:SavedComponent},
-  {path:'saved-listing/:id',component:SavedListingComponent},
+  { path:'saved',component:SavedComponent},
+  { path:'saved-listing/:id',component:SavedListingComponent},
+  { path:'recos', component: RecosComponent},
+  { path:'recos-listing/:id', component: RecosListingComponent},
  
 
 

@@ -38,12 +38,17 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     return this.auth.getTokenSilently$().pipe(
+      
       mergeMap(token => {
-        const tokenReq = req.clone({
+        if (!req.url.startsWith("https://api.airtable.com")) {
+          const tokenReq = req.clone({
           setHeaders: { Authorization: `Bearer ${token}` }
-        });
-        this.user.sendToken(token);
-        return next.handle(tokenReq);
+          });
+          this.user.sendToken(token);
+          return next.handle(tokenReq);
+        } else {
+          return next.handle(req);
+        }
       }),
       // catchError(err => throwError(err)
       catchError((error: HttpErrorResponse) => {
@@ -60,6 +65,5 @@ export class AuthInterceptor implements HttpInterceptor {
       })
       );
     // );
-    
   }
 }

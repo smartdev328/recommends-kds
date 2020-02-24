@@ -1,0 +1,353 @@
+<img src="assets/loading.gif" *ngIf="!showLayout" class="loading-gif">
+<div class="container-fluid newsletter">
+  <div class="row">
+    <div class="col-md-12" *ngIf="appsandgames">
+      <h3>Apps & Games</h3>
+      <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
+        [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+        <!-- Masonry Grid Item -->
+        <ng-masonry-grid-item class="tiles productBlock" *ngFor="let reco of recos.appsandgames; let i = index;">
+          <!-- Grid Content  -->
+          <!-- <div class="col-md-4">
+                            <img src={{event.image_url}} alt="" width="400" height="400">
+                          </div> -->
+
+          <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
+            <div class="img-wrp">
+              <img src={{reco.fields.Image[0].url}}
+                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+                mat-card-image>
+            </div>
+            <mat-card-content>
+              <p class="event-group-title">
+                {{reco.fields.Title}}
+              </p>
+              <p class="age" *ngIf="reco.fields.hasOwnProperty('Age')">
+                  {{reco.fields.Age}}
+              </p>
+              <p class="event-venue" *ngIf="reco.fields.hasOwnProperty('Review')">
+                <span style="color:darkgray">"{{reco.fields.Review}}"</span>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </ng-masonry-grid-item>
+      </ng-masonry-grid>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" *ngIf="books">
+      <h3>Books</h3>
+      <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
+        [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+        <!-- Masonry Grid Item -->
+        <ng-masonry-grid-item class="tiles productBlock" *ngFor="let reco of recos.books; let i = index;">
+          <!-- Grid Content  -->
+          <!-- <div class="col-md-4">
+                          <img src={{event.image_url}} alt="" width="400" height="400">
+                        </div> -->
+
+          <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
+            <div class="img-wrp">
+              <img src={{reco.fields.Image[0].url}}
+                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+                mat-card-image>
+            </div>
+            <mat-card-content>
+              <p class="event-group-title">
+                {{reco.fields.Title}}
+              </p>
+              <p class="age" *ngIf="reco.fields.hasOwnProperty('Age')">
+                  {{reco.fields.Age}}
+              </p>
+              <p class="event-venue" *ngIf="reco.fields.hasOwnProperty('Review')">
+                <span style="color:darkgray">"{{reco.fields.Review}}"</span>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </ng-masonry-grid-item>
+      </ng-masonry-grid>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" *ngIf="camps">
+      <h3>Camps</h3>
+      <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
+        [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+        <!-- Masonry Grid Item -->
+        <ng-masonry-grid-item class="tiles productBlock" *ngFor="let reco of recos.camps; let i = index;">
+          <!-- Grid Content  -->
+          <!-- <div class="col-md-4">
+                        <img src={{event.image_url}} alt="" width="400" height="400">
+                      </div> -->
+
+          <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
+            <div class="img-wrp">
+              <img src={{reco.fields.Image[0].url}}
+                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+                mat-card-image>
+            </div>
+            <mat-card-content>
+              <p class="event-group-title">
+                {{reco.fields.Title}}
+              </p>
+              <p class="age" *ngIf="reco.fields.hasOwnProperty('Age')">
+                  {{reco.fields.Age}}
+              </p>
+              <p class="event-venue" *ngIf="reco.fields.hasOwnProperty('Review')">
+                <span style="color:darkgray">"{{reco.fields.Review}}"</span>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </ng-masonry-grid-item>
+      </ng-masonry-grid>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" *ngIf="classes">
+      <h3>Classes</h3>
+      <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
+        [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+        <!-- Masonry Grid Item -->
+        <ng-masonry-grid-item class="tiles productBlock" *ngFor="let reco of recos.classes; let i = index;">
+          <!-- Grid Content  -->
+          <!-- <div class="col-md-4">
+                            <img src={{event.image_url}} alt="" width="400" height="400">
+                          </div> -->
+
+          <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
+            <div class="img-wrp">
+              <img src={{reco.fields.Image[0].url}}
+                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+                mat-card-image>
+            </div>
+            <mat-card-content>
+              <p class="event-group-title">
+                {{reco.fields.Title}}
+              </p>
+              <p class="age" *ngIf="reco.fields.hasOwnProperty('Age')">
+                  {{reco.fields.Age}}
+              </p>
+              <p class="event-venue" *ngIf="reco.fields.hasOwnProperty('Review')">
+                <span style="color:darkgray">"{{reco.fields.Review}}"</span>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </ng-masonry-grid-item>
+      </ng-masonry-grid>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" *ngIf="eventsandexperiences">
+      <h3>Events & Experiences</h3>
+      <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
+        [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+        <!-- Masonry Grid Item -->
+        <ng-masonry-grid-item class="tiles productBlock"
+          *ngFor="let reco of recos.eventsandexperiences; let i = index;">
+          <!-- Grid Content  -->
+          <!-- <div class="col-md-4">
+                            <img src={{event.image_url}} alt="" width="400" height="400">
+                          </div> -->
+
+          <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
+            <div class="img-wrp">
+              <img src={{reco.fields.Image[0].url}}
+                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+                mat-card-image>
+            </div>
+            <mat-card-content>
+              <p class="event-group-title">
+                {{reco.fields.Title}}
+              </p>
+              <p class="age" *ngIf="reco.fields.hasOwnProperty('Age')">
+                  {{reco.fields.Age}}
+              </p>
+              <p class="event-venue" *ngIf="reco.fields.hasOwnProperty('Review')">
+                <span style="color:darkgray">"{{reco.fields.Review}}"</span>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </ng-masonry-grid-item>
+      </ng-masonry-grid>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" *ngIf="movies">
+      <h3>Movies & TV</h3>
+      <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
+        [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+        <!-- Masonry Grid Item -->
+        <ng-masonry-grid-item class="tiles productBlock" *ngFor="let reco of recos.movies; let i = index;">
+          <!-- Grid Content  -->
+          <!-- <div class="col-md-4">
+                            <img src={{event.image_url}} alt="" width="400" height="400">
+                          </div> -->
+
+          <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
+            <div class="img-wrp">
+              <img src={{reco.fields.Image[0].url}}
+                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+                mat-card-image>
+            </div>
+            <mat-card-content>
+              <p class="event-group-title">
+                {{reco.fields.Title}}
+              </p>
+              <p class="age" *ngIf="reco.fields.hasOwnProperty('Age')">
+                  {{reco.fields.Age}}
+              </p>
+              <p class="event-venue" *ngIf="reco.fields.hasOwnProperty('Review')">
+                <span style="color:darkgray">"{{reco.fields.Review}}"</span>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </ng-masonry-grid-item>
+      </ng-masonry-grid>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" *ngIf="places">
+      <h3>Places</h3>
+      <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
+        [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+        <!-- Masonry Grid Item -->
+        <ng-masonry-grid-item class="tiles productBlock" *ngFor="let reco of recos.places; let i = index;">
+          <!-- Grid Content  -->
+          <!-- <div class="col-md-4">
+                            <img src={{event.image_url}} alt="" width="400" height="400">
+                          </div> -->
+
+          <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
+            <div class="img-wrp">
+              <img src={{reco.fields.Image[0].url}}
+                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+                mat-card-image>
+            </div>
+            <mat-card-content>
+              <p class="event-group-title">
+                {{reco.fields.Title}}
+              </p>
+              <p class="age" *ngIf="reco.fields.hasOwnProperty('Age')">
+                  {{reco.fields.Age}}
+              </p>
+              <p class="event-venue" *ngIf="reco.fields.hasOwnProperty('Review')">
+                <span style="color:darkgray">"{{reco.fields.Review}}"</span>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </ng-masonry-grid-item>
+      </ng-masonry-grid>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" *ngIf="products">
+      <h3>Products</h3>
+      <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
+        [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+        <!-- Masonry Grid Item -->
+        <ng-masonry-grid-item class="tiles productBlock" *ngFor="let reco of recos.products; let i = index;">
+          <!-- Grid Content  -->
+          <!-- <div class="col-md-4">
+                            <img src={{event.image_url}} alt="" width="400" height="400">
+                          </div> -->
+
+          <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
+            <div class="img-wrp">
+              <img src={{reco.fields.Image[0].url}}
+                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+                mat-card-image>
+            </div>
+            <mat-card-content>
+              <p class="event-group-title">
+                {{reco.fields.Title}}
+              </p>
+              <p class="age" *ngIf="reco.fields.hasOwnProperty('Age')">
+                  {{reco.fields.Age}}
+              </p>
+              <p class="event-venue" *ngIf="reco.fields.hasOwnProperty('Review')">
+                <span style="color:darkgray">"{{reco.fields.Review}}"</span>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </ng-masonry-grid-item>
+      </ng-masonry-grid>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" *ngIf="services">
+      <h3>Services</h3>
+      <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
+        [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+        <!-- Masonry Grid Item -->
+        <ng-masonry-grid-item class="tiles productBlock" *ngFor="let reco of recos.services; let i = index;">
+          <!-- Grid Content  -->
+          <!-- <div class="col-md-4">
+                            <img src={{event.image_url}} alt="" width="400" height="400">
+                          </div> -->
+
+          <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
+            <div class="img-wrp">
+              <img src={{reco.fields.Image[0].url}}
+                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+                mat-card-image>
+            </div>
+            <mat-card-content>
+              <p class="event-group-title">
+                {{reco.fields.Title}}
+              </p>
+              <p class="age" *ngIf="reco.fields.hasOwnProperty('Age')">
+                  {{reco.fields.Age}}
+              </p>
+              <p class="event-venue" *ngIf="reco.fields.hasOwnProperty('Review')">
+                <span style="color:darkgray">"{{reco.fields.Review}}"</span>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </ng-masonry-grid-item>
+      </ng-masonry-grid>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" *ngIf="toys">
+      <h3>Toys</h3>
+      <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
+        [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+        <!-- Masonry Grid Item -->
+        <ng-masonry-grid-item class="tiles productBlock" *ngFor="let reco of recos.toys; let i = index;">
+          <!-- Grid Content  -->
+          <!-- <div class="col-md-4">
+                            <img src={{event.image_url}} alt="" width="400" height="400">
+                          </div> -->
+
+          <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
+            <div class="img-wrp">
+              <img src={{reco.fields.Image[0].url}}
+                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+                mat-card-image>
+            </div>
+            <mat-card-content>
+              <p class="event-group-title">
+                {{reco.fields.Title}}
+              </p>
+              <p class="age" *ngIf="reco.fields.hasOwnProperty('Age')">
+                  {{reco.fields.Age}}
+              </p>
+              <p class="event-venue" *ngIf="reco.fields.hasOwnProperty('Review')">
+                <span style="color:darkgray">"{{reco.fields.Review}}"</span>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </ng-masonry-grid-item>
+      </ng-masonry-grid>
+    </div>
+  </div>
+</div>

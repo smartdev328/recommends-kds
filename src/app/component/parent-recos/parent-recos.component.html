@@ -1,0 +1,21 @@
+<div class="banner-section events-banner">
+<div class="newsletter-banner">
+        <div class="banner-content">
+           <span class="main-text">{{recommender}}'s Recommendations</span>
+           <!--
+            <div>
+              <ul>
+                 <li>by</li>
+                 <li><img src="../../../assets/web_images/kinNest150.png" alt=""></li>
+                 <li>{{recommender}}</li>
+              </ul>
+           </div>
+         -->
+        </div>
+     </div>
+   </div>
+<div class="container-fluid">
+    <div class="main-section">
+        <app-masonry-parent-recos-view  [parent_id]=parent_id [recos]=all_recos [start]=start [end]=end></app-masonry-parent-recos-view>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="home-image-div">
+        <div class="saved" fxLayout="row wrap">
+            <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
+                   <h1 class="saved-h">By Friends</h1>
+            </div>
+        </div>
+        <div class="event-listing-card">
+            <div *ngIf="isErrorVisible"><div class="mt-4 error-message-text alert-danger">{{errorMessage}}</div></div>
+            <app-masonsry-recos-view [friends_reco]=true [delay]="3000" [type]=category [recos]=recos.friends [start]=start [end]=end></app-masonsry-recos-view>
+        </div>
+        <div class="saved" fxLayout="row wrap" *ngIf="showCommunity">
+            <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
+                   <h1 class="saved-h">By Kin Community</h1>
+            </div>
+        </div>
+        <div class="event-listing-card" *ngIf="showCommunity">
+            <div *ngIf="isErrorVisible"><div class="mt-4 error-message-text alert-danger">{{errorMessage}}</div></div>
+            <app-masonsry-recos-view [friends_reco]=false [delay]="5000" [type]=category [recos]=recos.community [start]=start [end]=end></app-masonsry-recos-view>
+        </div>
+    </div>
+  </div>

@@ -9,6 +9,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomeHeaderComponent } from './layout/home-header/home-header.component';
 import { MasonsryVenuesPersonaliseViewComponent } from './layout/masonsry-personalise-view/masonsry-personalise-view.component';
+import { MasonryParentRecosViewComponent } from './layout/masonry-parent-recos-view/masonry-parent-recos-view.component';
 import { ModalModule } from 'ngx-bootstrap';
 import { EventCalendarComponent } from './layout/event-calendar/event-calendar.component';
 
@@ -27,6 +28,7 @@ import { EventCalendarComponent } from './layout/event-calendar/event-calendar.c
     FooterComponent,
     HomeHeaderComponent,
     MasonsryVenuesPersonaliseViewComponent,
+    MasonryParentRecosViewComponent,
     EventCalendarComponent,
   ],
   exports: [
@@ -39,6 +41,7 @@ import { EventCalendarComponent } from './layout/event-calendar/event-calendar.c
     FooterComponent,
     HomeHeaderComponent,
     MasonsryVenuesPersonaliseViewComponent,
+    MasonryParentRecosViewComponent,
     EventCalendarComponent,
     ModalModule
   ]

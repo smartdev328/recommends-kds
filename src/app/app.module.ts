@@ -21,6 +21,7 @@ import { HelpComponent } from './component/help/help.component';
 import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
 import { PersonalizedComponent } from './component/personalized/personalized.component';
+import { ParentRecosComponent } from './component/parent-recos/parent-recos.component';
 import { PrivacyComponent } from './component/privacy/privacy.component';
 import { SignUpComponent } from './component/sign-up/sign-up.component';
 import { TermsComponent } from './component/terms/terms.component';
@@ -30,16 +31,20 @@ import { AuthInterceptor } from './shared/service/auth.interceptor';
 import { VenueModule } from './venue/venue.module';
 import { ProfileComponent } from './component/profile/profile.component';
 import { GetStartedComponent } from './component/get-started/get-started.component';
-import {SwalService }         from './shared/service/swal.service';
+import { SwalService }         from './shared/service/swal.service';
 import { MiddlewareComponent } from './middleware/middleware.component';
 import { SavedComponent } from './component/saved/saved.component';
 import { SavedListingComponent } from './component/saved/saved-listing/saved-listing.component';
 import { MasonsrySavedViewComponent } from './component/saved/masonsry-saved-view/masonsry-saved-view.component';
+import { MasonsryRecosViewComponent } from './component/recos/masonsry-recos-view/masonsry-recos-view.component';
 import { MasonrySubscribeViewComponent } from './component/saved/masonry-subscribe-view/masonry-subscribe-view.component';
 import { MasonsryVenuesPersonaliseViewComponent } from '@shared/layout/masonsry-personalise-view/masonsry-personalise-view.component';
+import { MasonryParentRecosViewComponent } from '@shared/layout/masonry-parent-recos-view/masonry-parent-recos-view.component';
 import { CityModule } from './city/city.module';
 import { ClassesModule } from './classes/classes.module';
 import { PlaydateDialogComponent } from './event/playdate-dialog/playdate-dialog.component';
+import { RecosComponent } from './component/recos/recos.component';
+import { RecosListingComponent } from './component/recos/recos-listing/recos-listing.component';
 
 
 @NgModule({
@@ -57,6 +62,7 @@ import { PlaydateDialogComponent } from './event/playdate-dialog/playdate-dialog
     PrivacyComponent,
     TermsComponent,
     PersonalizedComponent,
+    ParentRecosComponent,
     LoginComponent,
     CallbackComponent,
     ProfileComponent,
@@ -64,7 +70,11 @@ import { PlaydateDialogComponent } from './event/playdate-dialog/playdate-dialog
     MiddlewareComponent,
     SavedComponent,
     SavedListingComponent,
+    RecosListingComponent,
+    RecosComponent,
+    RecosListingComponent,
     MasonsrySavedViewComponent,
+    MasonsryRecosViewComponent,
     MasonrySubscribeViewComponent,
     PlaydateDialogComponent,
   ],
@@ -83,8 +93,8 @@ import { PlaydateDialogComponent } from './event/playdate-dialog/playdate-dialog
     NgxLinkifyjsModule.forRoot(),
   ],
   exports: [MatDatepickerModule,MatDialogModule,
-    MasonsrySavedViewComponent,MasonrySubscribeViewComponent,
-    MasonsryVenuesPersonaliseViewComponent],
+    MasonsrySavedViewComponent,MasonrySubscribeViewComponent, MasonsryRecosViewComponent,
+    MasonsryVenuesPersonaliseViewComponent, MasonryParentRecosViewComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     DatePipe,
