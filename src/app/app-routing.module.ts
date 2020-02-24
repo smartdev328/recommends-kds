@@ -58,8 +58,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./classes/classes.module').then(mod => mod.ClassesModule)
-    //loadChildren: './classes/classes.module#ClassesModule'
+    //loadChildren: () => import('./classes/classes.module').then(mod => mod.ClassesModule)
+    loadChildren: './classes/classes.module#ClassesModule'
   },
   { path: 'data-entry', component: DataEntryComponent,canActivate: [AuthGuard]},
   { path: 'add/review', component: ReviewsComponent },
