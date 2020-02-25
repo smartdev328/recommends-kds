@@ -79,7 +79,7 @@ export class MasonryParentRecosViewComponent implements OnInit {
   }
 
   recos_redirect(url) {
-    this.router.navigate([url]);
+    window.open(url);
   }
 
   appendItems() {

@@ -199,7 +199,16 @@ video {
         height: 300px;
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     }
-
+    .recosImage {
+        background-image: url("assets/web_images/recos-type.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin-top: .5em;
+        margin-bottom: .5em;
+        height: 100px;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+    }
     .eventsImage {
         background-image: url("assets/web_images/home_events.jpg");
         background-repeat: no-repeat;
@@ -335,6 +344,16 @@ video {
         margin-bottom: 1em;
         height: 350px;
         width: 100%;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+    }
+    .recosImage {
+        background-image: url("assets/web_images/recos-type.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        height: 150px;
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     }
     .eventsImage {
@@ -482,6 +501,16 @@ video {
         height: 350px;
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     }
+    .recosImage {
+        background-image: url("assets/web_images/recos-type.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        height: 200px;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+    }
 
     .eventsImage {
         background-image: url("assets/web_images/home_events.jpg");
@@ -565,7 +594,7 @@ video {
     .my-message{font-size: 18px !important;}
     .go-to-messenger a{font-size: 20px !important;}
     .category-label-sm{font-size: 24px !important;}
-    .eventsImage, .placesImage, .campsImage, .hikingImage, .classesImage{height: 172px; background-size: auto 172px;}
+    .eventsImage, .placesImage, .campsImage, .hikingImage, .classesImage, .recosImage{height: 172px; background-size: auto 172px;}
     .category-label-sm{bottom: 4% !important;}
 }
   

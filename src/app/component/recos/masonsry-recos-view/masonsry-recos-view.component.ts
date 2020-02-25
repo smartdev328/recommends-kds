@@ -33,4 +33,8 @@ export class MasonsryRecosViewComponent implements OnInit {
     }, parseInt(this.delay));
   }
 
+  recos_redirect(url) {
+    window.open(url);
+  }
+
 }
