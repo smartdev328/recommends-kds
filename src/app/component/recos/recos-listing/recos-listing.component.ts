@@ -8,8 +8,6 @@ import { RecosConstants } from "@shared/constants/CommonConstants";
 import { AuthService } from '../../../shared/service/auth.service';
 import { Observable } from 'rxjs';
 
-
-
 declare let ga: any;
 
 @Component({
@@ -22,6 +20,7 @@ export class RecosListingComponent implements OnInit {
   data_list;
   isExplore = false;
   public friends: string[];
+  public recommenders = new Object();
   public user: User;
   public category: string;
   public locations: any;
@@ -30,8 +29,10 @@ export class RecosListingComponent implements OnInit {
   public recos: any;
   showMore = false;
   showCommunity = false;
+  showTrusted = false;
+  showYours = false;
   start = 0;
-  end = 20;
+  end = 100;
   oldFilterData = true;
   newFilterData = false;
   public isErrorVisible: boolean;
@@ -58,7 +59,9 @@ export class RecosListingComponent implements OnInit {
   ngOnInit() {
     this.recos = {
       'friends': [],
-      'community': []
+      'community': [],
+      'trusted': [],
+      'yours': []
     }
     this.isErrorVisible = false;
     this.errorMessage = '';
@@ -68,6 +71,12 @@ export class RecosListingComponent implements OnInit {
       });
       
     this.entity_type = this.route.snapshot.params['id'];
+    this.airtableService.getRecommenderNames().subscribe(data => {
+      for(var idx in data['records']) {
+        var rec = data['records'][idx];
+        this.recommenders[rec.id] = rec.fields.Name;
+      }
+    });
     this.userService.getUser().subscribe((user) => {
         this.user = user;
         this.get_friends();
@@ -77,7 +86,17 @@ export class RecosListingComponent implements OnInit {
     setTimeout(() => {
       this.showCommunity = true;
     }, 3000);
+
+
+    setTimeout(() => {
+      this.showYours = true;
+    }, 5000);
     
+
+    setTimeout(() => {
+      this.showTrusted = true;
+    }, 6000);
+
   }
 
   get_friends() {
@@ -88,7 +107,6 @@ export class RecosListingComponent implements OnInit {
 
   }
 
-  //Get listing of Saved Entity
   get_recos(entity_type: string, friends_list: string[]) {
     var airtable_category = this.categoryList.filter(function(item) {
       return item.name === entity_type;
@@ -100,9 +118,36 @@ export class RecosListingComponent implements OnInit {
             if (friends_list.indexOf(rec.fields.Recommender) > -1 ) {
                 this.recos.friends.push(rec);
             } else {
-                this.recos.community.push(rec);
+                if (rec.fields.hasOwnProperty('KinId') 
+                    && parseInt(this.user.parent.parent_id) === rec.fields.KinId) {
+                  this.recos.yours.push(rec);
+                } else {
+                  this.recos.community.push(rec);
+                }
             } 
+          }
+          if (entity_type === 'toys') {
+              this.airtableService.getToys().subscribe(data => {
+                for(var idx in data['records']) {
+                  var rec = data['records'][idx];
+                  for (var recommender in rec.fields.RecommendedBy) {
+                    rec.fields.RecommendedBy[recommender] = this.recommenders[rec.fields.RecommendedBy[recommender]];
+                  }
+                  this.recos.trusted.push(rec);
+                }
+              });
+          } else if(entity_type === 'books') {
+              this.airtableService.getBooks().subscribe(data => {
+                for(var idx in data['records']) {
+                  var rec = data['records'][idx];
+                  for (var recommender in rec.fields.RecommendedBy) {
+                    rec.fields.RecommendedBy[recommender] = this.recommenders[rec.fields.RecommendedBy[recommender]];
+                  }
+                  this.recos.trusted.push(rec);
+                }
+            });
           }
     });
   }
+
 }

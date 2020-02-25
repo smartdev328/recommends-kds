@@ -1,22 +1,41 @@
 <div class="container-fluid">
     <div class="home-image-div">
-        <div class="saved" fxLayout="row wrap">
+        <div class="saved" fxLayout="row wrap" *ngIf="recos.friends.length > 0">
             <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
                    <h1 class="saved-h">By Friends</h1>
             </div>
         </div>
-        <div class="event-listing-card">
+        <div class="event-listing-card" *ngIf="recos.friends.length > 0">
             <div *ngIf="isErrorVisible"><div class="mt-4 error-message-text alert-danger">{{errorMessage}}</div></div>
             <app-masonsry-recos-view [friends_reco]=true [delay]="3000" [type]=category [recos]=recos.friends [start]=start [end]=end></app-masonsry-recos-view>
         </div>
-        <div class="saved" fxLayout="row wrap" *ngIf="showCommunity">
+        <div class="saved" fxLayout="row wrap" *ngIf="recos.community.length > 0 && showCommunity">
             <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
                    <h1 class="saved-h">By Kin Community</h1>
             </div>
         </div>
-        <div class="event-listing-card" *ngIf="showCommunity">
+        <div class="event-listing-card" *ngIf="recos.community.length > 0 && showCommunity">
             <div *ngIf="isErrorVisible"><div class="mt-4 error-message-text alert-danger">{{errorMessage}}</div></div>
-            <app-masonsry-recos-view [friends_reco]=false [delay]="5000" [type]=category [recos]=recos.community [start]=start [end]=end></app-masonsry-recos-view>
+            <app-masonsry-recos-view [community_reco]=false [delay]="4000" [type]=category [recos]=recos.community [start]=start [end]=end></app-masonsry-recos-view>
         </div>
+        <div class="saved" fxLayout="row wrap" *ngIf="recos.yours.length > 0 && showYours">
+                <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
+                       <h1 class="saved-h">By You</h1>
+                </div>
+        </div>
+        <div class="event-listing-card" *ngIf="recos.yours.length > 0 && showYours">
+                <div *ngIf="isErrorVisible"><div class="mt-4 error-message-text alert-danger">{{errorMessage}}</div></div>
+                <app-masonsry-recos-view [delay]="5000" [type]=category [recos]=recos.yours [start]=start [end]=end></app-masonsry-recos-view>
+        </div>
+        <div class="saved" fxLayout="row wrap" *ngIf="recos.trusted.length > 0 && showTrusted">
+                <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
+                       <h1 class="saved-h">By Trusted Sources</h1>
+                </div>
+            </div>
+        <div class="event-listing-card" *ngIf="recos.trusted.length > 0 && showTrusted">
+                <div *ngIf="isErrorVisible"><div class="mt-4 error-message-text alert-danger">{{errorMessage}}</div></div>
+                <app-masonsry-recos-view [trusted_reco]=true [delay]="6000" [type]=category [recos]=recos.trusted [start]=start [end]=end></app-masonsry-recos-view>
+        </div>
+        
     </div>
   </div>

@@ -39,4 +39,18 @@ export class AirtableService {
         return this.http.get(AIRTABLE_API_URL + "Parents?fields%5B%5D=Friends&filterByFormula=KinId+%3D+'" + parent_id + "'", this.gethttpOptions());
     }
 
+    //get books
+    getBooks() {
+        return this.http.get(AIRTABLE_API_URL + "Books", this.gethttpOptions());
+    }
+
+    //get books
+    getToys() {
+        return this.http.get(AIRTABLE_API_URL + "Toys", this.gethttpOptions());
+    }
+
+    getRecommenderNames() {
+        return this.http.get(AIRTABLE_API_URL + "Recommenders", this.gethttpOptions());
+    }
+
 }

@@ -20,6 +20,8 @@ export class MasonsryRecosViewComponent implements OnInit {
   @Input() type;
   @Input() delay;
   @Input() friends_reco;
+  @Input() community_reco;
+  @Input() trusted_reco;
   constructor(private router: Router,
               private reviewService : ReviewsService,
               private venuesService : VenuesService) {
