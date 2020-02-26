@@ -23,6 +23,7 @@ import { SavedListingComponent } from './component/saved/saved-listing/saved-lis
 import { RecosListingComponent } from './component/recos/recos-listing/recos-listing.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { RecosComponent } from './component/recos/recos.component';
+import { AddRecoComponent } from './component/add-reco/add-reco.component';
 
 
 const routes: Routes = [
@@ -84,6 +85,7 @@ const routes: Routes = [
   { path:'saved-listing/:id',component:SavedListingComponent},
   { path:'recos', component: RecosComponent},
   { path:'recos-listing/:id', component: RecosListingComponent},
+  { path:'add-recos', component: AddRecoComponent},
  
 
 

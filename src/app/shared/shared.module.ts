@@ -43,7 +43,7 @@ import { EventCalendarComponent } from './layout/event-calendar/event-calendar.c
     MasonsryVenuesPersonaliseViewComponent,
     MasonryParentRecosViewComponent,
     EventCalendarComponent,
-    ModalModule
+    ModalModule,
   ]
 })
 export class SharedModule { }

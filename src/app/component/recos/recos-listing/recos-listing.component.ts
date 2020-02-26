@@ -101,7 +101,11 @@ export class RecosListingComponent implements OnInit {
 
   get_friends() {
     this.airtableService.getFriends(this.user.parent.parent_id).subscribe(data => {
-      this.friends = data['records'][0].fields.Friends.split(",");
+      if (data['records'].length > 0) {
+        this.friends = data['records'][0].fields.Friends.split(",");
+      } else {
+        this.friends = [];
+      }
       this.get_recos(this.entity_type, this.friends);
     });
 
@@ -115,14 +119,16 @@ export class RecosListingComponent implements OnInit {
     this.airtableService.getRecosByCategory(airtable_category.category).subscribe(data => {
           for(var idx in data['records']) {
             var rec = data['records'][idx];
-            if (friends_list.indexOf(rec.fields.Recommender) > -1 ) {
+            if (friends_list.length > 0 && friends_list.indexOf(rec.fields.Recommender) > -1 ) {
                 this.recos.friends.push(rec);
             } else {
                 if (rec.fields.hasOwnProperty('KinId') 
                     && parseInt(this.user.parent.parent_id) === rec.fields.KinId) {
                   this.recos.yours.push(rec);
                 } else {
-                  this.recos.community.push(rec);
+                  if (!rec.fields.hasOwnProperty('Visibility') || rec.fields.Visibility === "Yes") {
+                    this.recos.community.push(rec);
+                  }
                 }
             } 
           }

@@ -24,7 +24,11 @@ export class RecosComponent implements OnInit {
 
   get_friends() {
     this.airtableService.getFriends(this.user.parent.parent_id).subscribe(data => {
-      this.friends = data['records'][0].fields.Friends.split(",");
+      if (data['records'].length > 0) {
+        this.friends = data['records'][0].fields.Friends.split(",");
+      } else {
+        this.friends = [];
+      }
     });
 
   }

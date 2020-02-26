@@ -45,12 +45,15 @@ import { ClassesModule } from './classes/classes.module';
 import { PlaydateDialogComponent } from './event/playdate-dialog/playdate-dialog.component';
 import { RecosComponent } from './component/recos/recos.component';
 import { RecosListingComponent } from './component/recos/recos-listing/recos-listing.component';
+import { AddRecoComponent } from './component/add-reco/add-reco.component';
+import { SafePipe } from './shared/service/safe.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    AddRecoComponent,
     HelpComponent,
     DataEntryComponent,
     ReviewsComponent,
@@ -77,6 +80,7 @@ import { RecosListingComponent } from './component/recos/recos-listing/recos-lis
     MasonsryRecosViewComponent,
     MasonrySubscribeViewComponent,
     PlaydateDialogComponent,
+    SafePipe,
   ],
   imports: [
     AppRoutingModule,
