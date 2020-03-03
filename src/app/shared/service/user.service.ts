@@ -29,6 +29,7 @@ export class UserService {
    
     getUser() {
         return this.http.get<User>(API_URL + 'parents/').pipe(map((response) => {
+            console.log('get user' + response);
             if (response.error) {
                 let emptyUser = new User();
                 emptyUser.error = response.error;
@@ -59,6 +60,11 @@ export class UserService {
         return httpOptions;
     }
 
+    //create referral
+    createReferral(referee: string) {
+        return this.http.post(API_URL + 'referrals/', {"email": referee});
+    }
+
     //create user
     createUser(user: UserRequest) {
         return this.http.post(API_URL + 'parents/', user);
@@ -74,6 +80,12 @@ export class UserService {
     createKid(inputObject: any) {
         const httpOptions = this.gethttpOptions();
         return this.http.post(API_URL + 'kids/', inputObject, httpOptions);
+    }
+
+    addFriends(referrals: any) {
+        console.log('add friends' + JSON.stringify(referrals));
+        const httpOptions = this.gethttpOptions();
+        return this.http.post(API_URL + 'friends/', referrals, httpOptions);
     }
 
     createKids(kids: any) {

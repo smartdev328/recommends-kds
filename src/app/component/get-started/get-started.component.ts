@@ -2,6 +2,7 @@ import { Component, OnInit, ɵConsole, ComponentFactoryResolver } from '@angular
 import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { EventConstants } from '@shared/constants/EventConstants';
 import { Kid } from '@shared/model/kid';
+import { Referral } from '@shared/model/account';
 import { UserRequest } from '@shared/model/request-body';
 import { CommonUtil } from '@shared/utils/common-util';
 import { UserService } from '@shared/service/user.service';
@@ -21,6 +22,8 @@ export class GetStartedComponent implements OnInit {
   formGroup: FormGroup;
   interests: any[];
   kids: Kid[];
+  referrals: Referral[];
+  referralControls: FormArray;
   kidControls: FormArray;
   submitted = false;
   eventConstants = new EventConstants();
@@ -31,7 +34,6 @@ export class GetStartedComponent implements OnInit {
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private http: HttpClient,
     private router: Router,
     private auth: AuthService,
   ) {
@@ -49,10 +51,12 @@ export class GetStartedComponent implements OnInit {
       zipcode: new FormControl(),
       email:new FormControl(),
       newsletter: new FormControl(false),
-      kidControls: this.formBuilder.array([])
+      kidControls: this.formBuilder.array([]),
+      referralControls: this.formBuilder.array([])
     });
     this.interests = this.eventConstants.PRIMARY_CATEGORY.map((item) => item);
     this.kids = [];
+    this.referrals = [];
     // this.addChild();
     this.formGroup.controls['email'].disable();
     this.userService.getUser().subscribe((user) => {
@@ -61,12 +65,25 @@ export class GetStartedComponent implements OnInit {
         this.formGroup.get('firstName').setValue(user.parent.first_name);
         this.formGroup.get('lastName').setValue(user.parent.last_name);
         this.formGroup.get('zipcode').setValue(user.parent.zip_code);
-        // this.formGroup.get('newsletter').setValue(isNewsLetter);
+        this.formGroup.get('newsletter').setValue(user.parent.newsletter.toString() == 'True');
         this.formGroup.get('email').setValue(user.parent.email);
         this.parentEmail=user.parent.email;
+        this.referrals = user.referrals ? user.referrals : [new Referral()]
+        this.initializeReferrals(this.referrals);
       }    
 
     });
+  }
+
+  initializeReferrals(referrals: Referral[]) {
+    this.referralControls = this.formGroup.get('referralControls') as FormArray;
+    for (let i = 0; i < referrals.length; i++) {
+      this.referralControls.push(new FormGroup({
+        referral_id: new FormControl(referrals[i].id),
+        referrer_name: new FormControl(referrals[i].referrer),
+        accept: new FormControl(false),
+      }));
+    }
   }
 
   addChild() {
@@ -105,21 +122,41 @@ export class GetStartedComponent implements OnInit {
     var kidLength = 0;
     if (this.formGroup.value.kidControls !== undefined) {
       kidLength = this.formGroup.value.kidControls.length;
-    }   
+    } 
+    
+    var referralsLength = 0;
+    if (this.formGroup.value.referralControls !== undefined) {
+      referralsLength = this.formGroup.value.referralControls.length;
+    }  
     
     this.userService.updateUser(param).subscribe(
       responseParent => {
           if (kidLength > 0) {
               this.userService.createKids(this.formGroup.value.kidControls).subscribe(
                 responseKid => {
-                  this.router.navigate(['/home']);
+                  if (referralsLength > 0) {
+                    this.userService.addFriends(this.formGroup.value.referralControls).subscribe(
+                      responseReferral => {
+                        this.router.navigate(['/home']);
+                    });
+                  } else {
+                    this.router.navigate(['/home']);
+                  }
               });
           } else {
-            this.router.navigate(['/home']);
-          }
+            if (referralsLength > 0) {
+              this.userService.addFriends(this.formGroup.value.referralControls).subscribe(
+                responseReferral => {
+                  this.router.navigate(['/home']);
+              });
+            } else {
+              this.router.navigate(['/home']);
+            }
+          } 
       }, err => {
        console.log('Error in call service for parent and kid', err);
       });
+      this.router.navigate(['/home']);
   }
 
   back(){

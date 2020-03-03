@@ -12,11 +12,11 @@ import { ReviewsService } from '../../component/add-review/reviews.service';
 import { ANALYTICS_ENTITY_TYPES_ENUM, INTERFACE_ENUM, ACTION } from '../../shared/constants/AnalyticsConstants';
 
 @Component({
-    selector: 'playdate-dialog',
-    templateUrl: './playdate-dialog.component.html',
-    styleUrls: ['./playdate-dialog.component.css']
+    selector: 'invite-friend',
+    templateUrl: './invite-friend.component.html',
+    styleUrls: ['./invite-friend.component.css']
 })
-export class PlaydateDialogComponent implements OnInit {
+export class InviteFriendComponent implements OnInit {
 
     form: FormGroup;
     message:string;
@@ -28,19 +28,18 @@ export class PlaydateDialogComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private userService: UserService,
-        private reviewService: ReviewsService,
         private http: HttpClient,
         private fb: FormBuilder,
-        private dialogRef: MatDialogRef<PlaydateDialogComponent>,
+        private dialogRef: MatDialogRef<InviteFriendComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any) {
 
         this.message = " would like to add you as a friend on Kin Parenting."
-                    + " Please accept the request by logging in or signing up at https://kinparenting.com/login." 
+                    + " Please accept the request by logging in or signing up at https://prerel.kinparenting.com" 
                 
         this.form = fb.group({
             senderName: ['', [Validators.required, Validators.pattern("[A-Za-z]*")]],
             toPhone: ['', Validators.pattern("[0-9]*")],
-            toEmail: ['', Validators.pattern("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}")],
+            toEmail: ['', Validators.pattern("[A-Za-z0-9._%-+]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}")],
         });
 
     }
@@ -98,11 +97,15 @@ export class PlaydateDialogComponent implements OnInit {
         data["subject"] =  this.form.get('senderName').value + " is inviting you....";
         data["message"] = "Hi there!\n" + "Your friend " + this.form.get('senderName').value + this.message 
         + "\n\nThank you,\nKin Parenting Team (https://kinparenting.com)";
-        const url = `${API_URL}send-email/`;
-        const headers = new HttpHeaders().set('Content-Type', 'application/json');
-        this.http.post(url, data, { headers: headers, responseType: 'json' }).subscribe(response => {
-        }, error => {
-         });
+        
+        this.userService.createReferral(this.form.get('toEmail').value).subscribe((response) => {});
+                const url = `${API_URL}send-email/`;
+                const headers = new HttpHeaders().set('Content-Type', 'application/json');
+                this.http.post(url, data, { headers: headers, responseType: 'json' }).subscribe(response => {
+                    console.log("Sent email");
+                }, 
+                error => {
+                });
     }
 
 

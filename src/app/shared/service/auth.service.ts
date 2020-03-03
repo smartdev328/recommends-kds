@@ -166,6 +166,9 @@ export class AuthService {
   findUserAndRedirect(currunrRoute :string, targetRoute: string) {
     this.userService.getUser().subscribe((user) => {
       this.userSubject$.next(user);
+      if (user.referrals.length > 0) {
+        this.router.navigate(['accept-invites']);
+      }
     });
     if (currunrRoute) {
       this.router.navigate([currunrRoute]);

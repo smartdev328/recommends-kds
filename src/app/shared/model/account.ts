@@ -21,8 +21,13 @@ export class Parent {
     referred_by: string;
     newsletter: boolean;
     zip_code: string;
-
+  
     constructor(option?: { kid?: Kid }) {
         this.kids = option && option.kid ? [option.kid] : [];
     }
+}
+
+export class Referral {
+    id: string;
+    referrer: string;
 }

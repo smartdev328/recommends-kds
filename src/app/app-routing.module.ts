@@ -24,6 +24,7 @@ import { RecosListingComponent } from './component/recos/recos-listing/recos-lis
 import { AuthGuard } from './shared/guards/auth.guard';
 import { RecosComponent } from './component/recos/recos.component';
 import { AddRecoComponent } from './component/add-reco/add-reco.component';
+import { AcceptInviteComponent } from './component/accept-invite/accept-invite.component';
 
 
 const routes: Routes = [
@@ -86,10 +87,7 @@ const routes: Routes = [
   { path:'recos', component: RecosComponent},
   { path:'recos-listing/:id', component: RecosListingComponent},
   { path:'add-recos', component: AddRecoComponent},
- 
-
-
-  
+  { path:'accept-invites',component:AcceptInviteComponent},
   { path: '**', redirectTo: '' },
 ];
 

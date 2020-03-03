@@ -6,10 +6,10 @@ import { AuthService } from '@shared/service/auth.service';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MatDialogRef,MatDialog,} from "@angular/material";
+import { MatDialogConfig,MatDialog,} from "@angular/material";
  import 'sweetalert2/src/sweetalert2.scss'
 import { SwalService } from '@shared/service/swal.service';
-//import { timingSafeEqual } from 'crypto';
+import { InviteFriendComponent } from '../../../component/invite-friend/invite-friend.component';
 
 @Component({
   selector: 'app-layout-home-header',
@@ -73,6 +73,18 @@ this.dialogRef.close();
     // const initialState = { class: 'modal-lg', listener: this };
     // this.modalRef = this.modalService.show(SignUpComponent, initialState);
     this.router.navigate(['profile']);
+  }
+
+  inviteFriend() {
+    const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = false;
+        dialogConfig.autoFocus = true;
+        dialogConfig.hasBackdrop = true;
+        dialogConfig.position = { bottom:'0'};
+        dialogConfig.data = { event: event, isLoggedIn: this.isLogedin }
+
+        this.dialog.open(InviteFriendComponent, dialogConfig);
+
   }
 
   /*

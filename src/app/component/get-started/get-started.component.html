@@ -25,6 +25,18 @@
             </div>
         </mat-card>
     </div>
+    <mat-divider *ngIf="referrals.length > 0"></mat-divider>
+    <div class="row py-3 mx-0" *ngIf="referrals.length > 0">
+            <div class="col-md-4">
+                <h3 class="fs-xxl">Pending friend invites</h3>
+                <p class="fs-sm">Check the box to accept invitation</p>
+            </div>
+            <div class="col-md-3" fxLayout="column" fxLayoutAlign="end start" *ngFor="let referral of referrals; let i = index">
+                <mat-checkbox [formControl]="formGroup.controls.referralControls.controls[i].controls.accept" 
+                class="mb-1 ml-md-5 fs-md news-letter newsletter-label">
+                    {{referral.referrer}}</mat-checkbox>
+            </div>
+    </div>
     <mat-divider></mat-divider>
     <div class="row py-3 mx-0">
         <div class="col-md-4">

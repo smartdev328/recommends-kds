@@ -47,6 +47,8 @@ import { RecosComponent } from './component/recos/recos.component';
 import { RecosListingComponent } from './component/recos/recos-listing/recos-listing.component';
 import { AddRecoComponent } from './component/add-reco/add-reco.component';
 import { SafePipe } from './shared/service/safe.pipe';
+import { InviteFriendComponent } from './component/invite-friend/invite-friend.component';
+import { AcceptInviteComponent } from './component/accept-invite/accept-invite.component';
 
 
 @NgModule({
@@ -70,6 +72,7 @@ import { SafePipe } from './shared/service/safe.pipe';
     CallbackComponent,
     ProfileComponent,
     GetStartedComponent,
+    AcceptInviteComponent,
     MiddlewareComponent,
     SavedComponent,
     SavedListingComponent,
@@ -81,6 +84,7 @@ import { SafePipe } from './shared/service/safe.pipe';
     MasonrySubscribeViewComponent,
     PlaydateDialogComponent,
     SafePipe,
+    InviteFriendComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -105,7 +109,7 @@ import { SafePipe } from './shared/service/safe.pipe';
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     SwalService
   ],
-  entryComponents: [PlaydateDialogComponent],
+  entryComponents: [PlaydateDialogComponent, InviteFriendComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

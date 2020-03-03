@@ -1,0 +1,168 @@
+.profile-container {
+    margin: 0% 5% 100px 5%;
+}
+
+.content {
+    padding: 57px 60px;
+}
+
+mat-divider {
+    margin: 20px 0;
+}
+
+.mat-card .mat-get-divider {
+    position: relative;
+}
+.text-right {
+    margin-bottom: -4%;
+}
+
+.interests {
+    position: relative;
+}
+
+.textarea{
+  font-family: Montserrat;
+  font-size: 18px; 
+}
+
+.clear {
+    position: absolute;
+    right: 0;
+    top: -25px;
+    cursor: pointer;
+}
+
+.news-letter{
+    font-size: 24px;
+    font-family: Montserrat;
+}
+
+h4 {
+    font-weight: 700;
+}
+
+mat-form-field {
+    font-family: Montserrat;
+    font-size: 18px;
+}
+
+.mat-chip.mat-standard-chip {
+    background-color: unset;
+    color: rgba(0, 0, 0, .87);
+    border: 1px solid #4a4949;
+    font-family: Montserrat;
+}
+
+.mat-standard-chip:hover::after {
+    opacity: 0;
+}
+
+.mat-standard-chip:focus::after {
+    opacity: 0;
+}
+
+.no-display {
+    display: none;
+}
+
+.btn {
+    margin: 0 1rem;
+}
+
+.fs-sm {
+    font-size: 16px !important;
+}
+
+.fs-md {
+    font-size: 18px !important;
+}
+
+.fs-lg {
+    font-size: 28px !important;
+}
+
+.fs-xl {
+    font-family: Montserrat;
+    font-size: 22px;
+}
+
+.fs-xxl {
+        font-family: Montserrat;
+        font-size: 32px;    
+}
+
+.fs-xxxl {
+    font-size: 64px !important;
+}
+
+@media only screen and (max-width: 767px) {
+    .fs-sm {
+        font-size: 14px !important;
+    }
+    .fs-md {
+        font-size: 18px !important;
+    }
+    .fs-lg {
+        font-size: 18px !important;
+    }
+    .fs-xl {
+        font-size: 18px !important;
+    }
+    .fs-xxl {
+        font-size: 32px !important;
+    }
+    
+    .fs-xxxl {
+        font-size: 32px !important;
+    }
+    
+}
+
+@media only screen and (max-width: 640px){
+    .content{
+        padding: 57px 19px;
+    }
+    .fs-xxl {
+        font-size: 24px !important;
+
+    }
+    .mat-form-field{
+        font-size: 14px !important;
+    }
+    .mat-standard-chip{
+       height: 44px !important;
+       border-radius: 25px !important;
+    }
+    .news-letter {white-space: pre-line !important;}
+}
+
+@media only screen and (max-width: 420px) {
+    .btn-yellow,
+    .btn-white {
+        min-width: 100px;
+        margin: 0 5px;
+    }
+    label.mat-checkbox-layout,
+    .mat-checkbox-label,
+    .mat-checkbox-inner-container {
+        white-space: normal !important;
+    }
+    .fs-md {
+        font-size: 16px !important;
+    }
+    .fs-xxl {
+        font-size: 24px !important;
+        margin-bottom: 3px;
+    }
+    .form-control {
+        font-size: 14px !important;
+    }
+    .mat-input-element {
+        font-weight: 400 !important;
+    }
+    #collapsingNavbar2 .navbar-nav .nav-button {
+        margin: 0 auto;
+    }
+}
+
