@@ -91,18 +91,18 @@
           </div>
       </div>
   </div>
-  <div class="home-image-div" *ngIf="friends.length > 0">
+  <div class="home-image-div">
         <div class="saved" fxLayout="row wrap">
             <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
-                   <h1 class="saved-h">By Friends</h1>
+                   <h1 class="saved-h">By Friends  <button class="btn-plus" (click)="inviteFriends()">+</button></h1>
             </div>
         </div>
         <div class="category s-3 p-3 m-3">
             <div class="row">
               <!-- <div class="col-md-1"></div> -->
                 <div class="col" *ngFor="let friend of friends;">
-                       <a style="text-decoration: none;" [routerLink]="['/recos', friend]">
-                        <div class="circle-with-text"><span class="friend-label-sm">{{friend}}</span>
+                       <a style="text-decoration: none;" [routerLink]="['/recos', friend.link]">
+                        <div class="circle-with-text"><span class="friend-label-sm">{{friend.name}}</span>
                         </div>
                         </a>
                 </div>

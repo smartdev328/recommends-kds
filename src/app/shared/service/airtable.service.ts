@@ -31,7 +31,14 @@ export class AirtableService {
 
     // get recos by recommender
     getRecos(recommender: string) {
-        return this.http.get(AIRTABLE_API_URL + "Recos?filterByFormula=Recommender+%3D+'" + recommender + "'", this.gethttpOptions());
+        var ids = recommender.split("-");
+        if (ids.length > 1 && ids[1] !== '') {
+            // get by KinId
+            return this.http.get(AIRTABLE_API_URL + "Recos?filterByFormula=KinId+%3D+'" + ids[1] + "'", this.gethttpOptions());
+        } else {
+            // get by name
+            return this.http.get(AIRTABLE_API_URL + "Recos?filterByFormula=Recommender+%3D+'" + ids[0] + "'", this.gethttpOptions());
+        }
     }
 
     // get friends

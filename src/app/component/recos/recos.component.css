@@ -21,6 +21,18 @@ a {
     text-decoration: none;
 }
 
+.btn-plus {
+    font-family: Montserrat;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    text-align: center;
+    color: #4A4949;
+    background-color: #FFD700;
+}
+
 .home-image {
     background-image: url("assets/web_images/home_banner.jpg");
     width: 100%;

@@ -12,6 +12,7 @@ import { AirtableService } from '@shared/service/airtable.service';
 })
 export class ParentRecosComponent implements OnInit {
     recommender: string;
+    recommenderName: string;
     public all_recos: any;
     isAuthenticated$: Observable<boolean>;
     isLoggedin:boolean;
@@ -50,11 +51,12 @@ export class ParentRecosComponent implements OnInit {
              this.authService.login();
           }
         this.titleService.setTitle('Recommendations');
-        this.recommender = this.route.snapshot.params['recommender'];
+        this.recommender = atob(this.route.snapshot.params['recommender']);
+        this.recommenderName = this.recommender.split("-")[0];
     }
 
     get_recos() {
-        this.airtableService.getRecos(this.recommender).subscribe(data => {
+        this.airtableService.getRecos(this.recommenderName).subscribe(data => {
             for(var idx in data['records']) {
                 var rec = data['records'][idx];
                 if (rec.fields.Category[0] === "Class") {

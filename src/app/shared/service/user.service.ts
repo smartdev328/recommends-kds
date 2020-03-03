@@ -83,9 +83,13 @@ export class UserService {
     }
 
     addFriends(referrals: any) {
-        console.log('add friends' + JSON.stringify(referrals));
         const httpOptions = this.gethttpOptions();
         return this.http.post(API_URL + 'friends/', referrals, httpOptions);
+    }
+
+    getFriends() {
+        const httpOptions = this.gethttpOptions();
+        return this.http.get(API_URL + 'friends/', httpOptions);
     }
 
     createKids(kids: any) {

@@ -7,7 +7,6 @@ import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MatDialogConfig,MatDialog,} from "@angular/material";
- import 'sweetalert2/src/sweetalert2.scss'
 import { SwalService } from '@shared/service/swal.service';
 import { InviteFriendComponent } from '../../../component/invite-friend/invite-friend.component';
 
@@ -36,10 +35,6 @@ export class HomeHeaderComponent implements OnInit {
     private router: Router,
     private swal:SwalService,
     public dialog: MatDialog,
-
-
-
-
   ) { 
     this.isAuthenticated$= this.auth.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
@@ -81,7 +76,7 @@ this.dialogRef.close();
         dialogConfig.autoFocus = true;
         dialogConfig.hasBackdrop = true;
         dialogConfig.position = { bottom:'0'};
-        dialogConfig.data = { event: event, isLoggedIn: this.isLogedin }
+        dialogConfig.data = { isLoggedIn: this.isLogedin }
 
         this.dialog.open(InviteFriendComponent, dialogConfig);
 
