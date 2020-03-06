@@ -34,7 +34,8 @@ export class InviteFriendComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: any) {
 
         this.message = " would like to add you as a friend on Kin Parenting."
-                    + " Please accept the request by logging in or signing up at https://prerel.kinparenting.com" 
+                    + " Please accept the request by logging in or signing up at "
+                    + window.location.origin + "/accept-invites";
                 
         this.form = fb.group({
             senderName: ['', [Validators.required, Validators.pattern("[A-Za-z]*")]],

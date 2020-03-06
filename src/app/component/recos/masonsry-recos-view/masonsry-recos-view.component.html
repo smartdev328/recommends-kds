@@ -6,10 +6,12 @@
   [masonryOptions]="{ transitionDuration: '1s', gutter: 5 }" [useAnimation]="true" [useImagesLoaded]="false"
   [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 1, maxDuration : 2 }">
   <ng-masonry-grid-item class="tiles productBlock" *ngFor="let reco of recos | slice:start:end; let i=index">
-    <mat-card class="event-list-cards" *ngIf="reco.fields.hasOwnProperty('Image')" (click)="recos_redirect(reco.fields.URL)">
+    <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
       <div class="img-wrp">
-        <img src={{reco.fields.Image[0].url}}
+          <img src={{reco.fields.Image[0].url}} *ngIf="reco.fields.hasOwnProperty('Image')"
           onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+          mat-card-image>
+          <img src="assets/web_images/recos/toys.jpg" *ngIf="!reco.fields.hasOwnProperty('Image')"
           mat-card-image>
       </div>
       <mat-card-content class="">

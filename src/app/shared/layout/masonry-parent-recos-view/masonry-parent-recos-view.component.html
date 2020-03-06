@@ -14,8 +14,10 @@
 
           <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
             <div class="img-wrp">
-              <img src={{reco.fields.Image[0].url}}
+              <img src={{reco.fields.Image[0].url}} *ngIf="reco.fields.hasOwnProperty('Image')"
                 onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+                mat-card-image>
+                <img src="assets/web_images/recos/apps.jpg" *ngIf="!reco.fields.hasOwnProperty('Image')"
                 mat-card-image>
             </div>
             <mat-card-content>
@@ -49,8 +51,10 @@
 
           <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
             <div class="img-wrp">
-              <img src={{reco.fields.Image[0].url}}
+              <img src={{reco.fields.Image[0].url}} *ngIf="reco.fields.hasOwnProperty('Image')"
                 onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+                mat-card-image>
+                <img src="assets/web_images/recos/book2.jpg" *ngIf="!reco.fields.hasOwnProperty('Image')"
                 mat-card-image>
             </div>
             <mat-card-content>
@@ -84,9 +88,11 @@
 
           <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
             <div class="img-wrp">
-              <img src={{reco.fields.Image[0].url}}
-                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
-                mat-card-image>
+              <img src={{reco.fields.Image[0].url}} *ngIf="reco.fields.hasOwnProperty('Image')"
+              onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+              mat-card-image>
+              <img src="assets/web_images/home_camps.jpg" *ngIf="!reco.fields.hasOwnProperty('Image')"
+              mat-card-image>
             </div>
             <mat-card-content>
               <p class="event-group-title">
@@ -119,9 +125,11 @@
 
           <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
             <div class="img-wrp">
-              <img src={{reco.fields.Image[0].url}}
-                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
-                mat-card-image>
+              <img src={{reco.fields.Image[0].url}} *ngIf="reco.fields.hasOwnProperty('Image')"
+              onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+              mat-card-image>
+              <img src="assets/web_images/home_classes.jpg" *ngIf="!reco.fields.hasOwnProperty('Image')"
+              mat-card-image>
             </div>
             <mat-card-content>
               <p class="event-group-title">
@@ -155,9 +163,11 @@
 
           <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
             <div class="img-wrp">
-              <img src={{reco.fields.Image[0].url}}
-                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
-                mat-card-image>
+              <img src={{reco.fields.Image[0].url}} *ngIf="reco.fields.hasOwnProperty('Image')"
+              onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+              mat-card-image>
+              <img src="assets/web_images/home_events.jpg" *ngIf="!reco.fields.hasOwnProperty('Image')"
+              mat-card-image>
             </div>
             <mat-card-content>
               <p class="event-group-title">
@@ -190,9 +200,11 @@
 
           <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
             <div class="img-wrp">
-              <img src={{reco.fields.Image[0].url}}
-                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
-                mat-card-image>
+              <img src={{reco.fields.Image[0].url}} *ngIf="reco.fields.hasOwnProperty('Image')"
+              onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+              mat-card-image>
+              <img src="assets/web_images/recos/movies.jpg" *ngIf="!reco.fields.hasOwnProperty('Image')"
+              mat-card-image>
             </div>
             <mat-card-content>
               <p class="event-group-title">
@@ -225,9 +237,11 @@
 
           <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
             <div class="img-wrp">
-              <img src={{reco.fields.Image[0].url}}
-                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
-                mat-card-image>
+              <img src={{reco.fields.Image[0].url}} *ngIf="reco.fields.hasOwnProperty('Image')"
+              onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+              mat-card-image>
+              <img src="assets/web_images/home_places.jpg" *ngIf="!reco.fields.hasOwnProperty('Image')"
+              mat-card-image>
             </div>
             <mat-card-content>
               <p class="event-group-title">
@@ -260,9 +274,11 @@
 
           <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
             <div class="img-wrp">
-              <img src={{reco.fields.Image[0].url}}
-                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
-                mat-card-image>
+              <img src={{reco.fields.Image[0].url}} *ngIf="reco.fields.hasOwnProperty('Image')"
+              onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+              mat-card-image>
+              <img src="assets/web_images/recos/products.jpg" *ngIf="!reco.fields.hasOwnProperty('Image')"
+              mat-card-image>
             </div>
             <mat-card-content>
               <p class="event-group-title">
@@ -295,9 +311,11 @@
 
           <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
             <div class="img-wrp">
-              <img src={{reco.fields.Image[0].url}}
-                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
-                mat-card-image>
+              <img src={{reco.fields.Image[0].url}} *ngIf="reco.fields.hasOwnProperty('Image')"
+              onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+              mat-card-image>
+              <img src="assets/web_images/recos/services.jpg" *ngIf="!reco.fields.hasOwnProperty('Image')"
+              mat-card-image>
             </div>
             <mat-card-content>
               <p class="event-group-title">
@@ -330,9 +348,11 @@
 
           <mat-card class="event-list-cards" (click)="recos_redirect(reco.fields.URL)">
             <div class="img-wrp">
-              <img src={{reco.fields.Image[0].url}}
-                onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
-                mat-card-image>
+              <img src={{reco.fields.Image[0].url}} *ngIf="reco.fields.hasOwnProperty('Image')"
+              onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';" class="tiles-image img-fluid"
+              mat-card-image>
+              <img src="assets/web_images/recos/toys.jpg" *ngIf="!reco.fields.hasOwnProperty('Image')"
+              mat-card-image>
             </div>
             <mat-card-content>
               <p class="event-group-title">

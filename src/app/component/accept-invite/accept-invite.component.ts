@@ -79,6 +79,8 @@ export class AcceptInviteComponent implements OnInit {
     } else {
           this.router.navigate(['/home']);
     }
+
+    this.router.navigate(['/home']);
               
   }
 

@@ -13,7 +13,7 @@ import { MatDialogConfig,MatDialog,} from "@angular/material";
 export class RecosComponent implements OnInit {
 
   public user: User;
-  public friends: [];
+  public friends: any[];
 
   constructor(private userService: UserService, 
     private airtableService: AirtableService,
@@ -33,7 +33,7 @@ export class RecosComponent implements OnInit {
       if (data['records'].length > 0) {
         var friends_list = data['records'][0].fields.Friends.split(",");
         for (var i = 0; i < friends_list.length; i++) {
-          var friend = new Object();
+          var friend: any;
           friend['name'] = friends_list[i];
           friend['link'] = btoa(friends_list[i]);
           this.friends.push(friend);
@@ -46,7 +46,6 @@ export class RecosComponent implements OnInit {
           var friend = data['friends'][idx];
           friend.link = btoa(friend.name + '-' + friend.id);
           this.friends.push(friend);
-          console.log(this.friends);
         }
       }
     });

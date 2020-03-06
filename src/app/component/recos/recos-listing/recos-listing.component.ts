@@ -20,6 +20,7 @@ export class RecosListingComponent implements OnInit {
   data_list;
   isExplore = false;
   public friends: string[];
+  public friend_ids: number[];
   public recommenders = new Object();
   public user: User;
   public category: string;
@@ -41,6 +42,7 @@ export class RecosListingComponent implements OnInit {
   public isAuthenticated$: Observable<boolean>;
   isLoggedin = false;
   
+  
 
   entity_type: string;
   display_entity_type: string;
@@ -53,6 +55,7 @@ export class RecosListingComponent implements OnInit {
                 this.isAuthenticated$.subscribe(data => {
                   this.isLoggedin = data;
                 })
+                this.friend_ids = [];
               }
               
 
@@ -77,12 +80,12 @@ export class RecosListingComponent implements OnInit {
         this.recommenders[rec.id] = rec.fields.Name;
       }
     });
+    
+
     this.userService.getUser().subscribe((user) => {
         this.user = user;
         this.get_friends();
-        
     });
-
     setTimeout(() => {
       this.showCommunity = true;
     }, 3000);
@@ -106,12 +109,21 @@ export class RecosListingComponent implements OnInit {
       } else {
         this.friends = [];
       }
-      this.get_recos(this.entity_type, this.friends);
+      this.userService.getFriends().subscribe(data => {
+        if (data['friends'].length > 0) {
+          for (var idx in data['friends']) {
+            var friend = data['friends'][idx];
+            this.friend_ids.push(parseInt(friend.id));
+          }
+        }
+        this.get_recos(this.entity_type, this.friends, this.friend_ids);
+      });
+      
     });
 
   }
 
-  get_recos(entity_type: string, friends_list: string[]) {
+  get_recos(entity_type: string, friends_list: string[], friends_ids_list: number[]) {
     var airtable_category = this.categoryList.filter(function(item) {
       return item.name === entity_type;
     })[0];
@@ -122,9 +134,15 @@ export class RecosListingComponent implements OnInit {
             if (friends_list.length > 0 && friends_list.indexOf(rec.fields.Recommender) > -1 ) {
                 this.recos.friends.push(rec);
             } else {
-                if (rec.fields.hasOwnProperty('KinId') 
-                    && parseInt(this.user.parent.parent_id) === rec.fields.KinId) {
-                  this.recos.yours.push(rec);
+              console.log("LIST" + friends_ids_list);
+                if (rec.fields.hasOwnProperty('KinId')) {
+                    if(parseInt(this.user.parent.parent_id) === rec.fields.KinId) {
+                        this.recos.yours.push(rec);
+                    }
+                    if (friends_ids_list.indexOf(rec.fields.KinId) > -1) {
+                      this.recos.friends.push(rec);
+                      console.log(this.recos.friends);
+                    }
                 } else {
                   if (!rec.fields.hasOwnProperty('Visibility') || rec.fields.Visibility === "Yes") {
                     this.recos.community.push(rec);
@@ -154,6 +172,7 @@ export class RecosListingComponent implements OnInit {
             });
           }
     });
+    
   }
 
 }
