@@ -35,33 +35,27 @@ const routes: Routes = [
   },
   {
     path: '',
-    //loadChildren: () => import('./event/event.module').then(mod => mod.EventModule)
-    loadChildren: './event/event.module#EventModule'
+    loadChildren: () => import('./event/event.module').then(mod => mod.EventModule)
   },
   {
     path: '',
-    //loadChildren: () => import('./camp/camp.module').then(mod => mod.CampModule)
-    loadChildren: './camp/camp.module#CampModule'
+    loadChildren: () => import('./camp/camp.module').then(mod => mod.CampModule)
   },
   {
     path: '',
-    //loadChildren: () => import('./venue/venue.module').then(mod => mod.VenueModule)
-    loadChildren: './venue/venue.module#VenueModule'
+    loadChildren: () => import('./venue/venue.module').then(mod => mod.VenueModule)
   },
   {
     path: '',
-    //loadChildren: () => import('./hiking/hiking.module').then(mod => mod.HikingModule)
-    loadChildren: './hiking/hiking.module#HikingModule'
+    loadChildren: () => import('./hiking/hiking.module').then(mod => mod.HikingModule)
   },
   {
     path: '',
-    //loadChildren: () => import('./city/city.module').then(mod => mod.CityModule)
-    loadChildren: './city/city.module#CityModule'
+    loadChildren: () => import('./city/city.module').then(mod => mod.CityModule)
   },
   {
     path: '',
-    //loadChildren: () => import('./classes/classes.module').then(mod => mod.ClassesModule)
-    loadChildren: './classes/classes.module#ClassesModule'
+    loadChildren: () => import('./classes/classes.module').then(mod => mod.ClassesModule)
   },
   { path: 'data-entry', component: DataEntryComponent,canActivate: [AuthGuard]},
   { path: 'add/review', component: ReviewsComponent },
