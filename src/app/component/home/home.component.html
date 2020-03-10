@@ -3,91 +3,68 @@
         <div class="col-sm-12 main-home-image-div home-image">
             <div class="info">
                 <h1>Personalized Discovery & Planning for Parents</h1>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <button class="btn sign_up">
-                        <a (click)="auth.login()" class="chat_button_1">SIGN IN</a>
-                    </button>
-                </div>
-            </div>
-            <!-- <div><h1 class="main-heading">Kin</h1></div> -->
-        </div>
-    </div>
-    <!-- 
-    <div class="row homeImage">
-        <div class="banner-heading">
-            <br>
-            <div class="info">
-                Discover and plan family-friendly experiences!
+                <button class="btn sign_up">
+                    <a (click)="auth.login()" class="chat_button_1">SIGN IN</a>
+                </button>
             </div>
         </div>
     </div>
-    -->
-    <div class="row categories-section">
-        <div class="col-sm-6">
-            <!--events-->
-            <a [routerLink]="['/','family-friendly-events-near-me']">
-                <div class="eventsImage">
-                    <label class="category-label">Events</label>
+    <div class="row">
+        <div class="col-sm-12 benefits-section">
+            <ngx-slick-carousel
+                class="carousel" 
+                #slickModal="slick-carousel"
+                [config]="slideConfig"
+            >
+                <div ngxSlickItem *ngFor="let benefit of benefits" class="slide">
+                    <div class="benefit">
+                        {{ benefit }}
+                    </div>
                 </div>
-            </a>
-        </div>
-        <div class="col-sm-6">
-            <!--places-->
-            <a [routerLink]="['/','family-friendly-places-near-me']">
-                <div class="placesImage">
-                    <label class="category-label">Places</label>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6">
-            <!--classes-->
-            <a [routerLink]="['/','kids-classes-near-me']">
-                <div class="classesImage">
-                    <label class="category-label">Classes</label>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6">
-            <!--camps-->
-            <a [routerLink]="['/','camps-near-me']">
-                <div class="campsImage">
-                    <label class="category-label">Camps</label>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6">
-            <!--hiking-->
-            <a [routerLink]="['/','family-friendly-hikes-near-me']">
-                <div class="hikingImage">
-                    <label class="category-label">Hiking</label>
-                </div>
-            </a>
+            </ngx-slick-carousel>
         </div>
     </div>
-    <div class="row video-section">
-        <div class="col-sm-12 col-md-6">
-            <video controls loop muted>
-                <source src="../../assets/iphone%20frame_3.mp4" type="video/mp4">
-            </video>
+    <div class="row">
+        <div class="col-sm-12 top-recos-section">
+            <h3>Popular Recommendations by users</h3>
+            <ngx-slick-carousel
+                class="carousel" 
+                #slickModal="slick-carousel"
+                [config]="slideConfig2"
+                *ngIf="topRecommendations.length"
+                (init)="slickInit($event)"
+                (afterChange)="afterChange($event)"
+            >
+                <div ngxSlickItem *ngFor="let reco of topRecommendations" class="slide">
+                    <a routerLink="/recos">
+                        <div class="reco">
+                            <img [src]="reco.fields.Image[0].url" alt="reco image" />
+                            <h5>
+                                {{ reco.fields.Title }}
+                            </h5>
+                        </div>
+                    </a>
+                </div>
+            </ngx-slick-carousel>
         </div>
-        <div class="col-sm-12 col-md-6 meet-kin-descrp">
-            <h3>Discover</h3>
-            <p>Events, places, camps and more tailored for your family by location, age, and interests</p>
-            <br>
-            <br>
-            <h3>Plan</h3>
-            <p>Share with friends, add to calendar, save, subscribe to events at your favorite places, 
-                plan a playdate (coming soon)... whatever it takes to make things happen!</p>
-            <br>
-            <br>
-            <h3>Enrich</h3>
-            <p>Explore together and create beautiful moments with your family</p>
-            <button class="btn chat_button_2">
-                <a href="https://www.messenger.com/t/kinparenting" target="_blank">CHAT ON
-                    MESSENGER NOW</a>
-            </button>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 categories-section">
+            <h3>More ways to discover</h3>
+            <span class="description">Things to do around the Bay Area curated by Kin</span>
+            <ngx-slick-carousel
+                class="carousel" 
+                #slickModal="slick-carousel" 
+                [config]="slideConfig"
+            >
+                <div ngxSlickItem *ngFor="let way of discoverWays" class="slide">
+                    <a [routerLink]="way.url">
+                        <div [class]="way.className">
+                            <label class="category-label">{{ way.label }}</label>
+                        </div>
+                    </a>
+                </div>
+            </ngx-slick-carousel>
         </div>
     </div>
 </div>

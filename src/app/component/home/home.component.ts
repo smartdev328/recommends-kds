@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { AuthService } from '@shared/service/auth.service';
@@ -15,14 +15,63 @@ import { Recommendation } from '../../shared/model';
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterViewInit, OnInit  {
   isLogedin: boolean;
   registerForm: FormGroup;
   childForm: FormGroup;
   submitted = false;
+  benefitsCarouselLoaded: boolean;
   public isSuccessVisible: Boolean;
   public isAuthenticated$: Observable<boolean>;
-  public topRecommendations: Recommendation[];
+  public topRecommendations: Recommendation[] = [];
+  benefits = [
+    'Discover your kid’s next favorite place, class, camp, book & more',
+    'Trusted recommendations from parents like you',
+    'Connect with friends & community and share the things you love'
+  ];
+  discoverWays = [
+    {
+      url: ['/', 'family-friendly-events-near-me'],
+      className: 'eventsImage',
+      label: 'Events'
+    },
+    {
+      url: ['/', 'family-friendly-places-near-me'],
+      className: 'placesImage',
+      label: 'Places'
+    },
+    {
+      url: ['/', 'kids-classes-near-me'],
+      className: 'classesImage',
+      label: 'Classes'
+    },
+    {
+      url: ['/', 'camps-near-me'],
+      className: 'campsImage',
+      label: 'Camps'
+    },
+    {
+      url: ['/', 'family-friendly-hikes-near-me'],
+      className: 'hikingImage',
+      label: 'Hiking'
+    },
+  ];
+  slideConfig = {
+    dots: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 1,
+    arrows: false,
+  };
+  slideConfig2 = {
+    dots: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 1,
+    arrows: false,
+    variableWidth: true,
+    centerMode: true,
+  };
 
   constructor(
     private titleService: Title,
@@ -64,10 +113,21 @@ export class HomeComponent implements OnInit {
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
     this.isSuccessVisible = false;
 
+  }
+
+  ngAfterViewInit() {
     this.airtableService.getTopRecos().subscribe(
       (data: any) => {
         this.topRecommendations = data.records;
       }
     );
+  }
+
+  slickInit() {
+    console.log('-------- init');
+  }
+
+  afterChange() {
+    console.log('---- after change');
   }
 }

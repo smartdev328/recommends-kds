@@ -854,5 +854,23 @@ span.kin-pop {
     border:0 !important;
 }
 
+.slick-dots li button:before {
+    color: #fff !important;
+    font-size: 8px;
+}
 
+.top-recos-section .slick-dots li button:before {
+    color: #000 !important;
+}
 
+.categories-section .slick-list {
+    margin: 0 -0.5em;
+}
+
+.categories-section .slick-dots li button:before {
+    color: #000 !important;
+}
+
+.slick-track {
+    overflow: hidden;
+}
