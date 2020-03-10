@@ -3,8 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { AuthService } from '@shared/service/auth.service';
+import { AirtableService } from '@shared/service/airtable.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
+import { Recommendation } from '../../shared/model';
 
 @Component({
   selector: 'app-home',
@@ -19,18 +22,20 @@ export class HomeComponent implements OnInit {
   submitted = false;
   public isSuccessVisible: Boolean;
   public isAuthenticated$: Observable<boolean>;
-
+  public topRecommendations: Recommendation[];
 
   constructor(
     private titleService: Title,
     private metaService: Meta,
-    private auth: AuthService
+    public auth: AuthService,
+    private airtableService: AirtableService
   ) {
-    this.isAuthenticated$= this.auth.isAuthenticated$;
+
+    this.isAuthenticated$ = this.auth.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
       this.auth.setAuth(this.isLogedin);
-    })
+    });
    }
 
   ngOnInit() {
@@ -59,5 +64,10 @@ export class HomeComponent implements OnInit {
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
     this.isSuccessVisible = false;
 
+    this.airtableService.getTopRecos().subscribe(
+      (data: any) => {
+        this.topRecommendations = data.records;
+      }
+    );
   }
 }

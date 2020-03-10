@@ -60,7 +60,7 @@ export class AirtableService {
         return this.http.get(AIRTABLE_API_URL + "Recommenders", this.gethttpOptions());
     }
 
-    getTenRecos() {
+    getTopRecos() {
         return this.http.get(AIRTABLE_API_URL + "Recos?filterByFormula=HomePage%3D'yes'", this.gethttpOptions());
     }
 
