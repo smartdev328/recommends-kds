@@ -24,7 +24,7 @@ export class AcceptInviteComponent implements OnInit {
   public isAuthenticated$: Observable<boolean>;
 
 
-  newsletter: boolean = false;
+  newsletter = false;
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
@@ -32,11 +32,11 @@ export class AcceptInviteComponent implements OnInit {
     private router: Router,
     private auth: AuthService,
   ) {
-    this.isAuthenticated$= this.auth.isAuthenticated$;
+    this.isAuthenticated$ = this.auth.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
       this.auth.setAuth(this.isLogedin);
-    })
+    });
    }
 
   ngOnInit() {
@@ -45,11 +45,11 @@ export class AcceptInviteComponent implements OnInit {
     });
     this.referrals = [];
     this.userService.getUser().subscribe((user) => {
-      this.formGroup.controls.setValue
+      this.formGroup.controls.setValue;
       if (user.parent) {
-        this.referrals = user.referrals ? user.referrals : [new Referral()]
+        this.referrals = user.referrals ? user.referrals : [new Referral()];
         this.initializeReferrals(this.referrals);
-      }    
+      }
 
     });
   }
@@ -66,11 +66,11 @@ export class AcceptInviteComponent implements OnInit {
   }
 
   save() {
-    var referralsLength = 0;
+    let referralsLength = 0;
     if (this.formGroup.value.referralControls !== undefined) {
       referralsLength = this.formGroup.value.referralControls.length;
-    }  
-    
+    }
+
     if (referralsLength > 0) {
       this.userService.addFriends(this.formGroup.value.referralControls).subscribe(
         responseReferral => {
@@ -81,10 +81,10 @@ export class AcceptInviteComponent implements OnInit {
     }
 
     this.router.navigate(['/home']);
-              
+
   }
 
-  back(){
+  back() {
     this.router.navigate(['/home']);
   }
 }

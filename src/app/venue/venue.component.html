@@ -1,115 +1,112 @@
 <div class="container">
 
-    <div class="row">
-        <div class="col-md-6">
-            <label class="venue-header"> Add a venue</label>
-        </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label class="venue-header"> Add a venue</label>
+    </div>
+  </div>
+
+
+  <!--<div class="bs-example" *ngIf="isErrorVisible">-->
+  <!--<div class="alert alert-danger">-->
+  <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
+  <!--<strong>{{errorMessage}}</strong>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Type name" required="true"
+          [(ngModel)]="userSearch.name">
+        <small id="nameHelp" class="form-text text-muted">Enter a name to search.
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" placeholder="City" required="required"
+          [(ngModel)]="userSearch.city">
+        <small id="cityHelp" class="form-text text-muted">Enter a city you want to search.
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="state">State</label>
+        <input type="text" class="form-control" id="state" placeholder="State" required="required"
+          [(ngModel)]="userSearch.state">
+        <small id="stateHelp" class="form-text text-muted">Enter a state you want to search.
+        </small>
+      </div>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+  </div>
+  <div class="row" *ngIf="!isUpdateShow">
+    <div class="col-md-3">
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="add_new_venue($event)">Submit</button>
+      </div>
     </div>
 
-
-    <!--<div class="bs-example" *ngIf="isErrorVisible">-->
-        <!--<div class="alert alert-danger">-->
-            <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
-            <!--<strong>{{errorMessage}}</strong>-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group" >
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Type name" required="true"
-                       [(ngModel)]="userSearch.name"
-                >
-                <small id="nameHelp" class="form-text text-muted">Enter a name to search.
-                </small>
-            </div>
-            <div class="form-group" >
-                <label for="city">City</label>
-                <input type="text" class="form-control" id="city" placeholder="City" required="required"
-                       [(ngModel)]="userSearch.city"
-                >
-                <small id="cityHelp" class="form-text text-muted">Enter a city you want to search.
-                </small>
-            </div>
-            <div class="form-group" >
-                <label for="state">State</label>
-                <input type="text" class="form-control" id="state" placeholder="State" required="required"
-                       [(ngModel)]="userSearch.state"
-                >
-                <small id="stateHelp" class="form-text text-muted">Enter a state you want to search.
-                </small>
-            </div>
-        </div>
-        <div class="col-md-6">
-
-        </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="reset_venue($event)">Reset</button>
+      </div>
     </div>
-    <div class="row" *ngIf="!isUpdateShow">
-        <div class="col-md-3">
-            <div class="form-group">
-                <button type="button" class="btn btn-primary" (click)="add_new_venue($event)">Submit</button>
-            </div>
-        </div>
+  </div>
 
-        <div class="col-md-3">
-            <div class="form-group">
-                <button type="button" class="btn btn-primary" (click)="reset_venue($event)">Reset</button>
-            </div>
-        </div>
+  <div class="row" *ngIf="isUpdateShow">
+    <div class="col-md-3">
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="update_venue($event)">Update</button>
+      </div>
     </div>
 
-    <div class="row" *ngIf="isUpdateShow">
-        <div class="col-md-3">
-            <div class="form-group">
-                <button type="button" class="btn btn-primary" (click)="update_venue($event)">Update</button>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="form-group">
-                <button type="button" class="btn btn-primary" (click)="reset_venue($event)">Reset</button>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="form-group">
-                <button type="button" class="btn btn-primary" (click)="reset_venue($event)" disabled>Previous</button>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="form-group">
-                <button type="button" class="btn btn-primary" (click)="reset_venue($event)" disabled>Next</button>
-            </div>
-        </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="reset_venue($event)">Reset</button>
+      </div>
     </div>
 
-    <label class="venue-header" ></label>
-
-    <div class="row error-message" *ngIf="isErrorVisible">
-        <div class="col-md-12">
-            <label>{{errorMessage}}</label>
-        </div>
-        <div class="col-md-12">
-            <button type="button" class="btn btn-primary errorCloseButton" (click)="closeErrorBox()">Close</button>
-        </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="reset_venue($event)" disabled>Previous</button>
+      </div>
     </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="reset_venue($event)" disabled>Next</button>
+      </div>
+    </div>
+  </div>
+
+  <label class="venue-header"></label>
+
+  <div class="row error-message" *ngIf="isErrorVisible">
+    <div class="col-md-12">
+      <label>{{errorMessage}}</label>
+    </div>
+    <div class="col-md-12">
+      <button type="button" class="btn btn-primary errorCloseButton" (click)="closeErrorBox()">Close</button>
+    </div>
+  </div>
 
 
 </div>
 <ng-template #deleteuser>
-        <div class="modal-body thanks">
-            <button type="button" style="float: right;" class="close pull-right" aria-label="Close" (click)="closeDialog()">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <div class="text-center">
-                <h2 class="app-name">Sign in to {{ClickName}}</h2>
-            </div>
-            <div class="btnYN">
-                <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary" ><b class="SIGN-IN">SIGN IN</b></button><br>
-               <span class="kin-pop"> New to Kin? </span> <a href="" (click)="signin()">Create an account - it's free!!!</a>
-            </div>
-        </div>
-    </ng-template>
-
+  <div class="modal-body thanks">
+    <button type="button" style="float: right;" class="close pull-right" aria-label="Close" (click)="closeDialog()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="text-center">
+      <h2 class="app-name">Sign in to {{ClickName}}</h2>
+    </div>
+    <div class="btnYN">
+      <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary"><b class="SIGN-IN">SIGN
+          IN</b></button><br>
+      <span class="kin-pop"> New to Kin? </span> <a href="" (click)="signin()">Create an account - it's free!!!</a>
+    </div>
+  </div>
+</ng-template>

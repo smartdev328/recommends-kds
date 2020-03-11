@@ -23,9 +23,9 @@ export class MasonsryRecosViewComponent implements OnInit {
   @Input() community_reco;
   @Input() trusted_reco;
   constructor(private router: Router,
-              private reviewService : ReviewsService,
-              private venuesService : VenuesService) {
-   }
+    private reviewService : ReviewsService,
+    private venuesService : VenuesService) {
+  }
 
   ngOnInit() {
     setTimeout(() => {

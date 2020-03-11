@@ -16,11 +16,9 @@ export class ReviewsComponent implements OnInit {
   public review: string;
   public isErrorVisible: Boolean;
   public errorMessage: String;
-    // public campConstants :any;
-    public isAuthenticated$: Observable<boolean>;
-    isLogedin = false;
-  
-
+  // public campConstants :any;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
 
   constructor(private reviewService: ReviewsService,
               private authService: AuthService) {
@@ -34,7 +32,7 @@ export class ReviewsComponent implements OnInit {
       this.isLogedin = data;
       this.authService.setAuth(this.isLogedin);
 
-    })
+    });
   }
 
   add_review() {

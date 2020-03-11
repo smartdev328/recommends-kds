@@ -20,7 +20,7 @@ declare let ga: any;
   styleUrls: ['./camp-listing.component.css']
 })
 export class CampListingComponent implements OnInit {
-  @ViewChild('openModal') openModal: TemplateRef<any>
+  @ViewChild('openModal') openModal: TemplateRef<any>;
 
   dialogRef: any;
   public selected_cat: String;
@@ -79,7 +79,7 @@ export class CampListingComponent implements OnInit {
       this.isLogedin = data;
       this.authService.setAuth(this.isLogedin);
       this.get_camps_details();
-    })
+    });
     this.route
       .queryParams
       .subscribe(params => {
@@ -127,7 +127,7 @@ export class CampListingComponent implements OnInit {
       this.oldCat_1 = true;
     }
   }
-  
+
   get_camps_details() {
     let url = '';
     let limit = '50';
@@ -135,7 +135,7 @@ export class CampListingComponent implements OnInit {
       limit = '25';
     }
     if (this.keyword !== '' && this.keyword !== undefined) {
-      url = API_URL + 'camps/?limit=' + limit +'&q=' + this.keyword.trim();
+      url = API_URL + 'camps/?limit=' + limit + '&q=' + this.keyword.trim();
     } else if (this.category !== '' && this.category !== undefined) {
       url = API_URL + 'camps/?limit=' + limit + '&category=' + this.category.trim();
     } else {
@@ -146,7 +146,7 @@ export class CampListingComponent implements OnInit {
     this.showMore = false;
 
     if (this.isLogedin) {
-      url = url +'&order_by=date_dist_asc';
+      url = url + '&order_by=date_dist_asc';
       this.campsListingService.get_camp_details(url).subscribe(data => {
         if (data['data'] != undefined && data['data'].length > 0) {
           this.camp_explore = data['data'];
@@ -159,7 +159,7 @@ export class CampListingComponent implements OnInit {
           this.showMore = true;
         }
         this.resetClearFilterVariables();
-      })
+      });
     } else {
       const headers = new HttpHeaders();
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
@@ -176,7 +176,7 @@ export class CampListingComponent implements OnInit {
           this.showMore = true;
         }
         this.resetClearFilterVariables();
-      })
+      });
     }
   }
 
@@ -203,7 +203,7 @@ export class CampListingComponent implements OnInit {
    }
   }
 
-  kin_redirect(){
+  kin_redirect() {
     ga('send', 'camp', {
       eventCategory: 'Clicks',
       eventLabel: 'Kin Redirect',
@@ -254,7 +254,7 @@ export class CampListingComponent implements OnInit {
       this.showMore = false;
       this.isExplore = true;
       if (this.isLogedin == true) {
-        url = url +'&order_by=date_dist_asc';
+        url = url + '&order_by=date_dist_asc';
         this.campsListingService.get_camp_details(url).subscribe(data => {
           if (data['data'] != undefined && data['data'].length > 0) {
             this.camp_explore = data['data'];
@@ -316,7 +316,7 @@ export class CampListingComponent implements OnInit {
     }
   }
 
-  //this function will open a popup when user is not loggen in
+  // this function will open a popup when user is not loggen in
   checkLogin(linkName) {
     if (this.isLogedin) {
       this.loadMore();
@@ -325,6 +325,7 @@ export class CampListingComponent implements OnInit {
       this.detectClick(linkName);
     }
   }
+
   detectClick(moreCamps) {
     // let counter = this.count++
     // if (counter <= 1) {
@@ -332,19 +333,21 @@ export class CampListingComponent implements OnInit {
     // } else
       this.openPopup(moreCamps);
   }
+
   openPopup(moreCamps) {
     this.moreCamps = moreCamps;
     this.dialogRef = this.dialog.open(this.openModal, {
       width: "626px"
     });
   }
+
   signin() {
-    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
+    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl));
     this.authService.login();
   }
+
   closeDialog() {
     this.dialogRef.close();
   }
-
 
 }

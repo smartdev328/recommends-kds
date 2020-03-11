@@ -29,11 +29,11 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private formBuilder: FormBuilder,
     public auth: AuthService,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.kids =[];
+    this.kids = [];
     this.formGroup = new FormGroup({
       kid_id: new FormControl(),
       firstName: new FormControl(),
@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser().subscribe((user) => {
       this.user = user;
       let isNewsLetter = false;
-      if(user.parent.newsletter.toString() == 'True'){
+      if (user.parent.newsletter.toString() == 'True') {
         isNewsLetter = true;
       }
       if (user.parent) {
@@ -63,7 +63,7 @@ export class ProfileComponent implements OnInit {
         this.formGroup.get('zipcode').setValue(user.parent.zip_code);
         this.formGroup.get('newsletter').setValue(isNewsLetter);
         this.formGroup.get('email').setValue(user.parent.email);
-        this.parentEmail=user.parent.email;
+        this.parentEmail = user.parent.email;
         this.initKidControls((user.parent && user.parent.kids) ? user.parent.kids : [new Kid()]);
       }
     });
@@ -81,37 +81,37 @@ export class ProfileComponent implements OnInit {
       }));
     }
   }
- 
+
   addChild() {
-    const kid = [new Kid()]
+    const kid = [new Kid()];
     this.user.parent.kids.push(new Kid());
     this.kids.push(new Kid());
     this.initKidControls(kid);
   }
 
-  removechild(i){
+  removechild(i) {
     this.kidControls.removeAt(i);
-    this.kids.splice(i,1);
-    this.user.parent.kids.splice(i,1);
+    this.kids.splice(i, 1);
+    this.user.parent.kids.splice(i, 1);
 
   }
 
   save() {
-    let param = {
+    const param = {
       first_name: this.formGroup.value.firstName,
       last_name: this.formGroup.value.lastName,
       zip_code: this.formGroup.value.zipcode,
       email: this.parentEmail,
       newsletter: this.formGroup.value.newsletter,
-    }
-    var kidLength = 0;
+    };
+    let kidLength = 0;
     if (this.formGroup.value.kidControls !== undefined) {
       kidLength = this.formGroup.value.kidControls.length;
     }
-    var kidsToUpdate = [];
-    var kidsToCreate = [];
-    for(let i=0;i<kidLength;i++){
-      if(this.formGroup.value.kidControls[i].kid_id !== null) {
+    const kidsToUpdate = [];
+    const kidsToCreate = [];
+    for (let i = 0; i < kidLength; i++) {
+      if (this.formGroup.value.kidControls[i].kid_id !== null) {
         kidsToUpdate.push(this.formGroup.value.kidControls[i]);
       } else {
         kidsToCreate.push(this.formGroup.value.kidControls[i]);
@@ -122,29 +122,29 @@ export class ProfileComponent implements OnInit {
         if (kidsToCreate.length > 0) {
           this.userService.createKids(kidsToCreate).subscribe(
             responsecreateKid => {
-              //console.log('created kids');
+              // console.log('created kids');
               if (kidsToUpdate.length > 0) {
                 this.userService.updateAllKids(kidsToUpdate).subscribe(
                   responsecreateKid => {
-                    //console.log('created updated kids');
+                    // console.log('created updated kids');
                     this.router.navigate(['/home']);
-                  },errCreateKid => {
+                  }, errCreateKid => {
                     this.setSuccess(false);
                   });
               } else {
                 this.router.navigate(['/home']);
               }
               this.setSuccess(true);
-            },errCreateKid => {
+            }, errCreateKid => {
               this.setSuccess(false);
             });
         }
         if (kidsToUpdate.length > 0) {
           this.userService.updateAllKids(kidsToUpdate).subscribe(
             responsecreateKid => {
-              //console.log('just updated kids');
+              // console.log('just updated kids');
               this.router.navigate(['/home']);
-            },errCreateKid => {
+            }, errCreateKid => {
               this.setSuccess(false);
             });
         }
@@ -169,8 +169,7 @@ export class ProfileComponent implements OnInit {
     if (kid.interests.length > 0 && kid.interests[0].interests) {
       const kid_interests = kid.interests[0].interests.split(',');
       return kid_interests.includes(cat_id) ? 'accent' : 'none';
-    }
-    else{
+    } else {
       return kid.interests.includes(cat_id) ? 'accent' : 'none';
     }
 
@@ -187,20 +186,20 @@ export class ProfileComponent implements OnInit {
       }
       kid.interests[0].interests = kid_interests.toString();
       this.kidControls.controls[idx].get('categories').setValue(kid.interests[0].interests);
-    } else{
-        if(kid.interests.length == 0){
-          kid.interests.push({"interests":""})
+    } else {
+        if (kid.interests.length == 0) {
+          kid.interests.push({"interests": ""});
         }
         const kid_interests = kid.interests[0].interests.split(',');
         if (kid_interests.includes(cat_id)) {
           kid_interests.splice(kid_interests.indexOf(cat_id), 1);
         } else {
-          kid_interests[0] = cat_id
+          kid_interests[0] = cat_id;
         }
         kid.interests[0].interests = kid_interests.toString();
         this.kidControls.controls[idx].get('categories').setValue(kid.interests[0].interests);
     }
-    
+
   }
 
 }

@@ -1,137 +1,144 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap');
 
-*{
-    font-family: Montserrat;
+* {
+  font-family: Montserrat;
 }
+
 .navbar {
-    padding: 20px 5%;
-    font-family: Montserrat;
-    font-weight: 300;
+  padding: 20px 5%;
+  font-family: Montserrat;
+  font-weight: 300;
 }
 
 .navbar .navbar-brand {
-    color: #4a4949;
-    font-size: 16px;
-    padding: 2px 5px;
+  color: #4a4949;
+  font-size: 16px;
+  padding: 2px 5px;
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: #000000;
-    font-size: 18px;
-    font-family: Montserrat;
+  color: #000000;
+  font-size: 18px;
+  font-family: Montserrat;
 
 }
 
 .active {
-    border-bottom: 3px solid #ff9734
+  border-bottom: 3px solid #ff9734
 }
 
 
 .swal2-title {
-    position: relative;
-    max-width: 100%;
-    margin: 0 0 .4em;
-    padding: 0;
-    color: #595959;
-    font-size: 1.875em;
-    font-family: Montserrat;
-    font-weight: 600;
-    text-align: center;
-    text-transform: none;
-    word-wrap: break-word;
+  position: relative;
+  max-width: 100%;
+  margin: 0 0 .4em;
+  padding: 0;
+  color: #595959;
+  font-size: 1.875em;
+  font-family: Montserrat;
+  font-weight: 600;
+  text-align: center;
+  text-transform: none;
+  word-wrap: break-word;
 }
 
 
 
 .sign_up {
-    font-family: Montserrat;
-    font-size: 14px;
-    font-weight: 400;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.21;
-    letter-spacing: normal;
-    text-align: center;
-    color: #4a4949;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .16);
-    background-color: gold;
-    width: 155px
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.21;
+  letter-spacing: normal;
+  text-align: center;
+  color: #4a4949;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .16);
+  background-color: gold;
+  width: 155px
 }
 
 .dropdown-menu {
-    font-family: Montserrat;
-    font-weight: 300;
-    font-style: normal;
-    font-size: 16px;
+  font-family: Montserrat;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 16px;
 }
 
 .dropdown-menu li {
-    padding: 5px 10px;
-    margin: 5px 10px;
-    border-radius: 3px;
-    cursor: pointer
+  padding: 5px 10px;
+  margin: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer
 }
 
 .dropdown-menu li:hover {
-    background-color: #cad0d0
+  background-color: #cad0d0
 }
 
 .chat-on-messenger {
-    font-family: Montserrat;
-    font-size: 18px;
+  font-family: Montserrat;
+  font-size: 18px;
 }
 
 .logo-icon {
-    width: 112px;
-    height: 48px;
+  width: 112px;
+  height: 48px;
 }
 
 .bottom-navbar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: block;
-    background: #ffc107;
-    z-index: 100;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  background: #ffc107;
+  z-index: 100;
 }
+
 .bottom-navbar ul {
-    display: flex;
-    flex-flow: row nowrap;
-    padding: 10px 0;
-    align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 10px 0;
+  align-items: center;
 }
+
 .bottom-navbar ul li {
-    text-align: center;
-    display: inline;
-    flex: 1;
+  text-align: center;
+  display: inline;
+  flex: 1;
 }
+
 .bottom-navbar ul li.add-reco-page {
-    flex: 0;
+  flex: 0;
 }
+
 .bottom-navbar ul li.add-reco-page a {
-    font-size: 60px;
-    line-height: 1em;
-    width: 70px;
-    height: 70px;
-    border-radius: 35px;
-    background: black;
-    color: #ffc107;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  font-size: 60px;
+  line-height: 1em;
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  background: black;
+  color: #ffc107;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .bottom-navbar ul li a {
-    font-size: 14px;
-    color: #000;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 500;
+  font-size: 14px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
 }
+
 .bottom-navbar ul li a.active {
-    color: #fff;
-    text-decoration: none;
-    border: none;
+  color: #fff;
+  text-decoration: none;
+  border: none;
 }
 
 /*
@@ -153,40 +160,44 @@
 */
 
 /* Mobile */
-@media (min-width: 769px){
-    .bottom-navbar {
-        display: none;
-    }
-    .navbar-expand-md .navbar-nav .nav-link {
-      padding: 0px 40px;
-    }
-    .navbar-expand-md .navbar-nav .nav-link.nav-button{
-      padding: 0px;
-    }
+@media (min-width: 769px) {
+  .bottom-navbar {
+    display: none;
   }
 
-@media only screen and (min-width :768px) and (max-width :1280px) {
-    .navbar-light .navbar-nav .nav-link {
-        color: #4a4949;
-        font-size: 12px
-    } 
-    .sign_up {
-        font-family: Montserrat;
-        font-size: 14px;
-        font-weight: 400;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.21;
-        letter-spacing: normal;
-        text-align: center;
-        color: #4a4949;
-        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .16);
-        background-color: gold;
-        width: 145px
-    }
+  .navbar-expand-md .navbar-nav .nav-link {
+    padding: 0px 40px;
+  }
+
+  .navbar-expand-md .navbar-nav .nav-link.nav-button {
+    padding: 0px;
+  }
 }
-.headercurser{
-    cursor: pointer;
+
+@media only screen and (min-width :768px) and (max-width :1280px) {
+  .navbar-light .navbar-nav .nav-link {
+    color: #4a4949;
+    font-size: 12px
+  }
+
+  .sign_up {
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    text-align: center;
+    color: #4a4949;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .16);
+    background-color: gold;
+    width: 145px
+  }
+}
+
+.headercurser {
+  cursor: pointer;
 }
 
 /*@media only screen and (min-width :768px) and (max-width :1120px) {
@@ -195,15 +206,35 @@
     }
 }*/
 
-@media (max-width: 640px){
-    .navbar-light .navbar-nav .nav-link, .dropdown-menu li{font-size: 14px; margin: 0;}
-    .mat-icon{height: 0; width:0;}
-    .navbar-light .navbar-nav .cursor img{width: 25px; height: 25px;}
-    .navbar-light .navbar-nav .cursor{position: relative;}
-    .navbar-light .navbar-nav .cursor .dropdown-menu{position: absolute; right:-95px; top:0;}
-    .dropdown-menu{min-width: auto;}
+@media (max-width: 640px) {
+
+  .navbar-light .navbar-nav .nav-link,
+  .dropdown-menu li {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .mat-icon {
+    height: 0;
+    width: 0;
+  }
+
+  .navbar-light .navbar-nav .cursor img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .navbar-light .navbar-nav .cursor {
+    position: relative;
+  }
+
+  .navbar-light .navbar-nav .cursor .dropdown-menu {
+    position: absolute;
+    right: -95px;
+    top: 0;
+  }
+
+  .dropdown-menu {
+    min-width: auto;
+  }
 }
-
-
-
-  

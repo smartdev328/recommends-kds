@@ -1,145 +1,142 @@
 <!-- <app-layout-header></app-layout-header> -->
 <!-- <div class="icon-close" (click)="closePopup()"><i class="fa fa-times" aria-hidden="true"></i></div> -->
 <div class="container-fluid">
-    <div class="main-section">
-        <div class=" sign-up-form text-center">
-            <h1>Follow</h1>
-            <p class="weekly-planner">Receive weekly plans personalized for your familly </p>
-            <div class="col-12 text-center">
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                    <div class="top-form">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-    
-                                    <input type="text" formControlName="first_name" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }"
-                                        placeholder="First Name" required />
-                                        <span>*</span>
-                                        <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
-                                        <div *ngIf="f.first_name.errors.required">
-                                            <label style="font-style: italic;color: red">
-                                                First Name is required
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-    
-                            </div>
-                            <div class="col-md-6 col-sm-12 ">
-                                <div class="form-group">
-                                    <input type="text" formControlName="last_name" placeholder="Last Name "
-                                        class="form-control" />
-                                        <span></span>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    <input type="email" formControlName="email" placeholder="Email " class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" required />
-                                        <span>*</span>
-                                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                                        <div *ngIf="f.email.errors.required">
-                                            <label style="font-style: italic;color: red">
-                                                Email is required</label>
-                                        </div>
-                                        <div *ngIf="f.email.errors.email">
-                                            <label style="font-style: italic;color: red">
-                                                Email must be a valid email address</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-sm-12">
-                                <div class="form-group">
+  <div class="main-section">
+    <div class=" sign-up-form text-center">
+      <h1>Follow</h1>
+      <p class="weekly-planner">Receive weekly plans personalized for your familly </p>
+      <div class="col-12 text-center">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="top-form">
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
 
-                                    <input type="text" formControlName="zip_code" placeholder="Zipcode" minlength="5"
-                                        maxlength="6" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }" />
-                                        <span>*</span>
-                                    <div *ngIf="submitted && f.zip_code.errors" class="invalid-feedback">
-                                        <div *ngIf="f.zip_code.errors.required">
-                                            <label style="font-style: italic;color: red">
-                                                Zip code is required</label>
-                                        </div>
-                                        <div *ngIf="f.zip_code.errors?.minlength">
-                                            <label style="font-style: italic;color: red">
-                                                Please Enter valid Zip Code</label>
-                                        </div>
-                                        <div *ngIf="f.zip_code.errors?.maxlength">
-                                            <label style="font-style: italic;color: red">
-                                                Please Enter valid Zip Code</label>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  <input type="text" formControlName="first_name" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" placeholder="First Name" required />
+                  <span>*</span>
+                  <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                    <div *ngIf="f.first_name.errors.required">
+                      <label style="font-style: italic;color: red">
+                        First Name is required
+                      </label>
                     </div>
-                    <div class="more-info">For more personalized recommendations</div>
-               
-                <br>
-                <div class="row">
-                        <div class="col-md-12">
-                            <form [formGroup]="childForm" class="childForm">
-                                <div formArrayName="child_array">
-                                    <div *ngFor="let item of newChild.controls; let pointIndex=index"
-                                        [formGroupName]="pointIndex"><div class="row">
-                                            <div class="col-md-4 col-sm-12">
-                                                <div class="form-group">
-                                                    <input type="text" formControlName="nick_name" class="form-control"
-                                                        placeholder="Kid's nickname" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-sm-12">
-                                                <div class="form-group">
-                                                    <input type="number" required formControlName="age" class="form-control"
-                                                        min="1" max="15" placeholder="Kid's age" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-sm-12">
-                                                <div class="form-group">
-                                                    <input type="text" formControlName="interests" class="form-control"
-                                                        placeholder="Kid's interests" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <a class="Add-child" (click)="addNewChild()">+ add child</a>
-    
-                                        </div>
-                                    </div>
-                                    <br>
-                                </div>
-        
-                            </form>
-                        </div>
-                        <div class="col-md-12 slid-down">
-                                <div class="border-red"></div>
-                        </div>
+                  </div>
                 </div>
-                <br>
-                    <div class="form-group">
-                        <button class="btn sign_up"  >Sign up</button>
+
+              </div>
+              <div class="col-md-6 col-sm-12 ">
+                <div class="form-group">
+                  <input type="text" formControlName="last_name" placeholder="Last Name " class="form-control" />
+                  <span></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                  <input type="email" formControlName="email" placeholder="Email " class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" required />
+                  <span>*</span>
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">
+                      <label style="font-style: italic;color: red">
+                        Email is required</label>
                     </div>
-                    <div class="alert alert-success" *ngIf="isSuccessVisible">
-                        <strong>Thanks for signing up. Your weekly planner will be in your inbox soon.</strong>
+                    <div *ngIf="f.email.errors.email">
+                      <label style="font-style: italic;color: red">
+                        Email must be a valid email address</label>
                     </div>
-                    <div class="alert alert-danger" *ngIf="isUserCreationError">
-                        <strong>You are already signed up!</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+
+                  <input type="text" formControlName="zip_code" placeholder="Zipcode" minlength="5" maxlength="6"
+                    class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }" />
+                  <span>*</span>
+                  <div *ngIf="submitted && f.zip_code.errors" class="invalid-feedback">
+                    <div *ngIf="f.zip_code.errors.required">
+                      <label style="font-style: italic;color: red">
+                        Zip code is required</label>
+                    </div>
+                    <div *ngIf="f.zip_code.errors?.minlength">
+                      <label style="font-style: italic;color: red">
+                        Please Enter valid Zip Code</label>
+                    </div>
+                    <div *ngIf="f.zip_code.errors?.maxlength">
+                      <label style="font-style: italic;color: red">
+                        Please Enter valid Zip Code</label>
                     </div>
 
-                </form>
-            
+                  </div>
+                </div>
+              </div>
             </div>
-        <!-- <div class="home-privacy"><a href="https://www.iubenda.com/privacy-policy/90386501" target="_blank"
+          </div>
+          <div class="more-info">For more personalized recommendations</div>
+
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <form [formGroup]="childForm" class="childForm">
+                <div formArrayName="child_array">
+                  <div *ngFor="let item of newChild.controls; let pointIndex=index" [formGroupName]="pointIndex">
+                    <div class="row">
+                      <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                          <input type="text" formControlName="nick_name" class="form-control"
+                            placeholder="Kid's nickname" />
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                          <input type="number" required formControlName="age" class="form-control" min="1" max="15"
+                            placeholder="Kid's age" />
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                          <input type="text" formControlName="interests" class="form-control"
+                            placeholder="Kid's interests" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <a class="Add-child" (click)="addNewChild()">+ add child</a>
+
+                    </div>
+                  </div>
+                  <br>
+                </div>
+
+              </form>
+            </div>
+            <div class="col-md-12 slid-down">
+              <div class="border-red"></div>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <button class="btn sign_up">Sign up</button>
+          </div>
+          <div class="alert alert-success" *ngIf="isSuccessVisible">
+            <strong>Thanks for signing up. Your weekly planner will be in your inbox soon.</strong>
+          </div>
+          <div class="alert alert-danger" *ngIf="isUserCreationError">
+            <strong>You are already signed up!</strong>
+          </div>
+
+        </form>
+
+      </div>
+      <!-- <div class="home-privacy"><a href="https://www.iubenda.com/privacy-policy/90386501" target="_blank"
                                  style="color:gray">PRIVACY
         POLICY</a></div> -->
-        </div>
     </div>
+  </div>
 </div>
 <!-- <app-layout-footer></app-layout-footer> -->

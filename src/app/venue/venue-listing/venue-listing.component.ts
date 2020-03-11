@@ -23,7 +23,7 @@ declare let ga: any;
   styleUrls: ['./venue-listing.component.css']
 })
 export class VenueListingComponent implements OnInit {
-  @ViewChild('openModal') openModal: TemplateRef<any>
+  @ViewChild('openModal') openModal: TemplateRef<any>;
 
   dialogRef: any;
   venues_list;
@@ -81,7 +81,7 @@ export class VenueListingComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         ga('set', 'page', event.urlAfterRedirects);
-        this.currentUrl= event.urlAfterRedirects;
+        this.currentUrl = event.urlAfterRedirects;
         ga('send', 'pageview');
       }
     });
@@ -96,7 +96,7 @@ export class VenueListingComponent implements OnInit {
       this.isLogedin = data;
       this.authService.setAuth(this.isLogedin);
       this.get_venue_details();
-    })
+    });
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.isFilterErrorVisible = false;
@@ -120,10 +120,10 @@ export class VenueListingComponent implements OnInit {
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
 
 
-  
+
   }
   onSubmit(f: NgForm) {
-  
+
   }
   get_venue_details() {
       let url = '';
@@ -145,8 +145,8 @@ export class VenueListingComponent implements OnInit {
         url = url + '&city=' + this.city.trim();
       }
       this.isExplore = true;
-      if(this.isLogedin == true){
-        url = url +'&distance=100&order_by=date_dist_asc';
+      if (this.isLogedin == true) {
+        url = url + '&distance=100&order_by=date_dist_asc';
         this.venueListingService.get_venue_details(url).subscribe(data => {
           this.venues_list = data['venues'];
           if (data['venues'] !== undefined && data['venues'].length > 0) {
@@ -171,7 +171,7 @@ export class VenueListingComponent implements OnInit {
           }
           this.isExplore = false;
           });
-      }else{
+      } else {
         const headers = new HttpHeaders();
         this.http.get(url, { headers: headers, responseType: 'text' }).
           subscribe(data => {
@@ -202,9 +202,9 @@ export class VenueListingComponent implements OnInit {
           });
       }
 
-    //}
+    // }
   }
-  
+
   loadMore() {
     if (this.venues_list.length > this.end) {
       this.end = this.end + 20;
@@ -309,16 +309,16 @@ export class VenueListingComponent implements OnInit {
       }
       let url = API_URL + 'venues/?limit=' + limit;
       if (this.keyword) {
-        url = url +'&q=' + this.keyword.trim();
-      }if(this.selected_loc) {
-        url = url +'&city=' + this.selected_loc.trim();
-      }if(this.selected_cat){
-        url = url +'&category=' + encodeURIComponent(this.selected_cat.trim());
+        url = url + '&q=' + this.keyword.trim();
+      }if (this.selected_loc) {
+        url = url + '&city=' + this.selected_loc.trim();
+      }if (this.selected_cat) {
+        url = url + '&category=' + encodeURIComponent(this.selected_cat.trim());
       }
       this.showMore = false;
       this.isExplore = true;
-      if(this.isLogedin == true){
-        url = url +'&distance=100&order_by=date_dist_asc';
+      if (this.isLogedin == true) {
+        url = url + '&distance=100&order_by=date_dist_asc';
         this.venueListingService.get_venue_details(url).subscribe(data => {
           if (data['venues'] !== undefined && data['venues'].length > 0) {
             this.isErrorVisible = false;
@@ -341,9 +341,9 @@ export class VenueListingComponent implements OnInit {
             this.showMore = false;
           }
           this.isExplore = false;
-  
+
         });
-      }else{
+      } else {
         const headers = new HttpHeaders();
         this.http.get(url, { headers: headers, responseType: 'text' }).
           subscribe(data => {
@@ -370,14 +370,14 @@ export class VenueListingComponent implements OnInit {
             this.showMore = false;
           }
           this.isExplore = false;
-  
+
         });
       }
 
     }
   }
 
-   //this function will open a popup when user is not loggen in
+   // this function will open a popup when user is not loggen in
    checkLogin(linkName) {
     if (this.isLogedin) {
       this.loadMore();
@@ -400,7 +400,7 @@ export class VenueListingComponent implements OnInit {
     });
   }
   signin() {
-    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
+    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl));
     this.authService.login();
   }
   closeDialog() {

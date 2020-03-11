@@ -1,109 +1,109 @@
 .event-list-cards {
-    margin: 7% 2% 7% 2%;
-    cursor: pointer;
-    /* width: 230px; */
-    border: solid 1px #5d5d5a;
-    background-color: #ffffff;
+  margin: 7% 2% 7% 2%;
+  cursor: pointer;
+  /* width: 230px; */
+  border: solid 1px #5d5d5a;
+  background-color: #ffffff;
 }
 
 .mat-images {
-    width: 300px;
-    height: 200px;
+  width: 300px;
+  height: 200px;
 }
 
 .event-group-title {
-    margin-bottom: 0.5em;
-    margin-top: 0.5em;
-    font-weight: bold;
-    /* display:block;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  font-weight: bold;
+  /* display:block;
     width:50%;
     word-wrap:break-word; */
 }
 
 .age {
-    margin-top: 0em;
-    font-size: 12px;
-    font-family: "Montserrat";
-    font-style: bold;
-    font-weight: 600;
+  margin-top: 0em;
+  font-size: 12px;
+  font-family: "Montserrat";
+  font-style: bold;
+  font-weight: 600;
 }
 
 .event-venue {
- 
-    margin-top: 0em;
-    font-size: 10px;
-    font-style: italic;
-    /* display:block;
+
+  margin-top: 0em;
+  font-size: 10px;
+  font-style: italic;
+  /* display:block;
     width:50%;
     word-wrap:break-word; */
 }
 
 .event-header {
-  
-    font-weight: bold;
-    font-size: 18px;
+
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .flex-display {
-  display: flex; 
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   height: 100vw;
   max-height: 700px;
-  font-size: 0; 
+  font-size: 0;
 }
 
 .show-layout {
-    opacity: 1;
+  opacity: 1;
 }
 
 .hide-layout {
-    opacity: 0;
+  opacity: 0;
 }
 
 .Events-at-your-favorite-venues {
-    /* width: 333px;
+  /* width: 333px;
     height: 25px; */
-    font-family: Montserrat;
-    font-size: 21px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.19;
-    letter-spacing: normal;
-    text-align: left;
-    color: #5d5d5a;
-    margin-bottom: 2em;
-  }
+  font-family: Montserrat;
+  font-size: 21px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.19;
+  letter-spacing: normal;
+  text-align: left;
+  color: #5d5d5a;
+  margin-bottom: 2em;
+}
 
- .section-grid-item {
-    width: calc(20%);
- }
+.section-grid-item {
+  width: calc(20%);
+}
 
- /* .tiles-image {
+/* .tiles-image {
     width: 232px;
     height: 120px;
     margin: auto!important;
  } */
 
- .See-more {
-    /* width: 99px;
+.See-more {
+  /* width: 99px;
     height: 24px; */
-    font-family: Montserrat;
-    font-size: 20px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.2;
-    letter-spacing: normal;
-    text-align: center;
-    color: #5d5d5a;
-    margin: auto;
-    margin-bottom: 4em;
-    text-decoration: underline;
-  }
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-align: center;
+  color: #5d5d5a;
+  margin: auto;
+  margin-bottom: 4em;
+  text-decoration: underline;
+}
 
-  /* ng-masonry-grid{
+/* ng-masonry-grid{
     position: relative;
     height: 281.875px;
     perspective-origin: 50% 455.5px;
@@ -111,197 +111,282 @@
 }  */
 
 .center-block {
-    margin:0 auto; width:850px;
+  margin: 0 auto;
+  width: 850px;
 }
-.newsletter-banner{
-    height: 440px; 
-    width:100%; 
-    background:#e2e2e2;
-    background-image: url(https://loremflickr.com/1920/1080/usa/all);
-    background-position: bottom center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
-}
-.newsletter-banner .banner-content{
-    position: absolute;
-    left:217px;
-    top:178px;
-}
-.newsletter-banner .banner-content span{
 
-    color: #fff;
-    text-transform: capitalize;
-    font-family: Montserrat;
-    font-size: 42px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
+.newsletter-banner {
+  height: 440px;
+  width: 100%;
+  background: #e2e2e2;
+  background-image: url(https://loremflickr.com/1920/1080/usa/all);
+  background-position: bottom center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
 }
-.newsletter-banner ul{float: right;}
-.newsletter-banner ul li{
-    float: left;
-    padding: 0 3px;
-    color:#fff;
-    list-style: none;
+
+.newsletter-banner .banner-content {
+  position: absolute;
+  left: 217px;
+  top: 178px;
 }
-.newsletter-banner ul li:first-child{font-size: 16px;padding-top: 5px;}
-.newsletter-banner ul li:last-child{font-size: 24px;}
-.newsletter-banner ul li img{width: 36px; width: 36px;}
-.newsletter{margin: 30px auto 45px auto;}
+
+.newsletter-banner .banner-content span {
+
+  color: #fff;
+  text-transform: capitalize;
+  font-family: Montserrat;
+  font-size: 42px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.newsletter-banner ul {
+  float: right;
+}
+
+.newsletter-banner ul li {
+  float: left;
+  padding: 0 3px;
+  color: #fff;
+  list-style: none;
+}
+
+.newsletter-banner ul li:first-child {
+  font-size: 16px;
+  padding-top: 5px;
+}
+
+.newsletter-banner ul li:last-child {
+  font-size: 24px;
+}
+
+.newsletter-banner ul li img {
+  width: 36px;
+  width: 36px;
+}
+
+.newsletter {
+  margin: 30px auto 45px auto;
+}
+
 .newsletter h3 {
-  
-    font-family: Montserrat;
-    font-size: 42px ;
-    font-weight: normal ;
-    font-style: normal ;
-    font-stretch: normal ;
-    line-height: normal ;
-    letter-spacing: normal ;
-    color: #000;
-    margin-bottom: 25px;
-  }
-  .event-list-cards .img-wrp{
-      height: 200px;
-      overflow: hidden;
-      
-  }
-  .event-list-cards .img-wrp img{ 
-    width: 100% !important; 
-    object-fit: cover !important;
-    margin: 0 !important;
-      width:100% ; 
-      height: 100%;
-    }
 
-  .event-list-cards{ border: solid 1px #ECF0F1 !important; padding-left: 0 !important; padding-right:0 !important; padding-top: 0 !important; padding-bottom: 0; box-shadow: none; margin-bottom: 25px; height: auto; position: relative; border:1px solid #f7f7f7;}
-  .mat-card-content{padding: 15px !important; }
-  .event-list-cards .img-wrp img{margin: 0 !important;}
-  .newsletter .event-list-cards .event-group-title{
-    background-color: #FFD700;
-    font-size: 14px;
-    margin-bottom: 0.5em;
-    margin-top: 0.5em;
-    font-size: 14px;
-    color: #000000;
-    font-family: "Montserrat";
-    font-weight: 700;
-  }
-  .newsletter .event-list-cards .event-date,  .newsletter .event-list-cards .event-venue{
-    font-size: 12px;
-    margin-bottom: 0em;
-    font-family: "Montserrat";
-    font-weight: 700;
-  }
-  .newsletter .event-list-cards .event-venue{
-      font-weight: 600;
-  }
-  .see-more{
-      width: 100%;
-      height: 100%;
-      background: #ffd700;
-      text-align: center;
-      max-height: 350px;
-      min-height: 300px;
- 
-  }
-  .see-more a{
-    font-family: Montserrat;
-    font-size: 24px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #000;
-    text-transform: capitalize;
-    position: absolute;
-    left:50%;
-    top:50%;
-    transform: translate(-50%, -50%);
-    text-decoration: none !important;
-  }
-.productBlock{width: 32%; display: inline-block; float: left;}
+  font-family: Montserrat;
+  font-size: 42px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #000;
+  margin-bottom: 25px;
+}
+
+.event-list-cards .img-wrp {
+  height: 200px;
+  overflow: hidden;
+
+}
+
+.event-list-cards .img-wrp img {
+  width: 100% !important;
+  object-fit: cover !important;
+  margin: 0 !important;
+  width: 100%;
+  height: 100%;
+}
+
+.event-list-cards {
+  border: solid 1px #ECF0F1 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0;
+  box-shadow: none;
+  margin-bottom: 25px;
+  height: auto;
+  position: relative;
+  border: 1px solid #f7f7f7;
+}
+
+.mat-card-content {
+  padding: 15px !important;
+}
+
+.event-list-cards .img-wrp img {
+  margin: 0 !important;
+}
+
+.newsletter .event-list-cards .event-group-title {
+  background-color: #FFD700;
+  font-size: 14px;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  font-size: 14px;
+  color: #000000;
+  font-family: "Montserrat";
+  font-weight: 700;
+}
+
+.newsletter .event-list-cards .event-date,
+.newsletter .event-list-cards .event-venue {
+  font-size: 12px;
+  margin-bottom: 0em;
+  font-family: "Montserrat";
+  font-weight: 700;
+}
+
+.newsletter .event-list-cards .event-venue {
+  font-weight: 600;
+}
+
+.see-more {
+  width: 100%;
+  height: 100%;
+  background: #ffd700;
+  text-align: center;
+  max-height: 350px;
+  min-height: 300px;
+
+}
+
+.see-more a {
+  font-family: Montserrat;
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #000;
+  text-transform: capitalize;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-decoration: none !important;
+}
+
+.productBlock {
+  width: 32%;
+  display: inline-block;
+  float: left;
+}
+
 @media only screen and (max-width : 1121px) {
-    .productBlock{width: 32%;}
-}
-@media only screen and (max-width : 1024px) {
-    .productBlock{width: 32%;}
-}
-  @media only screen and (max-width : 640px) {
-    .newsletter-banner{
-        height: 193px;
-    }
-    .newsletter-banner .banner-content{
-        top:58px;
-        left:15px;
-        
-    }
-    .newsletter-banner .banner-content span{
-        font-size: 18px;
-    }
-  
-    .newsletter-banner ul li:first-child{font-size: 8px;padding-top: 5px;}
-    .newsletter-banner ul li:last-child{font-size: 10px;}
-    .newsletter-banner ul li img{width: 16px; width: 16px;}
-    .newsletter h3{font-size: 24px !important;}
-    .event-list-cards{margin: 0 !important;}
-    .tiles{padding-left: 0; padding-right: 0;}
+  .productBlock {
+    width: 32%;
   }
- 
+}
+
+@media only screen and (max-width : 1024px) {
+  .productBlock {
+    width: 32%;
+  }
+}
+
+@media only screen and (max-width : 640px) {
+  .newsletter-banner {
+    height: 193px;
+  }
+
+  .newsletter-banner .banner-content {
+    top: 58px;
+    left: 15px;
+
+  }
+
+  .newsletter-banner .banner-content span {
+    font-size: 18px;
+  }
+
+  .newsletter-banner ul li:first-child {
+    font-size: 8px;
+    padding-top: 5px;
+  }
+
+  .newsletter-banner ul li:last-child {
+    font-size: 10px;
+  }
+
+  .newsletter-banner ul li img {
+    width: 16px;
+    width: 16px;
+  }
+
+  .newsletter h3 {
+    font-size: 24px !important;
+  }
+
+  .event-list-cards {
+    margin: 0 !important;
+  }
+
+  .tiles {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 
 
 
 
-/* Phones */ 
+
+/* Phones */
 @media only screen and (max-width : 767px) {
-    .loading-gif {
-        margin-left: 10%;
-    }
+  .loading-gif {
+    margin-left: 10%;
+  }
 
-   
 
-    .tiles-image {
-        width: 100%;
-        padding: 1px;
-        /* height: 110px; */
-    }
 
-    .center{
-        position: relative;
-        left: 0% !important;
-    }
+  .tiles-image {
+    width: 100%;
+    padding: 1px;
+    /* height: 110px; */
+  }
 
-    .center-block {
-        width:100%; margin: 0 auto;
-    }
-    .productBlock{width:100%;}
+  .center {
+    position: relative;
+    left: 0% !important;
+  }
+
+  .center-block {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .productBlock {
+    width: 100%;
+  }
 }
 
 /* Tablets */
 @media only screen and (min-width : 768px) and (max-width : 1280px) {
 
-    .loading-gif {
-        margin-left: 35%;
-    }
+  .loading-gif {
+    margin-left: 35%;
+  }
 
 }
 
 /* Desktop */
 @media only screen and (min-width : 1281px) {
-    .tiles {
-        width: 32%;
-    }
+  .tiles {
+    width: 32%;
+  }
 
-    .loading-gif {
-        margin-left: 40%;
-    }
+  .loading-gif {
+    margin-left: 40%;
+  }
 
-    .center{
-        position: relative;
-        left: 10% ;
-    }
+  .center {
+    position: relative;
+    left: 10%;
+  }
 }
-

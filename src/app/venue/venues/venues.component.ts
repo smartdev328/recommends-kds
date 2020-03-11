@@ -27,23 +27,23 @@ export class VenuesComponent implements OnInit {
   isExploreTrail: boolean;
   showMoreTrail: boolean;
   isExplore: boolean;
-  trail_list: any=[];
-  event_list: any=[];
+  trail_list: any = [];
+  event_list: any = [];
   start = 0;
   end = 4;
   startTrail = 0;
   endTrail = 4;
   showMore = false;
   showLayout = false;
-  @ViewChild('deleteuser')deleteuser: TemplateRef<any>
+  @ViewChild('deleteuser')deleteuser: TemplateRef<any>;
 
-  dialogRef:any;
+  dialogRef: any;
   modalRef: BsModalRef;
-  ClickName:any;
+  ClickName: any;
 
-  subscribe="follow this place";
-  saveEvent="save this place  ";
-  addToReview="add a review ";
+  subscribe = "follow this place";
+  saveEvent = "save this place  ";
+  addToReview = "add a review ";
   public dayOfWeek: any;
   public venue_id: any;
   public venue: any;
@@ -64,14 +64,14 @@ export class VenuesComponent implements OnInit {
   public category: string;
   public avg_rating: number;
   public google_rating_out_of: number;
-  //public parent_id: any;
+  // public parent_id: any;
   public review: string;
   public user_reviews: any;
   public reviews_present: Boolean;
   public isErrorVisible: Boolean;
   public errorMessage: String;
   public url: String;
-  //public is_parent_id: Boolean;
+  public is_parent_id: Boolean;
   public is_review_click: Boolean;
   public isSubscribeVisible: Boolean;
   public isSaveVisible: Boolean;
@@ -93,8 +93,8 @@ export class VenuesComponent implements OnInit {
   reviewsInput: ElementRef;
   currentUrl: string;
   constructor(private route: ActivatedRoute, private http: HttpClient, private titleService: Title,
-    private metaService: Meta,private authService: AuthService, private venuesService: VenuesService, private reviewService: ReviewsService,
-    private router: Router,public dialog: MatDialog,
+    private metaService: Meta, private authService: AuthService, private venuesService: VenuesService, private reviewService: ReviewsService,
+    private router: Router, public dialog: MatDialog,
     public linkifyService: NgxLinkifyjsService) {
     this.venue = new UserSearch();
     this.parking = '';
@@ -110,7 +110,7 @@ export class VenuesComponent implements OnInit {
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.url = this.router.url;
-    //this.is_parent_id = false;
+    // this.is_parent_id = false;
     this.is_review_click = false;
     this.user_reviews = [];
     this.reviews_present = false;
@@ -131,23 +131,23 @@ export class VenuesComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         ga('set', 'page', event.urlAfterRedirects);
-        this.currentUrl= event.urlAfterRedirects;
+        this.currentUrl = event.urlAfterRedirects;
         ga('send', 'pageview');
       }
     });
   }
 
   ngOnInit() {
-    //this.is_parent_id = false;
+    // this.is_parent_id = false;
    // this.parent_id = '';
     this.venue_id = this.route.snapshot.params['id'];
-    //this.parent_id = this.route.snapshot.queryParams['parent_id'];
-    //this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
+    // this.parent_id = this.route.snapshot.queryParams['parent_id'];
+    // this.is_parent_id = this.parent_id !== undefined && this.parent_id !== '';
     this.isAuthenticated$ = this.authService.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
       this.authService.setAuth(this.isLogedin);
-    })
+    });
     this.is_save_action();
     this.show_reviews();
     if (this.venue_id > 0 && this.venue_id !== undefined) {
@@ -185,29 +185,27 @@ export class VenuesComponent implements OnInit {
         if (data['venue'] !== undefined) {
           this.venue = data['venue'];
 
-          if(data['events'].length>0){
+          if (data['events'].length > 0) {
             this.showMore = true;
-            this.entity_type ="eventData"
+            this.entity_type = "eventData";
 
             this.event_list = data['events'];
             if (this.event_list.length > this.end) {
               this.showMore = true;
             }
             this.isExplore = false;
-          }
+          } else if (data['trails'].length > 0) {
 
-          else if(data['trails'].length>0){
-            
             this.showMoreTrail = true;
             this.trail_list = data['trails'];
-            this.entity_type ="Hiking Trail"
+            this.entity_type = "Hiking Trail";
             if (this.trail_list.length > this.endTrail) {
               this.showMoreTrail = true;
             }
-            this.isExploreTrail = false
+            this.isExploreTrail = false;
           }
           if (this.venue.category !== undefined && this.venue.category.length > 0) {
-            if(this.venue.category[0] !== 'Classes') {
+            if (this.venue.category[0] !== 'Classes') {
               this.category = this.venue.category[0];
             } else {
               this.category = this.venue.category_sec[0];
@@ -230,7 +228,7 @@ export class VenuesComponent implements OnInit {
               this.tips_for_parent = this.tips_for_parent.replace(this.partyLink, '');
             }
           }
-          //console.log(this.tips_for_parent);
+          // console.log(this.tips_for_parent);
           this.rating = this.venue.rating === '' ? 0 : this.venue.rating;
           this.jsonMiscData = JSON.stringify(this.venue.misc);
           this.miscData = this.venue.misc;
@@ -323,10 +321,10 @@ export class VenuesComponent implements OnInit {
   }
 
   save_venue() {
-    //if (this.parent_id !== undefined) {
+    // if (this.parent_id !== undefined) {
       this.add_analytics_data('SAVE');
       this.isSaveVisible = true;
-    //}
+    // }
   }
 
   calendar_redirects() {
@@ -358,12 +356,12 @@ export class VenuesComponent implements OnInit {
   }
 
   add_review_redirect(index: number): void {
-    //if (this.parent_id != undefined) {
-      //this.is_parent_id = true;
+    // if (this.parent_id != undefined) {
+      // this.is_parent_id = true;
       this.is_review_click = true;
       this.selectedIndex = index;
       this.reviewsInput.nativeElement.scrollIntoView({ behavior: 'smooth' });
-    //}
+    // }
   }
 
 
@@ -426,8 +424,7 @@ export class VenuesComponent implements OnInit {
 
         this.isSubscribeVisible = false;
       }
-    }, error => {
-    });
+    }, error => {});
   }
 
   is_save_action() {
@@ -437,54 +434,52 @@ export class VenuesComponent implements OnInit {
       } else {
         this.isSaveVisible = false;
       }
-    }, error => {
-    });
+    }, error => {});
   }
 
   is_delete_action() {
-    this.reviewService.delete_action(this.venue_id,ANALYTICS_ENTITY_TYPES_ENUM.VENUE).subscribe(data => {
+    this.reviewService.delete_action(this.venue_id, ANALYTICS_ENTITY_TYPES_ENUM.VENUE).subscribe(data => {
       if (data['status'] === true) {
         this.isSaveVisible = false;
       } else {
         this.isSaveVisible = true;
       }
-    }, error => {
-    });
+    }, error => {});
   }
 
   add_subscription_venue() {
-    //if (this.parent_id !== undefined) {
-      const input_data = {
-        "venue_subs_data": {
-          //"parent_id": this.parent_id,
-          "venue_id": this.venue_id,
-        }
-      };
-      this.venuesService.add_subscriptions(input_data).subscribe(data => {
-        if (data['status'] === true) {
-          this.isSubscribeVisible = true;
-        } else {
-          alert('Something went wrong while subscribe venue');
-        }
-      }, error => {
+    // if (this.parent_id !== undefined) {
+    const input_data = {
+      "venue_subs_data": {
+        // "parent_id": this.parent_id,
+        "venue_id": this.venue_id,
+      }
+    };
+    this.venuesService.add_subscriptions(input_data).subscribe(data => {
+      if (data['status'] === true) {
+        this.isSubscribeVisible = true;
+      } else {
         alert('Something went wrong while subscribe venue');
-      });
-      this.add_analytics_data('SUBSCRIBE');
-    //}
+      }
+    }, error => {
+      alert('Something went wrong while subscribe venue');
+    });
+    this.add_analytics_data('SUBSCRIBE');
+    // }
   }
 
   unsubscribe_venue() {
 
-   // if (this.parent_id !== undefined) {
-      this.venuesService.remove_subscriptions(null, this.venue_id).subscribe(data => {
-        if (data['status'] === true) {
-          this.isSubscribeVisible = false;
-        }
-      }, error => {
-        this.errorMessage = 'Something went wrong while subscribe venue';
-      });
-      // this.add_analytics_data('SUBSCRIBE');
-    //}
+    // if (this.parent_id !== undefined) {
+    this.venuesService.remove_subscriptions(null, this.venue_id).subscribe(data => {
+      if (data['status'] === true) {
+        this.isSubscribeVisible = false;
+      }
+    }, error => {
+      this.errorMessage = 'Something went wrong while subscribe venue';
+    });
+    // this.add_analytics_data('SUBSCRIBE');
+    // }
 
 
   }
@@ -506,18 +501,18 @@ export class VenuesComponent implements OnInit {
         break;
     }
     let analytics_input = {};
-    //if (this.parent_id !== undefined) {
-      analytics_input = {
-        'input_data': [{
-          'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.VENUE,
-          'entity_id': this.venue_id,
-          'interface': INTERFACE_ENUM.FE,
-         // 'parent_id': this.parent_id,
-          'action': action,
-          'referrer': '/root/home'
-        }]
-      };
-    //}
+    // if (this.parent_id !== undefined) {
+    analytics_input = {
+      'input_data': [{
+        'entity_type': ANALYTICS_ENTITY_TYPES_ENUM.VENUE,
+        'entity_id': this.venue_id,
+        'interface': INTERFACE_ENUM.FE,
+        // 'parent_id': this.parent_id,
+        'action': action,
+        'referrer': '/root/home'
+      }]
+    };
+    // }
     //  else {
     //   analytics_input = {
     //     'input_data': [{
@@ -531,12 +526,11 @@ export class VenuesComponent implements OnInit {
     // }
     this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
       if (atype === 'CLICK') {
-        //this.is_parent_id = true;
+        // this.is_parent_id = true;
         this.is_subscription_venue();
         this.is_save_action();
       }
-    }, error => {
-    });
+    }, error => {});
   }
 
   venue_redirect() {
@@ -556,35 +550,34 @@ export class VenuesComponent implements OnInit {
     }
 
   }
-  deleteUser(linkName){
+  deleteUser(linkName) {
     this.ClickName = linkName;
     this.dialogRef = this.dialog.open(this.deleteuser, {
-        width: "626px"
+      width: "626px"
     });
-}
-
-//this function will open a popup when user is not loggen in
-checklogin(linkName){
-  if(this.isLogedin){
-    if(linkName == this.subscribe){
-      this.add_subscription_venue();
-    }
-    else if(linkName == this.saveEvent){
-     this.save_venue();
-    } else if(linkName == this.addToReview){
-      this.add_review_redirect(2);
-    } 
-}else{
-this.deleteUser(linkName);
-}
-}
-signin(){
-  sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
-  this.authService.login();
-  this.closeDialog();
   }
-  closeDialog(){
-    this.dialogRef.close();
+
+  // this function will open a popup when user is not loggen in
+  checklogin(linkName) {
+    if (this.isLogedin) {
+      if (linkName == this.subscribe) {
+        this.add_subscription_venue();
+      } else if (linkName == this.saveEvent) {
+        this.save_venue();
+      } else if (linkName == this.addToReview) {
+        this.add_review_redirect(2);
+      }
+    } else {
+      this.deleteUser(linkName);
     }
+  }
+  signin() {
+    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl));
+    this.authService.login();
+    this.closeDialog();
+  }
+  closeDialog() {
+    this.dialogRef.close();
+  }
 
 }

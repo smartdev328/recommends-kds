@@ -1,77 +1,80 @@
-
 <div class="container-fluid">
   <div class="home-image-div">
-      <div class="saved" fxLayout="row wrap">
-          <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
-              <!-- <p class="title">Try the Kin chatbot on Messenger</p> -->
-                 <h1 class="saved-h">Saved</h1>
-          </div>
-        
+    <div class="saved" fxLayout="row wrap">
+      <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
+        <!-- <p class="title">Try the Kin chatbot on Messenger</p> -->
+        <h1 class="saved-h">Saved</h1>
       </div>
-      <div class="category p-3 m-3">
-          <div class="row">
-            <div class="col-md-1"></div>
-              <div class="col-md-2">
-                  <!--events-->
-                        <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'EVENT']" target="_blank">    
-                      <div class="eventsImage">
-                          <label class="category-label-sm">Events</label>
-                      </div>
-                  </a>
-              </div>
-              <div class="col-md-2">
-                  <!--places-->
-                    <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'VENUE']" target="_blank">    
-                      <div class="placesImage">
-                          <label class="category-label-sm">Places</label>
-                      </div>
-                  </a>
-              </div>
-              <div class="col-md-2">
-                    <!--classes-->
-                          <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'CLASSES']" target="_blank">    
-                        <div class="classesImage">
-                            <label class="category-label-sm">Classes</label>
-                        </div>
-                    </a>
-                </div>
-              <div class="col-md-2">
-                  <!--camps-->
-                    <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'CAMP']" target="_blank">    
-                            <div class="campsImage">
-                          <label class="category-label-sm">Camps</label>
-                      </div>
-                  </a>
-              </div>
-              <div class="col-md-2">
-                  <!--hiking-->
-                        <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'HIKING_TRAIL']" target="_blank">    
-                      <div class="hikingImage">
-                          <label class="category-label-sm">Hiking</label>
-                      </div>
-                  </a>
-              </div>
-              <div class="col-md-1"></div>
-          </div>
-      </div>
-  </div>
-  <div class="home-image-div">
-        <div class="saved" fxLayout="row wrap">
-            <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
-                   <h1 class="saved-h">Following</h1>
-            </div>
-        </div>
-        <div class="category p-3 m-3">
-            <!-- Listing venue-->
-            <div class="container-fluid">
-                <div class="event-listing-card">
-                    <div *ngIf="isErrorVisible"><div class="error-message-text alert-danger">{{errorMessage}}</div></div>
-                    <app-masonry-subscribe-view *ngIf="newFilterData"  [venues]=subscribe_list [start]=start [end]=end></app-masonry-subscribe-view>
-                    <app-masonry-subscribe-view  *ngIf="oldFilterData" [venues]=subscribe_list [start]=start [end]=end></app-masonry-subscribe-view>
-                </div>
-            </div>
-        </div>
 
     </div>
+    <div class="category p-3 m-3">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <!--events-->
+          <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'EVENT']" target="_blank">
+            <div class="eventsImage">
+              <label class="category-label-sm">Events</label>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-2">
+          <!--places-->
+          <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'VENUE']" target="_blank">
+            <div class="placesImage">
+              <label class="category-label-sm">Places</label>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-2">
+          <!--classes-->
+          <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'CLASSES']" target="_blank">
+            <div class="classesImage">
+              <label class="category-label-sm">Classes</label>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-2">
+          <!--camps-->
+          <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'CAMP']" target="_blank">
+            <div class="campsImage">
+              <label class="category-label-sm">Camps</label>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-2">
+          <!--hiking-->
+          <a style="text-decoration: none;" [routerLink]="['/saved-listing', 'HIKING_TRAIL']" target="_blank">
+            <div class="hikingImage">
+              <label class="category-label-sm">Hiking</label>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </div>
+  <div class="home-image-div">
+    <div class="saved" fxLayout="row wrap">
+      <div class="px-3" fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="start start">
+        <h1 class="saved-h">Following</h1>
+      </div>
+    </div>
+    <div class="category p-3 m-3">
+      <!-- Listing venue-->
+      <div class="container-fluid">
+        <div class="event-listing-card">
+          <div *ngIf="isErrorVisible">
+            <div class="error-message-text alert-danger">{{errorMessage}}</div>
+          </div>
+          <app-masonry-subscribe-view *ngIf="newFilterData" [venues]=subscribe_list [start]=start [end]=end>
+          </app-masonry-subscribe-view>
+          <app-masonry-subscribe-view *ngIf="oldFilterData" [venues]=subscribe_list [start]=start [end]=end>
+          </app-masonry-subscribe-view>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 <app-layout-footer></app-layout-footer>

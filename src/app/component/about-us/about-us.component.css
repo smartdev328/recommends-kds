@@ -1,79 +1,94 @@
 .banner img {
-    width: 100%;
+  width: 100%;
 }
 
 .banner {
-    position: relative;
+  position: relative;
 }
+
 .banner:after {
-    content: "";
-    top: 0px;
-    height: 80%;;
-    display: block;
-    background: #F4F6F7;
-    left: -15px;
-    right: -15px;
-    position: absolute;
-    z-index: -1;;
+  content: "";
+  top: 0px;
+  height: 80%;
+  ;
+  display: block;
+  background: #F4F6F7;
+  left: -15px;
+  right: -15px;
+  position: absolute;
+  z-index: -1;
 }
+
 .about-wrp {
-    padding: 35px 0;
-    position: relative;
+  padding: 35px 0;
+  position: relative;
 }
+
 .about-wrp::after {
-    content: "";
-    width: 1px;
-    top: 35px;
-    bottom: 35px;
-    display: block;
-    background: #4A4949;
-    left: 33.333%;
-    position: absolute;
+  content: "";
+  width: 1px;
+  top: 35px;
+  bottom: 35px;
+  display: block;
+  background: #4A4949;
+  left: 33.333%;
+  position: absolute;
 }
+
 .about-contact {
-    padding: 23px 0 23px 47px;
+  padding: 23px 0 23px 47px;
 }
+
 .about-contact p {
-    font-size: 16px;
-    color: #4a4949;
-    font-family: "Montserrat";
-    font-weight: 300;
-    margin-bottom: 0;
+  font-size: 16px;
+  color: #4a4949;
+  font-family: "Montserrat";
+  font-weight: 300;
+  margin-bottom: 0;
 }
+
 .about-contact p b {
-    font-weight: 400 !important;
+  font-weight: 400 !important;
 }
+
 .about-wrp h3 {
-    font-size: 22px;
-    color: #4a4949;
-    font-family: "Montserrat";
-    font-weight: 300;
-    text-align: left;
-    margin: 23px 0 0;
+  font-size: 22px;
+  color: #4a4949;
+  font-family: "Montserrat";
+  font-weight: 300;
+  text-align: left;
+  margin: 23px 0 0;
 }
+
 @media only screen and (max-width : 1200px) {
-    .about-contact p {
-        font-size: 20px;
-    }
-    .about-wrp h3 {
-        font-size: 25px;
-    }
+  .about-contact p {
+    font-size: 20px;
+  }
+
+  .about-wrp h3 {
+    font-size: 25px;
+  }
 }
+
 @media only screen and (max-width : 767px) {
-    .banner img {
-        padding: 15px 0;
-    }
-    .about-wrp::after {
-        display: none;
-    }
-    .about-contact p {
-        font-size: 12px;
-    }
-    .about-contact {
-        padding: 0 0 46px;
-    }
-    .about-wrp h3 {
-        font-size: 16px;
-        margin: 0 0 0 0;
-    }
+  .banner img {
+    padding: 15px 0;
+  }
+
+  .about-wrp::after {
+    display: none;
+  }
+
+  .about-contact p {
+    font-size: 12px;
+  }
+
+  .about-contact {
+    padding: 0 0 46px;
+  }
+
+  .about-wrp h3 {
+    font-size: 16px;
+    margin: 0 0 0 0;
+  }
 }

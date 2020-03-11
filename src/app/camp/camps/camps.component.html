@@ -1,138 +1,142 @@
 <mat-card *ngIf="isLoaded" class="event-card landing-page">
-        <div class="row top-banner">
-          <div class="col-md-4 col-sm-12 xs-12  mat-image-wrp"> <img mat-card-image class="header-image" 
-            [src]=camp.image_url alt="Photo of the camps" onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';"/>
-          </div>
-          <div class="col-md-8 col-sm-12 xs-12">
-            <div class="contact-section">
-              <h3>{{ camp.name }}</h3>
-              <p>{{camp.description}}</p>
-              <div class="cards-footer">
-                <!-- <span>free</span>   -->
-                <span></span>
-                <ul>
-                    <!-- <li><button><img src="../../assets/icons/calendar_gray.png" class="dfkg" /> add to calender</button></li> -->
-                    <!-- <li><button><img src="../../assets/icons/share.png" class="dfkg" /> share</button></li> -->
-                    <li title="save" *ngIf="is_parent_id === false || isLogedin === false">
-                        <button (click)="checklogin(saveEvent)">
-                          <img src="../../assets/icons/save_grey.png" class="dfkg" /> save
-                        </button>
-                      </li>
-                      <li  title="save" title="Save" (click)="save_camp()" *ngIf="isLogedin && isSaveVisible != true">
-                        <button>
-                          <img class="dfkg" src="../../assets/icons/save_blue.png" /> save
-                        </button>
-                      </li>
-                      <li   title="saved" (click)="is_delete_action()" *ngIf="isLogedin && isSaveVisible">
-                        <button>
-                          <img class="dfkg" src="../../assets/icons/save_orange.png" /> save
-                        </button>
-                      </li>
-                      <li *ngIf="is_parent_id === false || isLogedin === false" title="Add Review">
-                          <button class="btn path-38" (click)="checklogin(addToReview)">
-                             <img src="../../assets/icons/noun_review_1.png" class="dfkg" /> add a review
-                           </button>
-                         </li>
-                         <li *ngIf="isLogedin" (click)="add_review_redirect(2)" title="Add Review">
-                            <button class="btn path-38">
-                                <img src="../../assets/icons/review_blue.png" class="dfkg" /> add a review
-                            </button>
-                          </li>
-                    <!-- <li class="dropdown-menu-icon">
-                    <i class="fas fa-ellipsis-v"></i>
-                    <div class="menu-list">
-                        <ul>
-                          <li><a href=""><i class="fas fa-comment"></i> write a review</a></li>
-                          <li><a href=""><i class="fas fa-pen"></i> edit information</a></li>
-                        </ul>
-                    </div>
-                  </li> -->
-                </ul>
+  <div class="row top-banner">
+    <div class="col-md-4 col-sm-12 xs-12  mat-image-wrp"> <img mat-card-image class="header-image" 
+      [src]=camp.image_url alt="Photo of the camps" onError="this.onerror=null;this.src='assets/web_images/home_banner.jpg';"/>
+    </div>
+    <div class="col-md-8 col-sm-12 xs-12">
+      <div class="contact-section">
+        <h3>{{ camp.name }}</h3>
+        <p>{{camp.description}}</p>
+        <div class="cards-footer">
+          <!-- <span>free</span>   -->
+          <span></span>
+          <ul>
+            <!-- <li><button><img src="../../assets/icons/calendar_gray.png" class="dfkg" /> add to calender</button></li> -->
+            <!-- <li><button><img src="../../assets/icons/share.png" class="dfkg" /> share</button></li> -->
+            <li title="save" *ngIf="is_parent_id === false || isLogedin === false">
+                <button (click)="checklogin(saveEvent)">
+                  <img src="../../assets/icons/save_grey.png" class="dfkg" /> save
+                </button>
+              </li>
+              <li  title="save" title="Save" (click)="save_camp()" *ngIf="isLogedin && isSaveVisible != true">
+                <button>
+                  <img class="dfkg" src="../../assets/icons/save_blue.png" /> save
+                </button>
+              </li>
+              <li   title="saved" (click)="is_delete_action()" *ngIf="isLogedin && isSaveVisible">
+                <button>
+                  <img class="dfkg" src="../../assets/icons/save_orange.png" /> save
+                </button>
+              </li>
+              <li *ngIf="is_parent_id === false || isLogedin === false" title="Add Review">
+                <button class="btn path-38" (click)="checklogin(addToReview)">
+                  <img src="../../assets/icons/noun_review_1.png" class="dfkg" /> add a review
+                </button>
+              </li>
+              <li *ngIf="isLogedin" (click)="add_review_redirect(2)" title="Add Review">
+                <button class="btn path-38">
+                  <img src="../../assets/icons/review_blue.png" class="dfkg" /> add a review
+                </button>
+              </li>
+              <!-- <li class="dropdown-menu-icon">
+              <i class="fas fa-ellipsis-v"></i>
+              <div class="menu-list">
+                  <ul>
+                    <li><a href=""><i class="fas fa-comment"></i> write a review</a></li>
+                    <li><a href=""><i class="fas fa-pen"></i> edit information</a></li>
+                  </ul>
               </div>
-            </div>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row center-section ">
+    <div class="col-md-4"> 
+      <div class="left-section">
+        <h5 *ngIf="camp.timings">Timings</h5>
+        <p *ngIf="camp.timings">{{camp.timings}}</p>
+        <br>
+        <h5>Location</h5>
+        <p>{{camp.cities}}</p>
+        <button style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="camp_redirect()">Camp website</button>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="contact-section">
+        <h6 *ngIf="category"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" /> <div>Category</div> </h6>
+        <p *ngIf="category">{{category}}</p>
+        <h6 *ngIf="format_age()"><img src="../../assets/icons/noun_age_1.png" class="dfkg" /> <div>Age Group</div></h6>
+        <p *ngIf="format_age()">{{format_age()}}</p>
+        <h6 *ngIf="camp.offered_during"><img src="../../assets/icons/noun_season_camp_offered_during_1.png" class="dfkg" /> <div>Season Offered</div></h6>
+        <p *ngIf="camp.offered_during">{{camp.offered_during}}</p>
+        <h6 *ngIf="camp.activity_types"><img src="../../assets/icons/noun_camp_activity_type_1.png" class="dfkg" /><div> Activity</div></h6>
+        <p *ngIf="camp.activity_types">{{camp.activity_types}}</p>
+        <h6 *ngIf="camp.lunch"><img src="../../assets/icons/noun_lunch_1.png" class="dfkg" /><div> Lunch</div></h6>
+        <p *ngIf="camp.lunch">{{camp.lunch}}</p>
+        <h6 *ngIf="camp.am_extended_care"><img src="../../assets/icons/extended_care.png" class="dfkg" /><div> Extended Care</div></h6>
+        <p *ngIf="camp.am_extended_care">{{camp.am_extended_care}}</p>
+        <h6 *ngIf="camp.tips"><img src="../../assets/icons/noun_tips_1.png" class="dfkg" /><div> Tips</div></h6>
+        <p *ngIf="camp.tips">{{camp.tips}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="row reviews">
+    <div class="col-md-12"> 
+      <h2 #reviewsInput>Reviews</h2>
+      <!-- <div class="reviews-input-secyion"    *ngIf="is_review_click"> -->
+      <div class="reviews-input-secyion">
+        <textarea rows="3" placeholder="Some phrase to prompt user to write a review"id="review"
+        placeholder="Add review or tips to other parents" [(ngModel)]="review" required
+        (change)="validate_review()"></textarea>
+        <div *ngIf="isErrorVisible" class="alert alert-danger">
+          <div>
+            {{errorMessage }}
           </div>
         </div>
-        <div class="row center-section ">
-          <div class="col-md-4"> 
-            <div class="left-section">
-              <h5 *ngIf="camp.timings">Timings</h5>
-              <p *ngIf="camp.timings">{{camp.timings}}</p>
-              <br>
-              <h5>Location</h5>
-              <p>{{camp.cities}}</p>
-              <button style="color: #0000FF" class="detail-buttons mouse-pointer" (click)="camp_redirect()">Camp website</button>
-            </div>
-          </div>
-          <div class="col-md-8">
-            <div class="contact-section">
-                <h6  *ngIf="category"><img src="../../assets/icons/noun_categories_1.png" class="dfkg" /> <div>Category</div> </h6>
-              <p  *ngIf="category">{{category}}</p>
-              <h6 *ngIf="format_age()"><img src="../../assets/icons/noun_age_1.png" class="dfkg" /> <div>Age Group</div></h6>
-              <p *ngIf="format_age()">{{format_age()}}</p>
-              <h6 *ngIf="camp.offered_during"><img src="../../assets/icons/noun_season_camp_offered_during_1.png" class="dfkg" /> <div>Season Offered</div></h6>
-              <p *ngIf="camp.offered_during">{{camp.offered_during}}</p>
-              <h6 *ngIf="camp.activity_types"><img src="../../assets/icons/noun_camp_activity_type_1.png" class="dfkg" /><div> Activity</div></h6>
-              <p *ngIf="camp.activity_types">{{camp.activity_types}}</p>
-              <h6 *ngIf="camp.lunch"><img src="../../assets/icons/noun_lunch_1.png" class="dfkg" /><div> Lunch</div></h6>
-              <p *ngIf="camp.lunch">{{camp.lunch}}</p>
-              <h6 *ngIf="camp.am_extended_care"><img src="../../assets/icons/extended_care.png" class="dfkg" /><div> Extended Care</div></h6>
-              <p *ngIf="camp.am_extended_care">{{camp.am_extended_care}}</p>
-              <h6 *ngIf="camp.tips"><img src="../../assets/icons/noun_tips_1.png" class="dfkg" /><div> Tips</div></h6>
-              <p *ngIf="camp.tips">{{camp.tips}}</p>
-            </div>
+        <div *ngIf="isSuccessVisible" class="alert alert-success">
+          <div>
+            {{errorMessage }}
           </div>
         </div>
-        <div class="row reviews">
-          <div class="col-md-12"> 
-            <h2 #reviewsInput>Reviews</h2>
-            <!-- <div class="reviews-input-secyion"    *ngIf="is_review_click"> -->
-              <div class="reviews-input-secyion">
-              <textarea rows="3" placeholder="Some phrase to prompt user to write a review"id="review"
-              placeholder="Add review or tips to other parents" [(ngModel)]="review" required
-              (change)="validate_review()"></textarea>
-              <div *ngIf="isErrorVisible" class="alert alert-danger">
-                <div>
-                  {{errorMessage }}
-                </div>
-              </div>
-              <div *ngIf="isSuccessVisible" class="alert alert-success">
-                <div>
-                  {{errorMessage }}
-                </div>
-              </div>
-              <button class="post-btn" *ngIf="isLogedin" (click)="add_review()">post</button>
-              <button class="grey-button" *ngIf="!isLogedin" (click)="checklogin(addToReview)">post</button>
-              </div>
-              <p>Be the first to write a review!</p>
-              <div class="post-reviews">
-                <ul>
-                    <li *ngFor="let current_review of user_reviews;">
-                      <span><img src="../../assets/icons/profile.png" /></span>
-                      <p>{{current_review.review}}</p>
-                    </li>
-                    <!-- <li>
-                        <span><img src="../../assets/web_images/events_desktop-sketch.png" /></span>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                      </li>
-                      <li>
-                          <span><img src="../../assets/icons/profile.png" /></span>
-                          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </li> -->
-                </ul> 
-              </div>
-            </div>
-          </div>
-          <ng-template #deleteuser>
-              <div class="modal-body thanks">
-                  <button type="button" style="float: right;" class="close pull-right" aria-label="Close" (click)="closeDialog()">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                  <div class="text-center">
-                      <h2 class="app-name">Sign in to {{ClickName}}</h2>
-                  </div>
-                  <div class="btnYN">
-                      <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary" ><b class="SIGN-IN">SIGN IN</b></button><br>
-                     <span class="kin-pop"> New to Kin? </span> <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
-                  </div>
-              </div>
-          </ng-template>
+        <button class="post-btn" *ngIf="isLogedin" (click)="add_review()">post</button>
+        <button class="grey-button" *ngIf="!isLogedin" (click)="checklogin(addToReview)">post</button>
+      </div>
+      <p>Be the first to write a review!</p>
+      <div class="post-reviews">
+        <ul>
+          <li *ngFor="let current_review of user_reviews;">
+            <span><img src="../../assets/icons/profile.png" /></span>
+            <p>{{current_review.review}}</p>
+          </li>
+          <!-- <li>
+              <span><img src="../../assets/web_images/events_desktop-sketch.png" /></span>
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            </li>
+            <li>
+                <span><img src="../../assets/icons/profile.png" /></span>
+                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </li> -->
+        </ul> 
+      </div>
+    </div>
+  </div>
+  <ng-template #deleteuser>
+    <div class="modal-body thanks">
+      <button type="button" style="float: right;" class="close pull-right" aria-label="Close" (click)="closeDialog()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="text-center">
+        <h2 class="app-name">Sign in to {{ClickName}}</h2>
+      </div>
+      <div class="btnYN">
+        <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary"><b
+            class="SIGN-IN">SIGN IN</b></button><br>
+        <span class="kin-pop"> New to Kin? </span> <a href=""
+          style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's
+          free!!!</a>
+      </div>
+    </div>
+  </ng-template>
+</mat-card>

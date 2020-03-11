@@ -6,9 +6,6 @@ import { ValidationRules } from '../../shared/utils/ValidationRules';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
 
-
-
-
 @Component({
   selector: 'app-add-camp',
   templateUrl: './add-camp.component.html',
@@ -16,11 +13,9 @@ import { Observable } from 'rxjs';
 })
 
 export class AddCampComponent implements OnInit {
-    // public campConstants :any;
-    public isAuthenticated$: Observable<boolean>;
-    isLogedin = false;
-  
-
+  // public campConstants :any;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
 
   public campModel: any;
   public categoryList: any;
@@ -33,7 +28,7 @@ export class AddCampComponent implements OnInit {
   data: any = {};
 
   constructor(private addCampService: AddCampService,
-              private authService :AuthService) {
+              private authService: AuthService) {
     this.campModel = new CampModel();
     this.campConstants = new CampConstants();
     this.validationRules = new ValidationRules();
@@ -48,8 +43,7 @@ export class AddCampComponent implements OnInit {
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
       this.authService.setAuth(this.isLogedin);
-
-    })
+    });
 
   }
 
@@ -87,9 +81,8 @@ export class AddCampComponent implements OnInit {
 
   }
 
-  set_cat_name(cat_obj) {
+  set_cat_name(cat_obj: string) {
     this.cat_name = cat_obj;
   }
 
 }
-

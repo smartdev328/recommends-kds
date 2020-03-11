@@ -1,161 +1,238 @@
-.newsletter-banner{
-    height: 440px; 
-    width:100%; 
-      position: relative;
-}
-.newsletter-banner:before{
-    content: "";
-    position: absolute;
-    left:0;
-    bottom:0;
-    width: 90%;
-    height: 100%;
-    background: #ffd700;
-    display: block;
-
-    clip-path: polygon(0 0, 100% 0%, 100% 0, 0 100%);
+.newsletter-banner {
+  height: 440px;
+  width: 100%;
+  position: relative;
 }
 
-.newsletter-banner .banner-content{
-    position: absolute;
-    right:147px;
-    top:178px;
-}
-.newsletter-banner .banner-content span{
+.newsletter-banner:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 90%;
+  height: 100%;
+  background: #ffd700;
+  display: block;
 
-    color: #000;
-    text-transform: capitalize;
-    font-family: Montserrat;
-    font-size: 78px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-transform: uppercase;
+  clip-path: polygon(0 0, 100% 0%, 100% 0, 0 100%);
 }
+
+.newsletter-banner .banner-content {
+  position: absolute;
+  right: 147px;
+  top: 178px;
+}
+
+.newsletter-banner .banner-content span {
+
+  color: #000;
+  text-transform: capitalize;
+  font-family: Montserrat;
+  font-size: 78px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-transform: uppercase;
+}
+
 .more {
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #000;
-  }
-.newsletter-banner ul{float: right;}
-.newsletter-banner ul li{
-    float: left;
-    padding: 0 3px;
-    color:#fff;
-    list-style: none;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #000;
 }
+
+.newsletter-banner ul {
+  float: right;
+}
+
+.newsletter-banner ul li {
+  float: left;
+  padding: 0 3px;
+  color: #fff;
+  list-style: none;
+}
+
 .col-md-3.more {
-    margin-top: 20px;
-    text-align: right;
+  margin-top: 20px;
+  text-align: right;
 }
-.lower-text{
-    margin-right: 10px;
+
+.lower-text {
+  margin-right: 10px;
 }
-.newsletter-banner ul li:first-child{font-size: 16px;padding-top: 5px;}
-.newsletter-banner ul li:last-child{font-size: 24px;}
-.newsletter-banner ul li img{width: 36px; width: 36px;}
-.newsletter{margin: 30px auto 45px auto;}
+
+.newsletter-banner ul li:first-child {
+  font-size: 16px;
+  padding-top: 5px;
+}
+
+.newsletter-banner ul li:last-child {
+  font-size: 24px;
+}
+
+.newsletter-banner ul li img {
+  width: 36px;
+  width: 36px;
+}
+
+.newsletter {
+  margin: 30px auto 45px auto;
+}
+
 .newsletter h3 {
-  
-    font-family: Montserrat;
-    font-size: 42px ;
-    font-weight: normal ;
-    font-style: normal ;
-    font-stretch: normal ;
-    line-height: normal ;
-    letter-spacing: normal ;
-    color: #000;
-    margin-bottom: 25px;
-  }
-  .mat-content{
-    display: inline-block; width:100%;
-    padding: 15px 15px 30px 15px;
-  
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-  }
-  .event-list-cards .img-wrp {height:200px;}
-  .event-list-cards .img-wrp img{width:100%; height: 100%; object-fit: cover;}
-  .event-list-cards{
-      display: inline-block;
-      width: 100%;
-      border: solid 1px #ECF0F1 !important;
-      height: 350px;
 
-      padding-left: 0 !important; padding-right:0 !important; padding-top: 0 !important; box-shadow: none; margin-bottom: 25px; max-height: 440px; position: relative; border:1px solid #f7f7f7;}
-  .mat-card-content{padding: 15px !important; }
-  .event-list-cards .img-wrp img{margin: 0 !important;}
-  .newsletter .event-list-cards .event-group-title{
-    background-color: #FFD700;
-    font-size: 14px;
-    margin-bottom: 0.5em;
-    margin-top: 0.5em;
-    font-size: 14px;
-    color: #000000;
-    font-family: "Montserrat";
-    font-weight: 700;
+  font-family: Montserrat;
+  font-size: 42px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #000;
+  margin-bottom: 25px;
+}
+
+.mat-content {
+  display: inline-block;
+  width: 100%;
+  padding: 15px 15px 30px 15px;
+
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.event-list-cards .img-wrp {
+  height: 200px;
+}
+
+.event-list-cards .img-wrp img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-list-cards {
+  display: inline-block;
+  width: 100%;
+  border: solid 1px #ECF0F1 !important;
+  height: 350px;
+
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+  box-shadow: none;
+  margin-bottom: 25px;
+  max-height: 440px;
+  position: relative;
+  border: 1px solid #f7f7f7;
+}
+
+.mat-card-content {
+  padding: 15px !important;
+}
+
+.event-list-cards .img-wrp img {
+  margin: 0 !important;
+}
+
+.newsletter .event-list-cards .event-group-title {
+  background-color: #FFD700;
+  font-size: 14px;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  font-size: 14px;
+  color: #000000;
+  font-family: "Montserrat";
+  font-weight: 700;
+}
+
+.newsletter .event-list-cards .event-date,
+.newsletter .event-list-cards .event-venue {
+  font-size: 12px;
+  margin-bottom: 0em;
+  font-family: "Montserrat";
+  font-weight: 700;
+  color: #000 !important;
+}
+
+.see-more {
+  width: 100%;
+  height: 100%;
+  background: #ffd700;
+  text-align: center;
+  max-height: 380px;
+  min-height: 380px;
+
+}
+
+.see-more a {
+  font-family: Montserrat;
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #000;
+  text-transform: capitalize;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width : 1230px) {
+  .newsletter-banner .banner-content span {
+    font-size: 2.4rem;
   }
-  .newsletter .event-list-cards .event-date,  .newsletter .event-list-cards .event-venue{
-    font-size: 12px;
-    margin-bottom: 0em;
-    font-family: "Montserrat";
-    font-weight: 700;
-    color: #000 !important;
+}
+
+@media only screen and (max-width : 992px) {
+  .newsletter-banner .banner-content span {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width : 640px) {
+  .newsletter-banner {
+    height: 102px;
   }
 
-  .see-more{
-      width: 100%;
-      height: 100%;
-      background: #ffd700;
-      text-align: center;
-      max-height: 380px;
-      min-height: 380px;
- 
-  }
-  .see-more a{
-    font-family: Montserrat;
-    font-size: 24px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #000;
-    text-transform: capitalize;
-    position: absolute;
-    left:50%;
-    top:50%;
-    transform: translate(-50%, -50%);
-  }
-  @media only screen and (max-width : 1230px){
-    .newsletter-banner .banner-content span{font-size: 2.4rem;}
-  }
-  @media only screen and (max-width : 992px){
-    .newsletter-banner .banner-content span{font-size: 2rem;}
-  }
-  @media only screen and (max-width : 640px) {
-    .newsletter-banner{
-        height: 102px;
-    }
-    .newsletter-banner .banner-content{
-        top:58px;
-        right:15px;
-        
-    }
-    .newsletter-banner .banner-content span{
-        font-size: 18px;
-    }
-  
-    .newsletter-banner ul li:first-child{font-size: 8px;padding-top: 5px;}
-    .newsletter-banner ul li:last-child{font-size: 10px;}
-    .newsletter-banner ul li img{width: 16px; width: 16px;}
-    .newsletter h3{font-size: 24px !important;}
-    .event-list-cards{height: auto;}
+  .newsletter-banner .banner-content {
+    top: 58px;
+    right: 15px;
 
   }
- 
+
+  .newsletter-banner .banner-content span {
+    font-size: 18px;
+  }
+
+  .newsletter-banner ul li:first-child {
+    font-size: 8px;
+    padding-top: 5px;
+  }
+
+  .newsletter-banner ul li:last-child {
+    font-size: 10px;
+  }
+
+  .newsletter-banner ul li img {
+    width: 16px;
+    width: 16px;
+  }
+
+  .newsletter h3 {
+    font-size: 24px !important;
+  }
+
+  .event-list-cards {
+    height: auto;
+  }
+
+}

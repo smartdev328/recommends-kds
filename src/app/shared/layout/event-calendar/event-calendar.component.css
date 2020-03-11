@@ -1,23 +1,23 @@
 .calender-content {
-    background-image: linear-gradient(to bottom, #ffd700, #ff9c2b);
+  background-image: linear-gradient(to bottom, #ffd700, #ff9c2b);
 }
 
 .cal-item {
-    padding: 5px;
-    text-align: right;
-    width: calc(100%/7);
+  padding: 5px;
+  text-align: right;
+  width: calc(100%/7);
 }
 
 .day-item {
-    height: 15vh;
-    border-right: 1px solid #4a4949;
-    border-top: 1px solid #4a4949;
+  height: 15vh;
+  border-right: 1px solid #4a4949;
+  border-top: 1px solid #4a4949;
 }
 
 .day-item:nth-child(7n+7) {
-    border-right: none;
+  border-right: none;
 }
 
 .no-border-top {
-    border-top: none;
+  border-top: none;
 }

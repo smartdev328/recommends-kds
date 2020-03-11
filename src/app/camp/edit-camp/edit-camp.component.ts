@@ -28,14 +28,14 @@ export class EditCampComponent implements OnInit {
   public showError: Boolean;
   public camp_error: any;
   public validationRules: any;
-    // public campConstants :any;
-    public isAuthenticated$: Observable<boolean>;
-    isLogedin = false;
+  // public campConstants :any;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
 
 
   constructor(private addCampService: AddCampService, private route: ActivatedRoute,
     private router: Router, private http: HttpClient,
-  private authService :AuthService) {
+  private authService: AuthService) {
     this.campModel = new CampModel();
     this.campConstants = new CampConstants();
     this.validationRules = new ValidationRules();
@@ -46,13 +46,12 @@ export class EditCampComponent implements OnInit {
     this.campModel.misc.am_extended_care = '';
   }
   ngOnInit() {
-      
+
     this.isAuthenticated$ = this.authService.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
       this.authService.setAuth(this.isLogedin);
-
-    })
+    });
     this.route.params.subscribe(params => {
       this.camp_id = params['campId'];
       this.edit_page_camp_id = this.camp_id;

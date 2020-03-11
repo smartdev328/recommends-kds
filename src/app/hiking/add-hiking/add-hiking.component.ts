@@ -22,15 +22,12 @@ export class AddHikingTrailComponent implements OnInit {
   public hiking_trail_error: any;
   public validationRules: any;
   serverResponse: string;
-    // public campConstants :any;
-    public isAuthenticated$: Observable<boolean>;
-    isLogedin = false;
-  
-
-
+  // public campConstants :any;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
 
   constructor(private addHikingTrailService: AddHikingTrailService,
-  private authService :AuthService) {
+  private authService: AuthService) {
     this.hikingTrailModel = new HikingTrailModel();
     this.validationRules = new ValidationRules();
     this.showError = false;
@@ -43,7 +40,7 @@ export class AddHikingTrailComponent implements OnInit {
       this.isLogedin = data;
       this.authService.setAuth(this.isLogedin);
 
-    })
+    });
   }
 
   onSubmit() {
@@ -66,7 +63,6 @@ export class AddHikingTrailComponent implements OnInit {
       }
     }
     );
-
   }
 
 }

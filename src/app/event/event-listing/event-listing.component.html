@@ -11,8 +11,8 @@
         <div class="row filter-box-content" *ngIf="(isAuthenticated$ | async) == false">
           <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-1">
             <div class="input-group">
-              <input type="text" class="form-control keyword-text" (keyup.enter)="call_event_filter()" placeholder="Keyword"
-                [(ngModel)]="keyword">
+              <input type="text" class="form-control keyword-text" (keyup.enter)="call_event_filter()"
+                placeholder="Keyword" [(ngModel)]="keyword">
             </div>
           </div>
           <div class="dropdown col-lg-3 col-md-2 col-sm-6 col-xs-2 mb-2">
@@ -79,28 +79,28 @@
             </mat-form-field>
           </div> -->
           <div class="dropdown col-lg-2 col-md-2 col-sm-6 col-xs-2 mb-2 ">
-              <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{date_label}}
-                <span class="hairline-down">
-                  <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12"
-                    viewBox="0 0 24 24">
-                    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
-                  </svg>
-                </span>
-              </button>
-              <div class="dropdown-menu add-scroll" aria-labelledby="dropdownMenuButton">
-                <label class="dropdown-item cursor" (click)="onDateChange(data)" *ngFor="let data
+            <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{date_label}}
+              <span class="hairline-down">
+                <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12"
+                  viewBox="0 0 24 24">
+                  <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
+                </svg>
+              </span>
+            </button>
+            <div class="dropdown-menu add-scroll" aria-labelledby="dropdownMenuButton">
+              <label class="dropdown-item cursor" (click)="onDateChange(data)" *ngFor="let data
                                 of dateFilter">{{data.desc}}</label>
-              </div>
-              <div *ngIf="pickDate === true" class="date-picker-input">
-                <!-- <mat-form-field> -->
-                <input [matDatepicker]="picker" (dateInput)="fromDate('input', $event)" placeholder="Choose a date">
-                <mat-datepicker-toggle matSuffix [for]="picker" hidden></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-                <!-- </mat-form-field> -->
-              </div>
             </div>
+            <div *ngIf="pickDate === true" class="date-picker-input">
+              <!-- <mat-form-field> -->
+              <input [matDatepicker]="picker" (dateInput)="fromDate('input', $event)" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker" hidden></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <!-- </mat-form-field> -->
+            </div>
+          </div>
           <div class="col-xs-1 search-button">
             <svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
               class="svg-icons cursor" (click)="call_event_filter()">
@@ -114,8 +114,8 @@
         </div>
         <div class="row filter-box-content" *ngIf="isAuthenticated$ | async">
           <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-1">
-            <input type="text" class="form-control keyword-text search-style" placeholder="Keyword" [(ngModel)]="keyword"
-              (keyup.enter)="call_event_filter()" name="keyword">
+            <input type="text" class="form-control keyword-text search-style" placeholder="Keyword"
+              [(ngModel)]="keyword" (keyup.enter)="call_event_filter()" name="keyword">
           </div>
           <div class="dropdown col-lg-3 col-md-2 col-sm-6 col-xs-2 mb-2">
             <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton"
@@ -202,7 +202,7 @@
         -->
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <h3 *ngIf="kidHeading !='kid'">{{eventName | titlecase}} Events</h3>
-          <h3 *ngIf="kidHeading =='kid'" > Events for {{eventName | titlecase}}</h3>
+          <h3 *ngIf="kidHeading =='kid'"> Events for {{eventName | titlecase}}</h3>
 
 
 
@@ -210,7 +210,7 @@
             <div class="form-group">
               <!-- <label for="">Sort by</label> -->
               <i class="fa fa-angle-down" aria-hidden="true"></i>
-              <select (change)="sortBy($event.target.value,'')"  class="selectDropdown">
+              <select (change)="sortBy($event.target.value,'')" class="selectDropdown">
                 <option selected disabled hidden>Sort By</option>
                 <option [value]="kid.id" *ngFor="let kid of user?.parent?.kids">For {{kid.nick_name}}</option>
                 <option value="subscribed">Following</option>
@@ -261,7 +261,9 @@
     <div class="btnYN">
       <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary"><b class="SIGN-IN">SIGN
           IN</b></button><br>
-      <span class="kin-pop"> New to Kin? </span> <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
+      <span class="kin-pop"> New to Kin? </span> <a href=""
+        style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's
+        free!!!</a>
     </div>
   </div>
 </ng-template>

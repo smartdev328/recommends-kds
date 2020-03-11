@@ -25,12 +25,10 @@ export class VenueComponent implements OnInit {
   public isErrorVisible: Boolean;
   public jsonMiscData: JSON;
   public showErrorDialog: boolean;
-    // public campConstants :any;
-    public isAuthenticated$: Observable<boolean>;
-    isLogedin = false;
-  
-
-
+  public ClickName: string;
+  // public campConstants :any;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
 
   constructor(private eventService: VenueService,
     private authService: AuthService,
@@ -43,10 +41,7 @@ export class VenueComponent implements OnInit {
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
       this.authService.setAuth(this.isLogedin);
-
-    })
-
-
+    });
   }
 
   add_new_venue(this) {
@@ -90,5 +85,13 @@ export class VenueComponent implements OnInit {
     this.isErrorVisible = false;
   }
 
+  signin() {
 
+  }
+
+  closeDialog() {
+  }
+
+  update_venue($event) {
+  }
 }

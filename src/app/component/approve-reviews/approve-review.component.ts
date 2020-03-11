@@ -24,9 +24,9 @@ export class ApproveReviewComponent implements OnInit {
   public rows: any;
   public columns: any;
   public selected: any;
-    // public campConstants :any;
-    public isAuthenticated$: Observable<boolean>;
-    isLogedin = false;
+  // public campConstants :any;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
   
 
 

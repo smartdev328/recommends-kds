@@ -1,217 +1,250 @@
-
 .mat-card {
-    padding: 0;
+  padding: 0;
 }
+
 .img-wrp {
-    /*width: 100%;*/
-    height: 175px;
-    margin: 0;  
+  /*width: 100%;*/
+  height: 175px;
+  margin: 0;
 }
+
 .img-wrp img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    margin: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
 }
+
 .event-list-cards {
-    margin: 7% 2% 7% 2%;
-    border: solid 1px #ECF0F1;
-    background-color: #ffffff;
-    font-family: Montserrat;
-    box-shadow: none;
+  margin: 7% 2% 7% 2%;
+  border: solid 1px #ECF0F1;
+  background-color: #ffffff;
+  font-family: Montserrat;
+  box-shadow: none;
 }
+
 .event-listing-card h3 {
-    font-size: 25px;
-    font-weight: bold;
-    margin: 12px 0 0;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 12px 0 0;
 }
 
 .event-group-title {
-    background-color: #FFD700;
-    margin-bottom: 0.5em;
-    margin-top: 0.5em;
-    font-size: 14px;
-    color: #000000;
-    font-family: "Montserrat";
-    font-weight: 700;
+  background-color: #FFD700;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  font-size: 14px;
+  color: #000000;
+  font-family: "Montserrat";
+  font-weight: 700;
 }
 
 .event-date {
-    font-size: 12px;
-    margin-bottom: 0em;
-    font-family: "Montserrat";
-    font-weight: 700;
+  font-size: 12px;
+  margin-bottom: 0em;
+  font-family: "Montserrat";
+  font-weight: 700;
 }
 
 .event-venue {
-    margin-top: 0em;
-    font-size: 12px;
-    font-family: "Montserrat";
-    font-weight: 600;
+  margin-top: 0em;
+  font-size: 12px;
+  font-family: "Montserrat";
+  font-weight: 600;
 }
 
 .event-header {
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .flex-display {
-  display: flex; 
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   height: 100vw;
   max-height: 800px;
-  font-size: 0; 
+  font-size: 0;
 }
 
 .show-layout {
-    opacity: 1;
+  opacity: 1;
 }
+
 .mat-card-content {
-    padding: 16px; 
+  padding: 16px;
 }
 
 .hide-layout {
-    opacity: 0;
+  opacity: 0;
 }
+
 .tiles {
-    width: 33%;
+  width: 33%;
 }
-.star-btn{text-align: right;}
-.star-btn button {background: none; border:0; height: 24px; width: 24px; padding: 0; cursor:pointer;}
-.star-btn button:first-child{margin-right: 10px;} 
-.star-btn button img{width: 100%;}
-@media only screen and (max-width : 1280px) {
-    
+
+.star-btn {
+  text-align: right;
 }
+
+.star-btn button {
+  background: none;
+  border: 0;
+  height: 24px;
+  width: 24px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.star-btn button:first-child {
+  margin-right: 10px;
+}
+
+.star-btn button img {
+  width: 100%;
+}
+
+@media only screen and (max-width : 1280px) {}
 
 
 /* Desktop */
 @media only screen and (min-width : 1280px) {
-    
 
-    .loading-gif {
-        margin-left: 40%;
-    }
-   
-    .event-list-cards {
-        height: auto;
-        width: auto;
-    }
+
+  .loading-gif {
+    margin-left: 40%;
+  }
+
+  .event-list-cards {
+    height: auto;
+    width: auto;
+  }
 }
+
 /* Tablets */
 @media only screen and (min-width : 768px) and (max-width : 1280px) {
-    .loading-gif {
-        margin-left: 35%;
-    }
-    .img-wrp img {
-        object-fit: cover;
-        height: 150px;
-    }
-    .event-list-cards {
-        height: 350px;
-        width: auto;
-    }
+  .loading-gif {
+    margin-left: 35%;
+  }
+
+  .img-wrp img {
+    object-fit: cover;
+    height: 150px;
+  }
+
+  .event-list-cards {
+    height: 350px;
+    width: auto;
+  }
 }
-/* Mobile */ 
+
+/* Mobile */
 @media only screen and (max-width : 1024px) {
-    .tiles {
-        width: 32%;
-    }
+  .tiles {
+    width: 32%;
+  }
 }
+
 @media only screen and (max-width : 992px) {
-    .img-wrp img {
-        height: 150px;
-    }
-}  
-@media only screen and (max-width : 767px) {
-    .centered {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .loading-gif {
-        margin-left: 5%;
-    }
-    .event-list-cards {
-        margin: 5px auto;
-        width: 100%;
-    }
-    .tiles {
-        width: 100%;
-    }
+  .img-wrp img {
+    height: 150px;
+  }
 }
-.SIGN-IN{
-    
-    width: 78px;
-    height: 24px;
-    font-family: Montserrat;
-    font-size: 20px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: #000;
-    cursor: pointer;
+
+@media only screen and (max-width : 767px) {
+  .centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .loading-gif {
+    margin-left: 5%;
+  }
+
+  .event-list-cards {
+    margin: 5px auto;
+    width: 100%;
+  }
+
+  .tiles {
+    width: 100%;
+  }
+}
+
+.SIGN-IN {
+
+  width: 78px;
+  height: 24px;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000;
+  cursor: pointer;
 
 }
+
 .Rectangle {
-width: 258px;
-height: 49px;
-border-radius: 8px;
-background-color: #ffd700;
-color: #000;
-border:0;
-margin: 20px 0 15px 0;
-cursor: pointer;
+  width: 258px;
+  height: 49px;
+  border-radius: 8px;
+  background-color: #ffd700;
+  color: #000;
+  border: 0;
+  margin: 20px 0 15px 0;
+  cursor: pointer;
 }
 
 .cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane {
-width: 626px;
-height: 303px;
-border-radius: 7px;
-box-shadow: 0 2px 4px 0 grey;
-background-color: #fff;
+  width: 626px;
+  height: 303px;
+  border-radius: 7px;
+  box-shadow: 0 2px 4px 0 grey;
+  background-color: #fff;
 }
-.modal-body{
+
+.modal-body {
   text-align: center;
 }
-h2.app-name{
 
-font-family: Montserrat;
-font-size: 32px;
-font-weight: normal;
-font-style: normal;
-font-stretch: normal;
-line-height: normal;
-letter-spacing: normal;
-text-align: center;
-color: #000;
-padding: 35px 58px 38px 57px 
+h2.app-name {
+
+  font-family: Montserrat;
+  font-size: 32px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000;
+  padding: 35px 58px 38px 57px
 }
 
-button.close{
-width: 11px;
-height: 11px;
-border: solid 1px #4a4949;
-font-weight: normal;
-border:0;
-margin:-6px -6px 0 0;
+button.close {
+  width: 11px;
+  height: 11px;
+  border: solid 1px #4a4949;
+  font-weight: normal;
+  border: 0;
+  margin: -6px -6px 0 0;
 }
-.modal-body{
-padding: 0;
+
+.modal-body {
+  padding: 0;
 
 }
 
-#cdk-overlay-0{
+#cdk-overlay-0 {
   background: red;
 }
-.btnYN{
+
+.btnYN {
   padding-bottom: 25px;
-} 
-    
-    
-    
+}

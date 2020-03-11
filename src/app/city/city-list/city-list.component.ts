@@ -13,11 +13,13 @@ import { CampListingService } from '../../camp/camp-listing/camp-listing.service
 import { CampErrorMessage } from '@shared/constants/CampConstants';
 import { HikingTrailsListingService } from '../../hiking/hiking-listing/hiking-listing.service';
 import { HikingTrailErrorMessage } from '@shared/constants/HikingTrailConstants';
+
 @Component({
   selector: 'app-city-list',
   templateUrl: './city-list.component.html',
   styleUrls: ['./city-list.component.css']
 })
+
 export class CityListComponent implements OnInit {
 
   trailList: any;
@@ -25,10 +27,10 @@ export class CityListComponent implements OnInit {
   venueList: any;
   errorMessage: string;
   eventList: any;
-  limit: any= 5;
+  limit: any = 5;
   isAuthenticated$: Observable<boolean>;
   currentUrl: string;
-  isLogedin:boolean;
+  isLogedin: boolean;
   cityName: String;
 
 
@@ -38,7 +40,7 @@ export class CityListComponent implements OnInit {
   public hikeErrorMessage = new HikingTrailErrorMessage();
   public commonErrorMessage = new ErrorMessage();
 
-  constructor(private router : Router,
+  constructor(private router: Router,
     private authService: AuthService,
     private eventListingService: EventListingService,
     private venueService: VenueListingService,
@@ -46,7 +48,7 @@ export class CityListComponent implements OnInit {
     private hikeService: HikingTrailsListingService,
     public http: HttpClient,
     private route: ActivatedRoute,
-  ) { 
+  ) {
 
   }
   ngOnInit() {
@@ -57,15 +59,15 @@ export class CityListComponent implements OnInit {
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
       this.authService.setAuth(this.isLogedin);
-      this.getEvents()
+      this.getEvents();
       this.getPlaces();
       this.getCamps();
       this.getTrails();
-    })
+    });
   }
 
   getEvents() {
-    let url = `${API_URL}` + `events/?limit=${this.limit}&city=${this.cityName}`;
+    const url = `${API_URL}` + `events/?limit=${this.limit}&city=${this.cityName}`;
     if (this.isLogedin == true) {
       this.eventListingService.get_event_details(url).subscribe(data => {
         if (data['events'] !== undefined && data['events'].length > 0) {
@@ -93,7 +95,7 @@ export class CityListComponent implements OnInit {
   }
 
   getPlaces() {
-    let url = `${API_URL}` + `venues/?limit=${this.limit}&city=${this.cityName}`;
+    const url = `${API_URL}` + `venues/?limit=${this.limit}&city=${this.cityName}`;
     if (this.isLogedin == true) {
       this.venueService.get_venue_details(url).subscribe(data => {
         if (data['venues'] !== undefined && data['venues'].length > 0) {
@@ -121,7 +123,7 @@ export class CityListComponent implements OnInit {
   }
 
   getCamps() {
-    let url = `${API_URL}` + `camps/?limit=${this.limit}&city=${this.cityName}`;
+    const url = `${API_URL}` + `camps/?limit=${this.limit}&city=${this.cityName}`;
     if (this.isLogedin == true) {
       this.campService.get_camp_details(url).subscribe(data => {
         if (data['data'] !== undefined && data['data'].length > 0) {
@@ -149,7 +151,7 @@ export class CityListComponent implements OnInit {
   }
 
   getTrails() {
-    let url = `${API_URL}` + `hiking-trails/?limit=${this.limit}&city=${this.cityName}`;
+    const url = `${API_URL}` + `hiking-trails/?limit=${this.limit}&city=${this.cityName}`;
     if (this.isLogedin == true) {
       this.hikeService.get_hiking_trail_details(url).subscribe(data => {
         if (data['trails'] !== undefined && data['trails'].length > 0) {

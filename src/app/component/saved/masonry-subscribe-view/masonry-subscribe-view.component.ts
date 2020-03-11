@@ -21,10 +21,10 @@ export class MasonrySubscribeViewComponent implements OnInit {
 
 
   constructor(private router: Router,
-              private venuesService: VenuesService) { }
+    private venuesService: VenuesService) {}
 
   ngOnInit() {
-    
+
 
     setTimeout(() => {
       this.showLayout = true;
@@ -33,32 +33,32 @@ export class MasonrySubscribeViewComponent implements OnInit {
 
   }
 
-  add_subscription_venue(id,i) {
-      const input_data = {
-        "venue_subs_data": {
-          "venue_id": id,
-        }
-      };
-      this.venuesService.add_subscriptions(input_data).subscribe(data => {
-        if (data['status'] === true) {
-          this.venues[i].sub = 0;
-          this.isSubscribeVisible = true;
-        } else {
-          alert('Something went wrong while subscribe venue');
-        }
-      }, error => {
+  add_subscription_venue(id, i) {
+    const input_data = {
+      "venue_subs_data": {
+        "venue_id": id,
+      }
+    };
+    this.venuesService.add_subscriptions(input_data).subscribe(data => {
+      if (data['status'] === true) {
+        this.venues[i].sub = 0;
+        this.isSubscribeVisible = true;
+      } else {
         alert('Something went wrong while subscribe venue');
-      });
+      }
+    }, error => {
+      alert('Something went wrong while subscribe venue');
+    });
   }
 
-  unsubscribe_venue(id,i) {
-      this.venuesService.remove_subscriptions(null, id).subscribe(data => {
-        if (data['status'] === true) {
-          this.venues[i].sub = 1;
-          this.isSubscribeVisible = false;          
-        }
-      }, error => {
-        this.errorMessage = 'Something went wrong while subscribe venue';
-      });
+  unsubscribe_venue(id, i) {
+    this.venuesService.remove_subscriptions(null, id).subscribe(data => {
+      if (data['status'] === true) {
+        this.venues[i].sub = 1;
+        this.isSubscribeVisible = false;
+      }
+    }, error => {
+      this.errorMessage = 'Something went wrong while subscribe venue';
+    });
   }
 }

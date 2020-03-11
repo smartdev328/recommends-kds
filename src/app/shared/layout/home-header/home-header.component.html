@@ -1,90 +1,90 @@
 <nav class="navbar navbar-light navbar-expand-md">
-    <a href="/" class="navbar-brand mr-0" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
-        [routerLink]="['/']">
-        <!-- <img src="../../assets/web_images/new_kin_logo_final15perc.png" class="logo-icon" /> -->
-        <img src="../../assets/web_images/newLogo.jpg" class="logo-icon" />
-    </a>
-    <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
-        <ul class="navbar-nav m-auto text-center">
-            <li class="nav-item">
-                <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/family-friendly-events-near-me']">Events</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/family-friendly-places-near-me']" >Places</a>
-            </li>
-            <li class="nav-item">
-                    <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
-                        [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/kids-classes-near-me']" >Classes</a>
-                </li>
-            <li class="nav-item">
-                <a class="nav-link navbar-brand mr-0 Home-header headercurser " [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/camps-near-me']" >Camps</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/family-friendly-hikes-near-me']" >Hiking</a>
-            </li>
-            <li class="nav-item">
-                    <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
-                        [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/recos']" >Recommendations</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav text-center align-items-center">
-            <li class="nav-item" fxLayout="row" fxLayout.xs="column" *ngIf="isLogedin != null">
-                <!-- <a class="nav-link nav-button"  [routerLink]="['/','sign-up']">  -->
-                <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="auth.login()"
-                    *ngIf="!isLogedin">
-                    <button class="btn path-38 sign_up">SIGN IN</button>
-                </a>
-                <div class="mt-2 dropdown" fxLayout="row" fxLayoutAlign="center stretch" *ngIf="isLogedin">
-                    <div class="cursor" fxLayout="row" data-toggle="dropdown">
-                        <img src="assets/web_images/profile.png" alt="User" width="50" height="44" >
-                        <mat-icon aria-hidden="false" aria-label="keyboard_arrow_down"></mat-icon>
-                        
-                        <ul class="dropdown-menu dropdown-menu-right">
-                                <li routerLink='/saved'>Saved</li>
-                                <li routerLink='/saved'>Following</li>
-                                <li routerLink='/add-recos'>Add Recos</li>
-                                <mat-divider></mat-divider>
-                                <li (click)="inviteFriend()">Invite friends</li>
-                                <li routerLink='/accept-invites'>Accept Invites</li>
-                                <mat-divider></mat-divider>
-                                <!-- <li>Reset password</li>
+  <a href="/" class="navbar-brand mr-0" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
+    [routerLink]="['/']">
+    <!-- <img src="../../assets/web_images/new_kin_logo_final15perc.png" class="logo-icon" /> -->
+    <img src="../../assets/web_images/newLogo.jpg" class="logo-icon" />
+  </a>
+  <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
+    <ul class="navbar-nav m-auto text-center">
+      <li class="nav-item">
+        <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/family-friendly-events-near-me']">Events</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/family-friendly-places-near-me']">Places</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/kids-classes-near-me']">Classes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link navbar-brand mr-0 Home-header headercurser " [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/camps-near-me']">Camps</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/family-friendly-hikes-near-me']">Hiking</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link navbar-brand mr-0 Home-header headercurser" [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/recos']">Recommendations</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav text-center align-items-center">
+      <li class="nav-item" fxLayout="row" fxLayout.xs="column" *ngIf="isLogedin != null">
+        <!-- <a class="nav-link nav-button"  [routerLink]="['/','sign-up']">  -->
+        <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="auth.login()"
+          *ngIf="!isLogedin">
+          <button class="btn path-38 sign_up">SIGN IN</button>
+        </a>
+        <div class="mt-2 dropdown" fxLayout="row" fxLayoutAlign="center stretch" *ngIf="isLogedin">
+          <div class="cursor" fxLayout="row" data-toggle="dropdown">
+            <img src="assets/web_images/profile.png" alt="User" width="50" height="44">
+            <mat-icon aria-hidden="false" aria-label="keyboard_arrow_down"></mat-icon>
+
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li routerLink='/saved'>Saved</li>
+              <li routerLink='/saved'>Following</li>
+              <li routerLink='/add-recos'>Add Recos</li>
+              <mat-divider></mat-divider>
+              <li (click)="inviteFriend()">Invite friends</li>
+              <li routerLink='/accept-invites'>Accept Invites</li>
+              <mat-divider></mat-divider>
+              <!-- <li>Reset password</li>
                                     <mat-divider></mat-divider> -->
-                                <li routerLink="/profile">Settings</li>
-                                <li (click)="auth.logout()">Logout</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="openModal()">
+              <li routerLink="/profile">Settings</li>
+              <li (click)="auth.logout()">Logout</li>
+            </ul>
+          </div>
+        </div>
+        <!-- <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="openModal()">
                     <button class="btn path-38 sign_up">SUBSCRIBE</button>
                 </a> -->
-                <!-- <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="logout()"
+        <!-- <a class="nav-link nav-button" [class.xs]="'py-2'" [class.gt-xs]="'px-3'" (click)="logout()"
                     *ngIf="isAuthenticated">
                     <button class="btn path-38 sign_up">SIGN OUT</button>
                 </a> -->
-            </li>
-        </ul>
-    </div> 
+      </li>
+    </ul>
+  </div>
 </nav>
 <nav class="bottom-navbar" *ngIf="isLogedin">
-    <ul class="navbar-nav m-auto text-center">
-        <li class="nav-item home-page">
-            <a class="nav-link navbar-brand mr-0" [routerLinkActive]="['active']" 
-                [routerLinkActiveOptions]="{exact: true}" routerLink="/home">Discover</a>
-        </li>
-        <li class="nav-item add-reco-page">
-            <a class="nav-link navbar-brand mr-0" [routerLinkActive]="['active']"
-            [routerLinkActiveOptions]="{exact: true}" routerLink="/add-recos">+</a>
-        </li>
-        <li class="nav-item recos-page">
-            <a class="nav-link navbar-brand mr-0" [routerLinkActive]="['active']"
-            [routerLinkActiveOptions]="{exact: true}" routerLink="/recos">Recos</a>
-        </li>
-    </ul>
+  <ul class="navbar-nav m-auto text-center">
+    <li class="nav-item home-page">
+      <a class="nav-link navbar-brand mr-0" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
+        routerLink="/home">Discover</a>
+    </li>
+    <li class="nav-item add-reco-page">
+      <a class="nav-link navbar-brand mr-0" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
+        routerLink="/add-recos">+</a>
+    </li>
+    <li class="nav-item recos-page">
+      <a class="nav-link navbar-brand mr-0" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
+        routerLink="/recos">Recos</a>
+    </li>
+  </ul>
 </nav>

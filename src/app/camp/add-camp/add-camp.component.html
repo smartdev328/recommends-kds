@@ -1,214 +1,169 @@
 <div class="container">
   <h2>Add Camp</h2>
   <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="name">Name *</label>
-            <input type="text" class="form-control" id="name" placeholder="Type name of camp"
-                   name="name"  [(ngModel)]="campModel.name" #name="ngModel"
-                   required minlength="4" maxlength="2048"
-            >
-          </div>
-          <div class="form-group">
-            <div *ngIf="name.invalid && ( name.touched)"
-                 class="alert alert-danger">
-              <div *ngIf="name.errors.required">
-              Please enter Camp Name 
-              </div>
-              <div *ngIf="name.errors.minlength">
-               Camp Name can not be less than 4 characters.
-              </div>
-              <div *ngIf="name.errors.maxlength">
-              Camp  Name must be max 2048 characters long
-              </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="name">Name *</label>
+          <input type="text" class="form-control" id="name" placeholder="Type name of camp" name="name"
+            [(ngModel)]="campModel.name" #name="ngModel" required minlength="4" maxlength="2048">
+        </div>
+        <div class="form-group">
+          <div *ngIf="name.invalid && ( name.touched)" class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+              Please enter Camp Name
+            </div>
+            <div *ngIf="name.errors.minlength">
+              Camp Name can not be less than 4 characters.
+            </div>
+            <div *ngIf="name.errors.maxlength">
+              Camp Name must be max 2048 characters long
             </div>
           </div>
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea class="form-control" rows="5" id="description" placeholder="Type description"
-                      [(ngModel)]="campModel.description"
-                         name="description"
-            ></textarea>
-          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" rows="5" id="description" placeholder="Type description"
+            [(ngModel)]="campModel.description" name="description"></textarea>
+        </div>
 
-          <div class="form-group">
-            <label>Category *</label>
-            <ng-select [items]="categoryList"
-                       bindLabel="name"
-                       bindValue="id"
-                       [(ngModel)]="cat_id"
-                       placeholder="Select primary category"
-                         #category="ngModel" name="category" required="true"
-                       (change)="set_cat_name($event.name)"
-            >
-            </ng-select>
-          </div>
-          <div class="form-group">
-              <div *ngIf="category.invalid && ( category.touched)"
-                   class="alert alert-danger">
-                <div *ngIf="category.errors.required">
-                  Category is required
-                </div>
-         
-              </div>
+        <div class="form-group">
+          <label>Category *</label>
+          <ng-select [items]="categoryList" bindLabel="name" bindValue="id" [(ngModel)]="cat_id"
+            placeholder="Select primary category" #category="ngModel" name="category" required="true"
+            (change)="set_cat_name($event['name'])">
+          </ng-select>
+        </div>
+        <div class="form-group">
+          <div *ngIf="category.invalid && ( category.touched)" class="alert alert-danger">
+            <div *ngIf="category.errors.required">
+              Category is required
             </div>
-  
-          <div class="form-group">
-            <label for="name">Types Of Activities</label>
-            <input type="text" class="form-control" id="activity_type" placeholder="Types of  activities"
-                   [(ngModel)]="campModel.activity_types"
-                   name="activity_types"
-            >
-          </div>
 
-          <div class="form-group">
-            <label for="name">Cities</label>
-            <input type="text" class="form-control" id="cities" placeholder="Type Cities" 
-                   [(ngModel)]="campModel.cities"
-                   name="cities"
-            >
           </div>
+        </div>
 
-          <div class="form-group">
-            <label for="name">AM Extended Care</label>
-            <input type="text" class="form-control" id="am_extended_care" placeholder="Type AM extended care"
-                   [(ngModel)]="campModel.misc.am_extended_care"
-                   name="am_extended_care"
-                   
-            >
-          </div>
+        <div class="form-group">
+          <label for="name">Types Of Activities</label>
+          <input type="text" class="form-control" id="activity_type" placeholder="Types of  activities"
+            [(ngModel)]="campModel.activity_types" name="activity_types">
+        </div>
+
+        <div class="form-group">
+          <label for="name">Cities</label>
+          <input type="text" class="form-control" id="cities" placeholder="Type Cities" [(ngModel)]="campModel.cities"
+            name="cities">
+        </div>
+
+        <div class="form-group">
+          <label for="name">AM Extended Care</label>
+          <input type="text" class="form-control" id="am_extended_care" placeholder="Type AM extended care"
+            [(ngModel)]="campModel.misc.am_extended_care" name="am_extended_care">
+        </div>
 
 
-          <div class="form-group">
-            <label for="name">Timings</label>
-            <input type="text" class="form-control" id="timings" placeholder="Type timings"
-                   [(ngModel)]="campModel.misc.timings"
-                   name="timings">
-                  
-          </div>
-          
-          <div class="form-group">
-            <label for="name">Tips</label>
-            <input type="text" class="form-control" id="tips" placeholder="Type tips"
-                   [(ngModel)]="campModel.misc.tips"
-                   name="tips"
-          
-            >
-          </div>
+        <div class="form-group">
+          <label for="name">Timings</label>
+          <input type="text" class="form-control" id="timings" placeholder="Type timings"
+            [(ngModel)]="campModel.misc.timings" name="timings">
 
         </div>
 
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="name">Website URL *</label>
-              <input type="text" class="form-control" id="url" placeholder="Type website url" required="true"
-                     [(ngModel)]="campModel.url" pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
-                     name="url"
-                     #url="ngModel"
-              >
-            </div>
-            <div class="form-group">
-              <div *ngIf="url.invalid && (url.dirty || url.touched)"
-                   class="alert alert-danger">
-                <div *ngIf="url.errors.required">
-                  Please enter Website URL
-                </div>
-                <div *ngIf="url.errors.pattern">
-                  Please enter valid Website URL
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="name">Image URL *</label>
-              <input type="text" class="form-control" id="image_url" placeholder="Type image url" required="true"
-                     [(ngModel)]="campModel.image_url"
-                     name="image_url" 
-                     #image_url="ngModel" pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
-              >
-            </div>
-            <div class="form-group">
-              <div *ngIf="image_url.invalid && (image_url.dirty)"
-                   class="alert alert-danger">
-                <div *ngIf="image_url.errors.required">
-                  Please enter Image URL
-                </div>
-                <div *ngIf="image_url.errors.pattern">
-                  Please enter valid Image URL
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="name">Min. Age</label>
-              <input type="number" class="form-control" id="min_age" placeholder="Type minimun age"
-                     [(ngModel)]="campModel.min_age"
-                     name="min_age"
-                     min="1"
-                     max="100"
-              >
-            </div>
-
-            <div class="form-group">
-              <label for="name">Max. Age</label>
-              <input type="number" class="form-control" id="max_age" placeholder="Type maximum age"
-                     [(ngModel)]="campModel.max_age"
-                     name="max_age"
-              >
-            </div>
-
-            <div class="form-group">
-              <label for="name">Offered During</label>
-              <input type="text" class="form-control" id="offered_during" placeholder="Type offered during"
-                     [(ngModel)]="campModel.offered_during"
-                     name="offered_during"
-              >
-            </div>
-
-            <div class="form-group">
-              <label for="name">Venue Id</label>
-              <input type="number" class="form-control" id="venue_id" placeholder="Type venue id"
-                     [(ngModel)]="campModel.venue_id"
-                     name="venue_id"
-              >
-            </div>
-
-            <div class="form-group">
-              <label for="name">PM Extended Care</label>
-              <input type="text" class="form-control" id="pm_extended_care" placeholder="Type pm extended care"
-
-                     [(ngModel)]="campModel.misc.pm_extended_care"
-                     name="pm_extended_care"
-                   
-              >
-            </div>
-
-            <div class="form-group">
-              <label for="lunch">Lunch</label>
-              <input type="text" class="form-control" id="lunch" placeholder="Type lunch"
-                     [(ngModel)]="campModel.misc.lunch"
-                     name="lunch"
-                   
-              >
-            </div>
- 
+        <div class="form-group">
+          <label for="name">Tips</label>
+          <input type="text" class="form-control" id="tips" placeholder="Type tips" [(ngModel)]="campModel.misc.tips"
+            name="tips">
         </div>
+
       </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="name">Website URL *</label>
+          <input type="text" class="form-control" id="url" placeholder="Type website url" required="true"
+            [(ngModel)]="campModel.url"
+            pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
+            name="url" #url="ngModel">
+        </div>
+        <div class="form-group">
+          <div *ngIf="url.invalid && (url.dirty || url.touched)" class="alert alert-danger">
+            <div *ngIf="url.errors.required">
+              Please enter Website URL
+            </div>
+            <div *ngIf="url.errors.pattern">
+              Please enter valid Website URL
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Image URL *</label>
+          <input type="text" class="form-control" id="image_url" placeholder="Type image url" required="true"
+            [(ngModel)]="campModel.image_url" name="image_url" #image_url="ngModel"
+            pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}">
+        </div>
+        <div class="form-group">
+          <div *ngIf="image_url.invalid && (image_url.dirty)" class="alert alert-danger">
+            <div *ngIf="image_url.errors.required">
+              Please enter Image URL
+            </div>
+            <div *ngIf="image_url.errors.pattern">
+              Please enter valid Image URL
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Min. Age</label>
+          <input type="number" class="form-control" id="min_age" placeholder="Type minimun age"
+            [(ngModel)]="campModel.min_age" name="min_age" min="1" max="100">
+        </div>
+
+        <div class="form-group">
+          <label for="name">Max. Age</label>
+          <input type="number" class="form-control" id="max_age" placeholder="Type maximum age"
+            [(ngModel)]="campModel.max_age" name="max_age">
+        </div>
+
+        <div class="form-group">
+          <label for="name">Offered During</label>
+          <input type="text" class="form-control" id="offered_during" placeholder="Type offered during"
+            [(ngModel)]="campModel.offered_during" name="offered_during">
+        </div>
+
+        <div class="form-group">
+          <label for="name">Venue Id</label>
+          <input type="number" class="form-control" id="venue_id" placeholder="Type venue id"
+            [(ngModel)]="campModel.venue_id" name="venue_id">
+        </div>
+
+        <div class="form-group">
+          <label for="name">PM Extended Care</label>
+          <input type="text" class="form-control" id="pm_extended_care" placeholder="Type pm extended care"
+            [(ngModel)]="campModel.misc.pm_extended_care" name="pm_extended_care">
+        </div>
+
+        <div class="form-group">
+          <label for="lunch">Lunch</label>
+          <input type="text" class="form-control" id="lunch" placeholder="Type lunch" [(ngModel)]="campModel.misc.lunch"
+            name="lunch">
+        </div>
+
+      </div>
+    </div>
 
     <div class="form-group">
       <button class="btn btn-primary" [disabled]="f.form.pristine || f.form.invalid">Submit</button>
     </div>
 
-      <div  class="row alert alert-danger" *ngIf="showError">
-        <!--<p *ngFor="let current_error of camp_error"> {{current_error}}</p>-->
-        <ul>
-          <li *ngFor="let current_error of camp_error">
-            {{ current_error }}
-          </li>
-        </ul>
-      </div>
+    <div class="row alert alert-danger" *ngIf="showError">
+      <!--<p *ngFor="let current_error of camp_error"> {{current_error}}</p>-->
+      <ul>
+        <li *ngFor="let current_error of camp_error">
+          {{ current_error }}
+        </li>
+      </ul>
+    </div>
 
   </form>
 </div>

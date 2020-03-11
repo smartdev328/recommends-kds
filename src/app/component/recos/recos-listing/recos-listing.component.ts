@@ -41,23 +41,23 @@ export class RecosListingComponent implements OnInit {
   count = 0;
   public isAuthenticated$: Observable<boolean>;
   isLoggedin = false;
-  
-  
+
+
 
   entity_type: string;
   display_entity_type: string;
   constructor(private route: ActivatedRoute,
-              public dialog: MatDialog,
-              private airtableService: AirtableService, 
-              private userService: UserService,
-              private authService: AuthService) {
-                this.isAuthenticated$ = this.authService.isAuthenticated$;
-                this.isAuthenticated$.subscribe(data => {
-                  this.isLoggedin = data;
-                })
-                this.friend_ids = [];
-              }
-              
+    public dialog: MatDialog,
+      private airtableService: AirtableService,
+      private userService: UserService,
+      private authService: AuthService) {
+      this.isAuthenticated$ = this.authService.isAuthenticated$;
+      this.isAuthenticated$.subscribe(data => {
+        this.isLoggedin = data;
+      });
+      this.friend_ids = [];
+    }
+
 
   ngOnInit() {
     this.recos = {
@@ -65,22 +65,22 @@ export class RecosListingComponent implements OnInit {
       'community': [],
       'trusted': [],
       'yours': []
-    }
+    };
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.isAuthenticated$.subscribe(data => {
       this.isLoggedin = data;
       this.authService.setAuth(this.isLoggedin);
       });
-      
+
     this.entity_type = this.route.snapshot.params['id'];
     this.airtableService.getRecommenderNames().subscribe(data => {
-      for(var idx in data['records']) {
-        var rec = data['records'][idx];
+      for (let idx in data['records']) {
+        let rec = data['records'][idx];
         this.recommenders[rec.id] = rec.fields.Name;
       }
     });
-    
+
 
     this.userService.getUser().subscribe((user) => {
         this.user = user;
@@ -94,7 +94,7 @@ export class RecosListingComponent implements OnInit {
     setTimeout(() => {
       this.showYours = true;
     }, 5000);
-    
+
 
     setTimeout(() => {
       this.showTrusted = true;
@@ -111,32 +111,32 @@ export class RecosListingComponent implements OnInit {
       }
       this.userService.getFriends().subscribe(data => {
         if (data['friends'].length > 0) {
-          for (var idx in data['friends']) {
-            var friend = data['friends'][idx];
+          for (let idx in data['friends']) {
+            let friend = data['friends'][idx];
             this.friend_ids.push(parseInt(friend.id));
           }
         }
         this.get_recos(this.entity_type, this.friends, this.friend_ids);
       });
-      
+
     });
 
   }
 
   get_recos(entity_type: string, friends_list: string[], friends_ids_list: number[]) {
-    var airtable_category = this.categoryList.filter(function(item) {
+    let airtable_category = this.categoryList.filter(function(item) {
       return item.name === entity_type;
     })[0];
     this.category = airtable_category.name;
     this.airtableService.getRecosByCategory(airtable_category.category).subscribe(data => {
-          for(var idx in data['records']) {
-            var rec = data['records'][idx];
+          for (let idx in data['records']) {
+            let rec = data['records'][idx];
             if (friends_list.length > 0 && friends_list.indexOf(rec.fields.Recommender) > -1 ) {
                 this.recos.friends.push(rec);
             } else {
               console.log("LIST" + friends_ids_list);
                 if (rec.fields.hasOwnProperty('KinId')) {
-                    if(parseInt(this.user.parent.parent_id) === rec.fields.KinId) {
+                    if (parseInt(this.user.parent.parent_id) === rec.fields.KinId) {
                         this.recos.yours.push(rec);
                     }
                     if (friends_ids_list.indexOf(rec.fields.KinId) > -1) {
@@ -148,23 +148,23 @@ export class RecosListingComponent implements OnInit {
                     this.recos.community.push(rec);
                   }
                 }
-            } 
+            }
           }
           if (entity_type === 'toys') {
               this.airtableService.getToys().subscribe(data => {
-                for(var idx in data['records']) {
-                  var rec = data['records'][idx];
-                  for (var recommender in rec.fields.RecommendedBy) {
+                for (let idx in data['records']) {
+                  let rec = data['records'][idx];
+                  for (let recommender in rec.fields.RecommendedBy) {
                     rec.fields.RecommendedBy[recommender] = this.recommenders[rec.fields.RecommendedBy[recommender]];
                   }
                   this.recos.trusted.push(rec);
                 }
               });
-          } else if(entity_type === 'books') {
+          } else if (entity_type === 'books') {
               this.airtableService.getBooks().subscribe(data => {
-                for(var idx in data['records']) {
-                  var rec = data['records'][idx];
-                  for (var recommender in rec.fields.RecommendedBy) {
+                for (let idx in data['records']) {
+                  let rec = data['records'][idx];
+                  for (let recommender in rec.fields.RecommendedBy) {
                     rec.fields.RecommendedBy[recommender] = this.recommenders[rec.fields.RecommendedBy[recommender]];
                   }
                   this.recos.trusted.push(rec);
@@ -172,7 +172,7 @@ export class RecosListingComponent implements OnInit {
             });
           }
     });
-    
+
   }
 
 }

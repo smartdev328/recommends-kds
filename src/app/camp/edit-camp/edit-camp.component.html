@@ -32,7 +32,7 @@
           <label>Category *</label>
           <ng-select [items]="categoryList" bindLabel="name" bindValue="id" [(ngModel)]="campModel.category"
             placeholder="Select primary category" #category="ngModel" name="category" required="true"
-            (change)="set_cat_name($event.name)">
+            (change)="set_cat_name($event['name'])">
           </ng-select>
         </div>
         <div class="form-group">

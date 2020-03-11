@@ -25,10 +25,10 @@ export class SubscribeVenueComponent implements OnInit {
   public rows: any;
   public columns: any;
   public selected: any;
-    // public campConstants :any;
-    public isAuthenticated$: Observable<boolean>;
-    isLogedin = false;
-  
+  // public campConstants :any;
+  public isAuthenticated$: Observable<boolean>;
+  isLogedin = false;
+
 
 
   constructor(private route: ActivatedRoute,
@@ -70,7 +70,7 @@ export class SubscribeVenueComponent implements OnInit {
       this.isLogedin = data;
       this.authService.setAuth(this.isLogedin);
 
-    })
+    });
     this.parent_id = this.route.snapshot.queryParamMap.get('parent_id');
     this.get_subscribed_venues();
 
@@ -87,7 +87,7 @@ export class SubscribeVenueComponent implements OnInit {
     this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
       data = data.replace(/\n/g, "");
       data = JSON.parse(data);
-      console.log(data,'faf');
+      console.log(data, 'faf');
       if (data['status']) {
         this.rows = data['data'];
       } else {

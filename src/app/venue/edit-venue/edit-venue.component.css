@@ -1,22 +1,23 @@
 .venue-header {
-    color : red;
+  color: red;
 }
 
 .error-message {
-    position: absolute;
-    color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1;
-    width: 43%;
-    height: 34%;
-    bottom: 164px;
-    right: 28%;
-    border-radius: 25px;
+  position: absolute;
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  width: 43%;
+  height: 34%;
+  bottom: 164px;
+  right: 28%;
+  border-radius: 25px;
 
 
 }
-.errorCloseButton{
-    position: absolute;
-    right: 10px;
-    top: 5px;
+
+.errorCloseButton {
+  position: absolute;
+  right: 10px;
+  top: 5px;
 }

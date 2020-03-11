@@ -32,7 +32,7 @@ export class CampsComponent implements OnInit {
   camp_id: string;
   camp: any;
   isLoaded = false;
-  //public is_parent_id: boolean;
+  public is_parent_id: boolean;
   public is_review_click: boolean;
   public isErrorVisible: boolean;
   public isSuccessVisible: boolean;

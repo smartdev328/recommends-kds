@@ -1,74 +1,62 @@
 <div class="container-fluid" *ngIf="isLogedin==false">
-    <div class="row">
-        <div class="col-sm-12 main-home-image-div home-image">
-            <div class="info">
-                <h1>Personalized Discovery & Planning for Parents</h1>
-                <button class="btn sign_up">
-                    <a (click)="auth.login()" class="chat_button_1">SIGN IN</a>
-                </button>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-sm-12 main-home-image-div home-image">
+      <div class="info">
+        <h1>Personalized Discovery & Planning for Parents</h1>
+        <button class="btn sign_up">
+          <a (click)="auth.login()" class="chat_button_1">SIGN IN</a>
+        </button>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12 benefits-section">
-            <ngx-slick-carousel
-                class="carousel" 
-                #slickModal="slick-carousel"
-                [config]="slideConfig"
-            >
-                <div ngxSlickItem *ngFor="let benefit of benefits" class="slide">
-                    <div class="benefit">
-                        {{ benefit }}
-                    </div>
-                </div>
-            </ngx-slick-carousel>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 benefits-section">
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let benefit of benefits" class="slide">
+          <div class="benefit">
+            {{ benefit }}
+          </div>
         </div>
+      </ngx-slick-carousel>
     </div>
-    <div class="row">
-        <div class="col-sm-12 top-recos-section">
-            <h3>Popular Recommendations by users</h3>
-            <ngx-slick-carousel
-                class="carousel" 
-                #slickModal="slick-carousel"
-                [config]="slideConfig2"
-                *ngIf="topRecommendations.length"
-            >
-                <div ngxSlickItem *ngFor="let reco of topRecommendations" class="slide">
-                    <div class="reco">
-                        <img [src]="reco.fields.Image[0].url" alt="reco image" />
-                        <a routerLink="/recos">
-                            <h5>
-                                {{ reco.fields.Title }}
-                            </h5>
-                        </a>
-                    </div>
-                </div>
-            </ngx-slick-carousel>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 top-recos-section">
+      <h3>Popular Recommendations by users</h3>
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig2"
+        *ngIf="topRecommendations.length">
+        <div ngxSlickItem *ngFor="let reco of topRecommendations" class="slide">
+          <div class="reco">
+            <img [src]="reco.fields.Image[0].url" alt="reco image" />
+            <a routerLink="/recos">
+              <h5>
+                {{ reco.fields.Title }}
+              </h5>
+            </a>
+          </div>
         </div>
+      </ngx-slick-carousel>
     </div>
-    <div class="row">
-        <div class="col-sm-12 categories-section">
-            <h3>More ways to discover</h3>
-            <span class="description">Things to do around the Bay Area curated by Kin</span>
-            <ngx-slick-carousel
-                class="carousel" 
-                #slickModal="slick-carousel" 
-                [config]="slideConfig3"
-            >
-                <div ngxSlickItem *ngFor="let way of discoverWays" class="slide">
-                    <div [class]="way.className">
-                        <a [routerLink]="way.url">
-                            <label class="category-label">{{ way.label }}</label>
-                        </a>
-                    </div>
-                </div>
-            </ngx-slick-carousel>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 categories-section">
+      <h3>More ways to discover</h3>
+      <span class="description">Things to do around the Bay Area curated by Kin</span>
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig3">
+        <div ngxSlickItem *ngFor="let way of discoverWays" class="slide">
+          <div [class]="way.className">
+            <a [routerLink]="way.url">
+              <label class="category-label">{{ way.label }}</label>
+            </a>
+          </div>
         </div>
+      </ngx-slick-carousel>
     </div>
+  </div>
 </div>
 <div class="container-fluid" *ngIf="isLogedin">
-    <div class="home-image-div home-personalized-image" >
-        <!-- 
+  <div class="home-image-div home-personalized-image">
+    <!-- 
         <div class="category p-3 m-3">
             
             <div class="row holidayImage">
@@ -101,61 +89,61 @@
             </div>
         </div>
         -->
-        <!-- 
+    <!-- 
         <iframe class="airtable-embed" 
         src="https://airtable.com/embed/shr6bGQXhdhashEPF?backgroundColor=orange&viewControls=on" 
         frameborder="0" onmousewheel="" width="100%" height="100%" 
         style="background: transparent; border: 1px solid #ccc;">
         </iframe>
         -->
-        <div class="category p-3">
-            <div class="row">
-                <div class="col-md-4">
-                        <a [routerLink]="['/','recos']">
-                            <div class="recosImage">
-                                <label class="category-label-sm">Recommendations</label>
-                            </div>
-                        </a>
-                    </div>
-                <div class="col-md-4">
-                    <a [routerLink]="['/','family-friendly-events-near-me']">
-                        <div class="eventsImage">
-                            <label class="category-label-sm">Events</label>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a [routerLink]="['/','family-friendly-places-near-me']">
-                        <div class="placesImage">
-                            <label class="category-label-sm">Places</label>
-                        </div>
-                    </a>
-                </div>
+    <div class="category p-3">
+      <div class="row">
+        <div class="col-md-4">
+          <a [routerLink]="['/','recos']">
+            <div class="recosImage">
+              <label class="category-label-sm">Recommendations</label>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                        <a [routerLink]="['/','kids-classes-near-me']">
-                            <div class="classesImage">
-                                <label class="category-label-sm">Classes</label>
-                            </div>
-                        </a>
-                </div>
-                <div class="col-md-4">
-                    <a [routerLink]="['/','camps-near-me']">
-                        <div class="campsImage">
-                            <label class="category-label-sm">Camps</label>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a [routerLink]="['/','family-friendly-hikes-near-me']">
-                        <div class="hikingImage">
-                            <label class="category-label-sm">Hiking</label>
-                        </div>
-                    </a>
-                </div>
-            </div>
+          </a>
         </div>
+        <div class="col-md-4">
+          <a [routerLink]="['/','family-friendly-events-near-me']">
+            <div class="eventsImage">
+              <label class="category-label-sm">Events</label>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a [routerLink]="['/','family-friendly-places-near-me']">
+            <div class="placesImage">
+              <label class="category-label-sm">Places</label>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <a [routerLink]="['/','kids-classes-near-me']">
+            <div class="classesImage">
+              <label class="category-label-sm">Classes</label>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a [routerLink]="['/','camps-near-me']">
+            <div class="campsImage">
+              <label class="category-label-sm">Camps</label>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a [routerLink]="['/','family-friendly-hikes-near-me']">
+            <div class="hikingImage">
+              <label class="category-label-sm">Hiking</label>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <app-layout-footer></app-layout-footer>

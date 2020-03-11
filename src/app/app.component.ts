@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@shared/service/auth.service';
 import { Observable } from 'rxjs';
 
@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'poppins-frontend';
-  //isAuthenticated: Observable<boolean>;
+  // isAuthenticated: Observable<boolean>;
 
   /*
   constructor(

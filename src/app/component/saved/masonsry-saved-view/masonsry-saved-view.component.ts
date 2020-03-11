@@ -18,8 +18,8 @@ export class MasonsrySavedViewComponent implements OnInit {
 
 
   constructor(private router: Router,
-              private reviewService : ReviewsService,
-              private venuesService : VenuesService) {
+              private reviewService: ReviewsService,
+              private venuesService: VenuesService) {
    }
 
   ngOnInit() {
@@ -27,14 +27,14 @@ export class MasonsrySavedViewComponent implements OnInit {
       this.showLayout = true;
     }, 1000);
 
-    
+
   }
 
-  save_action(id, i,type) {
-    this.add_analytics_data(id, i, 'SAVE',type);
+  save_action(id, i, type) {
+    this.add_analytics_data(id, i, 'SAVE', type);
     this.venues[i].is_saved = "true";
   }
-  add_analytics_data(id, i, atype: any,type) {
+  add_analytics_data(id, i, atype: any, type) {
     let action = '';
     switch (atype) {
       case 'CLICK':
@@ -56,17 +56,17 @@ export class MasonsrySavedViewComponent implements OnInit {
         'action': action,
         'referrer': '/root/home'
       }]
-    }
+    };
     this.reviewService.add_analytics_actions(analytics_input).subscribe(data => {
       if (atype === 'CLICK') {
-        this.is_save_action(id, i,type);
+        this.is_save_action(id, i, type);
       }
     }, error => {
     });
 
   }
 
-  is_save_action(id, i,type) {
+  is_save_action(id, i, type) {
     this.reviewService.verify_save_action(null, type, id).subscribe(data => {
       if (data['status'] === true) {
         this.venues[i].is_saved = "true";
@@ -76,8 +76,9 @@ export class MasonsrySavedViewComponent implements OnInit {
     }, error => {
     });
   }
-  is_delete_action(id, i ,type) {
-    this.reviewService.delete_action(id,type).subscribe(data => {
+
+  is_delete_action(id, i , type) {
+    this.reviewService.delete_action(id, type).subscribe(data => {
       if (data['status'] === true) {
         this.venues[i].is_saved = "false";
         // this.venues.splice(i,1);
@@ -89,14 +90,14 @@ export class MasonsrySavedViewComponent implements OnInit {
   }
 
 
-  calendar_redirects(id,i,type) {
-    this.add_analytics_data(id,i,'CALENDAR',type);
+  calendar_redirects(id, i, type) {
+    this.add_analytics_data(id, i, 'CALENDAR', type);
 
     const calendar_url = API_URL + 'cal_redirect/?event_id=' + id;
     window.open(calendar_url);
   }
 
-  add_subscription_venue(id,i) {
+  add_subscription_venue(id, i) {
     const input_data = {
       "venue_subs_data": {
         "venue_id": id,
@@ -112,19 +113,19 @@ export class MasonsrySavedViewComponent implements OnInit {
     }, error => {
       alert('Something went wrong while subscribe venue');
     });
-}
+  }
 
-unsubscribe_venue(id,i) {
+  unsubscribe_venue(id, i) {
     this.venuesService.remove_subscriptions(null, id).subscribe(data => {
       if (data['status'] === true) {
         this.venues[i].is_followed = "false";
         // this.venues.splice(i,1);
-      }else{
+      } else {
         this.venues[i].is_followed = "true";
       }
     }, error => {
       console.log('Something went wrong while subscribe venue');
     });
-}
+  }
 
 }

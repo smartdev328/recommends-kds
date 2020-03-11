@@ -30,11 +30,11 @@ export class EventListingComponent implements OnInit {
   kidHeading: string;
   limit: Number = 80;
   event_date_start: any;
-  pickDate: boolean = false;
+  pickDate = false;
   public all: any;
   public kid_id: any;
-  public tags: any='';
-  @ViewChild('openModal') openModal: TemplateRef<any>
+  public tags: any = '';
+  @ViewChild('openModal') openModal: TemplateRef<any>;
   @ViewChild('picker') datePicker: MatDatepicker<Date>;
 
 
@@ -85,8 +85,8 @@ export class EventListingComponent implements OnInit {
   }];
 
   /*
-  Filter Variables
-*/
+    Filter Variables
+  */
   public selected_cat: String;
   public select_cat_id: any;
   public selected_loc: any;
@@ -168,9 +168,9 @@ export class EventListingComponent implements OnInit {
     this.isAuthenticated$.subscribe(data => {
       this.isLoggedIn = data;
       this.authService.setAuth(this.isLoggedIn);
-      //this.get_explore_event_details();
+      // this.get_explore_event_details();
       this.filter_event_data();
-    })
+    });
     this.titleService.setTitle('Family friendly events around SF bay area');
     this.metaService.addTag({ name: 'description', content: 'Family friendly events around SF bay area' });
     this.metaService.addTag({ name: 'keywords', content: 'Family friendly events, kids events, SF bay area kids events' });
@@ -185,8 +185,8 @@ export class EventListingComponent implements OnInit {
     this.isErrorVisible = false;
     this.isFilterErrorVisible = false;
     this.errorMessage = '';
-    
-    
+
+
     /*this.authService.user$.subscribe((user) => {
       this.user = user;
     });*/
@@ -195,25 +195,25 @@ export class EventListingComponent implements OnInit {
     });
   }
   onLocationChange(loc_obj: object) {
-    this.eventName ="";
+    this.eventName = "";
     this.selected_loc = loc_obj['name'];
     this.loc_label = this.selected_loc;
-    this.kid_id='';
-    this.tags='';
+    this.kid_id = '';
+    this.tags = '';
     this.filter_event_data();
 
   }
   onCategoryChange(cat_obj: object) {
-    this.eventName ="";
+    this.eventName = "";
     this.selected_cat = cat_obj['name'];
     this.select_cat_id = cat_obj['id'];
     this.cat_label = this.selected_cat;
-    this.kid_id='';
-    this.tags='';
+    this.kid_id = '';
+    this.tags = '';
     this.filter_event_data();
   }
   onDateChange(date_obj: object) {
-    this.eventName ="";
+    this.eventName = "";
     this.kid_id = '';
     this.tags = '';
     if (date_obj['desc'] == 'Pick a date') {
@@ -243,20 +243,20 @@ export class EventListingComponent implements OnInit {
 
   formatDate(date) {
     if (date == null) {
-      let a = "";
-      return a
+      const a = "";
+      return a;
     }
-    let a = new Date(date);
-    var frommonth = ('0' + (a.getMonth() + 1)).slice(-2)
+    const a = new Date(date);
+    const frommonth = ('0' + (a.getMonth() + 1)).slice(-2);
     let fromday;
-    let d = new Date(date);
+    const d = new Date(date);
     if (d.getDate() < 10) {
       fromday = '0' + (a.getDate());
     } else {
       fromday = (a.getDate());
     }
-    let fromyear = a.getFullYear();
-    let finaldate = fromyear + '-' + frommonth + '-' + fromday;
+    const fromyear = a.getFullYear();
+    const finaldate = fromyear + '-' + frommonth + '-' + fromday;
     return finaldate;
   }
 
@@ -273,7 +273,7 @@ export class EventListingComponent implements OnInit {
     this.showMore = false;
     // this.isExplore = true;
     if (this.isLoggedIn == true) {
-      let url = `${API_URL}` + `events/?order_by=date_dist_asc&distance=10&limit=${this.limit}`;
+      const url = `${API_URL}` + `events/?order_by=date_dist_asc&distance=10&limit=${this.limit}`;
       this.eventListingService.get_event_details(url).subscribe(data => {
         this.all_data = data['events'];
         if (data['events'] !== undefined && data['events'].length > 0) {
@@ -292,7 +292,7 @@ export class EventListingComponent implements OnInit {
           }
           this.isExplorelen = this.all_data.length;
           this.isExplore = false;
-  
+
         } else {
           this.errorMessage = this.eventErrorMessage.NO_EVENTS_FOUND;
           this.all_data = [];
@@ -301,13 +301,13 @@ export class EventListingComponent implements OnInit {
           this.showMore = false;
           this.isExplore = false;
           this.isErrorVisible = true;
-  
+
         }
       }, err => {
         console.log(err);
       });
     } else {
-      let url = `${API_URL}` + `events/?limit=${this.limit}&order_by=start_date_asc`;
+      const url = `${API_URL}` + `events/?limit=${this.limit}&order_by=start_date_asc`;
       const headers = new HttpHeaders();
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
         data = data.replace(/\n/g, '');
@@ -328,7 +328,7 @@ export class EventListingComponent implements OnInit {
           }
           this.isExplorelen = this.all_data.length;
           this.isExplore = false;
-  
+
         } else {
           this.errorMessage = this.eventErrorMessage.NO_EVENTS_FOUND;
           this.all_data = [];
@@ -337,7 +337,7 @@ export class EventListingComponent implements OnInit {
           this.showMore = false;
           this.isExplore = false;
           this.isErrorVisible = true;
-  
+
         }
       }, err => {
         console.log(err);
@@ -356,48 +356,44 @@ export class EventListingComponent implements OnInit {
       this.tags = '';
       this.all = '';
       this.subscribeVenue();
-    }
-    else if (type == 'nearby') {
+    } else if (type == 'nearby') {
       this.kidHeading = "other";
       this.distance = 15;
-      this.kid_id ='';
-      this.tags ='';
-      this.all ='';
+      this.kid_id = '';
+      this.tags = '';
+      this.all = '';
       this.resetFilterParams();
       this.eventName = "Nearby";
       this.filter_event_data();
-    }
-    else if (type == 'trending') {
+    } else if (type == 'trending') {
       this.kidHeading = "other";
       this.distance = '';
       this.kid_id = '';
       this.tags = 'popular';
-      this.all ='';
+      this.all = '';
       this.resetFilterParams();
       this.eventName = "Trending";
       this.filter_event_data();
-    }
-    else if (type == 'all') {
+    } else if (type == 'all') {
       this.kidHeading = "";
-      this.distance ='';
-      this.kid_id ='';
-      this.tags ='';
+      this.distance = '';
+      this.kid_id = '';
+      this.tags = '';
       this.all = 'yes';
       this.resetFilterParams();
       this.eventName = "All";
       this.filter_event_data();
-    }
-    else {
+    } else {
       this.kidHeading = "kid";
       this.kid_id = type;
       this.distance = null;
       this.tags = null;
       this.all = null;
-      if(kid){
+      if (kid) {
         this.eventName = kid.nick_name;
-      }else {
+      } else {
         this.user.parent.kids.forEach(element => {
-          if(type == element.id){
+          if (type == element.id) {
             this.eventName = element.nick_name;
           }
         });
@@ -412,7 +408,7 @@ export class EventListingComponent implements OnInit {
     this.selected_cat = '';
     this.selected_loc = '';
     this.selected_date = '';
-    this.select_cat_id ='';
+    this.select_cat_id = '';
     this.event_date_start = '';
     this.cat_label = 'Category';
     this.loc_label = 'Location';
@@ -434,7 +430,7 @@ export class EventListingComponent implements OnInit {
     this.selected_cat = '';
     this.selected_loc = '';
     this.selected_date = '';
-    this.select_cat_id ='';
+    this.select_cat_id = '';
     this.event_date_start = '';
     this.keyword = '';
     this.cat_label = 'Category';
@@ -463,52 +459,52 @@ export class EventListingComponent implements OnInit {
     const input = {
       'category': this.select_cat_id === undefined ? '' : this.select_cat_id,
       'q': this.keyword == undefined ? '' : this.keyword,
-      'city': this.selected_loc == undefined? '' : this.selected_loc,
-      'event_range_str': this.selected_date == undefined? '' : this.selected_date,
+      'city': this.selected_loc == undefined ? '' : this.selected_loc,
+      'event_range_str': this.selected_date == undefined ? '' : this.selected_date,
       'distance': this.distance === undefined || this.distance === '' ? 50 : this.distance,
       'username': this.username === undefined ? '' : this.username,
       'tags': this.tags === undefined ? '' : this.tags,
       'kid_id': this.kid_id === undefined ? '' : this.kid_id,
       'all': this.all === undefined ? '' : this.all,
-      'event_date_start': this.event_date_start == undefined? '' : this.event_date_start,
+      'event_date_start': this.event_date_start == undefined ? '' : this.event_date_start,
     };
-    
-    if (!this.isLoggedIn && input.q === '' && input.event_range_str === '' 
+
+    if (!this.isLoggedIn && input.q === '' && input.event_range_str === ''
                 && input.city === '' && input.category === '') {
       input.q = 'popular';
     }
 
-    if(input.event_range_str == "today" ||input.event_range_str == "tomorrow" ||input.event_range_str == "weekend"){
-      input.distance = 25; 
+    if (input.event_range_str == "today" || input.event_range_str == "tomorrow" || input.event_range_str == "weekend") {
+      input.distance = 25;
     }
-    if(this.eventName == "Nearby"){
-      input.distance = 15; 
+    if (this.eventName == "Nearby") {
+      input.distance = 15;
      }
-    if(input.distance == null){
-      input.distance ='';
+    if (input.distance == null) {
+      input.distance = '';
     }
-    if(input.kid_id == null){
-      input.kid_id ='';
+    if (input.kid_id == null) {
+      input.kid_id = '';
     }
-    if(input.tags == null){
-      input.tags ='';
+    if (input.tags == null) {
+      input.tags = '';
     }
     let url;
-    if(this.isLoggedIn){
-      url = `${API_URL}` + 'events/?order_by=date_dist_asc&event_date_start='+ input.event_date_start + '&limit=90'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str)+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
+    if (this.isLoggedIn) {
+      url = `${API_URL}` + 'events/?order_by=date_dist_asc&event_date_start=' + input.event_date_start + '&limit=90' + '&category=' + encodeURIComponent(input.category) + '&q=' + encodeURIComponent(input.q) + '&city=' + encodeURIComponent(input.city) + '&event_range_str=' + encodeURIComponent(input.event_range_str) + '&distance=' + encodeURIComponent(input.distance) + '&kid_id=' + encodeURIComponent(input.kid_id) + '&tags=' + encodeURIComponent(input.tags);
     } else {
-      url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=25'+'&category=' + encodeURIComponent(input.category) +'&q=' + encodeURIComponent(input.q) +'&city=' + encodeURIComponent(input.city) +'&event_range_str=' + encodeURIComponent(input.event_range_str)+'&distance=' + encodeURIComponent(input.distance)+'&kid_id=' + encodeURIComponent(input.kid_id)+ '&tags=' + encodeURIComponent(input.tags)
-      //url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=25&q=popular&distance=100';
+      url = `${API_URL}` + 'events/?event_date_start=' + input.event_date_start + '&limit=25' + '&category=' + encodeURIComponent(input.category) + '&q=' + encodeURIComponent(input.q) + '&city=' + encodeURIComponent(input.city) + '&event_range_str=' + encodeURIComponent(input.event_range_str) + '&distance=' + encodeURIComponent(input.distance) + '&kid_id=' + encodeURIComponent(input.kid_id) + '&tags=' + encodeURIComponent(input.tags);
+      // url = `${API_URL}` + 'events/?event_date_start='+ input.event_date_start + '&limit=25&q=popular&distance=100';
     }
     if (input.kid_id && input.kid_id !== '') {
-     url = url+ "&personalize=True";
+     url = url + "&personalize=True";
     }
-    if(this.eventName == "All" && this.all == 'yes'){
+    if (this.eventName == "All" && this.all == 'yes') {
       url = `${API_URL}` + `events/?distance=100&limit=${this.limit}`;
     }
     this.isExplore = true;
     this.end = 21;
-    if(this.isLoggedIn ==true){
+    if (this.isLoggedIn == true) {
       this.eventListingService.get_event_details(url).subscribe(data => {
         if (data['events'] !== undefined && data['events'].length > 0) {
           this.isErrorVisible = false;
@@ -525,7 +521,7 @@ export class EventListingComponent implements OnInit {
           }
           this.isExplorelen = this.all_data.length;
           this.isExplore = false;
-  
+
         } else {
           this.errorMessage = this.eventErrorMessage.NO_EVENTS_FOUND;
           this.all_data = [];
@@ -534,7 +530,7 @@ export class EventListingComponent implements OnInit {
           this.showMore = false;
           this.isExplore = false;
           this.isErrorVisible = true;
-  
+
         }
       }, error => {
         this.all_data = [];
@@ -542,7 +538,7 @@ export class EventListingComponent implements OnInit {
         this.isExplore = false;
       });
 
-    }else{
+    } else {
       const headers = new HttpHeaders();
       this.http.get(url, { headers: headers, responseType: 'text' }).subscribe(data => {
         data = data.replace(/\n/g, '');
@@ -562,7 +558,7 @@ export class EventListingComponent implements OnInit {
           }
           this.isExplorelen = this.all_data.length;
           this.isExplore = false;
-  
+
         } else {
           this.errorMessage = this.eventErrorMessage.NO_EVENTS_FOUND;
           this.all_data = [];
@@ -571,7 +567,7 @@ export class EventListingComponent implements OnInit {
           this.showMore = false;
           this.isExplore = false;
           this.isErrorVisible = true;
-  
+
         }
       }, error => {
         this.all_data = [];
@@ -580,7 +576,7 @@ export class EventListingComponent implements OnInit {
       });
     }
 
-    
+
   }
 
   add_analytics_data(action_type) {
@@ -631,7 +627,7 @@ export class EventListingComponent implements OnInit {
     }
     return cat_name;
   }
-  //this function will open a popup when user is not loggen in
+  // this function will open a popup when user is not loggen in
   checkLogin(linkName) {
     if (this.isLoggedIn) {
       this.loadMore();
@@ -655,7 +651,7 @@ export class EventListingComponent implements OnInit {
     });
   }
   signin() {
-    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
+    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl));
     this.authService.login();
   }
   closeDialog() {
@@ -727,7 +723,7 @@ export class EventListingComponent implements OnInit {
         this.isExplore = false;
         this.isErrorVisible = true;
       }
-    })
+    });
   }
 }
 

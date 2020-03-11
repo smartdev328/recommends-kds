@@ -12,19 +12,19 @@ export class VenueListingService {
     return this.http.get(url);
   }
 
-  get_Saved_Venues(){
+  get_Saved_Venues() {
     const url = API_URL + 'actions/?entity_type=ETYPE_VENUE&action_type=ATYPE_SAVE';
     return this.http.get(url);
   }
 
-  get_subscribed_Venues(){
+  get_subscribed_Venues() {
     const url = API_URL + 'subscribe-venue/';
-    let res = this.http.get(url);
+    const res = this.http.get(url);
     return this.http.get(url);
   }
 
 
-  getSavedListing(type){
+  getSavedListing(type) {
     let url = '';
     if (type === "CLASSES") {
       url = API_URL + `actions/?entity_type=ETYPE_VENUE&category=50000&action_type=ATYPE_SAVE`;
@@ -34,10 +34,10 @@ export class VenueListingService {
     return this.http.get(url);
   }
 
-  getSavedClasses(){
+  getSavedClasses() {
     const url = API_URL + `actions/?entity_type=ETYPE_VENUE&category=50000&action_type=ATYPE_SAVE`;
     return this.http.get(url);
   }
 
-  
+
 }

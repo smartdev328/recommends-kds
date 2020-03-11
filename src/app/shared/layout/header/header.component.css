@@ -1,22 +1,59 @@
-.navbar{
-    padding: 20px 5%;
-    font-family: Montserrat;
-    font-weight: 300;
-}
-.navbar .navbar-brand{
-    color: #4A4949;
-    font-size: 16px;
-    padding: 2px 5px;
-}
-.navbar-light .navbar-nav .nav-link{
-    color: #4A4949;
-    font-size: 16px;
-}
-.active{
-    border-bottom: 3px solid #FF9734;
+.navbar {
+  padding: 20px 5%;
+  font-family: Montserrat;
+  font-weight: 300;
 }
 
-.sign_up{
+.navbar .navbar-brand {
+  color: #4A4949;
+  font-size: 16px;
+  padding: 2px 5px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #4A4949;
+  font-size: 16px;
+}
+
+.active {
+  border-bottom: 3px solid #FF9734;
+}
+
+.sign_up {
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.21;
+  letter-spacing: normal;
+  text-align: center;
+  color: #4A4949;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+  background-color: #FFD700;
+  width: 155px;
+}
+
+
+/* Mobile */
+@media (min-width: 769px) {
+  .navbar-expand-md .navbar-nav .nav-link {
+    padding: 0px 40px;
+  }
+
+  .navbar-expand-md .navbar-nav .nav-link.nav-button {
+    padding: 0px;
+  }
+}
+
+/* Tablets */
+@media only screen and (min-width : 768px) and (max-width : 1280px) {
+  .navbar-light .navbar-nav .nav-link {
+    color: #4A4949;
+    font-size: 12px;
+  }
+
+  .sign_up {
     font-family: Montserrat;
     font-size: 14px;
     font-weight: 400;
@@ -28,38 +65,6 @@
     color: #4A4949;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
     background-color: #FFD700;
-    width: 155px;
-}
-
-
-/* Mobile */
-@media (min-width: 769px){
-  .navbar-expand-md .navbar-nav .nav-link {
-    padding: 0px 40px;
+    width: 145px;
   }
-  .navbar-expand-md .navbar-nav .nav-link.nav-button{
-    padding: 0px;
-  }
-}
-
-/* Tablets */
-@media only screen and (min-width : 768px) and (max-width : 1280px) {
-    .navbar-light .navbar-nav .nav-link{
-        color: #4A4949;
-        font-size: 12px;
-    }
-    .sign_up{
-        font-family: Montserrat;
-        font-size: 14px;
-        font-weight: 400;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.21;
-        letter-spacing: normal;
-        text-align: center;
-        color: #4A4949;
-        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
-        background-color: #FFD700;
-        width: 145px;
-    }
 }

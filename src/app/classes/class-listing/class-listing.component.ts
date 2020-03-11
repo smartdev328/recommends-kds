@@ -22,9 +22,10 @@ declare let ga: any;
   styleUrls: ['./class-listing.component.css']
 })
 export class ClassListingComponent implements OnInit {
-  @ViewChild('openModal') openModal: TemplateRef<any>
+  @ViewChild('openModal') openModal: TemplateRef<any>;
 
   dialogRef: any;
+  morePlace: any;
   venues_list;
   isExplore = false;
   public category: string;
@@ -57,7 +58,7 @@ export class ClassListingComponent implements OnInit {
   public cat_label: String;
   public loc_label: String;
   currentUrl: string;
-  
+
   constructor(private route: ActivatedRoute,
     private router: Router,
     private titleService: Title,
@@ -79,7 +80,7 @@ export class ClassListingComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         ga('set', 'page', event.urlAfterRedirects);
-        this.currentUrl= event.urlAfterRedirects;
+        this.currentUrl = event.urlAfterRedirects;
         ga('send', 'pageview');
       }
     });
@@ -94,7 +95,7 @@ export class ClassListingComponent implements OnInit {
       this.isLogedin = data;
       this.authService.setAuth(this.isLogedin);
       this.get_venue_details();
-    })
+    });
     this.isErrorVisible = false;
     this.errorMessage = '';
     this.isFilterErrorVisible = false;
@@ -116,8 +117,8 @@ export class ClassListingComponent implements OnInit {
     this.metaService.addTag({ property: 'og:url', content: 'https://kinparenting.com/family-friendly-places-near-me' });
     this.metaService.addTag({ property: 'og:site_name', content: 'Kin Parenting' });
 
-    //this.getLocation();
-  
+    // this.getLocation();
+
   }
   onSubmit(f: NgForm) {
   }
@@ -129,10 +130,10 @@ export class ClassListingComponent implements OnInit {
         limit = '25';
       }
       let url = API_URL + 'venues/?category=Classes&limit=' + limit;
-      
+
       if (this.keyword !== '' && this.keyword !== undefined) {
         url = url + '&q=' + this.keyword.trim();
-      } 
+      }
       if (this.category !== undefined && this.category !== '') {
         url = url + '&category_sec=' + encodeURIComponent(this.category);
       }
@@ -140,8 +141,8 @@ export class ClassListingComponent implements OnInit {
         url = url + '&city=' + this.city.trim();
       }
       this.isExplore = true;
-      if(this.isLogedin == true){
-        url = url +'&distance=100&order_by=dist_asc';
+      if (this.isLogedin == true) {
+        url = url + '&distance=100&order_by=dist_asc';
       }
       this.classListingService.get_venue_details(url, this.http, this.isLogedin).subscribe(data => {
           this.venues_list = data['venues'];
@@ -168,8 +169,8 @@ export class ClassListingComponent implements OnInit {
           this.isExplore = false;
       });
   }
-  
-  
+
+
   loadMore() {
     if (this.venues_list.length > this.end) {
       this.end = this.end + 20;
@@ -236,15 +237,15 @@ export class ClassListingComponent implements OnInit {
     this.ngOnInit();
   }
 
-  getLocation(): void{
+  getLocation(): void {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position)=>{
+        navigator.geolocation.getCurrentPosition((position) => {
           const longitude = position.coords.longitude;
           const latitude = position.coords.latitude;
-          console.log("Got it!")
+          console.log("Got it!");
         });
     } else {
-       console.log("No support for geolocation")
+       console.log("No support for geolocation");
     }
   }
 
@@ -301,7 +302,7 @@ export class ClassListingComponent implements OnInit {
         }
     }
 
-   //this function will open a popup when user is not loggen in
+   // this function will open a popup when user is not loggen in
    checkLogin(linkName) {
     if (this.isLogedin) {
       this.loadMore();
@@ -324,7 +325,7 @@ export class ClassListingComponent implements OnInit {
     });
   }
   signin() {
-    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl))
+    sessionStorage.setItem('current_url', JSON.stringify(this.currentUrl));
     this.authService.login();
   }
   closeDialog() {

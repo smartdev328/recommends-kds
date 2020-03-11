@@ -1,446 +1,437 @@
 <div class="container">
-    <h2>Edit Hiking Trail</h2>
-    <form name="form" (ngSubmit)="f.form.valid && update_hiking_trail()" #f="ngForm" novalidate>
-        <div class="row">
-            <!-- LEFT COLUMN -->
-            <div class="col-md-6">
+  <h2>Edit Hiking Trail</h2>
+  <form name="form" (ngSubmit)="f.form.valid && update_hiking_trail()" #f="ngForm" novalidate>
+    <div class="row">
+      <!-- LEFT COLUMN -->
+      <div class="col-md-6">
 
-                <!-- NAME -->
-                <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" class="form-control" id="name" placeholder="Type name of hiking trail"
-                        name="name" [(ngModel)]="hikingTrailModel.name" #name="ngModel" required minlength="4"
-                        maxlength="2048" tabindex=1>
-                </div>
-                <div class="form-group">
-                    <div *ngIf="name.invalid && ( name.touched)" class="alert alert-danger">
-                        <div *ngIf="name.errors.required">
-                            Please enter trail name
-                        </div>
-                        <div *ngIf="name.errors.minlength">
-                            Name can not be less than 4 characters.
-                        </div>
-                        <div *ngIf="name.errors.maxlength">
-                            Name must be less than 2048 characters long
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DESCRIPTION -->
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea class="form-control" rows="5" id="description" placeholder="Type description"
-                        [(ngModel)]="hikingTrailModel.description" name="description" tabindex="6"></textarea>
-                </div>
-
-                <!-- STREET -->
-                <div class="form-group">
-                    <label for="street">Street</label>
-                    <input type="text" class="form-control" id="street" placeholder="Street"
-                        [(ngModel)]="hikingTrailModel.street" tabindex="7" name="street">
-                    <small id="streetHelp" class="form-text text-muted">Street
-                    </small>
-                </div>
-
-                <!-- STATE -->
-                <div class="form-group">
-                    <label for="state">State</label>
-                    <input type="text" class="form-control" placeholder="State" [(ngModel)]="hikingTrailModel.state"
-                        name="state" tabindex="9">
-                    <small id="stateHelp" class="form-text text-muted">State
-                    </small>
-                </div>
-
-                <!-- COUNTRY -->
-                <div class="form-group">
-                    <label for="country">Country</label>
-                    <input type="text" class="form-control" id="country" placeholder="Country"
-                        [(ngModel)]="hikingTrailModel.country" tabindex="11">
-                    <small name="countryHelp" class="form-text text-muted">Country
-                    </small>
-                </div>
-
-                <!-- TAGS -->
-                <div class="form-group">
-                    <label for="tags">Tags</label>
-                    <input type="text" class="form-control" id="tags" placeholder="Tags"
-                        [(ngModel)]="hikingTrailModel.tags" name="tags" tabindex="13">
-                </div>
-
-                <!-- RATINGS -->
-                <div class="form-group">
-                    <label for="google_ratings">Google Rating</label>
-                    <input type="number" id="google_rating" placeholder="Google Rating"
-                        [(ngModel)]="hikingTrailModel.ratings.google" name="google_rating" tabindex="14">
-                    <label for="yelp_ratings">Yelp Rating</label>
-                    <input type="number" id="yelp_rating" placeholder="Yelp Rating"
-                        [(ngModel)]="hikingTrailModel.ratings.yelp" name="yelp_rating" tabindex="15">
-                </div>
-
-                <!-- BATHROOMS -->
-                <div class="form-group">
-                    <label for="bathrooms">Bathrooms</label>
-                    &nbsp;
-                    <input type="checkbox" [(ngModel)]="hikingTrailModel.bathrooms.available" name="bathroom_available"
-                        tabindex="18">
-                    <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.bathrooms.more_info"
-                        name="bathroom_more_info" tabindex="19">
-                    <small id="bathroomsHelp" class="form-text text-muted">Enter more info about bathrooms.
-                    </small>
-                </div>
-
-                <!-- PARKING -->
-                <div class="form-group">
-                    <label>Parking</label>
-                    &nbsp;
-                    <input type="checkbox" [(ngModel)]="hikingTrailModel.parking.available" name="parking_available"
-                        tabindex="24">
-                    <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.parking.more_info"
-                        name="parking_more_info" tabindex="25">
-                    <small class="form-text text-muted">Enter more info about parking.
-                    </small>
-                </div>
-
-                <!-- DIFFICULTY -->
-                <div class="form-group">
-                    <label for="difficulty">Difficulty</label>
-                    &nbsp;
-
-                    <label>Level: </label>
-                    <input type="text" placeholder="Difficulty level" [(ngModel)]="hikingTrailModel.difficulty.level"
-                        name="difficulty_level" tabindex="27">
-                    <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.difficulty.more_info"
-                        name="difficulty_more_info" tabindex="28">
-                    <small id="strollerFriendlyHelp" class="form-text text-muted">Enter more info about difficulty
-                        level.
-                    </small>
-                </div>
-
-                <!-- ADA ACCESSIBLE -->
-                <div class="form-group">
-                    <label>ADA accessibility</label>
-                    &nbsp;
-                    <input type="checkbox" [(ngModel)]="hikingTrailModel.ada_accessible.yes" name="ada_accessible_yes"
-                        tabindex="31">
-                    <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.ada_accessible.more_info"
-                        name="ada_accessible.more_info" tabindex="32">
-                    <small class="form-text text-muted">Enter more info about ADA accessibility.
-                    </small>
-                </div>
-
-                <!-- IN PARK FOOD -->
-                <div class="form-group">
-                    <label>In park food options</label>
-                    &nbsp;
-                    <input type="checkbox" [(ngModel)]="hikingTrailModel.in_park_food.available"
-                        name="in_park_food_available" tabindex="35">
-                    <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.in_park_food.more_info"
-                        name="in_park_food_more_info" tabindex="36">
-                    <small class="form-text text-muted">Enter more info about in park food options.
-                    </small>
-                </div>
-
-                <!-- ATTRACTIONS -->
-                <div class="form-group">
-                    <label for="attractions">Attractions</label>
-                    <input type="text" class="form-control" name="attractions" placeholder="Attractions"
-                        [(ngModel)]="hikingTrailModel.attractions" name="attractions" tabindex="39">
-                </div>
-
-                <!-- AMOUNT OF SHADE -->
-                <div class="form-group">
-                    <label for="shade">Amount of shade</label>
-                    <input type="text" class="form-control" id="shade" placeholder="Amount of shade"
-                        [(ngModel)]="hikingTrailModel.shade" name="shade" tabindex="41">
-                </div>
-
-                <!-- PET FRIENDLY -->
-                <div class="form-group">
-                    <label>Pet friendly</label>
-                    &nbsp;
-                    <input type="checkbox" [(ngModel)]="hikingTrailModel.pet_friendly.yes" name="pet_friendly_yes"
-                        tabindex="43">
-                    <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.pet_friendly.more_info"
-                        name="pet_friendly_more_info" tabindex="44">
-                    <small class="form-text text-muted">Enter more info about pet friendliness.
-                    </small>
-                </div>
-
-                <!-- BEST SEASON TO VISIT -->
-                <div class="form-group">
-                    <label>Best season to visit</label>
-                    <input type="text" class="form-control" id="season" placeholder="Best season to visit"
-                        [(ngModel)]="hikingTrailModel.best_season" name="best_season" tabindex="47">
-                </div>
-
-                <!-- TRAIL IMAGE URL -->
-                <div class="form-group">
-                    <label>Trail Image URL</label>
-                    <input type="text" class="form-control" id="trail_image_url" placeholder="Type trail image url"
-                        [(ngModel)]="hikingTrailModel.trail_image_url" name="trail_image_url" #trail_image_url="ngModel"
-                        pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
-                        tabindex="49">
-                </div>
-                <div class="form-group">
-                    <div *ngIf="trail_image_url.invalid && (trail_image_url.dirty)" class="alert alert-danger">
-                        <div *ngIf="trail_image_url.errors.pattern">
-                            Please enter valid Image URL
-                        </div>
-                    </div>
-                </div>
-
+        <!-- NAME -->
+        <div class="form-group">
+          <label for="name">Name *</label>
+          <input type="text" class="form-control" id="name" placeholder="Type name of hiking trail" name="name"
+            [(ngModel)]="hikingTrailModel.name" #name="ngModel" required minlength="4" maxlength="2048" tabindex=1>
+        </div>
+        <div class="form-group">
+          <div *ngIf="name.invalid && ( name.touched)" class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+              Please enter trail name
             </div>
-            <!-- RIGHT COLUMN -->
-            <div class="col-md-6">
-
-                <!-- URL -->
-                <div class="form-group">
-                    <label for="website_url">Website URL *</label>
-                    <input type="text" class="form-control" id="url" placeholder="Type website url" required="true"
-                        [(ngModel)]="hikingTrailModel.url"
-                        pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
-                        name="url" #url="ngModel" tabindex=2>
-                </div>
-                <div class="form-group">
-                    <div *ngIf="url.invalid && (url.dirty || url.touched)" class="alert alert-danger">
-                        <div *ngIf="url.errors.required">
-                            Please enter Website URL
-                        </div>
-                        <div *ngIf="url.errors.pattern">
-                            Please enter valid Website URL
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FIRST IMAGE URL -->
-                <div class="form-group">
-                    <label for="name">First Image URL</label>
-                    <input type="text" class="form-control" id="first_image_url" placeholder="Type image url"
-                        [(ngModel)]="hikingTrailModel.image_urls.first" name="first_image_url"
-                        #first_image_url="ngModel"
-                        pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
-                        tabindex=3>
-                </div>
-
-                <!-- SECOND IMAGE URL -->
-                <div class="form-group">
-                    <label for="name">Second Image URL</label>
-                    <input type="text" class="form-control" id="second_image_url" placeholder="Type image url"
-                        [(ngModel)]="hikingTrailModel.image_urls.second" name="second_image_url"
-                        #second_image_url="ngModel"
-                        pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
-                        tabindex=4>
-                </div>
-                <div class="form-group">
-                    <div *ngIf="second_image_url.invalid && (second_image_url.dirty)" class="alert alert-danger">
-                        <div *ngIf="second_image_url.errors.pattern">
-                            Please enter valid Image URL
-                        </div>
-                    </div>
-                </div>
-
-                <!-- THIRD IMAGE URL -->
-                <div class="form-group">
-                    <label for="name">Third Image URL</label>
-                    <input type="text" class="form-control" id="third_image_url" placeholder="Type image url"
-                        [(ngModel)]="hikingTrailModel.image_urls.third" name="third_image_url"
-                        #third_image_url="ngModel"
-                        pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
-                        tabindex=5>
-                </div>
-                <div class="form-group">
-                    <div *ngIf="third_image_url.invalid && (third_image_url.dirty)" class="alert alert-danger">
-                        <div *ngIf="third_image_url.errors.pattern">
-                            Please enter valid Image URL
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CITY -->
-                <div class="form-group">
-                    <label for="city">City</label>
-                    <input type="text" class="form-control" name="city" placeholder="City"
-                        [(ngModel)]="hikingTrailModel.city" tabindex="8">
-                </div>
-
-                <!-- ZIP CODE-->
-                <div class="form-group">
-                    <label for="zipcode">Zip Code</label>
-                    <input type="text" class="form-control" name="zipCode" placeholder="Zip Code"
-                        [(ngModel)]="hikingTrailModel.zipcode" tabindex="10">
-                    <small id="zipHelp" class="form-text text-muted">Zip Code
-                    </small>
-                </div>
-
-                <!-- LENGTH -->
-                <div class="form-group">
-                    <label for="length">Trail Length</label>
-                    <input type="number" class="form-control" id="length" placeholder="Type trail length"
-                        [(ngModel)]="hikingTrailModel.length" name="length" min="1" max="100" tabindex="12">
-                </div>
-
-                <!-- STROLLER FRIENDLY -->
-                <div class="form-group">
-                    <label for="stroller_friendly">Stroller friendly</label>
-                    &nbsp;
-                    <input type="checkbox" [(ngModel)]="hikingTrailModel.stroller_friendly.yes"
-                        name="stroller_friendly_yes" tabindex="16">
-                    <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.stroller_friendly.more_info"
-                        name="stroller_friendly_more_info" tabindex="17">
-                    <small id="strollerFriendlyHelp" class="form-text text-muted">Enter more info about stroller
-                        accessibility.
-                    </small>
-                </div>
-
-                <!-- ENTRANCE FEE -->
-                <div class="form-group">
-                    <label for="entrance_fee">Entrance Fee</label>
-                    &nbsp;
-                    <input type="checkbox" [(ngModel)]="hikingTrailModel.entrance_fee.yes" tabindex="20"
-                        name="entrance_fee_yes">
-                    &nbsp;&nbsp;<label>Min: </label>
-                    <input type="number" size="7" placeholder="Min" [(ngModel)]="hikingTrailModel.entrance_fee.min"
-                        tabindex="21" name="entrance_fee_min">
-                    &nbsp;&nbsp;<label>Max: </label>
-                    <input type="number" size="7" placeholder="Max" [(ngModel)]="hikingTrailModel.entrance_fee.max"
-                        tabindex="22" name="entrance_fee_max">
-                    <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.entrance_fee.more_info"
-                        tabindex="23" name="entrance_fee_more_info">
-                    <small class="form-text text-muted">Enter more info about entrance fee.
-                    </small>
-                </div>
-
-                <!-- TRAIL SURFACE -->
-                <div class="form-group">
-                    <label>Trail surface</label>
-                    <input type="text" class="form-control" name="trail_surface" placeholder="Trail surface"
-                        [(ngModel)]="hikingTrailModel.trail_surface" tabindex="26">
-                </div>
-
-                <!-- CARRIER NEEDED -->
-                <div class="form-group">
-                    <br>
-                    <label>Carrier</label>
-                    &nbsp;
-                    <input type="checkbox" [(ngModel)]="hikingTrailModel.carrier.needed" tabindex="29"
-                        name="carrier_needed">
-                    <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.carrier.more_info"
-                        tabindex="30" name="carrier_more_info">
-                    <small class="form-text text-muted">Enter more info about carriers.
-                    </small>
-                </div>
-
-                <!-- PICNICING -->
-                <div class="form-group">
-                    <label>Picnicing</label>
-                    &nbsp;
-                    <input type="checkbox" [(ngModel)]="hikingTrailModel.picnicing.yes" tabindex="33"
-                        name="picnicing_yes">
-                    <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.picnicing.more_info"
-                        tabindex="34" name="picnicing_more_info">
-                    <small class="form-text text-muted">Enter more info about picnicing.
-                    </small>
-                </div>
-
-                <!-- EMERGENCY SUPPORT -->
-                <div class="form-group">
-                    <label>Emergency support</label>
-                    &nbsp;
-                    <input type="checkbox" [(ngModel)]="hikingTrailModel.emergency_support.available" tabindex="37"
-                        name="emergency_support_available">
-                    <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.emergency_support.more_info"
-                        tabindex="38" name="emergency_support_more_info">
-                    <small class="form-text text-muted">Enter more info about emergency support.
-                    </small>
-                </div>
-
-                <!-- TIPS -->
-                <div class="form-group">
-                    <label for="tips">Tips</label>
-                    <input type="text" class="form-control" id="tips" placeholder="Tips"
-                        [(ngModel)]="hikingTrailModel.tips" name="tips" tabindex="40">
-                </div>
-
-                <!-- ELEVATION -->
-                <div class="form-group">
-                    <label for="elevation">Elevation</label>
-                    <input type="number" class="form-control" id="elevation" placeholder="Elevation"
-                        [(ngModel)]="hikingTrailModel.elevation" name="elevation" tabindex="42">
-                </div>
-
-                <!-- NEARBY CAMPS -->
-                <div class="form-group">
-                    <label>Nearby camps</label>
-                    &nbsp;
-                    <input type="checkbox" [(ngModel)]="hikingTrailModel.nearby_camps.yes" tabindex="45"
-                        name="nearby_camps_yes">
-                    <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.nearby_camps.more_info"
-                        tabindex="46" name="nearby_camps_more_info">
-                    <small class="form-text text-muted">Enter more info about nearby camps.
-                    </small>
-                </div>
-
-                <!-- TYPE -->
-                <div class="form-group">
-                    <label>Type</label>
-                    <input type="text" class="form-control" id="type" placeholder="Type"
-                        [(ngModel)]="hikingTrailModel.type" name="type" tabindex="48">
-                </div>
-
-                <!-- WATER FEATURE -->
-                <div class="form-group">
-                    <label>Water feature</label>
-                    <input type="text" class="form-control" id="water_feature" placeholder="Water feature"
-                        [(ngModel)]="hikingTrailModel.water_feature" name="water_feature" tabindex="50">
-                </div>
-
-                <!-- WATER FEATURE -->
-                <div class="form-group">
-                    <label>Venue Id</label>
-                    <input type="text" class="form-control" id="venue_id" placeholder="Venue Id"
-                        [(ngModel)]="hikingTrailModel.venue_id" name="venue_id" tabindex="51">
-                </div>
-
-
+            <div *ngIf="name.errors.minlength">
+              Name can not be less than 4 characters.
             </div>
+            <div *ngIf="name.errors.maxlength">
+              Name must be less than 2048 characters long
+            </div>
+          </div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" rows="5" id="description" placeholder="Type description"
+            [(ngModel)]="hikingTrailModel.description" name="description" tabindex="6"></textarea>
+        </div>
+
+        <!-- STREET -->
+        <div class="form-group">
+          <label for="street">Street</label>
+          <input type="text" class="form-control" id="street" placeholder="Street" [(ngModel)]="hikingTrailModel.street"
+            tabindex="7" name="street">
+          <small id="streetHelp" class="form-text text-muted">Street
+          </small>
+        </div>
+
+        <!-- STATE -->
+        <div class="form-group">
+          <label for="state">State</label>
+          <input type="text" class="form-control" placeholder="State" [(ngModel)]="hikingTrailModel.state" name="state"
+            tabindex="9">
+          <small id="stateHelp" class="form-text text-muted">State
+          </small>
+        </div>
+
+        <!-- COUNTRY -->
+        <div class="form-group">
+          <label for="country">Country</label>
+          <input type="text" class="form-control" id="country" placeholder="Country"
+            [(ngModel)]="hikingTrailModel.country" tabindex="11">
+          <small name="countryHelp" class="form-text text-muted">Country
+          </small>
+        </div>
+
+        <!-- TAGS -->
+        <div class="form-group">
+          <label for="tags">Tags</label>
+          <input type="text" class="form-control" id="tags" placeholder="Tags" [(ngModel)]="hikingTrailModel.tags"
+            name="tags" tabindex="13">
+        </div>
+
+        <!-- RATINGS -->
+        <div class="form-group">
+          <label for="google_ratings">Google Rating</label>
+          <input type="number" id="google_rating" placeholder="Google Rating"
+            [(ngModel)]="hikingTrailModel.ratings.google" name="google_rating" tabindex="14">
+          <label for="yelp_ratings">Yelp Rating</label>
+          <input type="number" id="yelp_rating" placeholder="Yelp Rating" [(ngModel)]="hikingTrailModel.ratings.yelp"
+            name="yelp_rating" tabindex="15">
+        </div>
+
+        <!-- BATHROOMS -->
+        <div class="form-group">
+          <label for="bathrooms">Bathrooms</label>
+          &nbsp;
+          <input type="checkbox" [(ngModel)]="hikingTrailModel.bathrooms.available" name="bathroom_available"
+            tabindex="18">
+          <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.bathrooms.more_info"
+            name="bathroom_more_info" tabindex="19">
+          <small id="bathroomsHelp" class="form-text text-muted">Enter more info about bathrooms.
+          </small>
+        </div>
+
+        <!-- PARKING -->
+        <div class="form-group">
+          <label>Parking</label>
+          &nbsp;
+          <input type="checkbox" [(ngModel)]="hikingTrailModel.parking.available" name="parking_available"
+            tabindex="24">
+          <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.parking.more_info"
+            name="parking_more_info" tabindex="25">
+          <small class="form-text text-muted">Enter more info about parking.
+          </small>
+        </div>
+
+        <!-- DIFFICULTY -->
+        <div class="form-group">
+          <label for="difficulty">Difficulty</label>
+          &nbsp;
+
+          <label>Level: </label>
+          <input type="text" placeholder="Difficulty level" [(ngModel)]="hikingTrailModel.difficulty.level"
+            name="difficulty_level" tabindex="27">
+          <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.difficulty.more_info"
+            name="difficulty_more_info" tabindex="28">
+          <small id="strollerFriendlyHelp" class="form-text text-muted">Enter more info about difficulty
+            level.
+          </small>
+        </div>
+
+        <!-- ADA ACCESSIBLE -->
+        <div class="form-group">
+          <label>ADA accessibility</label>
+          &nbsp;
+          <input type="checkbox" [(ngModel)]="hikingTrailModel.ada_accessible.yes" name="ada_accessible_yes"
+            tabindex="31">
+          <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.ada_accessible.more_info"
+            name="ada_accessible.more_info" tabindex="32">
+          <small class="form-text text-muted">Enter more info about ADA accessibility.
+          </small>
+        </div>
+
+        <!-- IN PARK FOOD -->
+        <div class="form-group">
+          <label>In park food options</label>
+          &nbsp;
+          <input type="checkbox" [(ngModel)]="hikingTrailModel.in_park_food.available" name="in_park_food_available"
+            tabindex="35">
+          <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.in_park_food.more_info"
+            name="in_park_food_more_info" tabindex="36">
+          <small class="form-text text-muted">Enter more info about in park food options.
+          </small>
+        </div>
+
+        <!-- ATTRACTIONS -->
+        <div class="form-group">
+          <label for="attractions">Attractions</label>
+          <input type="text" class="form-control" name="attractions" placeholder="Attractions"
+            [(ngModel)]="hikingTrailModel.attractions" name="attractions" tabindex="39">
+        </div>
+
+        <!-- AMOUNT OF SHADE -->
+        <div class="form-group">
+          <label for="shade">Amount of shade</label>
+          <input type="text" class="form-control" id="shade" placeholder="Amount of shade"
+            [(ngModel)]="hikingTrailModel.shade" name="shade" tabindex="41">
+        </div>
+
+        <!-- PET FRIENDLY -->
+        <div class="form-group">
+          <label>Pet friendly</label>
+          &nbsp;
+          <input type="checkbox" [(ngModel)]="hikingTrailModel.pet_friendly.yes" name="pet_friendly_yes" tabindex="43">
+          <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.pet_friendly.more_info"
+            name="pet_friendly_more_info" tabindex="44">
+          <small class="form-text text-muted">Enter more info about pet friendliness.
+          </small>
+        </div>
+
+        <!-- BEST SEASON TO VISIT -->
+        <div class="form-group">
+          <label>Best season to visit</label>
+          <input type="text" class="form-control" id="season" placeholder="Best season to visit"
+            [(ngModel)]="hikingTrailModel.best_season" name="best_season" tabindex="47">
+        </div>
+
+        <!-- TRAIL IMAGE URL -->
+        <div class="form-group">
+          <label>Trail Image URL</label>
+          <input type="text" class="form-control" id="trail_image_url" placeholder="Type trail image url"
+            [(ngModel)]="hikingTrailModel.trail_image_url" name="trail_image_url" #trail_image_url="ngModel"
+            pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
+            tabindex="49">
+        </div>
+        <div class="form-group">
+          <div *ngIf="trail_image_url.invalid && (trail_image_url.dirty)" class="alert alert-danger">
+            <div *ngIf="trail_image_url.errors.pattern">
+              Please enter valid Image URL
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- RIGHT COLUMN -->
+      <div class="col-md-6">
+
+        <!-- URL -->
+        <div class="form-group">
+          <label for="website_url">Website URL *</label>
+          <input type="text" class="form-control" id="url" placeholder="Type website url" required="true"
+            [(ngModel)]="hikingTrailModel.url"
+            pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
+            name="url" #url="ngModel" tabindex=2>
+        </div>
+        <div class="form-group">
+          <div *ngIf="url.invalid && (url.dirty || url.touched)" class="alert alert-danger">
+            <div *ngIf="url.errors.required">
+              Please enter Website URL
+            </div>
+            <div *ngIf="url.errors.pattern">
+              Please enter valid Website URL
+            </div>
+          </div>
+        </div>
+
+        <!-- FIRST IMAGE URL -->
+        <div class="form-group">
+          <label for="name">First Image URL</label>
+          <input type="text" class="form-control" id="first_image_url" placeholder="Type image url"
+            [(ngModel)]="hikingTrailModel.image_urls.first" name="first_image_url" #first_image_url="ngModel"
+            pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
+            tabindex=3>
+        </div>
+
+        <!-- SECOND IMAGE URL -->
+        <div class="form-group">
+          <label for="name">Second Image URL</label>
+          <input type="text" class="form-control" id="second_image_url" placeholder="Type image url"
+            [(ngModel)]="hikingTrailModel.image_urls.second" name="second_image_url" #second_image_url="ngModel"
+            pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
+            tabindex=4>
+        </div>
+        <div class="form-group">
+          <div *ngIf="second_image_url.invalid && (second_image_url.dirty)" class="alert alert-danger">
+            <div *ngIf="second_image_url.errors.pattern">
+              Please enter valid Image URL
+            </div>
+          </div>
+        </div>
+
+        <!-- THIRD IMAGE URL -->
+        <div class="form-group">
+          <label for="name">Third Image URL</label>
+          <input type="text" class="form-control" id="third_image_url" placeholder="Type image url"
+            [(ngModel)]="hikingTrailModel.image_urls.third" name="third_image_url" #third_image_url="ngModel"
+            pattern="https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}"
+            tabindex=5>
+        </div>
+        <div class="form-group">
+          <div *ngIf="third_image_url.invalid && (third_image_url.dirty)" class="alert alert-danger">
+            <div *ngIf="third_image_url.errors.pattern">
+              Please enter valid Image URL
+            </div>
+          </div>
+        </div>
+
+        <!-- CITY -->
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" class="form-control" name="city" placeholder="City" [(ngModel)]="hikingTrailModel.city"
+            tabindex="8">
+        </div>
+
+        <!-- ZIP CODE-->
+        <div class="form-group">
+          <label for="zipcode">Zip Code</label>
+          <input type="text" class="form-control" name="zipCode" placeholder="Zip Code"
+            [(ngModel)]="hikingTrailModel.zipcode" tabindex="10">
+          <small id="zipHelp" class="form-text text-muted">Zip Code
+          </small>
+        </div>
+
+        <!-- LENGTH -->
+        <div class="form-group">
+          <label for="length">Trail Length</label>
+          <input type="number" class="form-control" id="length" placeholder="Type trail length"
+            [(ngModel)]="hikingTrailModel.length" name="length" min="1" max="100" tabindex="12">
+        </div>
+
+        <!-- STROLLER FRIENDLY -->
+        <div class="form-group">
+          <label for="stroller_friendly">Stroller friendly</label>
+          &nbsp;
+          <input type="checkbox" [(ngModel)]="hikingTrailModel.stroller_friendly.yes" name="stroller_friendly_yes"
+            tabindex="16">
+          <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.stroller_friendly.more_info"
+            name="stroller_friendly_more_info" tabindex="17">
+          <small id="strollerFriendlyHelp" class="form-text text-muted">Enter more info about stroller
+            accessibility.
+          </small>
+        </div>
+
+        <!-- ENTRANCE FEE -->
+        <div class="form-group">
+          <label for="entrance_fee">Entrance Fee</label>
+          &nbsp;
+          <input type="checkbox" [(ngModel)]="hikingTrailModel.entrance_fee.yes" tabindex="20" name="entrance_fee_yes">
+          &nbsp;&nbsp;<label>Min: </label>
+          <input type="number" size="7" placeholder="Min" [(ngModel)]="hikingTrailModel.entrance_fee.min" tabindex="21"
+            name="entrance_fee_min">
+          &nbsp;&nbsp;<label>Max: </label>
+          <input type="number" size="7" placeholder="Max" [(ngModel)]="hikingTrailModel.entrance_fee.max" tabindex="22"
+            name="entrance_fee_max">
+          <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.entrance_fee.more_info" tabindex="23"
+            name="entrance_fee_more_info">
+          <small class="form-text text-muted">Enter more info about entrance fee.
+          </small>
+        </div>
+
+        <!-- TRAIL SURFACE -->
+        <div class="form-group">
+          <label>Trail surface</label>
+          <input type="text" class="form-control" name="trail_surface" placeholder="Trail surface"
+            [(ngModel)]="hikingTrailModel.trail_surface" tabindex="26">
+        </div>
+
+        <!-- CARRIER NEEDED -->
+        <div class="form-group">
+          <br>
+          <label>Carrier</label>
+          &nbsp;
+          <input type="checkbox" [(ngModel)]="hikingTrailModel.carrier.needed" tabindex="29" name="carrier_needed">
+          <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.carrier.more_info" tabindex="30"
+            name="carrier_more_info">
+          <small class="form-text text-muted">Enter more info about carriers.
+          </small>
+        </div>
+
+        <!-- PICNICING -->
+        <div class="form-group">
+          <label>Picnicing</label>
+          &nbsp;
+          <input type="checkbox" [(ngModel)]="hikingTrailModel.picnicing.yes" tabindex="33" name="picnicing_yes">
+          <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.picnicing.more_info" tabindex="34"
+            name="picnicing_more_info">
+          <small class="form-text text-muted">Enter more info about picnicing.
+          </small>
+        </div>
+
+        <!-- EMERGENCY SUPPORT -->
+        <div class="form-group">
+          <label>Emergency support</label>
+          &nbsp;
+          <input type="checkbox" [(ngModel)]="hikingTrailModel.emergency_support.available" tabindex="37"
+            name="emergency_support_available">
+          <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.emergency_support.more_info"
+            tabindex="38" name="emergency_support_more_info">
+          <small class="form-text text-muted">Enter more info about emergency support.
+          </small>
+        </div>
+
+        <!-- TIPS -->
+        <div class="form-group">
+          <label for="tips">Tips</label>
+          <input type="text" class="form-control" id="tips" placeholder="Tips" [(ngModel)]="hikingTrailModel.tips"
+            name="tips" tabindex="40">
+        </div>
+
+        <!-- ELEVATION -->
+        <div class="form-group">
+          <label for="elevation">Elevation</label>
+          <input type="number" class="form-control" id="elevation" placeholder="Elevation"
+            [(ngModel)]="hikingTrailModel.elevation" name="elevation" tabindex="42">
+        </div>
+
+        <!-- NEARBY CAMPS -->
+        <div class="form-group">
+          <label>Nearby camps</label>
+          &nbsp;
+          <input type="checkbox" [(ngModel)]="hikingTrailModel.nearby_camps.yes" tabindex="45" name="nearby_camps_yes">
+          <input type="text" class="form-control" [(ngModel)]="hikingTrailModel.nearby_camps.more_info" tabindex="46"
+            name="nearby_camps_more_info">
+          <small class="form-text text-muted">Enter more info about nearby camps.
+          </small>
+        </div>
+
+        <!-- TYPE -->
+        <div class="form-group">
+          <label>Type</label>
+          <input type="text" class="form-control" id="type" placeholder="Type" [(ngModel)]="hikingTrailModel.type"
+            name="type" tabindex="48">
+        </div>
+
+        <!-- WATER FEATURE -->
+        <div class="form-group">
+          <label>Water feature</label>
+          <input type="text" class="form-control" id="water_feature" placeholder="Water feature"
+            [(ngModel)]="hikingTrailModel.water_feature" name="water_feature" tabindex="50">
+        </div>
+
+        <!-- WATER FEATURE -->
+        <div class="form-group">
+          <label>Venue Id</label>
+          <input type="text" class="form-control" id="venue_id" placeholder="Venue Id"
+            [(ngModel)]="hikingTrailModel.venue_id" name="venue_id" tabindex="51">
         </div>
 
 
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary" [disabled]="f.form.pristine || f.form.invalid"
-                        (click)="update_hiking_trail()">Update</button>
-                </div>
-            </div>
+      </div>
+    </div>
 
-            <div class="col-md-3">
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary" (click)="reset_hiking_trail()">Reset</button>
-                </div>
-            </div>
 
-            <div class="col-md-3">
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary" (click)="previous_hiking_trail()">Previous</button>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary" (click)="next_hiking_trail()">Next</button>
-                </div>
-            </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <button type="button" class="btn btn-primary" [disabled]="f.form.pristine || f.form.invalid"
+            (click)="update_hiking_trail()">Update</button>
         </div>
+      </div>
 
-        <div class="row alert alert-danger" *ngIf="showError">
-            <!--<p *ngFor="let current_error of hiking_trail_error"> {{current_error}}</p>-->
-            <ul>
-                <li *ngFor="let current_error of hiking_trail_error">
-                    {{ current_error }}
-                </li>
-            </ul>
+      <div class="col-md-3">
+        <div class="form-group">
+          <button type="button" class="btn btn-primary" (click)="reset_hiking_trail()">Reset</button>
         </div>
+      </div>
 
-    </form>
+      <div class="col-md-3">
+        <div class="form-group">
+          <button type="button" class="btn btn-primary" (click)="previous_hiking_trail()">Previous</button>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <button type="button" class="btn btn-primary" (click)="next_hiking_trail()">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row alert alert-danger" *ngIf="showError">
+      <!--<p *ngFor="let current_error of hiking_trail_error"> {{current_error}}</p>-->
+      <ul>
+        <li *ngFor="let current_error of hiking_trail_error">
+          {{ current_error }}
+        </li>
+      </ul>
+    </div>
+
+  </form>
 </div>

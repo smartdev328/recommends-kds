@@ -1,104 +1,103 @@
 <form class="profile-container" [formGroup]="formGroup">
-    <div class="row py-3 mx-0">
-        <div class="col-md-4">
-            <h3 class="fs-xxl">Let's get started!</h3>
-        </div>
-        <mat-card class="col-md-8 content">
-            <h4 class="fs-xl">Profile</h4>
-            <div class="row">
-                <mat-form-field class="col-12 col-md-6">
-                    <input matInput placeholder="First name" formControlName="firstName" required>
-                </mat-form-field>
-                <mat-form-field class="col-12 col-md-6">
-                    <input matInput placeholder="Last name" formControlName="lastName">
-                </mat-form-field>
-            </div>
-            <div class="row">
-                <mat-form-field class="col-12">
-                    <input matInput formControlName="email" placeholder="Email" >
-                </mat-form-field>
-            </div>
-            <div class="row" style="align-items: baseline">
-                <mat-form-field class="col-12 col-md-6 Zipcode">
-                    <input matInput placeholder="Zipcode" formControlName="zipcode" required>
-                </mat-form-field>
-            </div>
-        </mat-card>
+  <div class="row py-3 mx-0">
+    <div class="col-md-4">
+      <h3 class="fs-xxl">Let's get started!</h3>
     </div>
-    <mat-divider *ngIf="referrals.length > 0"></mat-divider>
-    <div class="row py-3 mx-0" *ngIf="referrals.length > 0">
-            <div class="col-md-4">
-                <h3 class="fs-xxl">Pending friend invites</h3>
-                <p class="fs-sm">Check the box to accept invitation</p>
-            </div>
-            <div class="col-md-3" fxLayout="column" fxLayoutAlign="end start" *ngFor="let referral of referrals; let i = index">
-                <mat-checkbox [formControl]="formGroup.controls.referralControls.controls[i].controls.accept" 
-                class="mb-1 ml-md-5 fs-md news-letter newsletter-label">
-                    {{referral.referrer}}</mat-checkbox>
-            </div>
+    <mat-card class="col-md-8 content">
+      <h4 class="fs-xl">Profile</h4>
+      <div class="row">
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="First name" formControlName="firstName" required>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Last name" formControlName="lastName">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-12">
+          <input matInput formControlName="email" placeholder="Email">
+        </mat-form-field>
+      </div>
+      <div class="row" style="align-items: baseline">
+        <mat-form-field class="col-12 col-md-6 Zipcode">
+          <input matInput placeholder="Zipcode" formControlName="zipcode" required>
+        </mat-form-field>
+      </div>
+    </mat-card>
+  </div>
+  <mat-divider *ngIf="referrals.length > 0"></mat-divider>
+  <div class="row py-3 mx-0" *ngIf="referrals.length > 0">
+    <div class="col-md-4">
+      <h3 class="fs-xxl">Pending friend invites</h3>
+      <p class="fs-sm">Check the box to accept invitation</p>
     </div>
-    <mat-divider></mat-divider>
-    <div class="row py-3 mx-0">
-        <div class="col-md-4">
-            <h3 class="fs-xxl">What are your kids’ current obsessions?</h3>
-            <p class="fs-sm">Tell us or select what you’d like to see more of in your recommendations</p>
-        </div>
-        <mat-card class="col-md-8 content">
-            <h4 class="fs-xl">Kids</h4>
-            <div *ngFor="let kid of kids; let i = index">
-                <mat-divider class="mat-get-divider" *ngIf="i != 0">
+    <div class="col-md-3" fxLayout="column" fxLayoutAlign="end start" *ngFor="let referral of referrals; let i = index">
+      <mat-checkbox [formControl]="formGroup.controls.referralControls.controls[i].controls.accept"
+        class="mb-1 ml-md-5 fs-md news-letter newsletter-label">
+        {{referral.referrer}}</mat-checkbox>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row py-3 mx-0">
+    <div class="col-md-4">
+      <h3 class="fs-xxl">What are your kids’ current obsessions?</h3>
+      <p class="fs-sm">Tell us or select what you’d like to see more of in your recommendations</p>
+    </div>
+    <mat-card class="col-md-8 content">
+      <h4 class="fs-xl">Kids</h4>
+      <div *ngFor="let kid of kids; let i = index">
+        <mat-divider class="mat-get-divider" *ngIf="i != 0">
 
-                </mat-divider>
-                <div class="row">
+        </mat-divider>
+        <div class="row">
 
-                    <mat-form-field class="col-12 col-md-6 mt-4">
-                        <input matInput placeholder="Nickname"
-                            [formControl]="formGroup.controls.kidControls.controls[i].controls.nick_name" required>
-                    </mat-form-field>
-                    <mat-form-field class="col-12 col-md-6 mt-4">
-                        <input matInput placeholder="Age"
-                            [formControl]="formGroup.controls.kidControls.controls[i].controls.age" maxlength="2"
-                            required>
-                        <img class="cursor" src="assets\web_images\delete.png" alt="Clear" width="24"
-                            [class.no-display]="!formGroup.controls.kidControls.controls[i].controls.age.value"
-                            matSuffix (click)="formGroup.controls.kidControls.controls[i].controls.age.setValue('')">
-                    </mat-form-field>
-                </div>
-                <h5>Interests</h5>
-                <div class="form-group interests">
-                    <textarea class="form-control textarea" rows="3"
-                        placeholder="Tell us what you’d like to see! (separated by commas)"
-                        [formControl]="formGroup.controls.kidControls.controls[i].controls.interests"></textarea>
-                </div>
-                <mat-chip-list aria-label="Interest selection">
-                    <!-- <pre>{{interests | json}}</pre> -->
-                    <mat-chip class="cursor fs-sm" *ngFor="let interest of interests"
-                        [color]="getChipColor(kid, interest.id)" (click)="toggleInterest(kid, interest.id, i)" selected>
-                        {{interest.name}}
-                    </mat-chip>
-                </mat-chip-list>
-                <div  class="cursor pt-2 ">
-                        <span *ngIf="kids.length>0" class="mt-4 cursor fs-sm text-danger" (click)="removechild(i)">
-                        - remove                        </span>
-                </div>
-            </div>
-            <h5 class="mt-1 cursor fs-sm" (click)="addChild()">+ add child</h5>
-        </mat-card>
-    </div>
-    <mat-divider></mat-divider>
-    <div class="row py-3 mx-0">
-        <div class="col-md-4">
-            <h3 class="fs-xxl">Would you like to sign up for the newsletter?</h3>
-            <p class="fs-sm">Check the box to receive weekly plans personalized for your family</p>
+          <mat-form-field class="col-12 col-md-6 mt-4">
+            <input matInput placeholder="Nickname"
+              [formControl]="formGroup.controls.kidControls.controls[i].controls.nick_name" required>
+          </mat-form-field>
+          <mat-form-field class="col-12 col-md-6 mt-4">
+            <input matInput placeholder="Age" [formControl]="formGroup.controls.kidControls.controls[i].controls.age"
+              maxlength="2" required>
+            <img class="cursor" src="assets\web_images\delete.png" alt="Clear" width="24"
+              [class.no-display]="!formGroup.controls.kidControls.controls[i].controls.age.value" matSuffix
+              (click)="formGroup.controls.kidControls.controls[i].controls.age.setValue('')">
+          </mat-form-field>
         </div>
-        <div class="col-md-8" fxLayout="column" fxLayoutAlign="end start">
-            <mat-checkbox formControlName="newsletter" class="mb-1 ml-md-5 fs-md news-letter newsletter-label">
-                Yes, sign me up for the newsletter!</mat-checkbox>
+        <h5>Interests</h5>
+        <div class="form-group interests">
+          <textarea class="form-control textarea" rows="3"
+            placeholder="Tell us what you’d like to see! (separated by commas)"
+            [formControl]="formGroup.controls.kidControls.controls[i].controls.interests"></textarea>
         </div>
+        <mat-chip-list aria-label="Interest selection">
+          <!-- <pre>{{interests | json}}</pre> -->
+          <mat-chip class="cursor fs-sm" *ngFor="let interest of interests" [color]="getChipColor(kid, interest.id)"
+            (click)="toggleInterest(kid, interest.id, i)" selected>
+            {{interest.name}}
+          </mat-chip>
+        </mat-chip-list>
+        <div class="cursor pt-2 ">
+          <span *ngIf="kids.length>0" class="mt-4 cursor fs-sm text-danger" (click)="removechild(i)">
+            - remove </span>
+        </div>
+      </div>
+      <h5 class="mt-1 cursor fs-sm" (click)="addChild()">+ add child</h5>
+    </mat-card>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row py-3 mx-0">
+    <div class="col-md-4">
+      <h3 class="fs-xxl">Would you like to sign up for the newsletter?</h3>
+      <p class="fs-sm">Check the box to receive weekly plans personalized for your family</p>
     </div>
-    <mat-divider></mat-divider>
-    <div class="mt-2" fxLayout="row" fxLayoutAlign="end stretch">
-        <!-- <button class="btn btn-white fs-sm" (click)="back()">BACK</button> -->
-        <button class="btn btn-yellow fs-sm" [disabled]="formGroup.invalid" (click)="save()">FINISH</button>
+    <div class="col-md-8" fxLayout="column" fxLayoutAlign="end start">
+      <mat-checkbox formControlName="newsletter" class="mb-1 ml-md-5 fs-md news-letter newsletter-label">
+        Yes, sign me up for the newsletter!</mat-checkbox>
     </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="mt-2" fxLayout="row" fxLayoutAlign="end stretch">
+    <!-- <button class="btn btn-white fs-sm" (click)="back()">BACK</button> -->
+    <button class="btn btn-yellow fs-sm" [disabled]="formGroup.invalid" (click)="save()">FINISH</button>
+  </div>
 </form>

@@ -1,74 +1,78 @@
 <div class="banner-section events-banner">
-        <div class="banner-mobile">
-          <img src="../../assets/web_images/home_classes.jpg" />
-          <h1 class="text-center heading-mobile"><span>Classes</span> for your kids</h1>
-        </div>
-        <div class="banner-wrapper">
-          <h1 class="text-center heading-desktop"><span>Classes</span> for your kids</h1>
-          <form (submit)="filter_venue_data()">
-          <div class="filter-box">
-            <div class="row filter-box-content">
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-1 mb-2">
-                <div class="input-group">
-                      <input type="text" class="form-control keyword-text" 
-                      placeholder="Keyword" name ="keyword" [(ngModel)] = "keyword">
-                    </div>
-                  </div>
-                  
-                  <div class="col-md-2 col-sm-6 col-xs-2 mb-2">
-                    <div class="dropdown">
-                      <button class="btn btn-lg btn-default filter-dropdown" type="button" 
-                      id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" 
-                      aria-expanded="false">
-                      {{cat_label}}
-                      <span class="hairline-down">
-                        <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
-                        </svg>
-                      </span>
-                    </button>
-                    <div class="dropdown-menu add-scroll" 
-                    aria-labelledby="dropdownMenuButton">
-                    <span class="dropdown-item cursor"
-                    (click)="onCategoryChange(each_cat)" *ngFor="let each_cat
+  <div class="banner-mobile">
+    <img src="../../assets/web_images/home_classes.jpg" />
+    <h1 class="text-center heading-mobile"><span>Classes</span> for your kids</h1>
+  </div>
+  <div class="banner-wrapper">
+    <h1 class="text-center heading-desktop"><span>Classes</span> for your kids</h1>
+    <form (submit)="filter_venue_data()">
+      <div class="filter-box">
+        <div class="row filter-box-content">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-1 mb-2">
+            <div class="input-group">
+              <input type="text" class="form-control keyword-text" placeholder="Keyword" name="keyword"
+                [(ngModel)]="keyword">
+            </div>
+          </div>
+
+          <div class="col-md-2 col-sm-6 col-xs-2 mb-2">
+            <div class="dropdown">
+              <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{cat_label}}
+                <span class="hairline-down">
+                  <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12"
+                    viewBox="0 0 24 24">
+                    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
+                  </svg>
+                </span>
+              </button>
+              <div class="dropdown-menu add-scroll" aria-labelledby="dropdownMenuButton">
+                <span class="dropdown-item cursor" (click)="onCategoryChange(each_cat)" *ngFor="let each_cat
                     of categoryList">{{each_cat.name.trim()}}</span>
-                  </div>
-                </div>
               </div>
-              <div class="col-md-2 col-sm-6 col-xs-2 mb-2">
-                <div class="dropdown">
-                  <button class="btn btn-lg btn-default filter-dropdown" type="button" 
-                  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" 
-                  aria-expanded="false">
-                  {{loc_label}}
-                  <span class="hairline-down">
-                    <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
-                    </svg>
-                  </span>
-                </button>
-                <div class="dropdown-menu add-scroll" 
-                aria-labelledby="dropdownMenuButton">
-                <label class="dropdown-item cursor"
-                (click)="onLocationChange(each_loc)" *ngFor="let each_loc
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-6 col-xs-2 mb-2">
+            <div class="dropdown">
+              <button class="btn btn-lg btn-default filter-dropdown" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{loc_label}}
+                <span class="hairline-down">
+                  <svg xmlns="http://www.w3.org/2000/svg" style="fill: #FFFFFF" width="12" height="12"
+                    viewBox="0 0 24 24">
+                    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
+                  </svg>
+                </span>
+              </button>
+              <div class="dropdown-menu add-scroll" aria-labelledby="dropdownMenuButton">
+                <label class="dropdown-item cursor" (click)="onLocationChange(each_loc)" *ngFor="let each_loc
                 of locations">{{each_loc.name}}</label>
               </div>
             </div>
           </div>
-        
-                <div class="col-xs-1 search-button">
-                    <svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-icons cursor" (click) = "filter_venue_data()">
-                      <path d="M 5 3 C 3.895 3 3 3.895 3 5 L 3 19 C 3 20.105 3.895 21 5 21 L 19 21 C 20.105 21 21 20.105 21 19 L 21 5 C 21 3.895 20.105 3 19 3 L 5 3 z M 11 6 C 13.761 6 16 8.239 16 11 C 16 12.019 15.691969 12.963906 15.167969 13.753906 L 17.707031 16.292969 C 18.098031 16.682969 18.098031 17.317031 17.707031 17.707031 C 17.316031 18.098031 16.682969 18.098031 16.292969 17.707031 L 13.753906 15.167969 C 12.963906 15.691969 12.019 16 11 16 C 8.239 16 6 13.761 6 11 C 6 8.239 8.239 6 11 6 z M 11 8 A 3 3 0 0 0 8 11 A 3 3 0 0 0 11 14 A 3 3 0 0 0 14 11 A 3 3 0 0 0 11 8 z" style="fill: #FFD700;"></path>
-                  </svg>
-                </div>
-                <button type="button" class="btn btn-link cursor clear-search" (click) = "clear_filter_data()">Clear Search</button>
-                </div>
-      
-              <div *ngIf="isFilterErrorVisible"><div class="error-message-text alert-danger">{{filterErrorMessage}}</div></div>
+
+          <div class="col-xs-1 search-button">
+            <svg class="input-group-addon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+              class="svg-icons cursor" (click)="filter_venue_data()">
+              <path
+                d="M 5 3 C 3.895 3 3 3.895 3 5 L 3 19 C 3 20.105 3.895 21 5 21 L 19 21 C 20.105 21 21 20.105 21 19 L 21 5 C 21 3.895 20.105 3 19 3 L 5 3 z M 11 6 C 13.761 6 16 8.239 16 11 C 16 12.019 15.691969 12.963906 15.167969 13.753906 L 17.707031 16.292969 C 18.098031 16.682969 18.098031 17.317031 17.707031 17.707031 C 17.316031 18.098031 16.682969 18.098031 16.292969 17.707031 L 13.753906 15.167969 C 12.963906 15.691969 12.019 16 11 16 C 8.239 16 6 13.761 6 11 C 6 8.239 8.239 6 11 6 z M 11 8 A 3 3 0 0 0 8 11 A 3 3 0 0 0 11 14 A 3 3 0 0 0 14 11 A 3 3 0 0 0 11 8 z"
+                style="fill: #FFD700;"></path>
+            </svg>
+          </div>
+          <button type="button" class="btn btn-link cursor clear-search" (click)="clear_filter_data()">Clear
+            Search</button>
         </div>
-        </form>
+
+        <div *ngIf="isFilterErrorVisible">
+          <div class="error-message-text alert-danger">{{filterErrorMessage}}</div>
         </div>
       </div>
-      <div class="container-fluid">
-        <!-- <div class="row">
+    </form>
+  </div>
+</div>
+<div class="container-fluid">
+  <!-- <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-4">
             <div class="banner-heading">
@@ -87,9 +91,9 @@
           </div>      
           <div class="col-md-2"></div>
         </div> -->
-      
-      
-      <!-- <div class="banner">
+
+
+  <!-- <div class="banner">
         <p class="link-to-kin">
           <span>
             To discover and plan for many more family-friendly venues personalized to you, chat with <b class="kin-link" (click)="kin_redirect()">Kin on Messenger</b>
@@ -98,29 +102,36 @@
         </p>
       </div>
       -->
-      <div class="event-listing-card">
-          <div *ngIf="isErrorVisible"><div class="error-message-text alert-danger">{{errorMessage}}</div></div>
-          <app-masonsry-venues-view *ngIf="newFilterData"  [venues]=venues_list [start]=start [end]=end></app-masonsry-venues-view>
-          <app-masonsry-venues-view  *ngIf="oldFilterData" [venues]=venues_list [start]=start [end]=end></app-masonsry-venues-view>
-          <mat-card-actions *ngIf="isLogedin === false" class="detail-buttons-space">
-            <button mat-button class="detail-buttons mouse-pointer" (click)="checkLogin(morePlace)">More Classes</button>
-          </mat-card-actions>
-            <mat-card-actions *ngIf="isLogedin === true" class="detail-buttons-space">
-             <button mat-button class="detail-buttons mouse-pointer" (click)="loadMore()">More Classes</button>
-          </mat-card-actions>
+  <div class="event-listing-card">
+    <div *ngIf="isErrorVisible">
+      <div class="error-message-text alert-danger">{{errorMessage}}</div>
+    </div>
+    <app-masonsry-venues-view *ngIf="newFilterData" [venues]=venues_list [start]=start [end]=end>
+    </app-masonsry-venues-view>
+    <app-masonsry-venues-view *ngIf="oldFilterData" [venues]=venues_list [start]=start [end]=end>
+    </app-masonsry-venues-view>
+    <mat-card-actions *ngIf="isLogedin === false" class="detail-buttons-space">
+      <button mat-button class="detail-buttons mouse-pointer" (click)="checkLogin(morePlace)">More Classes</button>
+    </mat-card-actions>
+    <mat-card-actions *ngIf="isLogedin === true" class="detail-buttons-space">
+      <button mat-button class="detail-buttons mouse-pointer" (click)="loadMore()">More Classes</button>
+    </mat-card-actions>
+  </div>
+  <ng-template #openModal>
+    <div class="modal-body thanks">
+      <button type="button" style="float: right;" class="close pull-right" aria-label="Close" (click)="closeDialog()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="text-center">
+        <h2 class="app-name">Sign in for {{moreClasses}}</h2>
       </div>
-      <ng-template #openModal>
-          <div class="modal-body thanks">
-              <button type="button" style="float: right;" class="close pull-right" aria-label="Close" (click)="closeDialog()">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-              <div class="text-center">
-                  <h2 class="app-name">Sign in for {{moreClasses}}</h2>
-              </div>
-              <div class="btnYN">
-                  <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary" ><b class="SIGN-IN">SIGN IN</b></button><br>
-                 <span class="kin-pop"> New to Kin? </span> <a href="" style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's free!!!</a>
-              </div>
-          </div>
-        </ng-template>
-      <br><br>
+      <div class="btnYN">
+        <button class="btnSubmit Rectangle" (click)="signin()" mat-raised-button color="primary"><b class="SIGN-IN">SIGN
+            IN</b></button><br>
+        <span class="kin-pop"> New to Kin? </span> <a href=""
+          style="color:#000000;font-family: Montserrat;font-family: 18px;" (click)="signin()">Create an account - it's
+          free!!!</a>
+      </div>
+    </div>
+  </ng-template>
+  <br><br>

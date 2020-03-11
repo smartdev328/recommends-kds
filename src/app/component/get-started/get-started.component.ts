@@ -30,18 +30,18 @@ export class GetStartedComponent implements OnInit {
   public isAuthenticated$: Observable<boolean>;
 
 
-  newsletter: boolean = false;
+  newsletter = false;
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
     private router: Router,
     private auth: AuthService,
   ) {
-    this.isAuthenticated$= this.auth.isAuthenticated$;
+    this.isAuthenticated$ = this.auth.isAuthenticated$;
     this.isAuthenticated$.subscribe(data => {
       this.isLogedin = data;
       this.auth.setAuth(this.isLogedin);
-    })
+    });
    }
 
   ngOnInit() {
@@ -49,7 +49,7 @@ export class GetStartedComponent implements OnInit {
       firstName: new FormControl(),
       lastName: new FormControl(),
       zipcode: new FormControl(),
-      email:new FormControl(),
+      email: new FormControl(),
       newsletter: new FormControl(false),
       kidControls: this.formBuilder.array([]),
       referralControls: this.formBuilder.array([])
@@ -60,17 +60,17 @@ export class GetStartedComponent implements OnInit {
     // this.addChild();
     this.formGroup.controls['email'].disable();
     this.userService.getUser().subscribe((user) => {
-      this.formGroup.controls.setValue
+      this.formGroup.controls.setValue;
       if (user.parent) {
         this.formGroup.get('firstName').setValue(user.parent.first_name);
         this.formGroup.get('lastName').setValue(user.parent.last_name);
         this.formGroup.get('zipcode').setValue(user.parent.zip_code);
         this.formGroup.get('newsletter').setValue(user.parent.newsletter.toString() == 'True');
         this.formGroup.get('email').setValue(user.parent.email);
-        this.parentEmail=user.parent.email;
-        this.referrals = user.referrals ? user.referrals : [new Referral()]
+        this.parentEmail = user.parent.email;
+        this.referrals = user.referrals ? user.referrals : [new Referral()];
         this.initializeReferrals(this.referrals);
-      }    
+      }
 
     });
   }
@@ -97,9 +97,9 @@ export class GetStartedComponent implements OnInit {
     }));
   }
 
-  removechild(i){
+  removechild(i) {
     this.kidControls.removeAt(i);
-    this.kids.splice(i,1);
+    this.kids.splice(i, 1);
   }
 
   onSubmit() {
@@ -107,59 +107,59 @@ export class GetStartedComponent implements OnInit {
     if (this.formGroup.invalid) {
       return;
     } else {
-     
+
     }
   }
 
   save() {
-    let param = {
+    const param = {
       first_name: this.formGroup.value.firstName,
       last_name: this.formGroup.value.lastName,
       zip_code: this.formGroup.value.zipcode,
       // email: this.parentEmail,
       newsletter: this.formGroup.value.newsletter,
-    }
-    var kidLength = 0;
+    };
+    let kidLength = 0;
     if (this.formGroup.value.kidControls !== undefined) {
       kidLength = this.formGroup.value.kidControls.length;
-    } 
-    
-    var referralsLength = 0;
+    }
+
+    let referralsLength = 0;
     if (this.formGroup.value.referralControls !== undefined) {
       referralsLength = this.formGroup.value.referralControls.length;
-    }  
-    
+    }
+
     this.userService.updateUser(param).subscribe(
       responseParent => {
-          if (kidLength > 0) {
-              this.userService.createKids(this.formGroup.value.kidControls).subscribe(
-                responseKid => {
-                  if (referralsLength > 0) {
-                    this.userService.addFriends(this.formGroup.value.referralControls).subscribe(
-                      responseReferral => {
-                        this.router.navigate(['/home']);
-                    });
-                  } else {
+        if (kidLength > 0) {
+          this.userService.createKids(this.formGroup.value.kidControls).subscribe(
+            responseKid => {
+              if (referralsLength > 0) {
+                this.userService.addFriends(this.formGroup.value.referralControls).subscribe(
+                  responseReferral => {
                     this.router.navigate(['/home']);
-                  }
-              });
+                });
+              } else {
+                this.router.navigate(['/home']);
+              }
+          });
+        } else {
+          if (referralsLength > 0) {
+            this.userService.addFriends(this.formGroup.value.referralControls).subscribe(
+              responseReferral => {
+                this.router.navigate(['/home']);
+            });
           } else {
-            if (referralsLength > 0) {
-              this.userService.addFriends(this.formGroup.value.referralControls).subscribe(
-                responseReferral => {
-                  this.router.navigate(['/home']);
-              });
-            } else {
-              this.router.navigate(['/home']);
-            }
-          } 
+            this.router.navigate(['/home']);
+          }
+        }
       }, err => {
        console.log('Error in call service for parent and kid', err);
       });
       this.router.navigate(['/home']);
   }
 
-  back(){
+  back() {
     this.router.navigate(['/home']);
   }
 

@@ -1,246 +1,216 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <label class="venue-header"> Add a venue</label>
-        </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label class="venue-header"> Add a venue</label>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Type name" required="true"
-                       [(ngModel)]="userSearch.name"
-                >
-                <small id="nameHelp" class="form-text text-muted">Enter a name to search.
-                </small>
-            </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Type name" required="true"
+          [(ngModel)]="userSearch.name">
+        <small id="nameHelp" class="form-text text-muted">Enter a name to search.
+        </small>
+      </div>
 
 
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" rows="5" id="description" placeholder="Type description" required="true"
-                          [(ngModel)]="userSearch.description"
-                ></textarea>
-                <small id="descriptionHelp" class="form-text text-muted">Type description about venue
-                </small>
-            </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" rows="5" id="description" placeholder="Type description" required="true"
+          [(ngModel)]="userSearch.description"></textarea>
+        <small id="descriptionHelp" class="form-text text-muted">Type description about venue
+        </small>
+      </div>
 
 
-            <div class="form-group">
-                <label for="city">City</label>
-                <input type="text" class="form-control" id="city" placeholder="City" required="required"
-                       [(ngModel)]="userSearch.city"
-                >
-                <small id="cityHelp" class="form-text text-muted">Enter a city you want to search.
-                </small>
-            </div>
-            <div class="form-group">
-                <label for="state">State</label>
-                <input type="text" class="form-control" id="state" placeholder="State" required="required"
-                       [(ngModel)]="userSearch.state"
-                >
-                <small id="stateHelp" class="form-text text-muted">Enter a state you want to search.
-                </small>
-            </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" placeholder="City" required="required"
+          [(ngModel)]="userSearch.city">
+        <small id="cityHelp" class="form-text text-muted">Enter a city you want to search.
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="state">State</label>
+        <input type="text" class="form-control" id="state" placeholder="State" required="required"
+          [(ngModel)]="userSearch.state">
+        <small id="stateHelp" class="form-text text-muted">Enter a state you want to search.
+        </small>
+      </div>
 
-            <div class="form-group">
-                <label>Kin-Primary Category</label>
-                <ng-select [items]="primary_cat"
-                           bindLabel="name"
-                           bindValue="id"
-                           [(ngModel)]="userSearch.category"
-                           placeholder="Select primary category"
-                           (click)="refreshSecondaryCategory()"
-                >
-                </ng-select>
-            </div>
+      <div class="form-group">
+        <label>Kin-Primary Category</label>
+        <ng-select [items]="primary_cat" bindLabel="name" bindValue="id" [(ngModel)]="userSearch.category"
+          placeholder="Select primary category" (click)="refreshSecondaryCategory()">
+        </ng-select>
+      </div>
 
-            <div class="form-group">
-                <label>Kin-Secondary Category</label>
-                <ng-select [items]="secondary_cat"
-                           bindLabel="name"
-                           bindValue="id"
-                           [(ngModel)]="userSearch.category_sec"
-                           placeholder="Select secondary category"
-                >
-                </ng-select>
-            </div>
+      <div class="form-group">
+        <label>Kin-Secondary Category</label>
+        <ng-select [items]="secondary_cat" bindLabel="name" bindValue="id" [(ngModel)]="userSearch.category_sec"
+          placeholder="Select secondary category">
+        </ng-select>
+      </div>
 
-            <div class="form-group">
-                <label for="state">Tags</label>
-                <input type="text" class="form-control" id="tags" placeholder="Tags" required="required"
-                       [(ngModel)]="userSearch.tags"
-                >
-                <small id="tagHelp" class="form-text text-muted">Enter a tags you want to search.
-                </small>
-            </div>
+      <div class="form-group">
+        <label for="state">Tags</label>
+        <input type="text" class="form-control" id="tags" placeholder="Tags" required="required"
+          [(ngModel)]="userSearch.tags">
+        <small id="tagHelp" class="form-text text-muted">Enter a tags you want to search.
+        </small>
+      </div>
 
-            <div class="form-group" *ngIf="isUpdateShow">
-                <label for="desc">Description</label>
-                <input type="text" class="form-control" id="desc" placeholder="Description" required="required"
-                       [(ngModel)]="userSearch.description"
-                >
-                <small id="descHelp" class="form-text text-muted">Enter a desc you want to search.
-                </small>
-            </div>
+      <div class="form-group" *ngIf="isUpdateShow">
+        <label for="desc">Description</label>
+        <input type="text" class="form-control" id="desc" placeholder="Description" required="required"
+          [(ngModel)]="userSearch.description">
+        <small id="descHelp" class="form-text text-muted">Enter a desc you want to search.
+        </small>
+      </div>
 
-            <div class="form-group">
-                <label for="parking">Parking</label>
-                <input type="text" class="form-control" id="parking" placeholder="Parking" required="required"
-                       [(ngModel)]="parking"
-                >
-                <small id="parkHelp" class="form-text text-muted">Parking
-                </small>
-            </div>
+      <div class="form-group">
+        <label for="parking">Parking</label>
+        <input type="text" class="form-control" id="parking" placeholder="Parking" required="required"
+          [(ngModel)]="parking">
+        <small id="parkHelp" class="form-text text-muted">Parking
+        </small>
+      </div>
 
-            <div class="form-group">
-                <label for="tips">Tips For Parent</label>
-                <input type="text" class="form-control" id="tips" placeholder="Tips" required="required"
-                       [(ngModel)]="tips_for_parent"
-                >
-                <small id="tipsHelp" class="form-text text-muted">Tips for parent
-                </small>
-            </div>
+      <div class="form-group">
+        <label for="tips">Tips For Parent</label>
+        <input type="text" class="form-control" id="tips" placeholder="Tips" required="required"
+          [(ngModel)]="tips_for_parent">
+        <small id="tipsHelp" class="form-text text-muted">Tips for parent
+        </small>
+      </div>
 
-            <div class="form-group">
-                <label for="tips">Ratings</label>
-                <input type="text" class="form-control" id="ratings" placeholder="Ratings" required="required"
-                       [(ngModel)]="rating"
-                >
-                <small id="ratingHelp" class="form-text text-muted">Any ratings 1-5
-                </small>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="name">URL</label>
-                <input type="text" class="form-control" id="url" placeholder="" required="true"
-                       [(ngModel)]="userSearch.url"
-                >
-                <small id="urlhelp" class="form-text text-muted">URL for place.
-                </small>
-            </div>
-
-            <div class="form-group">
-                <label for="name">Image URL</label>
-                <input type="text" class="form-control" id="image_url" placeholder="" required="true"
-                       [(ngModel)]="userSearch.image_url"
-                >
-                <small id="imageUrlhelp" class="form-text text-muted">Place images.
-                </small>
-            </div>
-
-            <div class="form-group">
-                <label for="name">price</label>
-                <input type="number" class="form-control" id="price" required name="price" min="0" value="0" step="0.01"
-                       [(ngModel)]="userSearch.price"
-                >
-                <small id="numberhelp" class="form-text text-muted">Price for place.
-                </small>
-            </div>
-
-
-            <div class="form-group">
-                <label for="permClose"> Permanantly Close</label>
-                <input type="text" class="form-control" id="permClose" placeholder="" value=0 required="required"
-                       [(ngModel)]="userSearch.perm_close"
-                >
-                <small id="permCloseHelp" class="form-text text-muted"> Is permanantly closed  0 OR 1
-                </small>
-            </div>
-
-
-            <div class="form-group">
-                <label for="misc">Misc</label>
-                <textarea class="form-control" rows="5" id="misc" placeholder="Misc" required="required"
-                          [(ngModel)]="jsonMiscData" disabled
-                ></textarea>
-                <small id="miscHelp" class="form-text text-muted">Enter a misc you want to search.
-                </small>
-            </div>
-
-            <div class="form-group">
-                <label for="emailId">Email</label>
-                <input type="email" class="form-control" id="emailId" placeholder="Email" required="required"
-                       [(ngModel)]="userSearch.email"
-                >
-                <small id="emailHelp" class="form-text text-muted">Email address for contact
-                </small>
-            </div>
-
-            <div class="form-group">
-                <label for="contactNo">Contact No.</label>
-                <input type="text" class="form-control" id="contactNo" placeholder="Contact No" required="required"
-                       [(ngModel)]="userSearch.contact_number"
-                >
-                <small id="contactHelp" class="form-text text-muted">Enter a Contact No.
-                </small>
-            </div>
-
-            <div class="form-group">
-                <label for="street">Street</label>
-                <input type="text" class="form-control" id="street" placeholder="Street" required="required"
-                       [(ngModel)]="userSearch.street"
-                >
-                <small id="streetHelp" class="form-text text-muted">Street
-                </small>
-            </div>
-
-            <div class="form-group">
-                <label for="street">Zip Code</label>
-                <input type="text" class="form-control" id="zipCode" placeholder="Zip Code" required="required"
-                       [(ngModel)]="userSearch.zip_code"
-                >
-                <small id="zipHelp" class="form-text text-muted">Zip Code
-                </small>
-            </div>
-
-            <div class="form-group">
-
-                <label for="timings">Timings</label>
-                <textarea class="form-control" rows="5" id="timings" placeholder="Timing"  required="required"
-                          [(ngModel)]="userSearch.timings"
-                ></textarea>
-                <small id="timingsHelp" class="form-text text-muted">Timings
-                </small>
-            </div>
-        </div>
+      <div class="form-group">
+        <label for="tips">Ratings</label>
+        <input type="text" class="form-control" id="ratings" placeholder="Ratings" required="required"
+          [(ngModel)]="rating">
+        <small id="ratingHelp" class="form-text text-muted">Any ratings 1-5
+        </small>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-                <button type="button" class="btn btn-primary" (click)="update_venue()">Update</button>
-            </div>
-        </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="name">URL</label>
+        <input type="text" class="form-control" id="url" placeholder="" required="true" [(ngModel)]="userSearch.url">
+        <small id="urlhelp" class="form-text text-muted">URL for place.
+        </small>
+      </div>
 
-        <div class="col-md-3">
-            <div class="form-group">
-                <button type="button" class="btn btn-primary" (click)="reset_venue()">Reset</button>
-            </div>
-        </div>
+      <div class="form-group">
+        <label for="name">Image URL</label>
+        <input type="text" class="form-control" id="image_url" placeholder="" required="true"
+          [(ngModel)]="userSearch.image_url">
+        <small id="imageUrlhelp" class="form-text text-muted">Place images.
+        </small>
+      </div>
 
-        <div class="col-md-3">
-            <div class="form-group">
-                <button type="button" class="btn btn-primary" (click)="previous_venue()">Previous</button>
-            </div>
-        </div>
+      <div class="form-group">
+        <label for="name">price</label>
+        <input type="number" class="form-control" id="price" required name="price" min="0" value="0" step="0.01"
+          [(ngModel)]="userSearch.price">
+        <small id="numberhelp" class="form-text text-muted">Price for place.
+        </small>
+      </div>
 
-        <div class="col-md-3">
-            <div class="form-group">
-                <button type="button" class="btn btn-primary" (click)="next_venue()">Next</button>
-            </div>
-        </div>
+
+      <div class="form-group">
+        <label for="permClose"> Permanantly Close</label>
+        <input type="text" class="form-control" id="permClose" placeholder="" value=0 required="required"
+          [(ngModel)]="userSearch.perm_close">
+        <small id="permCloseHelp" class="form-text text-muted"> Is permanantly closed 0 OR 1
+        </small>
+      </div>
+
+
+      <div class="form-group">
+        <label for="misc">Misc</label>
+        <textarea class="form-control" rows="5" id="misc" placeholder="Misc" required="required"
+          [(ngModel)]="jsonMiscData" disabled></textarea>
+        <small id="miscHelp" class="form-text text-muted">Enter a misc you want to search.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="emailId">Email</label>
+        <input type="email" class="form-control" id="emailId" placeholder="Email" required="required"
+          [(ngModel)]="userSearch.email">
+        <small id="emailHelp" class="form-text text-muted">Email address for contact
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="contactNo">Contact No.</label>
+        <input type="text" class="form-control" id="contactNo" placeholder="Contact No" required="required"
+          [(ngModel)]="userSearch.contact_number">
+        <small id="contactHelp" class="form-text text-muted">Enter a Contact No.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="street">Street</label>
+        <input type="text" class="form-control" id="street" placeholder="Street" required="required"
+          [(ngModel)]="userSearch.street">
+        <small id="streetHelp" class="form-text text-muted">Street
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="street">Zip Code</label>
+        <input type="text" class="form-control" id="zipCode" placeholder="Zip Code" required="required"
+          [(ngModel)]="userSearch.zip_code">
+        <small id="zipHelp" class="form-text text-muted">Zip Code
+        </small>
+      </div>
+
+      <div class="form-group">
+
+        <label for="timings">Timings</label>
+        <textarea class="form-control" rows="5" id="timings" placeholder="Timing" required="required"
+          [(ngModel)]="userSearch.timings"></textarea>
+        <small id="timingsHelp" class="form-text text-muted">Timings
+        </small>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="update_venue()">Update</button>
+      </div>
     </div>
 
-
-    <div class="row error-message" *ngIf="isErrorVisible">
-        <div class="col-md-12">
-            <label>{{errorMessage}}</label>
-        </div>
-        <div class="col-md-12">
-            <button type="button" class="btn btn-primary errorCloseButton" (click)="closeErrorBox()">Close</button>
-        </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="reset_venue()">Reset</button>
+      </div>
     </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="previous_venue()">Previous</button>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="next_venue()">Next</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row error-message" *ngIf="isErrorVisible">
+    <div class="col-md-12">
+      <label>{{errorMessage}}</label>
+    </div>
+    <div class="col-md-12">
+      <button type="button" class="btn btn-primary errorCloseButton" (click)="closeErrorBox()">Close</button>
+    </div>
+  </div>
 
 </div>
-
