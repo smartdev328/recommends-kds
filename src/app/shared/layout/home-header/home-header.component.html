@@ -72,4 +72,19 @@
         </ul>
     </div> 
 </nav>
-
+<nav class="bottom-navbar" *ngIf="isLogedin">
+    <ul class="navbar-nav m-auto text-center">
+        <li class="nav-item home-page">
+            <a class="nav-link navbar-brand mr-0" [routerLinkActive]="['active']" 
+                [routerLinkActiveOptions]="{exact: true}" routerLink="/home">Discover</a>
+        </li>
+        <li class="nav-item add-reco-page">
+            <a class="nav-link navbar-brand mr-0" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{exact: true}" routerLink="/add-recos">+</a>
+        </li>
+        <li class="nav-item recos-page">
+            <a class="nav-link navbar-brand mr-0" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{exact: true}" routerLink="/recos">Recos</a>
+        </li>
+    </ul>
+</nav>

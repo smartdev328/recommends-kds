@@ -105,6 +105,7 @@ export class HomeComponent implements AfterViewInit, OnInit  {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          centerMode: true
         }
       }
     ]
