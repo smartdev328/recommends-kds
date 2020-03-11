@@ -43,26 +43,6 @@ a {
     background-position: top left 25%;
 }
 
-.home-image .info {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    justify-content: center;
-    flex-direction: column;
-    margin: auto;
-    max-width: 450px;
-}
-
-.home-image .info h1 {
-    font-family: Montserrat;
-    font-size: 22px;
-    line-height: 1.5em;
-    letter-spacing: 0.05em;
-    font-weight: 500;
-    color: #FBFCFC;
-    text-shadow: 0px 0px 4px #797D7F;
-    text-align: center;
-}
 
 .home-list {
     background: rgb(254, 215, 5);
@@ -77,10 +57,12 @@ a {
 
 /* Start categories section */
 .categories-section {
-    padding: 1.5em 1em 0.8em 1em;
+    padding: 1.5em 1em 2.5em 1em;
 }
 .categories-section .description {
     font-size: 14px;
+    display: block;
+    margin: 0.5em 0 0;
 }
 .eventsImage, .placesImage, .campsImage, .hikingImage, .classesImage, .recosImage {
     height: 172px;
@@ -161,6 +143,9 @@ video {
     font-family: Montserrat;
 }
 
+.slick-slide {
+    outline: none;
+}
 /* Start Benefits carousel  */
 .benefits-section {
     background: #4A4949;
@@ -171,7 +156,7 @@ video {
 .benefits-section .benefit {
     display: flex;
     background: #fff;
-    padding: 1em 3em;
+    padding: 1em 2em;
     border-radius: 2px;
     height: 180px;
     align-items: center;
@@ -183,6 +168,7 @@ video {
     font-size: 18px;
     line-height: 1.5em;
     min-width: 300px;
+    max-width: 450px;
 }
 
 .benefits-section .slick-slide:nth-child(3n+1) .benefit {
@@ -191,6 +177,16 @@ video {
 
 .benefits-section .slick-slide:nth-child(3n+2) .benefit {
     border: 1px solid #d203fc;
+}
+
+.benefits-section .slick-slide {
+    display: flex;
+    justify-content: center;
+}
+
+.benefits-section > *, .categories-section > * {
+    max-width: 1200px;
+    margin: auto;
 }
 
 /* End Benefits carousel  */
@@ -204,7 +200,7 @@ video {
 }
 .top-recos-section {
     background-color: #FFD700;
-    padding: 1.5em 1em 0.8em 1em;
+    padding: 1.5em 1em 2.8em 1em;
 }
 .top-recos-section .reco {
     margin: 0 1em;
@@ -224,6 +220,12 @@ video {
     justify-content: center;
     text-align: center;
 }
+
+.top-recos-section > * {
+    max-width: 1200px;
+    margin: auto;
+}
+
 /* End Recommendataions carousel */
 
 /* Mobile */
@@ -358,6 +360,7 @@ video {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        cursor: pointer;
     }
     .category-label-sm {
         color: #FBFCFC;
@@ -369,8 +372,37 @@ video {
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
+    .home-image .info {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        justify-content: center;
+        flex-direction: column;
+        margin: auto;
+        max-width: 450px;
+    }
+
+    .home-image .info h1 {
+        font-family: Montserrat;
+        font-size: 22px;
+        line-height: 1.5em;
+        letter-spacing: 0.05em;
+        font-weight: 500;
+        color: #FBFCFC;
+        text-shadow: 0px 0px 4px #797D7F;
+        text-align: center;
+    }
 }
 
+@media (min-width: 640px) {
+    .benefits-section {
+        padding: 3em 0.5em;
+    }
+    .benefits-section .benefit {
+        margin: 0.5em 0.8em;
+    }
+}
 
 /* Tablets */
 
@@ -499,7 +531,7 @@ video {
         font-family: 'Paytone One', sans-serif;
         color: #FBFCFC;
         text-shadow: 0px 0px 3px #797D7F;
-        font-size: 48px;
+        font-size: 38px;
         text-align: center;
         position: absolute;
         top: 50%;
@@ -515,6 +547,36 @@ video {
         bottom: 0;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+    .benefits-section {
+        padding: 3em 0.5em;
+    }
+    .benefits-section .benefit {
+        margin: 0.5em 0.8em;
+    }
+    .top-recos-section > h3 {
+        font-size: 24px;
+        letter-spacing: 0.5px;
+    }
+    .top-recos-section {
+        padding: 2em 1.5em 3.5em 1.5em;
+    }
+    .top-recos-section .reco {
+        margin: 0.5em 1em 0.5em;
+    }
+    .categories-section > h3 {
+        font-size: 24px;
+        letter-spacing: 0.5px;
+    }
+    .categories-section {
+        padding: 2em 1.5em 3.5em 1.5em;
+    }
+    .categories-section .reco {
+        margin: 0.5em 1em 0.5em;
+    }
+    .categories-section .description {
+        font-size: 16px;
+        margin: 0.5em auto;
     }
 }
 
@@ -659,7 +721,7 @@ video {
         font-family: 'Paytone One', sans-serif;
         color: #FBFCFC;
         text-shadow: 0px 0px 3px #797D7F;
-        font-size: 64px;
+        font-size: 44px;
         text-align: center;
         position: absolute;
         top: 50%;
@@ -675,6 +737,39 @@ video {
         bottom: 0;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    .benefits-section .benefit {
+        margin: 0 1em;
+    }
+    .benefits-section {
+        padding: 5em 0.5em;
+    }
+
+    .top-recos-section > h3 {
+        font-size: 28px;
+        letter-spacing: 0.5px;
+    }
+    .top-recos-section {
+        padding: 2em 1em 3.5em 1em;
+    }
+    .top-recos-section .reco {
+        margin: 0.5em 1em 1em;
+    }
+
+    .categories-section > h3 {
+        font-size: 28px;
+        letter-spacing: 0.5px;
+    }
+    .categories-section {
+        padding: 2em 1em 3.5em 1em;
+    }
+    .categories-section .reco {
+        margin: 0.5em 1em 1em;
+    }
+    .categories-section .description {
+        font-size: 18px;
+        margin: 0.5em auto;
     }
 }
 

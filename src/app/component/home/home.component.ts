@@ -57,20 +57,86 @@ export class HomeComponent implements AfterViewInit, OnInit  {
     },
   ];
   slideConfig = {
-    dots: true,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 1,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    infinite: false,
+    dots: false,
     arrows: false,
+    speed: 300,
+    responsive: [
+      {
+        breakpoint: 960,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          dots: true,
+          infinite: true,
+        }
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: true,
+          infinite: true,
+        }
+      }
+    ]
   };
   slideConfig2 = {
     dots: true,
     infinite: true,
     speed: 300,
-    slidesToShow: 1,
+    slidesToShow: 3,
+    slidesToScroll: 3,
     arrows: false,
     variableWidth: true,
-    centerMode: true,
+    responsive: [
+      {
+        breakpoint: 960,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        }
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
+  };
+  slideConfig3 = {
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    infinite: false,
+    dots: true,
+    arrows: true,
+    speed: 300,
+    responsive: [
+      {
+        breakpoint: 960,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          dots: true,
+          infinite: true,
+        }
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: true,
+          infinite: true,
+          arrows: false,
+        }
+      }
+    ]
   };
 
   constructor(
@@ -123,11 +189,4 @@ export class HomeComponent implements AfterViewInit, OnInit  {
     );
   }
 
-  slickInit() {
-    console.log('-------- init');
-  }
-
-  afterChange() {
-    console.log('---- after change');
-  }
 }

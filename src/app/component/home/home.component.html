@@ -32,18 +32,16 @@
                 #slickModal="slick-carousel"
                 [config]="slideConfig2"
                 *ngIf="topRecommendations.length"
-                (init)="slickInit($event)"
-                (afterChange)="afterChange($event)"
             >
                 <div ngxSlickItem *ngFor="let reco of topRecommendations" class="slide">
-                    <a routerLink="/recos">
-                        <div class="reco">
-                            <img [src]="reco.fields.Image[0].url" alt="reco image" />
+                    <div class="reco">
+                        <img [src]="reco.fields.Image[0].url" alt="reco image" />
+                        <a routerLink="/recos">
                             <h5>
                                 {{ reco.fields.Title }}
                             </h5>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </ngx-slick-carousel>
         </div>
@@ -55,14 +53,14 @@
             <ngx-slick-carousel
                 class="carousel" 
                 #slickModal="slick-carousel" 
-                [config]="slideConfig"
+                [config]="slideConfig3"
             >
                 <div ngxSlickItem *ngFor="let way of discoverWays" class="slide">
-                    <a [routerLink]="way.url">
-                        <div [class]="way.className">
+                    <div [class]="way.className">
+                        <a [routerLink]="way.url">
                             <label class="category-label">{{ way.label }}</label>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </ngx-slick-carousel>
         </div>
