@@ -38,3 +38,9 @@ ul.links li a {
 .social span img {
   width: 80%;
 }
+
+@media (max-width: 640px) {
+  .footer-new {
+    padding-bottom: 100px;
+  }
+}
