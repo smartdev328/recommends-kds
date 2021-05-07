@@ -38,7 +38,7 @@
     "ngx-datatable": "^1.0.3",
     "rxjs": "~6.3.3",
     "sweetalert2": "^8.13.0",
-    "underscore": "^1.9.1",
+    "underscore": "^1.12.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
